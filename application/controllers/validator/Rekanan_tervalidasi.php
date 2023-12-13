@@ -1627,7 +1627,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		redirect($url);
 	}
 	// end siujk
-
+	// aSD
 	// AKTA PENDIRIAN
 	public function encryption_akta_pendirian($id_url)
 	{
