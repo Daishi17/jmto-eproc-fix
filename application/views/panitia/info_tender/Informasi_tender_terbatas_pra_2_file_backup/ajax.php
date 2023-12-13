@@ -20,6 +20,7 @@
                 var i;
                 var no = 1;
                 for (i = 0; i < response['jadwal'].length; i++) {
+
                     var waktu_mulai = new Date(response['jadwal'][i].waktu_mulai);
                     var waktu_selesai = new Date(response['jadwal'][i].waktu_selesai);
                     const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
@@ -44,12 +45,15 @@
                     } else {
                         var alasan = ''
                     }
+
+
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['jadwal'][i].nama_jadwal_rup + ' ' + check + '</small></td>' +
                         `<td><small>${waktu_mulai.getDate()}-${months[waktu_mulai.getMonth()]}-${waktu_mulai.getFullYear()} ${zeros(waktu_mulai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
                         `<td><small>${waktu_selesai.getDate()}-${months[waktu_selesai.getMonth()]}-${waktu_selesai.getFullYear()} ${zeros(waktu_selesai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
                         '<td>' + status_waktu + '</td>' +
+                        '<td>Panitia</td>' +
                         '<td><small>' + alasan + '</small></td>' +
                         '</tr>';
                 }
@@ -442,7 +446,6 @@
                 if (response['error']) {
                     // $("#error_ev_keuangan").html(response['error']['ev_keuangan']);
                     // $("#error_ev_teknis").html(response['error']['ev_teknis']);
-                    // 
                     $('#btn_ev_penawaran').attr("disabled", false);
                 } else {
                     let timerInterval
@@ -1703,218 +1706,6 @@
                     Swal.fire('Token Gagal Dikirim Ke Whatsapp Anda!', '', 'warning')
                     $('.btn_dapatkan_token').attr("disabled", false);
                 }
-            }
-        })
-    }
-</script>
-
-<!-- ulang dan batal tender -->
-<script>
-    var form_mengulang_pengadaan = $('#form_mengulang_pengadaan')
-    form_mengulang_pengadaan.on('submit', function(e) {
-        e.preventDefault();
-        var alasan_ulang = $('[name="alasan_ulang"]').val()
-        var file_ulang_paket = $('[name="file_ulang_paket"]').val()
-        var url_ulang_pengadaan = $('[name="url_ulang_pengadaan"]').val()
-        if (alasan_ulang == '') {
-            Swal.fire({
-                title: "Gagal!",
-                text: "Alasan Harus Di Isi!",
-                icon: "warning"
-            });
-        } else if (file_ulang_paket == '') {
-            Swal.fire({
-                title: "Gagal!",
-                text: "File Pendukung Harus Di Upload!",
-                icon: "warning"
-            });
-        } else {
-            $.ajax({
-                url: url_ulang_pengadaan,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn_simpan_negosiasi').attr("disabled", true);
-                },
-                success: function(response) {
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Proses Data <b></b>',
-                        timer: 1000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            form_mengulang_pengadaan[0].reset();
-                            setTimeout(() => {
-                                window.location.href = $('[name="redirect"]').val()
-                            }, 2000);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-
-                        }
-                    })
-
-                }
-            })
-        }
-
-    })
-
-    var form_batal_pengadaan = $('#form_batal_pengadaan')
-    form_batal_pengadaan.on('submit', function(e) {
-        e.preventDefault();
-        var alasan_batal = $('[name="alasan_batal"]').val()
-        var file_batal_paket = $('[name="file_batal_paket"]').val()
-        var url_batal_pengadaan = $('[name="url_batal_pengadaan"]').val()
-        if (alasan_batal == '') {
-            Swal.fire({
-                title: "Gagal!",
-                text: "Alasan Harus Di Isi!",
-                icon: "warning"
-            });
-        } else if (file_batal_paket == '') {
-            Swal.fire({
-                title: "Gagal!",
-                text: "File Pendukung Harus Di Upload!",
-                icon: "warning"
-            });
-        } else {
-            $.ajax({
-                url: url_batal_pengadaan,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn_simpan_negosiasi').attr("disabled", true);
-                },
-                success: function(response) {
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Proses Data <b></b>',
-                        timer: 1000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            form_batal_pengadaan[0].reset();
-                            setTimeout(() => {
-                                window.location.href = $('[name="redirect"]').val()
-                            }, 2000);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-
-                        }
-                    })
-
-                }
-            })
-        }
-
-    })
-
-    function onkeyup_undangan(id_rup, post_type) {
-        if (post_type == 'no_undangan') {
-            var value = $('#value_undangan1').val()
-        } else if (post_type == 'tgl_surat') {
-            var value = $('#value_undangan2').val()
-        } else if (post_type == 'hari') {
-            var value = $('#value_undangan3').val()
-        } else if (post_type == 'tanggal') {
-            var value = $('#value_undangan4').val()
-        } else if (post_type == 'waktu') {
-            var value = $('#value_undangan5').val()
-        } else if (post_type == 'jml_halaman') {
-            var value = $('#value_undangan6').val()
-        }
-
-        var url_post_undangan_pembuktian = $('[name="url_post_undangan_pembuktian"]').val()
-        $.ajax({
-            url: url_post_undangan_pembuktian,
-            type: 'post',
-            data: {
-                value: value,
-                post_type: post_type,
-                id_rup: id_rup
-            },
-            success: () => {
-
-            }
-        })
-    }
-
-    function onkeyup_undang_penyedia_waktu(id_vendor_mengikuti_paket, post_type) {
-        var value = $(`[name="wkt_undang_pembuktian${id_vendor_mengikuti_paket}"]`).val()
-        var url_post_undangan_pembuktian_vendor_waktu = $('[name="url_post_undangan_pembuktian_vendor_waktu"]').val()
-        $.ajax({
-            url: url_post_undangan_pembuktian_vendor_waktu,
-            type: 'post',
-            data: {
-                value: value,
-                post_type: post_type,
-                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
-            },
-            success: () => {
-
-            }
-        })
-    }
-
-
-    function onkeyup_undang_penyedia_metode(id_vendor_mengikuti_paket, post_type) {
-        var value2 = $(`[name="metode_pembuktian${id_vendor_mengikuti_paket}"]`).val()
-        var url_post_undangan_pembuktian_vendor_metode = $('[name="url_post_undangan_pembuktian_vendor_metode"]').val()
-
-        $.ajax({
-            url: url_post_undangan_pembuktian_vendor_metode,
-            type: 'post',
-            data: {
-                value: value2,
-                post_type: post_type,
-                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
-            },
-            success: () => {
-
-            }
-        })
-    }
-
-    function onkeyup_global_rup(id_rup, post_type) {
-        var url_post_pengumuman_hasil_kualifikasi = $('[name="url_post_pengumuman_hasil_kualifikasi"]').val()
-        var value = $('[name="' + post_type + '"]').val()
-        $.ajax({
-            url: url_post_pengumuman_hasil_kualifikasi,
-            type: 'post',
-            data: {
-                post_type: post_type,
-                value: value,
-                id_rup: id_rup
-            },
-            success: () => {
-
             }
         })
     }

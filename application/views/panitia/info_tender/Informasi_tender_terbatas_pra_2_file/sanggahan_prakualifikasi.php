@@ -26,7 +26,7 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
+                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
@@ -64,7 +64,7 @@
                 <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                     <div class="flex-grow-1 bd-highlight">
                         <span class="text-dark">
-                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Sanggahan Prakualifikasi</strong></small>
+                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Sanggahan Kualifikasi</strong></small>
                         </span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan Prakualifikasi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan Kualifikasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="javascript:;" id="form_sanggahan_prakualifikasi">
