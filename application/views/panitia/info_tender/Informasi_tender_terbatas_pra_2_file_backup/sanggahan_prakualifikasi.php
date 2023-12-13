@@ -1,6 +1,9 @@
-<input type="hidden" name="url_get_vendor_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_negosiasi') ?>">
+<input type="hidden" name="url_upload_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_pra/') ?>">
+<input type="hidden" name="url_hapus_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_pra/') ?>">
+<input type="hidden" name="url_get_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_pra') ?>">
+<input type="hidden" name="url_open_sanggahan_pra" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
+<input type="hidden" name="url_open_sanggahan_pra_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_PRAKUALIFIKASI' . '/') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
-<input type="hidden" name="url_simpan_link_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_link_negosiasi') ?>">
 <main class="container">
     <div class="row">
         <div class="col">
@@ -20,10 +23,10 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/evaluasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Evaluasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
@@ -35,10 +38,10 @@
             <div class="card border-dark">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <h4>Negosiasi Pengadaan</h4>
+                        <h4>Informasi Pengadaan</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped">
                             <tr>
                                 <th style="width: 400px;">Nama Paket</th>
                                 <td><?= $row_rup['nama_rup'] ?></td>
@@ -61,65 +64,70 @@
                 <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                     <div class="flex-grow-1 bd-highlight">
                         <span class="text-dark">
-                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Negosiasi Pengadaan</strong></small>
+                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Sanggahan Prakualifikasi</strong></small>
                         </span>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div style="overflow-x: auto;">
-                        <table class="table table-bordered" id="tbl_evaluasi">
-                            <thead class="bg-primary text-white">
-                                <tr>
-                                    <th width="50px">No</th>
-                                    <th width="200px">Nama Peserta</th>
-                                    <th>Tanggal Negosiasi</th>
-                                    <th>Link Meet (Jika Daring)</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbl_vendor_negosiasi">
+                    <table class="table table-bordered">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>No</th>
+                                <th width="200px">Nama Peserta</th>
+                                <th>Keterangan Penyedia</th>
+                                <th>Download File</th>
+                                <th>File Balasan</th>
+                                <th>Keterangan Panitia</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_sanggah_pra">
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 </main>
 
-
-<!-- Modal -->
-<!-- Modal -->
-<div class="modal fade" id="modal_negosiasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modal_balas_sanggahan_pra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">Form Negosiasi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan Prakualifikasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="form_upload_link_negosiasi" action="javascript:;" enctype="multipart/form-data">
-                    <input type="hidden" name="id_vendor_mengikuti_paket" readonly class="form-control">
+            <form action="javascript:;" id="form_sanggahan_prakualifikasi">
+                <div class="modal-body">
+                    <div class="alert alert-primary d-flex align-items-center" role="alert">
+                        <div>
+                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Balas Sanggahan Prakulifikasi !!! <br>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="">Nama Penyedia</label>
-                        <input type="text" name="nama_penyedia" readonly class="form-control">
+                        <input type="hidden" name="id_vendor_mengikuti_paket">
+                        <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Nama Penyedia</th>
+                                <td><label for="" id="nama_penyedia"></label></td>
+                            </tr>
+                            <tr>
+                                <th>Keterangan</th>
+                                <td><textarea name="ket_sanggah_pra_panitia" class="form-control"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>Upload</th>
+                                <td><input type="file" name="file_sanggah_pra_panitia"></td>
+                            </tr>
+                        </table>
                     </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="">Tanggal Negosiasi</label>
-                        <input type="date" name="tanggal_negosiasi" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="">Link Meet (Jika Daring)</label>
-                        <input type="text" name="link_negosiasi" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary btn_simpan_negosiasi">Simpan</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Batal</button>
+                    <button type="submit" class="btn btn-success btn-sanggah"><i class="fas fa fa-upload"></i> Upload</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

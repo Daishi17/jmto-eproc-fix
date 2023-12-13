@@ -410,7 +410,7 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
@@ -478,8 +478,8 @@
                     </div>
                     <div class="card-footer card-footer_chat" style="background-image: radial-gradient(circle at 50% -20.71%, #cfa8ff 0, #9d8bff 25%, #6c6cd8 50%, #3f4ea4 75%, #153375 100%);">
                         <div class="replay_orang" style="display: none;">
-                        <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
-                          <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
+                            <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
+                            <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
                         </div>
                         <form id="form_keuangan_add" enctype="multipart/form-data">
                             <input type="hidden" name="replay_tujuan">
@@ -515,7 +515,7 @@
                                             <button type="submit" id="upload" name="upload" class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
                                         </div>
                                     <?php    } else { ?>
-                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Dokumen Prakualifikasi Sudah Habis..."></textarea>
+                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Dokumen Kualifikasi Sudah Habis..."></textarea>
                                         <div class="input-group-append">
                                         </div>
                                     <?php    } ?>
@@ -541,7 +541,7 @@
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 </main>

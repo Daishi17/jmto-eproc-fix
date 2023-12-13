@@ -320,7 +320,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
             if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
-            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) {
+            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','penawaran'" . ')">
                     <i class="fa-solid fa-edit"></i>
@@ -392,7 +392,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
             if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
-            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) {
+            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
                     <i class="fa-solid fa-edit"></i>
@@ -477,7 +477,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
             if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
-            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) {
+            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
 						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
 							<i class="fa-solid fa-edit"></i>
@@ -573,8 +573,14 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function get_byid_mengikuti($id_vendor_mengikuti_paket)
     {
         $row_vendor_mengikuti = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
+        // link cross
+        $rup = $this->M_panitia->get_rup($row_vendor_mengikuti['id_rup']);
+        $link_vendor = 'http://localhost/jmto-vms/';
+        $link_vendor2 = 'http://localhost/jmto-vms/';
         $data = [
-            'row_vendor_mengikuti' => $row_vendor_mengikuti
+            'row_vendor_mengikuti' => $row_vendor_mengikuti,
+            'link_vendor' => $link_vendor,
+            'rup' => $rup
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }

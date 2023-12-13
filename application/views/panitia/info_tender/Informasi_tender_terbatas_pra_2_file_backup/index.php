@@ -23,7 +23,7 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
@@ -44,7 +44,7 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th style="width: 300px;">Kode Pengadaan</th>
-                            <th> <?= $row_rup['kode_rup'] ?> <a style="float: right;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/summary_tender' . '/' . $row_rup['id_url_rup']) ?>" class="btn-sm btn btn-primary text-white"><i class="fas fa fa-file"></i> Summary Tender</a></th>
+                            <th> <?= $row_rup['kode_rup'] ?> <a style="float: right;" target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/summary_tender' . '/' . $row_rup['id_url_rup']) ?>" class="btn-sm btn btn-primary text-white"><i class="fas fa fa-file"></i> Summary Tender</a></th>
                         </tr>
                         <tr>
                             <th>Nama Paket</th>
@@ -80,7 +80,7 @@
                             <tr>
                                 <th> Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
-                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Prakualifikasi
                                     </button></th>
                             </tr>
 
@@ -88,7 +88,7 @@
                             <tr>
                                 <th> Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
-                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Prakualifikasi
                                     </button></th>
                             </tr>
                         <?php    } ?>
@@ -150,7 +150,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header bg-primary text-white">
-                                                List Dokumen Kualifikasi
+                                                List Dokumen Prakualifikasi
                                             </div>
                                             <div class="card-body">
                                                 <table class="table table-bordered">
@@ -223,12 +223,12 @@
                                     </button>
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Pembuktian
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
                                     </button>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Pembuktian
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
                                     </button>
                                 <?php    } ?>
                             </th>
@@ -327,7 +327,7 @@
 
 
                         <tr>
-                            <th>Hasil Kualifikasi</th>
+                            <th>Pengumuman Hasil Prakualifikasi</th>
                             <th>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi" disabled>
@@ -336,40 +336,19 @@
 
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Prakualifikasi
                                     </button>
 
                                 <?php    } else { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Prakualifikasi
                                     </button>
 
                                 <?php    } ?>
 
                             </th>
                         </tr>
-                        <tr>
-                            <th>Undangan Penawaran</th>
-                            <th>
-                                <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi" disabled>
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
-                                    </button>
 
-                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
-                                    </button>
-
-                                <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
-                                    </button>
-
-                                <?php    } ?>
-
-                            </th>
-                        </tr>
                         <tr>
                             <th>Pembukaan Penawaran</th>
                             <th>
@@ -469,13 +448,10 @@
                         </tr>
 
                     </table>
-                    <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
-                    <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
 </main>
-
 <div class="modal fade" id="buka_dokumen_penawaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -641,6 +617,90 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a class="btn btn-success btn_kirim_pengumuman" onclick="Kirim_pengumuman('<?= $row_rup['id_url_rup'] ?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim Pengumuman</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="undangan_pembuktian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Undangan Pembuktian</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <div>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Undangan Pembuktian Pengadaan !!! <br>
+                    </div>
+                </div>
+                <form id="form_upload_undangan_pembuktian" action="javascript:;" enctype="multipart/form-data">
+                    <input type="hidden" name="id_rup_pembuktian" value="<?= $row_rup['id_rup'] ?>">
+                    <input type="hidden" name="nama_rup_pembuktian" value="<?= $row_rup['nama_rup'] ?>">
+                    <div class="input-group">
+                        <input type="file" class="form-control" accept=".xlsx, .xls, .pdf" name="file_undangan_pembuktian">
+                        <button class="btn btn-outline-secondary btn_undangan" type="submit">Upload</button>
+                    </div>
+                </form>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama File</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_undangan_pembuktian">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="hasil_prakualifikasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Pengumuman Hasil Prakualifikasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <div>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Pengumuman Hasil Prakualifikasi Pengadaan !!! <br>
+                    </div>
+                </div>
+                <form id="form_upload_hasil_prakualifikasi" action="javascript:;" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input type="hidden" name="id_rup_prakualifikasi" value="<?= $row_rup['id_rup'] ?>">
+                        <input type="hidden" name="nama_rup_prakualifikasi" value="<?= $row_rup['nama_rup'] ?>">
+                        <input type="file" class="form-control" accept=".xlsx, .xls, .pdf" name="file_pengumuman_prakualifikasi">
+                        <button class="btn btn-outline-secondary btn_hasil_pra" type="submit">Upload</button>
+                    </div>
+                </form>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama File</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_hasil_prakualifikasi">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -1011,220 +1071,6 @@
                             </tr>
                         <?php } ?>
                     </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="mengulang_pengadaan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-refresh" aria-hidden="true"></i> Mengulang Pengadaan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="form_mengulang_pengadaan" action="javascript:;" enctype="multipart/form-data">
-                <input type="hidden" name="id_rup_ulang" value="<?= $row_rup['id_rup'] ?>">
-                <input type="hidden" name="nama_rup_ulang" value="<?= $row_rup['nama_rup'] ?>">
-                <div class="modal-body">
-                    <div class="alert alert-primary d-flex align-items-center" role="alert">
-                        <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Mengulang Pengadaan !!! <br>
-                            <ol>
-                                <li>Paket Yang Di Ulang Dapat Di Umumkan Oleh Ketua Panitia / Sekretaris Yang Telah Di Tetapkan</li>
-                                <li>Paket Yang Di Ulang Tidak Menghilangkan Peserta Pengadaan Yang Sudah Mengikuti</li>
-                                <li>Paket Yang Di Ulang Tidak Menghilangkan Dokumen Peserta Pengadaan Pengadaan Yang Sudah Di Upload</li>
-                                <!-- <li>Undangan Presentasi</li>
-                                <li>Addendum Dokumen Pengadaan</li> -->
-                            </ol>
-                        </div>
-                    </div>
-                    <br>
-                    <label>Alasan Mengulang Pengadaan</label>
-                    <textarea name="alasan_ulang" class="form-control"></textarea>
-                    <br>
-                    <label>File Pendukung</label>
-                    <input type="file" class="form-control" accept=".pdf" name="file_ulang_paket">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="batal_pengadaan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-upload" aria-hidden="true"></i> Batal Pengadaan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="form_batal_pengadaan" action="javascript:;" enctype="multipart/form-data">
-                <input type="hidden" name="id_rup_batal" value="<?= $row_rup['id_rup'] ?>">
-                <input type="hidden" name="nama_rup_batal" value="<?= $row_rup['nama_rup'] ?>">
-                <div class="modal-body">
-                    <div class="alert alert-primary d-flex align-items-center" role="alert">
-                        <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Batal Pengadaan !!! <br>
-                            <ol>
-                                <li>Paket Yang Di Batal Tidak Dapat Di Umumkan Oleh Ketua Panitia / Sekretaris Yang Telah Di Tetapkan</li>
-                                <li>Paket Yang Di Batal Akan Menghilangkan Peserta Pengadaan Yang Sudah Mengikuti</li>
-                                <li>Paket Yang Di Batal Akan Menghilangkan Dokumen Peserta Pengadaan Yang Sudah Di Upload</li>
-                                <!-- <li>Undangan Presentasi</li>
-                                <li>Addendum Dokumen Pengadaan</li> -->
-                            </ol>
-                        </div>
-                    </div>
-                    <br>
-                    <label>Alasan Batal Pengadaan</label>
-                    <textarea name="alasan_batal" class="form-control"></textarea>
-                    <br>
-                    <label>File Pendukung</label>
-                    <input type="file" class="form-control" accept=".pdf" name="file_batal_paket">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="undangan_pembuktian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Undangan Pembuktian</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-primary d-flex align-items-center" role="alert">
-                    <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Undangan Pembuktian Pengadaan !!! <br>
-                    </div>
-                </div>
-                <form id="form_upload_undangan_pembuktian" action="javascript:;" enctype="multipart/form-data">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nomor</th>
-                                <th><input type="text" name="no_undangan" id="value_undangan1" class="form-control" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'no_undangan')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['no_undangan'] ?>"></th>
-                            </tr>
-                            <tr>
-                                <th>Tanggal Surat</th>
-                                <th><input type="text" id="value_undangan2" name="tgl_surat" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'tgl_surat')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['tgl_surat_undangan'] ?>"></th>
-                            </tr>
-                            <tr>
-                                <th>Hari</th>
-                                <th><input type=" text" id="value_undangan3" name="hari" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'hari')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_undangan'] ?>"></th>
-                            </tr>
-                            <tr>
-                                <th>Tanggal</th>
-                                <th><input type=" text" id="value_undangan4" name="tanggal" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'tanggal')" class=" form-control" placeholder="Tanggal" class="form-control" value="<?= $row_rup['tanggal_undangan'] ?>"></th>
-                            </tr>
-                            <tr>
-                                <th>Waktu</th>
-                                <th><input type="text" id="value_undangan5" name="waktu" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'waktu')" class=" form-control" placeholder="Waktu" class="form-control" value="<?= $row_rup['waktu_undangan'] ?>"></th>
-                            </tr>
-                            <!--<tr>-->
-                            <!--    <th>Jumlah Halaman Dokumen Kualifikasi</th>-->
-                            <!--    <th><input type="text" id="value_undangan6" name="jml_halaman" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'jml_halaman')" class=" form-control" placeholder="Jumlah Halaman" class="form-control" value="<?= $row_rup['jml_halaman_undangan'] ?>"></th>-->
-                            <!--</tr>-->
-                        </thead>
-                    </table>
-                </form>
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Peserta Penawaran</th>
-                            <th>Waktu</th>
-                            <th>Metode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($peserta_tender as $key => $value) { ?>
-                            <tr>
-                                <td><?= $i++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
-                                <td><input type="text" name="wkt_undang_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_waktu(<?= $value['id_vendor_mengikuti_paket'] ?>, 'wkt_undang_pembuktian')" value="<?= $value['wkt_undang_pembuktian'] ?>"></td>
-                                <td><input type="text" name="metode_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_metode(<?= $value['id_vendor_mengikuti_paket'] ?>, 'metode_pembuktian')" value="<?= $value['metode_pembuktian'] ?>"></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-
-                <br>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="hasil_prakualifikasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Pengumuman Hasil Kualifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-primary d-flex align-items-center" role="alert">
-                    <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Pengumuman Hasil Kualifikasi Pengadaan !!! <br>
-                    </div>
-                </div>
-                <br>
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th><input type="text" name="no_pengumuman_hasil_kualifikasi" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_pengumuman_hasil_kualifikasi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['no_pengumuman_hasil_kualifikasi'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Tanggal Surat</th>
-                            <th><input type="text" id="value_undangan2" name="tanggal_pengumuman_hasil_kualifikasi" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tanggal_pengumuman_hasil_kualifikasi')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['tanggal_pengumuman_hasil_kualifikasi'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Hari Mulai</th>
-                            <th><input type=" text" id="value_undangan3" name="hari_isi_pengumuman_hasil_kualifikasi_mulai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'hari_isi_pengumuman_hasil_kualifikasi_mulai')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_isi_pengumuman_hasil_kualifikasi_mulai'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Tanggal Mulai</th>
-                            <th><input type=" text" id="value_undangan4" name="tanggal_isi_pengumuman_hasil_kualifikasi_mulai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tanggal_isi_pengumuman_hasil_kualifikasi_mulai')" class=" form-control" placeholder="Tanggal" class="form-control" value="<?= $row_rup['tanggal_isi_pengumuman_hasil_kualifikasi_mulai'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Waktu Mulai</th>
-                            <th><input type="text" id="value_undangan5" name="pukul_isi_pengumuman_hasil_kualifikasi_mulai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'pukul_isi_pengumuman_hasil_kualifikasi_mulai')" class=" form-control" placeholder="Waktu" class="form-control" value="<?= $row_rup['pukul_isi_pengumuman_hasil_kualifikasi_mulai'] ?>"></th>
-                        </tr>
-
-                        <tr>
-                            <th>Hari Mulai</th>
-                            <th><input type=" text" id="value_undangan3" name="hari_isi_pengumuman_hasil_kualifikasi_selesai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'hari_isi_pengumuman_hasil_kualifikasi_selesai')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_isi_pengumuman_hasil_kualifikasi_selesai'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Tanggal selesai</th>
-                            <th><input type=" text" id="value_undangan4" name="tanggal_isi_pengumuman_hasil_kualifikasi_selesai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tanggal_isi_pengumuman_hasil_kualifikasi_selesai')" class=" form-control" placeholder="Tanggal" class="form-control" value="<?= $row_rup['tanggal_isi_pengumuman_hasil_kualifikasi_selesai'] ?>"></th>
-                        </tr>
-                        <tr>
-                            <th>Waktu selesai</th>
-                            <th><input type="text" id="value_undangan5" name="pukul_isi_pengumuman_hasil_kualifikasi_selesai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'pukul_isi_pengumuman_hasil_kualifikasi_selesai')" class=" form-control" placeholder="Waktu" class="form-control" value="<?= $row_rup['pukul_isi_pengumuman_hasil_kualifikasi_selesai'] ?>"></th>
-                        </tr>
-                    </thead>
                 </table>
             </div>
             <div class="modal-footer">
