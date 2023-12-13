@@ -42,3 +42,6 @@
 <input type="hidden" name="url_post_undangan_pembuktian" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian') ?>">
 <input type="hidden" name="url_post_undangan_pembuktian_vendor_waktu" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian_vendor_waktu') ?>">
 <input type="hidden" name="url_post_undangan_pembuktian_vendor_metode" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian_vendor_metode') ?>">
+
+<!-- hasil prakualifikasi -->
+<input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">

@@ -44,7 +44,7 @@
                     } else {
                         var alasan = ''
                     }
-                   html += '<tr>' +
+                    html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['jadwal'][i].nama_jadwal_rup + ' ' + check + '</small></td>' +
                         `<td><small>${waktu_mulai.getDate()}-${months[waktu_mulai.getMonth()]}-${waktu_mulai.getFullYear()} ${zeros(waktu_mulai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
@@ -1835,7 +1835,7 @@
         }
 
     })
-    
+
     function onkeyup_undangan(id_rup, post_type) {
         if (post_type == 'no_undangan') {
             var value = $('#value_undangan1').val()
@@ -1867,7 +1867,7 @@
     }
 
     function onkeyup_undang_penyedia_waktu(id_vendor_mengikuti_paket, post_type) {
-        var value = $('[name="wkt_undang_pembuktian"]').val()
+        var value = $(`[name="wkt_undang_pembuktian${id_vendor_mengikuti_paket}"]`).val()
         var url_post_undangan_pembuktian_vendor_waktu = $('[name="url_post_undangan_pembuktian_vendor_waktu"]').val()
         $.ajax({
             url: url_post_undangan_pembuktian_vendor_waktu,
@@ -1885,8 +1885,9 @@
 
 
     function onkeyup_undang_penyedia_metode(id_vendor_mengikuti_paket, post_type) {
-        var value2 = $('[name="metode_pembuktian"]').val()
+        var value2 = $(`[name="metode_pembuktian${id_vendor_mengikuti_paket}"]`).val()
         var url_post_undangan_pembuktian_vendor_metode = $('[name="url_post_undangan_pembuktian_vendor_metode"]').val()
+
         $.ajax({
             url: url_post_undangan_pembuktian_vendor_metode,
             type: 'post',
@@ -1894,6 +1895,23 @@
                 value: value2,
                 post_type: post_type,
                 id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function onkeyup_global_rup(id_rup, post_type) {
+        var url_post_pengumuman_hasil_kualifikasi = $('[name="url_post_pengumuman_hasil_kualifikasi"]').val()
+        var value = $('[name="' + post_type + '"]').val()
+        $.ajax({
+            url: url_post_pengumuman_hasil_kualifikasi,
+            type: 'post',
+            data: {
+                post_type: post_type,
+                value: value,
+                id_rup: id_rup
             },
             success: () => {
 
