@@ -424,6 +424,8 @@ class Rekanan_tervalidasi extends CI_Controller
 
 		$secret_token = $this->input->post('token_dokumen');
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -434,7 +436,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -448,7 +450,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
@@ -740,6 +742,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -750,7 +754,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -764,7 +768,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
@@ -1050,6 +1054,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -1060,7 +1066,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -1074,7 +1080,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
@@ -1358,6 +1364,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -1368,7 +1376,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -1382,7 +1390,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
@@ -1628,19 +1636,21 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret1 = 'jmto.1' . $id_url;
 		$secret2 = 'jmto.2' . $id_url;
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -1847,20 +1857,22 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		// $secret = $get_row_enkrip['token_dokumen'];
 		$secret1 = 'jmto.1' . $id_url;
 		$secret2 = 'jmto.2' . $id_url;
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -2131,6 +2143,8 @@ class Rekanan_tervalidasi extends CI_Controller
 			$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_pemilik_manajerial_enkription($id_url);
 		}
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
 		$where = [
@@ -2367,6 +2381,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_pengurus_manajerial_enkription($id_url);
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
 		$where = [
@@ -2704,6 +2720,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$type_edit_pengalaman = $this->input->post('type_edit_pengalaman');
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_pengalaman_enkription($id_url);
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$where = [
 			'id_url' => $id_url
@@ -2765,16 +2783,18 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
-				$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+				$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 				$data = [
 					'sts_token_dokumen' => 2,
 					'file_dokumen' => $encryption_string,
 				];
 			} else {
-				$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+				$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 				$data = [
 					'sts_token_dokumen' => 1,
 					'file_dokumen' => $encryption_string,
@@ -2936,16 +2956,18 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
-				$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+				$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 				$data = [
 					'sts_token_dokumen' => 2,
 					'file_dokumen' => $encryption_string,
 				];
 			} else {
-				$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+				$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 				$data = [
 					'sts_token_dokumen' => 1,
 					'file_dokumen' => $encryption_string,
@@ -3178,6 +3200,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		// $id_vendor = $get_row_enkrip['id_vendor'];
 		// $row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor($id_vendor);
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen = $get_row_enkrip['token_dokumen'];
 
 		if ($type == 'enkrip') {
@@ -3435,6 +3459,8 @@ class Rekanan_tervalidasi extends CI_Controller
 
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url_neraca'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url_neraca'];
 		$where = [
@@ -3702,6 +3728,8 @@ class Rekanan_tervalidasi extends CI_Controller
 
 
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
 		$where = [
@@ -3905,6 +3933,8 @@ class Rekanan_tervalidasi extends CI_Controller
 
 		$secret_token = $this->input->post('token_dokumen');
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -3915,7 +3945,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -3929,7 +3959,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
@@ -4216,6 +4246,8 @@ class Rekanan_tervalidasi extends CI_Controller
 
 		$secret_token = $this->input->post('token_dokumen');
 		$chiper = "AES-128-CBC";
+		$option = 0;
+		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret = $get_row_enkrip['token_dokumen'];
 		if ($secret_token == $secret) {
 			if ($type == 'dekrip') {
@@ -4226,7 +4258,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 2,
 						'file_dokumen' => $encryption_string,
@@ -4240,7 +4272,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					$this->output->set_content_type('application/json')->set_output(json_encode($response));
 					return false;
 				} else {
-					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret);
+					$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret, $option, $iv);
 					$data = [
 						'sts_token_dokumen' => 1,
 						'file_dokumen' => $encryption_string,
