@@ -424,7 +424,7 @@ class M_panitia extends CI_Model
     // }
     // end cek barus kbli skdp
 
-    // ini baris cek_kli sbu
+    // ini baris cek_kli sbu angga
 
     function data_vendor_lolos_sbu_kbli($cek_syarat_kbli_sbu)
     {
