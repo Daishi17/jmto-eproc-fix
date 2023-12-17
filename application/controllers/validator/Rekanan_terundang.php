@@ -164,9 +164,9 @@ class Rekanan_terundang extends CI_Controller
 			// end pajak
 
 			// siujk di hilangkan nov 14 2023
-			$test = $cek_siup + $cek_kbli_siup + $cek_nib + $cek_kbli_nib + $cek_sbu + $cek_kbli_sbu + $cek_akta_pendirian + $cek_akta_perubahan + $cek_pemilik + $cek_pengurus + $cek_pengalaman + $cek_sppkp + $cek_npwp + $cek_spt + $cek_neraca_keuangan + $cek_keuangan;
+			$test = $cek_siup + $cek_kbli_siup + $cek_nib + $cek_kbli_nib + $cek_sbu + $cek_kbli_sbu + $cek_akta_pendirian + $cek_pemilik + $cek_pengurus + $cek_pengalaman + $cek_sppkp + $cek_npwp + $cek_spt + $cek_neraca_keuangan + $cek_keuangan;
 
-			$test2 = $cek_tdk_valid_siup + $cek_tdk_valid_kbli_siup + $cek_tdk_valid_nib + $cek_tdk_valid_kbli_nib + $cek_tdk_valid_sbu + $cek_tdk_valid_kbli_sbu  + $cek_tdk_valid_akta_pendirian + $cek_tdk_valid_akta_perubahan + $cek_tdk_valid_pemilik + $cek_tdk_valid_pengurus + $cek_tdk_valid_pengalaman + $cek_tdk_valid_sppkp + $cek_tdk_valid_npwp + $cek_tdk_valid_spt + $cek_tdk_valid_neraca_keuangan + $cek_tdk_valid_keuangan;
+			$test2 = $cek_tdk_valid_siup + $cek_tdk_valid_kbli_siup + $cek_tdk_valid_nib + $cek_tdk_valid_kbli_nib + $cek_tdk_valid_sbu + $cek_tdk_valid_kbli_sbu  + $cek_tdk_valid_akta_pendirian  + $cek_tdk_valid_pemilik + $cek_tdk_valid_pengurus + $cek_tdk_valid_pengalaman + $cek_tdk_valid_sppkp + $cek_tdk_valid_npwp + $cek_tdk_valid_spt + $cek_tdk_valid_neraca_keuangan + $cek_tdk_valid_keuangan;
 
 
 			$id_jenis_usaha = str_split($rs->id_jenis_usaha);
@@ -189,8 +189,8 @@ class Rekanan_terundang extends CI_Controller
 			if ($rs->sts_dokumen_cek == NULL) {
 				$row[] = '<small><span class="badge swatch-orange text-white">Belum Di Periksa</span></small>';
 			} else if ($rs->sts_dokumen_cek == 1) {
-				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1 && $cek_akta_perubahan && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu  || $cek_tdk_valid_akta_pendirian == 1 || $cek_tdk_valid_akta_perubahan || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu  || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
 						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
 					} else {
 						$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
@@ -199,8 +199,8 @@ class Rekanan_terundang extends CI_Controller
 					$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
 				}
 			} else {
-				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1 && $cek_akta_perubahan && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1 || $cek_tdk_valid_akta_perubahan || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
 						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
 					} else {
 						$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
@@ -220,8 +220,8 @@ class Rekanan_terundang extends CI_Controller
 					$row[] = '<a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>
 				<a href="javascript:;" class="btn btn-success btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','pesan'" . ')"> <i class="fa-solid fa-envelope px-1"></i> Pesan</a> ';
 				} else if ($rs->sts_dokumen_cek == 1) {
-					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1 && $cek_akta_perubahan && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1 || $cek_tdk_valid_akta_perubahan || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
 							$row[] = '<a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>
 				<a href="javascript:;" class="btn btn-success btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','pesan'" . ')"> <i class="fa-solid fa-envelope px-1"></i> Pesan</a>';
 						} else {
@@ -233,8 +233,8 @@ class Rekanan_terundang extends CI_Controller
 						<a href="javascript:;" class="btn btn-success btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','pesan'" . ')"> <i class="fa-solid fa-envelope px-1"></i> Pesan</a>';
 					}
 				} else {
-					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1 && $cek_akta_perubahan && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1 || $cek_tdk_valid_akta_perubahan || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
 							$row[] = '<a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>
 				<a href="javascript:;" class="btn btn-success btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','pesan'" . ')"> <i class="fa-solid fa-envelope px-1"></i> Pesan</a>';
 						} else {
@@ -2717,13 +2717,13 @@ class Rekanan_terundang extends CI_Controller
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_kontrak_pengalaman = openssl_decrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1);
+			$file_kontrak_pengalaman = openssl_decrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengalaman' => 2,
 				'file_kontrak_pengalaman' => $file_kontrak_pengalaman,
 			];
 		} else {
-			$file_kontrak_pengalaman = openssl_encrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1);
+			$file_kontrak_pengalaman = openssl_encrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengalaman' => 1,
 				'file_kontrak_pengalaman' => $file_kontrak_pengalaman,
@@ -3715,19 +3715,18 @@ class Rekanan_terundang extends CI_Controller
 		$get_row_enkrip = $this->M_Rekanan_terundang->get_row_keuangan_enkription($id_url);
 		// $id_vendor = $get_row_enkrip['id_vendor'];
 		// $row_vendor = $this->M_Rekanan_terundang->get_row_vendor($id_vendor);
-
-
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
+		$secret = $secret_token_dokumen1 . $secret_token_dokumen2;
 		$where = [
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_laporan_auditor = openssl_decrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret_token_dokumen1);
-			$file_laporan_keuangan = openssl_decrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret_token_dokumen2);
+			$file_laporan_auditor = openssl_decrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
+			$file_laporan_keuangan = openssl_decrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_laporan_auditor' => $file_laporan_auditor,
@@ -3749,8 +3748,8 @@ class Rekanan_terundang extends CI_Controller
 			// }
 			// st
 		} else {
-			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret_token_dokumen1);
-			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret_token_dokumen2);
+			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
+			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_laporan_auditor' => $file_laporan_auditor,

@@ -370,9 +370,10 @@
                                                 <span class="input-group-text"><i class="fa-solid fa-calendar-plus"></i></span>
 
                                                 <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
-                                                    <select class="form-select" name="beban_tahun_anggaran" aria-label="Default select example" onchange="beban_anggaran()" disabled>
+                                                    <input type="text" class="form-control" name="beban_tahun_anggaran" readonly value="<?= $row_rup['beban_tahun_anggaran'] ?>">
                                                     <?php } else { ?>
-                                                        <select class="form-select" name="beban_tahun_anggaran" aria-label="Default select example" onchange="beban_anggaran()">
+                                                        <input type="text" class="form-control" name="beban_tahun_anggaran" onkeyup="beban_anggaran()" value="<?= $row_rup['beban_tahun_anggaran'] ?>">
+                                                        <!-- <select class="form-select" name="beban_tahun_anggaran" aria-label="Default select example" onchange="beban_anggaran()">
                                                         <?php } ?>
 
                                                         <?php if (!$row_rup['beban_tahun_anggaran']) { ?>
@@ -389,7 +390,7 @@
                                                             <option value="2" selected>Tahun Jamak</option>
                                                         <?php } ?>
 
-                                                        </select>
+                                                        </select> -->
                                             </div>
                                         </td>
                                     </tr>
@@ -499,7 +500,7 @@
                                             <?php } ?>
 
 
-                                            <?php if ($row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 1|| $row_rup['id_jadwal_tender'] == 3 || $row_rup['id_jadwal_tender'] == 6) { ?>
+                                            <?php if ($row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 3 || $row_rup['id_jadwal_tender'] == 6) { ?>
                                                 <button type="button" class="btn btn-sm btn-warning text-white" onclick="get_terekomendasi()">
                                                     <i class="fa-solid fa-building-user px-1"></i>
                                                     Undang Rekanan Terekomendasi

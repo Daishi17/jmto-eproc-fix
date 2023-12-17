@@ -361,13 +361,12 @@ class M_panitia extends CI_Model
         foreach ($cek_syarat_kbli as $data_syarat_siup) {
             $data_kbli_tampung[] = $data_syarat_siup['id_kbli'];
         }
-        $implode = implode(',', $data_kbli_tampung);
         // var_dump($implode);
         // die;
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siup.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siup', 'tbl_vendor_kbli_siup.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -380,11 +379,10 @@ class M_panitia extends CI_Model
         foreach ($cek_syarat_kbli as $data_syarat_nib) {
             $data_kbli_tampung[] = $data_syarat_nib['id_kbli'];
         }
-        $implode = implode(',', $data_kbli_tampung);
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_nib.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_nib', 'tbl_vendor_kbli_nib.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -398,11 +396,10 @@ class M_panitia extends CI_Model
         foreach ($cek_syarat_kbli as $data_syarat_siujk) {
             $data_kbli_tampung[] = $data_syarat_siujk['id_kbli'];
         }
-        $implode = implode(',', $data_kbli_tampung);
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siujk.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siujk', 'tbl_vendor_kbli_siujk.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -435,11 +432,10 @@ class M_panitia extends CI_Model
         foreach ($cek_syarat_kbli_sbu as $data_syarat_sbu) {
             $data_kbli_tampung[] = $data_syarat_sbu['id_sbu'];
         }
-        $implode = implode(',', $data_kbli_tampung);
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_sbu.id_sbu');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_sbu', 'tbl_vendor_kbli_sbu.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_sbu.id_sbu', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_sbu.id_sbu', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -459,9 +455,16 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_keuangan');
-        $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
-        $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
-        // $this->db->where('tbl_vendor_keuangan.jenis_audit', $cek_syarat_teknis['sts_audit_laporan_keuangan']);
+
+        if ($cek_syarat_teknis['sts_audit_laporan_keuangan'] == 'Audit') {
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.jenis_audit', $cek_syarat_teknis['sts_audit_laporan_keuangan']);
+        } else {
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+            $this->db->where_in('tbl_vendor_keuangan.jenis_audit', ['Audit', 'Tidak Audit']);
+        }
         $this->db->group_by('tbl_vendor_keuangan.id_vendor');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -482,13 +485,9 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-
-
     // end cek barus kbli sbu
-
-
     // ini untuk mengabungkan data vendor terundang
-    function gabung_keseluruhan_vendor_terundang($array_kbli_siup, $array_kbli_nib, $array_kbli_siujk, $array_kbli_sbu)
+    function gabung_keseluruhan_vendor_terundang($array_kbli_siup, $array_kbli_nib, $array_kbli_siujk)
     {
         // lolos kbli
         $mergedResult = [];
@@ -501,20 +500,33 @@ class M_panitia extends CI_Model
         foreach ($array_kbli_siujk as $row) {
             $mergedResult[$row['id_vendor']] = $row;
         }
-
-        foreach ($array_kbli_sbu as $row) {
-            $mergedResult[$row['id_vendor']] = $row;
-        }
         // kbli nib
         foreach ($array_kbli_nib as $row) {
-            if (isset($mergedResult[$row['id_vendor']])) {
-                $mergedResult[$row['id_vendor']] = array_merge($mergedResult[$row['id_vendor']], $row);
-            }
+            $mergedResult[$row['id_vendor']] = $row;
+        }
+        // result_kbli
+        if (isset($mergedResult[$row['id_vendor']])) {
+            $mergedResult[$row['id_vendor']] = array_merge($mergedResult[$row['id_vendor']], $row);
         }
         return $mergedResult;
     }
 
-    function result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $rup)
+
+    function gabung_keseluruhan_vendor_terundang_sbu($array_kbli_sbu)
+    {
+        // lolos kbli
+        $mergedResult = [];
+        foreach ($array_kbli_sbu as $row) {
+            $mergedResult[$row['id_vendor']] = $row;
+        }
+        //  result_sbu
+        if (isset($mergedResult[$row['id_vendor']])) {
+            $mergedResult[$row['id_vendor']] = array_merge($mergedResult[$row['id_vendor']], $row);
+        }
+        return $mergedResult;
+    }
+
+    function result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data_vendor_terundang_by_kbli_sbu, $rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor');
@@ -552,10 +564,8 @@ class M_panitia extends CI_Model
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
             } else {
-                // $this->db->where('tbl_vendor.id_vendor', null);
             }
         } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
         }
 
         // lolos_keuangan
@@ -567,10 +577,8 @@ class M_panitia extends CI_Model
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
             } else {
-                // $this->db->where('tbl_vendor.id_vendor', null);
             }
         } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
         }
 
         // lolos_neraca_keuangan
@@ -582,36 +590,41 @@ class M_panitia extends CI_Model
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
             } else {
-                // $this->db->where('tbl_vendor.id_vendor', null);
             }
         } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
         }
-
         // cek_vendor terundang by_kbli
         if ($data_vendor_terundang_by_kbli) {
-            $id_vendor_terundang = [];
+            $id_vendor_terundang = array();
             foreach ($data_vendor_terundang_by_kbli as $row) {
                 $id_vendor_terundang[] = $row['id_vendor'];
             }
             $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
         } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
         }
+
+        if ($data_vendor_terundang_by_kbli_sbu) {
+            $id_vendor_terundang = array();
+            foreach ($data_vendor_terundang_by_kbli_sbu as $row) {
+                $id_vendor_terundang[] = $row['id_vendor'];
+            }
+            $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
+        } else {
+        }
+
+
 
 
         // cek siup syart izin
         if ($syarat_izin_usaha['sts_checked_siup'] == 1) {
             if ($syarat_izin_usaha['sts_masa_berlaku_siup'] == 2) {
                 // catatan ketika seumur hidup di vendor harus di default tanggalnya ke 2050
-                // $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
             } else {
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where('tbl_vendor_siup.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_siup']);
             }
         } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
         }
 
         // cek nib syart izin
@@ -630,7 +643,6 @@ class M_panitia extends CI_Model
         // cek sbu syart izin
         if ($syarat_izin_usaha['sts_checked_sbu'] == 1) {
             if ($syarat_izin_usaha['sts_masa_berlaku_sbu'] == 2) {
-                // $this->db->where('tbl_vendor_sbu.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_sbu']);
                 $this->db->where_in('tbl_vendor_sbu.sts_seumur_hidup', [1, 2]);
             } else {
                 $this->db->where('tbl_vendor_sbu.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_sbu']);
@@ -640,31 +652,6 @@ class M_panitia extends CI_Model
             // $this->db->where('tbl_vendor.id_vendor', null);
         }
 
-        // // cek siujk syart izin
-        // if ($syarat_izin_usaha['sts_checked_siujk'] == 1) {
-        //     if ($syarat_izin_usaha['sts_masa_berlaku_siujk'] == 2) {
-        //         // $this->db->where('tbl_vendor_siujk.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siujk']);
-        //         $this->db->where_in('tbl_vendor_siujk.sts_seumur_hidup', [1, 2]);
-        //     } else {
-        //         $this->db->where('tbl_vendor_siujk.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siujk']);
-        //         $this->db->where('tbl_vendor_siujk.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_sbu']);
-        //     }
-        // } else {
-        //     $this->db->where('tbl_vendor.id_vendor', null);
-        // }
-
-        // cek skdp syart izin
-        if ($syarat_izin_usaha['sts_checked_skdp'] == 1) {
-            if ($syarat_izin_usaha['sts_masa_berlaku_skdp'] == 2) {
-                // $this->db->where('tbl_vendor_skdp.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_skdp']);
-                $this->db->where_in('tbl_vendor_skdp.sts_seumur_hidup', [1, 2]);
-            } else {
-                $this->db->where('tbl_vendor_skdp.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_skdp']);
-                $this->db->where('tbl_vendor_skdp.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_sbu']);
-            }
-        } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
-        }
 
         $query = $this->db->get();
         return $query->result_array();
@@ -1683,7 +1670,7 @@ class M_panitia extends CI_Model
         return $this->db->count_all_results();
     }
 
-    
+
     public function cek_tidak_valid($id_rup, $id_vendor)
     {
         $this->db->select('*');

@@ -144,10 +144,9 @@ class Daftar_paket extends CI_Controller
 
 		$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
-		// var_dump($data_vendor_terundang_by_kbli);
-		// die;
+		$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
 
-		$data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+		$data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data_vendor_terundang_by_kbli_sbu, $data['row_rup']);
 
 		// yang dapat mengumumkan 
 		$data['diumumkan_oleh'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
@@ -201,7 +200,10 @@ class Daftar_paket extends CI_Controller
 
 		$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
-		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+		$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+
+
+		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data_vendor_terundang_by_kbli_sbu, $data['row_rup']);
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($data_respon));
 	}
@@ -212,7 +214,7 @@ class Daftar_paket extends CI_Controller
 		$id_rup = $this->input->post('id_rup_global');
 		$id_url_rup = $this->input->post('id_url_rup');
 		$data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
-	
+
 		$data['syarat_izin_usaha_tender'] = $this->M_panitia->get_syarat_izin_usaha_tender($data['row_rup']['id_rup']);
 		$data['syarat_izin_teknis_tender'] = $this->M_panitia->get_syarat_izin_teknis_tender($data['row_rup']['id_rup']);
 		$data['result_kbli'] = $this->M_panitia->result_kbli();
@@ -255,7 +257,7 @@ class Daftar_paket extends CI_Controller
 		// var_dump($data_vendor_terundang_by_kbli);
 		// die;
 
-		$data_respon= $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($data_respon));
 	}
@@ -346,7 +348,7 @@ class Daftar_paket extends CI_Controller
 			$this->load->view('panitia/daftar_paket/jadwal_tender_terbatas_pasca_1_file/index', $data);
 			$this->load->view('administrator/template_menu/footer_menu');
 			$this->load->view('panitia/daftar_paket/jadwal_tender_terbatas_pasca_1_file/ajax');
-		}else if ($data['row_rup']['id_jadwal_tender'] == 6) {
+		} else if ($data['row_rup']['id_jadwal_tender'] == 6) {
 			$this->load->view('panitia/daftar_paket/jadwal_tender_terbatas_pasca_2_file/index', $data);
 			$this->load->view('administrator/template_menu/footer_menu');
 			$this->load->view('panitia/daftar_paket/jadwal_tender_terbatas_pasca_2_file/ajax');

@@ -1641,16 +1641,16 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret1 = 'jmto.1' . $id_url;
 		$secret2 = 'jmto.2' . $id_url;
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -1863,16 +1863,16 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret1 = 'jmto.1' . $id_url;
 		$secret2 = 'jmto.2' . $id_url;
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $$chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $$chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -2151,16 +2151,16 @@ class Rekanan_tervalidasi extends CI_Controller
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_ktp = openssl_decrypt($get_row_enkrip['file_ktp'], $chiper, $secret_token_dokumen1);
-			$file_npwp = openssl_decrypt($get_row_enkrip['file_npwp'], $chiper, $secret_token_dokumen2);
+			$file_ktp = openssl_decrypt($get_row_enkrip['file_ktp'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_npwp = openssl_decrypt($get_row_enkrip['file_npwp'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pemilik' => 2,
 				'file_ktp' => $file_ktp,
 				'file_npwp' => $file_npwp,
 			];
 		} else {
-			$file_ktp = openssl_encrypt($get_row_enkrip['file_ktp'], $chiper, $secret_token_dokumen1);
-			$file_npwp = openssl_encrypt($get_row_enkrip['file_npwp'], $chiper, $secret_token_dokumen2);
+			$file_ktp = openssl_encrypt($get_row_enkrip['file_ktp'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_npwp = openssl_encrypt($get_row_enkrip['file_npwp'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pemilik' => 1,
 				'file_ktp' => $file_ktp,
@@ -2389,16 +2389,16 @@ class Rekanan_tervalidasi extends CI_Controller
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_ktp_pengurus = openssl_decrypt($get_row_enkrip['file_ktp_pengurus'], $chiper, $secret_token_dokumen1);
-			$file_npwp_pengurus = openssl_decrypt($get_row_enkrip['file_npwp_pengurus'], $chiper, $secret_token_dokumen2);
+			$file_ktp_pengurus = openssl_decrypt($get_row_enkrip['file_ktp_pengurus'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_npwp_pengurus = openssl_decrypt($get_row_enkrip['file_npwp_pengurus'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengurus' => 2,
 				'file_ktp_pengurus' => $file_ktp_pengurus,
 				'file_npwp_pengurus' => $file_npwp_pengurus,
 			];
 		} else {
-			$file_ktp_pengurus = openssl_encrypt($get_row_enkrip['file_ktp_pengurus'], $chiper, $secret_token_dokumen1);
-			$file_npwp_pengurus = openssl_encrypt($get_row_enkrip['file_npwp_pengurus'], $chiper, $secret_token_dokumen2);
+			$file_ktp_pengurus = openssl_encrypt($get_row_enkrip['file_ktp_pengurus'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_npwp_pengurus = openssl_encrypt($get_row_enkrip['file_npwp_pengurus'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengurus' => 1,
 				'file_ktp_pengurus' => $file_ktp_pengurus,
@@ -2727,13 +2727,13 @@ class Rekanan_tervalidasi extends CI_Controller
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_kontrak_pengalaman = openssl_decrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1);
+			$file_kontrak_pengalaman = openssl_decrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengalaman' => 2,
 				'file_kontrak_pengalaman' => $file_kontrak_pengalaman,
 			];
 		} else {
-			$file_kontrak_pengalaman = openssl_encrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1);
+			$file_kontrak_pengalaman = openssl_encrypt($get_row_enkrip['file_kontrak_pengalaman'], $chiper, $secret_token_dokumen1, $option, $iv);
 			$data = [
 				'sts_token_dokumen_pengalaman' => 1,
 				'file_kontrak_pengalaman' => $file_kontrak_pengalaman,
@@ -2943,7 +2943,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		// header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
 
 		// Actual download.
-		redirect($$url);
+		redirect($url);
 	}
 	// end sppkp
 
@@ -3467,8 +3467,8 @@ class Rekanan_tervalidasi extends CI_Controller
 			'id_url_neraca' => $id_url_neraca
 		];
 		if ($type == 'dekrip') {
-			$file_dokumen_neraca = openssl_decrypt($get_row_enkrip['file_dokumen_neraca'], $chiper, $secret_token_dokumen1);
-			$file_dokumen_sertifikat = openssl_decrypt($get_row_enkrip['file_dokumen_sertifikat'], $chiper, $secret_token_dokumen2);
+			$file_dokumen_neraca = openssl_decrypt($get_row_enkrip['file_dokumen_neraca'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_dokumen_sertifikat = openssl_decrypt($get_row_enkrip['file_dokumen_sertifikat'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen_neraca' => $file_dokumen_neraca,
@@ -3486,8 +3486,8 @@ class Rekanan_tervalidasi extends CI_Controller
 			}
 			// st
 		} else {
-			$file_dokumen_neraca = openssl_encrypt($get_row_enkrip['file_dokumen_neraca'], $chiper, $secret_token_dokumen1);
-			$file_dokumen_sertifikat = openssl_encrypt($get_row_enkrip['file_dokumen_sertifikat'], $chiper, $secret_token_dokumen2);
+			$file_dokumen_neraca = openssl_encrypt($get_row_enkrip['file_dokumen_neraca'], $chiper, $secret_token_dokumen1, $option, $iv);
+			$file_dokumen_sertifikat = openssl_encrypt($get_row_enkrip['file_dokumen_sertifikat'], $chiper, $secret_token_dokumen2, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen_neraca' => $file_dokumen_neraca,
@@ -3732,12 +3732,13 @@ class Rekanan_tervalidasi extends CI_Controller
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
 		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
+		$secret = $secret_token_dokumen1 . $secret_token_dokumen2;
 		$where = [
 			'id_url' => $id_url
 		];
 		if ($type == 'dekrip') {
-			$file_laporan_auditor = openssl_decrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret_token_dokumen1);
-			$file_laporan_keuangan = openssl_decrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret_token_dokumen2);
+			$file_laporan_auditor = openssl_decrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
+			$file_laporan_keuangan = openssl_decrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_laporan_auditor' => $file_laporan_auditor,
@@ -3759,8 +3760,8 @@ class Rekanan_tervalidasi extends CI_Controller
 			// }
 			// st
 		} else {
-			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret_token_dokumen1);
-			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret_token_dokumen2);
+			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
+			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_laporan_auditor' => $file_laporan_auditor,
