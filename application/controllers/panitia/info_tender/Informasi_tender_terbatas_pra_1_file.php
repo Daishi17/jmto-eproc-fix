@@ -1650,7 +1650,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     public function get_sanggahan_pra()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_sanggahan_pra = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_sanggahan_pra = $this->M_panitia->get_result_vendor_sanggahan_pra($id_rup);
         $output = [
             'result_sanggahan_pra' => $result_sanggahan_pra,
         ];
