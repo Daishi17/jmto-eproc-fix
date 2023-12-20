@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Berita Acara Hasil Evaluasi</title>
+    <title>UNDANGAN PENAWARAN TENDER
+    </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,97 +128,129 @@ function terbilang($nilai)
                 <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
             </div>
             <br><br>
-            <center>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Berita Acara Hasil Evaluasi</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?></h4>
-                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?></h5>
-            </center>
-            <hr size="5">
-            <center>
-                <div style="font-size:15px">
-                    <label class="font-weight-bold">Nomor : <?= $row_rup['ba_evaluasi_no'] ?></label>
-                    <br>
-                    <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_evaluasi_tgl']) ?></label>
-                </div>
-            </center>
-            <div class="container">
-                <p style="text-align:justify; font-size:15px">
-                    Pada Hari ini <b><?= $row_rup['ba_evaluasi_hari'] ?></b>,
-                    Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan telah mengadakan Rapat Evaluasi Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> dengan hasil-hasil sebagai berikut:
-                </p>
-
-                <ol>
-                    <li>
-                        Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi sebanyak <?= count($peserta_tender) ?>(<?= terbilang(count($peserta_tender)) ?>) Perusahaan, yaitu:
-                        <ol class="mt-2">
-                            <?php $i = 1;
-                            foreach ($peserta_tender as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
-                            <?php } ?>
-                        </ol>
-                    </li>
-                    <li class="mt-3">
-                        Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq) ?>(<?= terbilang(count($peserta_tender_pq)) ?>) Perusahaan, yaitu:
-                        <ol class="mt-2">
-                            <?php $i = 1;
-                            foreach ($peserta_tender_pq as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
-                            <?php } ?>
-                        </ol>
-                    </li>
-                    <li class="mt-3">
-                        <p>Panitia Pengadaan melakukan evaluasi terhadap Dokumen Prakualifikasi yang masuk, meliputi aspek administrasi, keuangan dan teknis.</p>
-                        <p> Setelah melakukan evaluasi, Panitia Pengadaan sepakat menilai dan menetapkan bahwa Perusahaan yang memenuhi persyaratan Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?> ) Perusahaan, yaitu:</p>
-                        <ol class="mt-2">
-                            <?php $i = 1;
-                            foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
-                            <?php } ?>
-                        </ol>
-                    </li>
-                </ol>
-                <p>Hasil Evaluasi Prakualifikasi Peserta <?= $row['nama_metode_pengadaan'] ?> tertuang dalam Lampiran Berita Acara ini.</p>
-                <p>Demikian Berita Acara Evaluasi Prakualifikasi Peserta <?= $row['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?> </b> ini dibuat untuk dapat dipergunakan sebagaimana mestinya. </p>
-
-                <center>
-                    <b class="text-uppercase">PANITIA <?= $row_rup['nama_rup'] ?> </b>
-                </center>
+            <div class="float-left">
+                Nomor : <?= $row_rup['no_undangan_penawaran'] ?>
                 <br>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="text-center"><b>NO</b></th>
-                            <th class="text-center"><b>NAMA</b></th>
-                            <th class="text-center"><b>JABATAN</b></th>
-                            <th class="text-center"><b>TANDA TANGAN</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($panitia_tender as $key => $value) { ?>
-                            <tr>
-                                <td class="text-center"><?= $i++ ?></td>
-                                <td><?= $value['nama_pegawai'] ?></td>
-                                <td class="text-center">
-                                    <?php if ($value['role_panitia'] == 1) { ?>
-                                        Ketua merangkap Anggota
-                                    <?php  } else if ($value['role_panitia'] == 2) { ?>
-                                        Sekretaris merangkap Anggota
-                                    <?php  } else if ($value['role_panitia'] == 3) { ?>
-                                        Anggota
-                                    <?php  }  ?>
-
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                Hal : <b>Undangan Presentasi</b>
             </div>
+            <div class="float-right">
+                Jakarta, <?= tgl_indo($row_rup['no_undangan_tgl']) ?>
+            </div>
+            <br>
+            <br>
+            <div class="row mt-3">
+                <div class="container">
+                    <p>
+                        <b>Kepada Yth.</b>
+                        <br>
+                        <b>Peserta Penawran Tender Umum/Terbatas</b>
+                        <br>
+                        <b><?= $row_rup['nama_rup'] ?></b>
+                        <br>
+                        Di <b>Tempat</b>
+                    </p>
+                </div>
+            </div>
+
+            <p>Berdasarkan Pengumuman Hasil Kualifikasi Nomor <?= $row_rup['no_undangan_penawaran'] ?> tanggal 25 Juli 2023 untuk Tender Umum dengan Pra Kualifikasi Pengadaan Pekerjaan Jasa Pengemudi Shuttle Ruas Jabotabekdung, Jawa Tengah dan Jawa Timur PT Jasamarga Tollroad Operator dengan ini kami mengundang Saudara untuk mengikuti kegiatan Penawaran dengan jadwal sebagai berikut:</p>
+
+            <ol>
+                <li>
+                    <b>Download Dokumen Pengadaan</b><br>
+                    <table>
+                        <tr>
+                            <th>Tanggal </th>
+                            <th>: <?= date('d-m-Y', $strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> </th>
+                        </tr>
+
+                        <tr>
+                            <th>Waktu</th>
+                            <th>: <?= date('H:i', $strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', $strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
+                        </tr>
+
+                        <tr>
+                            <th>Rapat Penjelasan </th>
+                            <th>: Melalui Aplikasi E-Tender </th>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <b>Download Dokumen Pengadaan</b><br>
+                    <table>
+                        <tr>
+                            <th>Tanggal </th>
+                            <th>: <?= date('d-m-Y', $strtotime($jadwal_pra1file_umum_11['waktu_mulai'])) ?> </th>
+                        </tr>
+
+                        <tr>
+                            <th>Waktu</th>
+                            <th>: <?= date('H:i', $strtotime($jadwal_pra1file_umum_11['waktu_mulai'])) ?> - <?= date('H:i', $strtotime($jadwal_pra1file_umum_11['waktu_selesai'])) ?> WIB</th>
+                        </tr>
+
+                        <tr>
+                            <th>Rapat Penjelasan </th>
+                            <th>: Melalui Aplikasi E-Tender </th>
+                        </tr>
+                    </table>
+                </li>
+            </ol>
+
+            <p><b>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</b></p>
+
+            <label for="">PT Jasamarga Tollroad Operator</label>
+            <br>
+            <br>
+            <br>
+            TTD
+            <br>
+            <br>
+            <br>
+            <label for="">Panitia Pengadaan</label>
+
+            <br>
+            <br>
+            Tembusan :
+            <ul>
+                <li><i>Panitia Pengadaan</i></li>
+                <li><i>Tim Evaluator</i></li>
+            </ul>
+            <br>
+            <br>
+            <b>Hari / Tanggal : <?= $row_rup['undangan_rapat_haritgl'] ?></b>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Peserta Penawaran</th>
+                        <th>Paket Pekerjaan</th>
+                        <th>Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1;
+                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                        <tr>
+                            <td><?= $i++ ?></td>
+                            <td><?= $value['nama_usaha'] ?></td>
+                            <td><?= $row_rup['nama_rup'] ?></td>
+                            <td><?= $value['waktu_undangan_rapat'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                <tfoot>
+                    <td colspan="4">
+                        Keterangan : <br>
+                        <ol type="a">
+                            <li>Materi Presentasi dikirimkan selambatnya <?= $row_rup['undangan_rapat_waktu_materi'] ?></li>
+                            <li>Penyedia WAJIB mengirimkan butir a di atas melalui email generalaffairdept.jmto@gmail.com</li>
+                            <li>Apabila ada perubahan jadwal akan diberitahukan kemudian.</li>
+                        </ol>
+
+                    </td>
+                </tfoot>
+            </table>
+
         </form>
     </div>
 
