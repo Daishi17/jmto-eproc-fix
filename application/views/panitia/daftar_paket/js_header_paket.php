@@ -25,7 +25,7 @@
             </a>&nbsp;
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                    <a href="<?= base_url() ?>panitia/beranda/beranda" class="nav-link px-2 text-white">
+                    <a href="<?= base_url() ?>panitia/dashboard" class="nav-link px-2 text-white">
                         <i class="fa-solid fa-gauge-high mb-1"></i>
                         <small>Dashboard</small>
                     </a>

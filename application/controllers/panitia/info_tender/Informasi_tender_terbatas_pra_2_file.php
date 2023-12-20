@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
+error_reporting(0);
 class Informasi_tender_terbatas_pra_2_file extends CI_Controller
 {
     // var $link_vendor = 'http://localhost/jmto-vms/file_paket/';
@@ -33,7 +34,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
-
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         if ($data['row_rup']['bobot_nilai'] == 1) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
@@ -1986,6 +1987,373 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         ];
         $this->M_panitia->update_rup_panitia($id_rup, $upload);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function save_ba_pembuktian_hadir()
+    {
+        $value = $this->input->post('value');
+        $post_type = $this->input->post('post_type');
+        $id_rup = $this->input->post('id_rup');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'ba_pembuktian_hadir' => $value
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+    }
+
+
+    public function save_ba_pembuktian_dok()
+    {
+        $value = $this->input->post('value');
+        $post_type = $this->input->post('post_type');
+        $id_rup = $this->input->post('id_rup');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'ba_pembuktian_dok' => $value
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+    }
+
+    public function save_ba_pembuktian_ket()
+    {
+        $value = $this->input->post('value');
+        $post_type = $this->input->post('post_type');
+        $id_rup = $this->input->post('id_rup');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'ba_pembuktian_ket' => $value
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+    }
+
+    public function save_waktu_undangan()
+    {
+        $value = $this->input->post('value');
+        $post_type = $this->input->post('post_type');
+        $id_rup = $this->input->post('id_rup');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'waktu_undangan_rapat' => $value
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+    }
+
+    public function get_vendor_mengikuti_ba1($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+            if ($rs->ba_check_ev1 == 1) {
+                $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
+            } else {
+                $row[] = '<div class="text-center badge bg-danger">Tidak Mengikuti</div>';
+            }
+
+            if ($rs->ba_check_ev1 == 1) {
+                $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-danger btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','uncheck_evaluasi1'" . ')">
+                    <i class="fa-solid fa-times"></i>
+                    <small>Un-Check</small>
+                </a>
+            </div>';
+            } else {
+                $row[] = '<div class="text-center">
+                        <a href="javascript:;" class="btn btn-success btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','check_evaluasi1'" . ')">
+                            <i class="fa-solid fa-check"></i>
+                            <small>Check</small>
+                        </a>
+                    </div>';
+            }
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_vendor_mengikuti_ba2($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+            if ($rs->ba_check_ev2 == 1) {
+                $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
+            } else {
+                $row[] = '<div class="text-center badge bg-danger">Tidak Mengikuti</div>';
+            }
+
+            if ($rs->ba_check_ev2 == 1) {
+                $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-danger btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','uncheck_evaluasi2'" . ')">
+                    <i class="fa-solid fa-times"></i>
+                    <small>Un-Check</small>
+                </a>
+            </div>';
+            } else {
+                $row[] = '<div class="text-center">
+                        <a href="javascript:;" class="btn btn-success btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','check_evaluasi2'" . ')">
+                            <i class="fa-solid fa-check"></i>
+                            <small>Check</small>
+                        </a>
+                    </div>';
+            }
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_vendor_mengikuti_ba3($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+            if ($rs->ba_check_ev3 == 1) {
+                $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
+            } else {
+                $row[] = '<div class="text-center badge bg-danger">Tidak Mengikuti</div>';
+            }
+
+            if ($rs->ba_check_ev3 == 1) {
+                $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-danger btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','uncheck_evaluasi3'" . ')">
+                    <i class="fa-solid fa-times"></i>
+                    <small>Un-Check</small>
+                </a>
+            </div>';
+            } else {
+                $row[] = '<div class="text-center">
+                        <a href="javascript:;" class="btn btn-success btn-sm shadow-lg text-white" onclick="byid_mengikuti_ba(' . "'" . $rs->id_vendor_mengikuti_paket . "','check_evaluasi3'" . ')">
+                            <i class="fa-solid fa-check"></i>
+                            <small>Check</small>
+                        </a>
+                    </div>';
+            }
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+
+    public function check_ba_evaluasi1()
+    {
+        $type = $this->input->post('type');
+        $name = $this->input->post('name');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        if ($type == '1') {
+            $where = [
+                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+            ];
+            $data = [
+                $name => 1,
+            ];
+            $this->M_panitia->update_mengikuti($data, $where);
+        } else if ($type == '2') {
+            $where = [
+                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket
+            ];
+            $data = [
+                $name => 2
+            ];
+            $this->M_panitia->update_mengikuti($data, $where);
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    // sampul 1
+    public function get_vendor_mengikuti_ba_sampul1($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_filtered_evaluasi_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_all_evaluasi_penawaran($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_vendor_mengikuti_ba_sampul1_1($id_rup)
+    {
+        $result = $this->M_panitia->gettable_sampul1_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_filtered_sampul1_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_all_sampul1_penawaran($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_tahapan_ba_evaluasi_teknis($id_rup)
+    {
+        $get_ba_evaluasi_teknis = $this->M_panitia->get_ba_evaluasi_teknis($id_rup);
+        $data = [
+            'ba_teknis' => $get_ba_evaluasi_teknis
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
+    }
+
+    public function tambah_evaluasi_ba_teknis()
+    {
+        $id_rup = $this->input->post('id_rup');
+        $nama_evaluasi = $this->input->post('nama_evaluasi');
+        $data = [
+            'id_rup' => $id_rup,
+            'nama_evaluasi' => $nama_evaluasi
+        ];
+        $this->db->insert('tbl_ba_teknis_detail', $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function hapus_tahapan_ba_evaluasi($id_ba_teknis_detail)
+    {
+        $where = ['id_ba_teknis_detail' => $id_ba_teknis_detail];
+        $this->db->delete('tbl_ba_teknis_detail', $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function ba_pembuktian_kualifikasi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_pembuktian_kualifikasi', $data);
+    }
+
+    public function ba_hasil_evaluasi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_lolos'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_hasil_evaluasi', $data);
+    }
+
+    public function ba_sampul_I($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_sampul1', $data);
+    }
+
+    public function ba_undangan_rapat($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/undangan_rapat', $data);
+    }
+
+    public function ba_hasil_evaluasi_teknis($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['ba_teknis_detail'] = $this->M_panitia->get_ba_evaluasi_teknis($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_hasil_evaluasi_teknis', $data);
+    }
+
+    public function ba_sampul_II($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_sampul2', $data);
+    }
+
+    public function ba_negosiasi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_negosiasi', $data);
+    }
+
+    public function ba_evaluasinegosiasi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_evaluasinegosiasi', $data);
     }
 
 

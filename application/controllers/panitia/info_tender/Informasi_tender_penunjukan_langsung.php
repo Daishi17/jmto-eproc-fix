@@ -557,8 +557,14 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
     public function get_byid_mengikuti($id_vendor_mengikuti_paket)
     {
         $row_vendor_mengikuti = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
+        // link cross
+        $rup = $this->M_panitia->get_rup($row_vendor_mengikuti['id_rup']);
+        $link_vendor = 'http://localhost/jmto-vms/';
+        $link_vendor2 = 'http://localhost/jmto-vms/';
         $data = [
-            'row_vendor_mengikuti' => $row_vendor_mengikuti
+            'row_vendor_mengikuti' => $row_vendor_mengikuti,
+            'link_vendor' => $link_vendor,
+            'rup' => $rup
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }

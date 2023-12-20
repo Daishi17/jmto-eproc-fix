@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
+error_reporting(0);
 
 class Daftar_paket extends CI_Controller
 {
@@ -126,8 +127,8 @@ class Daftar_paket extends CI_Controller
 		// siujk
 		$data_vendor_lolos_siujk_kbli = $this->M_panitia->data_vendor_lolos_siujk_kbli($cek_syarat_kbli);
 
-		// skdp
-		// $data_vendor_lolos_skdp_kbli = $this->M_panitia->data_vendor_lolos_skdp_kbli($cek_syarat_kbli);
+		// // skdp
+		// // $data_vendor_lolos_skdp_kbli = $this->M_panitia->data_vendor_lolos_skdp_kbli($cek_syarat_kbli);
 
 		// sbu
 		$data_vendor_lolos_sbu_kbli = $this->M_panitia->data_vendor_lolos_sbu_kbli($cek_syarat_kbli_sbu);
@@ -144,7 +145,7 @@ class Daftar_paket extends CI_Controller
 
 		$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
-		$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+		// $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
 
 		$data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data_vendor_terundang_by_kbli_sbu, $data['row_rup']);
 
@@ -1442,8 +1443,7 @@ class Daftar_paket extends CI_Controller
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else {
-		}
+		} else { }
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])

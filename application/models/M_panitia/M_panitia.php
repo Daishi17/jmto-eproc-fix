@@ -349,8 +349,7 @@ class M_panitia extends CI_Model
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Kecil', 'Menengah']);
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Kecil') {
             $this->db->where('tbl_vendor.kualifikasi_usaha', 'Kecil');
-        } else {
-        }
+        } else { }
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -563,10 +562,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_spt[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
         // lolos_keuangan
         if ($cek_syarat_teknis['sts_checked_laporan_keuangan'] == 1) {
@@ -576,10 +573,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_laporan_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
         // lolos_neraca_keuangan
         if ($cek_syarat_teknis['sts_checked_neraca_keuangan'] == 1) {
@@ -589,10 +584,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_neraca_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
         // cek_vendor terundang by_kbli
         if ($data_vendor_terundang_by_kbli) {
             $id_vendor_terundang = array();
@@ -600,8 +593,7 @@ class M_panitia extends CI_Model
                 $id_vendor_terundang[] = $row['id_vendor'];
             }
             $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        } else {
-        }
+        } else { }
 
         if ($data_vendor_terundang_by_kbli_sbu) {
             $id_vendor_terundang = array();
@@ -609,8 +601,7 @@ class M_panitia extends CI_Model
                 $id_vendor_terundang[] = $row['id_vendor'];
             }
             $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        } else {
-        }
+        } else { }
 
 
 
@@ -624,8 +615,7 @@ class M_panitia extends CI_Model
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where('tbl_vendor_siup.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_siup']);
             }
-        } else {
-        }
+        } else { }
 
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
@@ -1089,6 +1079,46 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_peserta_tender_ba_pra($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_syarat_tambahan');
+        $this->db->join('tbl_vendor', 'tbl_vendor_syarat_tambahan.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_peserta_tender_ba_pra_lolos($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_peserta_tender_ba_pra_penawaran($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.file2_penawaran !=', null);
+        $this->db->where('tbl_vendor_mengikuti_paket.file2_dkh !=', null);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_peserta_tender_count($id_rup)
     {
         $this->db->select('*');
@@ -1194,7 +1224,8 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
-        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
         $i = 0;
         foreach ($this->order_evaluasi as $item) // looping awal
         {
@@ -1581,6 +1612,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_syarat_tambahan.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
         $i = 0;
         foreach ($this->order_dokumen_syarat_tambahan as $item) // looping awal
         {
@@ -1985,6 +2017,8 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >=', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >=', 60);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2225,6 +2259,83 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_rup');
         $this->db->where('tbl_rup.id_rup', $id_rup);
         $this->db->where('tbl_rup.syarat_tender_kualifikasi', NULL);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // ba sampul 1
+    private function _get_data_query_sampul1_penawaran($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.file1_administrasi !=', null);
+        $i = 0;
+        foreach ($this->order_evaluasi as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_evaluasi) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_evaluasi[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_rup.id_rup', 'DESC');
+        }
+    }
+
+    public function gettable_sampul1_penawaran($id_rup) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_sampul1_penawaran($id_rup); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_filtered_sampul1_penawaran($id_rup)
+    {
+        $this->_get_data_query_sampul1_penawaran($id_rup); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all_sampul1_penawaran($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.file1_administrasi !=', null);
+        return $this->db->count_all_results();
+    }
+
+    public function get_ba_evaluasi_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_ba_teknis_detail');
+        $this->db->where('id_rup', $id_rup);
         $query = $this->db->get();
         return $query->result_array();
     }

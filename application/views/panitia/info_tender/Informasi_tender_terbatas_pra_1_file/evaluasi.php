@@ -54,14 +54,43 @@
                                 <th>HPS</th>
                                 <td>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ',', '.')  ?> </td>
                             </tr>
-                            <tr>
-                                <th>TKDN</th>
-                                <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
-                            </tr>
-                            <tr>
-                                <th>Bobot Penilaian</th>
-                                <td>Bobot Teknis (<?= $row_rup['bobot_teknis'] ?>) & Bobot Biaya (<?= $row_rup['bobot_biaya'] ?>)</td>
-                            </tr>
+
+                            <?php if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+
+
+                            <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                                <tr>
+                                    <th>TKDN</th>
+                                    <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
+                                </tr>
+                                <tr>
+                                    <th>Metode Penilaian Penawaran</th>
+                                    <td>
+                                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
+                                            Kombinasi
+                                        <?php } else { ?>
+                                            Biaya Terendah
+                                        <?php  } ?>
+                                    </td>
+                                </tr>
+
+                            <?php    } else { ?>
+                                <tr>
+                                    <th>TKDN</th>
+                                    <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
+                                </tr>
+                                <tr>
+                                    <th>Metode Penilaian Penawaran</th>
+                                    <td>
+                                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
+                                            Kombinasi
+                                        <?php } else { ?>
+                                            Biaya Terendah
+                                        <?php  } ?>
+                                    </td>
+                                </tr>
+                            <?php    } ?>
+
                         </table>
                     </div>
                 </div>
@@ -77,22 +106,48 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
-                        </li>
-                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
-                            </li>
-                        <?php } else { ?>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
-                            </li>
 
-                        <?php }   ?>
+                        <?php if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+
+
+                        <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                            </li>
+                            <?php if ($row_rup['bobot_nilai'] == 1) { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
+                                </li>
+                            <?php } else { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
+                                </li>
+
+                            <?php }   ?>
+
+                        <?php    } else { ?>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                            </li>
+                            <?php if ($row_rup['bobot_nilai'] == 1) { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
+                                </li>
+                            <?php } else { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
+                                </li>
+
+                            <?php }   ?>
+                        <?php    } ?>
+
 
 
                     </ul>
@@ -337,12 +392,12 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3">
                                 <label for="" class="form-label">Evaluasi Keuangan</label>
-                                <input type="text" class="form-control number_only" name="ev_keuangan" placeholder="Evaluasi Keuangan">
+                                <input type="text" class="form-control number_only" name="ev_keuangan" onkeyup="dibawah_60()" placeholder="Evaluasi Keuangan">
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
                             </div>
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Evaluasi Teknis</label>
-                                <input type="text" class="form-control number_only" name="ev_teknis" placeholder="Evaluasi Teknis">
+                                <input type="text" class="form-control number_only" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>

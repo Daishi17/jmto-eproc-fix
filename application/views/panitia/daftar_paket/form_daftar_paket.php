@@ -359,7 +359,7 @@
                                                             <option value="5" selected>Persentase (%)</option>
                                                         <?php } ?>
 
-                                                        </select>
+                                                    </select>
                                             </div>
                                         </td>
                                         <th class="bg-light">
@@ -371,23 +371,23 @@
 
                                                 <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
                                                     <input type="text" class="form-control" name="beban_tahun_anggaran" readonly value="<?= $row_rup['beban_tahun_anggaran'] ?>">
-                                                    <?php } else { ?>
-                                                        <input type="text" class="form-control" name="beban_tahun_anggaran" onkeyup="beban_anggaran()" value="<?= $row_rup['beban_tahun_anggaran'] ?>">
-                                                        <!-- <select class="form-select" name="beban_tahun_anggaran" aria-label="Default select example" onchange="beban_anggaran()">
+                                                <?php } else { ?>
+                                                    <input type="text" class="form-control" name="beban_tahun_anggaran" onkeyup="beban_anggaran()" value="<?= $row_rup['beban_tahun_anggaran'] ?>">
+                                                    <!-- <select class="form-select" name="beban_tahun_anggaran" aria-label="Default select example" onchange="beban_anggaran()">
                                                         <?php } ?>
 
                                                         <?php if (!$row_rup['beban_tahun_anggaran']) { ?>
-                                                            <option value="">Pilih...</option>
-                                                            <option value="1">Tahun Tunggal</option>
-                                                            <option value="2">Tahun Jamak</option>
+                                                                <option value="">Pilih...</option>
+                                                                <option value="1">Tahun Tunggal</option>
+                                                                <option value="2">Tahun Jamak</option>
                                                         <?php } else if ($row_rup['beban_tahun_anggaran'] == 1) { ?>
-                                                            <option value="">Pilih...</option>
-                                                            <option value="1" selected>Tahun Tunggal</option>
-                                                            <option value="2">Tahun Jamak</option>
+                                                                <option value="">Pilih...</option>
+                                                                <option value="1" selected>Tahun Tunggal</option>
+                                                                <option value="2">Tahun Jamak</option>
                                                         <?php } else if ($row_rup['beban_tahun_anggaran'] == 2) { ?>
-                                                            <option value="">Pilih...</option>
-                                                            <option value="1">Tahun Tunggal</option>
-                                                            <option value="2" selected>Tahun Jamak</option>
+                                                                <option value="">Pilih...</option>
+                                                                <option value="1">Tahun Tunggal</option>
+                                                                <option value="2" selected>Tahun Jamak</option>
                                                         <?php } ?>
 
                                                         </select> -->
@@ -425,7 +425,7 @@
                                                             <option value="2">Biaya Terendah</option>
                                                         <?php }  ?>
 
-                                                        </select>
+                                                    </select>
                                             </div>
                                         </td>
                                         <td colspan="2">
@@ -458,11 +458,11 @@
                                                         <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
                                                     <?php } else if ($row_rup['bobot_nilai'] == 2) { ?>
                                                         <span class="input-group-text"><i class="fa-solid fa-money-bill"></i>&ensp;Bobot Teknis</span>
-                                                        <input type="number" class="form-control bg-light" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;" placeholder="Bobot Teknis" name="bobot_teknis" onkeyup="bobot_teknis()" onkeyup="bobot_biaya()" value="<?= $row_rup['bobot_teknis'] ?>" readonly>
+                                                        <input type="number" class="form-control bg-info" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;" placeholder="Bobot Teknis" name="bobot_teknis" onkeyup="bobot_teknis()" onkeyup="bobot_biaya()" value="<?= $row_rup['bobot_teknis'] ?>" readonly>
                                                         <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
 
                                                         <span class="input-group-text"><i class="fa-solid fa-money-bill"></i>&ensp;Bobot Biaya</span>
-                                                        <input type="number" class="form-control bg-light" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;" placeholder="Bobot Biaya" name="bobot_biaya" onkeyup="bobot_biaya()" readonly value="<?= $row_rup['bobot_biaya'] ?>">
+                                                        <input type="number" class="form-control bg-info" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;" placeholder="Bobot Biaya" name="bobot_biaya" onkeyup="bobot_biaya()" readonly value="<?= $row_rup['bobot_biaya'] ?>">
                                                         <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
 
                                                     <?php } else if ($row_rup['bobot_nilai'] == 3) { ?>
@@ -521,16 +521,16 @@
                                     </tr>
                                     <!-- <tr>
                                         <?php if ($row_rup['id_metode_pengadaan'] == 3 || $row_rup['id_metode_pengadaan'] == 4 || $row_rup['id_metode_pengadaan'] == 5 || $row_rup['id_metode_pengadaan'] == 6) { ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th class="bg-light">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <small>Daftar Rekanan Tervalidasi (DRT)</small>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td class="bg-default" colspan="3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal-xl-rekanan">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="fa-solid fa-building-user px-1"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Pilih Rekanan Tervalidasi
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="text-danger"><small>* Khusus Jenis Tender Terbatas, Seleksi Terbatas, Pengadaan Langsung & Penunjukan Langsung</small></span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <th class="bg-light">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <small>Daftar Rekanan Tervalidasi (DRT)</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="bg-default" colspan="3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal-xl-rekanan">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="fa-solid fa-building-user px-1"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Pilih Rekanan Tervalidasi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="text-danger"><small>* Khusus Jenis Tender Terbatas, Seleksi Terbatas, Pengadaan Langsung & Penunjukan Langsung</small></span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
                                         <?php  } else { ?>
 
                                         <?php  }   ?>
@@ -1535,49 +1535,49 @@
                                             </thead>
                                             <tbody id="load_rekomendasi_umum">
                                                 <!-- <?php foreach ($result_vendor_terundang as $key => $value) { ?>
-                                                    <tr>
-                                                        <td>
-                                                            <small>
-                                                                <span><?= $value['nama_usaha'] ?></span>
-                                                            </small>
-                                                        </td>
-                                                        <td>
-                                                            <small>
-                                                                <span><?= $value['email'] ?></span>
-                                                            </small>
-                                                        </td>
-                                                        <td>
-                                                            <small>
-                                                                <span><?= $value['kualifikasi_usaha'] ?></span>
-                                                            </small>
-                                                        </td>
-                                                        <td>
-                                                            <center>
+                                                        <tr>
+                                                            <td>
                                                                 <small>
-                                                                    <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    <span><?= $value['nama_usaha'] ?></span>
                                                                 </small>
+                                                            </td>
+                                                            <td>
                                                                 <small>
-                                                                    <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    <span><?= $value['email'] ?></span>
                                                                 </small>
+                                                            </td>
+                                                            <td>
                                                                 <small>
-                                                                    <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    <span><?= $value['kualifikasi_usaha'] ?></span>
                                                                 </small>
-                                                                <small>
-                                                                    <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                </small>
-                                                                <small>
-                                                                    <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                </small>
-                                                            </center>
-                                                        </td>
-                                                        <td>
-                                                            <center>
-                                                                <small>
-                                                                    <span>80</span>
-                                                                </small>
-                                                            </center>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td>
+                                                                <center>
+                                                                    <small>
+                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    </small>
+                                                                    <small>
+                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    </small>
+                                                                    <small>
+                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    </small>
+                                                                    <small>
+                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    </small>
+                                                                    <small>
+                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
+                                                                    </small>
+                                                                </center>
+                                                            </td>
+                                                            <td>
+                                                                <center>
+                                                                    <small>
+                                                                        <span>80</span>
+                                                                    </small>
+                                                                </center>
+                                                            </td>
+                                                        </tr>
                                                 <?php   } ?> -->
                                             </tbody>
                                         </table>
@@ -1628,59 +1628,59 @@
                                                     <?php }  ?>
                                                 </span>
                                             </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                                    <li class="nav-item" role="presentation">
-                                                        <?php if ($row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 1) { ?>
-                                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Rekanan Terekomendasi</button>
-                                                        <?php } else { ?>
-                                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Pilih Rekanan Penunjukan Langsung</button>
-                                                        <?php }  ?>
-                                                    </li>
-                                                    <li class="nav-item" role="presentation">
-                                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Rekanan Terpilih</button>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content" id="pills-tabContent">
-                                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                                        <table class="table_terekomendasi table table-sm table-bordered border-dark table-sm shadow-lg">
-                                                            <thead class="bg-secondary text-white text-center">
-                                                                <tr>
-                                                                    <th class="col-sm-1"><small>No</small></th>
-                                                                    <th class="col-sm-4"><small>Nama Perusahaan</small></th>
-                                                                    <th class="col-sm-2"><small>Email</small></th>
-                                                                    <th class="col-sm-2"><small>Kualifikasi Usaha</small></th>
-                                                                    <th class="col-sm-2"><small>Rating</small></th>
-                                                                    <th class="col-sm-2"><small>Penilaian Kinerja</small></th>
-                                                                    <th class="col-sm-2"><small>Aksi</small></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="load_rekomendasi">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                                        <table class="table_terpilih table table-sm table-bordered border-dark table-sm shadow-lg">
-                                                            <thead class="bg-secondary text-white text-center">
-                                                                <tr>
-                                                                    <th class="col-sm-1"><small>No</small></th>
-                                                                    <th class="col-sm-4"><small>Nama Perusahaan</small></th>
-                                                                    <th class="col-sm-2"><small>Email</small></th>
-                                                                    <th class="col-sm-2"><small>Kualifikasi Usaha</small></th>
-                                                                    <th class="col-sm-2"><small>Rating</small></th>
-                                                                    <th class="col-sm-2"><small>Penilaian Kinerja</small></th>
-                                                                    <th class="col-sm-2"><small>Aksi</small></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="load_terpilih">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <?php if ($row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 1) { ?>
+                                                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Rekanan Terekomendasi</button>
+                                                    <?php } else { ?>
+                                                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Pilih Rekanan Penunjukan Langsung</button>
+                                                    <?php }  ?>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Rekanan Terpilih</button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                    <table class="table_terekomendasi table table-sm table-bordered border-dark table-sm shadow-lg">
+                                                        <thead class="bg-secondary text-white text-center">
+                                                            <tr>
+                                                                <th class="col-sm-1"><small>No</small></th>
+                                                                <th class="col-sm-4"><small>Nama Perusahaan</small></th>
+                                                                <th class="col-sm-2"><small>Email</small></th>
+                                                                <th class="col-sm-2"><small>Kualifikasi Usaha</small></th>
+                                                                <th class="col-sm-2"><small>Rating</small></th>
+                                                                <th class="col-sm-2"><small>Penilaian Kinerja</small></th>
+                                                                <th class="col-sm-2"><small>Aksi</small></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="load_rekomendasi">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                    <table class="table_terpilih table table-sm table-bordered border-dark table-sm shadow-lg">
+                                                        <thead class="bg-secondary text-white text-center">
+                                                            <tr>
+                                                                <th class="col-sm-1"><small>No</small></th>
+                                                                <th class="col-sm-4"><small>Nama Perusahaan</small></th>
+                                                                <th class="col-sm-2"><small>Email</small></th>
+                                                                <th class="col-sm-2"><small>Kualifikasi Usaha</small></th>
+                                                                <th class="col-sm-2"><small>Rating</small></th>
+                                                                <th class="col-sm-2"><small>Penilaian Kinerja</small></th>
+                                                                <th class="col-sm-2"><small>Aksi</small></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="load_terpilih">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
