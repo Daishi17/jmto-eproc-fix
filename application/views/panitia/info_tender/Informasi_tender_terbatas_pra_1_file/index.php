@@ -23,7 +23,7 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang</a>
@@ -80,7 +80,7 @@
                             <tr>
                                 <th> Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
-                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Prakualifikasi
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
                                     </button></th>
                             </tr>
 
@@ -88,7 +88,7 @@
                             <tr>
                                 <th> Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
-                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Prakualifikasi
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
                                     </button></th>
                             </tr>
                         <?php    } ?>
@@ -132,7 +132,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header bg-primary text-white">
-                                                List Dokumen Prakualifikasi
+                                                List Dokumen Kualifikasi
                                             </div>
                                             <div class="card-body">
                                                 <table class="table table-bordered">
@@ -309,7 +309,7 @@
 
 
                         <tr>
-                            <th>Pengumuman Hasil Prakualifikasi</th>
+                            <th>Pengumuman Hasil Kualifikasi</th>
                             <th>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi" disabled>
@@ -318,12 +318,12 @@
 
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Prakualifikasi
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
                                     </button>
 
                                 <?php    } else { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Prakualifikasi
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
                                     </button>
 
                                 <?php    } ?>
@@ -689,7 +689,7 @@
                             </form>
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <label for="">1. Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi</label>
+                                    <label for="">1. Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Kualifikasi</label>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-bordered">
@@ -711,7 +711,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <label for="">2. Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi</label>
+                                    <label for="">2. Perusahaan yang mengembalikan dan memasukan Dokumen Kualifikasi</label>
                                 </div>
                                 <div class="card-body">
 
@@ -735,7 +735,7 @@
 
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <label for="">3. Perusahaan yang memenuhi persyaratan Prakualifikasi</label>
+                                    <label for="">3. Perusahaan yang memenuhi persyaratan Kualifikasi</label>
                                 </div>
                                 <div class="card-body">
 
@@ -1330,7 +1330,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-warning text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Pengumuman Hasil Prakualifikasi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Pengumuman Hasil Kualifikasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
