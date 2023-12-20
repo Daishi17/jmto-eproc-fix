@@ -12,9 +12,9 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/evaluasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Evaluasi</a>
                         </li>
@@ -22,10 +22,10 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
                         </li>
                     </ul>
                 </div>
@@ -54,43 +54,14 @@
                                 <th>HPS</th>
                                 <td>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ',', '.')  ?> </td>
                             </tr>
-
-                            <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-
-
-                            <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                <tr>
-                                    <th>TKDN</th>
-                                    <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
-                                </tr>
-                                <tr>
-                                    <th>Metode Penilaian Penawaran</th>
-                                    <td>
-                                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                            Kombinasi
-                                        <?php } else { ?>
-                                            Biaya Terendah
-                                        <?php  } ?>
-                                    </td>
-                                </tr>
-
-                            <?php    } else { ?>
-                                <tr>
-                                    <th>TKDN</th>
-                                    <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
-                                </tr>
-                                <tr>
-                                    <th>Metode Penilaian Penawaran</th>
-                                    <td>
-                                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                            Kombinasi
-                                        <?php } else { ?>
-                                            Biaya Terendah
-                                        <?php  } ?>
-                                    </td>
-                                </tr>
-                            <?php    } ?>
-
+                            <tr>
+                                <th>TKDN</th>
+                                <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
+                            </tr>
+                            <tr>
+                                <th>Bobot Penilaian</th>
+                                <td>Bobot Teknis (<?= $row_rup['bobot_teknis'] ?>) & Bobot Biaya (<?= $row_rup['bobot_biaya'] ?>)</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -103,57 +74,30 @@
                 </div>
                 <div class="card-body">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                        <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                        </li>
+                        <?php if ($row_rup['bobot_nilai'] == 1) { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
                             </li>
-                        <?php    } else { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
                             </li>
-                        <?php    } ?>
-                        
-                        <?php if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                        <?php    } else if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                        <?php } else { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
                             </li>
-                            <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
-                                </li>
-                            <?php } else { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
-                                </li>
 
-                            <?php }   ?>
-                        <?php    } else { ?>
+                        <?php }   ?>
 
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
-                            </li>
-                            <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirhea" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir HEA</button>
-                                </li>
-                            <?php } else { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
-                                </li>
 
-                            <?php }   ?>
-                        <?php    } ?>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show" id="evkualifikasi" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="tab-pane fade show active" id="evkualifikasi" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="container-fluid">
                                 <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                                     <div class="flex-grow-1 bd-highlight">
@@ -393,12 +337,12 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3">
                                 <label for="" class="form-label">Evaluasi Keuangan</label>
-                                <input type="text" class="form-control number_only" name="ev_keuangan" onkeyup="dibawah_60()" placeholder="Evaluasi Keuangan">
+                                <input type="text" class="form-control number_only" name="ev_keuangan" placeholder="Evaluasi Keuangan">
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
                             </div>
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Evaluasi Teknis</label>
-                                <input type="text" class="form-control number_only" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
+                                <input type="text" class="form-control number_only" name="ev_teknis" placeholder="Evaluasi Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>

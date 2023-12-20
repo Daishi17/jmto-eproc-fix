@@ -7,6 +7,17 @@
         }
     }
 
+    
+    function dibawah_60() {
+        var ev_keuangan = $('[name="ev_keuangan"]').val()
+
+        if (ev_keuangan < 60) {
+            $('[name="ev_teknis"]').prop('disabled', true);
+            $('[name="ev_teknis"]').val(0);
+        } else {
+            $('[name="ev_teknis"]').prop('disabled', false);
+        }
+    }
     function lihat_detail_jadwal(id_url_rup) {
         var url_by_id_rup = $('[name="url_by_id_rup"]').val()
         var modal_detail_jadwal = $('#modal_detail_jadwal')

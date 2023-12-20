@@ -93,6 +93,8 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+        $data['jadwal_evaluasi_dokumen_pq'] =  $this->M_jadwal->jadwal_juksung_6($data['row_rup']['id_rup']);
+        $data['jadwal_penawaran'] =  $this->M_jadwal->jadwal_juksung_11($data['row_rup']['id_rup']);
         $data['jadwal_evaluasi_dokumen_kualifikasi'] =  $this->M_jadwal->jadwal_pra1file_umum_6($data['row_rup']['id_rup']);
         $data['jadwal_presentasi_evaluasi'] =  $this->M_jadwal->jadwal_pra1file_umum_14($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
@@ -111,8 +113,6 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         } else {
             $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra1file_umum_6($id_rup);
         }
-
-
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
         $no = $_POST['start'];
@@ -125,65 +125,65 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
             } else {
-                $row[] = '<span class="badge bg-danger">Tidak Lulus</span>';
+                $row[] = '<span class="badge bg-danger">Gugur</span>';
             }
+
+
+
             // nilai keuangan
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->ev_keuangan == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-secondary bg-sm">Gugur</span>';
                 } else {
                     if ($rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_keuangan, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
                         $row[] = number_format($rs->ev_keuangan, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             } else {
                 if ($rs->ev_keuangan == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-secondary bg-sm">Gugur</span>';
                 } else {
                     if ($rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_keuangan, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
                         $row[] = number_format($rs->ev_keuangan, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             }
-
-
 
             // nilai teknis
-
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->ev_teknis == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 } else {
                     if ($rs->ev_teknis >= 60) {
                         $row[] = number_format($rs->ev_teknis, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
                         $row[] = number_format($rs->ev_teknis, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             } else {
                 if ($rs->ev_teknis == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 } else {
                     if ($rs->ev_teknis >= 60) {
                         $row[] = number_format($rs->ev_teknis, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
                         $row[] = number_format($rs->ev_teknis, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             }
@@ -192,27 +192,27 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->ev_kualifikasi_akhir == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 } else {
-                    if ($rs->ev_kualifikasi_akhir >= 60) {
+                    if ($rs->ev_teknis >= 60 && $rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_kualifikasi_akhir, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
-                        $row[] = number_format($rs->ev_kualifikasi_akhir, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">-</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             } else {
                 if ($rs->ev_kualifikasi_akhir == NULL) {
                     $row[] = '00.00';
-                    $row[] = '<span class="badge bg-secondary bg-sm">Tidak Dievaluasi</span>';
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 } else {
-                    if ($rs->ev_kualifikasi_akhir >= 60) {
+                    if ($rs->ev_teknis >= 60 && $rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_kualifikasi_akhir, 2, ',', '.');
                         $row[] = '<span class="badge bg-success bg-sm">Lulus</span>';
                     } else {
-                        $row[] = number_format($rs->ev_kualifikasi_akhir, 2, ',', '.');
-                        $row[] = '<span class="badge bg-danger bg-sm">Tidak Lulus</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">-</span>';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     }
                 }
             }
@@ -587,27 +587,17 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $this->form_validation->set_rules('ev_keuangan', 'Evaluasi Keuangan', 'required|trim', ['required' => 'Evaluasi Keuangan Harus Di isi!']);
         $this->form_validation->set_rules('ev_teknis', 'Evaluasi Teknis', 'required|trim', ['required' => 'Evaluasi Teknis Harus Di isi!']);
 
-        if ($this->form_validation->run() == false) {
-            $response = [
-                'error' => [
-                    'ev_keuangan' => form_error('ev_keuangan'),
-                    'ev_teknis' => form_error('ev_teknis')
-                ],
-            ];
-            $this->output->set_content_type('application/json')->set_output(json_encode($response));
-        } else {
-            $total = $ev_keuangan * 0.5 + $ev_teknis * 0.5;
-            $data = [
-                'ev_keuangan' => $ev_keuangan,
-                'ev_teknis' => $ev_teknis,
-                'ev_kualifikasi_akhir' => $total
-            ];
-            $where = [
-                'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
-            ];
-            $this->M_panitia->update_evaluasi($data, $where);
-            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
-        }
+        $total = $ev_keuangan * 0.5 + $ev_teknis * 0.5;
+        $data = [
+            'ev_keuangan' => $ev_keuangan,
+            'ev_teknis' => $ev_teknis,
+            'ev_kualifikasi_akhir' => $total
+        ];
+        $where = [
+            'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
     public function simpan_evaluasi_penawaran()
@@ -1673,7 +1663,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
     public function get_sanggahan_pra()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_sanggahan_pra = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_sanggahan_pra = $this->M_panitia->get_result_vendor_sanggahan_pra($id_rup);
         $output = [
             'result_sanggahan_pra' => $result_sanggahan_pra,
         ];

@@ -2461,4 +2461,15 @@
         var rupiahFormat = ba_negosiasi_harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         $('[name="ba_negosiasi_harga2"]').val('Rp. ' + rupiahFormat)
     }
+
+    function dibawah_60() {
+        var ev_keuangan = $('[name="ev_keuangan"]').val()
+
+        if (ev_keuangan < 60) {
+            $('[name="ev_teknis"]').prop('disabled', true);
+            $('[name="ev_teknis"]').val(0);
+        } else {
+            $('[name="ev_teknis"]').prop('disabled', false);
+        }
+    }
 </script>
