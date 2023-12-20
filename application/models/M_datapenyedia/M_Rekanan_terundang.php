@@ -95,6 +95,18 @@ class M_Rekanan_terundang extends CI_Model
         return $query->row_array();
     }
 
+    function get_result_rekanan_terundang() {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor');
+        $this->db->join('tbl_provinsi', 'tbl_vendor.id_provinsi = tbl_provinsi.id_provinsi', 'left');
+        $this->db->join('tbl_kecamatan', 'tbl_vendor.id_kecamatan = tbl_kecamatan.id_kecamatan', 'left');
+        $this->db->join('tbl_kabupaten', 'tbl_vendor.id_kabupaten = tbl_kabupaten.id_kabupaten', 'left');
+        $this->db->where('tbl_vendor.sts_aktif', 1);
+        $this->db->where('tbl_vendor.sts_terundang', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
     function get_id_vendor($id_vendor)
     {

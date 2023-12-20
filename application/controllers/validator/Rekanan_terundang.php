@@ -91,15 +91,197 @@ class Rekanan_terundang extends CI_Controller
 
 	function get_rekanan_tervalidasi()
 	{
-		$result = $this->M_Rekanan_terundang->gettable_rekanan_terundang();
-		$data = [];
-		$no = $_POST['start'];
-		foreach ($result as $rs) {
+
+		$update_pengajuan = $this->M_Rekanan_terundang->get_result_rekanan_terundang();
+		foreach ($update_pengajuan as $key => $value) {
+			$update_jika_ada_pengajuan = $this->M_Rekanan_terundang->cek_jika_ada_dokumen_pengajuan($value['id_vendor']);
 
 			// // cek_dok 
 			// $cek_dok = $this->M_Rekanan_terundang->cek_dokumen_all($rs->id_vendor);
 			// var_dump($cek_dok);
 			// izin usaha
+			$cek_siup_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_siup($value['id_vendor']);
+			$cek_kbli_siup_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_kbli_siup($value['id_vendor']);
+			$cek_nib_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_nib($value['id_vendor']);
+			$cek_kbli_nib_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_kbli_nib($value['id_vendor']);
+			$cek_sbu_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_sbu($value['id_vendor']);
+			$cek_kbli_sbu_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_kbli_sbu($value['id_vendor']);
+			$cek_siujk_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_siujk($value['id_vendor']);
+			$cek_kbli_siujk_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_kbli_siujk($value['id_vendor']);
+
+			// akta
+			$cek_akta_pendirian_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_akta_pendirian($value['id_vendor']);
+			$cek_akta_perubahan_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_akta_perubahan($value['id_vendor']);
+			// end akta
+
+			// manajerial
+			$cek_pemilik_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_pemilik($value['id_vendor']);
+			$cek_pengurus_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_pengurus($value['id_vendor']);
+			// end manajerial
+
+			// pengalaman
+			$cek_pengalaman_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_pengalaman($value['id_vendor']);
+			// end pengalaman
+
+			// pajak
+			$cek_sppkp_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_sppkp($value['id_vendor']);
+			$cek_npwp_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_npwp($value['id_vendor']);
+			$cek_spt_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_spt($value['id_vendor']);
+			$cek_neraca_keuangan_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_neraca_keuangan($value['id_vendor']);
+			$cek_keuangan_update = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_keuangan($value['id_vendor']);
+			// end pajak
+
+			// tidak valid
+			$cek_tdk_valid_siup_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_siup($value['id_vendor']);
+			$cek_tdk_valid_kbli_siup_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_kbli_siup($value['id_vendor']);
+			$cek_tdk_valid_nib_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_nib($value['id_vendor']);
+			$cek_tdk_valid_kbli_nib_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_kbli_nib($value['id_vendor']);
+			$cek_tdk_valid_sbu_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_sbu($value['id_vendor']);
+			$cek_tdk_valid_kbli_sbu_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_kbli_sbu($value['id_vendor']);
+			$cek_tdk_valid_siujk_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_siujk($value['id_vendor']);
+			$cek_tdk_valid_kbli_siujk_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_kbli_siujk($value['id_vendor']);
+
+			// akta
+			$cek_tdk_valid_akta_pendirian_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_akta_pendirian($value['id_vendor']);
+			$cek_tdk_valid_akta_perubahan_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_akta_perubahan($value['id_vendor']);
+			// end akta
+
+			// manajerial
+			$cek_tdk_valid_pemilik_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_pemilik($value['id_vendor']);
+			$cek_tdk_valid_pengurus_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_pengurus($value['id_vendor']);
+			// end manajerial
+
+			// pengalaman
+			$cek_tdk_valid_pengalaman_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_pengalaman($value['id_vendor']);
+			// end pengalaman
+
+			// pajak
+			$cek_tdk_valid_sppkp_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_sppkp($value['id_vendor']);
+			$cek_tdk_valid_npwp_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_npwp($value['id_vendor']);
+			$cek_tdk_valid_spt_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_spt($value['id_vendor']);
+			$cek_tdk_valid_neraca_keuangan_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_neraca_keuangan($value['id_vendor']);
+			$cek_tdk_valid_keuangan_update = $this->M_Rekanan_terundang->cek_vendor_tdk_valid_keuangan($value['id_vendor']);
+			// end pajak
+
+			// siujk di hilangkan nov 14 2023
+			$test = $cek_siup_update + $cek_kbli_siup_update + $cek_nib_update + $cek_kbli_nib_update + $cek_sbu_update + $cek_kbli_sbu_update + $cek_akta_pendirian_update + $cek_akta_perubahan_update + $cek_pemilik_update + $cek_pengurus_update + $cek_pengalaman_update + $cek_sppkp_update + $cek_npwp_update + $cek_spt_update + $cek_neraca_keuangan_update + $cek_keuangan_update;
+			$cek_jika_ada_pengajuan_dokumen_update = $this->M_Rekanan_terundang->cek_jika_ada_dokumen_pengajuan($value['id_vendor']);
+			if ($cek_jika_ada_pengajuan_dokumen_update) {
+				if ($update_jika_ada_pengajuan) {
+					$where = [
+						'id_vendor' => $value['id_vendor']
+					];
+					$data = [
+						'sts_pengajuan_perubahan_dokumen' => 1
+					];
+					$this->M_Rekanan_terundang->update_vendor($data, $where);
+				} else {
+					if ($value['sts_pengajuan_perubahan_dokumen'] == 1) {
+						$where = [
+							'id_vendor' => $value['id_vendor']
+						];
+						$data = [
+							'sts_pengajuan_perubahan_dokumen' => NULL,
+							'sts_terundang' => NULL
+						];
+					} else {
+						$where = [
+							'id_vendor' => $value['id_vendor']
+						];
+						$data = [
+							'sts_pengajuan_perubahan_dokumen' => NULL
+						];
+					}
+					$this->M_Rekanan_terundang->update_vendor($data, $where);
+				}
+			} else {
+				if ($value['sts_dokumen_cek'] == NULL) {
+				} else if ($value['sts_dokumen_cek'] == 1) {
+					if ($cek_siup_update == 1 && $cek_kbli_siup_update == 1 && $cek_nib_update == 1 && $cek_kbli_nib_update && $cek_sbu_update == 1 && $cek_kbli_sbu_update && $cek_akta_pendirian_update == 1  && $cek_pemilik_update == 1 && $cek_pengurus_update == 1 && $cek_pengalaman_update == 1 && $cek_sppkp_update == 1 && $cek_npwp_update == 1 && $cek_spt_update == 1 && $cek_neraca_keuangan_update == 1 && $cek_keuangan_update == 1) {
+						if ($cek_tdk_valid_siup_update == 1 || $cek_tdk_valid_kbli_siup_update == 1 || $cek_tdk_valid_nib_update == 1 || $cek_tdk_valid_kbli_nib_update || $cek_tdk_valid_sbu_update == 1 || $cek_tdk_valid_kbli_sbu_update  || $cek_tdk_valid_akta_pendirian_update == 1  || $cek_tdk_valid_pemilik_update == 1 || $cek_tdk_valid_pengurus_update == 1 || $cek_tdk_valid_pengalaman_update == 1 || $cek_tdk_valid_sppkp_update == 1 || $cek_tdk_valid_npwp_update == 1 || $cek_tdk_valid_spt_update == 1 || $cek_tdk_valid_neraca_keuangan_update == 1 || $cek_tdk_valid_keuangan_update == 1) {
+							$where = [
+								'id_vendor' => $value['id_vendor']
+							];
+							$data = [
+								'sts_terundang' => NULL
+							];
+							$this->M_Rekanan_terundang->update_vendor($data, $where);
+						} else {
+							if ($update_jika_ada_pengajuan) {
+								$where = [
+									'id_vendor' => $value['id_vendor']
+								];
+								$data = [
+									'sts_pengajuan_perubahan_dokumen' => 1
+								];
+								$this->M_Rekanan_terundang->update_vendor($data, $where);
+							} else {
+								if ($value['sts_pengajuan_perubahan_dokumen'] == 1) {
+									$where = [
+										'id_vendor' => $value['id_vendor']
+									];
+									$data = [
+										'sts_pengajuan_perubahan_dokumen' => NULL,
+										'sts_terundang' => NULL
+									];
+								} else {
+									$where = [
+										'id_vendor' => $value['id_vendor']
+									];
+									$data = [
+										'sts_pengajuan_perubahan_dokumen' => NULL
+									];
+								}
+								$this->M_Rekanan_terundang->update_vendor($data, $where);
+							}
+						}
+					} else {
+						$where = [
+							'id_vendor' => $value['id_vendor']
+						];
+						$data = [
+							'sts_terundang' => NULL
+						];
+						$this->M_Rekanan_terundang->update_vendor($data, $where);
+					}
+				} else {
+					if ($cek_siup_update == 1 && $cek_kbli_siup_update == 1 && $cek_nib_update == 1 && $cek_kbli_nib_update && $cek_sbu_update == 1 && $cek_kbli_sbu_update && $cek_akta_pendirian_update == 1  && $cek_pemilik_update == 1 && $cek_pengurus_update == 1 && $cek_pengalaman_update == 1 && $cek_sppkp_update == 1 && $cek_npwp_update == 1 && $cek_spt_update == 1 && $cek_neraca_keuangan_update == 1 && $cek_keuangan_update == 1) {
+						if ($cek_tdk_valid_siup_update == 1 || $cek_tdk_valid_kbli_siup_update == 1 || $cek_tdk_valid_nib_update == 1 || $cek_tdk_valid_kbli_nib_update || $cek_tdk_valid_sbu_update == 1 || $cek_tdk_valid_kbli_sbu_update || $cek_tdk_valid_akta_pendirian_update == 1  || $cek_tdk_valid_pemilik_update == 1 || $cek_tdk_valid_pengurus_update == 1 || $cek_tdk_valid_pengalaman_update == 1 || $cek_tdk_valid_sppkp_update == 1 || $cek_tdk_valid_npwp_update == 1 || $cek_tdk_valid_spt_update == 1 || $cek_tdk_valid_neraca_keuangan_update == 1 || $cek_tdk_valid_keuangan_update == 1) {
+							$where = [
+								'id_vendor' => $value['id_vendor']
+							];
+							$data = [
+								'sts_terundang' => NULL
+							];
+							$this->M_Rekanan_terundang->update_vendor($data, $where);
+						} else {
+							$where = [
+								'id_vendor' => $value['id_vendor']
+							];
+							$data = [
+								'sts_terundang' => 1
+							];
+							$this->M_Rekanan_terundang->update_vendor($data, $where);
+						}
+					} else {
+						$where = [
+							'id_vendor' => $value['id_vendor']
+						];
+						$data = [
+							'sts_terundang' => NULL
+						];
+						$this->M_Rekanan_terundang->update_vendor($data, $where);
+					}
+				}
+			}
+		}
+
+
+
+		$result = $this->M_Rekanan_terundang->gettable_rekanan_terundang();
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $rs) {
 			$cek_siup = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_siup($rs->id_vendor);
 			$cek_kbli_siup = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_kbli_siup($rs->id_vendor);
 			$cek_nib = $this->M_Rekanan_terundang->cek_vendor_tervalidasi_nib($rs->id_vendor);
@@ -179,6 +361,7 @@ class Rekanan_terundang extends CI_Controller
 
 			// cek_jika_ada
 			$cek_jika_ada_pengajuan_dokumen = $this->M_Rekanan_terundang->cek_jika_ada_dokumen_pengajuan($rs->id_vendor);
+
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nama_usaha;
@@ -186,33 +369,33 @@ class Rekanan_terundang extends CI_Controller
 			$row[] = $rs->kualifikasi_usaha;
 			$row[] = '<small><span class="badge bg-primary text-white">Rekanan Terundang</span></small>';
 			// nanti main kondisi hitung dokumen dimari
-			if ($rs->sts_dokumen_cek == NULL) {
-				$row[] = '<small><span class="badge swatch-orange text-white">Belum Di Periksa</span></small>';
-			} else if ($rs->sts_dokumen_cek == 1) {
-				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu  || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
-						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
-					} else {
-						$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
-					}
-				} else {
-					$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
-				}
+			if ($cek_jika_ada_pengajuan_dokumen) {
+				$row[] = '<small><span class="badge bg-info text-white">Permintaan Perubahan Dokumen</span></small>';
 			} else {
-				if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
-					if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
-						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
+				if ($rs->sts_dokumen_cek == NULL) {
+					$row[] = '<small><span class="badge swatch-orange text-white">Belum Di Periksa</span></small>';
+				} else if ($rs->sts_dokumen_cek == 1) {
+					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu  || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+							$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
+						} else {
+							$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
+						}
 					} else {
-						$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
+						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
 					}
 				} else {
-					$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
+					if ($cek_siup == 1 && $cek_kbli_siup == 1 && $cek_nib == 1 && $cek_kbli_nib && $cek_sbu == 1 && $cek_kbli_sbu && $cek_akta_pendirian == 1  && $cek_pemilik == 1 && $cek_pengurus == 1 && $cek_pengalaman == 1 && $cek_sppkp == 1 && $cek_npwp == 1 && $cek_spt == 1 && $cek_neraca_keuangan == 1 && $cek_keuangan == 1) {
+						if ($cek_tdk_valid_siup == 1 || $cek_tdk_valid_kbli_siup == 1 || $cek_tdk_valid_nib == 1 || $cek_tdk_valid_kbli_nib || $cek_tdk_valid_sbu == 1 || $cek_tdk_valid_kbli_sbu || $cek_tdk_valid_akta_pendirian == 1  || $cek_tdk_valid_pemilik == 1 || $cek_tdk_valid_pengurus == 1 || $cek_tdk_valid_pengalaman == 1 || $cek_tdk_valid_sppkp == 1 || $cek_tdk_valid_npwp == 1 || $cek_tdk_valid_spt == 1 || $cek_tdk_valid_neraca_keuangan == 1 || $cek_tdk_valid_keuangan == 1) {
+							$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
+						} else {
+							$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
+						}
+					} else {
+						$row[] = '<small><span class="badge bg-warning text-white">Revisi</span></small>';
+					}
 				}
 			}
-			// else if ($rs->sts_dokumen_cek == 2) {
-			// 	$row[] = '<small><span class="badge bg-danger text-white">Belum Valid</span></small>';
-			// }
-
 			if ($cek_jika_ada_pengajuan_dokumen) {
 				$row[] = '<a onclick="Lihat_pengajuan_dokumen(' . $rs->id_vendor . ')" href="javascript:;" class="btn btn-info btn-block btn-sm shadow-lg" ><i class="fa-solid fa-file px-1"></i> Pengajuan Perubahan Dokumen</a><a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>';
 			} else {
@@ -247,15 +430,16 @@ class Rekanan_terundang extends CI_Controller
 					}
 				}
 			}
-
 			$data[] = $row;
 		}
+
 		$output = array(
 			"draw" => $_POST['draw'],
 			"recordsTotal" => $this->M_Rekanan_terundang->count_all_rekanan_terundang(),
 			"recordsFiltered" => $this->M_Rekanan_terundang->count_filtered_rekanan_terundang(),
 			"data" => $data
 		);
+
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 
@@ -4463,6 +4647,16 @@ class Rekanan_terundang extends CI_Controller
 		$data = [
 			'status_perubahan_dokumen' => 3
 		];
+		$row_vendor = $this->M_Rekanan_terundang->get_row_dokumen_pengajuan($this->input->post('id_dokumen_perubahan'));
+		$where_vendor = [
+			'id_vendor' => $row_vendor['id_vendor']
+		];
+		$data_vendor = [
+			'sts_pengajuan_perubahan_dokumen' => NULL,
+			'sts_terundang' => 1
+		];
+
+		$this->M_Rekanan_terundang->update_vendor($data_vendor, $where_vendor);
 		$this->M_Rekanan_terundang->update_dokumen_pengajuan($data, $where);
 		$row_vendor = $this->M_Rekanan_terundang->get_row_dokumen_pengajuan($this->input->post('id_dokumen_perubahan'));
 		$response = [

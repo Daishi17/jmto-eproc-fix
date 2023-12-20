@@ -295,6 +295,7 @@
                     },
                     dataType: "JSON",
                     success: function(response) {
+                        Reload_table_rekanan_baru()
                         Swal.fire('Good job!', 'Data Beharhasil Setujui!', 'success');
                         $('#datatable_pengajuan_dokumen').DataTable({
                             "responsive": false,

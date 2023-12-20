@@ -7,8 +7,8 @@ class Kirim_wa
     protected $ci;
     public function kirim_wa_vendor_aktif($nomor_telpon)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
-        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
 
         $curl = curl_init();
@@ -38,8 +38,8 @@ class Kirim_wa
 
     public function kirim_wa_vendor_terdaftar($nomor_telpon, $pesan)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
-        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
         $pesan = str_replace("-", " ", $pesan);
         $curl = curl_init();
