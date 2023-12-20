@@ -131,7 +131,7 @@ function terbilang($nilai)
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">KLARIFIKASI & PENILAIAN KEWAJARAN HARGA</h4>
-                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> PT JASA MARGA TOLLROAD OPERATOR</h5>
+                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?></h5>
             </center>
             <hr size="5">
             <center>
@@ -183,19 +183,19 @@ function terbilang($nilai)
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>NO</th>
-                            <th>NAMA</th>
-                            <th>KEDUDUKAN DALAM PANITIA</th>
-                            <th>TANDA TANGAN</th>
+                            <th class="text-center">NO</th>
+                            <th class="text-center">NAMA</th>
+                            <th class="text-center">KEDUDUKAN DALAM PANITIA</th>
+                            <th class="text-center">TANDA TANGAN</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($panitia_tender as $key => $value) { ?>
                             <tr>
-                                <td><?= $i++ ?></td>
+                                <td class="text-center"><?= $i++ ?></td>
                                 <td><?= $value['nama_pegawai'] ?></td>
-                                <td>
+                                <td class="text-center">
                                     <?php if ($value['role_panitia'] == 1) { ?>
                                         Ketua merangkap Anggota
                                     <?php  } else if ($value['role_panitia'] == 2) { ?>
@@ -218,22 +218,18 @@ function terbilang($nilai)
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>NO</th>
-                            <th>NAMA </th>
-                            <th>JABATAN</th>
-                            <th>NAMA PERUSAHAAN</th>
-                            <th>TANDA TANGAN</th>
+                            <th class="text-center">NO</th>
+                            <th class="text-center">NAMA PERUSAHAAN</th>
+                            <th class="text-center">TANDA TANGAN</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                             <tr>
-                                <td><?= $i++ ?></td>
-                                <td></td>
-                                <td></td>
+                                <td class="text-center"><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td></td>
+                                <td class="text-center"></td>
                             </tr>
                         <?php } ?>
 

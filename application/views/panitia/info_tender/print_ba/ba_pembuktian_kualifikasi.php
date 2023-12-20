@@ -152,32 +152,32 @@ function terbilang($nilai)
 
                 <p style="text-align:justify; font-size:15px">Dalam kegiatan Pembuktian Kualifikasi dimaksud, maka Panitia Pengadaan melakukan pemeriksaan kebenaran terhadap semua Dokumen-Dokumen ASLI yang terkait dengan data-data yang telah disampaikan oleh Peserta dalam Formulir Isian Kualifikasi, dengan hasil sebagai berikut :</p>
 
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered ">
                     <thead>
                         <tr>
-                            <th rowspan="2"><b>No</b></th>
-                            <th rowspan="2"><b>Peserta</b></th>
-                            <th colspan="3"><b>Pembuktian Kualifikasi</b></th>
+                            <th rowspan="2" class="text-center"><b>No</b></th>
+                            <th rowspan="2" class="text-center"><b>Peserta</b></th>
+                            <th colspan="3" class="text-center"><b>Pembuktian Kualifikasi</b></th>
                         </tr>
                         <tr>
-                            <th><b>Kehadiran</b></th>
-                            <th><b>Dokumen</b></th>
-                            <th><b>Keterangan</b></th>
+                            <th class="text-center"><b>Kehadiran</b></th>
+                            <th class="text-center"><b>Dokumen</b></th>
+                            <th class="text-center"><b>Keterangan</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
                             <tr>
-                                <td><?= $i++ ?></td>
+                                <td class="text-center"><?= $i++ ?></td>
                                 <td><b><?= $value['nama_usaha'] ?></b></td>
-                                <td>
+                                <td class="text-center">
                                     <b><?= $value['ba_pembuktian_hadir'] ?></b>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <b><?= $value['ba_pembuktian_dok'] ?></b>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <b><?= $value['ba_pembuktian_ket'] ?></b>
                                 </td>
                             </tr>
@@ -189,27 +189,27 @@ function terbilang($nilai)
 
                 <p style="text-align:justify; font-size:15px">Demikian Berita Acara ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya.</p>
                 <br>
-                <center><b class="text-uppercase"><?= $row_rup['nama_rup'] ?> PT JASAMARGA TOLLROAD OPERATOR</b> </center>
+                <center><b class="text-uppercase"><?= $row_rup['nama_rup'] ?> </b> </center>
                 <br>
                 <b>PANITIA : </b>
                 <br>
                 <br>
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th><b>NO</b></th>
-                            <th><b>NAMA</b></th>
-                            <th><b>KEDUDUKAN DALAM PANITIA</b></th>
-                            <th><b>TANDA TANGAN</b></th>
+                            <th class="text-center"><b>NO</b></th>
+                            <th class="text-center"><b>NAMA</b></th>
+                            <th class="text-center"><b>KEDUDUKAN DALAM PANITIA</b></th>
+                            <th class="text-center"><b>TANDA TANGAN</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($panitia_tender as $key => $value) { ?>
                             <tr>
-                                <td><?= $i++ ?></td>
+                                <td class="text-center"><?= $i++ ?></td>
                                 <td><?= $value['nama_pegawai'] ?></td>
-                                <td>
+                                <td class="text-center">
                                     <?php if ($value['role_panitia'] == 1) { ?>
                                         Ketua merangkap Anggota
                                     <?php  } else if ($value['role_panitia'] == 2) { ?>
@@ -219,41 +219,37 @@ function terbilang($nilai)
                                     <?php  }  ?>
 
                                 </td>
-                                <td>
-
+                                <td class="text-center">
+                                    <span class="badge bg-success">Setuju</span>
                                 </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
                 <br>
-                <b>PESERTA PRAKUALIFIKASI TENDER UMUM : </b>
+                <b class="text-uppercase">PESERTA PRAKUALIFIKASI <?= $row_rup['nama_metode_pengadaan'] ?> : </b>
                 <br>
                 <br>
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered ">
                     <thead>
                         <tr>
-                            <th><b>NO</b></th>
-                            <th><b>NAMA</b></th>
-                            <th><b>PERUSAHAAN</b></th>
-                            <th><b>JABATAN</b></th>
-                            <th><b>TANDA TANGAN</b></th>
+                            <th class="text-center"><b>NO</b></th>
+                            <!-- <th  class="text-center"><b>NAMA</b></th> -->
+                            <th class="text-center"><b>PERUSAHAAN</b></th>
+                            <th class="text-center"><b>TANDA TANGAN</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
                             <tr>
-                                <td><?= $i++ ?></td>
-                                <td></td>
+                                <td class="text-center"><?= $i++ ?></td>
+                                <!-- <td></td> -->
                                 <td>
                                     <b><?= $value['nama_usaha'] ?></b>
                                 </td>
-                                <td>
-
-                                </td>
-                                <td>
-
+                                <td class="text-center">
+                                    <span class="badge bg-success">Setuju</span>
                                 </td>
                             </tr>
                         <?php } ?>

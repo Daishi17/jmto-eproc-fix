@@ -352,17 +352,17 @@
                             <th>Undangan Penawaran</th>
                             <th>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi" disabled>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
                                     </button>
 
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button>
 
@@ -1179,7 +1179,7 @@
                             <th>Tanggal Surat</th>
                             <th><input type="text" id="value_undangan2" name="tanggal_pengumuman_hasil_kualifikasi" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tanggal_pengumuman_hasil_kualifikasi')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['tanggal_pengumuman_hasil_kualifikasi'] ?>"></th>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>Hari Mulai</th>
                             <th><input type=" text" id="value_undangan3" name="hari_isi_pengumuman_hasil_kualifikasi_mulai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'hari_isi_pengumuman_hasil_kualifikasi_mulai')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_isi_pengumuman_hasil_kualifikasi_mulai'] ?>"></th>
                         </tr>
@@ -1203,7 +1203,7 @@
                         <tr>
                             <th>Waktu selesai</th>
                             <th><input type="text" id="value_undangan5" name="pukul_isi_pengumuman_hasil_kualifikasi_selesai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'pukul_isi_pengumuman_hasil_kualifikasi_selesai')" class=" form-control" placeholder="Waktu" class="form-control" value="<?= $row_rup['pukul_isi_pengumuman_hasil_kualifikasi_selesai'] ?>"></th>
-                        </tr>
+                        </tr> -->
                     </thead>
                 </table>
             </div>
@@ -1861,6 +1861,44 @@
                     <button type="submit" class="btn btn-success "> <i class="fas fa fa-plus"></i> Tambah</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="undangan_penawaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Undangan Penawaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <div>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Undangan Penawaran !!! <br>
+                    </div>
+                </div>
+                <br>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nomor</th>
+                            <th>
+                                <input type="text" name="no_undangan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_undangan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['no_undangan_penawaran'] ?>">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Surat</th>
+                            <th><input type="text" id="value_undangan2" name="no_undangan_tgl" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_undangan_tgl')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['no_undangan_tgl'] ?>"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
