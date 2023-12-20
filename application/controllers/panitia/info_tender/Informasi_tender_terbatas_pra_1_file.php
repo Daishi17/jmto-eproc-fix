@@ -1299,7 +1299,6 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         // var_dump($data_vendor_terundang_by_kbli);
         // die;
-
         $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
 
         // yang dapat mengumumkan 
@@ -1664,7 +1663,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     {
         // post
         $id_rup = $this->input->post('id_rup');
-        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $id_sanggah_pra_detail = $this->input->post('id_vendor_mengikuti_paket');
         $ket_sanggah_pra_panitia = $this->input->post('ket_sanggah_pra_panitia');
 
         // get value vendor dan paket untuk genrate file
@@ -1685,9 +1684,9 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 'file_sanggah_pra_panitia' => $fileData['file_name']
             ];
             $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+                'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
             ];
-            $this->M_panitia->update_mengikuti($upload, $where);
+            $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
