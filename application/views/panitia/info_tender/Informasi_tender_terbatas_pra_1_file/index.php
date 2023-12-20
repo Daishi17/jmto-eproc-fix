@@ -13,9 +13,9 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/evaluasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Evaluasi</a>
                         </li>
@@ -1788,6 +1788,16 @@
                         <tr>
                             <th>Tanggal Surat</th>
                             <th><input type="text" id="value_undangan2" name="no_undangan_tgl" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_undangan_tgl')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['no_undangan_tgl'] ?>"></th>
+                        </tr>
+                        <tr>
+                            <th>Nilai Jaminan Penawaran</th>
+                            <th>
+                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Masa Berlaku Penawaran</th>
+                            <th><input type="text" id="value_undangan2" name="masa_berlaku_penawaran" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'masa_berlaku_penawaran')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['masa_berlaku_penawaran'] ?>"></th>
                         </tr>
                     </thead>
                 </table>

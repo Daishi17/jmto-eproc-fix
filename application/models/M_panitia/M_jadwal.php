@@ -235,7 +235,7 @@ class M_jadwal extends CI_Model
         return $query->row_array();
     }
 
-    
+
 
     public function insert_alasan($data)
     {
@@ -283,7 +283,7 @@ class M_jadwal extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_jadwal_rup');
         $this->db->where('id_rup', $id_rup);
-        $this->db->where('nama_jadwal_rup', 'Pendaftaran (Pengambilan Dokumen PQ)/Download Dokumen Kualifikasi');
+        $this->db->like('nama_jadwal_rup', 'Pendaftaran (Pengambilan Dokumen PQ)/Download Dokumen Kualifikasi');
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -513,7 +513,7 @@ class M_jadwal extends CI_Model
     }
 
 
-    
+
     public function jadwal_juksung_5($id_rup)
     {
         $this->db->select('*');
@@ -576,7 +576,7 @@ class M_jadwal extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    
+
     public function jadwal_tender_terbatas_pasca_1_file_11($id_rup)
     {
         $this->db->select('*');
@@ -618,7 +618,4 @@ class M_jadwal extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    
-
-
 }
