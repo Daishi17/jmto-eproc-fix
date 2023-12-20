@@ -160,44 +160,86 @@ function terbilang($nilai)
                     <table>
                         <tr>
                             <th>Tanggal </th>
-                            <th>: <?= date('d-m-Y', $strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> </th>
+                            <th>: <?= date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> </th>
                         </tr>
 
                         <tr>
                             <th>Waktu</th>
-                            <th>: <?= date('H:i', $strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', $strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
+                            <th>: <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
                         </tr>
 
                         <tr>
-                            <th>Rapat Penjelasan </th>
+                            <th>Tempat </th>
                             <th>: Melalui Aplikasi E-Tender </th>
                         </tr>
                     </table>
                 </li>
+                <br>
                 <li>
-                    <b>Download Dokumen Pengadaan</b><br>
+                    <b>Rapat Penjelasan (Aanwijzing)</b><br>
                     <table>
                         <tr>
                             <th>Tanggal </th>
-                            <th>: <?= date('d-m-Y', $strtotime($jadwal_pra1file_umum_11['waktu_mulai'])) ?> </th>
+                            <th>: <?= date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> </th>
                         </tr>
 
                         <tr>
                             <th>Waktu</th>
-                            <th>: <?= date('H:i', $strtotime($jadwal_pra1file_umum_11['waktu_mulai'])) ?> - <?= date('H:i', $strtotime($jadwal_pra1file_umum_11['waktu_selesai'])) ?> WIB</th>
+                            <th>: <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
                         </tr>
 
                         <tr>
-                            <th>Rapat Penjelasan </th>
+                            <th>Tempat </th>
                             <th>: Melalui Aplikasi E-Tender </th>
+                        </tr>
+                    </table>
+                </li>
+                <br>
+                <li>
+                    <b>Pemasukan dan Pembukaan Penawaran Sampul I (Administrasi dan Teknis)</b><br>
+                    <table>
+                        <tr>
+                            <th>Nilai Jaminan </th>
+                            <th>: <?= $row_rup['nilai_jaminan_penawaran'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Masa Berlaku </th>
+                            <th>: <?= $row_rup['masa_berlaku_penawaran'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Tempat </th>
+                            <th>: Melalui Aplikasi E-Tender </th>
+                        </tr>
+                    </table>
+                </li>
+                <br>
+                <li>
+                    <b>Pemasukan dan Pembukaan Penawaran Sampul I (Administrasi dan Teknis)</b><br>
+                    <table>
+                        <tr>
+                            <th>Tanggal </th>
+                            <th>: <?= date('d-m-y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> </th>
+                        </tr>
+
+                        <tr>
+                            <th>Waktu</th>
+                            <th>: <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
+                        </tr>
+
+
+                        <tr>
+                            <th>Produk </th>
+                            <th>: Bank Garansi sebagaimana yang ditetapkan oleh Menteri Keuangan tentang Bank-Bank yang mengatur penerbitan Bank Garansi </th>
                         </tr>
                     </table>
                 </li>
             </ol>
 
-            <p><b>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</b></p>
+            <p>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</p>
 
-            <label for="">PT Jasamarga Tollroad Operator</label>
+            <label for=""><b>PT Jasamarga Tollroad Operator</b></label>
             <br>
             <br>
             <br>
@@ -205,50 +247,27 @@ function terbilang($nilai)
             <br>
             <br>
             <br>
-            <label for="">Panitia Pengadaan</label>
+            <label for=""><b></b>Daftar Peserta Penawaran <?= $row_rup['nama_rup'] ?></label>
 
             <br>
             <br>
-            Tembusan :
-            <ul>
-                <li><i>Panitia Pengadaan</i></li>
-                <li><i>Tim Evaluator</i></li>
-            </ul>
-            <br>
-            <br>
-            <b>Hari / Tanggal : <?= $row_rup['undangan_rapat_haritgl'] ?></b>
-            <br>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Peserta Penawaran</th>
-                        <th>Paket Pekerjaan</th>
-                        <th>Waktu</th>
+                        <th class="text-center">NO</th>
+                        <th class="text-center">PERUSAHAAN</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1;
-                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                    foreach ($peserta_tender_pq as $key => $value) { ?>
                         <tr>
-                            <td><?= $i++ ?></td>
+                            <td class="text-center"><?= $i++ ?></td>
                             <td><?= $value['nama_usaha'] ?></td>
-                            <td><?= $row_rup['nama_rup'] ?></td>
-                            <td><?= $value['waktu_undangan_rapat'] ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
-                <tfoot>
-                    <td colspan="4">
-                        Keterangan : <br>
-                        <ol type="a">
-                            <li>Materi Presentasi dikirimkan selambatnya <?= $row_rup['undangan_rapat_waktu_materi'] ?></li>
-                            <li>Penyedia WAJIB mengirimkan butir a di atas melalui email generalaffairdept.jmto@gmail.com</li>
-                            <li>Apabila ada perubahan jadwal akan diberitahukan kemudian.</li>
-                        </ol>
-
-                    </td>
-                </tfoot>
             </table>
 
         </form>
