@@ -352,17 +352,17 @@
                             <th>Undangan Penawaran</th>
                             <th>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi" disabled>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
                                     </button>
 
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button>
 
@@ -402,7 +402,7 @@
                                                 Upload Berita Acara dan Pengumuman Pengadaan
                                                 <a href="" style="float: right;" data-bs-toggle="modal" data-bs-target="#upload_berita_acara_tender" class="btn btn-danger btn-sm"> <i class="fas fa fa-upload"></i> Upload</a>
                                             </div>
-                                            <div class="card-body">
+                                            <!-- <div class="card-body">
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
@@ -415,7 +415,7 @@
                                                     <tbody id="tbl_ba_tender">
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -1262,12 +1262,13 @@
                     <option value="1">Berita Acara Pembuktian Kualifikasi</option>
                     <option value="2">Berita Acara Hasil Evaluasi</option>
                     <option value="3">Berita Acara Sampul I</option>
+                    <option value="10">Berita Acara Rapat Penjelasan</option>
                     <option value="4">Undangan Rapat Presentasi Teknis</option>
                     <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
                     <option value="6">Berita Acara Pembukaan Sampul II</option>
                     <option value="7">Berita Acara Evaluasi dan Negosiasi Harga</option>
                     <option value="8">Berita Acara Klarifikasi Harga</option>
-                    <option value="9">Berita Acara Presentasi Teknis Tender</option>
+                    <!-- <option value="9">Berita Acara Presentasi Teknis Tender</option> -->
                 </select>
                 <div class="row">
                     <div class="col-md-12">
@@ -1830,9 +1831,40 @@
                                 </tr>
                             </table>
                         </div>
-                        <div id="ba_9" style="display: none;" class="mt-3">
-
+                        <div id="ba_10" style="display: none;" class="mt-3">
+                            <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_penjelasan_pengadaan' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+                            <br>
+                            <br>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nomor Berita Acara</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_penjelasan_no'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Berita Acara</th>
+                                    <th>
+                                        <input type="date" name="ba_penjelasan_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_penjelasan_tgl'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Hari (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_hari')" placeholder="Hari" class="form-control" value="<?= $row_rup['ba_penjelasan_hari'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Jam (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_jam" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_jam'] ?>">
+                                    </th>
+                                </tr>
+                            </table>
                         </div>
+                        <!-- <div id="ba_9" style="display: none;" class="mt-3">
+
+                        </div> -->
                     </div>
                 </div>
                 <br>
@@ -1865,3 +1897,50 @@
     </div>
 </div>
 <!-- end modal ba tender -->
+
+<div class="modal fade" id="undangan_penawaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Undangan Penawaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <div>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Undangan Penawaran !!! <br>
+                    </div>
+                </div>
+                <br>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nomor</th>
+                            <th>
+                                <input type="text" name="no_undangan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_undangan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['no_undangan_penawaran'] ?>">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Surat</th>
+                            <th><input type="text" id="value_undangan2" name="no_undangan_tgl" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'no_undangan_tgl')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['no_undangan_tgl'] ?>"></th>
+                        </tr>
+                        <tr>
+                            <th>Nilai Jaminan Penawaran</th>
+                            <th>
+                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Masa Berlaku Penawaran</th>
+                            <th><input type="text" id="value_undangan2" name="masa_berlaku_penawaran" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'masa_berlaku_penawaran')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['masa_berlaku_penawaran'] ?>"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

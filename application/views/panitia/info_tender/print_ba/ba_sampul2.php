@@ -131,7 +131,7 @@ function terbilang($nilai)
             <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN HARGA (SAMPUL II) TENDER UMUM</h4>
+                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN HARGA (SAMPUL II) <?= $row_rup['nama_metode_pengadaan'] ?></h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> PT JASA MARGA TOLLROAD OPERATOR</h5>
             </center>
             <hr size="5">
@@ -147,7 +147,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_sampul2_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (Sampul II) Tender Umum <b><?= $row_rup['nama_rup'] ?>PT Jasamarga Tollroad Operator</b> secara langsung yang dihadiri oleh panitia dan peserta Tender Umum.
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (Sampul II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?>PT Jasamarga Tollroad Operator</b> secara langsung yang dihadiri oleh panitia dan peserta <?= $row_rup['nama_metode_pengadaan'] ?>.
                 </p>
 
                 <p style="text-align:justify; font-size:15px">
@@ -267,12 +267,12 @@ function terbilang($nilai)
                 <b>Panitia Pengadaan</b>
                 <br>
                 <table class="table table-bordered">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
-                            <td>NO</td>
-                            <td>NAMA</td>
-                            <td>KEDUDUKAN DALAM PANITIA</td>
-                            <td>TANDA TANGAN</td>
+                            <th>NO</th>
+                            <th>NAMA</th>
+                            <th>KEDUDUKAN DALAM PANITIA</th>
+                            <th>TANDA TANGAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -281,7 +281,7 @@ function terbilang($nilai)
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $value['nama_pegawai'] ?></td>
-                                <td>
+                                <td class="text-center">
                                     <?php if ($value['role_panitia'] == 1) { ?>
                                         Ketua merangkap Anggota
                                     <?php  } else if ($value['role_panitia'] == 2) { ?>
@@ -291,9 +291,7 @@ function terbilang($nilai)
                                     <?php  }  ?>
 
                                 </td>
-                                <td>
-                                    .......
-                                </td>
+                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -302,7 +300,7 @@ function terbilang($nilai)
                 <b class="text-uppercase">Peserta Penawaran </b>
                 <br>
                 <table class="table table-bordered">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th>NO</th>
                             <th>NAMA </th>
@@ -319,7 +317,7 @@ function terbilang($nilai)
                                 <td></td>
                                 <td></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td></td>
+                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                             </tr>
                         <?php } ?>
 

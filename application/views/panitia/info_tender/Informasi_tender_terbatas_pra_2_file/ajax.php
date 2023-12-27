@@ -1931,6 +1931,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 2) {
             $('#ba_1').hide();
             $('#ba_2').show();
@@ -1941,6 +1942,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 3) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -1951,6 +1953,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 4) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -1961,6 +1964,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 5) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -1971,6 +1975,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 6) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -1981,6 +1986,7 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 7) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -1991,6 +1997,7 @@
             $('#ba_7').show();
             $('#ba_8').hide();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 8) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2001,6 +2008,7 @@
             $('#ba_7').hide();
             $('#ba_8').show();
             $('#ba_9').hide();
+            $('#ba_10').hide();
         } else if (jenis_ba == 9) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2011,6 +2019,18 @@
             $('#ba_7').hide();
             $('#ba_8').hide();
             $('#ba_9').show();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 10) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').show();
         }
     }
 
