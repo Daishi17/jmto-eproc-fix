@@ -3192,14 +3192,8 @@ class Rekanan_tervalidasi extends CI_Controller
 	{
 		$id_url = $this->input->post('id_url_spt');
 		$token_dokumen = $this->input->post('token_dokumen');
-		// $secret_token = $this->input->post('secret_token');
-
 		$type = $this->input->post('type');
-
-
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_spt_enkription($id_url);
-		// $id_vendor = $get_row_enkrip['id_vendor'];
-		// $row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor($id_vendor);
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));

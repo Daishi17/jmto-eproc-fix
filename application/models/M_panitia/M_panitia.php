@@ -365,7 +365,7 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siup.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siup', 'tbl_vendor_kbli_siup.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli',  $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -382,7 +382,7 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_nib.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_nib', 'tbl_vendor_kbli_nib.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -400,7 +400,7 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siujk.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siujk', 'tbl_vendor_kbli_siujk.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', [$implode]);
+        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', $data_kbli_tampung);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -2039,7 +2039,7 @@ class M_panitia extends CI_Model
     }
 
 
-    
+
     public function get_result_vendor_sanggahan_pra($id_rup)
     {
         // $this->db->select('*');
@@ -2060,9 +2060,9 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-    
-    
+
+
+
     public function update_mengikuti($data, $where)
     {
         $this->db->update('tbl_vendor_mengikuti_paket', $data, $where);
@@ -2382,7 +2382,7 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
-    
+
     public function update_mengikuti_sanggah_pra($data, $where)
     {
         $this->db->update('tbl_sanggah_detail', $data, $where);

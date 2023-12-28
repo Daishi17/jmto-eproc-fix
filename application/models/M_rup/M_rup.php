@@ -331,6 +331,26 @@ class M_rup extends CI_Model
         return $query->row_array();
     }
 
+    public function get_result_panitia($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_panitia.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_panitia.id_rup', $id_rup);
+        return $this->db->count_all_results();
+    }
+
+    public function cek_sudah_ada_pantia_ketua_dan_sekertaris($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_panitia.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_panitia.id_rup', $id_rup);
+        $this->db->where_in('tbl_panitia.role_panitia', [1,2]);
+        return $this->db->count_all_results();
+    }
     public function delete_panitia($where)
     {
         $this->db->delete('tbl_panitia', $where);
