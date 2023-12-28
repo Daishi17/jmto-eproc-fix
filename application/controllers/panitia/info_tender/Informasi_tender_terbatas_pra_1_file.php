@@ -506,7 +506,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
             if ($rs->ev_terendah_hps) {
-                $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
+                if ($rs->ev_terendah_hps >= 100) {
+                    $row[] =  number_format('100', 2, ',', '.');
+                } else {
+                    $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
+                }
             } else {
                 $row[] =  '0,00';
             }
@@ -807,7 +811,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         $data = [
             'ev_terendah_harga' => $ev_terendah_harga,
-            'ev_terendah_hps' => $ev_terendah_harga / $total_hps_rup,
+            'ev_terendah_hps' => $ev_terendah_harga / $total_hps_rup * 100,
             'ev_terendah_bobot' => $get_nilai_min / $ev_terendah_harga * 100
         ];
         $where = [
@@ -818,9 +822,18 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $peserta2 = $this->M_panitia->get_min_penawaran_terendah_peringkat($id_rup_post);
         $i = 1;
         foreach ($peserta2 as $key => $value3) {
-            $data3 = [
-                'ev_terendah_peringkat' => $i++
-            ];
+            if ($value3 > 100) {
+                $data3 = [
+                    'ev_terendah_peringkat' => $i++,
+                    // 'ev_terendah_hps' => 100
+                ];
+            } else {
+                $data3 = [
+                    'ev_terendah_peringkat' => $i++
+                ];
+            }
+
+
             $where3 = [
                 'id_vendor_mengikuti_paket' => $value3['id_vendor_mengikuti_paket']
             ];
