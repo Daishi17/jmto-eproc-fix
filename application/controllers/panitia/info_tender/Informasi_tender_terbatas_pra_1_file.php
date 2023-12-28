@@ -807,7 +807,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         $data = [
             'ev_terendah_harga' => $ev_terendah_harga,
-            'ev_terendah_hps' => $ev_terendah_harga / $total_hps_rup * 100,
+            'ev_terendah_hps' => $ev_terendah_harga / $total_hps_rup,
             'ev_terendah_bobot' => $get_nilai_min / $ev_terendah_harga * 100
         ];
         $where = [
@@ -2281,6 +2281,15 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
         $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
+    }
+
+    public function pakta_integritas_penyedia($id_vendor_mengikuti_paket)
+    {
+
+        $data['mengikuti'] = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
+        $data['peserta_tender'] = $this->M_panitia->cek_direktur_utama($data['mengikuti']['id_vendor']);
+        $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
     }
 
     // public function update_status_aanwijzing_vendor()

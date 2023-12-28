@@ -1511,6 +1511,7 @@
                             <th>Nama Peserta</th>
                             <th>Email</th>
                             <th>Telepon</th>
+                            <th>Pakta Integritas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1521,6 +1522,7 @@
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td><?= $value['no_telpon'] ?></td>
+                                <td><a class="btn btn-sm btn-danger text-white" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'pakta_integritas_penyedia/' . $value['id_vendor_mengikuti_paket']) ?>">Lihat Pakta Integritas</a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
