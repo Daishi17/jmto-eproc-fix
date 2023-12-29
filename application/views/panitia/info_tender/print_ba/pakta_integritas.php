@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>UNDANGAN PENAWARAN TENDER
+    <title>Pakta Integritas Penyedia
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +51,7 @@ function tgl_indo($tanggal)
     // variabel pecahkan 1 = bulan
     // variabel pecahkan 2 = tahun
 
-    return $pecahkan[0] . ' ' . $bulan[(int) $pecahkan[1]] . ' ' .  $pecahkan[2];
+    return $pecahkan[2] . ' ' . $bulan[(int) $pecahkan[1]] . ' ' . $pecahkan[0];
 } ?>
 <?php
 function bln_indo($bulan)
@@ -121,7 +121,7 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 18px; text-align:justify">
+<body style="font-size: 13px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
@@ -129,32 +129,13 @@ function terbilang($nilai)
             </div>
             <br><br>
             <div class="float-left">
-                <table>
-                    <tr>
-                        <td width="100px">Nomor</td>
-                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                        <td><?= $row_rup['no_undangan_penawaran'] ?></td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td width="100px">Hal</td>
-                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                        <td>Hal</td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td width="100px">Lampiran</td>
-                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                        <td> 1 (satu) Lembar</td>
-                    </tr>
-                </table>
+                Nomor : <?= $row_rup['undangan_rapat_no'] ?>
+                <br>
+                Hal : <b>Undangan Presentasi</b>
             </div>
             <div class="float-right">
-                Jakarta, <?= tgl_indo($row_rup['no_undangan_tgl']) ?>
+                Jakarta, <?= tgl_indo($row_rup['undangan_rapat_tgl']) ?>
             </div>
-            <br>
             <br>
             <br>
             <div class="row mt-3">
@@ -162,150 +143,113 @@ function terbilang($nilai)
                     <p>
                         <b>Kepada Yth.</b>
                         <br>
-                        <b>Peserta Penawaran <?= $row_rup['nama_metode_pengadaan'] ?></b>
+                        <b>Peserta Penawran <?= $row_rup['nama_metode_pengadaan'] ?></b>
                         <br>
                         <b><?= $row_rup['nama_rup'] ?></b>
                         <br>
-                        Di Tempat
+                        Di <b>Tempat</b>
                     </p>
                 </div>
             </div>
 
-            <p>Berdasarkan Pengumuman Hasil Kualifikasi Nomor <?= $row_rup['no_pengumuman_hasil_kualifikasi'] ?> tanggal <?= $row_rup['tanggal_pengumuman_hasil_kualifikasi'] ?> untuk <?= $row_rup['nama_metode_pengadaan'] ?> dengan <label class="text-lowercase"><?= $row_rup['metode_kualifikasi'] ?></label> <b> <?= $row_rup['nama_rup'] ?></b> dengan ini kami mengundang Saudara untuk mengikuti kegiatan Penawaran dengan jadwal sebagai berikut:</p>
+            <p>Sehubungan dengan kegiatan <?= $row_rup['nama_jadwal_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator</b>, dengan ini kami mengundang Saudara untuk menyampaikan Presentasi Teknis pada :</p>
 
+            <table>
+                <tr>
+                    <td>Hari / Tanggal</td>
+                    <td> : <?= $row_rup['undangan_rapat_haritgl'] ?></td>
+                </tr>
+                <tr>
+                    <td>Tempat </td>
+                    <td> : <b> <?= $row_rup['undangan_rapat_tempat'] ?></b></td>
+                </tr>
+                <tr>
+                    <td>Waktu</td>
+                    <td> : <?= $row_rup['undangan_rapat_waktu'] ?></td>
+                </tr>
+            </table>
+            <br>
+            <p><b>Ketentuan : </b></p>
             <ol>
+                <li>Perwakilan Management dan Personil yang <b>WAJIB</b> hadir, terdiri dari :</li>
+                <ol type="a">
+                    <li>Perwakilan Management yang dapat memberikan Keputusan strategis setingkat Direksi.</li>
+                    <li>Personil/PIC/Project Manager/Kepala Pelaksana yang ditugaskan pada saat Proses Pengadaan atau Pelaksanaan Kontrak Pekerjaan</li>
+                </ol>
                 <li>
-                    <b>Download Dokumen Pengadaan</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))) ?> </th>
-                        </tr>
-
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
-                        </tr>
-
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> Melalui Aplikasi E-Tender </th>
-                        </tr>
-                    </table>
+                    Apabila Perwakilan Management dan Personil/PIC sesuai tersebut di atas <b>TIDAK HADIR</b>, maka akan berpengaruh terhadap hasil penilaian Presentasi Teknis.
                 </li>
-                <br>
                 <li>
-                    <b>Rapat Penjelasan (Aanwijzing)</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> </th>
-                        </tr>
-
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
-                        </tr>
-
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Melalui Aplikasi E-Tender </th>
-                        </tr>
-                    </table>
+                    Mohon agar mempersiapkan segala kebutuhannya 30 menit sebelum jadwal presentasi dimulai.
                 </li>
-                <br>
                 <li>
-                    <b>Jaminan Penawaran</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Nilai Jaminan </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= $row_rup['nilai_jaminan_penawaran'] ?></th>
-                        </tr>
-                        <tr>
-                            <th width="250px">Masa Berlaku </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= $row_rup['masa_berlaku_penawaran'] ?></th>
-                        </tr>
-                        <tr>
-
-                            <th width="250px">Produk </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Bank Garansi sebagaimana yang ditetapkan oleh Menteri Keuangan tentang Bank-Bank yang mengatur penerbitan Bank Garansi </th>
-                        </tr>
-                    </table>
+                    Aplikasi yang digunakan untuk <b>Virtual Meeting/Video Conference</b> menggunakan <b>Aplikasi Zoom</b>
                 </li>
-                <br>
                 <li>
-                    <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> </th>
-                        </tr>
-
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
-                        </tr>
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Melalui Aplikasi E-Tender </th>
-                        </tr>
-
-
-                    </table>
+                    Segmen Acara Presentasi Teknis :
+                    <ol type="a">
+                        <li>Sesi 1 : Pengisian Kuisioner oleh Calon Rekanan : <?= $row_rup['undangan_rapat_sesi1'] ?></li>
+                        <li>Sesi 2 : Waktu Persiapan (Persiapan Jaringan Internet, Audio dan Screen Presentasi Laptop) & Absensi kehadiran Perwakilan Perusahaan : <?= $row_rup['undangan_rapat_sesi2'] ?> (Dilakukan bersamaan saat pengisian kuesioner)</li>
+                        <li>Sesi 3 : Presentasi Teknis Profil Perusahaan dan Metode Pelaksanaan : <?= $row_rup['undangan_rapat_sesi3'] ?> </li>
+                        <li>Sesi 4 : Klarifikasi Jawaban dari Kuisioner : <?= $row_rup['undangan_rapat_sesi4'] ?> </li>
+                        <li>Tidak ada penambahan waktu jika ada kendala dari Penyedia Jasa</li>
+                    </ol>
                 </li>
             </ol>
+            <p><b>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</b></p>
 
-            <p>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</p>
+            <label for="">PT Jasamarga Tollroad Operator</label>
+            <br>
+            <br>
+            <br>
+            TTD
+            <br>
+            <br>
+            <br>
+            <label for="">Panitia Pengadaan</label>
 
-            <label for=""><b>PT Jasamarga Tollroad Operator</b></label>
             <br>
             <br>
-            <br>
-            &ensp;&ensp;&ensp;TTD
-            <br>
-            <br>
-            <br>
-            <label for=""><b>Panitia Pengadaan</b></label>
-            <br>
+            Tembusan :
+            <ul>
+                <li><i>Panitia Pengadaan</i></li>
+                <li><i>Tim Evaluator</i></li>
+            </ul>
             <br>
             <br>
+            <b>Hari / Tanggal : <?= $row_rup['undangan_rapat_haritgl'] ?></b>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <label for=""><b></b>Daftar Peserta Penawaran <?= $row_rup['nama_rup'] ?></label>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">NO</th>
-                        <th class="text-center">PERUSAHAAN</th>
+                        <th>No</th>
+                        <th>Peserta Penawaran</th>
+                        <th>Paket Pekerjaan</th>
+                        <th>Waktu</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1;
-                    foreach ($peserta_tender_pq as $key => $value) { ?>
+                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                         <tr>
-                            <td class="text-center"><?= $i++ ?></td>
+                            <td><?= $i++ ?></td>
                             <td><?= $value['nama_usaha'] ?></td>
+                            <td><?= $row_rup['nama_rup'] ?></td>
+                            <td><?= $value['waktu_undangan_rapat'] ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
+                <tfoot>
+                    <td colspan="4">
+                        Keterangan : <br>
+                        <ol type="a">
+                            <li>Materi Presentasi dikirimkan selambatnya <?= $row_rup['undangan_rapat_waktu_materi'] ?></li>
+                            <li>Penyedia WAJIB mengirimkan butir a di atas melalui email generalaffairdept.jmto@gmail.com</li>
+                            <li>Apabila ada perubahan jadwal akan diberitahukan kemudian.</li>
+                        </ol>
+
+                    </td>
+                </tfoot>
             </table>
 
         </form>

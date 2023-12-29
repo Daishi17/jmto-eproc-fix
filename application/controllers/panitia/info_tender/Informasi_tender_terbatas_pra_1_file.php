@@ -506,7 +506,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
             if ($rs->ev_terendah_hps) {
-                $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
+                if ($rs->ev_terendah_hps >= 100) {
+                    $row[] =  number_format('100', 2, ',', '.');
+                } else {
+                    $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
+                }
             } else {
                 $row[] =  '0,00';
             }
@@ -818,9 +822,18 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $peserta2 = $this->M_panitia->get_min_penawaran_terendah_peringkat($id_rup_post);
         $i = 1;
         foreach ($peserta2 as $key => $value3) {
-            $data3 = [
-                'ev_terendah_peringkat' => $i++
-            ];
+            if ($value3 > 100) {
+                $data3 = [
+                    'ev_terendah_peringkat' => $i++,
+                    // 'ev_terendah_hps' => 100
+                ];
+            } else {
+                $data3 = [
+                    'ev_terendah_peringkat' => $i++
+                ];
+            }
+
+
             $where3 = [
                 'id_vendor_mengikuti_paket' => $value3['id_vendor_mengikuti_paket']
             ];
@@ -2281,6 +2294,15 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
         $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
+    }
+
+    public function pakta_integritas_penyedia($id_vendor_mengikuti_paket)
+    {
+
+        $data['mengikuti'] = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
+        $data['peserta_tender'] = $this->M_panitia->cek_direktur_utama($data['mengikuti']['id_vendor']);
+        $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
     }
 
     // public function update_status_aanwijzing_vendor()
