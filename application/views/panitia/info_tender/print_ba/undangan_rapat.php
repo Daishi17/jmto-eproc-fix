@@ -144,7 +144,7 @@ function terbilang($nilai)
                     <p>
                         <b>Kepada Yth.</b>
                         <br>
-                        <b>Peserta Penawran Tender Umum/Terbatas</b>
+                        <b>Peserta Penawran <?= $row_rup['nama_metode_pengadaan'] ?></b>
                         <br>
                         <b><?= $row_rup['nama_rup'] ?></b>
                         <br>

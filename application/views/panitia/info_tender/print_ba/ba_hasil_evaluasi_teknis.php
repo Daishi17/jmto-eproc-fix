@@ -129,7 +129,7 @@ function terbilang($nilai)
             <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Berita Acara Hasil Evaluasi</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Prakualifikasi Peserta Tender Umum</h4>
+                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['metode_kualifikasi'] ?> Peserta <?= $row_rup['nama_metode_pengadaan'] ?></h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?></h5>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;">PT JASA MARGA TOLLROAD Operator</h5>
             </center>
@@ -168,8 +168,8 @@ function terbilang($nilai)
                     <b class="text-uppercase"><?= $row_rup['nama_rup'] ?> </b>
                 </center>
                 <br>
-                <table class="table table-bordered text-center">
-                    <thead>
+                <table class="table table-bordered">
+                    <thead class="text-center">
                         <tr>
                             <th><b>NO</b></th>
                             <th><b>NAMA</b></th>
@@ -183,7 +183,7 @@ function terbilang($nilai)
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $value['nama_pegawai'] ?></td>
-                                <td>
+                                <td class="text-center">
                                     <?php if ($value['role_panitia'] == 1) { ?>
                                         Ketua merangkap Anggota
                                     <?php  } else if ($value['role_panitia'] == 2) { ?>
@@ -193,9 +193,7 @@ function terbilang($nilai)
                                     <?php  }  ?>
 
                                 </td>
-                                <td>
-
-                                </td>
+                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>

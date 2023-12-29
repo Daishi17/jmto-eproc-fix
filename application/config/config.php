@@ -28,7 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 // $config['base_url']    = "$root";
 
-$config['base_url']   = 'http://localhost/jmto-eproc-fix/';
+$config['base_url']   = 'http://localhost/jmto-eproc/';
 // $config['base_url']   = 'https://jmto-eproc.kintekindo.net/';
 // $config['base_url']   = 'https://eprocurement.jmto.co.id/';
 

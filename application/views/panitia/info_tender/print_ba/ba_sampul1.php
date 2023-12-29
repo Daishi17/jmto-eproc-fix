@@ -156,7 +156,7 @@ function terbilang($nilai)
 
                 <ol type="I">
                     <li>
-                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq) ?> (<?= terbilang(count($peserta_tender_pq)) ?>) PESERTA</b></p>
+                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -166,7 +166,7 @@ function terbilang($nilai)
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                foreach ($peserta_tender_pq as $key => $value) { ?>
+                                foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
                                         <td><?= $value['nama_usaha'] ?></td>
@@ -288,9 +288,7 @@ function terbilang($nilai)
                                     <?php  }  ?>
 
                                 </td>
-                                <td>
-                                    .......
-                                </td>
+                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -318,7 +316,7 @@ function terbilang($nilai)
                                 <td></td>
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td></td>
-                                <td></td>
+                                <td><span class="badge bg-success">Setuju</span></td>
                             </tr>
                         <?php } ?>
 

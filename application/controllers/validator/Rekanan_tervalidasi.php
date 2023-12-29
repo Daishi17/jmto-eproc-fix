@@ -3200,7 +3200,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$secret_token_dokumen = $get_row_enkrip['token_dokumen'];
 
 		if ($type == 'enkrip') {
-			$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret_token_dokumen);
+			$encryption_string = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret_token_dokumen, $option, $iv);
 			$where = [
 				'id_url' => $id_url
 			];
@@ -3219,7 +3219,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				];
 			}
 		} else {
-			$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret_token_dokumen);
+			$encryption_string = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret_token_dokumen, $option, $iv);
 			$where = [
 				'id_url' => $id_url
 			];

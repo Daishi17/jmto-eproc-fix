@@ -349,8 +349,7 @@ class M_panitia extends CI_Model
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Kecil', 'Menengah']);
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Kecil') {
             $this->db->where('tbl_vendor.kualifikasi_usaha', 'Kecil');
-        } else {
-        }
+        } else { }
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -528,7 +527,7 @@ class M_panitia extends CI_Model
         return $mergedResult;
     }
 
-    function result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data_vendor_terundang_by_kbli_sbu, $rup)
+    function result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli,  $rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor');
@@ -563,12 +562,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_spt[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
-        // lolos_keuangan
+        // // lolos_keuangan
         if ($cek_syarat_teknis['sts_checked_laporan_keuangan'] == 1) {
             if ($data_vendor_lolos_laporan_keuangan) {
                 $id_vendor_terundang_laporan_keuangan = [];
@@ -576,12 +573,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_laporan_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
-        // lolos_neraca_keuangan
+        // // lolos_neraca_keuangan
         if ($cek_syarat_teknis['sts_checked_neraca_keuangan'] == 1) {
             if ($data_vendor_lolos_neraca_keuangan) {
                 $id_vendor_terundang_neraca_keuangan = [];
@@ -589,28 +584,26 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_neraca_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
-            } else {
-            }
-        } else {
-        }
-        // cek_vendor terundang by_kbli
-        if ($data_vendor_terundang_by_kbli) {
-            $id_vendor_terundang = array();
-            foreach ($data_vendor_terundang_by_kbli as $row) {
-                $id_vendor_terundang[] = $row['id_vendor'];
-            }
-            $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        } else {
-        }
+            } else { }
+        } else { }
 
-        if ($data_vendor_terundang_by_kbli_sbu) {
-            $id_vendor_terundang = array();
-            foreach ($data_vendor_terundang_by_kbli_sbu as $row) {
-                $id_vendor_terundang[] = $row['id_vendor'];
-            }
-            $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        } else {
-        }
+
+        // cek_vendor terundang by_kbli
+        // if ($data_vendor_terundang_by_kbli) {
+        //     $id_vendor_terundang = array();
+        //     foreach ($data_vendor_terundang_by_kbli as $row) {
+        //         $id_vendor_terundang[] = $row['id_vendor'];
+        //     }
+        //     $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
+        // } else { }
+
+        // if ($data_vendor_terundang_by_kbli_sbu) {
+        //     $id_vendor_terundang = array();
+        //     foreach ($data_vendor_terundang_by_kbli_sbu as $row) {
+        //         $id_vendor_terundang[] = $row['id_vendor'];
+        //     }
+        //     $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
+        // } else { }
 
 
 
@@ -624,8 +617,7 @@ class M_panitia extends CI_Model
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where('tbl_vendor_siup.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_siup']);
             }
-        } else {
-        }
+        } else { }
 
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
@@ -1621,6 +1613,7 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
         $i = 0;
         foreach ($this->order_dokumen_syarat_tambahan as $item) // looping awal
         {
@@ -1707,6 +1700,8 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->where('tbl_vendor_syarat_tambahan.status', 1);
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
         return $this->db->count_all_results();
     }
 
@@ -1718,6 +1713,8 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->where('tbl_vendor_syarat_tambahan.status', 2);
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -1729,6 +1726,8 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->where('tbl_vendor_syarat_tambahan.status', NULL);
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
         $query = $this->db->get();
         return $query->result_array();
     }
