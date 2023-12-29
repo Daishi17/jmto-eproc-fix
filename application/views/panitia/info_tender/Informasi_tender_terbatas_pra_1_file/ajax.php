@@ -1930,7 +1930,7 @@
                         '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
                         '<td>' + tanggal_negoasiasi + '</td>' +
                         '<td>' + lin_nego + '</td>' +
-                        '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a></td>' +
+                        '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Aksi </a></td>' +
                         '</tr>';
                     '</tr>';
 

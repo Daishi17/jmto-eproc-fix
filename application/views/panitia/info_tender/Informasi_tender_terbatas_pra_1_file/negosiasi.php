@@ -74,7 +74,7 @@
                                     <th width="200px">Nama Peserta</th>
                                     <th>Tanggal Negosiasi</th>
                                     <th>Link Meet (Jika Daring)</th>
-                                    <th>Upload Bukti</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_vendor_negosiasi">

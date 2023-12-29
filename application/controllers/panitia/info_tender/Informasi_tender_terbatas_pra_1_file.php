@@ -506,11 +506,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
             if ($rs->ev_terendah_hps) {
-                if ($rs->ev_terendah_hps >= 100) {
-                    $row[] =  number_format('100', 2, ',', '.');
-                } else {
-                    $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
-                }
+                $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
             } else {
                 $row[] =  '0,00';
             }
