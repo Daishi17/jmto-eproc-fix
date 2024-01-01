@@ -65,4 +65,6 @@ class Kirim_wa
         $response = curl_exec($curl);
         curl_close($curl);
     }
+    
+
 }

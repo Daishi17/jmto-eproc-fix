@@ -200,31 +200,48 @@ class Sirup_buat_paket extends CI_Controller
 	function simpan_buat_rup()
 	{
 		$id_url_rup = $this->input->post('random_kode');
+		$row_rup = $this->M_rup->get_row_rup($id_url_rup);
 		$id_jadwal_tender = $this->input->post('id_jadwal_tender');
 		$metode_kualifikasi = $this->input->post('metode_kualifikasi');
 		$metode_dokumen = $this->input->post('metode_dokumen');
 
-		$where = [
-			'id_url_rup' => $id_url_rup
-		];
+		$cek_pantia_kurang_dari_5 = $this->M_rup->get_result_panitia($row_rup['id_rup']);
+		$cek_pantia_kurang_dari_5_ketua = $this->M_rup->cek_sudah_ada_pantia_ketua_dan_sekertaris($row_rup['id_rup']);
+		if ($cek_pantia_kurang_dari_5 >= 7) {
+			if ($cek_pantia_kurang_dari_5_ketua >= 2) {
+				$where = [
+					'id_url_rup' => $id_url_rup
+				];
 
-		$data = [
-			'sts_rup_buat_paket' => 1,
-			'id_jadwal_tender' => $id_jadwal_tender,
-			'metode_kualifikasi' => $metode_kualifikasi,
-			'metode_dokumen' => $metode_dokumen,
-		];
-		$date = date('Y');
-		$get_nama_rup = $this->M_rup->get_nama($where);
-		if (!is_dir('file_paket/' . $get_nama_rup['nama_rup'])) {
-			mkdir('file_paket/' . $get_nama_rup['nama_rup'], 0777, TRUE);
+				$data = [
+					'sts_rup_buat_paket' => 1,
+					'id_jadwal_tender' => $id_jadwal_tender,
+					'metode_kualifikasi' => $metode_kualifikasi,
+					'metode_dokumen' => $metode_dokumen,
+				];
+				$date = date('Y');
+				$get_nama_rup = $this->M_rup->get_nama($where);
+				if (!is_dir('file_paket/' . $get_nama_rup['nama_rup'])) {
+					mkdir('file_paket/' . $get_nama_rup['nama_rup'], 0777, TRUE);
+				}
+				$this->M_rup->update_rup($data, $where);
+
+				$response = [
+					'success' => 'Rup Paket Berhasil Di Buat'
+				];
+				$this->output->set_content_type('application/json')->set_output(json_encode($response));
+			} else {
+				$response = [
+					'validasi' => 'Ketua Atau Sekertaris Belum Ada'
+				];
+				$this->output->set_content_type('application/json')->set_output(json_encode($response));
+			}
+		} else {
+			$response = [
+				'validasi' => 'Maaf Panitia Tidak Boleh Kurang Dari 5'
+			];
+			$this->output->set_content_type('application/json')->set_output(json_encode($response));
 		}
-		$this->M_rup->update_rup($data, $where);
-
-		$response = [
-			'success' => 'Rup Paket Berhasil Di Buat'
-		];
-		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 

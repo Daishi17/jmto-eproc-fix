@@ -230,11 +230,17 @@
                         },
                         dataType: "JSON",
                         success: function(response) {
-                            $('#modal-xl-paket').modal('hide');
-                            $('#modal-xl-tambah').modal('hide');
-                            Swal.fire('Paket Berhasil Dibuat!', '', 'success');
-                            Reload_table_rup_final();
-                            Reload_table_rup();
+                            if (response['success']) {
+                                $('#modal-xl-paket').modal('hide');
+                                $('#modal-xl-tambah').modal('hide');
+                                Swal.fire('Paket Berhasil Dibuat!', '', 'success');
+                                Reload_table_rup_final();
+                                Reload_table_rup();
+                            } else {
+                                Swal.fire(response['validasi'], '', 'warning');
+                                Reload_table_rup_final();
+                                Reload_table_rup();
+                            }
                             // location.replace('<?= base_url('administrator/Sirup_buat_paket') ?>');
                         }
                     })

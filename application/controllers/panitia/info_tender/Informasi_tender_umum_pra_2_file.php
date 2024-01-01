@@ -1234,6 +1234,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $message = 'Token = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
         $no_telpon = $this->session->userdata('no_telpon');
         $this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $message);
+        $type_email = 'token_penawaran';
+        $this->email_send->sen_row_email_token($type_email, $this->session->userdata('id_vendor'), $message);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 

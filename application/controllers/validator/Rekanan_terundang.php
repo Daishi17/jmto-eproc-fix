@@ -275,9 +275,6 @@ class Rekanan_terundang extends CI_Controller
 				}
 			}
 		}
-
-
-
 		$result = $this->M_Rekanan_terundang->gettable_rekanan_terundang();
 		$data = [];
 		$no = $_POST['start'];
