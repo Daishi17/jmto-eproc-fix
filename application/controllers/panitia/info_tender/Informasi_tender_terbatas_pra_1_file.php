@@ -1828,24 +1828,53 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         } else {
             $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
             $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
-            $where_pemenang_1 = [
-                'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
-            ];
-            $update_pemenang_1 = [
-                'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                'ev_terendah_peringkat' => 2,
-                'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-            ];
-
-            $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
-            $where_pemenang_2 = [
-                'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
-            ];
-            $update_pemenang_2 = [
-                'ev_terendah_peringkat' => 1
-            ];
-            $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
+            $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
+            $peserta_negosiasi = $this->M_panitia->jumlah_peserta_negosiasi($id_rup);
+            if ($peserta_negosiasi == 2) {
+                $where_pemenang_1 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
+                ];
+                $update_pemenang_1 = [
+                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                    'ev_terendah_peringkat' => 2,
+                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                ];
+                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
+                $where_pemenang_2 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
+                ];
+                $update_pemenang_2 = [
+                    'ev_terendah_peringkat' => 1
+                ];
+                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
+            } else {
+                $where_pemenang_1 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
+                ];
+                $update_pemenang_1 = [
+                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                    'ev_terendah_peringkat' => 3,
+                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                ];
+                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
+                $where_pemenang_2 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
+                ];
+                $update_pemenang_2 = [
+                    'ev_terendah_peringkat' => 1
+                ];
+                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
+                
+                $where_pemenang_3 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
+                ];
+                $update_pemenang_3 = [
+                    'ev_terendah_peringkat' => 2
+                ];
+                $this->M_panitia->update_mengikuti($update_pemenang_3, $where_pemenang_3);
+            }
         }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
@@ -1856,17 +1885,32 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     {
         // post
         $id_dokumen_pengadaan = $this->input->post('id_dokumen_pengadaan');
+        $id_dokumen_prakualifikasi = $this->input->post('id_dokumen_prakualifikasi');
         $id_rup = $this->input->post('id_rup');
-        $upload = [
-            'keterangan_dokumen' =>  $this->input->post('keterangan_dokumen'),
-        ];
-        $where = [
-            'id_dokumen_pengadaan' => $id_dokumen_pengadaan,
-        ];
-        $this->M_panitia->update_dokumen_pengadaan($upload, $where);
-        $row_dokumen = $this->M_panitia->get_row_dokumen_pengadaan($id_dokumen_pengadaan);
-        $nama_dokumen = $row_dokumen['nama_dok_pengadaan'];
-        $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen);
+        $type_notif_dokumen = $this->input->post('type_notif_dokumen');
+        if ($type_notif_dokumen == 'dok_pra') {
+            $upload = [
+                'keterangan_dokumen' =>  $this->input->post('keterangan_dokumen_pra'),
+            ];
+            $where = [
+                'id_dokumen_prakualifikasi' => $id_dokumen_prakualifikasi,
+            ];
+            $this->M_panitia->update_dokumen_prakualifikasi($upload, $where);
+            $row_dokumen = $this->M_panitia->get_row_dokumen_prakualifikasi($id_dokumen_prakualifikasi);
+            $nama_dokumen = $row_dokumen['nama_dok_prakualifikasi'];
+            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+        } else {
+            $upload = [
+                'keterangan_dokumen' =>  $this->input->post('keterangan_dokumen'),
+            ];
+            $where = [
+                'id_dokumen_pengadaan' => $id_dokumen_pengadaan,
+            ];
+            $this->M_panitia->update_dokumen_pengadaan($upload, $where);
+            $row_dokumen = $this->M_panitia->get_row_dokumen_pengadaan($id_dokumen_pengadaan);
+            $nama_dokumen = $row_dokumen['nama_dok_pengadaan'];
+            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
+        }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
@@ -2361,4 +2405,6 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
     }
+
+    
 }

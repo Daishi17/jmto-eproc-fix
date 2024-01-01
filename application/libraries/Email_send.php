@@ -151,7 +151,7 @@ class Email_send
         $this->ci->email->send();
     }
 
-    public function sen_notifikasi_dokumen($id_rup, $nama_dokumen)
+    public function sen_notifikasi_dokumen($id_rup, $nama_dokumen, $keterangan)
     {
         $row_rup = $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         $nama_rup = $row_rup['nama_rup'];
@@ -178,8 +178,8 @@ class Email_send
             $this->ci->email->to($value['email']);
         }
         // Ganti dengan email tujuan
-        $this->ci->email->subject("E-PROCUREMENT JMTO : PERUBAHAN DOKUMEN PENGADAAN !!!");
-        $this->ci->email->message("NAMA PAKET : $nama_rup, NAMA DOKUMEN : $nama_dokumen");
+        $this->ci->email->subject("E-PROCUREMENT JMTO : PERUBAHAN DOKUMEN PENGADAAN / KUALIFIKASI !!!");
+        $this->ci->email->message("NAMA PAKET : $nama_rup, NAMA DOKUMEN : $nama_dokumen, KETERANGAN : $keterangan");
         $this->ci->email->send();
     }
 }

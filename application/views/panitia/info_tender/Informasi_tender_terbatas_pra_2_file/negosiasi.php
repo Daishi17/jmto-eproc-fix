@@ -1,6 +1,12 @@
+
 <input type="hidden" name="url_get_vendor_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_negosiasi') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
 <input type="hidden" name="url_simpan_link_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_link_negosiasi') ?>">
+<input type="hidden" name="url_post_hasil_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'buat_hasil_negosiasi') ?>">
+<input type="hidden" name="url_get_vendor_row" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_row_vendor_negosiasi') ?>">
+
+
+
 <main class="container">
     <div class="row">
         <div class="col">

@@ -1564,52 +1564,114 @@
 <script>
     load_vendor_negosiasi()
 
-    function load_vendor_negosiasi() {
-        var id_rup = $('[name="id_rup"]').val()
-        var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
-        $.ajax({
-            type: "POST",
-            url: url_get_vendor_negosiasi,
-            data: {
-                id_rup: id_rup,
-            },
-            dataType: "JSON",
-            success: function(response) {
-                var html = '';
-                var i;
-                var no = 1;
-                for (i = 0; i < response['result_vendor_negosiasi'].length; i++) {
-                    if (response['result_vendor_negosiasi'][i].tanggal_negosiasi == null) {
-                        var tanggal_negoasiasi = '<small class="badge bg-warning">Belum Ada Tanggal Negosiasi</small>'
-                    } else {
-                        var tanggal_negoasiasi = '<small>' + response['result_vendor_negosiasi'][i].tanggal_negosiasi + '</small>'
-                    }
-                    if (response['result_vendor_negosiasi'][i].link_negosiasi == null) {
-                        var lin_nego = '<small class="badge bg-warning">Belum Ada Link Negosiasi</small>'
-                    } else {
-                        var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
-                    }
-                    html += '<tr>' +
-                        '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
-                        '<td>' + tanggal_negoasiasi + '</td>' +
-                        '<td>' + lin_nego + '</td>' +
-                        '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a></td>' +
-                        '</tr>';
-                    '</tr>';
-
+function load_vendor_negosiasi() {
+    var id_rup = $('[name="id_rup"]').val()
+    var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
+    $.ajax({
+        type: "POST",
+        url: url_get_vendor_negosiasi,
+        data: {
+            id_rup: id_rup,
+        },
+        dataType: "JSON",
+        success: function(response) {
+            var html = '';
+            var i;
+            var no = 1;
+            for (i = 0; i < response['result_vendor_negosiasi'].length; i++) {
+                if (response['result_vendor_negosiasi'][i].tanggal_negosiasi == null) {
+                    var tanggal_negoasiasi = '<small class="badge bg-warning">Belum Ada Tanggal Negosiasi</small>'
+                } else {
+                    var tanggal_negoasiasi = '<small>' + response['result_vendor_negosiasi'][i].tanggal_negosiasi + '</small>'
                 }
-                $('#tbl_vendor_negosiasi').html(html);
-            }
-        })
-    }
+                if (response['result_vendor_negosiasi'][i].link_negosiasi == null) {
+                    var lin_nego = '<small class="badge bg-warning">Belum Ada Link Negosiasi</small>'
+                } else {
+                    var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
+                }
+                html += '<tr>' +
+                    '<td><small>' + no++ + '</small></td>' +
+                    '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
+                    '<td>' + tanggal_negoasiasi + '</td>' +
+                    '<td>' + lin_nego + '</td>' +
+                    '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
+                    '</tr>';
+                '</tr>';
 
-    function upload_link_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
-        var modal_negosiasi = $('#modal_negosiasi');
-        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
-        $('[name="nama_penyedia"]').val(nama_usaha)
-        modal_negosiasi.modal('show');
-    }
+            }
+            $('#tbl_vendor_negosiasi').html(html);
+        }
+    })
+}
+
+function upload_link_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
+    var modal_negosiasi = $('#modal_negosiasi');
+    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+    $('[name="nama_penyedia"]').val(nama_usaha)
+    modal_negosiasi.modal('show');
+}
+
+
+function upload_hasil_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
+    var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
+    var url_get_vendor_row = $('[name="url_get_vendor_row"]').val()
+    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+    $('[name="nama_penyedia"]').val(nama_usaha)
+    modal_hasil_negosiasi.modal('show');
+    $.ajax({
+        type: "POST",
+        url: url_get_vendor_row,
+        data: {
+            id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+        },
+        dataType: "JSON",
+        success: function(response) {
+            console.log(response);
+            $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
+            $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
+        }
+    })
+
+}
+
+
+function deal_negosiasi(type_deal) {
+    var url_post_hasil_negosiasi = $('[name="url_post_hasil_negosiasi"]').val()
+    var id_vendor_mengikuti_paket = $('[name="id_vendor_mengikuti_paket"]').val()
+    var id_rup = $('[name="id_rup"]').val()
+    var nama_penyedia = $('[name="nama_penyedia"]').val()
+    var total_hasil_negosiasi = $('[name="total_hasil_negosiasi"]').val()
+    var keterangan_negosiasi = $('[name="keterangan_negosiasi"]').val()
+    var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
+
+    $.ajax({
+        type: "POST",
+        url: url_post_hasil_negosiasi,
+        dataType: "JSON",
+        data: {
+            id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+            total_hasil_negosiasi: total_hasil_negosiasi,
+            keterangan_negosiasi: keterangan_negosiasi,
+            nama_penyedia: nama_penyedia,
+            type_deal: type_deal,
+            id_rup: id_rup
+        },
+        // beforeSend: function() {
+        //     $('.btn_dapatkan_token').attr("disabled", true);
+        // },
+        success: function(response) {
+            if (response == 'success') {
+                Swal.fire('Berhasil Buat hasil negosiasi!', '', 'success')
+                modal_hasil_negosiasi.modal('hide');
+                load_vendor_negosiasi()
+            } else {
+                Swal.fire('Negosiasi !', '', 'warning')
+                load_vendor_negosiasi()
+                // $('.btn_dapatkan_token').attr("disabled", false);
+            }
+        }
+    })
+}
 
     var form_upload_link_negosiasi = $('#form_upload_link_negosiasi')
     form_upload_link_negosiasi.on('submit', function(e) {
@@ -1705,6 +1767,61 @@
                 } else {
                     Swal.fire('Token Gagal Dikirim Ke Whatsapp Anda!', '', 'warning')
                     $('.btn_dapatkan_token').attr("disabled", false);
+                }
+            }
+        })
+    }
+</script>
+
+<script>
+        // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
+        function notifikasi_dokumen(id_dokumen_pengadaan) {
+        $('[name="id_dokumen_pengadaan"]').val(id_dokumen_pengadaan)
+        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        $('[name="type_notif_dokumen"]').val('dok_pengadaan')
+        modal_notifikasi_dokumen.modal('show');
+    }
+
+    function notifikasi_dokumen_kualifikasi(id_dokumen_prakualifikasi) {
+        $('[name="id_dokumen_prakualifikasi"]').val(id_dokumen_prakualifikasi)
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        $('[name="type_notif_dokumen"]').val('dok_pra')
+        modal_notifikasi_dokumen_prakualifikasi.modal('show');
+    }
+
+    function kirim_perubahan_dokumen() {
+        var url_kirim_notif_perubahan_dokumen = $('[name="url_kirim_notif_perubahan_dokumen"]').val()
+        var id_dokumen_pengadaan = $('[name="id_dokumen_pengadaan"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        var keterangan_dokumen = $('[name="keterangan_dokumen"]').val()
+        var keterangan_dokumen_pra = $('[name="keterangan_dokumen_pra"]').val()
+        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        var type_notif_dokumen = $('[name="type_notif_dokumen"]').val()
+        var id_dokumen_prakualifikasi = $('[name="id_dokumen_prakualifikasi"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_kirim_notif_perubahan_dokumen,
+            dataType: "JSON",
+            data: {
+                id_dokumen_pengadaan: id_dokumen_pengadaan,
+                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
+                keterangan_dokumen: keterangan_dokumen,
+                keterangan_dokumen_pra:keterangan_dokumen_pra,
+                id_rup: id_rup,
+                type_notif_dokumen:type_notif_dokumen
+            },
+            // beforeSend: function() {
+            //     $('.btn_dapatkan_token').attr("disabled", true);
+            // },
+            success: function(response) {
+                if (response == 'success') {
+                    Swal.fire('Berhasil Mengirim Perubahan Dokumen!', '', 'success')
+                    modal_notifikasi_dokumen.modal('hide');
+                    modal_notifikasi_dokumen_prakualifikasi.modal('hide');
+                    $('[name="keterangan_dokumen"]').val('')
+                } else {
+                    Swal.fire('Negosiasi !', '', 'warning')
                 }
             }
         })

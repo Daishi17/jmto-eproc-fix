@@ -1947,14 +1947,6 @@
         modal_negosiasi.modal('show');
     }
 
-    function notifikasi_dokumen(id_dokumen_pengadaan) {
-        $('[name="id_dokumen_pengadaan"]').val(id_dokumen_pengadaan)
-        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
-        modal_notifikasi_dokumen.modal('show');
-    }
-
-
-
 
     function upload_hasil_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
         var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
@@ -1977,8 +1969,6 @@
         })
 
     }
-
-
 
 
     function deal_negosiasi(type_deal) {
@@ -2019,21 +2009,42 @@
         })
     }
 
+    // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
+    function notifikasi_dokumen(id_dokumen_pengadaan) {
+        $('[name="id_dokumen_pengadaan"]').val(id_dokumen_pengadaan)
+        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        $('[name="type_notif_dokumen"]').val('dok_pengadaan')
+        modal_notifikasi_dokumen.modal('show');
+    }
+
+    function notifikasi_dokumen_kualifikasi(id_dokumen_prakualifikasi) {
+        $('[name="id_dokumen_prakualifikasi"]').val(id_dokumen_prakualifikasi)
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        $('[name="type_notif_dokumen"]').val('dok_pra')
+        modal_notifikasi_dokumen_prakualifikasi.modal('show');
+    }
 
     function kirim_perubahan_dokumen() {
         var url_kirim_notif_perubahan_dokumen = $('[name="url_kirim_notif_perubahan_dokumen"]').val()
         var id_dokumen_pengadaan = $('[name="id_dokumen_pengadaan"]').val()
         var id_rup = $('[name="id_rup"]').val()
         var keterangan_dokumen = $('[name="keterangan_dokumen"]').val()
+        var keterangan_dokumen_pra = $('[name="keterangan_dokumen_pra"]').val()
         var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        var type_notif_dokumen = $('[name="type_notif_dokumen"]').val()
+        var id_dokumen_prakualifikasi = $('[name="id_dokumen_prakualifikasi"]').val()
         $.ajax({
             type: "POST",
             url: url_kirim_notif_perubahan_dokumen,
             dataType: "JSON",
             data: {
                 id_dokumen_pengadaan: id_dokumen_pengadaan,
+                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
                 keterangan_dokumen: keterangan_dokumen,
-                id_rup: id_rup
+                keterangan_dokumen_pra:keterangan_dokumen_pra,
+                id_rup: id_rup,
+                type_notif_dokumen:type_notif_dokumen
             },
             // beforeSend: function() {
             //     $('.btn_dapatkan_token').attr("disabled", true);
@@ -2042,6 +2053,7 @@
                 if (response == 'success') {
                     Swal.fire('Berhasil Mengirim Perubahan Dokumen!', '', 'success')
                     modal_notifikasi_dokumen.modal('hide');
+                    modal_notifikasi_dokumen_prakualifikasi.modal('hide');
                     $('[name="keterangan_dokumen"]').val('')
                 } else {
                     Swal.fire('Negosiasi !', '', 'warning')
@@ -2049,7 +2061,6 @@
             }
         })
     }
-
 
 
     var form_upload_link_negosiasi = $('#form_upload_link_negosiasi')
