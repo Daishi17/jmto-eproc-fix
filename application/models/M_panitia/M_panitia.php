@@ -679,7 +679,7 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
-    
+
     public function get_row_dokumen_pengadaan($id_rup)
     {
         $this->db->select('*');
@@ -689,7 +689,7 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
-    
+
     public function update_dokumen_pengadaan($data, $where)
     {
         $this->db->update('tbl_dokumen_pengadaan', $data, $where);
@@ -1084,6 +1084,26 @@ class M_panitia extends CI_Model
 
 
     // get vendor mengikuti
+
+    public function get_pemenang($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->join('tbl_vendor', 'tbl_rup.id_vendor_pemenang = tbl_vendor.id_vendor', 'left');
+        $this->db->join('tbl_vendor_mengikuti_paket', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
+        $this->db->where('tbl_rup.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_mengikuti($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 
     public function get_peserta_tender($id_rup)
     {
@@ -1548,6 +1568,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_harga !=', null);
+        $this->db->order_by('tbl_vendor_mengikuti_paket.ev_terendah_harga', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2005,6 +2026,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->order_by('tbl_vendor_mengikuti_paket.ev_akhir_hea_peringkat', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
@@ -2017,6 +2039,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_akhir_hea_peringkat', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -2028,6 +2051,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->order_by('tbl_vendor_mengikuti_paket.ev_terendah_peringkat', 'ASC');
         $query = $this->db->get();
         return $query->result_array();

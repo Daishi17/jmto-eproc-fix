@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Berita Acara Hasil Evaluasi Teknis</title>
+    <title>UNDANGAN PENAWARAN TENDER
+    </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +51,7 @@ function tgl_indo($tanggal)
     // variabel pecahkan 1 = bulan
     // variabel pecahkan 2 = tahun
 
-    return $pecahkan[2] . ' ' . $bulan[(int) $pecahkan[1]] . ' ' . $pecahkan[0];
+    return $pecahkan[0] . ' ' . $bulan[(int) $pecahkan[1]] . ' ' .  $pecahkan[2];
 } ?>
 <?php
 function bln_indo($bulan)
@@ -120,84 +121,155 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 18px;">
+<body style="font-size: 18px; text-align:justify">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
                 <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <center>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Berita Acara Hasil Evaluasi</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['metode_kualifikasi'] ?> Peserta <?= $row_rup['nama_metode_pengadaan'] ?></h4>
-                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?></h5>
-                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;">PT JASA MARGA TOLLROAD Operator</h5>
-            </center>
-            <hr size="5">
-            <center>
-                <div style="font-size:15px">
-                    <label class="font-weight-bold">Nomor : <?= $row_rup['ba_evaluasi_teknis_no'] ?></label>
-                    <br>
-                    <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_evaluasi_teknis_tgl']) ?></label>
-                </div>
-            </center>
-            <div class="container">
-                <p style="text-align:justify; font-size:15px">
-                    Pada Hari ini <b><?= $row_rup['ba_evaluasi_teknis_hari'] ?></b>,
-                    Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_teknis_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Evaluasi Teknis terhadap Peserta Penawaran yang telah menyampaikan Dokumen Penawaran yang SAH untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollorad Operator (Paket 7), dengan ketentuan dalam Metode Evaluasi Penawaran sebagai berikut:
-                </p>
-
-                <ol>
-                    <li>Evaluasi Teknis dilakukan terhadap Dokumen Teknis Peserta yang Lulus/SAH pada Pembukaan Dokumen Penawaran Sampul I;</li>
-                    <li>Bobot Evaluasi Teknis adalah sebesar 50% dan Peserta dinyatakan LULUS jika nilai Evaluasi Teknis lebih atau sama dengan ambang batas nilai yang ditetapkan, yaitu 60 dan dinyatakan GUGUR jika nilai Evaluasi Teknis kurang dari ambang batas nilai yang telah ditetapkan. Bagi Peserta yang GUGUR tidak dilakukan Pembukaan Dokumen Penawaran Sampul II;</li>
-                    <li>Unsur yang dinilai pada tahapan Evaluasi Teknis adalah: </li>
-                    <ol type="a">
-                        <?php foreach ($ba_teknis_detail as $key => $value) { ?>
-                            <li><?= $value['nama_evaluasi'] ?></li>
-                        <?php } ?>
-                    </ol>
-                    <li>Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis, yaitu</li>
-                    <li>Hasil Evaluasi Teknis sebagaimana terlampir menjadi satu kesatuan dan merupakan bagian yang tidak terpisahkan dari Berita Acara ini</li>
-                </ol>
-
-                <p>Demikian Berita Acara ini dibuat dengan sebenarnya, ditandatangani oleh Panitia Pengadaan.</p>
-
-                <center>
-                    <b class="text-uppercase"><?= $row_rup['nama_rup'] ?> </b>
-                </center>
-                <br>
-                <table class="table table-bordered">
-                    <thead class="text-center">
-                        <tr>
-                            <th><b>NO</b></th>
-                            <th><b>NAMA</b></th>
-                            <th><b>JABATAN</b></th>
-                            <th><b>TANDA TANGAN</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($panitia_tender as $key => $value) { ?>
-                            <tr>
-                                <td><?= $i++ ?></td>
-                                <td><?= $value['nama_pegawai'] ?></td>
-                                <td class="text-center">
-                                    <?php if ($value['role_panitia'] == 1) { ?>
-                                        Ketua merangkap Anggota
-                                    <?php  } else if ($value['role_panitia'] == 2) { ?>
-                                        Sekretaris merangkap Anggota
-                                    <?php  } else if ($value['role_panitia'] == 3) { ?>
-                                        Anggota
-                                    <?php  }  ?>
-
-                                </td>
-                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
+            <div class="float-left">
+                <table>
+                    <tr>
+                        <td width="100px">Nomor</td>
+                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                        <td><?= $row_rup['ba_pemenang_no'] ?></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td width="100px">Lampiran</td>
+                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                        <td> 1 (satu) Lembar</td>
+                    </tr>
                 </table>
             </div>
+            <div class="float-right">
+                Jakarta, <?= tgl_indo($row_rup['ba_pemenang_tgl']) ?>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row mt-3">
+                <div class="container">
+                    <p>
+                        <b>Kepada Yth.</b>
+                        <br>
+                        <b>Peserta Penawaran <?= $row_rup['nama_metode_pengadaan'] ?></b>
+                        <br>
+                        <b><?= $row_rup['nama_rup'] ?></b>
+                        <br>
+                        Di Tempat
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="container">
+                    Perihal : <b><u>Pengumuman Pemenang</u></b>
+                </div>
+            </div>
+
+            <br>
+            Dengan hormat,
+            <br>
+
+
+            <div class="row mt-2">
+                <div class="container">
+
+                </div>
+            </div>
+            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no'] ?> tanggal <?= tgl_indo($row_rup['ba_pemenang_tgl_persetujuan']) ?> telah mendapatkan Persetujuan Direktur Utama PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <center>
+                        <b>PEMENANG</b>
+                    </center>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td>Nama Perusahaan</td>
+                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                            <td><?= $get_pemenang['nama_usaha'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                            <td><?= $get_pemenang['alamat'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Harga Penawaran</td>
+                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                            <td>Rp. <?= number_format($get_mengikuti['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['ev_terendah_harga']) ?>)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Jangka Waktu<br> Pelaksanaan</td>
+                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                            <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Bulan</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p>Atas perhatian Saudara, kami mengucapkan terima kasih.</p>
+
+            <label for=""><b>Hormat kami,</b></label>
+            <br>
+            <br>
+            <br>
+            &ensp;&ensp;&ensp;TTD
+            <br>
+            <br>
+            <br>
+            <label for=""><b>Panitia Pengadaan</b></label>
+            <div class="float-right" style="margin-left:800px">
+                <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="float-left">
+                <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center><b><?= $row_rup['nama_rup'] ?></b></center>
+            <label for=""><b></b> Peserta Penawaran </label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">NO</th>
+                        <th class="text-center">PERUSAHAAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1;
+                    foreach ($peserta_tender_pq as $key => $value) { ?>
+                        <tr>
+                            <td class="text-center"><?= $i++ ?></td>
+                            <td><?= $value['nama_usaha'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
         </form>
     </div>
 

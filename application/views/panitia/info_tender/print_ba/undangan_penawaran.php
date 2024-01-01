@@ -125,9 +125,8 @@ function terbilang($nilai)
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <div class="float-left">
                 <table>
                     <tr>
@@ -280,6 +279,11 @@ function terbilang($nilai)
             <label for=""><b>Panitia Pengadaan</b></label>
             <br>
             <br>
+            <br>
+            <br>
+            <div class="float-left">
+                <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+            </div>
             <br>
             <br>
             <br>

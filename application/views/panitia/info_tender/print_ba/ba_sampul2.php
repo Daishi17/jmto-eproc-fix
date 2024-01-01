@@ -122,13 +122,12 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 13px;">
+<body style="font-size: 18px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN HARGA (SAMPUL II) <?= $row_rup['nama_metode_pengadaan'] ?></h4>
@@ -136,21 +135,21 @@ function terbilang($nilai)
             </center>
             <hr size="5">
             <center>
-                <div style="font-size:15px">
+                <div style="font-size:18px">
                     <label class="font-weight-bold">Nomor : <?= $row_rup['ba_sampul2_no'] ?></label>
                     <br>
                     <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_sampul2_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_sampul2_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (Sampul II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?>PT Jasamarga Tollroad Operator</b> secara langsung yang dihadiri oleh panitia dan peserta <?= $row_rup['nama_metode_pengadaan'] ?>.
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pembukaan dokumen penawaran harga dimulai pukul <?= $row_rup['ba_sampul2_jam_pelaksanaan'] ?> WIB di ruang rapat kantor pusat PT Jasamarga Tollroad Operator terhadap 1 (satu) peserta penawaran, dengan hasil sebagai berikut:
                 </p>
 
@@ -208,7 +207,7 @@ function terbilang($nilai)
                     </tbody>
                 </table>
                 <br>
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Nilai akhir didapat dengan mengkombinasikan Hasil Evaluasi Teknis dengan Harga Penawaran, sehingga didapatkan peringkat (setelah koreksi aritmatik) sebagaimana berikut:
                 </p>
                 <br>
@@ -255,6 +254,15 @@ function terbilang($nilai)
                 </table>
                 <br>
                 <p>Demikian Berita Acara ini dibuat dan ditandatangani sebagaimana tanggal tersebut di atas.</p>
+                <br>
+                <br>
+                <br>
+                <div class="float-left">
+                    <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>

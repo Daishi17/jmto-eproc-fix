@@ -121,13 +121,12 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 13px;">
+<body style="font-size: 18px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">KLARIFIKASI & PENILAIAN KEWAJARAN HARGA</h4>
@@ -135,44 +134,70 @@ function terbilang($nilai)
             </center>
             <hr size="5">
             <center>
-                <div style="font-size:15px">
+                <div style="font-size:18px">
                     <label class="font-weight-bold">Nomor : <?= $row_rup['ba_klarifikasi_no'] ?></label>
                     <br>
                     <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_klarifikasi_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_klarifikasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_klarifikasi_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_klarifikasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_klarifikasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_klarifikasi_tgl'])) ?>)</b>, Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Penilaian Kewajaran Harga untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $row_rup['ba_negosiasi_vendor'] ?></b>
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Panitia Pengadaan melakukan Penilaian Kewajaran Harga terhadap semua Harga Satuan Penawaran. <?= $row_rup['ba_klarifikasi_penilaian'] ?> Harga Satuan Penawaran yang lebih dari 110% terhadap Harga Satuan dalam Harga Perkiraan Sendiri (HPS) yang dinyatakan sebagai Harga Satuan Timpang.
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Harga Satuan Timpang dimaksud hanya berlaku untuk Kuantitas Awal sebagaimana dimaksud dalam Daftar Kuantitas dan Harga. Selanjutnya, jika dalam pelaksanaan Kontrak terjadi penambahan Kuantitas terhadap Kuantitas Awal dimaksud, maka akan diberlakukan Harga Satuan yang baru sesuai kesepakatan dan akan dinegosiasi dengan Para Pihak sebagaimana dimaksud dalam Kontrak.
                 </p>
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     <?= $row_rup['ba_klarifikasi_penilaian2'] ?> Harga Satuan Penawaran yang kurang dari 80% terhadap Harga Satuan dalam Harga Perkiraan Sendiri (HPS) yang dinyatakan sebagai Harga Satuan Rendah dengan rincian sebagaimana terlampir.
                 </p>
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Penyedia Jasa berkomitmen untuk melaksanakan pekerjaan sesuai dengan ketentuan dalam Dokumen Kontrak beserta lampirannya.
                 </p>
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Telah dilakukan juga konfirmasi mengenai Teknis Pekerjaan sebagaimana tertuang dalam lampiran Berita Acara ini.
                 </p>
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Demikian Berita Acara ini dibuat dengan sebenarnya, ditandatangani oleh Panitia Pengadaan dan Peserta Penawaran
                 </p>
 
+                <br>
+                <br>
+                <br>
+                <div class="float-right" style="margin-left:800px">
+                    <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="float-left">
+                    <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
                 <br>
                 <br>
                 <center>

@@ -120,13 +120,12 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 13px;">
+<body style="font-size: 18px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Berita Acara Hasil Evaluasi</h4>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?></h4>
@@ -180,7 +179,31 @@ function terbilang($nilai)
                 </ol>
                 <p>Hasil Evaluasi Prakualifikasi Peserta <?= $row['nama_metode_pengadaan'] ?> tertuang dalam Lampiran Berita Acara ini.</p>
                 <p>Demikian Berita Acara Evaluasi Prakualifikasi Peserta <?= $row['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?> </b> ini dibuat untuk dapat dipergunakan sebagaimana mestinya. </p>
-
+                <br>
+                <br>
+                <br>
+                <div class="float-right" style="margin-left:800px">
+                    <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="float-left">
+                    <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br> <br>
+                <br> <br>
+                <br> <br>
+                <br> <br>
+                <br>
+                <br>
                 <center>
                     <b class="text-uppercase">PANITIA <?= $row_rup['nama_rup'] ?> </b>
                 </center>
