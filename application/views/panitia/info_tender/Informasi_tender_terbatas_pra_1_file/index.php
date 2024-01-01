@@ -121,7 +121,9 @@
                                                             <tr>
                                                                 <td scope="row"><?= $no++ ?></td>
                                                                 <td><?= $value['nama_dok_pengadaan'] ?></td>
-                                                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PENGADAAN' . '/' . $value['file_dok_pengadaan']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> </td>
+                                                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PENGADAAN' . '/' . $value['file_dok_pengadaan']) ?>" class="btn btn-block btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
+                                                                    <a href="javascript:;" onclick="notifikasi_dokumen(<?= $value['id_dokumen_pengadaan'] ?>)" class="btn btn-block btn-sm btn-warning"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
+                                                                </td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -149,7 +151,7 @@
                                                             <tr>
                                                                 <td scope="row"><?= $no++ ?></td>
                                                                 <td><?= $value['nama_dok_prakualifikasi'] ?></td>
-                                                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> </td>
+                                                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a></td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -184,7 +186,6 @@
                                                                 <?php } else { ?>
                                                                     <td><span class="badge bg-danger">Tidak Ada File</span> </td>
                                                                 <?php  } ?>
-
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -1806,6 +1807,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_notifikasi_dokumen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Kirim Perubahan Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id_dokumen_pengadaan">
+                <div class="form-group">
+                  <label for="">Keterangan</label>
+                  <input type="text" name="keterangan_dokumen" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="javascript:;" class="btn btn-primary" onclick="kirim_perubahan_dokumen()"> Kirim</a>
             </div>
         </div>
     </div>

@@ -1,6 +1,10 @@
 <input type="hidden" name="url_get_vendor_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_negosiasi') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
 <input type="hidden" name="url_simpan_link_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_link_negosiasi') ?>">
+<input type="hidden" name="url_post_hasil_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'buat_hasil_negosiasi') ?>">
+<input type="hidden" name="url_get_vendor_row" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_row_vendor_negosiasi') ?>">
+
+
 <main class="container">
     <div class="row">
         <div class="col">
@@ -74,7 +78,7 @@
                                     <th width="200px">Nama Peserta</th>
                                     <th>Tanggal Negosiasi</th>
                                     <th>Link Meet (Jika Daring)</th>
-                                    <th>Upload Bukti</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_vendor_negosiasi">
@@ -119,6 +123,42 @@
                         <button type="submit" class="btn btn-primary btn_simpan_negosiasi">Simpan</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_hasil_negosiasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Hasil Negosiasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_hasil_negosiasi" action="javascript:;" enctype="multipart/form-data">
+                    <input type="hidden" name="id_vendor_mengikuti_paket" readonly class="form-control">
+                    <div class="form-group">
+                        <label for="">Nama Penyedia</label>
+                        <input type="text" name="nama_penyedia" readonly class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Total Negosisasi</label>
+                        <input type="text" name="total_hasil_negosiasi" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Keterangan</label>
+                        <input type="text" name="keterangan_negosiasi" class="form-control">
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="javascript:;" class="btn btn-success" onclick="deal_negosiasi('deal')"> Deal Negosisasi</a>
+                    <a href="javascript:;" class="btn btn-danger" onclick="deal_negosiasi('tidak_deal')"> Tidak Deal Negosiasi</a>
+                </div>
             </div>
         </div>
     </div>

@@ -53,3 +53,6 @@
 
 <!-- hasil prakualifikasi -->
 <input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">
+
+<input type="hidden" name="url_kirim_notif_perubahan_dokumen" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/kirim_notif_perubahan_dokumen') ?>">
+
