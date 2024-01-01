@@ -124,9 +124,8 @@ function terbilang($nilai)
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">Berita Acara Pembuktian Kualifikasi</h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?></h5>
@@ -134,23 +133,23 @@ function terbilang($nilai)
             </center>
             <hr size="5">
             <center>
-                <div style="font-size:15px">
+                <div style="font-size:18px">
                     <label class="font-weight-bold">Nomor : <?= $row_rup['ba_pembuktian_no'] ?></label>
                     <br>
                     <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_pembuktian_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_pembuktian_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_pembuktian_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_pembuktian_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_pembuktian_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_pembuktian_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB bertempat di ruang rapat PT Jasamarga Tollroad Operator, kami yang bertanda tangan di bawah ini selaku Panitia Pengadaan Barang / Jasatersebut di atas yang dibentuk berdasarkan Surat Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 tentang Pembentukan Panitia Pengadaan Barang dan Jasa telah mengadakan Rapat Pembuktian Kualifikasi secara langsung dan virtual terhadap Peserta yang telah mengembalikan isian Kualifikasi untuk :
                 </p>
 
-                <p style="text-align:justify; font-size:15px"><b> <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator </b></p>
+                <p style="text-align:justify; font-size:18px"><b> <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator </b></p>
 
-                <p style="text-align:justify; font-size:15px">Dalam kegiatan Pembuktian Kualifikasi dimaksud, maka Panitia Pengadaan melakukan pemeriksaan kebenaran terhadap semua Dokumen-Dokumen ASLI yang terkait dengan data-data yang telah disampaikan oleh Peserta dalam Formulir Isian Kualifikasi, dengan hasil sebagai berikut :</p>
+                <p style="text-align:justify; font-size:18px">Dalam kegiatan Pembuktian Kualifikasi dimaksud, maka Panitia Pengadaan melakukan pemeriksaan kebenaran terhadap semua Dokumen-Dokumen ASLI yang terkait dengan data-data yang telah disampaikan oleh Peserta dalam Formulir Isian Kualifikasi, dengan hasil sebagai berikut :</p>
 
                 <table class="table table-bordered ">
                     <thead>
@@ -185,9 +184,36 @@ function terbilang($nilai)
                     </tbody>
                 </table>
 
-                <p style="text-align:justify; font-size:15px">Daftar Pemeriksaan Pembuktian Kualifikasi dimaksud merupakan satu kesatuan dan bagian yang tidak terpisahkan dari Berita Acara ini.</p>
+                <p style="text-align:justify; font-size:18px">Daftar Pemeriksaan Pembuktian Kualifikasi dimaksud merupakan satu kesatuan dan bagian yang tidak terpisahkan dari Berita Acara ini.</p>
 
-                <p style="text-align:justify; font-size:15px">Demikian Berita Acara ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya.</p>
+                <p style="text-align:justify; font-size:18px">Demikian Berita Acara ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya.</p>
+                <br>
+                <br>
+                <br>
+                <div class="float-right" style="margin-left:800px">
+                    <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="float-left">
+                    <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
                 <br>
                 <center><b class="text-uppercase"><?= $row_rup['nama_rup'] ?> </b> </center>
                 <br>

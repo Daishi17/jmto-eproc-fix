@@ -2382,6 +2382,41 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->load->view('panitia/info_tender/print_ba/ba_penjelasan_pengadaan', $data);
     }
 
+    public function ba_pemenang_tender($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['get_pemenang'] = $this->M_panitia->get_pemenang($data['row_rup']['id_rup']);
+        $data['get_mengikuti'] = $this->M_panitia->get_mengikuti($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
+    }
+
+    public function lihat_undangan_penawran($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
+        $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
+        $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
+        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
+    }
+
+    public function pakta_integritas_penyedia($id_vendor_mengikuti_paket)
+    {
+
+        $data['mengikuti'] = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
+        $data['peserta_tender'] = $this->M_panitia->cek_direktur_utama($data['mengikuti']['id_vendor']);
+        $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
+    }
+
 
     // public function update_status_aanwijzing_vendor()
     // {

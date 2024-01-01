@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>BERITA ACARA
-        PEMBUKAAN DOKUMEN PENAWARAN SAMPUL I (ADMINISTRASI DAN TEKNIS)
+    <title>Undangan Presentasi
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,17 +121,27 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 13px;">
+<body style="font-size: 18px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <div class="float-left">
-                Nomor : <?= $row_rup['undangan_rapat_no'] ?>
-                <br>
-                Hal : <b>Undangan Presentasi</b>
+                <table>
+                    <tr>
+                        <td width="100px">Nomor</td>
+                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                        <td><?= $row_rup['undangan_rapat_no'] ?></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td width="100px">Hal</td>
+                        <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                        <td>Undangan Presentasi</td>
+                    </tr>
+                </table>
             </div>
             <div class="float-right">
                 Jakarta, <?= tgl_indo($row_rup['undangan_rapat_tgl']) ?>
@@ -216,6 +225,18 @@ function terbilang($nilai)
                 <li><i>Panitia Pengadaan</i></li>
                 <li><i>Tim Evaluator</i></li>
             </ul>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="float-left">
+                <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <b>Hari / Tanggal : <?= $row_rup['undangan_rapat_haritgl'] ?></b>

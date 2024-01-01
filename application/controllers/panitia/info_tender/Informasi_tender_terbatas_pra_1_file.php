@@ -834,16 +834,9 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $peserta2 = $this->M_panitia->get_min_penawaran_terendah_peringkat($id_rup_post);
         $i = 1;
         foreach ($peserta2 as $key => $value3) {
-            if ($value3 > 100) {
-                $data3 = [
-                    'ev_terendah_peringkat' => $i++,
-                    // 'ev_terendah_bobot' => 100
-                ];
-            } else {
-                $data3 = [
-                    'ev_terendah_peringkat' => $i++
-                ];
-            }
+            $data3 = [
+                'ev_terendah_peringkat' => $i++,
+            ];
             $where3 = [
                 'id_vendor_mengikuti_paket' => $value3['id_vendor_mengikuti_paket']
             ];
@@ -2381,6 +2374,28 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_evaluasinegosiasi', $data);
+    }
+
+    public function ba_penjelasan_pengadaan($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_penjelasan_pengadaan', $data);
+    }
+
+    public function ba_pemenang_tender($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['get_pemenang'] = $this->M_panitia->get_pemenang($data['row_rup']['id_rup']);
+        $data['get_mengikuti'] = $this->M_panitia->get_mengikuti($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
     }
 
     public function lihat_undangan_penawran($id_url_rup)

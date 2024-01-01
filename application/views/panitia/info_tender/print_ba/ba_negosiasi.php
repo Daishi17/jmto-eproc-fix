@@ -125,7 +125,7 @@ function terbilang($nilai)
 }
 ?>
 
-<body style="font-size: 13px;">
+<body style="font-size: 18px;">
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
@@ -148,14 +148,14 @@ function terbilang($nilai)
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_negosiasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_negosiasi_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_negosiasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_negosiasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_negosiasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_negosiasi_jam'] ?> WIB bertempat di PT. Jasamarga Tollroad Operator di Gedung Cabang Jagorawi Lt. 4, Plaza Tol Taman Mini Indonesia Indah, kami yang bertandatangan di bawah ini selaku Panitia Pengadaan Barang dan Jasa yang dibentuk berdasarkan Surat Keputusan Direksi Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022, selanjutnya Panitia melakukan Evaluasi dan negosiasi harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dengan hasil sebagai berikut :
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (Sampul I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
                 </p>
 
@@ -190,7 +190,34 @@ function terbilang($nilai)
                     </li>
                 </ol>
                 <p>Demikian Berita Acara Evaluasi dan Negosiasi Harga ini dibuat dan ditandatangani sebagaimana tanggal tersebut diatas, dan akan disampaikan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator untuk pengesahannya.</p>
-
+                <div class="float-right" style="margin-left:800px">
+                    <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="float-left">
+                    <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <br>
                 <b>Panitia Pengadaan</b>
                 <br>
