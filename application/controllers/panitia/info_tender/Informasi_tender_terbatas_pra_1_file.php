@@ -68,7 +68,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_penetapan_pemenang'] =  $this->M_jadwal->jadwal_pra1file_umum_18($data['row_rup']['id_rup']);
         $data['jadwal_pengumuman_pemenang'] =  $this->M_jadwal->jadwal_pra1file_umum_18($data['row_rup']['id_rup']);
         $data['jadwal_masa_sanggah_akhir'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
-        $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_pra1file_umum_21($data['row_rup']['id_rup']);
+        $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
         // end get tahap
 
         $this->load->view('template_tender/header');
@@ -506,7 +506,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
             if ($rs->ev_terendah_hps) {
-                $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
+                $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.') . ' %';
             } else {
                 $row[] =  '0,00';
             }
@@ -815,52 +815,41 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         ];
         $this->M_panitia->update_evaluasi($data, $where);
 
+        $peserta_terendah = $this->M_panitia->get_min_penawaran_terendah($id_rup_post);
+        $get_nilai_min_terendah1 = $peserta_terendah['min_nilai_terendah'];
+
+        $get_min_penawaran_terndah = $this->M_panitia->get_min_penawaran_terendah2($id_rup_post);
+
+        foreach ($get_min_penawaran_terndah as $key => $value_terendah) {
+            $data_terendah = [
+                'ev_terendah_hps' => $value_terendah['ev_terendah_harga'] / $total_hps_rup * 100,
+                'ev_terendah_bobot' => $get_nilai_min_terendah1 / $value_terendah['ev_terendah_harga'] * 100
+            ];
+            $where_terendah = [
+                'id_vendor_mengikuti_paket' => $value_terendah['id_vendor_mengikuti_paket']
+            ];
+            $this->M_panitia->update_evaluasi($data_terendah, $where_terendah);
+        }
+
         $peserta2 = $this->M_panitia->get_min_penawaran_terendah_peringkat($id_rup_post);
         $i = 1;
         foreach ($peserta2 as $key => $value3) {
             if ($value3 > 100) {
                 $data3 = [
                     'ev_terendah_peringkat' => $i++,
-                    // 'ev_terendah_hps' => 100
+                    // 'ev_terendah_bobot' => 100
                 ];
             } else {
                 $data3 = [
                     'ev_terendah_peringkat' => $i++
                 ];
             }
-
-
             $where3 = [
                 'id_vendor_mengikuti_paket' => $value3['id_vendor_mengikuti_paket']
             ];
             $this->M_panitia->update_evaluasi($data3, $where3);
         }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
-
-        // update nilai akhir keseluruhan
-        // $peserta = $this->M_panitia->get_peserta_nilai_akhir_hea($id_rup_post);
-        // foreach ($peserta as $key => $value2) {
-        //     $data2 = [
-        //         'ev_akhir_hea_akhir' => $value2['ev_akhir_hea_teknis'] * $bobot_teknis / 100  + $value2['ev_akhir_hea_nilai'] * $bobot_biaya / 100
-        //     ];
-        //     $where2 = [
-        //         'id_vendor_mengikuti_paket'    => $value2['id_vendor_mengikuti_paket']
-        //     ];
-        //     $this->M_panitia->update_evaluasi($data2, $where2);
-        // }
-        // // update nilai peringkat keseluruhan
-        // $peserta2 = $this->M_panitia->get_peserta_nilai_akhir_hea2($id_rup_post);
-        // $i = 1;
-        // foreach ($peserta2 as $key => $value3) {
-        //     $data3 = [
-        //         'ev_akhir_hea_peringkat' => $i++
-        //     ];
-        //     $where3 = [
-        //         'id_vendor_mengikuti_paket'    => $value3['id_vendor_mengikuti_paket']
-        //     ];
-        //     $this->M_panitia->update_evaluasi($data3, $where3);
-        // }
-        // $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
     // end evaluasi
 
