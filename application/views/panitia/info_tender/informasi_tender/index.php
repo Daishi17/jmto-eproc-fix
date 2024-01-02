@@ -277,7 +277,7 @@
                 <div class="row">
                     <div class="alert alert-primary d-flex align-items-center" role="alert">
                         <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"></i> Silakan Masukan Token Paket Yang Dikirim Ke Whatsaap Anda
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> Silakan Masukan Kodefikasi Paket Yang Dikirim Ke Whatsaap Anda
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -286,7 +286,7 @@
                         <center>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Token..." aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1">
                             </div>
                             <br>
                             <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_buka_penawaran" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>

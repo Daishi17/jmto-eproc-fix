@@ -460,7 +460,7 @@
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
-                                                                <th>Berita Acara Pengumuman Pemenang Pengadaan</th>
+                                                                <th>Pengumuman Pemenang Pengadaan</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -537,7 +537,7 @@
                 <div class="row">
                     <div class="alert alert-primary d-flex align-items-center" role="alert">
                         <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"></i> Silakan Masukan Token Paket Yang Dikirim Ke WhatsApp Anda
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> Silakan Masukan Kodefikasi Paket Yang Dikirim Ke Whatsaap Anda
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -546,11 +546,10 @@
                         <center>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-                                <input type="text" onkeyup="Cek_token()" class="form-control" name="token_syalala" placeholder="Masukan Token..." aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1">
                             </div>
                             <br>
-                            <a onclick="kirim_token_ke_wa('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_dapatkan_token" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Kirim Token Ke WhatsApp</a>
-                            <a style="display: none;" target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-success btn_buka_penawaran" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
+                            <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_buka_penawaran" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
                         </center>
                     </div>
                     <div class="col-md-2">
@@ -1313,7 +1312,7 @@
                     <option value="1">Berita Acara Pembuktian Kualifikasi</option>
                     <option value="2">Berita Acara Hasil Evaluasi</option>
                     <option value="3">Berita Acara Sampul I</option>
-                    <option value="10">Berita Acara Rapat Penjelasan</option>
+                    <option value="10">Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
                     <option value="4">Undangan Rapat Presentasi Teknis</option>
                     <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
                     <option value="6">Berita Acara Pembukaan Sampul II</option>

@@ -1306,10 +1306,10 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         if ($row_rup['bobot_nilai'] == 1) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Selamat PT ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk Tender Umum/Terbatas ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Selamat PT ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk Tender Umum/Terbatas ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         }
 
         $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
@@ -1859,7 +1859,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                     'ev_terendah_peringkat' => 1
                 ];
                 $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
-                
+
                 $where_pemenang_3 = [
                     'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
                 ];
@@ -2420,6 +2420,4 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
     }
-
-    
 }
