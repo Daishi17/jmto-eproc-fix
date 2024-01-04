@@ -1669,7 +1669,6 @@
             }
         })
     }
-
     var form_upload_link_negosiasi = $('#form_upload_link_negosiasi')
     form_upload_link_negosiasi.on('submit', function(e) {
         var url_simpan_link_negosiasi = $('[name="url_simpan_link_negosiasi"]').val();
@@ -1994,6 +1993,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 2) {
             $('#ba_1').hide();
             $('#ba_2').show();
@@ -2005,6 +2005,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 3) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2016,6 +2017,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 4) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2027,6 +2029,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 5) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2038,6 +2041,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 6) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2049,6 +2053,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 7) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2060,6 +2065,7 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 8) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2071,6 +2077,7 @@
             $('#ba_8').show();
             $('#ba_9').hide();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 9) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2082,6 +2089,7 @@
             $('#ba_8').hide();
             $('#ba_9').show();
             $('#ba_10').hide();
+            $('#ba_11').hide();
         } else if (jenis_ba == 10) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2093,6 +2101,19 @@
             $('#ba_8').hide();
             $('#ba_9').hide();
             $('#ba_10').show();
+            $('#ba_11').hide();
+        } else if (jenis_ba == 11) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+            $('#ba_11').show();
         }
     }
 
@@ -2555,6 +2576,7 @@
         }
     }
 </script>
+
 <script>
     // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
     function notifikasi_dokumen(id_dokumen_pengadaan) {
@@ -2605,6 +2627,29 @@
                 } else {
                     Swal.fire('Negosiasi !', '', 'warning')
                 }
+            }
+        })
+    }
+
+    function setujui_ba(value, type) {
+        var url_post_status_ba = $('[name="url_post_status_ba"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        if (type == 'setuju') {
+            var sts = 1;
+        } else {
+            var sts = 2;
+        }
+        $.ajax({
+            type: "POST",
+            url: url_post_status_ba,
+            dataType: "JSON",
+            data: {
+                post: value,
+                type: sts,
+                id_rup: id_rup
+            },
+            success: function(response) {
+                Swal.fire('Data Berhasil Di Simpan!', '', 'success')
             }
         })
     }
