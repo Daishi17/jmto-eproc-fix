@@ -229,10 +229,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                             </div>';
                 } else {
                     $row[] = '<div class="text-center">
-                    <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kualifikasi'" . ')">
+                    <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
                         <i class="fa-solid fa-edit"></i>
-                        <small>Evaluasi</small>
-                    </a>
+                        <small>Tahap Sudah Selesai</small>
+                    </button>
                 </div>';
                 }
             } else {
@@ -955,10 +955,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
               </div>';
             } else {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
+                <button href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" disabled>
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </a>
+                </button>
               </div>';
             }
 
