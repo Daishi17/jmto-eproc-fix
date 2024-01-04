@@ -179,7 +179,7 @@ function terbilang($nilai)
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))) ?> </th>
+                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
@@ -202,7 +202,7 @@ function terbilang($nilai)
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> </th>
+                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
@@ -247,7 +247,7 @@ function terbilang($nilai)
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> </th>
+                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
