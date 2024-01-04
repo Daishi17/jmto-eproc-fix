@@ -207,7 +207,7 @@ class Sirup_buat_paket extends CI_Controller
 
 		$cek_pantia_kurang_dari_5 = $this->M_rup->get_result_panitia($row_rup['id_rup']);
 		$cek_pantia_kurang_dari_5_ketua = $this->M_rup->cek_sudah_ada_pantia_ketua_dan_sekertaris($row_rup['id_rup']);
-		if ($cek_pantia_kurang_dari_5 >= 7) {
+		if ($cek_pantia_kurang_dari_5 >= 5) {
 			if ($cek_pantia_kurang_dari_5_ketua >= 2) {
 				$where = [
 					'id_url_rup' => $id_url_rup

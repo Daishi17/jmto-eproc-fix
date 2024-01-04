@@ -427,7 +427,7 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_spt');
-        $this->db->where('tbl_vendor_spt.tahun_lapor >=', $cek_syarat_teknis['tahun_lapor_spt']);
+        $this->db->where('tbl_vendor_spt.tahun_lapor', $cek_syarat_teknis['tahun_lapor_spt']);
         $this->db->group_by('tbl_vendor_spt.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -439,12 +439,12 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_keuangan');
 
         if ($cek_syarat_teknis['sts_audit_laporan_keuangan'] == 'Audit') {
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
             $this->db->where('tbl_vendor_keuangan.jenis_audit', $cek_syarat_teknis['sts_audit_laporan_keuangan']);
         } else {
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
             $this->db->where_in('tbl_vendor_keuangan.jenis_audit', ['Audit', 'Tidak Audit']);
         }
         $this->db->group_by('tbl_vendor_keuangan.id_vendor');
