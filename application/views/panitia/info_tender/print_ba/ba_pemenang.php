@@ -245,7 +245,7 @@ function terbilang($nilai)
             <div class="float-left">
                 <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
             </div>
-            <br>
+            <!-- <br>
             <br>
             <br>
             <br>
@@ -262,13 +262,13 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                        <tr>
-                            <td class="text-center"><?= $i++ ?></td>
-                            <td><?= $value['nama_usaha'] ?></td>
-                        </tr>
+                            <tr>
+                                <td class="text-center"><?= $i++ ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
+                            </tr>
                     <?php } ?>
                 </tbody>
-            </table>
+            </table> -->
 
         </form>
     </div>
