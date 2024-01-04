@@ -58,7 +58,6 @@
     //         }
     //     })
     // }
-
     function lihat_detail_jadwal(id_url_rup) {
         var url_by_id_rup = $('[name="url_by_id_rup"]').val()
         var modal_detail_jadwal = $('#modal_detail_jadwal')
@@ -75,20 +74,24 @@
                     var times_mulai = new Date(response['jadwal'][i].waktu_mulai)
                     var times_selesai = new Date(response['jadwal'][i].waktu_selesai)
 
+                    var month_mulai = times_mulai.getMonth();
+                    var month_selesai = times_selesai.getMonth();
+                    var m = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+
                     // mulai
                     var time_mulai = times_mulai.toLocaleTimeString()
                     var tanggal_mulai = String(times_mulai.getDate()).padStart(2, '0');
                     var bulan_mulai = String(times_mulai.getMonth() + 1).padStart(2, '0');
                     var tahun_mulai = times_mulai.getFullYear()
-                    var data_mulai = tanggal_mulai + '-' + bulan_mulai + '-' + tahun_mulai + '-' + time_mulai
+                    var data_mulai = tanggal_mulai + ' ' + m[month_mulai] + ' ' + tahun_mulai + ' ' + time_mulai
 
-                      // selesai
+                    // selesai
                     var time_selesai = times_selesai.toLocaleTimeString()
                     var tanggal_selesai = String(times_selesai.getDate()).padStart(2, '0');
                     var bulan_selesai = String(times_selesai.getMonth() + 1).padStart(2, '0');
                     var tahun_selesai = times_selesai.getFullYear()
-                    var data_selesai = tanggal_selesai + '-' + bulan_selesai + '-' + tahun_selesai + '-' + time_selesai
-
+                    var data_selesai = tanggal_selesai + ' ' + m[month_selesai] + ' ' + tahun_selesai + ' ' + time_selesai
 
                     var waktu_mulai = new Date();
                     var waktu_selesai = new Date(response['jadwal'][i].waktu_selesai);
@@ -108,12 +111,21 @@
                         var status_waktu = '<small><span class="badge bg-success"><i class="fa fa-clock" aria-hidden="true"></i> Tahap Sudah Selesai </span></small>';
                     }
 
+
+                    if (response['jadwal'][i].alasan) {
+                        var alasan = response['jadwal'][i].alasan
+                    } else {
+                        var alasan = ''
+                    }
+
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['jadwal'][i].nama_jadwal_rup + ' ' + check + '</small></td>' +
                         '<td><small>' + data_mulai + '</small></td>' +
                         '<td><small>' + data_selesai + '</small></td>' +
                         '<td>' + status_waktu + '</td>' +
+                        '<td>Panitia</td>' +
+                        '<td>' + alasan + '</td>' +
                         '</tr>';
                 }
                 $('#load_jadwal').html(html);
