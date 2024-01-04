@@ -410,10 +410,10 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>
                     </ul>
                 </div>
@@ -428,16 +428,15 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nama Paket</th>
-                                <td>PAKET KEMERDEKAAN 78 RI BOGOR</td>
+                                <td><?= $row_rup['nama_rup'] ?></td>
                             </tr>
                             <tr>
                                 <th>Nama Jenis Pengadaan</th>
-                                <td>JASA KONSTRUKSI</td>
-
+                                <td><?= $row_rup['nama_jenis_pengadaan'] ?></td>
                             </tr>
                             <tr>
                                 <th>Nama Metode Pemilihan </th>
-                                <td>Prakualifikasi 2 file</td>
+                                <td><?= $row_rup['nama_metode_pengadaan'] ?></td>
                             </tr>
                             <tr>
                                 <th>Nama Tempat </th>
@@ -477,9 +476,9 @@
 
                     </div>
                     <div class="card-footer card-footer_chat" style="background-image: radial-gradient(circle at 50% -20.71%, #cfa8ff 0, #9d8bff 25%, #6c6cd8 50%, #3f4ea4 75%, #153375 100%);">
-                    <div class="replay_orang" style="display: none;">
-                        <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
-                          <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
+                        <div class="replay_orang" style="display: none;">
+                            <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
+                            <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
                         </div>
                         <form id="form_keuangan_add" enctype="multipart/form-data">
                             <input type="hidden" name="replay_tujuan">

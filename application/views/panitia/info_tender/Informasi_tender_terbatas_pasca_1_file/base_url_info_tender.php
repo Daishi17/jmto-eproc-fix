@@ -32,3 +32,27 @@
 <!-- surat penunjukan pemenang -->
 <input type="hidden" name="url_simpan_penunjukan_pemenang" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_penunjukan_pemenang/') ?>">
 <input type="hidden" name="url_open_penunjukan_pemenang" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SURAT_PENUNJUKAN_PEMENANG' . '/') ?>">
+
+<!-- ulang dan batal -->
+<input type="hidden" name="redirect" value="<?= base_url('panitia/beranda/beranda') ?>">
+<input type="hidden" name="url_ulang_pengadaan" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'ulang_pengadaan/') ?>">
+<input type="hidden" name="url_batal_pengadaan" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'batal_pengadaan/') ?>">
+
+<!-- undangan pembuktian -->
+<input type="hidden" name="url_post_undangan_pembuktian" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian') ?>">
+<input type="hidden" name="url_post_undangan_pembuktian_vendor_waktu" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian_vendor_waktu') ?>">
+<input type="hidden" name="url_post_undangan_pembuktian_vendor_metode" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_undangan_pembuktian_vendor_metode') ?>">
+
+
+<input type="hidden" name="url_post_ba_kualifikasi_hadir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_ba_pembuktian_hadir') ?>">
+<input type="hidden" name="url_post_ba_kualifikasi_dok" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_ba_pembuktian_dok') ?>">
+<input type="hidden" name="url_post_ba_kualifikasi_ket" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_ba_pembuktian_ket') ?>">
+
+<input type="hidden" name="url_post_waktu_undangan" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_waktu_undangan') ?>">
+
+
+<!-- hasil prakualifikasi -->
+<input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">
+
+<input type="hidden" name="url_kirim_notif_perubahan_dokumen" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/kirim_notif_perubahan_dokumen') ?>">
+

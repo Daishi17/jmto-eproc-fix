@@ -119,8 +119,11 @@
                                                                 <td><?= $value['nama_dok_pengadaan'] ?></td>
                                                                 <td>
                                                                     <a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PENGADAAN' . '/' . $value['file_dok_pengadaan']) ?>" class="btn btn-block btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
-                                                                    
-                                                                    <a href="javascript:;" onclick="notifikasi_dokumen(<?= $value['id_dokumen_pengadaan'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
+                                                                    <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
+                                                                        <a href="javascript:;" onclick="notifikasi_dokumen(<?= $value['id_dokumen_pengadaan'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
+                                                                    <?php } else { ?>
+                                                                    <?php }
+                                                                    ?>
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>
@@ -149,7 +152,13 @@
                                                             <tr>
                                                                 <td scope="row"><?= $no++ ?></td>
                                                                 <td><?= $value['nama_dok_prakualifikasi'] ?></td>
-                                                                <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a></td>
+                                                                <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
+                                                                    <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
+                                                                        <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                            <?php }
+                                                            ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -1950,8 +1959,8 @@
                 <input type="hidden" name="id_dokumen_prakualifikasi">
                 <input type="hidden" name="type_notif_dokumen">
                 <div class="form-group">
-                  <label for="">Keterangan</label>
-                  <input type="text" name="keterangan_dokumen_pra" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                    <label for="">Keterangan</label>
+                    <input type="text" name="keterangan_dokumen_pra" id="" class="form-control" placeholder="" aria-describedby="helpId">
                 </div>
             </div>
             <div class="modal-footer">

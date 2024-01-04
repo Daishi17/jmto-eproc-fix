@@ -115,6 +115,7 @@ class Daftar_paket extends CI_Controller
 		// lolos izin_usaha paket
 		$syarat_izin_usaha = $this->M_panitia->cek_syarat_izin_usaha($data['row_rup']['id_rup']);
 		$cek_syarat_kbli = $this->M_panitia->cek_syarat_kbli($data['row_rup']['id_rup']);
+
 		$cek_syarat_kbli_sbu = $this->M_panitia->cek_syarat_sbu($data['row_rup']['id_rup']);
 		$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($data['row_rup']['id_rup']);
 		// siup
@@ -423,18 +424,15 @@ class Daftar_paket extends CI_Controller
 	{
 		$id_url_rup = $this->input->post('id_url_rup');
 		$data_rup = $this->M_rup->get_row_rup($id_url_rup);
+
 		$data = [
 			'status_paket_panitia' => 2,
 			'status_paket_diumumkan' => 1,
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-		// kirim email & wa 
-		// $pesan = $this->input->post('pesan');
-		// $no_telpon = $data['no_telpon'];
-		// $pesanku = str_replace(" ", "-", $pesan);
-		// json_decode(file_get_contents("https://jmto-vms.kintekindo.net/Api_wa/kirim_wa_vendor_terdaftar/" . $no_telpon . '/' . $pesanku));
-		// $this->email_send->sen_row_email($id_url_rup);
+		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
@@ -1443,7 +1441,8 @@ class Daftar_paket extends CI_Controller
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
@@ -1471,21 +1470,23 @@ class Daftar_paket extends CI_Controller
 
 		if ($this->upload->do_upload('file_dok_pengadaan')) {
 			$fileData = $this->upload->data();
-
-			$upload = [
-				'nama_dok_pengadaan' => $nama_dok_pengadaan,
-				'id_rup' => $id_rup,
-				'file_dok_pengadaan' => $fileData['file_name'],
-				'user_created' => $nama_pegawai
-			];
+			if ($rup['status_paket_diumumkan'] == 1) {
+				$upload = [
+					'nama_dok_pengadaan' => $nama_dok_pengadaan,
+					'id_rup' => $id_rup,
+					'file_dok_pengadaan' => $fileData['file_name'],
+					'user_created' => $nama_pegawai,
+					'sts_dokumen_tambahan' => 1
+				];
+			} else {
+				$upload = [
+					'nama_dok_pengadaan' => $nama_dok_pengadaan,
+					'id_rup' => $id_rup,
+					'file_dok_pengadaan' => $fileData['file_name'],
+					'user_created' => $nama_pegawai
+				];
+			}
 			$this->M_panitia->insert_dok_pengadaan($upload);
-
-			// if ($rup['status_paket_diumumkan'] == 1) {
-			// 	$sts_adendum = [
-			// 		'sts_adendum' => 1
-			// 	];
-			// 	$this->M_panitia->update_rup_panitia($id_rup, $sts_adendum);
-			// }
 		}
 	}
 	public function simpan_syarat_tambahan()
@@ -1530,14 +1531,13 @@ class Daftar_paket extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
 	}
 
-
 	public function add_dok_prakualifikasi()
 	{
 		$id_rup = $this->input->post('id_rup');
 		$nama_dok_prakualifikasi = $this->input->post('nama_dok_prakualifikasi');
 		$nama_rup = $this->input->post('nama_rup');
 		$nama_pegawai = $this->session->userdata('nama_pegawai');
-
+		$rup = $this->M_panitia->get_rup($id_rup);
 		$date = date('Y');
 		if (!is_dir('file_paket/' . $nama_rup  . '/DOKUMEN_PRAKUALIFIKASI')) {
 			mkdir('file_paket/' . $nama_rup  . '/DOKUMEN_PRAKUALIFIKASI', 0777, TRUE);
@@ -1551,14 +1551,22 @@ class Daftar_paket extends CI_Controller
 
 		if ($this->upload->do_upload('file_dok_prakualifikasi')) {
 			$fileData = $this->upload->data();
-
-			$upload = [
-				'nama_dok_prakualifikasi' => $nama_dok_prakualifikasi,
-				'id_rup' => $id_rup,
-				'file_dok_prakualifikasi' => $fileData['file_name'],
-				'user_created' => $nama_pegawai
-			];
-
+			if ($rup['status_paket_diumumkan'] == 1) {
+				$upload = [
+					'nama_dok_prakualifikasi' => $nama_dok_prakualifikasi,
+					'id_rup' => $id_rup,
+					'file_dok_prakualifikasi' => $fileData['file_name'],
+					'user_created' => $nama_pegawai,
+					'sts_dokumen_tambahan' => 1
+				];
+			} else {
+				$upload = [
+					'nama_dok_prakualifikasi' => $nama_dok_prakualifikasi,
+					'id_rup' => $id_rup,
+					'file_dok_prakualifikasi' => $fileData['file_name'],
+					'user_created' => $nama_pegawai
+				];
+			}
 			$this->M_panitia->insert_dok_prakualifikasi($upload);
 		}
 	}
