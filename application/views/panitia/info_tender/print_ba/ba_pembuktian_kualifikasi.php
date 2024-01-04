@@ -259,14 +259,14 @@ function terbilang($nilai)
                     </tbody>
                 </table>
                 <br>
-                <b class="text-uppercase">PESERTA PRAKUALIFIKASI <?= $row_rup['nama_metode_pengadaan'] ?> : </b>
+                <!-- <b class="text-uppercase">PESERTA PRAKUALIFIKASI <?= $row_rup['nama_metode_pengadaan'] ?> : </b>
                 <br>
                 <br>
                 <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th class="text-center"><b>NO</b></th>
-                            <!-- <th  class="text-center"><b>NAMA</b></th> -->
+                            <th  class="text-center"><b>NAMA</b></th>
                             <th class="text-center"><b>PERUSAHAAN</b></th>
                             <th class="text-center"><b>TANDA TANGAN</b></th>
                         </tr>
@@ -274,19 +274,19 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <tr>
-                                <td class="text-center"><?= $i++ ?></td>
-                                <!-- <td></td> -->
-                                <td>
-                                    <b><?= $value['nama_usaha'] ?></b>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Setuju</span>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center"><?= $i++ ?></td>
+                                    <td></td>
+                                    <td>
+                                        <b><?= $value['nama_usaha'] ?></b>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-success">Setuju</span>
+                                    </td>
+                                </tr>
                         <?php } ?>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </form>
     </div>

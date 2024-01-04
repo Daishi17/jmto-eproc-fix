@@ -312,7 +312,7 @@ function terbilang($nilai)
                         <?php } ?>
                     </tbody>
                 </table>
-                <br><br>
+                <!-- <br><br>
                 <b class="text-uppercase">Peserta Penawaran </b>
                 <br>
                 <table class="table table-bordered">
@@ -328,17 +328,17 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                            <tr>
-                                <td><?= $i++ ?></td>
-                                <td></td>
-                                <td></td>
-                                <td><?= $value['nama_usaha'] ?></td>
-                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                            </tr>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><?= $value['nama_usaha'] ?></td>
+                                    <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                </tr>
                         <?php } ?>
 
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </form>
     </div>
