@@ -231,7 +231,15 @@ function terbilang($nilai)
                                     <?php  }  ?>
 
                                 </td>
-                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                <td class="text-center">
+                                    <?php if ($value['sts_ba_evaluasi'] == 1) { ?>
+                                        <span class="badge bg-success text-white">Setuju</span>
+                                    <?php  } else if ($value['sts_ba_evaluasi'] == 2) { ?>
+                                        <span class="badge bg-danger text-white">Tidak Setuju</span>
+                                    <?php  } else { ?>
+                                        <span class="badge bg-success">Belum Di Ceklist</span>
+                                    <?php  }  ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

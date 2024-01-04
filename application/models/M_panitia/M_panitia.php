@@ -679,7 +679,7 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
-    
+
     public function get_row_dokumen_pengadaan($id_dokumen_pengadaan)
     {
         $this->db->select('*');
@@ -2539,6 +2539,12 @@ class M_panitia extends CI_Model
     public function update_mengikuti_sanggah_pra($data, $where)
     {
         $this->db->update('tbl_sanggah_detail', $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function panitia_mengikuti_update($data, $where)
+    {
+        $this->db->update('tbl_panitia', $data, $where);
         return $this->db->affected_rows();
     }
 }
