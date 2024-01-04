@@ -431,7 +431,7 @@ class Daftar_paket extends CI_Controller
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}

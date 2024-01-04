@@ -33,7 +33,7 @@ class Kirim_wa
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
                 'message' => 'Selamat! Akun Anda Telah Aktif Pada Aplikasi E-PROCUREMENT PT. Jasamarga Tollroad Operator Silahkan Login Sebagai Penyedia https://drtproc.jmto.co.id/',
-                'delay' => '120-300',
+                'delay' => '60-80',
             ),
             CURLOPT_HTTPHEADER => array(
                 "Authorization: $token"
@@ -64,7 +64,7 @@ class Kirim_wa
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
                 'message' => "$pesan",
-                'delay' => '120-300',
+                'delay' => '60-80',
             ),
             CURLOPT_HTTPHEADER => array(
                 "Authorization: $token"
@@ -103,7 +103,7 @@ class Kirim_wa
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
                 'message' => 'Selamat! Anda Telah Menerima Undangan Paket Tender Baru, Dengan Nama Paket: ' . $nama_rup . ' , Jenis Pengadaan: ' . $nama_jenis_pengadaan . ' Ikuti Pengadaan Segera Sebelum Batas Pendaftaran Habis Pada: ' . $batas_pendaftaran_tender . '  Silakan Login Disini Segera https://eprocurement.jmto.co.id/auth',
-                'delay' => '120-300',
+                'delay' => '60-80',
             ),
             CURLOPT_HTTPHEADER => array(
                 "Authorization: $token"
