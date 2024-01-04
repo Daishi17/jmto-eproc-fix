@@ -377,17 +377,17 @@
                                                         <?php } ?>
 
                                                         <?php if (!$row_rup['beban_tahun_anggaran']) { ?>
-                                                                <option value="">Pilih...</option>
-                                                                <option value="1">Tahun Tunggal</option>
-                                                                <option value="2">Tahun Jamak</option>
+                                                                                                                                                                                                                                                                                                                <option value="">Pilih...</option>
+                                                                                                                                                                                                                                                                                                                <option value="1">Tahun Tunggal</option>
+                                                                                                                                                                                                                                                                                                                <option value="2">Tahun Jamak</option>
                                                         <?php } else if ($row_rup['beban_tahun_anggaran'] == 1) { ?>
-                                                                <option value="">Pilih...</option>
-                                                                <option value="1" selected>Tahun Tunggal</option>
-                                                                <option value="2">Tahun Jamak</option>
+                                                                                                                                                                                                                                                                                                                <option value="">Pilih...</option>
+                                                                                                                                                                                                                                                                                                                <option value="1" selected>Tahun Tunggal</option>
+                                                                                                                                                                                                                                                                                                                <option value="2">Tahun Jamak</option>
                                                         <?php } else if ($row_rup['beban_tahun_anggaran'] == 2) { ?>
-                                                                <option value="">Pilih...</option>
-                                                                <option value="1">Tahun Tunggal</option>
-                                                                <option value="2" selected>Tahun Jamak</option>
+                                                                                                                                                                                                                                                                                                                <option value="">Pilih...</option>
+                                                                                                                                                                                                                                                                                                                <option value="1">Tahun Tunggal</option>
+                                                                                                                                                                                                                                                                                                                <option value="2" selected>Tahun Jamak</option>
                                                         <?php } ?>
 
                                                         </select> -->
@@ -521,16 +521,16 @@
                                     </tr>
                                     <!-- <tr>
                                         <?php if ($row_rup['id_metode_pengadaan'] == 3 || $row_rup['id_metode_pengadaan'] == 4 || $row_rup['id_metode_pengadaan'] == 5 || $row_rup['id_metode_pengadaan'] == 6) { ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <th class="bg-light">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <small>Daftar Rekanan Tervalidasi (DRT)</small>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="bg-default" colspan="3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal-xl-rekanan">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="fa-solid fa-building-user px-1"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Pilih Rekanan Tervalidasi
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="text-danger"><small>* Khusus Jenis Tender Terbatas, Seleksi Terbatas, Pengadaan Langsung & Penunjukan Langsung</small></span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <th class="bg-light">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <small>Daftar Rekanan Tervalidasi (DRT)</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="bg-default" colspan="3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal-xl-rekanan">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="fa-solid fa-building-user px-1"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Pilih Rekanan Tervalidasi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="text-danger"><small>* Khusus Jenis Tender Terbatas, Seleksi Terbatas, Pengadaan Langsung & Penunjukan Langsung</small></span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
                                         <?php  } else { ?>
 
                                         <?php  }   ?>
@@ -1534,51 +1534,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="load_rekomendasi_umum">
-                                                <!-- <?php foreach ($result_vendor_terundang as $key => $value) { ?>
-                                                        <tr>
-                                                            <td>
-                                                                <small>
-                                                                    <span><?= $value['nama_usaha'] ?></span>
-                                                                </small>
-                                                            </td>
-                                                            <td>
-                                                                <small>
-                                                                    <span><?= $value['email'] ?></span>
-                                                                </small>
-                                                            </td>
-                                                            <td>
-                                                                <small>
-                                                                    <span><?= $value['kualifikasi_usaha'] ?></span>
-                                                                </small>
-                                                            </td>
-                                                            <td>
-                                                                <center>
-                                                                    <small>
-                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                    </small>
-                                                                    <small>
-                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                    </small>
-                                                                    <small>
-                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                    </small>
-                                                                    <small>
-                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                    </small>
-                                                                    <small>
-                                                                        <span class="text-warning"><i class="fas fa fa-star"></i></span>
-                                                                    </small>
-                                                                </center>
-                                                            </td>
-                                                            <td>
-                                                                <center>
-                                                                    <small>
-                                                                        <span>80</span>
-                                                                    </small>
-                                                                </center>
-                                                            </td>
-                                                        </tr>
-                                                <?php   } ?> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -1697,4 +1652,44 @@
             </div>
         </div>
     </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-xl-pakta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Pakta Integritas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <img src="<?= base_url('assets/logo_ba/logo_ba.png') ?>" alt="" width="30%">
+                        <center>
+                            <p><b>PAKTA INTEGRITAS</b></p>
+                            <p><b><?= $row_rup['nama_rup'] ?></b></p>
+                        </center>
+                        <div style="text-align:justify">
+                            Dengan ini menyatakan dengan sebenarnya bahwa :
+                            <ol>
+                                <li>Kami telah melaksanakan proses pengadaan di PT Jasamarga Tollroad Operator tahun 2021, sesuai dengan kewenangan yang di berikan oleh anggaran dasar dan peraturan perusahaan seta peraturan perundang-undangan, berdasarkan prinsip-prinsip itikad baik, dengan kecermatan yang tinggi, dan dalam keadaan bebas, mandiri atau tidak dibawah tekanan, maupun pengaruh dari pihak lain (independency)</li>
+                                <li>Kami telah mengambil keputusan sehubungan dengan hal - hal sebagaimana tersebut di atas dengan penuh kehati - hatian (duty of care and loyalty) demi kepentingan yang terbaik bagi Perusahaan, dengan mengindahkan berbagai sumber informasi, keterangan dan telah melakukan perbandingan yang cukup, sebagaimana layaknya kami mempertimbangkan keputusan bagi kepentingan diri kami sendiri( prudent person rule)
+                                </li>
+                                <li> Dalam mengambil keputusan, kami tidak memiliki kepentingan pribadi atau tujuan untuk melakukan sesuatu untuk manfaat diri sendiri, maupun kepentingan pihak yang terkait dengan diri kami, atau pihak yang terafiliasi dengan kamim dan dengan demikian tidak memiliki posisi yang mengandung potensi benturan kepentingan (conflict of interest rule), termasuk dengan seluruh pihak yang terlibat dengan tindakan di atas</li>
+                                <li>Kami telah melaksanakan proses tersebut dengan pemahaman yang cukup tentang berbagai peraturan dan kewajiban normatif lainnya yang terkait, dan memenuhi seluruh ketentuan dan peraturan perundang - undangan, termasuk mempertimbangkan best practice yang dipandang perlu, penting, dan kritikal dalam proses tersebut (duty abiding the laws)
+                                </li>
+                            </ol>
+                        </div>
+                        <p style="text-align:justify">
+                            Demikian pernyataan ini kami sampaikan dengan sebenar - benarnya, tanpa menyembunyikan fakta dan hal material apapun, dan dengan demikian kami akan bertanggung jawab sepenuhnya atas kebenaran dari hal - hal yang kami nyatakan di sini, demikian pula akan bersedia bertanggung jawab baik secara perdata maupun pidana, apabila laporan dan pernyataan ini tidak sesuai dengan keadaan sebenarnya</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Setuju</button>
+                </div>
+            </div>
+        </div>
     </div>
