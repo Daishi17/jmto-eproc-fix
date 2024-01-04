@@ -54,8 +54,6 @@
                             <th>TKDN</th>
                             <th> <?= $row_rup['status_pencatatan'] ?> (<?= $row_rup['persen_pencatatan'] ?>%)</th>
                         </tr>
-
-                        <input type="text" class="jam_mulai">
                         <tr>
                             <th>Nilai HPS</th>
                             <th>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ",", "."); ?> </th>

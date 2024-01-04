@@ -102,8 +102,14 @@ class Kirim_wa
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
-                'message' => 'Selamat! Anda Telah Menerima Undangan Paket Tender Baru, Dengan Nama Paket: ' . $nama_rup . ' , Jenis Pengadaan: ' . $nama_jenis_pengadaan . ' Ikuti Pengadaan Segera Sebelum Batas Pendaftaran Habis Pada: ' . $batas_pendaftaran_tender . '  Silakan Login Disini Segera https://eprocurement.jmto.co.id/auth',
-                'delay' => '60-80',
+                'message' => 'Pengumuman Tender PT JMTO ! 
+Saudara Menerima Undangan Untuk Mengikuti Tender Baru :
+Nama Paket: ' . $nama_rup . '
+Jenis Pengadaan: ' . $nama_jenis_pengadaan . '
+Silakan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
+Selambat-Lambatnya Pada : '.$batas_pendaftaran_tender.'
+Terimakasih',
+                'delay' => '40-60',
             ),
             CURLOPT_HTTPHEADER => array(
                 "Authorization: $token"
