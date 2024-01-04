@@ -48,8 +48,9 @@
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['jadwal'][i].nama_jadwal_rup + ' ' + check + '</small></td>' +
                         `<td><small>${waktu_mulai.getDate()}-${months[waktu_mulai.getMonth()]}-${waktu_mulai.getFullYear()} ${zeros(waktu_mulai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
-                        `<td><small>${waktu_selesai.getDate()}-${months[waktu_selesai.getMonth()]}-${waktu_selesai.getFullYear()} ${zeros(waktu_selesai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
+                        `<td><small>${waktu_selesai.getDate()}-${months[waktu_selesai.getMonth()]}-${waktu_selesai.getFullYear()} ${waktu_selesai.getHours()}:${waktu_mulai.getMinutes()}</small></td>` +
                         '<td>' + status_waktu + '</td>' +
+                        '<td>' + 'Panitia' + '</td>' +
                         '<td><small>' + alasan + '</small></td>' +
                         '</tr>';
                 }
