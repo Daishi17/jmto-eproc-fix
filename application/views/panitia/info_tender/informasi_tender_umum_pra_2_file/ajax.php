@@ -83,7 +83,7 @@
                     var data_mulai = tanggal_mulai + '-' + bulan_mulai + '-' + tahun_mulai + '-' + time_mulai
 
                       // selesai
-                      var time_selesai = times_selesai.toLocaleTimeString()
+                    var time_selesai = times_selesai.toLocaleTimeString()
                     var tanggal_selesai = String(times_selesai.getDate()).padStart(2, '0');
                     var bulan_selesai = String(times_selesai.getMonth() + 1).padStart(2, '0');
                     var tahun_selesai = times_selesai.getFullYear()
