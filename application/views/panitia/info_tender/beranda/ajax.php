@@ -423,7 +423,7 @@
                     var tahun_selesai = times_selesai.getFullYear()
                     var data_selesai = tanggal_selesai + ' ' + m[month_selesai] + ' ' + tahun_selesai + ' ' + time_selesai
 
-                    var waktu_mulai = new Date();
+                    var waktu_mulai = new Date(response['jadwal'][i].waktu_mulai);
                     var waktu_selesai = new Date(response['jadwal'][i].waktu_selesai);
                     var sekarang = new Date();
                     // kondisi jadwal
