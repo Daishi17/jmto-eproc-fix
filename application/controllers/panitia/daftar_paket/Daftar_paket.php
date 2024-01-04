@@ -431,7 +431,7 @@ class Daftar_paket extends CI_Controller
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
@@ -618,7 +618,6 @@ class Daftar_paket extends CI_Controller
 				for ($i = 0; $i < 10; $i++) {
 					$key .= $keys[array_rand($keys)];
 				}
-
 				$vendor_key = '';
 				$vendor_keys = array_merge(range(0, 9), range('a', 'z'));
 				for ($i = 0; $i < 10; $i++) {
@@ -1420,11 +1419,13 @@ class Daftar_paket extends CI_Controller
 			// laporan_keuangan
 			$data = [
 				'tahun_awal_laporan_keuangan' => $tahun_awal_laporan_keuangan,
+				'tahun_awal_neraca_keuangan' => $tahun_awal_laporan_keuangan,
 			];
 		} else if ($type == 'tahun_akhir_laporan_keuangan') {
 			// laporan_keuangan
 			$data = [
 				'tahun_akhir_laporan_keuangan' => $tahun_akhir_laporan_keuangan,
+				'tahun_akhir_neraca_keuangan' => $tahun_akhir_laporan_keuangan,
 			];
 		} else if ($type == 'sts_checked_neraca_keuangan') {
 			// neraca_keuangan

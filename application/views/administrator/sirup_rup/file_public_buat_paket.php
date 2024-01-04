@@ -319,7 +319,13 @@
                 if (response['error']) {
                     Swal.fire('Maaf!', response['error'], 'warning')
                 } else {
-                    Swal.fire('Panitia Berhasil Di Tambah!', '', 'success')
+                    if (role_panitia == 1) {
+                        Swal.fire('Ketua Merangkap Anggota Berhasil Di Tambah!', '', 'success')
+                    } else if (role_panitia == 2) {
+                        Swal.fire('Sekertaris Merangkap Anggota Berhasil Di Tambah!', '', 'success')
+                    } else {
+                        Swal.fire('Panitia Berhasil Di Tambah!', '', 'success')
+                    }
                     by_id_rup(random_kode)
                     var nama_panitia = $('[name="nama_panitia"]').val('');
                 }

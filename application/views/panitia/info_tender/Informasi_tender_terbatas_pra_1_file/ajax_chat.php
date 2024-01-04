@@ -198,51 +198,106 @@
                             }
                         } else {
                             if (d.nama_pegawai) {
-                                if (d.dokumen_chat == null) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div> </div>`;
-                                } else if (d.dokumen_chat) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                        <a href="https://vms.jmtm.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div>
-                     </div>`;
-                                } else if (d.img_chat) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-								<img width="100%" src="https://vms.jmtm.co.id/file_chat/${d.img_chat}"> <br>
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div>
-                      
-                     </div>`;
+                                if (d.replay_tujuan) {
+                                    if (d.dokumen_chat == null) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time}  	</span>
+                                    </div> </div>`;
+                                    } else if (d.dokumen_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    <a href="https://vms.jmtm.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                                    Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time}  	</span>
+                                    </div>
+                                </div>`;
+                                    } else if (d.img_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                        <div class="img_cont_msg">
+                                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                        </div>
+                                        <div class="msg_cotainer">
+                                                <img width="100%" src="https://vms.jmtm.co.id/file_chat/${d.img_chat}"> <br>
+                                                Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}									
+                                        <span class="msg_time">${kapan}, ${time}  	</span>
+                                        </div>
+                                    
+                                    </div>`;
+                                    } else {
+                                        html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
+                                            '<div class="img_cont_msg">' +
+                                            '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
+                                            '</div>' +
+                                            '<div class="msg_cotainer">' +
+                                            '' + d.isi + '' +
+                                            '<span class="msg_time">' +
+                                            '' + kapan + '' +
+                                            '' + time + '' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">replay</a>	</span>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
                                 } else {
-                                    html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
-                                        '<div class="img_cont_msg">' +
-                                        '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
-                                        '</div>' +
-                                        '<div class="msg_cotainer">' +
-                                        '' + d.isi + '' +
-                                        '<span class="msg_time">' +
-                                        '' + kapan + '' +
-                                        '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">replay</a>	</span>' +
-                                        '</div>' +
-                                        '</div>';
+                                    if (d.dokumen_chat == null) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time}  	</span>
+                                    </div> </div>`;
+                                    } else if (d.dokumen_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    <a href="https://vms.jmtm.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time}  	</span>
+                                    </div>
+                                </div>`;
+                                    } else if (d.img_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                        <div class="img_cont_msg">
+                                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                        </div>
+                                        <div class="msg_cotainer">
+                                                <img width="100%" src="https://vms.jmtm.co.id/file_chat/${d.img_chat}"> <br>
+                                        ${d.isi}								
+                                        <span class="msg_time">${kapan}, ${time}  	</span>
+                                        </div>
+                                    
+                                    </div>`;
+                                    } else {
+                                        html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
+                                            '<div class="img_cont_msg">' +
+                                            '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
+                                            '</div>' +
+                                            '<div class="msg_cotainer">' +
+                                            '' + d.isi + '' +
+                                            '<span class="msg_time">' +
+                                            '' + kapan + '' +
+                                            '' + time + '' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">replay</a>	</span>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
                                 }
                             } else {
                                 if (d.dokumen_chat == null) {

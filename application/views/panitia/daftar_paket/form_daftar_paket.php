@@ -687,11 +687,11 @@
                                                                     <td>
                                                                         <small>
                                                                             <?php if ($value['role_panitia'] == 1) { ?>
-                                                                                Ketua Panitia
+                                                                                Ketua Panitia Merangkap Anggota
                                                                             <?php } else if ($value['role_panitia'] == 2) { ?>
-                                                                                Sekretaris Panitia
+                                                                                Sekretaris Panitia Merangkap Anggota
                                                                             <?php } else { ?>
-                                                                                Anggota Panitia
+                                                                                Anggota
                                                                             <?php } ?>
                                                                         </small>
                                                                     </td>
@@ -1301,7 +1301,7 @@
 
                                                                     <td class="col-sm-4">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-text"><small>Awal</small></span>
+                                                                            <span class="input-group-text"><small>Tahun</small></span>
                                                                             <select onchange="pilih_tahun_awal_laporan_keuangan()" name="tahun_awal_laporan_keuangan" class="form-select form-select-sm" aria-label="Default select example">
                                                                                 <?php if ($syarat_izin_teknis_tender['tahun_awal_laporan_keuangan']) { ?>
                                                                                     <option value="<?= $syarat_izin_teknis_tender['tahun_awal_laporan_keuangan'] ?>">
@@ -1320,7 +1320,7 @@
                                                                                 <?php } ?>
                                                                             </select>
 
-                                                                            <span class="input-group-text"><small>Akhir</small></span>
+                                                                            <span class="input-group-text"><small>Dan</small></span>
                                                                             <select onchange="pilih_tahun_akhir_laporan_keuangan()" name="tahun_akhir_laporan_keuangan" class="form-select form-select-sm" aria-label="Default select example">
                                                                                 <?php if ($syarat_izin_teknis_tender['tahun_akhir_laporan_keuangan']) { ?>
                                                                                     <option value="<?= $syarat_izin_teknis_tender['tahun_akhir_laporan_keuangan'] ?>">
@@ -1356,7 +1356,7 @@
                                                                     </td>
                                                                     <td class="col-sm-4" colspan="2">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-text"><small>Awal</small></span>
+                                                                            <span class="input-group-text"><small>Tahun</small></span>
                                                                             <select onchange="pilih_tahun_awal_neraca_keuangan()" name="tahun_awal_neraca_keuangan" class="form-select form-select-sm" aria-label="Default select example">
                                                                                 <?php if ($syarat_izin_teknis_tender['tahun_awal_neraca_keuangan']) { ?>
                                                                                     <option value="<?= $syarat_izin_teknis_tender['tahun_awal_neraca_keuangan'] ?>">
@@ -1375,7 +1375,7 @@
                                                                                 <?php } ?>
                                                                             </select>
 
-                                                                            <span class="input-group-text"><small>Akhir</small></span>
+                                                                            <span class="input-group-text"><small>Dan</small></span>
                                                                             <select onchange="pilih_tahun_akhir_neraca_keuangan()" name="tahun_akhir_neraca_keuangan" class="form-select form-select-sm" aria-label="Default select example">
                                                                                 <?php if ($syarat_izin_teknis_tender['tahun_akhir_neraca_keuangan']) { ?>
                                                                                     <option value="<?= $syarat_izin_teknis_tender['tahun_akhir_neraca_keuangan'] ?>">

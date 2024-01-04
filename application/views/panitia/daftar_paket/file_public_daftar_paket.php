@@ -981,7 +981,9 @@
         var url_get_tambah_syarat_kbli = $('[name="url_get_tambah_syarat_kbli"]').val();
         var id_url_rup = $('[name="id_url_rup"]').val();
         var nama_kbli = $('[name="nama_kbli"]').val();
-        if (nama_kbli == '') {
+        if (nama_kbli == 0) {
+            Swal.fire('Anda Belum Memilih Kbli!', '', 'warning')
+        } else if (nama_kbli == '') {
             Swal.fire('Anda Belum Memilih Kbli!', '', 'warning')
         } else {
             $.ajax({
@@ -1080,7 +1082,9 @@
         var id_url_rup = $('[name="id_url_rup"]').val();
         var nama_sbu = $('[name="nama_sbu"]').val();
         if (nama_sbu == '') {
-            Swal.fire('Anda Belum Memilih sbu!', '', 'warning')
+            Swal.fire('Anda Belum Memilih Sbu!', '', 'warning')
+        } else if (nama_sbu == 0) {
+            Swal.fire('Anda Belum Memilih Sbu!', '', 'warning')
         } else {
             $.ajax({
                 type: "POST",
