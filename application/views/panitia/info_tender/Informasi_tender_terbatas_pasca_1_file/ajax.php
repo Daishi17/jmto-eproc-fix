@@ -1321,6 +1321,343 @@
                     if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
                         if (response['result_sanggahan_pra'][i].file_sanggah_pra_panitia) {
                             var file_sanggah_pra_panitia = '<a target="_blank" href="' + url_open_sanggahan_pra_panitia + response['result_sanggahan_pra'][i].file_sanggah_pra_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_sanggah_pra_detail + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                        } else {
+                            var file_sanggah_pra_panitia = '-'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_sanggah_pra_detail + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                        }
+
+                    } else {
+                        var file_sanggah_pra_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                        var balas = '-'
+                    }
+                    html += '<tr>' +
+                        '<td><small>' + no++ + '</small></td>' +
+                        '<td><small>' + response['result_sanggahan_pra'][i].nama_usaha + '</small></td>' +
+                        '<td><small>' + ket_sanggah_pra + '</small></td>' +
+                        '<td><small>' + file_sanggah_pra + '</small></td>' +
+                        '<td><small>' + file_sanggah_pra_panitia + '</small></td>' +
+                        '<td><small>' + ket_sanggah_pra_panitia + '</small></td>' +
+                        '<td>' + balas + '</td>' +
+                        '</tr>';
+                    '</tr>';
+
+                }
+                $('#tbl_sanggah_pra').html(html);
+            }
+        })
+    }
+
+    function balas_sanggahan_pra(id_sanggah_pra_detail, nama_usaha) {
+        var modal_balas_sanggahan_pra = $('#modal_balas_sanggahan_pra');
+        $('[name="id_vendor_mengikuti_paket"]').val(id_sanggah_pra_detail)
+        $('#nama_penyedia').text(nama_usaha)
+        modal_balas_sanggahan_pra.modal('show');
+
+    }
+
+    function delete_sanggah_pra(id_vendor_mengikuti_paket) {
+        var url_hapus_sanggahan_pra = $('[name="url_hapus_sanggahan_pra"]').val()
+        Swal.fire({
+            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan Prakualifikasi?',
+            text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Yakin!',
+            cancelButtonText: 'Batal!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: url_hapus_sanggahan_pra,
+                    data: {
+                        id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        if (response == 'success') {
+                            Swal.fire(
+                                'Berhasil!',
+                                'Sanggahan Prakualifikasi Berhasil Di Batalkan!',
+                                'success'
+                            )
+                            load_dok_sanggahan_pra()
+                        }
+                    }
+                })
+
+            }
+        })
+    }
+
+    // upload sanggahan akhir
+    var form_sanggahan_akhir = $('#form_sanggahan_akhir')
+    form_sanggahan_akhir.on('submit', function(e) {
+        var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
+        var file_sanggah_akhir = $('[name="file_sanggah_akhir"]').val();
+        if (file_sanggah_akhir == '') {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Dokumen Wajib Di Isi!',
+            })
+        } else {
+            e.preventDefault();
+            $.ajax({
+                url: url_upload_sanggahan_akhir,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn-sanggah-akhir').attr("disabled", true);
+                },
+                success: function(response) {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Membuat Data <b></b>',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            $('#modal_balas_sanggahan_akhir').modal('hide')
+                            form_sanggahan_akhir[0].reset()
+                            load_dok_sanggahan_akhir()
+                            $('.btn-sanggah-akhir').attr("disabled", false);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+    load_dok_sanggahan_akhir()
+
+    function load_dok_sanggahan_akhir() {
+        var id_rup = $('[name="id_rup"]').val()
+        var url_get_sanggahan_akhir = $('[name="url_get_sanggahan_akhir"]').val()
+        var url_open_sanggahan_akhir = $('[name="url_open_sanggahan_akhir"]').val()
+        var url_open_sanggahan_akhir_panitia = $('[name="url_open_sanggahan_akhir_panitia"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_get_sanggahan_akhir,
+            data: {
+                id_rup: id_rup,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                var html = '';
+                var i;
+                var no = 1;
+                for (i = 0; i < response['result_sanggahan_akhir'].length; i++) {
+                    if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir) {
+                        var ket_sanggah_akhir = response['result_sanggahan_akhir'][i].ket_sanggah_akhir
+                    } else {
+                        var ket_sanggah_akhir = '-'
+                    }
+
+                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
+                        var file_sanggah_akhir = '<a target="_blank" href="' + url_open_sanggahan_akhir + response['result_sanggahan_akhir'][i].nama_usaha + '/SANGGAHAN_AKHIR/' + response['result_sanggahan_akhir'][i].file_sanggah_akhir + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                    } else {
+                        var file_sanggah_akhir = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                    }
+
+                    if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia) {
+                        var ket_sanggah_akhir_panitia = response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia
+                    } else {
+                        var ket_sanggah_akhir_panitia = '-'
+                    }
+
+                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
+                        if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
+                            var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                        } else {
+                            var file_sanggah_akhir_panitia = '-'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                        }
+
+                    } else {
+                        var file_sanggah_akhir_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                        var balas = '-'
+                    }
+                    html += '<tr>' +
+                        '<td><small>' + no++ + '</small></td>' +
+                        '<td><small>' + response['result_sanggahan_akhir'][i].nama_usaha + '</small></td>' +
+                        '<td><small>' + ket_sanggah_akhir + '</small></td>' +
+                        '<td><small>' + file_sanggah_akhir + '</small></td>' +
+                        '<td><small>' + file_sanggah_akhir_panitia + '</small></td>' +
+                        '<td><small>' + ket_sanggah_akhir_panitia + '</small></td>' +
+                        '<td>' + balas + '</td>' +
+                        '</tr>';
+                    '</tr>';
+
+                }
+                $('#tbl_sanggah_akhir').html(html);
+            }
+        })
+    }
+
+    function balas_sanggahan_akhir(id_vendor_mengikuti_paket, nama_usaha) {
+        var modal_balas_sanggahan_akhir = $('#modal_balas_sanggahan_akhir');
+        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+        $('#nama_penyedia').text(nama_usaha)
+        modal_balas_sanggahan_akhir.modal('show');
+
+    }
+
+    function delete_sanggah_akhir(id_vendor_mengikuti_paket) {
+        var url_hapus_sanggahan_akhir = $('[name="url_hapus_sanggahan_akhir"]').val()
+        Swal.fire({
+            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhir?',
+            text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Yakin!',
+            cancelButtonText: 'Batal!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: url_hapus_sanggahan_akhir,
+                    data: {
+                        id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        if (response == 'success') {
+                            Swal.fire(
+                                'Berhasil!',
+                                'Sanggahan akhir Berhasil Di Batalkan!',
+                                'success'
+                            )
+                            load_dok_sanggahan_akhir()
+                        }
+                    }
+                })
+
+            }
+        })
+    }
+</script>
+
+<!-- <script>
+    // upload sanggahan prakualifikasi
+    var form_sanggahan_prakualifikasi = $('#form_sanggahan_prakualifikasi')
+    form_sanggahan_prakualifikasi.on('submit', function(e) {
+        var url_upload_sanggahan_pra = $('[name="url_upload_sanggahan_pra"]').val();
+        var file_sanggah_pra_panitia = $('[name="file_sanggah_pra_panitia"]').val();
+        if (file_sanggah_pra_panitia == '') {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Dokumen Wajib Di Isi!',
+            })
+        } else {
+            e.preventDefault();
+            $.ajax({
+                url: url_upload_sanggahan_pra,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn-sanggah').attr("disabled", true);
+                },
+                success: function(response) {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Membuat Data <b></b>',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            $('#modal_balas_sanggahan_pra').modal('hide')
+                            form_sanggahan_prakualifikasi[0].reset()
+                            load_dok_sanggahan_pra()
+                            $('.btn-sanggah').attr("disabled", false);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+                }
+            })
+        }
+    })
+    load_dok_sanggahan_pra()
+
+    function load_dok_sanggahan_pra() {
+        var id_rup = $('[name="id_rup"]').val()
+        var url_get_sanggahan_pra = $('[name="url_get_sanggahan_pra"]').val()
+        var url_open_sanggahan_pra = $('[name="url_open_sanggahan_pra"]').val()
+        var url_open_sanggahan_pra_panitia = $('[name="url_open_sanggahan_pra_panitia"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_get_sanggahan_pra,
+            data: {
+                id_rup: id_rup,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                var html = '';
+                var i;
+                var no = 1;
+                for (i = 0; i < response['result_sanggahan_pra'].length; i++) {
+                    if (response['result_sanggahan_pra'][i].ket_sanggah_pra) {
+                        var ket_sanggah_pra = response['result_sanggahan_pra'][i].ket_sanggah_pra
+                    } else {
+                        var ket_sanggah_pra = '-'
+                    }
+
+                    if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
+                        var file_sanggah_pra = '<a target="_blank" href="' + url_open_sanggahan_pra + response['result_sanggahan_pra'][i].nama_usaha + '/SANGGAHAN_PRAKUALIFIKASI/' + response['result_sanggahan_pra'][i].file_sanggah_pra + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                    } else {
+                        var file_sanggah_pra = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                    }
+
+                    if (response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia) {
+                        var ket_sanggah_pra_panitia = response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia
+                    } else {
+                        var ket_sanggah_pra_panitia = '-'
+                    }
+
+                    if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
+                        if (response['result_sanggahan_pra'][i].file_sanggah_pra_panitia) {
+                            var file_sanggah_pra_panitia = '<a target="_blank" href="' + url_open_sanggahan_pra_panitia + response['result_sanggahan_pra'][i].file_sanggah_pra_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
                             var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                         } else {
                             var file_sanggah_pra_panitia = '-'
@@ -1559,119 +1896,172 @@
             }
         })
     }
-</script>
-
+</script> -->
 <script>
     load_vendor_negosiasi()
 
-function load_vendor_negosiasi() {
-    var id_rup = $('[name="id_rup"]').val()
-    var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
-    $.ajax({
-        type: "POST",
-        url: url_get_vendor_negosiasi,
-        data: {
-            id_rup: id_rup,
-        },
-        dataType: "JSON",
-        success: function(response) {
-            var html = '';
-            var i;
-            var no = 1;
-            for (i = 0; i < response['result_vendor_negosiasi'].length; i++) {
-                if (response['result_vendor_negosiasi'][i].tanggal_negosiasi == null) {
-                    var tanggal_negoasiasi = '<small class="badge bg-warning">Belum Ada Tanggal Negosiasi</small>'
-                } else {
-                    var tanggal_negoasiasi = '<small>' + response['result_vendor_negosiasi'][i].tanggal_negosiasi + '</small>'
-                }
-                if (response['result_vendor_negosiasi'][i].link_negosiasi == null) {
-                    var lin_nego = '<small class="badge bg-warning">Belum Ada Link Negosiasi</small>'
-                } else {
-                    var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
-                }
-                html += '<tr>' +
-                    '<td><small>' + no++ + '</small></td>' +
-                    '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
-                    '<td>' + tanggal_negoasiasi + '</td>' +
-                    '<td>' + lin_nego + '</td>' +
-                    '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
+    function load_vendor_negosiasi() {
+        var id_rup = $('[name="id_rup"]').val()
+        var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_get_vendor_negosiasi,
+            data: {
+                id_rup: id_rup,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                var html = '';
+                var i;
+                var no = 1;
+                for (i = 0; i < response['result_vendor_negosiasi'].length; i++) {
+                    if (response['result_vendor_negosiasi'][i].tanggal_negosiasi == null) {
+                        var tanggal_negoasiasi = '<small class="badge bg-warning">Belum Ada Tanggal Negosiasi</small>'
+                    } else {
+                        var tanggal_negoasiasi = '<small>' + response['result_vendor_negosiasi'][i].tanggal_negosiasi + '</small>'
+                    }
+                    if (response['result_vendor_negosiasi'][i].link_negosiasi == null) {
+                        var lin_nego = '<small class="badge bg-warning">Belum Ada Link Negosiasi</small>'
+                    } else {
+                        var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
+                    }
+                    html += '<tr>' +
+                        '<td><small>' + no++ + '</small></td>' +
+                        '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
+                        '<td>' + tanggal_negoasiasi + '</td>' +
+                        '<td>' + lin_nego + '</td>' +
+                        '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
+                        '</tr>';
                     '</tr>';
-                '</tr>';
 
+                }
+                $('#tbl_vendor_negosiasi').html(html);
             }
-            $('#tbl_vendor_negosiasi').html(html);
-        }
-    })
-}
+        })
+    }
 
-function upload_link_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
-    var modal_negosiasi = $('#modal_negosiasi');
-    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
-    $('[name="nama_penyedia"]').val(nama_usaha)
-    modal_negosiasi.modal('show');
-}
+    function upload_link_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
+        var modal_negosiasi = $('#modal_negosiasi');
+        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+        $('[name="nama_penyedia"]').val(nama_usaha)
+        modal_negosiasi.modal('show');
+    }
 
 
-function upload_hasil_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
-    var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
-    var url_get_vendor_row = $('[name="url_get_vendor_row"]').val()
-    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
-    $('[name="nama_penyedia"]').val(nama_usaha)
-    modal_hasil_negosiasi.modal('show');
-    $.ajax({
-        type: "POST",
-        url: url_get_vendor_row,
-        data: {
-            id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
-        },
-        dataType: "JSON",
-        success: function(response) {
-            console.log(response);
-            $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
-            $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
-        }
-    })
-
-}
-
-
-function deal_negosiasi(type_deal) {
-    var url_post_hasil_negosiasi = $('[name="url_post_hasil_negosiasi"]').val()
-    var id_vendor_mengikuti_paket = $('[name="id_vendor_mengikuti_paket"]').val()
-    var id_rup = $('[name="id_rup"]').val()
-    var nama_penyedia = $('[name="nama_penyedia"]').val()
-    var total_hasil_negosiasi = $('[name="total_hasil_negosiasi"]').val()
-    var keterangan_negosiasi = $('[name="keterangan_negosiasi"]').val()
-    var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
-
-    $.ajax({
-        type: "POST",
-        url: url_post_hasil_negosiasi,
-        dataType: "JSON",
-        data: {
-            id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
-            total_hasil_negosiasi: total_hasil_negosiasi,
-            keterangan_negosiasi: keterangan_negosiasi,
-            nama_penyedia: nama_penyedia,
-            type_deal: type_deal,
-            id_rup: id_rup
-        },
-        // beforeSend: function() {
-        //     $('.btn_dapatkan_token').attr("disabled", true);
-        // },
-        success: function(response) {
-            if (response == 'success') {
-                Swal.fire('Berhasil Buat hasil negosiasi!', '', 'success')
-                modal_hasil_negosiasi.modal('hide');
-                load_vendor_negosiasi()
-            } else {
-                Swal.fire('Negosiasi !', '', 'warning')
-                load_vendor_negosiasi()
-                // $('.btn_dapatkan_token').attr("disabled", false);
+    function upload_hasil_negoasiasi(id_vendor_mengikuti_paket, nama_usaha) {
+        var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
+        var url_get_vendor_row = $('[name="url_get_vendor_row"]').val()
+        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+        $('[name="nama_penyedia"]').val(nama_usaha)
+        modal_hasil_negosiasi.modal('show');
+        $.ajax({
+            type: "POST",
+            url: url_get_vendor_row,
+            data: {
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                console.log(response);
+                $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
+                $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
             }
-        }
-    })
-}
+        })
+
+    }
+
+
+    function deal_negosiasi(type_deal) {
+        var url_post_hasil_negosiasi = $('[name="url_post_hasil_negosiasi"]').val()
+        var id_vendor_mengikuti_paket = $('[name="id_vendor_mengikuti_paket"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        var nama_penyedia = $('[name="nama_penyedia"]').val()
+        var total_hasil_negosiasi = $('[name="total_hasil_negosiasi"]').val()
+        var keterangan_negosiasi = $('[name="keterangan_negosiasi"]').val()
+        var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
+
+        $.ajax({
+            type: "POST",
+            url: url_post_hasil_negosiasi,
+            dataType: "JSON",
+            data: {
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+                total_hasil_negosiasi: total_hasil_negosiasi,
+                keterangan_negosiasi: keterangan_negosiasi,
+                nama_penyedia: nama_penyedia,
+                type_deal: type_deal,
+                id_rup: id_rup
+            },
+            // beforeSend: function() {
+            //     $('.btn_dapatkan_token').attr("disabled", true);
+            // },
+            success: function(response) {
+                if (response == 'success') {
+                    Swal.fire('Berhasil Buat hasil negosiasi!', '', 'success')
+                    modal_hasil_negosiasi.modal('hide');
+                    load_vendor_negosiasi()
+                } else {
+                    Swal.fire('Negosiasi !', '', 'warning')
+                    load_vendor_negosiasi()
+                    // $('.btn_dapatkan_token').attr("disabled", false);
+                }
+            }
+        })
+    }
+
+    // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
+    function notifikasi_dokumen(id_dokumen_pengadaan) {
+        $('[name="id_dokumen_pengadaan"]').val(id_dokumen_pengadaan)
+        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        $('[name="type_notif_dokumen"]').val('dok_pengadaan')
+        modal_notifikasi_dokumen.modal('show');
+    }
+
+    function notifikasi_dokumen_kualifikasi(id_dokumen_prakualifikasi) {
+        $('[name="id_dokumen_prakualifikasi"]').val(id_dokumen_prakualifikasi)
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        $('[name="type_notif_dokumen"]').val('dok_pra')
+        modal_notifikasi_dokumen_prakualifikasi.modal('show');
+    }
+
+    function kirim_perubahan_dokumen() {
+        var url_kirim_notif_perubahan_dokumen = $('[name="url_kirim_notif_perubahan_dokumen"]').val()
+        var id_dokumen_pengadaan = $('[name="id_dokumen_pengadaan"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        var keterangan_dokumen = $('[name="keterangan_dokumen"]').val()
+        var keterangan_dokumen_pra = $('[name="keterangan_dokumen_pra"]').val()
+        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
+        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
+        var type_notif_dokumen = $('[name="type_notif_dokumen"]').val()
+        var id_dokumen_prakualifikasi = $('[name="id_dokumen_prakualifikasi"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_kirim_notif_perubahan_dokumen,
+            dataType: "JSON",
+            data: {
+                id_dokumen_pengadaan: id_dokumen_pengadaan,
+                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
+                keterangan_dokumen: keterangan_dokumen,
+                keterangan_dokumen_pra:keterangan_dokumen_pra,
+                id_rup: id_rup,
+                type_notif_dokumen:type_notif_dokumen
+            },
+            // beforeSend: function() {
+            //     $('.btn_dapatkan_token').attr("disabled", true);
+            // },
+            success: function(response) {
+                if (response == 'success') {
+                    Swal.fire('Berhasil Mengirim Perubahan Dokumen!', '', 'success')
+                    modal_notifikasi_dokumen.modal('hide');
+                    modal_notifikasi_dokumen_prakualifikasi.modal('hide');
+                    $('[name="keterangan_dokumen"]').val('')
+                } else {
+                    Swal.fire('Negosiasi !', '', 'warning')
+                }
+            }
+        })
+    }
+
 
     var form_upload_link_negosiasi = $('#form_upload_link_negosiasi')
     form_upload_link_negosiasi.on('submit', function(e) {
@@ -1771,59 +2161,669 @@ function deal_negosiasi(type_deal) {
             }
         })
     }
-</script>
 
-<script>
-        // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
-        function notifikasi_dokumen(id_dokumen_pengadaan) {
-        $('[name="id_dokumen_pengadaan"]').val(id_dokumen_pengadaan)
-        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
-        $('[name="type_notif_dokumen"]').val('dok_pengadaan')
-        modal_notifikasi_dokumen.modal('show');
-    }
 
-    function notifikasi_dokumen_kualifikasi(id_dokumen_prakualifikasi) {
-        $('[name="id_dokumen_prakualifikasi"]').val(id_dokumen_prakualifikasi)
-        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
-        $('[name="type_notif_dokumen"]').val('dok_pra')
-        modal_notifikasi_dokumen_prakualifikasi.modal('show');
-    }
 
-    function kirim_perubahan_dokumen() {
-        var url_kirim_notif_perubahan_dokumen = $('[name="url_kirim_notif_perubahan_dokumen"]').val()
-        var id_dokumen_pengadaan = $('[name="id_dokumen_pengadaan"]').val()
-        var id_rup = $('[name="id_rup"]').val()
-        var keterangan_dokumen = $('[name="keterangan_dokumen"]').val()
-        var keterangan_dokumen_pra = $('[name="keterangan_dokumen_pra"]').val()
-        var modal_notifikasi_dokumen = $('#modal_notifikasi_dokumen');
-        var modal_notifikasi_dokumen_prakualifikasi = $('#modal_notifikasi_dokumen_prakualifikasi');
-        var type_notif_dokumen = $('[name="type_notif_dokumen"]').val()
-        var id_dokumen_prakualifikasi = $('[name="id_dokumen_prakualifikasi"]').val()
+
+
+
+
+
+    function onkeyup_undangan(id_rup, post_type) {
+        if (post_type == 'no_undangan') {
+            var value = $('#value_undangan1').val()
+        } else if (post_type == 'tgl_surat') {
+            var value = $('#value_undangan2').val()
+        } else if (post_type == 'hari') {
+            var value = $('#value_undangan3').val()
+        } else if (post_type == 'tanggal') {
+            var value = $('#value_undangan4').val()
+        } else if (post_type == 'waktu') {
+            var value = $('#value_undangan5').val()
+        } else if (post_type == 'jml_halaman') {
+            var value = $('#value_undangan6').val()
+        }
+
+        var url_post_undangan_pembuktian = $('[name="url_post_undangan_pembuktian"]').val()
         $.ajax({
-            type: "POST",
-            url: url_kirim_notif_perubahan_dokumen,
-            dataType: "JSON",
+            url: url_post_undangan_pembuktian,
+            type: 'post',
             data: {
-                id_dokumen_pengadaan: id_dokumen_pengadaan,
-                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
-                keterangan_dokumen: keterangan_dokumen,
-                keterangan_dokumen_pra:keterangan_dokumen_pra,
-                id_rup: id_rup,
-                type_notif_dokumen:type_notif_dokumen
+                value: value,
+                post_type: post_type,
+                id_rup: id_rup
             },
-            // beforeSend: function() {
-            //     $('.btn_dapatkan_token').attr("disabled", true);
-            // },
-            success: function(response) {
-                if (response == 'success') {
-                    Swal.fire('Berhasil Mengirim Perubahan Dokumen!', '', 'success')
-                    modal_notifikasi_dokumen.modal('hide');
-                    modal_notifikasi_dokumen_prakualifikasi.modal('hide');
-                    $('[name="keterangan_dokumen"]').val('')
-                } else {
-                    Swal.fire('Negosiasi !', '', 'warning')
-                }
+            success: () => {
+
             }
         })
+    }
+
+    function onkeyup_undang_penyedia_waktu(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="wkt_undang_pembuktian${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_undangan_pembuktian_vendor_waktu = $('[name="url_post_undangan_pembuktian_vendor_waktu"]').val()
+        $.ajax({
+            url: url_post_undangan_pembuktian_vendor_waktu,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+
+    function onkeyup_undang_penyedia_metode(id_vendor_mengikuti_paket, post_type) {
+        var value2 = $(`[name="metode_pembuktian${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_undangan_pembuktian_vendor_metode = $('[name="url_post_undangan_pembuktian_vendor_metode"]').val()
+
+        $.ajax({
+            url: url_post_undangan_pembuktian_vendor_metode,
+            type: 'post',
+            data: {
+                value: value2,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function onkeyup_global_rup(id_rup, post_type) {
+        var url_post_pengumuman_hasil_kualifikasi = $('[name="url_post_pengumuman_hasil_kualifikasi"]').val()
+        var value = $('[name="' + post_type + '"]').val()
+        $.ajax({
+            url: url_post_pengumuman_hasil_kualifikasi,
+            type: 'post',
+            data: {
+                post_type: post_type,
+                value: value,
+                id_rup: id_rup
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function select_ba() {
+        var jenis_ba = $('#jenis_ba').val();
+        if (jenis_ba == 1) {
+            $('#ba_1').show();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 2) {
+            $('#ba_1').hide();
+            $('#ba_2').show();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 3) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').show();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 4) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').show();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 5) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').show();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 6) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').show();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 7) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').show();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 8) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').show();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 9) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').show();
+            $('#ba_10').hide();
+        } else if (jenis_ba == 10) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').show();
+        }
+    }
+
+
+
+    function onkeyup_ba_kualifikas_hadir(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="ba_pembuktian_hadir${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_ba_kualifikasi_hadir = $('[name="url_post_ba_kualifikasi_hadir"]').val()
+        $.ajax({
+            url: url_post_ba_kualifikasi_hadir,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function onkeyup_ba_kualifikas_dok(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="ba_pembuktian_dok${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_ba_kualifikasi_dok = $('[name="url_post_ba_kualifikasi_dok"]').val()
+        $.ajax({
+            url: url_post_ba_kualifikasi_dok,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+
+    function onkeyup_ba_kualifikas_ket(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="ba_pembuktian_ket${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_ba_kualifikasi_ket = $('[name="url_post_ba_kualifikasi_ket"]').val()
+        $.ajax({
+            url: url_post_ba_kualifikasi_ket,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function onkeyup_waktu_undangan(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="waktu_undangan_rapat${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_waktu_undangan = $('[name="url_post_waktu_undangan"]').val()
+        $.ajax({
+            url: url_post_waktu_undangan,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function byid_mengikuti_ba(id_vendor_mengikuti_paket, type) {
+        var url_byid_mengikuti = $('[name="url_byid_mengikuti"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            type: "GET",
+            url: url_byid_mengikuti + id_vendor_mengikuti_paket,
+            dataType: "JSON",
+            success: function(response) {
+                if (type == 'check_evaluasi1') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev1', '1')
+                } else if (type == 'uncheck_evaluasi1') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev1', '2')
+                } else if (type == 'check_evaluasi2') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev2', '1')
+                } else if (type == 'uncheck_evaluasi2') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev2', '2')
+                } else if (type == 'check_evaluasi3') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev3', '1')
+                } else if (type == 'uncheck_evaluasi3') {
+                    update_check_ba(id_vendor_mengikuti_paket, 'ba_check_ev3', '2')
+                }
+
+            }
+        })
+    }
+
+    function onkeyup_ba_kualifikas_ket(id_vendor_mengikuti_paket, post_type) {
+        var value = $(`[name="ba_pembuktian_ket${id_vendor_mengikuti_paket}"]`).val()
+        var url_post_ba_kualifikasi_ket = $('[name="url_post_ba_kualifikasi_ket"]').val()
+        $.ajax({
+            url: url_post_ba_kualifikasi_ket,
+            type: 'post',
+            data: {
+                value: value,
+                post_type: post_type,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket
+            },
+            success: () => {
+
+            }
+        })
+    }
+
+    function update_check_ba(id_vendor_mengikuti_paket, name, type) {
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'check_ba_evaluasi1/') ?>' + id_vendor_mengikuti_paket,
+            dataType: "JSON",
+            data: {
+                name: name,
+                id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
+                type: type
+            },
+            success: function(response) {
+                $('#tbl_ba_evaluasi1').DataTable().ajax.reload();
+                $('#tbl_ba_evaluasi2').DataTable().ajax.reload();
+                $('#tbl_ba_evaluasi3').DataTable().ajax.reload();
+
+            }
+        })
+    }
+
+
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_evaluasi1').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba1/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_evaluasi2').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba2/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_evaluasi3').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba3/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    // ba sampul 1
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_sampul11').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba_sampul1/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_sampul12').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba_sampul1/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_sampul13').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_mengikuti_ba_sampul1_1/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+    load_ba_evaluasi_teknis()
+
+    function load_ba_evaluasi_teknis() {
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_tahapan_ba_evaluasi_teknis/') ?>' + id_rup,
+            dataType: "JSON",
+            success: function(response) {
+                var html = ''
+                var i = 0;
+                for (i = 0; i < response['ba_teknis'].length; i++) {
+                    html += `<tr>
+                                <td>${i+1}</td>
+                                <td>${response['ba_teknis'][i].nama_evaluasi}</td>
+                                <td><a href="javascript:;" onclick="delete_ba_evaluasi(${response['ba_teknis'][i].id_ba_teknis_detail})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
+                             </tr>`
+                }
+                $('#load_ba_evaluasi_teknis').html(html)
+
+            }
+        })
+    }
+
+    function delete_ba_evaluasi(id_ba_teknis_detail) {
+        Swal.fire({
+            title: "Hapus Data?",
+            text: "Yakin Ingin Menghapus Data Unsur Evalusi Teknis Ini?!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_tahapan_ba_evaluasi/') ?>' + id_ba_teknis_detail,
+                    dataType: "JSON",
+                    success: function(response) {
+                        load_ba_evaluasi_teknis()
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Data Berhasil Di Hapus.",
+                            icon: "success"
+                        });
+
+                    }
+                })
+
+            }
+        });
+    }
+
+    function dibawah_60() {
+        var ev_keuangan = $('[name="ev_keuangan"]').val()
+
+        if (ev_keuangan < 60) {
+            $('[name="ev_teknis"]').prop('disabled', true);
+            $('[name="ev_teknis"]').val(0);
+        } else {
+            $('[name="ev_teknis"]').prop('disabled', false);
+        }
+    }
+
+    function modal_tambah_ba_evaluasi() {
+        $('#modal_tambah_ba_evaluasi_teknis').modal('show')
+    }
+
+    var form_ba_evaluasi_teknis = $('#form_ba_evaluasi_teknis')
+    form_ba_evaluasi_teknis.on('submit', function(e) {
+        var id_rup = $('[name="id_rup"]').val()
+        e.preventDefault();
+        $.ajax({
+            url: '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'tambah_evaluasi_ba_teknis/') ?>' + id_rup,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_kualifikasi').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_tambah_ba_evaluasi_teknis').modal('hide')
+                        form_ba_evaluasi_teknis[0].reset();
+                        load_ba_evaluasi_teknis()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+            }
+        })
+    })
+
+    function format_rupiah_ba_sampul2() {
+        var ba_negosiasi_penawaran = $('[name="ba_negosiasi_penawaran"]').val()
+        var rupiahFormat = ba_negosiasi_penawaran.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        $('[name="ba_negosiasi_penawaran2"]').val('Rp. ' + rupiahFormat)
+    }
+
+    function format_rupiah_ba_sampul3() {
+        var ba_negosiasi_harga = $('[name="ba_negosiasi_harga"]').val()
+        var rupiahFormat = ba_negosiasi_harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        $('[name="ba_negosiasi_harga2"]').val('Rp. ' + rupiahFormat)
     }
 </script>

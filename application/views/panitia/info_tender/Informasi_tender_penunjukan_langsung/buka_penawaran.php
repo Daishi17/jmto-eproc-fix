@@ -176,8 +176,6 @@
             </div>
         </div>
     </div>
-
-
 <?php } else { ?>
     <main class="container-fluid">
         <div class="row">

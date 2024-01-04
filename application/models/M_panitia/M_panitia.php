@@ -364,7 +364,7 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siup.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siup', 'tbl_vendor_kbli_siup.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli',  $data_kbli_tampung);
+        $this->db->where_in('tbl_vendor_kbli_siup.id_kbli',  [$implode]);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -381,7 +381,7 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_nib.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_nib', 'tbl_vendor_kbli_nib.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', $data_kbli_tampung);
+        $this->db->where_in('tbl_vendor_kbli_nib.id_kbli', [$implode]);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -399,31 +399,12 @@ class M_panitia extends CI_Model
         $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_siujk.id_kbli');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_vendor_kbli_siujk', 'tbl_vendor_kbli_siujk.id_vendor = tbl_vendor.id_vendor', 'left');
-        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', $data_kbli_tampung);
+        $this->db->where_in('tbl_vendor_kbli_siujk.id_kbli', [$implode]);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
     }
     // end cek barus kbli siujk
-
-
-    // function data_vendor_lolos_skdp_kbli($cek_syarat_kbli)
-    // {
-    //     $data_kbli_tampung = [];
-    //     foreach ($cek_syarat_kbli as $data_syarat_skdp) {
-    //         $data_kbli_tampung[] = $data_syarat_skdp['id_kbli'];
-    //     }
-    //     $implode = implode(',', $data_kbli_tampung);
-    //     $this->db->select('tbl_vendor.id_vendor,tbl_vendor_kbli_skdp.id_kbli');
-    //     $this->db->from('tbl_vendor');
-    //     $this->db->join('tbl_vendor_kbli_skdp', 'tbl_vendor_kbli_skdp.id_vendor = tbl_vendor.id_vendor', 'left');
-    //     $this->db->where_in('tbl_vendor_kbli_skdp.id_kbli', [$implode]);
-    //     $this->db->group_by('tbl_vendor.id_vendor');
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
-    // end cek barus kbli skdp
-
     // ini baris cek_kli sbu angga
 
     function data_vendor_lolos_sbu_kbli($cek_syarat_kbli_sbu)
@@ -1116,6 +1097,7 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $query = $this->db->get();
         return $query->row_array();

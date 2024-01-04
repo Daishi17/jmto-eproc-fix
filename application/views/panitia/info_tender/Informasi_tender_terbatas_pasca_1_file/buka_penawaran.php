@@ -92,8 +92,8 @@
                                                 <th>No</th>
                                                 <th>Nama Peserta</th>
                                                 <!-- <th>Nilai Penawaran</th>
-                                                                    <th>TKDN/PDN/IMPORT</th>
-                                                                    <th>Persentase TKDN/PDN/IMPORT </th> -->
+                                                                        <th>TKDN/PDN/IMPORT</th>
+                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
                                                 <th>Lihat Dok Penawaran</th>
                                             </thead>
                                             <tbody>
@@ -128,53 +128,11 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama File</th>
-                                <th>File</th>
+                                <!-- <th>File</th> -->
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Dokumen File 1</td>
-                                <td><a href="#" class="btn btn-sm btn-info text-white"><i class="fa fa-eye"></i> Download</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <tbody id="load_detail_file1">
 
-    <div class="modal fade" id="buka_penawaran1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-file" aria-hidden="true"></i> Dokumen File I</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-primary d-flex align-items-center" role="alert">
-                        <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Pembukaan Dokumen File I Penyedia <label for="" class="nama_usaha_vendor"></label> <br>
-                        </div>
-                    </div>
-                    <br>
-                    <table id="table_dokumen_penawaran_file_I_vendor" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama File</th>
-                                <th>File</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Dokumen File 1</td>
-                                <td><a href="#" class="btn btn-sm btn-info text-white"><i class="fa fa-eye"></i> Download</a></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -203,14 +161,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Usaha</th>
-                                <!-- <th>Nilai Penawaran</th>
-                                                <th>TKDN/PDN/IMPORT</th>
-                                                <th>Persentase TKDN/PDN/IMPORT</th> -->
-                                <th>File</th>
+                                <th>Nama File</th>
+                                <!-- <th>File</th> -->
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="load_dok_file2">
 
                         </tbody>
                     </table>

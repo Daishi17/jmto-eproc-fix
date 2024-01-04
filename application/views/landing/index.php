@@ -305,12 +305,13 @@ header("Content-Security-Policy: img-src 'self' *");
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-striped table-bordered table_berita" style="font-style: italic;color:black">
+                    <table class="table table-striped table-bordered" id="table_berita" style="font-style: italic;color:black">
                         <thead class="thead-inverse bg-dark text-white">
                             <tr>
-                                <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
-                                <th>Nama Berita <i class="fa fa-newspaper-o" aria-hidden="true"></i></th>
-                                <th>Tanggal <i class="fa fa-clock-o" aria-hidden="true"></i></th>
+                                <th style="width:2%;"><small class="text-white">No</small></th>
+                                <th style="width:10%;"><small class="text-white">Nama Berita</small></th>
+                                <th style="width:10%;"><small class="text-white">Waktu Buat</small></th>
+                                <th style="width:1%;"><small class="text-white">File</small></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -341,109 +342,91 @@ header("Content-Security-Policy: img-src 'self' *");
             </div>
             <div class="row no-gutters">
                 <div class="col-lg-12">
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active bg-dark text-white" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i>PENGADAAN BARANG</i></a>
-                            <a class="nav-item nav-link bg-warning text-white" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i>PENGADAAN JASA KONSULTASI</i></a>
-                            <a class="nav-item nav-link bg-dark text-white" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i>PENGADAAN JASA KONTRUKSI</i></a>
-                            <a class="nav-item nav-link bg-warning text-white" id="nav-design-tab" data-toggle="tab" href="#nav-design" role="tab" aria-controls="nav-design" aria-selected="false"><i>PENGADAAN JASA LAINYA</i></a>
-                        </div>
-                    </nav>
-                    <div class="tab-content bg-white p-4 p-md-5" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <div class="section-title mb-4">
-                                <h3 class="title">DATA PENGADAAN BARANG</h3>
-                                <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
-                                            <thead class="thead-inverse bg-dark text-white">
-                                                <tr>
-                                                    <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
-                                                    <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
-                                                    <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
-                                                    <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                                    <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                    <div class="section-title mb-4">
+                        <h3 class="title">DATA PENGADAAN BARANG</h3>
+                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                    <thead class="thead-inverse bg-dark text-white">
+                                        <tr>
+                                            <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
+                                            <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
+                                            <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
+                                            <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
+                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            <div class="section-title mb-4">
-                                <h3 class="title">DATA PENGADAAN JASA KONSULTASI</h3>
-                                <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
-                                            <thead class="thead-inverse bg-dark text-white">
-                                                <tr>
-                                                    <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
-                                                    <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
-                                                    <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
-                                                    <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                                    <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                    </div>
+                    <div class="section-title mb-4">
+                        <h3 class="title">DATA PENGADAAN JASA KONSULTASI</h3>
+                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                    <thead class="thead-inverse bg-dark text-white">
+                                        <tr>
+                                            <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
+                                            <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
+                                            <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
+                                            <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
+                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="section-title mb-4">
-                                <h3 class="title">DATA PENGADAAN JASA KONTRUKSI</h3>
-                                <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
-                                            <thead class="thead-inverse bg-dark text-white">
-                                                <tr>
-                                                    <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
-                                                    <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
-                                                    <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
-                                                    <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                                    <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                    </div>
+                    <div class="section-title mb-4">
+                        <h3 class="title">DATA PENGADAAN JASA KONTRUKSI</h3>
+                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                    <thead class="thead-inverse bg-dark text-white">
+                                        <tr>
+                                            <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
+                                            <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
+                                            <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
+                                            <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
+                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-design" role="tabpanel" aria-labelledby="nav-design-tab">
-                            <div class="section-title mb-4">
-                                <h3 class="title">DATA PENGADAAN JASALAINYA</h3>
-                                <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
-                                            <thead class="thead-inverse bg-dark text-white">
-                                                <tr>
-                                                    <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
-                                                    <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
-                                                    <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
-                                                    <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                                    <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                    </div>
+                    <div class="section-title mb-4">
+                        <h3 class="title">DATA PENGADAAN JASALAINYA</h3>
+                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                    <thead class="thead-inverse bg-dark text-white">
+                                        <tr>
+                                            <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
+                                            <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
+                                            <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
+                                            <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
+                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -587,6 +570,39 @@ header("Content-Security-Policy: img-src 'self' *");
 
     function matikan() {
         location.reload('<?= base_url() ?>')
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#table_berita').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('landing/datatable_berita_tender') ?>',
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        })
+    });
+
+    function reload_table() {
+        $('#table_berita').DataTable().ajax.reload();
     }
 </script>
 
