@@ -20,10 +20,37 @@
                 var i;
                 var no = 1;
                 for (i = 0; i < response['jadwal'].length; i++) {
+                    var times_mulai = new Date(response['jadwal'][i].waktu_mulai)
+                    var times_selesai = new Date(response['jadwal'][i].waktu_selesai)
+
+                    // mulai
+                    const tanggal_mulaiku = times_mulai;
+                    const options_mulai = {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        timeZone: 'Asia/Jakarta',
+                    };
+                    const data_mulaiku = tanggal_mulaiku.toLocaleString('id-ID', options_mulai);
+                    // selesai
+                    const tanggal_selesaiku = times_selesai;
+                    const options_selesai = {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        timeZone: 'Asia/Jakarta',
+                    };
+                    const data_selesaiku = tanggal_selesaiku.toLocaleString('id-ID', options_selesai);
+
 
                     var waktu_mulai = new Date(response['jadwal'][i].waktu_mulai);
                     var waktu_selesai = new Date(response['jadwal'][i].waktu_selesai);
-                    const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
                     var sekarang = new Date();
                     // kondisi jadwal
                     if (sekarang < waktu_mulai) {
@@ -40,21 +67,21 @@
                         var status_waktu = '<small><span class="badge bg-success"><i class="fa fa-clock" aria-hidden="true"></i> Tahap Sudah Selesai </span></small>';
                     }
 
+
                     if (response['jadwal'][i].alasan) {
                         var alasan = response['jadwal'][i].alasan
                     } else {
                         var alasan = ''
                     }
 
-
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['jadwal'][i].nama_jadwal_rup + ' ' + check + '</small></td>' +
-                        `<td><small>${waktu_mulai.getDate()}-${months[waktu_mulai.getMonth()]}-${waktu_mulai.getFullYear()} ${zeros(waktu_mulai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
-                        `<td><small>${waktu_selesai.getDate()}-${months[waktu_selesai.getMonth()]}-${waktu_selesai.getFullYear()} ${zeros(waktu_selesai.getHours())}:${zeros(waktu_mulai.getMinutes())}</small></td>` +
+                        '<td><small>' + data_mulaiku + '</small></td>' +
+                        '<td><small>' + data_selesaiku + '</small></td>' +
                         '<td>' + status_waktu + '</td>' +
                         '<td>Panitia</td>' +
-                        '<td><small>' + alasan + '</small></td>' +
+                        '<td>' + alasan + '</td>' +
                         '</tr>';
                 }
                 $('#load_jadwal').html(html);
@@ -265,6 +292,7 @@
 
         }).buttons().container().appendTo('#tbl_rkap .col-md-6:eq(0)');
     });
+
 
     function byid_mengikuti(id_vendor_mengikuti_paket, type) {
         var url_byid_mengikuti = $('[name="url_byid_mengikuti"]').val()
@@ -2040,11 +2068,11 @@
             dataType: "JSON",
             data: {
                 id_dokumen_pengadaan: id_dokumen_pengadaan,
-                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
+                id_dokumen_prakualifikasi: id_dokumen_prakualifikasi,
                 keterangan_dokumen: keterangan_dokumen,
-                keterangan_dokumen_pra:keterangan_dokumen_pra,
+                keterangan_dokumen_pra: keterangan_dokumen_pra,
                 id_rup: id_rup,
-                type_notif_dokumen:type_notif_dokumen
+                type_notif_dokumen: type_notif_dokumen
             },
             // beforeSend: function() {
             //     $('.btn_dapatkan_token').attr("disabled", true);
