@@ -106,8 +106,8 @@
                     </div>
                     <div class="form-group">
                         <table class="table table-bordered">
-                            <input type="text" name="id_vendor_mengikuti_paket">
-                            <input type="text" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
+                            <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
                             <tr>
                                 <th>Nama Penyedia</th>
                                 <td><label for="" id="nama_penyedia"></label></td>

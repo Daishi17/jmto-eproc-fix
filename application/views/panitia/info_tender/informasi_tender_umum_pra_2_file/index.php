@@ -178,10 +178,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                    </td>
-                                                                <?php } else { ?>
-                                                                <?php }
-                                                                ?>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                            <?php }
+                                                            ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -559,10 +559,10 @@
                         <center>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1" onkeyup="Cek_token()">
                             </div>
-                            <br>
-                            <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_buka_penawaran" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
+                            <a onclick="kirim_token_ke_wa('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_dapatkan_token" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Kirim Kodefikasi ke WhatsApp</a>
+                            <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-success btn_buka_penawaran" style="width: 300px;display:none"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
                         </center>
                     </div>
                     <div class="col-md-2">
@@ -667,12 +667,19 @@
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
-                                    <?php if ($value['ev_akhir_hea_peringkat'] == 1) { ?>
-                                        <i class="fas fa fa-star text-warning"></i>
+                                    <?php if ($value['ev_terendah_peringkat']) { ?>
+                                        <?php if ($value['ev_terendah_peringkat'] == 1) { ?>
+                                            <i class="fas fa fa-star text-warning"></i>
+                                        <?php   } else { ?>
+                                            <i class="fas fa fa-times text-danger"></i>
+                                        <?php   }  ?>
                                     <?php   } else { ?>
-                                        <i class="fas fa fa-times text-danger"></i>
+                                        <?php if ($value['ev_akhir_hea_peringkat'] == 1) { ?>
+                                            <i class="fas fa fa-star text-warning"></i>
+                                        <?php   } else { ?>
+                                            <i class="fas fa fa-times text-danger"></i>
+                                        <?php   }  ?>
                                     <?php   }  ?>
-
                                 </td>
                             </tr>
                         <?php } ?>

@@ -187,7 +187,6 @@ class Email_send
     {
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
-        var_dump($get_vendor_mengikuti);die;
         $nama_rup = $row_rup['nama_rup'];
         $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
         $nama_jenis_pengadaan = $row_rup['nama_jenis_pengadaan'];

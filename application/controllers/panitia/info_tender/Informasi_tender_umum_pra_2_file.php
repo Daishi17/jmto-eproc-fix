@@ -118,9 +118,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             } else {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
             }
-
-
-
             // nilai keuangan
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->ev_keuangan == NULL) {
@@ -1226,8 +1223,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $message = 'Token = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
         $no_telpon = $this->session->userdata('no_telpon');
         $this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $message);
-        $type_email = 'token_penawaran';
-        $this->email_send->sen_row_email_token($type_email, $this->session->userdata('id_vendor'), $message);
+        // $type_email = 'token_penawaran';
+        // $this->email_send->sen_row_email_token($type_email, $this->session->userdata('id_pegawai'), $message);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
@@ -1237,15 +1234,13 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     {
         $id_url_rup = $this->input->post('id_url_rup');
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
-
         if ($row_rup['bobot_nilai'] == 1) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
             $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . '';
         }
-
         $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
         $type_email = 'PENGUMUMAN PEMENANG';
         $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
@@ -1255,6 +1250,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $upload);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
     public function get_vendor_mengikuti_paket_penawaran()
     {
         $id_rup = $this->input->post('id_rup');
