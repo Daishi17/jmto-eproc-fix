@@ -16,8 +16,8 @@ class Kirim_wa
     }
     public function kirim_wa_vendor_aktif($nomor_telpon)
     {
-        // $token = '3HGKVEwLaF7rIt@ZhVcV';
-        $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
 
         $curl = curl_init();
@@ -47,8 +47,8 @@ class Kirim_wa
 
     public function kirim_wa_vendor_terdaftar($nomor_telpon, $pesan)
     {
-        // $token = '3HGKVEwLaF7rIt@ZhVcV';
-        $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
         $pesan = str_replace("-", " ", $pesan);
         $curl = curl_init();
@@ -78,8 +78,8 @@ class Kirim_wa
 
     public function kirim_wa_pengumuman($id_rup)
     {
-        // $token = '3HGKVEwLaF7rIt@ZhVcV';
-        $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
         $data_vendor = array();
@@ -111,6 +111,45 @@ Silakan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth
 Selambat-Lambatnya Pada : '.$batas_pendaftaran_tender.'
 Terimakasih',
                 'delay' => '40-60',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
+
+    public function kirim_wa_perubahan_jadwal($id_rup, $pesan)
+    {
+        $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_rup);
+        $get_panitia_aja =  $this->ci->M_panitia->get_panitia_ketua_sekertaris($id_rup);
+        $data_pegawai = array();
+        foreach ($get_panitia_aja as $key => $value) {
+            $data_pegawai[] = $value['no_telpon'];
+        }
+        $nomor_telpon = implode(",", $data_pegawai);
+        $target = $nomor_telpon;
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $nama_jadwal = $row_rup['nama_jadwal_rup'];
+        $pesan = str_replace("-", " ", $pesan);
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => "Perubahan Jadwal
+Izin melakukan perubahan jadwal untuk Tahapan $nama_jadwal dengan Alasan $pesan",
+                'delay' => '60-80',
             ),
             CURLOPT_HTTPHEADER => array(
                 "Authorization: $token"
