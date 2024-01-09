@@ -445,17 +445,18 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <div class="mb-3" style="margin-top: -10px;">
+                                <label for="" class="form-label">Nilai Teknis</label>
+                                <input type="text" class="form-control number_only" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <label for="" id="error_ev_teknis" class="text-danger"></label>
+                            </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="nilai_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
                             </div>
-                            <div class="mb-3" style="margin-top: -10px;">
-                                <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" class="form-control number_only" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
-                                <label for="" id="error_ev_teknis" class="text-danger"></label>
-                            </div>
+
                         </div>
                     </div>
                 </div>

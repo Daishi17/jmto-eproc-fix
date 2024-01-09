@@ -302,13 +302,17 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
 
 
-            if ($rs->ev_penawaran_akhir == NULL) {
+            if ($rs->ev_penawaran_teknis == NULL) {
                 $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Ketahui</span>';
             } else {
-                if ($rs->ev_penawaran_akhir >= 60) {
-                    $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                if ($rs->ev_penawaran_teknis >= 60) {
+                    if ($rs->ev_penawaran_hps >= 100) {
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    }
                 } else {
-                    $row[] = '<span class="badge bg-danger bg-sm">Tidak Sah</span>';
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 }
             }
 
@@ -671,7 +675,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 'ev_penawaran_biaya' => $total_usulan_biaya
             ];
             $where = [
-                'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
+                'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
             ];
             $this->M_panitia->update_evaluasi($data, $where);
 
@@ -687,7 +691,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                     'ev_penawaran_biaya' => $get_usulan_biaya2 / $value['nilai_penawaran'] * 100,
                 ];
                 $where2 = [
-                    'id_vendor_mengikuti_paket'    => $value['id_vendor_mengikuti_paket']
+                    'id_vendor_mengikuti_paket'  => $value['id_vendor_mengikuti_paket']
                 ];
                 $this->M_panitia->update_evaluasi($data2, $where2);
             }
