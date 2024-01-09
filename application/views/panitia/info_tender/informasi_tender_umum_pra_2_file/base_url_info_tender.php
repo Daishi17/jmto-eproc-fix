@@ -57,3 +57,6 @@
 
 <!-- status ba -->
 <input type="hidden" name="url_post_status_ba" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_status_ba') ?>">
+
+<!-- status ba -->
+<input type="hidden" name="url_post_status_kirim" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_status_kirim') ?>">

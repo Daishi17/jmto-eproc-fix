@@ -5,8 +5,8 @@
         } else {
             return i;
         }
-    }  
-    
+    }
+
     function lihat_detail_jadwal(id_url_rup) {
         var url_by_id_rup = $('[name="url_by_id_rup"]').val()
         var modal_detail_jadwal = $('#modal_detail_jadwal')
@@ -2682,6 +2682,23 @@
             },
             success: function(response) {
                 Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+            }
+        })
+    }
+
+
+    function kirim(id_rup, sts) {
+        var url_post_status_kirim = $('[name="url_post_status_kirim"]').val()
+        $.ajax({
+            type: "POST",
+            url: url_post_status_kirim,
+            dataType: "JSON",
+            data: {
+                post: sts,
+                id_rup: id_rup
+            },
+            success: function(response) {
+                Swal.fire('Data Berhasil Di Kirim!', '', 'success')
             }
         })
     }

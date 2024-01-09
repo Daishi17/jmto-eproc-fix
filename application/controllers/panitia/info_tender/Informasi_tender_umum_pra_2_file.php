@@ -2551,4 +2551,15 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->M_panitia->panitia_mengikuti_update($data, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
+    public function save_status_kirim()
+    {
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+        $data = [
+            $post => 1,
+        ];
+        $this->M_panitia->update_rup_panitia($id_rup, $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
 }
