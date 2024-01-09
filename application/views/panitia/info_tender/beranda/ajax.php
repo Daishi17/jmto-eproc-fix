@@ -370,14 +370,6 @@
                 } else {
 
                 }
-
-
-
-
-
-
-
-                // view on button
             }
         })
     }

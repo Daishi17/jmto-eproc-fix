@@ -293,7 +293,6 @@
         }).buttons().container().appendTo('#tbl_rkap .col-md-6:eq(0)');
     });
 
-
     function byid_mengikuti(id_vendor_mengikuti_paket, type) {
         var url_byid_mengikuti = $('[name="url_byid_mengikuti"]').val()
         var modal_evaluasi_kualifikasi = $('#modal_evaluasi_kualifikasi')
@@ -1990,7 +1989,6 @@
             },
             dataType: "JSON",
             success: function(response) {
-                console.log(response);
                 $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
                 $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
             }

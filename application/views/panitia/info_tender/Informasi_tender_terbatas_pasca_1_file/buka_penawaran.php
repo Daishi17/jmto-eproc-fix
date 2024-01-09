@@ -25,14 +25,6 @@
                                         <th>Nama Metode Pemilihan </th>
                                         <td><?= $row_rup['nama_metode_pengadaan'] ?></td>
                                     </tr>
-                                    <tr>
-                                        <th>HPS</th>
-                                        <td>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ',', '.')  ?> </td>
-                                    </tr>
-                                    <tr>
-                                        <th>TKDN</th>
-                                        <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> </td>
-                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -44,7 +36,6 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
                             </li>
-
                         </ul>
 
                     </div>
@@ -92,8 +83,8 @@
                                                 <th>No</th>
                                                 <th>Nama Peserta</th>
                                                 <!-- <th>Nilai Penawaran</th>
-                                                                        <th>TKDN/PDN/IMPORT</th>
-                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
+                                                                                                <th>TKDN/PDN/IMPORT</th>
+                                                                                                <th>Persentase TKDN/PDN/IMPORT </th> -->
                                                 <th>Lihat Dok Penawaran</th>
                                             </thead>
                                             <tbody>

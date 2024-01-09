@@ -370,7 +370,8 @@ class M_Dashboard extends CI_Model
         $this->db->join('tbl_metode_pengadaan', 'tbl_rup.id_metode_pengadaan = tbl_metode_pengadaan.id_metode_pengadaan', 'left');
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
-        $this->db->where('tbl_rup.status_paket_panitia', 1);
+        $this->db->where('tbl_rup.status_paket_diumumkan', 1);
+        $this->db->where('tbl_rup.status_paket_panitia', 2);
         $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
         $query = $this->db->get();
         return $query->num_rows();
@@ -391,6 +392,7 @@ class M_Dashboard extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
+        $this->db->where('tbl_rup.status_paket_panitia', 2);
         $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
         $query = $this->db->get();
         return $query->num_rows();

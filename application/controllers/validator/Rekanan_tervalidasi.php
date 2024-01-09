@@ -1634,24 +1634,21 @@ class Rekanan_tervalidasi extends CI_Controller
 	{
 		$type = $this->input->post('type');
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_akta_pendirian_url($id_url);
-		$secret_token = $this->input->post('token_dokumen');
-
+		$token = $get_row_enkrip['token_dokumen'];
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
-		$secret1 = 'jmto.1' . $id_url;
-		$secret2 = 'jmto.2' . $id_url;
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $token, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $token, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $token, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $token, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -1838,13 +1835,6 @@ class Rekanan_tervalidasi extends CI_Controller
 		$file_url = $this->url_dokumen_vendor . 'file_vms/' . $row_vendor['nama_usaha'] . '/Akta_Pendirian-' . $date . '/' . $get_row_enkrip['file_dokumen'];
 
 		$url = $this->url_dokumen_vendor . 'url_download_pendirian/' . $id_url;
-
-		// Configure.
-		// header('Content-Type: application/octet-stream');
-		// header("Content-Transfer-Encoding: Binary");
-		// header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
-
-		// Actual download.
 		redirect($url);
 	}
 
@@ -1855,25 +1845,23 @@ class Rekanan_tervalidasi extends CI_Controller
 	{
 		$type = $this->input->post('type');
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_akta_perubahan_url($id_url);
-		$secret_token = $this->input->post('token_dokumen');
 
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
 		// $secret = $get_row_enkrip['token_dokumen'];
-		$secret1 = 'jmto.1' . $id_url;
-		$secret2 = 'jmto.2' . $id_url;
+		$token = $get_row_enkrip['token_dokumen'];
 		if ($type == 'dekrip') {
-			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_decrypt($get_row_enkrip['file_dokumen'], $chiper, $token, $option, $iv);
+			$encryption_string2 = openssl_decrypt($get_row_enkrip['file_dok_kumham'], $chiper, $token, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 2,
 				'file_dokumen' => $encryption_string1,
 				'file_dok_kumham' => $encryption_string2,
 			];
 		} else {
-			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $secret1, $option, $iv);
-			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $secret2, $option, $iv);
+			$encryption_string1 = openssl_encrypt($get_row_enkrip['file_dokumen'], $chiper, $token, $option, $iv);
+			$encryption_string2 = openssl_encrypt($get_row_enkrip['file_dok_kumham'], $chiper, $token, $option, $iv);
 			$data = [
 				'sts_token_dokumen' => 1,
 				'file_dokumen' => $encryption_string1,
@@ -1888,13 +1876,6 @@ class Rekanan_tervalidasi extends CI_Controller
 		];
 
 		$this->M_Rekanan_tervalidasi->update_enkrip_akta_perubahan($where, $data);
-		// if ($secret_token == $secret) {
-
-		// } else {
-		// 	$response = [
-		// 		'maaf' => 'Gagal!'
-		// 	];
-		// }
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
@@ -2052,21 +2033,11 @@ class Rekanan_tervalidasi extends CI_Controller
 		$id_vendor = $get_row_enkrip['id_vendor'];
 		$row_vendor = $this->M_Rekanan_tervalidasi->get_id_vendor($id_vendor);
 		$date = date('Y');
-		// $nama_file = $get_row_enkrip['nomor_surat'];
-		// $file_dokumen = $get_row_enkrip['file_dokumen'];
-
-		// Locate.
 		$file_name = $get_row_enkrip['file_dokumen'];
 		$file_url = $this->url_dokumen_vendor . 'file_vms/' . $row_vendor['nama_usaha'] . '/Akta_Perubahan-' . $date . '/' . $get_row_enkrip['file_dokumen'];
 
 		$url = $this->url_dokumen_vendor . 'url_download_perubahan/' . $id_url;
 
-		// Configure.
-		// header('Content-Type: application/octet-stream');
-		// header("Content-Transfer-Encoding: Binary");
-		// header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
-
-		// Actual download.
 		redirect($url);
 	}
 

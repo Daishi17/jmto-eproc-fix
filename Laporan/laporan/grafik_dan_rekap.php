@@ -42,45 +42,6 @@
                                     <th><small>E-Tender</small></th>
                                     <th><small>Total</small></th>
                             </tr>
-                                <!-- <tr>
-                                    <th rowspan="3"><small>Departemen</small></th>
-                                    <th colspan="5" rowspan="2"><small>Jenis Pengadaan (Buah)</small></th>
-                                    <th colspan="4" rowspan="2"><small>Metode Pemilihan (Buah)</small></th>
-                                    <th colspan="4" rowspan="2"><small>Nilai Kontrak (Rp.)</small></th>
-                                    <th colspan="10"><small>Efisiensi</small></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2"><small>Penunjukan Langsung</small></th>
-                                    <th colspan="2"><small>Pengadaan Langsung</small></th>
-                                    <th colspan="2"><small>E-Tender</small></th>
-                                    <th colspan="2"><small>Total</small></th>
-                                    <th colspan="2"><small>Bulan & Tahun</small></th>
-                                </tr>
-                                <tr>
-                                    <th><small>Barang</small></th>
-                                    <th><small>Jasa Konstruksi / Pemborongan</small></th>
-                                    <th><small>Jasa Konsultasi</small></th>
-                                    <th><small>Jasa Lain</small></th>
-                                    <th><small>Total</small></th>
-                                    <th><small>Penunjukan Langsung</small></th>
-                                    <th><small>Pengadaan Langsung</small></th>
-                                    <th><small>E-Tender</small></th>
-                                    <th><small>Total</small></th>
-                                    <th><small>Penunjukan Langsung</small></th>
-                                    <th><small>Pengadaan Langsung</small></th>
-                                    <th><small>E-Tender</small></th>
-                                    <th><small>Total</small></th>
-                                    <th><small>Rp</small></th>
-                                    <th><small>%</small></th>
-                                    <th><small>Rp</small></th>
-                                    <th><small>&</small></th>
-                                    <th><small>Rp</small></th>
-                                    <th><small>&</small></th>
-                                    <th><small>Rp</small></th>
-                                    <th><small>&</small></th>
-                                    <th><small>Bulan</small></th>
-                                    <th><small>Tahun</small></th>
-                                </tr> -->
                             </thead>
                             <tbody>
                                 <?php foreach ($departemen as $key => $value) { ?>
@@ -99,20 +60,6 @@
                                         <td><small><?= $this->M_total->query_count_metode_pengadaan($value['id_departemen'], 6);  ?></small></td>
                                         <td><small><?= $this->M_total->query_count_metode_pengadaan_tender($value['id_departemen']);  ?></small></td>
                                         <td><small><?= $this->M_total->query_count_metode_pengadaan_total($value['id_departemen']);  ?></small></td>
-                                        <!-- <td><small><?= $kontrak_juksung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_pensung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_tender['total']; ?></small></td>
-                                        <td><small><?= $kontrak_total['total'] ?></small></td>
-                                        <td><small><?= $kontrak_juksung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_pensung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_tender['total']; ?></small></td>
-                                        <td><small><?= $kontrak_total['total'] ?></small></td>
-                                        <td><small><?= $kontrak_juksung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_pensung['total']; ?></small></td>
-                                        <td><small><?= $kontrak_tender['total']; ?></small></td>
-                                        <td><small><?= $kontrak_total['total'] ?></small></td>
-                                        <td><small><?= date('d-m-Y') ?></small></td>
-                                        <td><small><?= date('Y') ?></small></td> -->
                                     </tr>
                                  <?php } ?>
                             </tbody>

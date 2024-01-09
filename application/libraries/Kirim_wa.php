@@ -16,8 +16,8 @@ class Kirim_wa
     }
     public function kirim_wa_vendor_aktif($nomor_telpon)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
-        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
 
         $curl = curl_init();
@@ -47,8 +47,8 @@ class Kirim_wa
 
     public function kirim_wa_vendor_terdaftar($nomor_telpon, $pesan)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
-        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $target = $nomor_telpon;
         $pesan = str_replace("-", " ", $pesan);
         $curl = curl_init();
@@ -78,7 +78,8 @@ class Kirim_wa
 
     public function kirim_wa_pengumuman($id_rup)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
         $data_vendor = array();

@@ -1714,7 +1714,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function get_vendor_negosiasi()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi($id_rup);
         $output = [
             'result_vendor_negosiasi' => $result_vendor_negosiasi,
         ];

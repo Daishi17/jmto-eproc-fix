@@ -29,6 +29,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('template_tender/header');
 		$this->load->view('panitia/dashboard', $data);
 		$this->load->view('template_tender/footer');
-		$this->load->view('panitia/info_tender/beranda/ajax');
+		$this->load->view('panitia/ajax_dashboard');
 	}
 }
