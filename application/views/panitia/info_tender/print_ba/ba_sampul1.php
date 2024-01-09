@@ -135,21 +135,21 @@ function terbilang($nilai)
             </center>
             <hr size="5">
             <center>
-                <div style="font-size:15px">
-                    <label class="font-weight-bold">Nomor : <?= $row_rup['ba_sampul1_no'] ?></label>
+                <div>
+                    <label class=" font-weight-bold">Nomor : <?= $row_rup['ba_sampul1_no'] ?></label>
                     <br>
                     <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_sampul1_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify;">
                     Pada Hari ini <b><?= $row_rup['ba_sampul1_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul1_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul1_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB , Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022, Tanggal 01 Agustus 2022, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor: 39/KPTS-JMTO/2022, Tanggal 28 April 2022 tentang Standar Prosedur Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan Perusahaan;
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify;">
                     telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
                 </p>
 
@@ -318,13 +318,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                <tr>
-                                                    <td><?= $i++ ?></td>
-                                                    <td></td>
-                                                    <td><?= $value['nama_usaha'] ?></td>
-                                                    <td></td>
-                                                    <td><span class="badge bg-success">Setuju</span></td>
-                                                </tr>
+                                                        <tr>
+                                                            <td><?= $i++ ?></td>
+                                                            <td></td>
+                                                            <td><?= $value['nama_usaha'] ?></td>
+                                                            <td></td>
+                                                            <td><span class="badge bg-success">Setuju</span></td>
+                                                        </tr>
                         <?php } ?>
 
                     </tbody>

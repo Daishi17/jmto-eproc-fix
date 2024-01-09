@@ -146,7 +146,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_sampul2_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (File II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> secara langsung yang dihadiri oleh panitia dan peserta <?= $row_rup['nama_metode_pengadaan'] ?>.
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (File II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b>.
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
@@ -328,13 +328,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                            <tr>
-                                                <td><?= $i++ ?></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><?= $value['nama_usaha'] ?></td>
-                                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                                            </tr>
+                                                    <tr>
+                                                        <td><?= $i++ ?></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><?= $value['nama_usaha'] ?></td>
+                                                        <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                                    </tr>
                         <?php } ?>
 
                     </tbody>

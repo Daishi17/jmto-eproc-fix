@@ -1767,6 +1767,12 @@
                                         <input type="date" name="ba_evaluasi_teknis_tgl2" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_tgl2')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_tgl2'] ?>">
                                     </th>
                                 </tr>
+                                <tr>
+                                    <th>Total Peserta Lulus Evaluasi Teknis</th>
+                                    <th>
+                                        <input type="number" min="0" name="ba_evaluasi_teknis_total_lolos" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_total_lolos')" placeholder="Total Peserta Lulus Evaluasi Teknis" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?>">
+                                    </th>
+                                </tr>
                             </table>
 
                             <div class="card">
@@ -1774,7 +1780,7 @@
                                     <label for="">Unsur yang dinilai pada tahapan Evaluasi Teknis </label>
                                 </div>
                                 <div class="card-body">
-                                    <a href="javascript:;" class="btn btn-sm btn-success pull-right" onclick="modal_tambah_ba_evaluasi()">+ Tambah Tahapan Evaluasi</a>
+                                    <a href="javascript:;" class="btn btn-sm btn-success pull-right" onclick="modal_tambah_ba_evaluasi()">+ Tambah Unsur Evaluasi</a>
                                     <br>
                                     <br>
                                     <table class="table table-bordered">
