@@ -646,10 +646,12 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
         // get nilai penawaran terendah
         $get_min_penawaran = $this->M_panitia->get_min_penawaran($id_rup_post);
-        $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
-        $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
-
-
+        if ($get_min_penawaran) {
+            $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
+            $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
+        } else {
+            $total_usulan_biaya = 0;
+        }
         if ($total_usulan_biaya == 0) {
             $data = [
                 'nilai_penawaran' => $nilai_penawaran,
@@ -663,7 +665,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_evaluasi($data, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-
             $data = [
                 'nilai_penawaran' => $nilai_penawaran,
                 'ev_penawaran_teknis' => $ev_penawaran_teknis,

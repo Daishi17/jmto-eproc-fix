@@ -1337,6 +1337,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
+        $this->db->where('tbl_vendor_mengikuti_paket.nilai_penawaran !=', 0);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
         $query = $this->db->get();
         return $query->row_array();
