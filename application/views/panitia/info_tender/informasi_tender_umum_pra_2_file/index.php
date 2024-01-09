@@ -178,10 +178,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                </td>
-                                                            <?php } else { ?>
-                                                            <?php }
-                                                            ?>
+                                                                    </td>
+                                                                <?php } else { ?>
+                                                                <?php }
+                                                                ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -437,7 +437,7 @@
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran Sampul I (Administrasi Dan Teknis)</th>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_I/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -455,7 +455,7 @@
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul2_no']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran Sampul II</th>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File II</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -556,7 +556,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-8">
-                    <center>
+                        <center>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1" onkeyup="Cek_token()">

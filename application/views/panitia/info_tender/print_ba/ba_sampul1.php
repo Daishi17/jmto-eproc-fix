@@ -3,7 +3,7 @@
 
 <head>
     <title>BERITA ACARA
-        PEMBUKAAN DOKUMEN PENAWARAN SAMPUL I (ADMINISTRASI DAN TEKNIS)
+        PEMBUKAAN DOKUMEN PENAWARAN FILE I (ADMINISTRASI DAN TEKNIS)
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -130,7 +130,7 @@ function terbilang($nilai)
             </div>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN SAMPUL I (ADMINISTRASI DAN TEKNIS)</h4>
+                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN FILE I (ADMINISTRASI DAN TEKNIS)</h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> PT JASA MARGA TOLLROAD OPERATOR</h5>
             </center>
             <hr size="5">
@@ -150,7 +150,7 @@ function terbilang($nilai)
                 </p>
 
                 <p style="text-align:justify; font-size:15px">
-                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (Sampul I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
+                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
                 </p>
 
                 <ol type="I">
@@ -221,7 +221,7 @@ function terbilang($nilai)
                     <li class="mt-3">
                         <p><b>JALANNYA ACARA PEMASUKAN DOKUMEN PENAWARAN : </b></p>
                         <ol type="a">
-                            <li>Panitia menerima pemasukan Dokumen Penawaran dilanjutkan dengan pembukaan penawaran terhadap Sampul I (Dokumen Administrasi dan Dokumen Teknis) serta memeriksa syarat Dokumen Penawaran.</li>
+                            <li>Panitia menerima pemasukan Dokumen Penawaran dilanjutkan dengan pembukaan penawaran terhadap File I (Dokumen Administrasi dan Dokumen Teknis) serta memeriksa syarat Dokumen Penawaran.</li>
                             <li>Setelah memeriksa Dokumen Penawaran, Panitia menetapkan kesesuaian Dokumen Administrasi dan Dokumen Teknis Penyedia Jasa yang memasukan dokumen penawaran.</li>
                             <li>Hasil Pemeriksaan Dokumen Administrasi dan Dokumen Teknis Penawaran dengan rincian pengecekan sebagaimana Lampiran Berita Acara Pembukaan Penawaran sebagai berikut :</li>
                         </ol>
@@ -318,13 +318,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                <tr>
-                                    <td><?= $i++ ?></td>
-                                    <td></td>
-                                    <td><?= $value['nama_usaha'] ?></td>
-                                    <td></td>
-                                    <td><span class="badge bg-success">Setuju</span></td>
-                                </tr>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td></td>
+                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td></td>
+                                        <td><span class="badge bg-success">Setuju</span></td>
+                                    </tr>
                         <?php } ?>
 
                     </tbody>
