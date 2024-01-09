@@ -1220,7 +1220,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     {
         $id_url_rup = $this->input->post('id_url_rup');
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
-        $message = 'Token = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
+        $message = 'Kodefikasi = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
         $no_telpon = $this->session->userdata('no_telpon');
         $this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $message);
         // $type_email = 'token_penawaran';

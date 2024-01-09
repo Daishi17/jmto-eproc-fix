@@ -1190,13 +1190,13 @@
                 },
                 success: function(response) {
                     if (response == 'success') {
-                        Swal.fire('Token Valid!', '', 'success')
+                        Swal.fire('Kodefikasi Valid!', '', 'success')
                         setTimeout(() => {
                             $('.btn_buka_penawaran').attr("disabled", false);
                             window.open(url_buka_penawaran_token + id_url_rup, '_blank');
                         }, 2000);
                     } else {
-                        Swal.fire('Token Anda Tidak Valid!', '', 'warning')
+                        Swal.fire('Kodefikasi Anda Tidak Valid!', '', 'warning')
                         $('.btn_buka_penawaran').attr("disabled", false);
                     }
                 }
