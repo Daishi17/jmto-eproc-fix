@@ -715,6 +715,18 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_panitia_ketua_sekertaris($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->join('tbl_manajemen_user', 'tbl_panitia.id_manajemen_user = tbl_manajemen_user.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where_in('tbl_panitia.role_panitia', [1, 2]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_panitia_role($id_rup)
     {
         $this->db->select('*');
@@ -2574,5 +2586,14 @@ class M_panitia extends CI_Model
     {
         $this->db->update('tbl_panitia', $data, $where);
         return $this->db->affected_rows();
+    }
+
+    public function get_row_alasan_jadwal($id_jadwal_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_jadwal_rup', $id_jadwal_rup);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 }

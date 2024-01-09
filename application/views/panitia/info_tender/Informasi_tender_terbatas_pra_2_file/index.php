@@ -555,13 +555,13 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-8">
-                        <center>
+                    <center>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="token_syalala" placeholder="Masukan Kodefikasi..." aria-describedby="basic-addon1" onkeyup="Cek_token()">
                             </div>
-                            <br>
-                            <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_buka_penawaran" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
+                            <a onclick="kirim_token_ke_wa('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-warning btn_dapatkan_token" style="width: 300px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Kirim Kodefikasi ke WhatsApp</a>
+                            <a target="_blank" onclick="buka_penawaran('<?= $row_rup['id_url_rup'] ?>')" class="btn btn-success btn_buka_penawaran" style="width: 300px;display:none"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Akses Dokumen</a>
                         </center>
                     </div>
                     <div class="col-md-2">
