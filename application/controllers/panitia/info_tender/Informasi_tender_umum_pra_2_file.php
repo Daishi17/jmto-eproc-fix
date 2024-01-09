@@ -652,7 +652,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $get_min_penawaran = $this->M_panitia->get_min_penawaran($id_rup_post);
         $cek_udah_ada_table = $this->M_panitia->cek_udah_ada_table($id_rup_post);
         if (!$cek_udah_ada_table) {
-            if ($get_min_penawaran['nilai_penawaran']  != 0) {
+            if ($nilai_penawaran != 0) {
                 $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
                 $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
                 $data = [
@@ -682,7 +682,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 $this->output->set_content_type('application/json')->set_output(json_encode('success'));
             }
         } else {
-            if ($get_min_penawaran['nilai_penawaran']  != 0) {
+            if ($nilai_penawaran != 0) {
                 $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
                 $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
                 $data = [
@@ -713,7 +713,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $get_usulan_biaya2 = $get_min_penawaran2['min_nilai_penawaran'];
             $peserta = $this->M_panitia->get_peserta_tender_penawaran($id_rup_post);
             foreach ($peserta as $key => $value) {
-                if ($get_min_penawaran2['nilai_penawaran'] != 0) {
+                if ($value['nilai_penawaran'] != 0) {
                     $get_usulan_biaya2 = $get_min_penawaran2['min_nilai_penawaran'];
                     $total_usulan_biaya2 = $get_usulan_biaya2 / $value['nilai_penawaran'] * 100;
                 } else {
@@ -733,25 +733,16 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
             // update nilai akhir keseluruhan
             $peserta2 = $this->M_panitia->get_peserta_tender_penawaran($id_rup_post);
-            if ($peserta2) {
-                foreach ($peserta2 as $key => $value2) {
-                    $data3 = [
-                        'ev_penawaran_akhir' => $value2['ev_penawaran_teknis'] * $bobot_teknis / 100  + $value2['ev_penawaran_biaya'] * $bobot_biaya / 100
-                    ];
-                    $where3 = [
-                        'id_vendor_mengikuti_paket'    => $value2['id_vendor_mengikuti_paket']
-                    ];
-                    $this->M_panitia->update_evaluasi($data3, $where3);
-                }
-            } else {
+            foreach ($peserta2 as $key => $value2) {
                 $data3 = [
-                    'ev_penawaran_akhir' => 0
+                    'ev_penawaran_akhir' => $value2['ev_penawaran_teknis'] * $bobot_teknis / 100  + $value2['ev_penawaran_biaya'] * $bobot_biaya / 100
                 ];
                 $where3 = [
-                    'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
+                    'id_vendor_mengikuti_paket'    => $value2['id_vendor_mengikuti_paket']
                 ];
                 $this->M_panitia->update_evaluasi($data3, $where3);
             }
+
             // update peringkat keseluruhan
             $peserta3 = $this->M_panitia->get_peserta_tender_nilai_akhir($id_rup_post);
             $i = 1;
