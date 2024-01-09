@@ -131,7 +131,7 @@ function terbilang($nilai)
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN HARGA (FILE II) <?= $row_rup['nama_metode_pengadaan'] ?></h4>
-                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> PT JASA MARGA TOLLROAD OPERATOR</h5>
+                <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> </h5>
             </center>
             <hr size="5">
             <center>
@@ -146,7 +146,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_sampul2_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (File II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?>PT Jasamarga Tollroad Operator</b> secara langsung yang dihadiri oleh panitia dan peserta <?= $row_rup['nama_metode_pengadaan'] ?>.
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul2_tgl_pelaksanaan'])) ?>)</b>, panitia Pengadaan Barang dan Jasa yang dibentuk melalui keputusan Direksi PT Jasamarga Tollroad Operator nomor: 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan keputusan Direksi PT Jasamarga Tollroad Operator nomor: 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang standar prosedur pelaksanaan pengadaan barang/jasa di lingkungan perusahaan telah melaksanakan pembukaan penawaran harga (File II) <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> secara langsung yang dihadiri oleh panitia dan peserta <?= $row_rup['nama_metode_pengadaan'] ?>.
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
@@ -328,13 +328,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
-                                        <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                                    </tr>
+                                            <tr>
+                                                <td><?= $i++ ?></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><?= $value['nama_usaha'] ?></td>
+                                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                            </tr>
                         <?php } ?>
 
                     </tbody>
