@@ -2026,6 +2026,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 2) {
             $('#ba_1').hide();
             $('#ba_2').show();
@@ -2038,6 +2040,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 3) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2050,6 +2054,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 4) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2062,6 +2068,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 5) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2074,6 +2082,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 6) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2086,6 +2096,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 7) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2098,6 +2110,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 8) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2110,6 +2124,8 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 9) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2122,6 +2138,8 @@
             $('#ba_9').show();
             $('#ba_10').hide();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 10) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2134,6 +2152,8 @@
             $('#ba_9').hide();
             $('#ba_10').show();
             $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
         } else if (jenis_ba == 11) {
             $('#ba_1').hide();
             $('#ba_2').hide();
@@ -2146,10 +2166,38 @@
             $('#ba_9').hide();
             $('#ba_10').hide();
             $('#ba_11').show();
+            $('#ba_12').hide();
+            $('#ba_13').hide();
+        } else if (jenis_ba == 12) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+            $('#ba_11').hide();
+            $('#ba_12').show();
+            $('#ba_13').hide();
+        } else if (jenis_ba == 13) {
+            $('#ba_1').hide();
+            $('#ba_2').hide();
+            $('#ba_3').hide();
+            $('#ba_4').hide();
+            $('#ba_5').hide();
+            $('#ba_6').hide();
+            $('#ba_7').hide();
+            $('#ba_8').hide();
+            $('#ba_9').hide();
+            $('#ba_10').hide();
+            $('#ba_11').hide();
+            $('#ba_12').hide();
+            $('#ba_13').show();
         }
     }
-
-
     function onkeyup_ba_kualifikas_hadir(id_vendor_mengikuti_paket, post_type) {
         var value = $(`[name="ba_pembuktian_hadir${id_vendor_mengikuti_paket}"]`).val()
         var url_post_ba_kualifikasi_hadir = $('[name="url_post_ba_kualifikasi_hadir"]').val()

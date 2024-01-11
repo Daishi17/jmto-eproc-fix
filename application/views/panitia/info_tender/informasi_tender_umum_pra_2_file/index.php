@@ -477,6 +477,25 @@
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_klarifikasi_no']) { ?>
+                                                                <th>Pengumuman Pemenang Pengadaan</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
+                                                                <th>Pengumuman Hasil Evaluasi Teknis</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
+                                                                <th>Berita Acara Penjelasan Kualifikasi</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -585,34 +604,6 @@
                 <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-upload" aria-hidden="true"></i> Berita Acara dan Pengumuman Pengadaan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- <form id="form_upload_berita_acara_tender" action="javascript:;" enctype="multipart/form-data">
-                <input type="hidden" name="id_rup_ba_tender" value="<?= $row_rup['id_rup'] ?>">
-                <input type="hidden" name="nama_rup_ba_tender" value="<?= $row_rup['nama_rup'] ?>">
-                <div class="modal-body">
-                    <div class="alert alert-primary d-flex align-items-center" role="alert">
-                        <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Dokumen Umum Untuk Di Upload !!! <br>
-                            <ol>
-                                <li>Peringkat Teknis</li>
-                                <li>Peringkat Penawaran Harga</li>
-                                <li>Pengumuman Pemenang</li>
-                                <li>Undangan Presentasi</li>
-                                <li>Addendum Dokumen Pengadaan</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <br>
-                    <label>Nama File</label>
-                    <input type="text" class="form-control" name="nama_file" placeholder="Nama File">
-                    <br>
-                    <input type="file" class="form-control" accept=".xlsx, .xls, .pdf" name="file_ba">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
-                </div>
-            </form> -->
-
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
@@ -1289,35 +1280,6 @@
                 <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-upload" aria-hidden="true"></i> Berita Acara dan Pengumuman Pengadaan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- <form id="form_upload_berita_acara_tender" action="javascript:;" enctype="multipart/form-data">
-                <input type="hidden" name="id_rup_ba_tender" value="<?= $row_rup['id_rup'] ?>">
-                <input type="hidden" name="nama_rup_ba_tender" value="<?= $row_rup['nama_rup'] ?>">
-                <div class="modal-body">
-                    <div class="alert alert-primary d-flex align-items-center" role="alert">
-                        <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Dokumen Umum Untuk Di Upload !!! <br>
-                            <ol>
-                                <li>Peringkat Teknis</li>
-                                <li>Peringkat Penawaran Harga</li>
-                                <li>Pengumuman Pemenang</li>
-                                <li>Undangan Presentasi</li>
-                                <li>Addendum Dokumen Pengadaan</li>
-                                <li>Informasi Lainnya</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <br>
-                    <label>Nama File</label>
-                    <input type="text" class="form-control" name="nama_file" placeholder="Nama File">
-                    <br>
-                    <input type="file" class="form-control" accept=".xlsx, .xls, .pdf" name="file_ba">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
-                </div>
-            </form> -->
-
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
@@ -1336,6 +1298,8 @@
                     <option value="8">Berita Acara Klarifikasi Harga</option>
                     <option value="9">Pengumuman Pemenang Tender</option>
                     <option value="11">Berita Acara Presentasi Teknis Tender</option>
+                    <option value="12">Pengumuman Hasil Evaluasi Teknis</option>
+                    <option value="13">Berita Acara Penjelasan Kualifikasi</option>
                 </select>
                 <div class="row">
                     <div class="col-md-12">
@@ -1353,31 +1317,31 @@
                                     <tr>
                                         <th>Nomor Berita Acara</th>
                                         <th>
-                                            <input type="text" name="ba_pembuktian_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pembuktian_no'] ?>">
+                                            <input type="text" name="ba_pembuktian_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pembuktian_no'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Berita Acara</th>
                                         <th>
-                                            <input type="date" name="ba_pembuktian_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pembuktian_tgl'] ?>">
+                                            <input type="date" name="ba_pembuktian_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pembuktian_tgl'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Hari (Pelaksanaan)</th>
                                         <th>
-                                            <input type="text" name="ba_pembuktian_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_hari'] ?>">
+                                            <input type="text" name="ba_pembuktian_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_hari'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Tanggal (Pelaksanaan)</th>
                                         <th>
-                                            <input type="date" name="ba_pembuktian_tgl_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_tgl_pelaksanaan'] ?>">
+                                            <input type="date" name="ba_pembuktian_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_tgl_pelaksanaan'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Jam (Pelaksanaan)</th>
                                         <th>
-                                            <input type="text" name="ba_pembuktian_jam_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?>">
+                                            <input type="text" name="ba_pembuktian_jam_pelaksanaan" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pembuktian_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?>">
                                         </th>
                                     </tr>
                                 </table>
@@ -1432,19 +1396,19 @@
                                     <tr>
                                         <th>Nomor Berita Acara</th>
                                         <th>
-                                            <input type="text" name="ba_evaluasi_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_evaluasi_no'] ?>">
+                                            <input type="text" name="ba_evaluasi_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_evaluasi_no'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Hari Berita Acara</th>
                                         <th>
-                                            <input type="text" name="ba_evaluasi_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_hari')" placeholder="Hari" class="form-control" value="<?= $row_rup['ba_evaluasi_hari'] ?>">
+                                            <input type="text" name="ba_evaluasi_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_hari')" placeholder="Hari" class="form-control" value="<?= $row_rup['ba_evaluasi_hari'] ?>">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Berita Acara</th>
                                         <th>
-                                            <input type="date" name="ba_evaluasi_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_tgl'] ?>">
+                                            <input type="date" name="ba_evaluasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_tgl'] ?>">
                                         </th>
                                     </tr>
                                 </table>
@@ -1537,31 +1501,31 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_sampul1_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sampul1_no'] ?>">
+                                        <input type="text" name="ba_sampul1_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sampul1_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_sampul1_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_sampul1_tgl'] ?>">
+                                        <input type="date" name="ba_sampul1_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_sampul1_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_sampul1_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_hari'] ?>">
+                                        <input type="text" name="ba_sampul1_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal (Pelaksanaan)</th>
                                     <th>
-                                        <input type="date" name="ba_sampul1_tgl_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_tgl_pelaksanaan'] ?>">
+                                        <input type="date" name="ba_sampul1_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_tgl_pelaksanaan'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_sampul1_jam_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_jam_pelaksanaan'] ?>">
+                                        <input type="text" name="ba_sampul1_jam_pelaksanaan" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_jam_pelaksanaan'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -1646,61 +1610,61 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['undangan_rapat_no'] ?>">
+                                        <input type="text" name="undangan_rapat_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['undangan_rapat_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="undangan_rapat_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['undangan_rapat_tgl'] ?>">
+                                        <input type="date" name="undangan_rapat_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['undangan_rapat_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_haritgl" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_haritgl')" placeholder="ex. (Rabu, 09 Agustus 2023)" class="form-control" value="<?= $row_rup['undangan_rapat_haritgl'] ?>">
+                                        <input type="text" name="undangan_rapat_haritgl" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_haritgl')" placeholder="ex. (Rabu, 09 Agustus 2023)" class="form-control" value="<?= $row_rup['undangan_rapat_haritgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tempat (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_tempat" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tempat')" placeholder="Tempat Pelaksanaan" class="form-control" value="<?= $row_rup['undangan_rapat_tempat'] ?>">
+                                        <input type="text" name="undangan_rapat_tempat" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tempat')" placeholder="Tempat Pelaksanaan" class="form-control" value="<?= $row_rup['undangan_rapat_tempat'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Waktu (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_waktu" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_waktu')" placeholder="ex. (Terlampir)" class="form-control" value="<?= $row_rup['undangan_rapat_waktu'] ?>">
+                                        <input type="text" name="undangan_rapat_waktu" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_waktu')" placeholder="ex. (Terlampir)" class="form-control" value="<?= $row_rup['undangan_rapat_waktu'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Durasi Sesi 1</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_sesi1" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi1')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi1'] ?>">
+                                        <input type="text" name="undangan_rapat_sesi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi1')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi1'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Durasi Sesi 2</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_sesi2" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi2')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi2'] ?>">
+                                        <input type="text" name="undangan_rapat_sesi2" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi2')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi2'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Durasi Sesi 3</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_sesi3" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi3')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi3'] ?>">
+                                        <input type="text" name="undangan_rapat_sesi3" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi3')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi3'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Durasi Sesi 4</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_sesi4" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi4')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi4'] ?>">
+                                        <input type="text" name="undangan_rapat_sesi4" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_sesi4')" placeholder="ex. (15 menit)" class="form-control" value="<?= $row_rup['undangan_rapat_sesi4'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Pengiriman Waktu Materi</th>
                                     <th>
-                                        <input type="text" name="undangan_rapat_waktu_materi" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_waktu_materi')" placeholder="ex. Senin, 07 Agustus 2023 Pukul 17.00" class="form-control" value="<?= $row_rup['undangan_rapat_waktu_materi'] ?>">
+                                        <input type="text" name="undangan_rapat_waktu_materi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_waktu_materi')" placeholder="ex. Senin, 07 Agustus 2023 Pukul 17.00" class="form-control" value="<?= $row_rup['undangan_rapat_waktu_materi'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -1746,31 +1710,31 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_evaluasi_teknis_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_no'] ?>">
+                                        <input type="text" name="ba_evaluasi_teknis_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_evaluasi_teknis_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_tgl'] ?>">
+                                        <input type="date" name="ba_evaluasi_teknis_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_evaluasi_teknis_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_hari'] ?>">
+                                        <input type="text" name="ba_evaluasi_teknis_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal (Pelaksanaan)</th>
                                     <th>
-                                        <input type="date" name="ba_evaluasi_teknis_tgl2" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_tgl2')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_tgl2'] ?>">
+                                        <input type="date" name="ba_evaluasi_teknis_tgl2" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_tgl2')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_tgl2'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Total Peserta Lulus Evaluasi Teknis</th>
                                     <th>
-                                        <input type="number" min="0" name="ba_evaluasi_teknis_total_lolos" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_total_lolos')" placeholder="Total Peserta Lulus Evaluasi Teknis" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?>">
+                                        <input type="number" min="0" name="ba_evaluasi_teknis_total_lolos" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_total_lolos')" placeholder="Total Peserta Lulus Evaluasi Teknis" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -1814,31 +1778,31 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_sampul2_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sampul2_no'] ?>">
+                                        <input type="text" name="ba_sampul2_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sampul2_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_sampul2_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_sampul2_tgl'] ?>">
+                                        <input type="date" name="ba_sampul2_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_sampul2_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_sampul2_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_hari'] ?>">
+                                        <input type="text" name="ba_sampul2_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal (Pelaksanaan)</th>
                                     <th>
-                                        <input type="date" name="ba_sampul2_tgl_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_tgl_pelaksanaan'] ?>">
+                                        <input type="date" name="ba_sampul2_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_tgl_pelaksanaan'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_sampul2_jam_pelaksanaan" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_jam_pelaksanaan'] ?>">
+                                        <input type="text" name="ba_sampul2_jam_pelaksanaan" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul2_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul2_jam_pelaksanaan'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -1858,51 +1822,51 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_negosiasi_no'] ?>">
+                                        <input type="text" name="ba_negosiasi_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_negosiasi_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_negosiasi_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_negosiasi_tgl'] ?>">
+                                        <input type="date" name="ba_negosiasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_negosiasi_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_negosiasi_hari'] ?>">
+                                        <input type="text" name="ba_negosiasi_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_negosiasi_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_jam" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_negosiasi_jam'] ?>">
+                                        <input type="text" name="ba_negosiasi_jam" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_negosiasi_jam'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Nama Perusahaan</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_vendor" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
+                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_penawaran" id="value_ba_kualifikasi1" class="form-control number_only" onkeydown="format_rupiah_ba_sampul2()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
+                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeydown="format_rupiah_ba_sampul2()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
                                         <input type="text" class="form-control" name="ba_negosiasi_penawaran2" value="Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_harga" id="value_ba_kualifikasi1" class="form-control number_only" onkeydown="format_rupiah_ba_sampul3()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
+                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeydown="format_rupiah_ba_sampul3()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
                                         <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jabatan Pengajuan Kepada</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_usulan_jabatan" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_usulan_jabatan')" placeholder="ex. Direktur Utama" class="form-control" value="<?= $row_rup['ba_negosiasi_usulan_jabatan'] ?>">
+                                        <input type="text" name="ba_negosiasi_usulan_jabatan" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_usulan_jabatan')" placeholder="ex. Direktur Utama" class="form-control" value="<?= $row_rup['ba_negosiasi_usulan_jabatan'] ?>">
                                     </th>
                                 </tr>
 
@@ -1922,37 +1886,37 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_klarifikasi_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_klarifikasi_no'] ?>">
+                                        <input type="text" name="ba_klarifikasi_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_klarifikasi_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_klarifikasi_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_klarifikasi_tgl'] ?>">
+                                        <input type="date" name="ba_klarifikasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_klarifikasi_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_klarifikasi_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_klarifikasi_hari'] ?>">
+                                        <input type="text" name="ba_klarifikasi_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_klarifikasi_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_klarifikasi_jam" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_klarifikasi_jam'] ?>">
+                                        <input type="text" name="ba_klarifikasi_jam" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_klarifikasi_jam'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Penilaian Kewajaran Harga terhadap semua Harga Satuan Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_klarifikasi_penilaian" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_penilaian')" placeholder="ex. (Tidak ditemukan)" class="form-control" value="<?= $row_rup['ba_klarifikasi_penilaian'] ?>">
+                                        <input type="text" name="ba_klarifikasi_penilaian" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_penilaian')" placeholder="ex. (Tidak ditemukan)" class="form-control" value="<?= $row_rup['ba_klarifikasi_penilaian'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Satuan Penawaran yang kurang dari 80% terhadap Harga Satuan dalam Harga Perkiraan Sendiri (HPS) </th>
                                     <th>
-                                        <input type="text" name="ba_klarifikasi_penilaian2" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_penilaian2')" placeholder="ex. (Tidak ditemukan)" class="form-control" value="<?= $row_rup['ba_klarifikasi_penilaian2'] ?>">
+                                        <input type="text" name="ba_klarifikasi_penilaian2" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_klarifikasi_penilaian2')" placeholder="ex. (Tidak ditemukan)" class="form-control" value="<?= $row_rup['ba_klarifikasi_penilaian2'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -1971,25 +1935,25 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_penjelasan_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_penjelasan_no'] ?>">
+                                        <input type="text" name="ba_penjelasan_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_penjelasan_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_penjelasan_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_penjelasan_tgl'] ?>">
+                                        <input type="date" name="ba_penjelasan_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_penjelasan_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_penjelasan_hari" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_hari')" placeholder="Hari" class="form-control" value="<?= $row_rup['ba_penjelasan_hari'] ?>">
+                                        <input type="text" name="ba_penjelasan_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_hari')" placeholder="Hari" class="form-control" value="<?= $row_rup['ba_penjelasan_hari'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
-                                        <input type="text" name="ba_penjelasan_jam" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_jam'] ?>">
+                                        <input type="text" name="ba_penjelasan_jam" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_jam'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -2009,19 +1973,19 @@
                                 <tr>
                                     <th>Nomor Berita Acara</th>
                                     <th>
-                                        <input type="text" name="ba_pemenang_no" id="value_ba_kualifikasi1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
+                                        <input type="text" name="ba_pemenang_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Berita Acara</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
+                                        <input type="date" name="ba_pemenang_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Persetujuan Direktur Utama</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl_persetujuan" id="value_ba_kualifikasi1" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
+                                        <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -2045,6 +2009,84 @@
                                         </tr>
                                     <?php } ?>
                                 </tbody>
+                            </table>
+                        </div>
+                        <div id="ba_12" style="display: block;" class="mt-3">
+                            <div class="d-flex">
+                                <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_pengumuman_hasil_evaluasi_teknis' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_pengumuman_hasil_evaluasi_teknis','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_pengumuman_hasil_evaluasi_teknis','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_pengumuman_hasil_evaluasi_teknis')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                            </div>
+                            <br>
+                            <br>
+                            <form action="javascript:;">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Nomor Pengumuman Hasil Evaluasi Teknis</th>
+                                        <th>
+                                            <input type="text" name="ba_pengumuman_hasil_evaluasi_teknis_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pengumuman_hasil_evaluasi_teknis_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pengumuman_hasil_evaluasi_teknis_no'] ?>">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Pengumuman Hasil Evaluasi Teknis</th>
+                                        <th>
+                                            <input type="date" name="ba_pengumuman_hasil_evaluasi_teknis_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pengumuman_hasil_evaluasi_teknis_tgl')" placeholder="Tanggal Pengumuman" class="form-control" value="<?= $row_rup['ba_pengumuman_hasil_evaluasi_teknis_tgl'] ?>">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>IKP Pasal</th>
+                                        <th>
+                                            <input type="text" name="ba_pengumuman_hasil_evaluasi_ikp" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pengumuman_hasil_evaluasi_ikp')" placeholder="Ayat pasal IKP" class="form-control" value="<?= $row_rup['ba_pengumuman_hasil_evaluasi_ikp'] ?>">
+                                        </th>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div id="ba_13" style="display: none;" class="mt-3">
+                            <div class="d-flex">
+                                <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_penjelasan_kualifiaksi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+
+                                &ensp;&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan_kualifikasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_penjelasan_kualifikasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                            </div>
+
+                            <br>
+                            <br>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nomor Berita Acara</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_kualifikasi_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_kualifikasi_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_penjelasan_kualifikasi_no'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Berita Acara</th>
+                                    <th>
+                                        <input type="date" name="ba_penjelasan_kualifikasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_kualifikasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_penjelasan_kualifikasi_tgl'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Hari (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_kualifikasi_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_kualifikasi_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_kualifikasi_hari'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="date" name="ba_penjelasan_kualifikasi_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_kualifikasi_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_kualifikasi_tgl_pelaksanaan'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Jam (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_penjelasan_kualifikasi_jam" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_penjelasan_kualifikasi_jam')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_penjelasan_kualifikasi_jam'] ?>">
+                                    </th>
+                                </tr>
                             </table>
                         </div>
                     </div>
