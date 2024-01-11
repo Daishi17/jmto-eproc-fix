@@ -472,7 +472,7 @@
                                 <p>Kode Tender : <?= $row_rup['kode_rup'] ?></p>
                             </div>
                         </div>
-                        <span id="action_menu_btn"><img src="<?= base_url('assets/jmto_logo.jfif') ?>" width="250px" alt=""><img src="<?= base_url('assets/img/jmtm2.png') ?>" width="250px" alt=""></span>
+                        <span id="action_menu_btn"><img src="<?= base_url('assets/img/logo_asli.png') ?>" width="250px" alt=""></span>
                     </div>
                     <div class="card-body msg_card_body" id="letakpesan">
 
