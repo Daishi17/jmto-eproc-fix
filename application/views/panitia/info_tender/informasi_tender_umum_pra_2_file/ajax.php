@@ -2198,6 +2198,7 @@
             $('#ba_13').show();
         }
     }
+
     function onkeyup_ba_kualifikas_hadir(id_vendor_mengikuti_paket, post_type) {
         var value = $(`[name="ba_pembuktian_hadir${id_vendor_mengikuti_paket}"]`).val()
         var url_post_ba_kualifikasi_hadir = $('[name="url_post_ba_kualifikasi_hadir"]').val()

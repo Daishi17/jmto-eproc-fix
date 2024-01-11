@@ -2398,6 +2398,22 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
     }
 
+    public function ba_pengumuman_hasil_evaluasi_teknis($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_pengumuman_hasil_evaluasi_teknis', $data);
+    }
+
+    public function ba_penjelasan_kualifiaksi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_penjelasan_kualifikasi', $data);
+    }
+
     public function lihat_undangan_penawran($id_url_rup)
     {
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
@@ -2419,5 +2435,34 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender'] = $this->M_panitia->cek_direktur_utama($data['mengikuti']['id_vendor']);
         $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
+    }
+
+    public function save_status_ba()
+    {
+        $type = $this->input->post('type');
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+
+        $data = [
+            $post => $type,
+        ];
+
+        $where = [
+            'id_rup' => $id_rup,
+            'id_manajemen_user' => $this->session->userdata('id_manajemen_user')
+        ];
+        $this->M_panitia->panitia_mengikuti_update($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function save_status_kirim()
+    {
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+        $data = [
+            $post => 1,
+        ];
+        $this->M_panitia->update_rup_panitia($id_rup, $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

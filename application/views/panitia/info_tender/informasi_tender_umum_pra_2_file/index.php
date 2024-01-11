@@ -486,16 +486,16 @@
                                                         <tr>
                                                             <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
                                                                 <th>Pengumuman Hasil Evaluasi Teknis</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
                                                                 <th>Berita Acara Penjelasan Kualifikasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
-                                                        
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -596,37 +596,6 @@
     </div>
 </div>
 
-<!-- modal ba penawaran -->
-<div class="modal fade" id="upload_berita_acara_penawaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-upload" aria-hidden="true"></i> Berita Acara dan Pengumuman Pengadaan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-primary d-flex align-items-center" role="alert">
-                    <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Pilih BA / Pengumuman Yang Ingin Di Buat!!! <br>
-                        <select name="" id="" class="form-control form-sm">
-                            <option value="1">Berita Acara Pembuktian Kualifikasi</option>
-                            <option value="2">Berita Acara Hasil Evaluasi</option>
-                            <option value="3">Berita Acara Sampul I</option>
-                            <option value="4">Undangan Rapat Presentasi Teknis</option>
-                            <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
-                            <option value="6">Berita Acara Hasil Evaluasi Teknis</option>
-                            <option value="7">Berita Acara Pembukaan Sampul II</option>
-                            <option value="8">Berita Acara Evaluasi dan Negosiasi Harga</option>
-                            <option value="9">Berita Acara Klarifikasi Harga</option>
-                            <option value="10">Berita Acara Presentasi Teknis Tender</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end modal ba penawaran -->
 
 <div class="modal fade" id="pengumuman_pemenang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -2011,7 +1980,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="ba_12" style="display: block;" class="mt-3">
+                        <div id="ba_12" style="display: none;" class="mt-3">
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_pengumuman_hasil_evaluasi_teknis' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pengumuman_hasil_evaluasi_teknis','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
@@ -2167,6 +2136,52 @@
                 <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_undangan_penawaran')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
                 <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_notifikasi_dokumen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Kirim Perubahan Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id_dokumen_pengadaan">
+                <input type="hidden" name="type_notif_dokumen">
+                <div class="form-group">
+                    <label for="">Keterangan</label>
+                    <input type="text" name="keterangan_dokumen" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="javascript:;" class="btn btn-primary" onclick="kirim_perubahan_dokumen()"> Kirim</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_notifikasi_dokumen_prakualifikasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Kirim Perubahan Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id_dokumen_prakualifikasi">
+                <input type="hidden" name="type_notif_dokumen">
+                <div class="form-group">
+                    <label for="">Keterangan</label>
+                    <input type="text" name="keterangan_dokumen_pra" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="javascript:;" class="btn btn-primary" onclick="kirim_perubahan_dokumen()"> Kirim</a>
             </div>
         </div>
     </div>
