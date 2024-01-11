@@ -102,12 +102,11 @@
                         var file1_administrasi = `<span class="badge bg-danger">Tidak Di Upload</span>`
                         var btn_file1_administrasi = `<a href="javascript:;" onclick="upload_file1(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_administrasi')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
                     }
-
                     if (response['row_vendor_mengikuti']['file1_teknis']) {
                         var file1_teknis = `<a target="_blank" href="${response.link_vendor + 'file_paket/' + response['rup'].nama_rup + '/' + response['row_vendor_mengikuti'].nama_usaha + '/' + 'DOKUMEN_PENGADAAN_FILE_I' + '/' + response['row_vendor_mengikuti'].file1_teknis}" class="btn btn-sm btn-success text-white"><i class="fa fa-file"></i> Buka</a>`
                         var btn_file1_teknis = `<a href="javascript:;" onclick="upload_file1(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_teknis')" class="btn btn-sm btn-warning text-white"><i class="fa fa-upload"></i> Ubah</a>`
                     } else {
-                        var file1_teknis = `<span class="badge bg-danger">Tidak Di Upload</span>`
+                        var file1_teknis = ``
                         var btn_file1_teknis = `<a href="javascript:;" onclick="upload_file1(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_teknis')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
                     }
 

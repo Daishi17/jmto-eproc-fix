@@ -1826,13 +1826,16 @@ class M_panitia extends CI_Model
     var $order_vendor_mengikuti_paket_penawaran =  array('tbl_rup.id_rup', 'tbl_rup.kode_rup', 'tbl_rup.tahun_rup', 'tbl_rup.nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'tbl_rup.id_rup', 'tbl_rup.id_rup', 'tbl_rup.id_rup');
     private function _get_data_query_vendor_mengikuti_paket_penawaran($id_rup)
     {
+        $rup = $this->db->select('*')->where('id_rup', $id_rup)->get('tbl_rup')->row_array();
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
-        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >=', 60);
+        if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) { } else {
+            $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >=', 60);
+        }
         $i = 0;
         foreach ($this->order_vendor_mengikuti_paket_penawaran as $item) // looping awal
         {
@@ -1888,6 +1891,9 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         return $this->db->count_all_results();
     }
+
+
+
 
     var $order_vendor_dokumen_penawaran_file_I =  array('tbl_rup.id_dokumen_pengadaan_vendor', 'tbl_rup.id_dokumen_pengadaan_vendor');
     private function _get_data_query_vendor_dokumen_penawaran_file_I($id_rup, $id_vendor)
