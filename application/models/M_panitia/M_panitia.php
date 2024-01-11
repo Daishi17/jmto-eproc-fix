@@ -349,8 +349,7 @@ class M_panitia extends CI_Model
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Kecil', 'Menengah']);
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Kecil') {
             $this->db->where('tbl_vendor.kualifikasi_usaha', 'Kecil');
-        } else {
-        }
+        } else { }
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -544,10 +543,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_spt[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
         // // lolos_keuangan
         if ($cek_syarat_teknis['sts_checked_laporan_keuangan'] == 1) {
@@ -557,10 +554,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_laporan_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
         // // lolos_neraca_keuangan
         if ($cek_syarat_teknis['sts_checked_neraca_keuangan'] == 1) {
@@ -570,10 +565,8 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_neraca_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
-            } else {
-            }
-        } else {
-        }
+            } else { }
+        } else { }
 
 
         // cek_vendor terundang by_kbli
@@ -605,8 +598,7 @@ class M_panitia extends CI_Model
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where('tbl_vendor_siup.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_siup']);
             }
-        } else {
-        }
+        } else { }
 
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
@@ -2062,7 +2054,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
-        $this->db->order_by('tbl_vendor_mengikuti_paket.ev_akhir_hea_peringkat', 'ASC');
+        $this->db->order_by('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2073,7 +2065,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
-        $this->db->where('tbl_vendor_mengikuti_paket.ev_akhir_hea_peringkat', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat', 1);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $query = $this->db->get();
         return $query->row_array();

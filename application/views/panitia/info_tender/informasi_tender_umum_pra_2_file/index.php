@@ -627,7 +627,7 @@
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
-                                    <?php if ($value['ev_akhir_hea_peringkat'] == 1) { ?>
+                                    <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
                                         <i class="fas fa fa-star text-warning"></i>
                                     <?php   } else { ?>
                                         <i class="fas fa fa-times text-danger"></i>
@@ -1974,7 +1974,7 @@
                                         <tr>
                                             <td scope="row"><?= $no++ ?></td>
                                             <td><?= $value['nama_usaha'] ?></td>
-                                            <td><a class="btn btn-sm btn-primary" target="_blank" href="https://jmto-vms.kintekindo.net/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/Pakta_Integritas_-_Panitia.pdf"><i class="fa fa-eye"></i> Lihat</a></td>
+                                            <td><a class="btn btn-sm btn-primary" target="_blank" href="https://jmto-vms.kintekindo.net/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/<?= $value['ba_presentasi_teknis'] ?>"><i class="fa fa-eye"></i> Lihat</a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -2121,7 +2121,7 @@
                         <tr>
                             <th>Nilai Jaminan Penawaran</th>
                             <th>
-                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
+                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nilai Jaminan Penawaran" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
                             </th>
                         </tr>
                         <tr>

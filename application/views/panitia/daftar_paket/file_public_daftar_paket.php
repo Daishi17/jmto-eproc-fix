@@ -2365,3 +2365,23 @@
         });
     });
 </script>
+
+<script>
+    function setujui_pakta_integritas() {
+        var id_manajemen_user = $('[name="id_manajemen_user"]').val()
+        var id_rup_global = $('[name="id_rup_global"]').val()
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url('panitia/daftar_paket/daftar_paket/setujui_pakta_integritas') ?>',
+            data: {
+                id_manajemen_user: id_manajemen_user,
+                id_rup_global: id_rup_global
+            },
+            dataType: "JSON",
+            success: function(response) {
+                $('#modal-xl-pakta').modal('hide')
+                Swal.fire('Pakta Integritas Berhasil Di Setujui!', '', 'success')
+            }
+        })
+    }
+</script>

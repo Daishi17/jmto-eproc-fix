@@ -233,33 +233,10 @@ function terbilang($nilai)
                                         </tbody>
                                     </table>
                                     <p>Ketentuan : </p>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            ●
-                                        </div>
-                                        <div class="col-md-11">
-                                            <label for="" style="margin-left: -60px;">
-
-                                                Sesuai Dokumen IKP <?= $row_rup['ba_pengumuman_hasil_evaluasi_ikp'] ?> <b> Tahap 3 : Evaluasi Harga</b> “Evaluasi Harga dilakukan terhadap Penawaran yang <b> LULUS </b>Evaluasi Administrasi dan Evaluasi Teknis”.
-
-                                            </label>
-
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            ●
-                                        </div>
-                                        <div class="col-md-11">
-                                            <label for="" style="margin-left: -60px;">
-
-                                                Pembukaan Penawaran File II (Harga) dan Koreksi Aritmatika dilakukan oleh Panitia Pengadaan.
-
-                                            </label>
-
-                                        </div>
-                                    </div>
+                                    <ul>
+                                        <li>Sesuai Dokumen IKP <?= $row_rup['ba_pengumuman_hasil_evaluasi_ikp'] ?> <b> Tahap 3 : Evaluasi Harga</b> “Evaluasi Harga dilakukan terhadap Penawaran yang <b> LULUS </b>Evaluasi Administrasi dan Evaluasi Teknis”.</li>
+                                        <li> Pembukaan Penawaran File II (Harga) dan Koreksi Aritmatika dilakukan oleh Panitia Pengadaan.</li>
+                                    </ul>
                                     <div class="row">
                                         <p>Demikian disampaikan, atas perhatian dan kehadirannya, diucapkan terima kasih.</p>
                                     </div>
@@ -310,5 +287,5 @@ function terbilang($nilai)
 
 </html>
 <script>
-    // window.print();
+    window.print();
 </script>
