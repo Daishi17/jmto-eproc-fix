@@ -726,7 +726,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                     'ev_penawaran_biaya' => $total_usulan_biaya2,
                 ];
                 $where2 = [
-                    'id_vendor_mengikuti_paket'  => $value['id_vendor_mengikuti_paket']
+                    'id_vendor_mengikuti_paket'    => $value['id_vendor_mengikuti_paket']
                 ];
                 $this->M_panitia->update_evaluasi($data2, $where2);
             }
