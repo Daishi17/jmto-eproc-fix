@@ -2577,7 +2577,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function ba_pengumuman_hasil_evaluasi_teknis($id_url_rup)
     {
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
-        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_penawaran($data['row_rup']['id_rup']);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_pengumuman_hasil_evaluasi_teknis', $data);
     }
@@ -2757,6 +2757,33 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
+    public function simpan_kelengkapan_file2()
+    {
+
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $kelengkapan_file2_1 = $this->input->post('kelengkapan_file2_1');
+        $kelengkapan_file2_2 = $this->input->post('kelengkapan_file2_2');
+        $kelengkapan_file2_3 = $this->input->post('kelengkapan_file2_3');
+        $kelengkapan_file2_4 = $this->input->post('kelengkapan_file2_4');
+        $kelengkapan_file2_5 = $this->input->post('kelengkapan_file2_5');
+        $kelengkapan_file2_6 = $this->input->post('kelengkapan_file2_6');
+
+        $where = [
+            'id_vendor_mengikuti_paket' =>    $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'kelengkapan_file2_1' => $kelengkapan_file2_1,
+            'kelengkapan_file2_2' => $kelengkapan_file2_2,
+            'kelengkapan_file2_3' => $kelengkapan_file2_3,
+            'kelengkapan_file2_4' => $kelengkapan_file2_4,
+            'kelengkapan_file2_5' => $kelengkapan_file2_5,
+            'kelengkapan_file2_6' => $kelengkapan_file2_6,
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
     public function get_kelengkapan_file2($id_rup)
     {
         $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
@@ -2766,11 +2793,46 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            $row[] = $rs->nama_usaha;
+
+            if ($rs->kelengkapan_file2_1 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_2 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_3 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_4 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_5 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_6 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
 
 
             $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','ba_teknis'" . ')">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kelengkapan_file2'" . ')">
                     <i class="fa-solid fa-edit"></i>
                 </a>
               </div>';

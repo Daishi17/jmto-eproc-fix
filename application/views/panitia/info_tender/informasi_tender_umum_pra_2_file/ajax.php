@@ -369,6 +369,10 @@
                     $('#modal_ba_teknis').modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                } else if (type == 'kelengkapan_file2') {
+                    $('#modal_kelengkapan_file2').modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
                 }
 
             }
@@ -2889,7 +2893,53 @@
         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
     });
 
-    function load_table_ba_teknis() {
+    function load_table_kelengkapan_file2() {
         $('#tbl_kelengkapan_file2').DataTable().ajax.reload();
     }
+
+    var form_evaluasi_kelengkapan_file2 = $('#form_evaluasi_kelengkapan_file2')
+    form_evaluasi_kelengkapan_file2.on('submit', function(e) {
+        var url_simpan_kelengkapan_file2 = $('[name="url_simpan_kelengkapan_file2"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_simpan_kelengkapan_file2,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_penawaran_ba').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_kelengkapan_file2').modal('hide')
+                        form_evaluasi_kelengkapan_file2[0].reset();
+                        load_table_kelengkapan_file2()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+            }
+        })
+    })
 </script>
