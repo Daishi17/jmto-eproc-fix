@@ -277,28 +277,32 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
 
             if ($rs->ev_penawaran_hps) {
-                $row[] =  number_format($rs->ev_penawaran_hps, 2, ',', '.');
+                $row[] =  number_format($rs->ev_penawaran_hps, 2, ',', '.'). '%';
             } else {
                 $row[] =  '0,00';
             }
 
-            if ($rs->ev_penawaran_biaya) {
-                $row[] =  number_format($rs->ev_penawaran_biaya, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0 ) {
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
             } else {
-                $row[] =  '0,00';
-            }
+                if ($rs->ev_penawaran_biaya) {
+                    $row[] =  number_format($rs->ev_penawaran_biaya, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+                if ($rs->ev_penawaran_akhir) {
+                    $row[] =  number_format($rs->ev_penawaran_akhir, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
 
-
-            if ($rs->ev_penawaran_akhir) {
-                $row[] =  number_format($rs->ev_penawaran_akhir, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
-            if ($rs->ev_penawaran_peringkat) {
-                $row[] =  $rs->ev_penawaran_peringkat;
-            } else {
-                $row[] =  '0';
+                if ($rs->ev_penawaran_peringkat) {
+                    $row[] =  $rs->ev_penawaran_peringkat;
+                } else {
+                    $row[] =  '0';
+                }
             }
 
 
@@ -353,7 +357,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
-
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
@@ -755,8 +758,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 ];
                 $this->M_panitia->update_evaluasi($data4, $where4);
             }
-
-
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
@@ -764,8 +765,9 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function simpan_evaluasi_akhir_tkdn()
     {
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $row_vendor =  $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket); 
         $id_rup_post = $this->input->post('id_rup_post');
-        $ev_hea_penawaran = $this->input->post('ev_hea_penawaran');
+        $ev_hea_penawaran = $row_vendor['nilai_penawaran'];
         $ev_hea_tkdn = $this->input->post('ev_hea_tkdn');
         $total_hps_rup = $this->input->post('total_hps_rup');
 
@@ -2470,22 +2472,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     }
 
 
-    // public function update_status_aanwijzing_vendor()
-    // {
-    //     $id_vendor = $this->input->post('id_vendor');
-    //     $id_rup = $this->input->post('id_rup');
-
-    //     $where = [
-    //         'id_vendor' => $id_vendor,
-    //         'id_rup' => $id_rup
-    //     ];
-
-    //     $data = [
-    //         'sts_aanwijzing_pq' => 1
-    //     ];
-    //     $this->M_panitia->update_mengikuti($data, $where);
-    // }
-
     public function kirim_notif_perubahan_dokumen()
     {
         // post
@@ -2503,7 +2489,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_dokumen_prakualifikasi($upload, $where);
             $row_dokumen = $this->M_panitia->get_row_dokumen_prakualifikasi($id_dokumen_prakualifikasi);
             $nama_dokumen = $row_dokumen['nama_dok_prakualifikasi'];
-            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+            $this->kirim_wa->kirim_wa_pengumuman_notif_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+            // $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
         } else {
             $upload = [
                 'keterangan_dokumen' =>  $this->input->post('keterangan_dokumen'),
@@ -2514,7 +2501,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_dokumen_pengadaan($upload, $where);
             $row_dokumen = $this->M_panitia->get_row_dokumen_pengadaan($id_dokumen_pengadaan);
             $nama_dokumen = $row_dokumen['nama_dok_pengadaan'];
-            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
+            $this->kirim_wa->kirim_wa_pengumuman_notif_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+            // $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
         }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
