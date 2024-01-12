@@ -360,18 +360,18 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->nilai_penawaran) {
-                $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">Gugur</span>';
             } else {
+                if ($rs->nilai_penawaran) {
+                    $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
                 if ($rs->ev_hea_tkdn) {
                     $row[] =  number_format($rs->ev_hea_tkdn, 2, ',', '.');
                 } else {
@@ -446,17 +446,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
-
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->ev_hea_harga) {
-                $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
                 $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
@@ -470,6 +464,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 </button>
               </div>';
             } else {
+                if ($rs->ev_hea_harga) {
+                    $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
                 if ($rs->ev_akhir_hea_teknis) {
                     $row[] =  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.');
                 } else {
