@@ -477,7 +477,6 @@
                 <a class="navbar-brand">
                     <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
                     <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -559,7 +558,7 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3" style="margin-top: 10px;">
                                 <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
+                                <input type="text" readonly class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>

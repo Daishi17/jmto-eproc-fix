@@ -1570,6 +1570,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_hps <=', 100);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_akhir_hea_akhir !=', NULL);
         $this->db->order_by('tbl_vendor_mengikuti_paket.ev_akhir_hea_akhir', 'DESC');
         $query = $this->db->get();
