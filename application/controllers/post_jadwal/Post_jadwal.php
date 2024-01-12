@@ -518,7 +518,7 @@ class Post_jadwal extends CI_Controller
                     'alasan' => $alasan,
                 ];
                 $this->M_jadwal->update_status($data2, $where);
-                $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek, $alasan);
+                $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek,$id_jadwal_rup, $alasan);
                 $this->output->set_content_type('application/json')->set_output(json_encode('success'));
             }
         }

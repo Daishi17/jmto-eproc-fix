@@ -96,7 +96,7 @@
                                                         <?php } ?>
                                                     <?php   } ?>
 
-                                                    <?php if ($role_panitia['role_panitia'] == 1) { ?>
+                                                    <?php if ($role_panitia['role_panitia'] == 1 || $role_panitia['role_panitia'] == 2) { ?>
                                                         <a href="javascript:;" title="Edit Jadwal" onclick="edit_jadwal(<?= $value2['id_jadwal_rup'] ?>)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                                         <?php if ($value2['sts_perubahan_jadwal'] == 2) { ?>
                                                             <a href="javascript:;" title="Acc Permintaan Ubah Jadwal" onclick="acc_jadwal(<?= $value2['id_jadwal_rup'] ?>)" class="btn btn-success"><i class="fa fa-check"></i></a>

@@ -228,7 +228,7 @@
                                                     <th><?= $row_rup['bobot_biaya'] ?>%</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="text-align: center;">
+                                            <tbody>
 
                                             </tbody>
                                         </table>

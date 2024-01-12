@@ -466,7 +466,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                             </a>
                           </div>';
                 }
-             }
+            }
 
 
 
@@ -493,13 +493,13 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">Gugur</span>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-center bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-center bg-sm">Gugur</div>';
                 $row[] = '<div class="text-center">
                 <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
@@ -508,48 +508,45 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
               </div>';
             } else {
                 if ($rs->ev_hea_harga) {
-                    $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_harga, 2, ',', '.') . '</div>';
                 } else {
                     $row[] =  '0,00';
                 }
                 if ($rs->ev_akhir_hea_teknis) {
-                    $row[] =  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.');
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.') . '</div>';
                 } else {
                     $row[] =  '0,00';
                 }
 
                 if ($rs->ev_akhir_hea_hps) {
-                    $row[] =  number_format($rs->ev_akhir_hea_hps, 2, ',', '.');
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_hps, 2, ',', '.') . '</div>';
                 } else {
                     $row[] =  '0,00';
                 }
 
                 if ($rs->ev_akhir_hea_nilai) {
-                    $row[] =  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.');
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.') . '</div>';
                 } else {
                     $row[] =  '0,00';
                 }
 
                 if ($rs->ev_akhir_hea_akhir) {
-                    $row[] =  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.');
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.') . '</div>';
                 } else {
                     $row[] =  '0,00';
                 }
-
-                $row[] = $rs->ev_akhir_hea_peringkat;
+                $row[] = '<div class="text-center">' .  $rs->ev_akhir_hea_peringkat . '</div>';
 
                 if ($rs->ev_akhir_hea_akhir) {
                     if ($rs->ev_akhir_hea_akhir >= $rup['bobot_teknis']) {
-                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                        $row[] = '<div class="badge bg-success bg-sm text-center">Sah</div>';
                     } else {
-                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                        $row[] = '<div class="badge bg-danger bg-sm text-center">Gugur</div>';
                     }
                 } else {
-                    $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
+                    $row[] = '<div class="badge bg-secondary bg-sm text-center">Belum Di Evaluasi</div>';
                 }
 
-
-                
                 if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
                     $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
                 } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {

@@ -164,9 +164,10 @@ NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$k
 
     
 
-    public function kirim_wa_perubahan_jadwal($id_rup, $pesan)
+    public function kirim_wa_perubahan_jadwal($id_rup,$id_jadwal_rup, $pesan)
     {
-        $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_rup);
+        $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_jadwal_rup);
+        $ambil_nama_paket =  $this->ci->M_panitia->get_row_rup($id_rup);
         $get_panitia_aja =  $this->ci->M_panitia->get_panitia_ketua_sekertaris($id_rup);
         $data_pegawai = array();
         foreach ($get_panitia_aja as $key => $value) {
@@ -177,6 +178,7 @@ NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$k
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $nama_jadwal = $row_rup['nama_jadwal_rup'];
+        $nama_rup = $ambil_nama_paket['nama_rup'];
         $pesan = str_replace("-", " ", $pesan);
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -190,8 +192,9 @@ NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$k
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
-                'message' => "Perubahan Jadwal
-Izin melakukan perubahan jadwal untuk Tahapan $nama_jadwal dengan Alasan $pesan",
+                'message' => "Perubahan Jadwal:
+Izin melakukan perubahan jadwal Paket Tender $nama_rup
+untuk Tahapan $nama_jadwal dengan Alasan $pesan",
                 'delay' => '60-80',
             ),
             CURLOPT_HTTPHEADER => array(
