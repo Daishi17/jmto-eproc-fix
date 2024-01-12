@@ -257,7 +257,6 @@ function terbilang($nilai)
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama </th>
                             <th>Perusahaan</th>
                             <th>Jabatan</th>
                             <th>TTD</th>
@@ -268,10 +267,13 @@ function terbilang($nilai)
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $value['nama_jabatan_ba_nego'] ?></td>
+                                <?php if ($value['persetujuan_ba_nego']) { ?>
+                                    <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                <?php } else { ?>
+                                    <td class="text-center"><span class="badge bg-danger">Todak Setuju</span></td>
+                                <?php }  ?>
                             </tr>
                         <?php } ?>
 

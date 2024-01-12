@@ -260,7 +260,12 @@ function terbilang($nilai)
                             <tr>
                                 <td class="text-center"><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                <?php if ($value['persetujuan_klarifikasi_nego']) { ?>
+                                    <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                <?php } else { ?>
+                                    <td class="text-center"><span class="badge bg-danger">Todak Setuju</span></td>
+                                <?php }  ?>
+
                             </tr>
                         <?php } ?>
 
