@@ -199,7 +199,6 @@ function terbilang($nilai)
                                                 <th>No</th>
                                                 <th>Peserta Penawaran </th>
                                                 <th>Nilai Teknis</th>
-                                                <th>Penawaran</th>
                                                 <th>Keterangan</th>
                                             </tr>
                                         </thead>
@@ -209,8 +208,7 @@ function terbilang($nilai)
                                                 <tr>
                                                     <td><?= $i++ ?></td>
                                                     <td><?= $value['nama_usaha'] ?></td>
-                                                    <td><?= $value['ev_teknis'] ?></td>
-                                                    <td><?= "Rp " . number_format($value['nilai_penawaran'], 2, ',', '.'); ?></td>
+                                                    <td><?= $value['ev_penawaran_teknis'] ?></td>
                                                     <?php if ($value['ev_teknis'] < 60) { ?>
                                                         <?php if ($value['nilai_penawaran'] == 0) { ?>
                                                             <td> <label for="" class="badge btn-danger text-white">Gugur</label></td>

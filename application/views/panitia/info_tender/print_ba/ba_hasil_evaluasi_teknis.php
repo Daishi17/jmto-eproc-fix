@@ -157,7 +157,44 @@ function terbilang($nilai)
                             <li><?= $value['nama_evaluasi'] ?></li>
                         <?php } ?>
                     </ol>
-                    <li>Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis</li>
+                    <li>
+                        Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis, yaitu :
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Peserta Penawaran</th>
+                                    <th>Nilai Teknis</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <?php $i = 1;
+                                foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                    <tr>
+                                        <td><?= $i++  ?></td>
+                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                        <td>
+                                            <?php if (!$value['ev_penawaran_ket_ba']) { ?>
+                                                <span class="badge bg-sm bg-secondary">Belum Di Nilai</span>
+                                            <?php  } else { ?>
+                                                <?php if ($value['ev_penawaran_ket_ba'] == 'Lulus') { ?>
+                                                    <span class="badge bg-sm bg-success">Lulus</span>
+                                                <?php } else { ?>
+                                                    <span class="badge bg-sm bg-danger">Gugur</span>
+                                                <?php } ?>
+                                            <?php }  ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
+
+
+                            </tbody>
+                        </table>
+                    </li>
                     <li>Hasil Evaluasi Teknis sebagaimana terlampir menjadi satu kesatuan dan merupakan bagian yang tidak terpisahkan dari Berita Acara ini</li>
                 </ol>
 
