@@ -151,49 +151,28 @@ function terbilang($nilai)
 
                 <p style="text-align:justify; font-size:18px">dengan hasil dan jalannya rapat sebagai berikut :</p>
 
-                <div class="row">
-                    <div class="col-md-1">
-                        1.
-                    </div>
-                    <div class="col-md-11">
-                        <label for="" style="margin-left: -70px;">Rapat Penjelasan Kualifikasi dimulai pada pukul <?= $row_rup['ba_penjelasan_kualifikasi_jam'] ?> WIB dan dilaksanakan melalui Aplikasi E-Procurement yang dihadiri oleh Panitia Pengadaan dan Peserta Kualifikasi Tender Umum/Terbatas.</label>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-1">
-                        2.
-                    </div>
-                    <div class="col-md-11">
-                        <label for="" style="margin-left: -70px;">Hal-hal yang disampaikan pada Rapat Penjelasan Kualifikasi ini adalah :</label> <br>
-                        <label for="" style="margin-left: -70px;">a.	Pekerjaan dan Informasi Umum</label> <br>
-                        <label for="" style="margin-left: -70px;">b.	Jadwal Kegiatan</label>
-                        <br>
-                        <label for="" style="margin-left: -70px;">c.	Metode Evaluasi Kualifikasi</label>
-                        <br>
-                        <label for="" style="margin-left: -70px;">d.	Ketentuan – ketentuan sesuai dokumen kualifikasi</label>
-                        <br>
-                        <label for="" style="margin-left: -70px;">e.	Formulir Isian Kualifikasi</label>
-                    </div>
-                </div>
+                <ol>
+                    <li> Rapat Penjelasan Kualifikasi dimulai pada pukul <?= $row_rup['ba_penjelasan_kualifikasi_jam'] ?> WIB dan dilaksanakan melalui Aplikasi E-Procurement yang dihadiri oleh Panitia Pengadaan dan Peserta Kualifikasi Tender Umum/Terbatas.</li>
+                    <li>
+                        Hal-hal yang disampaikan pada Rapat Penjelasan Kualifikasi ini adalah :
+                        <ol type="a">
+                            <li>Pekerjaan dan Informasi Umum</li>
+                            <li>Jadwal Kegiatan</li>
+                            <li>Metode Evaluasi Kualifikasi</li>
+                            <li>Ketentuan – ketentuan sesuai dokumen kualifikasi</li>
+                            <li>Formulir Isian Kualifikasi</li>
+                        </ol>
+                    </li>
+                    <li>
+                        Hal – hal yang tercantum dalam Notulen Rapat Penjelasan Kualifikasi merupakan Lampiran dan bagian yang tidak terpisahkan dari Berita Acara Rapat Penjelasan Kualifikasi.
+                    </li>
+                    <li>
+                        Peserta yang tidak hadir pada Rapat Penjelasan Kualifikasi ini dianggap sudah memahami, mengerti, dan menerima semua ketentuan dalam Dokumen Kualifikasi Pengadaan untuk kegiatan Pengadaan pekerjaan tersebut
+                    </li>
+                </ol>
 
-                <div class="row">
-                    <div class="col-md-1">
-                        3.
-                    </div>
-                    <div class="col-md-11">
-                        <label for="" style="margin-left: -70px;">Hal – hal yang tercantum dalam Notulen Rapat Penjelasan Kualifikasi merupakan Lampiran dan bagian yang tidak terpisahkan dari Berita Acara Rapat Penjelasan Kualifikasi.</label>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-1">
-                        4.
-                    </div>
-                    <div class="col-md-11">
-                        <label for="" style="margin-left: -70px;">Peserta yang tidak hadir pada Rapat Penjelasan Kualifikasi ini dianggap sudah memahami, mengerti, dan menerima semua ketentuan dalam Dokumen Kualifikasi Pengadaan untuk kegiatan Pengadaan pekerjaan tersebut.</label>
-                    </div>
-                </div>
 
                 <p style="text-align:justify; font-size:18px">Demikian Berita Acara Penjelasan Kualifikasi ini dibuat dengan sebenarnya, ditandatangani oleh Panitia Pengadaan dan wakil dari Peserta..</p>
                 <br>
