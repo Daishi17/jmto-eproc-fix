@@ -313,8 +313,15 @@
                 } else if (type == 'penawaran') {
                     modal_evaluasi_penawaran.modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    if (response['row_vendor_mengikuti'].ev_penawaran_teknis <= 59.99) {
+                        $('[name="nilai_penawaran"]').val(0)
+                        $('[name="nilai_penawaran"]').attr("disabled", true);
+                    } else {
+                        $('[name="nilai_penawaran"]').val(response['row_vendor_mengikuti'].nilai_penawaran)
+                        $('[name="nilai_penawaran"]').attr("disabled", false);
+                    }
                     $('[name="ev_penawaran_teknis"]').val(response['row_vendor_mengikuti'].ev_penawaran_teknis)
-                    $('[name="nilai_penawaran"]').val(response['row_vendor_mengikuti'].nilai_penawaran)
+                   
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
                 } else if (type == 'hea_tkdn') {
                     modal_evaluasi_hea_tkdn.modal('show')
@@ -2807,7 +2814,6 @@
 
     function penawaran_teknis_nilai() {
         var ev_penawaran_teknis = $('[name="ev_penawaran_teknis"]').val()
-
         if (ev_penawaran_teknis <= 59.99) {
             $('[name="nilai_penawaran"]').val(0)
             $('[name="nilai_penawaran"]').attr("readonly", true);

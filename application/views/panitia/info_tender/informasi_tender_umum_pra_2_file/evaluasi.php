@@ -447,7 +447,7 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" readonly class="form-control number_only" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <input type="text"  readonly class="form-control number_only bg-light" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                             <div class="mb-3">
