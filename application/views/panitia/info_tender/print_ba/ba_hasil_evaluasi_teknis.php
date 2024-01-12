@@ -157,7 +157,7 @@ function terbilang($nilai)
                             <li><?= $value['nama_evaluasi'] ?></li>
                         <?php } ?>
                     </ol>
-                    <li>Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis, yaitu</li>
+                    <li>Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis</li>
                     <li>Hasil Evaluasi Teknis sebagaimana terlampir menjadi satu kesatuan dan merupakan bagian yang tidak terpisahkan dari Berita Acara ini</li>
                 </ol>
 
