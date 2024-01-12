@@ -2394,7 +2394,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
     public function ba_hasil_evaluasi_teknis($id_url_rup)
     {
-        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);

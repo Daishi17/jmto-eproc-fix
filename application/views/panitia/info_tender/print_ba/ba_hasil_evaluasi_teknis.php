@@ -158,7 +158,7 @@ function terbilang($nilai)
                         <?php } ?>
                     </ol>
                     <li>
-                        Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) peserta yang lulus evaluasi teknis, yaitu :
+                        Setelah dilaksanakan Evaluasi Teknis, sebanyak <?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?> (<?= terbilang($row_rup['ba_evaluasi_teknis_total_lolos']) ?>) peserta yang lulus evaluasi teknis, yaitu :
                         <table class="table">
                             <thead>
                                 <tr>
