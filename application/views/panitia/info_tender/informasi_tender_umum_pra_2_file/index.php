@@ -1710,7 +1710,7 @@
 
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <label for="">Unsur yang dinilai pada tahapan Evaluasi Teknis </label>
+                                    <label for=""> Evaluasi Teknis </label>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-bordered" id="tbl_ba_evaluasi_teknis_vendor">
@@ -1797,6 +1797,33 @@
                                     </th>
                                 </tr>
                             </table>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for=""> Dokumen Kelengkapan File II </label>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered" id="tbl_kelengkapan_file2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Peserta Penawaran</th>
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                                <th>4</th>
+                                                <th>5</th>
+                                                <th>6</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                         <div id="ba_7" style="display: none;" class="mt-3">
                             <div class="d-flex">
@@ -1948,6 +1975,7 @@
                                     </th>
                                 </tr>
                             </table>
+
                         </div>
                         <div id="ba_9" style="display: none;" class="mt-3">
 
