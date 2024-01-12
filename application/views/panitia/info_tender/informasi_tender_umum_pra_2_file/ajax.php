@@ -365,8 +365,10 @@
                             }
                         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
                     });
-                } else {
-
+                } else if (type == 'ba_teknis') {
+                    $('#modal_ba_teknis').modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
                 }
 
             }
@@ -507,6 +509,54 @@
                         }
                     })
                 }
+
+            }
+        })
+    })
+
+
+    var form_evaluasi_penawaran_ba = $('#form_evaluasi_penawaran_ba')
+    form_evaluasi_penawaran_ba.on('submit', function(e) {
+        var url_simpan_evaluasi_penawaran_ba = $('[name="url_simpan_evaluasi_penawaran_ba"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_simpan_evaluasi_penawaran_ba,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_penawaran_ba').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#btn_ev_penawaran_ba').attr("disabled", false);
+                        $('#modal_ba_teknis').modal('hide')
+                        form_evaluasi_penawaran_ba[0].reset();
+                        load_table_ba_teknis()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
 
             }
         })
@@ -2765,5 +2815,44 @@
             $('[name="nilai_penawaran"]').val(0)
             $('[name="nilai_penawaran"]').attr("readonly", false);
         }
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_ba_evaluasi_teknis_vendor').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_ba_teknis/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    function load_table_ba_teknis() {
+        $('#tbl_ba_evaluasi_teknis_vendor').DataTable().ajax.reload();
     }
 </script>

@@ -254,6 +254,51 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
+    public function get_evaluasi_ba_teknis($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            if ($rs->ev_penawaran_teknis) {
+                $row[] =  $rs->ev_penawaran_teknis;
+            } else {
+                $row[] =  '0,00';
+            }
+
+            if (!$rs->ev_penawaran_ket_ba) {
+                $row[] =  '<span class="badge bg-sm bg-secondary">Belum Di Evaluasi</span>';
+            } else {
+                if ($rs->ev_penawaran_ket_ba == 'Lulus') {
+                    $row[] = '<span class="badge bg-sm bg-success">Lulus</span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-danger">Gugur</span>';
+                }
+            }
+
+            $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','ba_teknis'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+              </div>';
+
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_penawaran($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
     public function get_evaluasi_penawaran($id_rup)
     {
         $jadwal =  $this->M_jadwal->jadwal_pra_umum_16($id_rup);
@@ -793,6 +838,24 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
+    }
+
+    public function simpan_evaluasi_penawaran_ba()
+    {
+        $id_rup = $this->input->post('id_rup_post');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $ev_penawaran_teknis = $this->input->post('ev_penawaran_teknis');
+        $ev_penawaran_ket_ba = $this->input->post('ev_penawaran_ket_ba');
+
+        $where = [
+            'id_vendor_mengikuti_paket' =>    $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'ev_penawaran_teknis' => $ev_penawaran_teknis,
+            'ev_penawaran_ket_ba' => $ev_penawaran_ket_ba,
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
     public function simpan_evaluasi_akhir_tkdn()

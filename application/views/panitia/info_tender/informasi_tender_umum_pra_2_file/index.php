@@ -1258,11 +1258,11 @@
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
                     <option value="1">Berita Acara Pembuktian Kualifikasi</option>
                     <option value="2">Berita Acara Hasil Evaluasi</option>
-                    <option value="3">Berita Acara Sampul I</option>
+                    <option value="3">Berita Acara File I</option>
                     <option value="10">Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
                     <option value="4">Undangan Rapat Presentasi Teknis</option>
                     <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
-                    <option value="6">Berita Acara Pembukaan Sampul II</option>
+                    <option value="6">Berita Acara Pembukaan File II</option>
                     <option value="7">Berita Acara Evaluasi dan Negosiasi Harga</option>
                     <option value="8">Berita Acara Klarifikasi Harga</option>
                     <option value="9">Pengumuman Pemenang Tender</option>
@@ -1707,6 +1707,28 @@
                                     </th>
                                 </tr>
                             </table>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for="">Unsur yang dinilai pada tahapan Evaluasi Teknis </label>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered" id="tbl_ba_evaluasi_teknis_vendor">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Perusahaan</th>
+                                                <th>Nilai Teknis</th>
+                                                <th>Keterangan</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
@@ -2183,6 +2205,61 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="javascript:;" class="btn btn-primary" onclick="kirim_perubahan_dokumen()"> Kirim</a>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_ba_teknis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form_evaluasi_penawaran_ba" action="javascript:;">
+                <input type="hidden" value="<?= $row_rup['id_rup'] ?>" name="id_rup_post">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                            <div class="flex-grow-1 bd-highlight">
+                                <span class="text-dark">
+                                    <small class="text-white">
+                                        <strong><i class="fa-solid fa-edit px-1"></i>
+                                            Evaluasi Akhir Penawaran <label for="" class="nama_usaha"></label>
+                                        </strong>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <div class="mb-1" style="margin-top: -10px;">
+                                <label for="" class="form-label">Nilai Teknis</label>
+                                <input type="text" class="form-control number_only" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <label for="" id="error_ev_teknis" class="text-danger"></label>
+                            </div>
+                            <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <div class="mb-1">
+                                <label for="" class="form-label">Keterangan</label>
+                                <select name="ev_penawaran_ket_ba" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="Lulus">Lulus</option>
+                                    <option value="Gugur">Gugur</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success" id="btn_ev_penawaran_ba">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
