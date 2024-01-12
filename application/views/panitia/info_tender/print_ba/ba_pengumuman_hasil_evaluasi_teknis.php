@@ -208,21 +208,17 @@ function terbilang($nilai)
                                                 <tr>
                                                     <td><?= $i++ ?></td>
                                                     <td><?= $value['nama_usaha'] ?></td>
-                                                    <td><?= $value['ev_penawaran_teknis'] ?></td>
-                                                    <?php if ($value['ev_teknis'] < 60) { ?>
-                                                        <?php if ($value['nilai_penawaran'] == 0) { ?>
-                                                            <td> <label for="" class="badge btn-danger text-white">Gugur</label></td>
-                                                        <?php } else { ?>
-                                                            <td><label for="" class="badge btn-success text-white"> Lulus </label></td>
-                                                        <?php }
-                                                        ?>
+                                                    <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                                        <td><?= $value['ev_penawaran_teknis'] ?></td>
                                                     <?php } else { ?>
-                                                        <?php if ($value['nilai_penawaran'] == 0) { ?>
-                                                            <td> <label for="" class="badge btn-danger text-white">Gugur</label></td>
-                                                        <?php } else { ?>
-                                                            <td><label for="" class="badge btn-success text-white"> Lulus </label></td>
-                                                        <?php }
-                                                        ?>
+                                                        <td>-</td>
+                                                    <?php }
+                                                    ?>
+
+                                                    <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                                        <td><label for="" class="badge btn-success text-white"> Lulus </label></td>
+                                                    <?php } else { ?>
+                                                        <td> <label for="" class="badge btn-danger text-white">Gugur</label></td>
                                                     <?php }
                                                     ?>
                                                 </tr>

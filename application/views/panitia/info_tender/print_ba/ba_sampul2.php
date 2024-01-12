@@ -186,16 +186,52 @@ function terbilang($nilai)
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td>v</td>
-                                <td>v</td>
-                                <td>-</td>
-                                <td>v</td>
-                                <td>v</td>
-                                <td>-</td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_1'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }    ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_2'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }    ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_3'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }  ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_4'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }  ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_5'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }  ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['kelengkapan_file2_6'] == 1) { ?>
+                                        v
+                                    <?php } else { ?>
+                                        -
+                                    <?php }  ?>
+                                </td>
                                 <td>Rp. <?= number_format($value['nilai_penawaran'], 2, ",", "."); ?></td>
                                 <td><?= number_format($value['ev_penawaran_hps'], 2, ",", "."); ?> %</td>
                                 <td>
-                                    <?php if ($value['ev_penawaran_akhir'] >= 60) { ?>
+                                    <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
                                         Sah
                                     <?php } else { ?>
                                         Tidak Sah
@@ -236,13 +272,44 @@ function terbilang($nilai)
                                 <td><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td>Rp. <?= number_format($value['nilai_penawaran'], 2, ",", "."); ?></td>
-                                <td><?= number_format($value['ev_penawaran_teknis'], 2, ",", "."); ?></td>
-                                <td><?= number_format($value['ev_penawaran_hps'], 2, ",", "."); ?> </td>
-                                <td><?= number_format($value['ev_penawaran_biaya'], 2, ",", "."); ?> </td>
-                                <td><?= number_format($value['ev_penawaran_akhir'], 2, ",", "."); ?> </td>
-                                <td><?= $value['ev_penawaran_peringkat'] ?></td>
+
+                                <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                    <td><?= number_format($value['ev_penawaran_teknis'], 2, ",", "."); ?></td>
+                                <?php } else { ?>
+                                    <td>-</td>
+                                <?php }
+                                ?>
+
+                                <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                    <td><?= number_format($value['ev_penawaran_hps'], 2, ",", "."); ?> </td>
+                                <?php } else { ?>
+                                    <td>-</td>
+                                <?php }
+                                ?>
+
+                                <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                    <td><?= number_format($value['ev_penawaran_biaya'], 2, ",", "."); ?> </td>
+                                <?php } else { ?>
+                                    <td>-</td>
+                                <?php }
+                                ?>
+
+                                <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                    <td><?= number_format($value['ev_penawaran_akhir'], 2, ",", "."); ?> </td>
+                                <?php } else { ?>
+                                    <td>-</td>
+                                <?php }
+                                ?>
+
+                                <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                    <td><?= $value['ev_penawaran_peringkat'] ?></td>
+                                <?php } else { ?>
+                                    <td>-</td>
+                                <?php }
+                                ?>
+
                                 <td>
-                                    <?php if ($value['ev_penawaran_akhir'] >= 60) { ?>
+                                    <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
                                         Sah
                                     <?php } else { ?>
                                         Tidak Sah
@@ -328,13 +395,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                    <tr>
-                                                        <td><?= $i++ ?></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td><?= $value['nama_usaha'] ?></td>
-                                                        <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                                                    </tr>
+                                                                                                                                                                <tr>
+                                                                                                                                                                    <td><?= $i++ ?></td>
+                                                                                                                                                                    <td></td>
+                                                                                                                                                                    <td></td>
+                                                                                                                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                    <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                                                                                                                                                </tr>
                         <?php } ?>
 
                     </tbody>

@@ -129,19 +129,18 @@ function terbilang($nilai)
     <div class="container">
         <form action="javascript:;" method="POST" id="form_ba_pasca1">
             <div class="container-fluid">
-                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/img/logo_asli.png" width="30%" />
+                <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
             </div>
-            <br><br>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PANITIA PENGADAAN</h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> PT JASA MARGA TOLLROAD OPERATOR</h5>
             </center>
-            <hr size="5">
+            <hr style="height: 1px; color: #333; background-color: #333;">
             <center>
-                <div style="font-size:15px">
+                <div style="font-size:18px">
                     <label class="font-weight-bold">BERITA ACARA</label>
                     <br>
-                    <label class="font-weight-bold">EVALUASI DAN NEGOSIASI HARGA</label>
+                    <label class="font-weight-bold">KLARIFIKASI, EVALUASI DAN NEGOSIASI HARGA</label>
                     <br>
                     <label class="font-weight-bold">Nomor : <?= $row_rup['ba_negosiasi_no'] ?></label>
 
@@ -156,7 +155,7 @@ function terbilang($nilai)
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
-                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (Sampul I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
+                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
                 </p>
 
                 <ol type="I">

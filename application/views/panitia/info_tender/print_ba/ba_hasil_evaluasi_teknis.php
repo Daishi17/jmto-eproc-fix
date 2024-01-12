@@ -175,7 +175,12 @@ function terbilang($nilai)
                                     <tr>
                                         <td><?= $i++  ?></td>
                                         <td><?= $value['nama_usaha'] ?></td>
-                                        <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                        <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                            <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                        <?php } else { ?>
+                                            <td>-</td>
+                                        <?php }
+                                        ?>
                                         <td>
                                             <?php if (!$value['ev_penawaran_ket_ba']) { ?>
                                                 <span class="badge bg-sm bg-secondary">Belum Di Nilai</span>
