@@ -1256,19 +1256,19 @@
                     </div>
                 </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
-                    <option value="1">Berita Acara Pembuktian Kualifikasi</option>
-                    <option value="2">Berita Acara Hasil Evaluasi</option>
-                    <option value="3">Berita Acara File I</option>
-                    <option value="10">Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
-                    <option value="4">Undangan Rapat Presentasi Teknis</option>
-                    <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
-                    <option value="6">Berita Acara Pembukaan File II</option>
-                    <option value="7">Berita Acara Evaluasi dan Negosiasi Harga</option>
-                    <option value="8">Berita Acara Klarifikasi Harga</option>
-                    <option value="9">Pengumuman Pemenang Tender</option>
-                    <option value="11">Berita Acara Presentasi Teknis Tender</option>
-                    <option value="12">Pengumuman Hasil Evaluasi Teknis</option>
-                    <option value="13">Berita Acara Penjelasan Kualifikasi</option>
+                    <option value="13">1. Berita Acara Penjelasan Kualifikasi</option>
+                    <option value="1">2. Berita Acara Pembuktian Kualifikasi</option>
+                    <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
+                    <option value="10">4. Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
+                    <option value="3">5. Berita Acara Pembukaan File I</option>
+                    <option value="4">6. Undangan Rapat Presentasi Teknis</option>
+                    <option value="11">7. Berita Acara Presentasi Teknis Tender</option>
+                    <option value="5">8. Berita Acara Hasil Evaluasi Teknis</option>
+                    <option value="12">9. Pengumuman Hasil Evaluasi Teknis</option>
+                    <option value="6">10. Berita Acara Pembukaan File II</option>
+                    <option value="8">11. Berita Acara Klarifikasi Harga</option>
+                    <option value="7">12. Berita Acara Evaluasi dan Negosiasi Harga</option>
+                    <option value="9">13. Pengumuman Pemenang Tender</option>
                 </select>
                 <div class="row">
                     <div class="col-md-12">
