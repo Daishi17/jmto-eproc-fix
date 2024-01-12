@@ -518,7 +518,7 @@ class Post_jadwal extends CI_Controller
                     'alasan' => $alasan,
                 ];
                 $this->M_jadwal->update_status($data2, $where);
-                $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek,$id_jadwal_rup, $alasan);
+                $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek, $id_jadwal_rup, $alasan);
                 $this->output->set_content_type('application/json')->set_output(json_encode('success'));
             }
         }
@@ -527,14 +527,19 @@ class Post_jadwal extends CI_Controller
     public function acc_jadwal()
     {
         $id_jadwal_rup = $this->input->post('id_jadwal_rup');
-        $data = [
-            'sts_perubahan_jadwal' => 1,
-        ];
-        $where = [
-            'id_jadwal_rup' => $id_jadwal_rup
-        ];
-        $this->M_jadwal->update_status($data, $where);
-        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+        $cek_jika_jadwal_ada_yg_ubah = $this->M_panitia->get_row_alasan_jadwal($id_jadwal_rup);
+        if ($cek_jika_jadwal_ada_yg_ubah['sts_perubahan_jadwal'] == 1) {
+            $this->output->set_content_type('application/json')->set_output(json_encode('error'));
+        } else {
+            $data = [
+                'sts_perubahan_jadwal' => 1,
+            ];
+            $where = [
+                'id_jadwal_rup' => $id_jadwal_rup
+            ];
+            $this->M_jadwal->update_status($data, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+        }
     }
 
     public function get_row_jadwal($id_rup_jadwal)

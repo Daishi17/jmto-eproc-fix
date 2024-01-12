@@ -27,6 +27,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function informasi_pengadaan($id_url_rup)
     {
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
@@ -1413,18 +1414,20 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     {
         $id_url_rup = $this->input->post('id_url_rup');
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
+
         if ($row_rup['bobot_nilai'] == 1) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . '';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         }
-        $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
-        $type_email = 'PENGUMUMAN PEMENANG';
-        $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
+        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
+        // $type_email = 'PENGUMUMAN PEMENANG';
+        // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
         $upload = [
-            'id_vendor_pemenang' => $get_rank1['id_vendor']
+            'id_vendor_pemenang' => $get_rank1['id_vendor'],
+            'sts_pengumuman_rup_trakhir' => 1
         ];
         $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $upload);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));

@@ -76,7 +76,7 @@ class Kirim_wa
     }
 
 
-    public function kirim_wa_pengumuman($id_rup)
+    public function kirim_wa_pengumuman($id_rup,$message)
     {
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
@@ -88,9 +88,6 @@ class Kirim_wa
         }
         $nomor_telpon = implode(",", $data_vendor);
         $target = $nomor_telpon;
-        $nama_rup = $row_rup['nama_rup'];
-        $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
-        $nama_jenis_pengadaan = $row_rup['nama_jenis_pengadaan'];
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.fonnte.com/send',
@@ -103,13 +100,7 @@ class Kirim_wa
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
-                'message' => 'Pengumuman Tender PT JMTO ! 
-Saudara Menerima Undangan Untuk Mengikuti Tender Baru :
-Nama Paket: ' . $nama_rup . '
-Jenis Pengadaan: ' . $nama_jenis_pengadaan . '
-Silakan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
-Selambat-Lambatnya Pada : '.$batas_pendaftaran_tender.'
-Terimakasih',
+                'message' => $message,
                 'delay' => '40-60',
             ),
             CURLOPT_HTTPHEADER => array(

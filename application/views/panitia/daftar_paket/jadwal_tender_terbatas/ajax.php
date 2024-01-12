@@ -1635,7 +1635,8 @@
             processData: false,
             success: function(response) {
                 if (response['error']) {
-                    $("#alasan").html(response['error']['alasan']);
+                    Swal.fire('Maaf Jadwal Udah Ada Yang Acc Nih!', '', 'warning')
+                    // $("#alasan").html(response['error']['alasan']);
                 } else {
                     let timerInterval
                     Swal.fire({

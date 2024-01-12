@@ -178,10 +178,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                    </td>
-                                                                <?php } else { ?>
-                                                                <?php }
-                                                                ?>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                            <?php }
+                                                            ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -632,17 +632,61 @@
                                     <?php   } else { ?>
                                         <i class="fas fa fa-times text-danger"></i>
                                     <?php   }  ?>
-
                                 </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a class="btn btn-success btn_kirim_pengumuman" onclick="Kirim_pengumuman('<?= $row_rup['id_url_rup'] ?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim Pengumuman</a>
-            </div>
+            <style>
+                .lds-dual-ring {
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .lds-dual-ring:after {
+                    content: " ";
+                    display: block;
+                    width: 15px;
+                    height: 15px;
+                    margin: 8px;
+                    border-radius: 50%;
+                    border: 6px solid #fff;
+                    border-color: #fff transparent #fff transparent;
+                    animation: lds-dual-ring 1.2s linear infinite;
+                }
+
+                @keyframes lds-dual-ring {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
+            <?php if ($role_panitia['role_panitia'] == 1 || $role_panitia['role_panitia'] == 2) { ?>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <?php if ($row_rup['sts_pengumuman_rup_trakhir'] == 1) { ?>
+                        <button class="btn btn-warning" disabled><i class="fa fa-paper-plane" aria-hidden="true"></i> Pengumuman Pemenang Sudah Dikirim</button>
+                    <?php } else { ?>
+                        <div class="loader_after mt-2 mb-2" style="display: none;">
+                            <a class="btn btn-success btn_kirim_pengumuman" onclick="Kirim_pengumuman('<?= $row_rup['id_url_rup'] ?>')">
+                                Sedang Mengirim Pengumuman <label class="lds-dual-ring"></label>
+                            </a>
+                        </div>
+                        <div class="loader_before mt-2 mb-2" style="display: block;">
+                            <a class="btn btn-success btn_kirim_pengumuman" onclick="Kirim_pengumuman('<?= $row_rup['id_url_rup'] ?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim Pengumuman</a>
+                        </div>
+                    <?php }
+                    ?>
+                </div>
+            <?php  } else { ?>
+            <?php   }  ?>
+
         </div>
     </div>
 </div>
