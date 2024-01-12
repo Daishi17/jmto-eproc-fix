@@ -405,16 +405,41 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->ev_hea_penawaran) {
-                $row[] =  number_format($rs->ev_hea_penawaran, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">Gugur</span>';
             } else {
-                $row[] =  '0,00';
-            }
+                if ($rs->nilai_penawaran) {
+                    $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+                if ($rs->ev_hea_tkdn) {
+                    $row[] =  number_format($rs->ev_hea_tkdn, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
 
-            if ($rs->ev_hea_tkdn) {
-                $row[] =  number_format($rs->ev_hea_tkdn, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
+                if ($rs->ev_hea_harga) {
+                    $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+
+                $row[] = $rs->ev_hea_peringkat;
+
+                if ($rs->ev_hea_tkdn) {
+                    if ($rs->ev_hea_tkdn >= $rup['persen_pencatatan'] && $rs->ev_hea_harga <= $rup['total_hps_rup']) {
+                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
+                } else {
+                    $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
+                }
             }
 
             if ($rs->ev_hea_harga) {
@@ -474,20 +499,83 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
-
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->ev_hea_harga) {
-                $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<span class="badge bg-danger bg-sm">Gugur</span>';
+                $row[] = '<div class="text-center">
+                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Evaluasi</small>
+                </button>
+              </div>';
             } else {
-                $row[] =  '0,00';
-            }
+                if ($rs->ev_hea_harga) {
+                    $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+                if ($rs->ev_akhir_hea_teknis) {
+                    $row[] =  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
 
-            if ($rs->ev_akhir_hea_teknis) {
-                $row[] =  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
+                if ($rs->ev_akhir_hea_hps) {
+                    $row[] =  number_format($rs->ev_akhir_hea_hps, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+
+                if ($rs->ev_akhir_hea_nilai) {
+                    $row[] =  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+
+                if ($rs->ev_akhir_hea_akhir) {
+                    $row[] =  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.');
+                } else {
+                    $row[] =  '0,00';
+                }
+
+                $row[] = $rs->ev_akhir_hea_peringkat;
+
+                if ($rs->ev_akhir_hea_akhir) {
+                    if ($rs->ev_akhir_hea_akhir >= $rup['bobot_teknis']) {
+                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
+                } else {
+                    $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
+                }
+
+
+                if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
+                } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center">
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Evaluasi</small>
+                            </a>
+                          </div>';
+                } else {
+                    $row[] = '<div class="text-center">
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Evaluasi</small>
+                            </a>
+                          </div>';
+                }
             }
 
             if ($rs->ev_akhir_hea_hps) {
