@@ -1367,6 +1367,8 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    
+
 
     public function get_peserta_tender_nilai_akhir($id_rup)
     {
@@ -1374,8 +1376,8 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_hps <=', 100);
         $this->db->order_by('tbl_vendor_mengikuti_paket.ev_penawaran_akhir', 'DESC');
-        // $this->db->where('tbl_vendor_mengikuti_paket.nilai_penawaran !=', 0);
         $query = $this->db->get();
         return $query->result_array();
     }

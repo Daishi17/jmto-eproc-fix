@@ -2755,7 +2755,7 @@
     function penawaran_teknis_nilai() {
         var ev_penawaran_teknis = $('[name="ev_penawaran_teknis"]').val()
 
-        if (ev_penawaran_teknis <= 60) {
+        if (ev_penawaran_teknis <= 59.99) {
             $('[name="nilai_penawaran"]').val(0)
             $('[name="nilai_penawaran"]').attr("readonly", true);
         } else {

@@ -501,12 +501,12 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah2()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp2" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
-                            </div>
+                            </div> -->
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Nilai TKDN</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_tkdn" placeholder="Nilai TKDN">

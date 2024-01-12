@@ -121,6 +121,49 @@ Terimakasih',
         curl_close($curl);
     }
 
+    public function kirim_wa_pengumuman_notif_dokumen($id_rup, $nama_dokumen, $keterangan)
+    {
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
+        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
+        $data_vendor = array();
+        foreach ($get_vendor_mengikuti as $key => $value) {
+            $data_vendor[] = $value['no_telpon'];
+        }
+        $nomor_telpon = implode(",", $data_vendor);
+        $target = $nomor_telpon;
+        $nama_rup = $row_rup['nama_rup'];
+        $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
+        $nama_jenis_pengadaan = $row_rup['nama_jenis_pengadaan'];
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => 'PERUBAHAN DOKUMEN PENGADAAN / KUALIFIKASI
+NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$keterangan.'',
+                'delay' => '40-60',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
+
+
+    
+
     public function kirim_wa_perubahan_jadwal($id_rup, $pesan)
     {
         $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_rup);
