@@ -143,11 +143,11 @@ function terbilang($nilai)
                 <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_pembuktian_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_pembuktian_tgl']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_pembuktian_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_pembuktian_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_pembuktian_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB bertempat di ruang rapat PT Jasamarga Tollroad Operator, kami yang bertanda tangan di bawah ini selaku Panitia Pengadaan Barang / Jasatersebut di atas yang dibentuk berdasarkan Surat Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 tentang Pembentukan Panitia Pengadaan Barang dan Jasa telah mengadakan Rapat Pembuktian Kualifikasi secara langsung dan virtual terhadap Peserta yang telah mengembalikan isian Kualifikasi untuk :
+                    Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_pembuktian_tgl']))) ?></b>,
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_pembuktian_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_pembuktian_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB bertempat di ruang rapat PT Jasamarga Tollroad Operator atau virtual meeting, kami yang bertanda tangan di bawah ini selaku Panitia Pengadaan Barang / Jasa tersebut di atas yang dibentuk berdasarkan Surat Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 tentang Pembentukan Panitia Pengadaan Barang dan Jasa telah mengadakan Rapat Pembuktian Kualifikasi terhadap Peserta yang telah mengembalikan isian Kualifikasi untuk :
                 </p>
 
-                <p style="text-align:justify; font-size:18px"><b> <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator </b></p>
+                <p style="text-align:justify; font-size:18px"><b> <?= $row_rup['nama_rup'] ?> </b></p>
 
                 <p style="text-align:justify; font-size:18px">Dalam kegiatan Pembuktian Kualifikasi dimaksud, maka Panitia Pengadaan melakukan pemeriksaan kebenaran terhadap semua Dokumen-Dokumen ASLI yang terkait dengan data-data yang telah disampaikan oleh Peserta dalam Formulir Isian Kualifikasi, dengan hasil sebagai berikut :</p>
 
@@ -169,7 +169,7 @@ function terbilang($nilai)
                         foreach ($peserta_tender as $key => $value) { ?>
                             <tr>
                                 <td class="text-center"><?= $i++ ?></td>
-                                <td><b><?= $value['nama_usaha'] ?></b></td>
+                                <td><b class="text-uppercase"><?= $value['nama_usaha'] ?></b></td>
                                 <td class="text-center">
                                     <b><?= $value['ba_pembuktian_hadir'] ?></b>
                                 </td>
@@ -259,32 +259,72 @@ function terbilang($nilai)
                     </tbody>
                 </table>
                 <br>
-                <!-- <b class="text-uppercase">PESERTA PRAKUALIFIKASI <?= $row_rup['nama_metode_pengadaan'] ?> : </b>
+                DAFTAR PEMERIKSAAN PEMBUKTIAN SYARAT TAMBAHAN KUALIFIKASI (Nama Paket Pekerjaan)
                 <br>
                 <br>
-                <table class="table table-bordered ">
+                <ol>
+                    <?php $i = 1;
+                    foreach ($peserta_tender as $key => $value) { ?>
+                        <li><?= $value['nama_usaha'] ?></li>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Syarat Tambahan</th>
+                                    <th>Status</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <?php $o = 1;
+                                foreach ($get_syarat_tambahan as $key => $value2) { ?>
+                                    <?php
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_vendor_syarat_tambahan');
+                                    $this->db->where('id_vendor', $value['id_vendor']);
+                                    $this->db->where('id_rup', $row_rup['id_rup']);
+                                    $this->db->where('nama_syarat_tambahan', $value2['nama_syarat_tambahan']);
+                                    $query = $this->db->get()->row_array();
+
+                                    ?>
+                                    <tr>
+                                        <td><?= $o++ ?></td>
+                                        <td><?= $value2['nama_syarat_tambahan'] ?></td>
+                                        <td>
+                                            <?php if ($query['nama_syarat_tambahan']) { ?>
+                                                <?php if ($query['status'] == 0) { ?>
+                                                    <span class="badge bg-secondary">Belum Di Periksa</span>
+                                                <?php } else if ($query['status'] == 1) { ?>
+                                                    <span class="badge bg-success">Lulus</span>
+                                                <?php } else if ($query['status'] == 2) { ?>
+                                                    <span class="badge bg-danger">Gugur</span>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <span class="badge bg-danger">Gugur</span>
+                                            <?php  }   ?>
+
+                                        </td>
+                                    </tr>
+                                <?php  } ?>
+
+                            </tbody>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    <?php } ?>
+                </ol>
+                <!-- <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th class="text-center"><b>NO</b></th>
-                            <th  class="text-center"><b>NAMA</b></th>
+                            <th class="text-center"><b>NAMA</b></th>
                             <th class="text-center"><b>PERUSAHAAN</b></th>
                             <th class="text-center"><b>TANDA TANGAN</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1;
-                        foreach ($peserta_tender as $key => $value) { ?>
-                                <tr>
-                                    <td class="text-center"><?= $i++ ?></td>
-                                    <td></td>
-                                    <td>
-                                        <b><?= $value['nama_usaha'] ?></b>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="badge bg-success">Setuju</span>
-                                    </td>
-                                </tr>
-                        <?php } ?>
+                      
                     </tbody>
                 </table> -->
             </div>

@@ -145,8 +145,8 @@ function terbilang($nilai)
                 <p style="text-align:justify;">
                     Pada Hari ini <b><?= $row_rup['ba_sampul1_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul1_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul1_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB , Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022, Tanggal 01 Agustus 2022, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor: 39/KPTS-JMTO/2022, Tanggal 28 April 2022 tentang Standar Prosedur Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan Perusahaan;
+                    Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul1_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul1_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB , Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, 22 desember 2022 serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, 22 desember 2022 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan PT Jasamarga Tollroad Operator;
                 </p>
 
                 <p style="text-align:justify;">
@@ -177,7 +177,7 @@ function terbilang($nilai)
 
                     </li>
                     <li class="mt-3">
-                        <p><b>PENYEDIA JASA YANG MEMBELI DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq) ?> (<?= terbilang(count($peserta_tender_pq)) ?>) PESERTA</b></p>
+                        <p><b>PENYEDIA JASA YANG MENGUNDUH DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq) ?> (<?= terbilang(count($peserta_tender_pq)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -198,7 +198,7 @@ function terbilang($nilai)
                         </table>
                     </li>
                     <li class="mt-3">
-                        <p><b>PENYEDIA JASA YANG MEMBELI DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
+                        <p><b>PENYEDIA JASA YANG MENYAMPAIKAN DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -256,7 +256,7 @@ function terbilang($nilai)
                             </tr>
                             <tr>
                                 <td>Lampiran B</td>
-                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
+                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 170/KPTS-JMTO/2023 tanggal 22 desember 20 tentang Panitia Pengadaan Barang/Jasa </td>
                             </tr>
                             <tr>
                                 <td>Lampiran C</td>
@@ -318,13 +318,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                        <tr>
-                                                            <td><?= $i++ ?></td>
-                                                            <td></td>
-                                                            <td><?= $value['nama_usaha'] ?></td>
-                                                            <td></td>
-                                                            <td><span class="badge bg-success">Setuju</span></td>
-                                                        </tr>
+                                                                                                <tr>
+                                                                                                    <td><?= $i++ ?></td>
+                                                                                                    <td></td>
+                                                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                                                    <td></td>
+                                                                                                    <td><span class="badge bg-success">Setuju</span></td>
+                                                                                                </tr>
                         <?php } ?>
 
                     </tbody>
