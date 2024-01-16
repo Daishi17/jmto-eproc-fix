@@ -2909,4 +2909,18 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
+    public function simpan_status_file1()
+    {
+        $name = $this->input->post('name');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $this->input->post('id_vendor_mengikuti_paket')
+        ];
+        $data = [
+            $name => $this->input->post('value_name')
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
 }
