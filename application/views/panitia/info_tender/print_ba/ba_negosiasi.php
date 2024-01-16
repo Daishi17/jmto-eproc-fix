@@ -88,28 +88,28 @@ function tgl_indo($tanggal)
 function penyebut($nilai)
 {
     $nilai = abs($nilai);
-    $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+    $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
     $temp = "";
     if ($nilai < 12) {
         $temp = " " . $huruf[$nilai];
     } else if ($nilai < 20) {
-        $temp = penyebut($nilai - 10) . " belas";
+        $temp = penyebut($nilai - 10) . " Belas";
     } else if ($nilai < 100) {
-        $temp = penyebut($nilai / 10) . " puluh" . penyebut($nilai % 10);
+        $temp = penyebut($nilai / 10) . " Puluh" . penyebut($nilai % 10);
     } else if ($nilai < 200) {
         $temp = " seratus" . penyebut($nilai - 100);
     } else if ($nilai < 1000) {
-        $temp = penyebut($nilai / 100) . " ratus" . penyebut($nilai % 100);
+        $temp = penyebut($nilai / 100) . " Ratus" . penyebut($nilai % 100);
     } else if ($nilai < 2000) {
-        $temp = " seribu" . penyebut($nilai - 1000);
+        $temp = " Seribu" . penyebut($nilai - 1000);
     } else if ($nilai < 1000000) {
-        $temp = penyebut($nilai / 1000) . " ribu" . penyebut($nilai % 1000);
+        $temp = penyebut($nilai / 1000) . " Ribu" . penyebut($nilai % 1000);
     } else if ($nilai < 1000000000) {
-        $temp = penyebut($nilai / 1000000) . " juta" . penyebut($nilai % 1000000);
+        $temp = penyebut($nilai / 1000000) . " Juta" . penyebut($nilai % 1000000);
     } else if ($nilai < 1000000000000) {
-        $temp = penyebut($nilai / 1000000000) . " milyar" . penyebut(fmod($nilai, 1000000000));
+        $temp = penyebut($nilai / 1000000000) . " Milyar" . penyebut(fmod($nilai, 1000000000));
     } else if ($nilai < 1000000000000000) {
-        $temp = penyebut($nilai / 1000000000000) . " trilyun" . penyebut(fmod($nilai, 1000000000000));
+        $temp = penyebut($nilai / 1000000000000) . " Trilyun" . penyebut(fmod($nilai, 1000000000000));
     }
     return $temp;
 }
@@ -151,7 +151,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_negosiasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_negosiasi_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_negosiasi_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_negosiasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_negosiasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_negosiasi_jam'] ?> WIB bertempat di PT. Jasamarga Tollroad Operator di Gedung Cabang Jagorawi Lt. 4, Plaza Tol Taman Mini Indonesia Indah, kami yang bertandatangan di bawah ini selaku Panitia Pengadaan Barang dan Jasa yang dibentuk berdasarkan Surat Keputusan Direksi Nomor : 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022, selanjutnya Panitia melakukan Evaluasi dan negosiasi harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dengan hasil sebagai berikut :
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_negosiasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_negosiasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_negosiasi_jam'] ?> WIB bertempat di PT. Jasamarga Tollroad Operator di Gedung Cabang Jagorawi Lt. 4, Plaza Tol Taman Mini Indonesia Indah, kami yang bertandatangan di bawah ini selaku Panitia Pengadaan Barang dan Jasa yang dibentuk berdasarkan Surat Keputusan Direksi Nomor : <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?>, selanjutnya Panitia melakukan Evaluasi dan negosiasi harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dengan hasil sebagai berikut :
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
@@ -168,7 +168,7 @@ function terbilang($nilai)
                             </tr>
                             <tr>
                                 <td>Harga Penawaran</td>
-                                <th>: Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?></i>)</th>
+                                <th>: Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?> Rupiah</i>)</th>
                             </tr>
                         </table>
                     </li>
@@ -177,7 +177,7 @@ function terbilang($nilai)
                         <p><b>Penetapan Hasil Evaluasi dan Negosiasi Harga : </b></p>
                         <ol>
                             <li>
-                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari PT Dapensi Trio Usaha dengan nilai <b>Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?></i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator adalah <b>Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_harga']) ?></i>)
+                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari PT Dapensi Trio Usaha dengan nilai <b>Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator adalah <b>Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_harga']) ?></i>)
                             </li>
                             <li>
                                 Dengan demikian Panitia mengusulkan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator bahwa PT Dapensi Trio Usaha berhak untuk melaksanakan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.

@@ -179,10 +179,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                </td>
-                                                            <?php } else { ?>
-                                                            <?php }
-                                                            ?>
+                                                                    </td>
+                                                                <?php } else { ?>
+                                                                <?php }
+                                                                ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -1256,6 +1256,36 @@
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Pilih Berita Acara atau Pengumuman Yang Ingin Di Buat!!!
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nomor SK Direksi</th>
+                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
+                                </tr>
+                                <tr>
+                                    <th>Nomor SK Panitia</th>
+                                    <th> <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal SK Direksi</th>
+                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal SK Panitia</th>
+                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
                     <option value="13">1. Berita Acara Penjelasan Kualifikasi</option>
                     <option value="1">2. Berita Acara Pembuktian Kualifikasi</option>
@@ -1336,7 +1366,11 @@
                                                 <td><?= $value['nama_usaha'] ?></td>
                                                 <td>
                                                     <select name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>">
-                                                        <option value="">Pilih</option>
+                                                        <?php if ($value['ba_pembuktian_hadir']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_hadir'] ?>"><?= $value['ba_pembuktian_hadir'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
                                                         <option value="Online">Online</option>
                                                         <option value="Offline">Offline</option>
                                                         <option value="Tidak Hadir">Tidak Hadir</option>
@@ -1345,7 +1379,11 @@
                                                 </td>
                                                 <td>
                                                     <select name="ba_pembuktian_dok<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_dok(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_dok')" value="<?= $value['ba_pembuktian_dok'] ?>">
-                                                        <option value="">Pilih</option>
+                                                        <?php if ($value['ba_pembuktian_dok']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_dok'] ?>"><?= $value['ba_pembuktian_dok'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
                                                         <option value="Lengkap">Lengkap</option>
                                                         <option value="Tidak Lengkap">Tidak Lengkap</option>
                                                     </select>
@@ -1353,7 +1391,11 @@
                                                 </td>
                                                 <td>
                                                     <select name="ba_pembuktian_ket<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_ket(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_ket')" value="<?= $value['ba_pembuktian_ket'] ?>">
-                                                        <option value="">Pilih</option>
+                                                        <?php if ($value['ba_pembuktian_ket']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_ket'] ?>"><?= $value['ba_pembuktian_ket'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
                                                         <option value="Lulus">Lulus</option>
                                                         <option value="Gugur">Gugur</option>
                                                     </select>

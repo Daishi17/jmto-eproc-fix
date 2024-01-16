@@ -83,28 +83,28 @@ function bln_indo($bulan)
 function penyebut($nilai)
 {
     $nilai = abs($nilai);
-    $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+    $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
     $temp = "";
     if ($nilai < 12) {
         $temp = " " . $huruf[$nilai];
     } else if ($nilai < 20) {
-        $temp = penyebut($nilai - 10) . " belas";
+        $temp = penyebut($nilai - 10) . " Belas";
     } else if ($nilai < 100) {
-        $temp = penyebut($nilai / 10) . " puluh" . penyebut($nilai % 10);
+        $temp = penyebut($nilai / 10) . " Puluh" . penyebut($nilai % 10);
     } else if ($nilai < 200) {
         $temp = " seratus" . penyebut($nilai - 100);
     } else if ($nilai < 1000) {
-        $temp = penyebut($nilai / 100) . " ratus" . penyebut($nilai % 100);
+        $temp = penyebut($nilai / 100) . " Ratus" . penyebut($nilai % 100);
     } else if ($nilai < 2000) {
-        $temp = " seribu" . penyebut($nilai - 1000);
+        $temp = " Seribu" . penyebut($nilai - 1000);
     } else if ($nilai < 1000000) {
-        $temp = penyebut($nilai / 1000) . " ribu" . penyebut($nilai % 1000);
+        $temp = penyebut($nilai / 1000) . " Ribu" . penyebut($nilai % 1000);
     } else if ($nilai < 1000000000) {
-        $temp = penyebut($nilai / 1000000) . " juta" . penyebut($nilai % 1000000);
+        $temp = penyebut($nilai / 1000000) . " Juta" . penyebut($nilai % 1000000);
     } else if ($nilai < 1000000000000) {
-        $temp = penyebut($nilai / 1000000000) . " milyar" . penyebut(fmod($nilai, 1000000000));
+        $temp = penyebut($nilai / 1000000000) . " Milyar" . penyebut(fmod($nilai, 1000000000));
     } else if ($nilai < 1000000000000000) {
-        $temp = penyebut($nilai / 1000000000000) . " trilyun" . penyebut(fmod($nilai, 1000000000000));
+        $temp = penyebut($nilai / 1000000000000) . " Trilyun" . penyebut(fmod($nilai, 1000000000000));
     }
     return $temp;
 }
@@ -145,7 +145,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_evaluasi_teknis_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_teknis_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 81/KPTS-JMTO/2022 tanggal 01 Agustus 2022 serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor 39/KPTS-JMTO/2022 tanggal 28 April 2022 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Evaluasi Teknis terhadap Peserta Penawaran yang telah menyampaikan Dokumen Penawaran yang SAH untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollorad Operator (Paket 7), dengan ketentuan dalam Metode Evaluasi Penawaran sebagai berikut:
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_teknis_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_direksi'] ?> tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Evaluasi Teknis terhadap Peserta Penawaran yang telah menyampaikan Dokumen Penawaran yang SAH untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollorad Operator (Paket 7), dengan ketentuan dalam Metode Evaluasi Penawaran sebagai berikut:
                 </p>
 
                 <ol>
