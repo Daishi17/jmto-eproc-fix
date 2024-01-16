@@ -152,7 +152,8 @@
                     <br>
                     <div class="form-group">
                         <label for="">Total Negosisasi</label>
-                        <input type="text" name="total_hasil_negosiasi" class="form-control">
+                        <input type="text" id="total_hasil_negosiasi" name="total_hasil_negosiasi" class="form-control">
+                        <input type="text" style="width: 200px;" name="hasil_curency_negoku" id="tanpa-rupiah2" readonly class="form-control float-right">
                     </div>
                     <br>
                     <div class="form-group">

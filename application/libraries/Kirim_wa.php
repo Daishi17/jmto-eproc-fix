@@ -76,7 +76,7 @@ class Kirim_wa
     }
 
 
-    public function kirim_wa_pengumuman($id_rup,$message)
+    public function kirim_wa_pengumuman($id_rup, $message)
     {
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
@@ -117,10 +117,16 @@ class Kirim_wa
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi($id_rup);
+        $get_vendor_lolos =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi($id_rup);
+        $id_vendor_lolos = array();
+        foreach ($get_vendor_lolos as $key => $value) {
+            $id_vendor_lolos[] = $value['id_vendor'];
+        }
+        $get_id_vendor = implode(",", $id_vendor_lolos);
+        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($id_rup, $get_id_vendor);
         $data_vendor = array();
-        foreach ($get_vendor_mengikuti as $key => $value) {
-            $data_vendor[] = $value['no_telpon'];
+        foreach ($get_vendor_mengikuti as $key => $valu2) {
+            $data_vendor[] = $valu2['no_telpon'];
         }
         $nomor_telpon = implode(",", $data_vendor);
         $target = $nomor_telpon;
@@ -138,7 +144,7 @@ class Kirim_wa
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
                 'message' => 'PERUBAHAN DOKUMEN PENGADAAN / KUALIFIKASI
-NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$keterangan.'',
+NAMA PAKET : .' . $nama_rup . ', NAMA DOKUMEN : ' . $nama_dokumen . ', KETERANGAN : ' . $keterangan . '',
                 'delay' => '40-60',
             ),
             CURLOPT_HTTPHEADER => array(
@@ -151,9 +157,9 @@ NAMA PAKET : .'.$nama_rup.', NAMA DOKUMEN : '.$nama_dokumen.', KETERANGAN : '.$k
     }
 
 
-    
 
-    public function kirim_wa_perubahan_jadwal($id_rup,$id_jadwal_rup, $pesan)
+
+    public function kirim_wa_perubahan_jadwal($id_rup, $id_jadwal_rup, $pesan)
     {
         $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_jadwal_rup);
         $ambil_nama_paket =  $this->ci->M_panitia->get_row_rup($id_rup);

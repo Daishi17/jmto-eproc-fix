@@ -1784,6 +1784,7 @@
             success: function(response) {
                 console.log(response);
                 $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
+                $('[name="hasil_curency_negoku"]').val(response['row_vendor'].total_hasil_negosiasi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
                 $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
             }
         })
@@ -3025,4 +3026,29 @@
             }
         })
     })
+</script>
+
+
+<script>
+    $("#total_hasil_negosiasi").keyup(function() {
+        var harga = $("#total_hasil_negosiasi").val();
+        var tanpa_rupiah = document.getElementById('tanpa-rupiah2');
+        tanpa_rupiah.value = formatRupiah(this.value, 'Rp. ');
+        /* Fungsi */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    });
 </script>
