@@ -67,7 +67,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>Jumlah Peserta</th>
+                            <th>Jumlah Peserta Kualifikasi</th>
                             <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta">
                                     <i class="fa fa-users" aria-hidden="true"></i> <?= $hitung_peserta ?> Peserta
                                 </button></th>
