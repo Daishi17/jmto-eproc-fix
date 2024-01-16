@@ -1320,13 +1320,13 @@
                             <tr>
                                 <th>Tanggal SK Direksi</th>
                                 <th>
-                                    <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>">
+                                    <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal SK Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>">
                                 </th>
                             </tr>
                             <tr>
                                 <th>Tanggal SK Panitia</th>
                                 <th>
-                                    <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>">
+                                    <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal SK Panitia" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>">
                                 </th>
                             </tr>
                         </table>
