@@ -1298,6 +1298,40 @@
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Pilih Berita Acara atau Pengumuman Yang Ingin Di Buat!!!
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Nomor SK Direksi</th>
+                                <th>
+                                    <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Nomor SK Panitia</th>
+                                <th>
+                                    <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>">
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Tanggal SK Direksi</th>
+                                <th>
+                                    <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Tanggal SK Panitia</th>
+                                <th>
+                                    <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>">
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
                     <option value="13">1. Berita Acara Penjelasan Kualifikasi</option>
                     <option value="1">2. Berita Acara Pembuktian Kualifikasi</option>
