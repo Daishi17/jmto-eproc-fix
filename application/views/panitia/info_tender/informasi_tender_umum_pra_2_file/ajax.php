@@ -1492,7 +1492,6 @@
         })
     }
 
-    // upload sanggahan akhir
     var form_sanggahan_akhir = $('#form_sanggahan_akhir')
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
@@ -1589,10 +1588,10 @@
                     if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
                         if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
                             var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                         } else {
                             var file_sanggah_akhir_panitia = '-'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                         }
 
                     } else {
@@ -1615,10 +1614,67 @@
             }
         })
     }
+    
+    var form_sanggahan_akhir = $('#form_sanggahan_akhir')
+    form_sanggahan_akhir.on('submit', function(e) {
+        var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
+        var file_sanggah_akhir_panitia = $('[name="file_sanggah_akhir_panitia"]').val();
+        if (file_sanggah_akhir_panitia == '') {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Dokumen Wajib Di Isi!',
+            })
+        } else {
+            e.preventDefault();
+            $.ajax({
+                url: url_upload_sanggahan_akhir,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn-sanggah').attr("disabled", true);
+                },
+                success: function(response) {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Membuat Data <b></b>',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            $('#modal_balas_sanggahan_akhir').modal('hide')
+                            form_sanggahan_akhir[0].reset()
+                            load_dok_sanggahan_akhir()
+                            $('.btn-sanggah').attr("disabled", false);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
 
-    function balas_sanggahan_akhir(id_vendor_mengikuti_paket, nama_usaha) {
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+    function balas_sanggahan_akhir(id_sanggah_akhir_detail, nama_usaha) {
         var modal_balas_sanggahan_akhir = $('#modal_balas_sanggahan_akhir');
-        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+        $('[name="id_vendor_mengikuti_paket"]').val(id_sanggah_akhir_detail)
+        console.log(id_sanggah_akhir_detail);
         $('#nama_penyedia').text(nama_usaha)
         modal_balas_sanggahan_akhir.modal('show');
 
@@ -1627,7 +1683,7 @@
     function delete_sanggah_akhir(id_vendor_mengikuti_paket) {
         var url_hapus_sanggahan_akhir = $('[name="url_hapus_sanggahan_akhir"]').val()
         Swal.fire({
-            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhir?',
+            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhirkualifikasi?',
             text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
             icon: 'warning',
             showCancelButton: true,
@@ -1648,7 +1704,7 @@
                         if (response == 'success') {
                             Swal.fire(
                                 'Berhasil!',
-                                'Sanggahan akhir Berhasil Di Batalkan!',
+                                'Sanggahan Akhir Berhasil Di Batalkan!',
                                 'success'
                             )
                             load_dok_sanggahan_akhir()
