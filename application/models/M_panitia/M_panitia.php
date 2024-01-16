@@ -1367,7 +1367,7 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
-    
+
 
 
     public function get_peserta_tender_nilai_akhir($id_rup)
@@ -2621,7 +2621,7 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    
+
 
     public function get_row_rup($id_rup)
     {
