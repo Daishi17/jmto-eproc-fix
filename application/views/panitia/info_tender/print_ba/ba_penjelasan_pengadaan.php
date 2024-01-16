@@ -175,7 +175,7 @@ function terbilang($nilai)
                         </ol>
                     </li>
                     <br>
-                    <li>Segala sesuatu perubahan yang secara subtansi berpengaruh terhadap Dokumen Pengadaan dinyatakan dalam Addendum Dokumen Pengadaan yang diterbitkan secara resmi oleh Panitia Pengadaan dan disampaikan kepada Peserta Penawaran secara virtual melalui e-mail pada Hari <?= $row_rup['ba_penjelasan_hari'] ?>, <?= tgl_indo($row_rup['ba_penjelasan_tgl']) ?>.</li>
+                    <li>Segala sesuatu perubahan yang secara subtansi berpengaruh terhadap Dokumen Pengadaan dinyatakan dalam Addendum Dokumen Pengadaan yang diterbitkan secara resmi oleh Panitia Pengadaan dan disampaikan kepada Peserta Penawaran melalui notifikasi E-mail dan WhatsApp pada Hari <?= $row_rup['ba_penjelasan_hari'] ?>, <?= tgl_indo($row_rup['ba_penjelasan_tgl']) ?>.</li>
                     <br>
                     <li>Addendum Dokumen Pengadaan dimaksud merupakan satu kesatuan dan bagian yang tidak terpisahkan dengan Dokumen Pengadaan sebagaimana terlampir</li>
                     <br>

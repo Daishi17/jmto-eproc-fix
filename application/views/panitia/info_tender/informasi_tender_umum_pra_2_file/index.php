@@ -442,6 +442,7 @@
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
+
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
                                                                 <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
@@ -461,15 +462,15 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_sampul2_no']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File II</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
+                                                                <th>Pengumuman Hasil Evaluasi Teknis</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_negosiasi_no']) { ?>
-                                                                <th>Berita Acara Evaluasi dan Negosiasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php if ($row_rup['ba_sampul2_no']) { ?>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File II</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
@@ -479,23 +480,19 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_klarifikasi_no']) { ?>
-                                                                <th>Pengumuman Pemenang Pengadaan</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php if ($row_rup['ba_negosiasi_no']) { ?>
+                                                                <th>Berita Acara Evaluasi dan Negosiasi</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
+
                                                         <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
                                                                 <th>Pengumuman Pemenang Pengadaan</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
-                                                        <tr>
-                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
-                                                                <th>Pengumuman Hasil Evaluasi Teknis</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
-                                                            <?php } ?>
-                                                        </tr>
+
 
 
                                                     </tbody>
