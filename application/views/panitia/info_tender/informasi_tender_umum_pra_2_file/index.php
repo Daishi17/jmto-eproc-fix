@@ -69,7 +69,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>Jumlah Peserta</th>
+                            <th>Jumlah Peserta Kualifikasi</th>
                             <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta">
                                     <i class="fa fa-users" aria-hidden="true"></i> <?= $hitung_peserta ?> Peserta
                                 </button></th>
@@ -927,7 +927,49 @@
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <td><span class="badge bg-success">Mengikuti</span></td>
+                                <?php
+                                $time = time();
+                                $waktu_aanwijzing = strtotime($jadwal_aanwijzing_pq['waktu_mulai']);
+                                $waktu_aanwijzing_selesai = strtotime($jadwal_aanwijzing_pq['waktu_selesai']);
+                                ?>
+                                <?php if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                                    <?php if ($value['waktu_login'] >= $waktu_aanwijzing) { ?>
+                                        <?php
+                                        $where = [
+                                            'id_vendor' => $value['id_vendor'],
+                                            'id_rup' => $row_rup['id_rup']
+                                        ];
+                                        $data = [
+                                            'sts_aanwijzing_pq' => 1
+                                        ];
+                                        $this->M_panitia->update_mengikuti($data, $where);
+                                        ?>
+
+                                        <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
+                                            <td><span class="badge bg-success">Mengikuti</span></td>
+                                        <?php } else { ?>
+                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
+                                        <?php } ?>
+
+                                    <?php    } else { ?>
+                                        <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
+                                            <td><span class="badge bg-success">Mengikuti</span></td>
+                                        <?php } else { ?>
+                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
+                                        <?php } ?>
+
+                                    <?php    } ?>
+
+
+                                <?php  } else { ?>
+                                    <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
+                                        <td><span class="badge bg-success">Mengikuti</span></td>
+                                    <?php } else { ?>
+                                        <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
+                                    <?php } ?>
+                                <?php  } ?>
+
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -963,7 +1005,7 @@
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        foreach ($peserta_tender as $key => $value) { ?>
+                        foreach ($peserta_tender2 as $key => $value) { ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
@@ -1212,40 +1254,6 @@
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Pilih Berita Acara atau Pengumuman Yang Ingin Di Buat!!!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Nomor SK Direksi</th>
-                                <th>
-                                    <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>">
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Nomor SK Panitia</th>
-                                <th>
-                                    <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>">
-                                </th>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Tanggal SK Direksi</th>
-                                <th>
-                                    <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal SK Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>">
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Tanggal SK Panitia</th>
-                                <th>
-                                    <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal SK Panitia" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>">
-                                </th>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">

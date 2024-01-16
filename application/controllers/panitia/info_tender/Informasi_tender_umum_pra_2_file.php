@@ -37,7 +37,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         }
         $get_id_vendor = implode(",", $id_vendor_lolos);
         $get_vendor_mengikuti =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($data['row_rup']['id_rup'], $get_id_vendor);
-        $data['peserta_tender'] = $get_vendor_mengikuti;
+        $data['peserta_tender2'] = $get_vendor_mengikuti;
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
@@ -2687,7 +2688,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $upload = [
                 'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                 'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                'sts_deal_negosiasi' => $type_deal,
             ];
             $where = [
                 'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
@@ -2713,14 +2714,14 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                         'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                         'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
                         'ev_akhir_hea_peringkat' => 2,
-                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                        'sts_deal_negosiasi' => $type_deal,
                     ];
                 } else {
                     $update_pemenang_1 = [
                         'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                         'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
                         'ev_terendah_peringkat' => 2,
-                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                        'sts_deal_negosiasi' => $type_deal,
                     ];
                 }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
@@ -2746,14 +2747,14 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                         'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                         'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
                         'ev_akhir_hea_peringkat' => 3,
-                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                        'sts_deal_negosiasi' => $type_deal,
                     ];
                 } else {
                     $update_pemenang_1 = [
                         'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                         'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
                         'ev_terendah_peringkat' => 3,
-                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                        'sts_deal_negosiasi' => $type_deal,
                     ];
                 }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
