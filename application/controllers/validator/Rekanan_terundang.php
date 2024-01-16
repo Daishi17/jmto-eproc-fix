@@ -2889,11 +2889,11 @@ class Rekanan_terundang extends CI_Controller
 	{
 		$type = $this->input->post('type');
 		$type_edit_pengalaman = $this->input->post('type_edit_pengalaman');
-		$get_row_enkrip = $this->M_Rekanan_terundang->get_row_pengalaman_enkription($id_url);
+		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_pengalaman_enkription($id_url);
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
-		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
+		$secret_token_dokumen1 = $get_row_enkrip['token_dokumen'];
 		$where = [
 			'id_url' => $id_url
 		];
@@ -2910,14 +2910,14 @@ class Rekanan_terundang extends CI_Controller
 				'file_kontrak_pengalaman' => $file_kontrak_pengalaman,
 			];
 		}
-		$this->M_Rekanan_terundang->update_pengalaman_enkription($where, $data);
+		$this->M_Rekanan_tervalidasi->update_pengalaman_enkription($where, $data);
 		$response = [
 			'type_edit_pengalaman' => $type_edit_pengalaman,
-			'row_pengalaman_manajerial' => $this->M_Rekanan_terundang->get_row_pengalaman_id($get_row_enkrip['id_pengalaman']),
+			'row_pengalaman_manajerial' => $this->M_Rekanan_tervalidasi->get_row_pengalaman_id($get_row_enkrip['id_pengalaman']),
 		];
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
-
+	
 	public function url_download_pengalaman($id_url)
 	{
 		if ($id_url == '') {
@@ -3886,22 +3886,15 @@ class Rekanan_terundang extends CI_Controller
 
 	public function encryption_keuangan($id_url)
 	{
-		// $id_url_keuangan = $this->input->post('id_url_keuangan');
-		$token_dokumen = $this->input->post('token_dokumen');
-		// $secret_token = $this->input->post('secret_token');
 
 		$type = $this->input->post('type');
-
-
 		$get_row_enkrip = $this->M_Rekanan_terundang->get_row_keuangan_enkription($id_url);
 		// $id_vendor = $get_row_enkrip['id_vendor'];
 		// $row_vendor = $this->M_Rekanan_terundang->get_row_vendor($id_vendor);
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
-		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
-		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
-		$secret = $secret_token_dokumen1 . $secret_token_dokumen2;
+		$secret = $get_row_enkrip['token_dokumen'];
 		$where = [
 			'id_url' => $id_url
 		];
@@ -3917,17 +3910,6 @@ class Rekanan_terundang extends CI_Controller
 				'message' => 'success'
 			];
 			$this->M_Rekanan_terundang->update_keuangan($where, $data);
-			// if ($token_dokumen == $get_row_enkrip['token_dokumen']) {
-			// 	$response = [
-			// 		'message' => 'success'
-			// 	];
-			// 	$this->M_Rekanan_terundang->update_keuangan($where, $data);
-			// } else {
-			// 	$response = [
-			// 		'maaf' => 'Maaf Anda Memerlukan Token Yang Valid',
-			// 	];
-			// }
-			// st
 		} else {
 			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
 			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);
@@ -3940,13 +3922,6 @@ class Rekanan_terundang extends CI_Controller
 				'message' => 'success'
 			];
 			$this->M_Rekanan_terundang->update_keuangan($where, $data);
-			// if ($token_dokumen == $get_row_enkrip['token_dokumen']) {
-
-			// } else {
-			// 	$response = [
-			// 		'maaf' => 'Maaf Anda Memerlukan Token Yang Valid',
-			// 	];
-			// }
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));

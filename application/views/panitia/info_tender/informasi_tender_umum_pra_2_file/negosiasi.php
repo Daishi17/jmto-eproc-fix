@@ -5,7 +5,6 @@
 <input type="hidden" name="url_get_vendor_row" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_row_vendor_negosiasi') ?>">
 
 
-
 <main class="container">
     <div class="row">
         <div class="col">
@@ -18,10 +17,6 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
                         </li>
@@ -30,6 +25,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang</a>
@@ -71,6 +69,9 @@
                         </span>
                     </div>
                 </div>
+                <?php if ($peserta_vendor == 2) { ?>
+                    
+             <?php   } else { ?>
                 <div class="card-body">
                     <div style="overflow-x: auto;">
                         <table class="table table-bordered" id="tbl_evaluasi">
@@ -89,6 +90,9 @@
                         </table>
                     </div>
                 </div>
+             <?php   }
+                ?>
+
             </div>
         </div>
 </main>
@@ -125,6 +129,42 @@
                         <button type="submit" class="btn btn-primary btn_simpan_negosiasi">Simpan</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_hasil_negosiasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Hasil Negosiasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_hasil_negosiasi" action="javascript:;" enctype="multipart/form-data">
+                    <input type="hidden" name="id_vendor_mengikuti_paket" readonly class="form-control">
+                    <div class="form-group">
+                        <label for="">Nama Penyedia</label>
+                        <input type="text" name="nama_penyedia" readonly class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Total Negosisasi</label>
+                        <input type="text" name="total_hasil_negosiasi" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Keterangan</label>
+                        <input type="text" name="keterangan_negosiasi" class="form-control">
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="javascript:;" class="btn btn-success" onclick="deal_negosiasi('deal')"> Deal Negosisasi</a>
+                    <a href="javascript:;" class="btn btn-danger" onclick="deal_negosiasi('tidak_deal')"> Tidak Deal Negosiasi</a>
+                </div>
             </div>
         </div>
     </div>

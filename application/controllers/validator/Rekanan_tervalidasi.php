@@ -2694,7 +2694,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
-		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
+		$secret_token_dokumen1 = $get_row_enkrip['token_dokumen'];
 		$where = [
 			'id_url' => $id_url
 		];
@@ -2728,21 +2728,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$id_vendor = $get_row_enkrip['id_vendor'];
 		$row_vendor = $this->M_Rekanan_tervalidasi->get_id_vendor($id_vendor);
 		$date = date('Y');
-		// $nama_file = $get_row_enkrip['nomor_surat'];
-		// $file_dokumen =  $get_row_enkrip['file_dokumen'];
-
-		// Locate.
-		// $file_name = $get_row_enkrip['file_dokumen'];
-		// $file_url = $this->url_dokumen_vendor . 'file_vms/' . $row_vendor['nama_usaha'] . '/SIUP-' . $date . '/' . $get_row_enkrip['file_dokumen'];
-
 		$url = $this->url_dokumen_vendor . 'url_download_pengalaman/' . $id_url;
-
-		// Configure.
-		// header('Content-Type: application/octet-stream');
-		// header("Content-Transfer-Encoding: Binary");
-		// header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
-
-		// Actual download.
 		redirect($url);
 	}
 	// end pengalaman
@@ -3681,13 +3667,7 @@ class Rekanan_tervalidasi extends CI_Controller
 
 	public function encryption_keuangan($id_url)
 	{
-		// $id_url_keuangan = $this->input->post('id_url_keuangan');
-		$token_dokumen = $this->input->post('token_dokumen');
-		// $secret_token = $this->input->post('secret_token');
-
 		$type = $this->input->post('type');
-
-
 		$get_row_enkrip = $this->M_Rekanan_tervalidasi->get_row_keuangan_enkription($id_url);
 		// $id_vendor = $get_row_enkrip['id_vendor'];
 		// $row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor($id_vendor);
@@ -3696,9 +3676,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$chiper = "AES-128-CBC";
 		$option = 0;
 		$iv = str_repeat("0", openssl_cipher_iv_length($chiper));
-		$secret_token_dokumen1 = 'jmto.1' . $get_row_enkrip['id_url'];
-		$secret_token_dokumen2 = 'jmto.2' . $get_row_enkrip['id_url'];
-		$secret = $secret_token_dokumen1 . $secret_token_dokumen2;
+		$secret = $get_row_enkrip['token_dokumen'];
 		$where = [
 			'id_url' => $id_url
 		];
@@ -3714,17 +3692,6 @@ class Rekanan_tervalidasi extends CI_Controller
 				'message' => 'success'
 			];
 			$this->M_Rekanan_tervalidasi->update_keuangan($where, $data);
-			// if ($token_dokumen == $get_row_enkrip['token_dokumen']) {
-			// 	$response = [
-			// 		'message' => 'success'
-			// 	];
-			// 	$this->M_Rekanan_tervalidasi->update_keuangan($where, $data);
-			// } else {
-			// 	$response = [
-			// 		'maaf' => 'Maaf Anda Memerlukan Token Yang Valid',
-			// 	];
-			// }
-			// st
 		} else {
 			$file_laporan_auditor = openssl_encrypt($get_row_enkrip['file_laporan_auditor'], $chiper, $secret, $option, $iv);
 			$file_laporan_keuangan = openssl_encrypt($get_row_enkrip['file_laporan_keuangan'], $chiper, $secret, $option, $iv);

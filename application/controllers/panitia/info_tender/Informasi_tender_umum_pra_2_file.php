@@ -268,7 +268,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             if ($rs->ev_penawaran_teknis) {
                 $row[] =  $rs->ev_penawaran_teknis;
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if (!$rs->ev_penawaran_ket_ba) {
@@ -311,37 +311,37 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
             if ($rs->nilai_penawaran) {
-                $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
+                $row[] = '<div class="text-end">' . number_format($rs->nilai_penawaran, 2, ',', '.') . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_penawaran_teknis) {
-                $row[] =  $rs->ev_penawaran_teknis;
+                $row[] = '<div class="text-center">' . $rs->ev_penawaran_teknis . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_penawaran_hps) {
-                $row[] =  number_format($rs->ev_penawaran_hps, 2, ',', '.') . '%';
+                $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_hps, 2, ',', '.') . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
             } else {
                 if ($rs->ev_penawaran_biaya) {
-                    $row[] =  number_format($rs->ev_penawaran_biaya, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_biaya, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
                 if ($rs->ev_penawaran_akhir) {
-                    $row[] =  number_format($rs->ev_penawaran_akhir, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_akhir, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 if ($rs->ev_penawaran_peringkat) {
@@ -353,7 +353,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 
 
             if ($rs->ev_penawaran_teknis == NULL) {
-                $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Ketahui</span>';
+                $row[] = '<div class="text-center badge bg-secondary bg-sm">Belum Di Ketahui</div>';
             } else {
                 if ($rs->ev_penawaran_teknis >= 60) {
                     if ($rs->ev_penawaran_hps >= 100) {
@@ -407,39 +407,39 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">-</span>';
-                $row[] =  '<span class="badge bg-danger bg-sm">Gugur</span>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">Gugur</div>';
             } else {
                 if ($rs->nilai_penawaran) {
-                    $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->nilai_penawaran, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
                 if ($rs->ev_hea_tkdn) {
-                    $row[] =  number_format($rs->ev_hea_tkdn, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_tkdn, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 if ($rs->ev_hea_harga) {
-                    $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_harga, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 $row[] = $rs->ev_hea_peringkat;
 
                 if ($rs->ev_hea_tkdn) {
                     if ($rs->ev_hea_tkdn >= $rup['persen_pencatatan'] && $rs->ev_hea_harga <= $rup['total_hps_rup']) {
-                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                        $row[] = '<div class="text-center badge bg-success bg-sm">Sah</div>';
                     } else {
-                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                        $row[] = '<div class="text-center badge bg-danger bg-sm">Gugur</div>';
                     }
                 } else {
-                    $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
+                    $row[] = '<div class="text-center badge bg-secondary bg-sm">Belum Di Evaluasi</div>';
                 }
             }
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
@@ -511,30 +511,30 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 if ($rs->ev_hea_harga) {
                     $row[] = '<div class="text-end">' . number_format($rs->ev_hea_harga, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
                 if ($rs->ev_akhir_hea_teknis) {
                     $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 if ($rs->ev_akhir_hea_hps) {
                     $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_hps, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 if ($rs->ev_akhir_hea_nilai) {
                     $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
 
                 if ($rs->ev_akhir_hea_akhir) {
                     $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] =  '0,00';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
                 $row[] = '<div class="text-center">' .  $rs->ev_akhir_hea_peringkat . '</div>';
 
@@ -570,19 +570,19 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             if ($rs->ev_akhir_hea_hps) {
                 $row[] =  number_format($rs->ev_akhir_hea_hps, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_akhir_hea_nilai) {
                 $row[] =  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_akhir_hea_akhir) {
                 $row[] =  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             $row[] = $rs->ev_akhir_hea_peringkat;
@@ -647,19 +647,19 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_terendah_hps) {
                 $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_terendah_bobot) {
                 $row[] =  number_format($rs->ev_terendah_bobot, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
 
@@ -963,7 +963,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $ev_hea_harga = $this->input->post('ev_hea_harga');
         $ev_akhir_hea_teknis = $this->input->post('ev_akhir_hea_teknis');
         $total_hps_rup = $this->input->post('total_hps_rup');
-
+        $row_vendor =  $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket);
         //post teknis dan biaya
         $bobot_teknis = $this->input->post('bobot_teknis');
         $bobot_biaya = $this->input->post('bobot_biaya');
@@ -1887,6 +1887,13 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+
+        $row_rup =  $this->M_panitia->get_rup($data['id_rup']);
+        if ($row_rup['bobot_nilai'] == 1) {
+            $data['peserta_vendor'] = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis($data['row_rup']['id_rup']);
+        } else {
+            $data['peserta_vendor'] = $this->M_panitia->jumlah_peserta_negosiasi($data['row_rup']['id_rup']);
+        }
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/negosiasi', $data);
         $this->load->view('template_tender/footer');
@@ -1896,12 +1903,31 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     public function get_vendor_negosiasi()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi($id_rup);
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
+        if ($row_rup['bobot_nilai'] == 1) {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_teknis($id_rup);
+        } else {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi($id_rup);
+        }
+
         $output = [
             'result_vendor_negosiasi' => $result_vendor_negosiasi,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
+
+    public function get_row_vendor_negosiasi()
+    {
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $row_vendor = $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket);
+        $output = [
+            'row_vendor' => $row_vendor,
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+
 
     public function simpan_link_negosiasi()
     {
@@ -2654,6 +2680,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
         $type_deal = $this->input->post('type_deal');
         $id_rup = $this->input->post('id_rup');
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
         if ($type_deal == 'deal') {
             $upload = [
                 'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
@@ -2665,53 +2692,95 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             ];
             $this->M_panitia->update_mengikuti($upload, $where);
         } else {
-            $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
-            $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
-            $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
+            if ($row_rup['bobot_nilai'] == 1) {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1_teknis($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2_teknis($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3_teknis($id_rup);
+            } else {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
+            }
             $peserta_negosiasi = $this->M_panitia->jumlah_peserta_negosiasi($id_rup);
             if ($peserta_negosiasi == 2) {
                 $where_pemenang_1 = [
                     'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 2,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_akhir_hea_peringkat' => 2,
+                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat' => 2,
+                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
                 $where_pemenang_2 = [
                     'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
             } else {
                 $where_pemenang_1 = [
                     'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 3,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_akhir_hea_peringkat' => 3,
+                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat' => 3,
+                        'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
                 $where_pemenang_2 = [
                     'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
 
                 $where_pemenang_3 = [
                     'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_3 = [
-                    'ev_terendah_peringkat' => 2
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_3 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_3 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_3, $where_pemenang_3);
             }
         }
