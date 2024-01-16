@@ -241,8 +241,8 @@
                                     </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Pembuktian
+                                    <button type="button" class="btn btn-sm btn-danger" disabled>
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
                                     </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } ?>
                             </th>
@@ -354,8 +354,8 @@
                                     </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
+                                    <button type="button" disabled class="btn btn-sm btn-danger">
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
                                     </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>
@@ -376,7 +376,7 @@
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
@@ -425,7 +425,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
+                                                            <?php if ($row_rup['ba_pembuktian_no']) { ?>
                                                                 <th>Berita Acara Penjelasan Kualifikasi</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
@@ -1262,11 +1262,11 @@
                             <thead>
                                 <tr>
                                     <th>Nomor SK Direksi</th>
-                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
+                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat Direksi" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
                                 </tr>
                                 <tr>
                                     <th>Nomor SK Panitia</th>
-                                    <th> <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>"></th>
+                                    <th> <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat Panitia" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -1276,17 +1276,18 @@
                             <thead>
                                 <tr>
                                     <th>Tanggal SK Direksi</th>
-                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
+                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal SK Panitia</th>
-                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
+                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
                                 </tr>
                             </thead>
                         </table>
                     </div>
                 </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
+                    <option value="">--Pilih--</option>
                     <option value="13">1. Berita Acara Penjelasan Kualifikasi</option>
                     <option value="1">2. Berita Acara Pembuktian Kualifikasi</option>
                     <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
@@ -1303,7 +1304,7 @@
                 </select>
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="ba_1" style="display: block;" class="mt-3">
+                        <div id="ba_1" style="display: none;" class="mt-3">
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_pembuktian_kualifikasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pembuktian_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;

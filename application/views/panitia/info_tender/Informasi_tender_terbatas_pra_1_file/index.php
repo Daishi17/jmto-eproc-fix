@@ -214,12 +214,12 @@
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button>
+                                    </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button>
+                                    </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } ?>
                             </th>
                         </tr>
@@ -327,12 +327,12 @@
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
-                                    </button>
+                                    </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
-                                    </button>
+                                    </button> <a target="_blank" href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>
 
@@ -349,12 +349,12 @@
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
-                                    </button>
+                                    </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
-                                    </button>
+                                    </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>
 
@@ -403,6 +403,12 @@
                                                     <tbody>
                                                         <tr>
                                                             <?php if ($row_rup['ba_pembuktian_no']) { ?>
+                                                                <th>Berita Acara Penjelasan Kualifikasi</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_pembuktian_no']) { ?>
                                                                 <th>Berita Acara Pembuktian Kualifikasi</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pembuktian_kualifikasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
@@ -413,9 +419,10 @@
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
+
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran Sampul I (Administrasi Dan Teknis)</th>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_I/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -432,15 +439,15 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_sampul2_no']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran Sampul II</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php if ($row_rup['ba_pengumuman_hasil_evaluasi_teknis_no']) { ?>
+                                                                <th>Pengumuman Hasil Evaluasi Teknis</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_pengumuman_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_negosiasi_no']) { ?>
-                                                                <th>Berita Acara Evaluasi dan Negosiasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php if ($row_rup['ba_sampul2_no']) { ?>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File II</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
@@ -450,11 +457,21 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
+                                                            <?php if ($row_rup['ba_negosiasi_no']) { ?>
+                                                                <th>Berita Acara Evaluasi dan Negosiasi</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+
+                                                        <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
                                                                 <th>Pengumuman Pemenang Pengadaan</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
+
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -569,24 +586,55 @@
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Pilih Berita Acara atau Pengumuman Yang Ingin Di Buat!!!
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nomor SK Direksi</th>
+                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat Direksi" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
+                                </tr>
+                                <tr>
+                                    <th>Nomor SK Panitia</th>
+                                    <th> <input type="text" name="ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_panitia')" placeholder="Nomor Surat Panitia" class="form-control" value="<?= $row_rup['ba_sk_panitia'] ?>"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal SK Direksi</th>
+                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal SK Panitia</th>
+                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
                 <select name="jenis_ba" id="jenis_ba" onchange="select_ba()" class="form-control form-sm">
-                    <option value="1">Berita Acara Pembuktian Kualifikasi</option>
-                    <option value="2">Berita Acara Hasil Evaluasi</option>
-                    <option value="3">Berita Acara Sampul I</option>
-                    <option value="10">Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
-                    <option value="4">Undangan Rapat Presentasi Teknis</option>
-                    <option value="5">Berita Acara Hasil Evaluasi Teknis</option>
-                    <option value="6">Berita Acara Pembukaan Sampul II</option>
-                    <option value="7">Berita Acara Evaluasi dan Negosiasi Harga</option>
-                    <option value="8">Berita Acara Klarifikasi Harga</option>
-                    <option value="9">Pengumuman Pemenang Tender</option>
-                    <!-- <option value="11">Berita Acara Presentasi Teknis Tender</option> -->
-                    <option value="12">Pengumuman Hasil Evaluasi Teknis</option>
-                    <option value="13">Berita Acara Penjelasan Kualifikasi</option>
+                    <option value="">--Pilih--</option>
+                    <option value="13">1. Berita Acara Penjelasan Kualifikasi</option>
+                    <option value="1">2. Berita Acara Pembuktian Kualifikasi</option>
+                    <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
+                    <option value="10">4. Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
+                    <option value="3">5. Berita Acara Pembukaan File I</option>
+                    <option value="4">6. Undangan Rapat Presentasi Teknis</option>
+                    <option value="11">7. Berita Acara Presentasi Teknis Tender</option>
+                    <option value="5">8. Berita Acara Hasil Evaluasi Teknis</option>
+                    <option value="12">9. Pengumuman Hasil Evaluasi Teknis</option>
+                    <option value="6">10. Berita Acara Pembukaan File II</option>
+                    <option value="8">11. Berita Acara Klarifikasi Harga</option>
+                    <option value="7">12. Berita Acara Evaluasi dan Negosiasi Harga</option>
+                    <option value="9">13. Pengumuman Pemenang Tender</option>
                 </select>
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="ba_1" style="display: block;" class="mt-3">
+                        <div id="ba_1" style="display: none;" class="mt-3">
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/ba_pembuktian_kualifikasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pembuktian_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
@@ -648,13 +696,42 @@
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $value['nama_usaha'] ?></td>
                                                 <td>
-                                                    <input type="text" name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>">
+                                                    <select name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>">
+                                                        <?php if ($value['ba_pembuktian_hadir']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_hadir'] ?>"><?= $value['ba_pembuktian_hadir'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
+                                                        <option value="Online">Online</option>
+                                                        <option value="Offline">Offline</option>
+                                                        <option value="Tidak Hadir">Tidak Hadir</option>
+                                                    </select>
+                                                    <!-- <input type="text" name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>"> -->
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="ba_pembuktian_dok<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_dok(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_dok')" value="<?= $value['ba_pembuktian_dok'] ?>">
+                                                    <select name="ba_pembuktian_dok<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_dok(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_dok')" value="<?= $value['ba_pembuktian_dok'] ?>">
+                                                        <?php if ($value['ba_pembuktian_dok']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_dok'] ?>"><?= $value['ba_pembuktian_dok'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
+                                                        <option value="Lengkap">Lengkap</option>
+                                                        <option value="Tidak Lengkap">Tidak Lengkap</option>
+                                                    </select>
+                                                    <!-- <input type="text" name="ba_pembuktian_dok<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_dok(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_dok')" value="<?= $value['ba_pembuktian_dok'] ?>"> -->
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="ba_pembuktian_ket<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_ket(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_ket')" value="<?= $value['ba_pembuktian_ket'] ?>">
+                                                    <select name="ba_pembuktian_ket<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_ket(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_ket')" value="<?= $value['ba_pembuktian_ket'] ?>">
+                                                        <?php if ($value['ba_pembuktian_ket']) { ?>
+                                                            <option value="<?= $value['ba_pembuktian_ket'] ?>"><?= $value['ba_pembuktian_ket'] ?></option>
+                                                        <?php  } else { ?>
+                                                            <option value="">Pilih</option>
+                                                        <?php } ?>
+                                                        <option value="Lulus">Lulus</option>
+                                                        <option value="Gugur">Gugur</option>
+                                                    </select>
+
+                                                    <!-- <input type="text" name="ba_pembuktian_ket<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_ba_kualifikas_ket(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_ket')" value="<?= $value['ba_pembuktian_ket'] ?>"> -->
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -797,12 +874,6 @@
                                     <th>Hari (Pelaksanaan)</th>
                                     <th>
                                         <input type="text" name="ba_sampul1_hari" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_hari')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_hari'] ?>">
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Tanggal (Pelaksanaan)</th>
-                                    <th>
-                                        <input type="date" name="ba_sampul1_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_tgl_pelaksanaan'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
@@ -1024,6 +1095,28 @@
 
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
+                                    <label for=""> Evaluasi Teknis </label>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered" id="tbl_ba_evaluasi_teknis_vendor">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Perusahaan</th>
+                                                <th>Nilai Teknis</th>
+                                                <th>Keterangan</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
                                     <label for="">Unsur yang dinilai pada tahapan Evaluasi Teknis </label>
                                 </div>
                                 <div class="card-body">
@@ -1089,6 +1182,33 @@
                                     </th>
                                 </tr>
                             </table>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for=""> Dokumen Kelengkapan File II </label>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered" id="tbl_kelengkapan_file2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Peserta Penawaran</th>
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                                <th>4</th>
+                                                <th>5</th>
+                                                <th>6</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                         <div id="ba_7" style="display: none;" class="mt-3">
                             <div class="d-flex">
@@ -1240,6 +1360,7 @@
                                     </th>
                                 </tr>
                             </table>
+
                         </div>
                         <div id="ba_9" style="display: none;" class="mt-3">
 
@@ -1288,7 +1409,7 @@
                                         <tr>
                                             <td scope="row"><?= $no++ ?></td>
                                             <td><?= $value['nama_usaha'] ?></td>
-                                            <td><a class="btn btn-sm btn-primary" target="_blank" href="https://jmto-vms.kintekindo.net/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/Pakta_Integritas_-_Panitia.pdf"><i class="fa fa-eye"></i> Lihat</a></td>
+                                            <td><a class="btn btn-sm btn-primary" target="_blank" href="https://jmto-vms.kintekindo.net/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/<?= $value['ba_presentasi_teknis'] ?>"><i class="fa fa-eye"></i> Lihat</a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

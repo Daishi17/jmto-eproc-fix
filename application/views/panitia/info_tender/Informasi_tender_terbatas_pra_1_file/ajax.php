@@ -2296,6 +2296,7 @@
     }
 
 
+
     function select_ba() {
         var jenis_ba = $('#jenis_ba').val();
         if (jenis_ba == 1) {
@@ -2930,6 +2931,30 @@
             }
         })
     })
+
+    function setujui_ba(value, type) {
+        var url_post_status_ba = $('[name="url_post_status_ba"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        if (type == 'setuju') {
+            var sts = 1;
+        } else {
+            var sts = 2;
+        }
+        $.ajax({
+            type: "POST",
+            url: url_post_status_ba,
+            dataType: "JSON",
+            data: {
+                post: value,
+                type: sts,
+                id_rup: id_rup
+            },
+            success: function(response) {
+                Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+            }
+        })
+    }
+
 
     function format_rupiah_ba_sampul2() {
         var ba_negosiasi_penawaran = $('[name="ba_negosiasi_penawaran"]').val()
