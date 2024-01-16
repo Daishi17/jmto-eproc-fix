@@ -979,7 +979,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         // nilai hea
         $get_min_penawaran = $this->M_panitia->get_min_penawaran_hea($id_rup_post);
         $get_nilai_hea = $get_min_penawaran['min_nilai_hea'];
-        // var_dump($get_nilai_hea);die;
         $total_nilai_hea = $get_nilai_hea / $ev_hea_harga * 100;
         $data = [
             'ev_akhir_hea_teknis' => $ev_akhir_hea_teknis,
@@ -1054,31 +1053,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_evaluasi($data3, $where3);
         }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
-
-        // update nilai akhir keseluruhan
-        // $peserta = $this->M_panitia->get_peserta_nilai_akhir_hea($id_rup_post);
-        // foreach ($peserta as $key => $value2) {
-        //     $data2 = [
-        //         'ev_akhir_hea_akhir' => $value2['ev_akhir_hea_teknis'] * $bobot_teknis / 100  + $value2['ev_akhir_hea_nilai'] * $bobot_biaya / 100
-        //     ];
-        //     $where2 = [
-        //         'id_vendor_mengikuti_paket'    => $value2['id_vendor_mengikuti_paket']
-        //     ];
-        //     $this->M_panitia->update_evaluasi($data2, $where2);
-        // }
-        // // update nilai peringkat keseluruhan
-        // $peserta2 = $this->M_panitia->get_peserta_nilai_akhir_hea2($id_rup_post);
-        // $i = 1;
-        // foreach ($peserta2 as $key => $value3) {
-        //     $data3 = [
-        //         'ev_akhir_hea_peringkat' => $i++
-        //     ];
-        //     $where3 = [
-        //         'id_vendor_mengikuti_paket'    => $value3['id_vendor_mengikuti_paket']
-        //     ];
-        //     $this->M_panitia->update_evaluasi($data3, $where3);
-        // }
-        // $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
     // end evaluasi
 

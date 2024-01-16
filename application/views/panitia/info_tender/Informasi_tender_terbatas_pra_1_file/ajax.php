@@ -298,6 +298,8 @@
         var modal_evaluasi_kualifikasi = $('#modal_evaluasi_kualifikasi')
         var modal_evaluasi_penawaran = $('#modal_evaluasi_penawaran')
         var modal_evaluasi_hea_tkdn = $('#modal_evaluasi_hea_tkdn')
+        var modal_evaluasi_hea_tkdn_terendah = $('#modal_evaluasi_hea_tkdn_terendah')
+        var modal_evaluasi_harga_terendah_hea = $('#modal_evaluasi_harga_terendah_hea')
         var modal_evaluasi_akhir_hea = $('#modal_evaluasi_akhir_hea')
         var modal_evaluasi_harga_terendah = $('#modal_evaluasi_harga_terendah')
         var id_rup = $('[name="id_rup"]').val()
@@ -325,6 +327,15 @@
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
                 } else if (type == 'harga_terendah') {
                     modal_evaluasi_harga_terendah.modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="ev_hea_harga"]').val(response['row_vendor_mengikuti'].ev_hea_harga)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                } else if (type == 'hea_tkdn_harga_terendah') {
+                    modal_evaluasi_hea_tkdn_terendah.modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                } else if (type == 'harga_terendah_peringkat_hea') {
+                    modal_evaluasi_harga_terendah_hea.modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
                     $('[name="ev_hea_harga"]').val(response['row_vendor_mengikuti'].ev_hea_harga)
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
@@ -2942,4 +2953,190 @@
         var rupiahFormat = ba_negosiasi_harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         $('[name="ba_negosiasi_harga2"]').val('Rp. ' + rupiahFormat)
     }
+</script>
+
+<script>
+
+
+    // INI UNTUK TKDN HEA TERENDAH
+        
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_hea_tkdn_terendah').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn_harga_terendah/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+
+    function reload_evaluasi_hea_tkdn_terendah() {
+        $('#tbl_hea_tkdn_terendah').DataTable().ajax.reload();
+    }
+
+    var form_evaluasi_hea_tkdn_terendah = $('#form_evaluasi_hea_tkdn_terendah')
+    form_evaluasi_hea_tkdn_terendah.on('submit', function(e) {
+        var url_simpan_evaluasi_hea_tkdn_terendah = $('[name="url_simpan_evaluasi_hea_tkdn_terendah"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_simpan_evaluasi_hea_tkdn_terendah,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_penawaran').attr("disabled", true);
+            },
+            success: function(response) {
+                if (response['error']) {
+                    // $("#error_ev_keuangan").html(response['error']['ev_keuangan']);
+                    // $("#error_ev_teknis").html(response['error']['ev_teknis']);
+                    $('#btn_ev_tkdn').attr("disabled", false);
+                } else {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Proses Data <b></b>',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            $('#btn_ev_tkdn').attr("disabled", false);
+                            $('#modal_evaluasi_hea_tkdn_terendah').modal('hide')
+                            form_evaluasi_hea_tkdn_terendah[0].reset();
+                            reload_evaluasi_hea_tkdn_terendah()
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+                }
+
+            }
+        })
+    })
+
+
+
+    
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_peringkat_akhir_terendah_hea').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_pringkat_akhir_harga_terendah_hea/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+
+    function reload_tbl_peringkat_akhir_terendah_hea() {
+        $('#tbl_peringkat_akhir_terendah_hea').DataTable().ajax.reload();
+    }
+
+    var form_evaluasi_harga_terendah_hea = $('#form_evaluasi_harga_terendah_hea')
+    form_evaluasi_harga_terendah_hea.on('submit', function(e) {
+        var url_simpan_evaluasi_harga_terendah_hea = $('[name="url_simpan_evaluasi_harga_terendah_hea"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_simpan_evaluasi_harga_terendah_hea,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_hea_akhir').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_evaluasi_harga_terendah_hea').modal('hide')
+                        form_evaluasi_harga_terendah_hea[0].reset();
+                        reload_tbl_peringkat_akhir_terendah_hea()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+            }
+        })
+    })
+
+
 </script>

@@ -1112,7 +1112,7 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    
+
     public function get_mengikuti($id_rup)
     {
         $this->db->select('*');
@@ -1506,6 +1506,19 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_peserta_tender_hea_tkdn_terendah($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_harga !=', NULL);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_tkdn_terendah !=', NULL);
+        $this->db->order_by('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_rup($id_rup)
     {
         $this->db->select('*');
@@ -1658,6 +1671,44 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_harga !=', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // new_evaluasi
+
+    public function get_min_penawaran_terendah_hea_peringkat_akhir($id_rup_post)
+    {
+        $this->db->select_min('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah', 'min_nilai_terendah');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_min_penawaran_terendah_hea_peringkat_akhir2($id_rup_post)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_min_penawaran_terendah_peringkat_akhir_hea($id_rup_post)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup_post);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', null);
+        $this->db->order_by('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
