@@ -349,7 +349,8 @@ class M_panitia extends CI_Model
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Kecil', 'Menengah']);
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Kecil') {
             $this->db->where('tbl_vendor.kualifikasi_usaha', 'Kecil');
-        } else { }
+        } else {
+        }
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
@@ -543,8 +544,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_spt[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
         // // lolos_keuangan
         if ($cek_syarat_teknis['sts_checked_laporan_keuangan'] == 1) {
@@ -554,8 +557,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_laporan_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
         // // lolos_neraca_keuangan
         if ($cek_syarat_teknis['sts_checked_neraca_keuangan'] == 1) {
@@ -565,8 +570,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_neraca_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
 
         // cek_vendor terundang by_kbli
@@ -598,7 +605,8 @@ class M_panitia extends CI_Model
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where('tbl_vendor_siup.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_siup']);
             }
-        } else { }
+        } else {
+        }
 
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
@@ -1104,7 +1112,7 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-
+    
     public function get_mengikuti($id_rup)
     {
         $this->db->select('*');
@@ -1126,13 +1134,35 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_vendor($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor');
+        $this->db->where_in('tbl_vendor.id_vendor', [$id_vendor]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_peserta_tender_lolos_prakualifikasi($id_rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_syarat_tambahan');
         $this->db->join('tbl_vendor', 'tbl_vendor_syarat_tambahan.id_vendor = tbl_vendor.id_vendor');
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
-        $this->db->where('tbl_vendor_syarat_tambahan.status !=', 2);
+        $this->db->where('tbl_vendor_syarat_tambahan.status', 2);
+        $this->db->group_by('tbl_vendor_syarat_tambahan.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_peserta_tender_lolos_prakualifikasi_asli($id_rup, $id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_syarat_tambahan');
+        $this->db->join('tbl_vendor', 'tbl_vendor_syarat_tambahan.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
+        $this->db->where_not_in('tbl_vendor_syarat_tambahan.id_vendor', [$id_vendor]);
+        $this->db->group_by('tbl_vendor_syarat_tambahan.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -1853,7 +1883,8 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
-        if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) { } else {
+        if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) {
+        } else {
             $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >=', 60);
         }
         $i = 0;

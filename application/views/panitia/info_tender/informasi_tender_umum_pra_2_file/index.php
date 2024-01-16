@@ -179,10 +179,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                    </td>
-                                                                <?php } else { ?>
-                                                                <?php }
-                                                                ?>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                            <?php }
+                                                            ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -927,49 +927,7 @@
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <?php
-                                $time = time();
-                                $waktu_aanwijzing = strtotime($jadwal_aanwijzing_pq['waktu_mulai']);
-                                $waktu_aanwijzing_selesai = strtotime($jadwal_aanwijzing_pq['waktu_selesai']);
-                                ?>
-                                <?php if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                    <?php if ($value['waktu_login'] >= $waktu_aanwijzing) { ?>
-                                        <?php
-                                        $where = [
-                                            'id_vendor' => $value['id_vendor'],
-                                            'id_rup' => $row_rup['id_rup']
-                                        ];
-                                        $data = [
-                                            'sts_aanwijzing_pq' => 1
-                                        ];
-                                        $this->M_panitia->update_mengikuti($data, $where);
-                                        ?>
-
-                                        <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
-                                            <td><span class="badge bg-success">Mengikuti</span></td>
-                                        <?php } else { ?>
-                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                        <?php } ?>
-
-                                    <?php    } else { ?>
-                                        <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
-                                            <td><span class="badge bg-success">Mengikuti</span></td>
-                                        <?php } else { ?>
-                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                        <?php } ?>
-
-                                    <?php    } ?>
-
-
-                                <?php  } else { ?>
-                                    <?php if ($value['sts_aanwijzing_pq'] == 1) { ?>
-                                        <td><span class="badge bg-success">Mengikuti</span></td>
-                                    <?php } else { ?>
-                                        <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                    <?php } ?>
-                                <?php  } ?>
-
+                                <td><span class="badge bg-success">Mengikuti</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -1009,49 +967,7 @@
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
-                                <?php
-                                $time = time();
-                                $waktu_aanwijzing_penawaran = strtotime($jadwal_aanwijzing['waktu_mulai']);
-                                $waktu_aanwijzing_selesai = strtotime($jadwal_aanwijzing['waktu_selesai']);
-                                ?>
-                                <?php if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-                                    <?php if ($value['waktu_login'] >= $waktu_aanwijzing_penawaran) { ?>
-                                        <?php
-                                        $where = [
-                                            'id_vendor' => $value['id_vendor'],
-                                            'id_rup' => $row_rup['id_rup']
-                                        ];
-                                        $data = [
-                                            'sts_aanwijzing_penawaran' => 1
-                                        ];
-                                        $this->M_panitia->update_mengikuti($data, $where);
-                                        ?>
-
-                                        <?php if ($value['sts_aanwijzing_penawaran'] == 1) { ?>
-                                            <td><span class="badge bg-success">Mengikuti</span></td>
-                                        <?php } else { ?>
-                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                        <?php } ?>
-
-                                    <?php    } else { ?>
-                                        <?php if ($value['sts_aanwijzing_penawaran'] == 1) { ?>
-                                            <td><span class="badge bg-success">Mengikuti</span></td>
-                                        <?php } else { ?>
-                                            <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                        <?php } ?>
-
-                                    <?php    } ?>
-
-
-                                <?php  } else { ?>
-                                    <?php if ($value['sts_aanwijzing_penawaran'] == 1) { ?>
-                                        <td><span class="badge bg-success">Mengikuti</span></td>
-                                    <?php } else { ?>
-                                        <td><span class="badge bg-danger">Tidak Mengikuti</span></td>
-                                    <?php } ?>
-                                <?php  } ?>
-
+                                <td><span class="badge bg-success">Mengikuti</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>
