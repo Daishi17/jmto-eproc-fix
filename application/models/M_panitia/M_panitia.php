@@ -1126,6 +1126,18 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_peserta_tender_lolos_prakualifikasi($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_syarat_tambahan');
+        $this->db->join('tbl_vendor', 'tbl_vendor_syarat_tambahan.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_syarat_tambahan.status !=', 2);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
     public function get_peserta_tender_ba_pra($id_rup)
     {
         $this->db->select('*');
