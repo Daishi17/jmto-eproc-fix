@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Berita Acara Pengumuman Pemenang Tender
+    <title>Pengumuman Pemenang Tender
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,28 +84,28 @@ function bln_indo($bulan)
 function penyebut($nilai)
 {
     $nilai = abs($nilai);
-    $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+    $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
     $temp = "";
     if ($nilai < 12) {
         $temp = " " . $huruf[$nilai];
     } else if ($nilai < 20) {
-        $temp = penyebut($nilai - 10) . " belas";
+        $temp = penyebut($nilai - 10) . " Belas";
     } else if ($nilai < 100) {
-        $temp = penyebut($nilai / 10) . " puluh" . penyebut($nilai % 10);
+        $temp = penyebut($nilai / 10) . " Puluh" . penyebut($nilai % 10);
     } else if ($nilai < 200) {
         $temp = " seratus" . penyebut($nilai - 100);
     } else if ($nilai < 1000) {
-        $temp = penyebut($nilai / 100) . " ratus" . penyebut($nilai % 100);
+        $temp = penyebut($nilai / 100) . " Ratus" . penyebut($nilai % 100);
     } else if ($nilai < 2000) {
-        $temp = " seribu" . penyebut($nilai - 1000);
+        $temp = " Seribu" . penyebut($nilai - 1000);
     } else if ($nilai < 1000000) {
-        $temp = penyebut($nilai / 1000) . " ribu" . penyebut($nilai % 1000);
+        $temp = penyebut($nilai / 1000) . " Ribu" . penyebut($nilai % 1000);
     } else if ($nilai < 1000000000) {
-        $temp = penyebut($nilai / 1000000) . " juta" . penyebut($nilai % 1000000);
+        $temp = penyebut($nilai / 1000000) . " Juta" . penyebut($nilai % 1000000);
     } else if ($nilai < 1000000000000) {
-        $temp = penyebut($nilai / 1000000000) . " milyar" . penyebut(fmod($nilai, 1000000000));
+        $temp = penyebut($nilai / 1000000000) . " Milyar" . penyebut(fmod($nilai, 1000000000));
     } else if ($nilai < 1000000000000000) {
-        $temp = penyebut($nilai / 1000000000000) . " trilyun" . penyebut(fmod($nilai, 1000000000000));
+        $temp = penyebut($nilai / 1000000000000) . " Trilyun" . penyebut(fmod($nilai, 1000000000000));
     }
     return $temp;
 }
@@ -144,7 +144,7 @@ function terbilang($nilai)
                 </table>
             </div>
             <div class="float-right">
-                Jakarta, <?= tgl_indo($row_rup['ba_pemenang_tgl']) ?>
+                Jakarta, <?= date('d', strtotime($row_rup['ba_pemenang_tgl'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl'])) ?>
             </div>
             <br>
             <br>
@@ -179,7 +179,7 @@ function terbilang($nilai)
 
                 </div>
             </div>
-            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no'] ?> tanggal <?= tgl_indo($row_rup['ba_pemenang_tgl_persetujuan']) ?> telah mendapatkan Persetujuan Direktur Utama PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
+            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl'])) ?> telah mendapatkan Persetujuan Direktur Utama PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
 
             <div class="card">
                 <div class="card-header">
@@ -201,17 +201,36 @@ function terbilang($nilai)
                         </tr>
 
                         <?php if ($get_mengikuti['ev_terendah_harga']) { ?>
-                            <tr>
-                                <td>Harga Penawaran</td>
-                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                <td>Rp. <?= number_format($get_mengikuti['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['ev_terendah_harga']) ?>)</td>
-                            </tr>
+                            <?php if ($get_mengikuti['sts_deal_negosiasi'] == 'deal') { ?>
+                                <tr>
+                                    <td>Harga Pemenang</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>Rp. <?= number_format($get_mengikuti['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td>Harga Pemenang</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>Rp. <?= number_format($get_mengikuti['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['ev_terendah_harga']) ?> Rupiah)</td>
+                                </tr>
+                            <?php } ?>
+
                         <?php } else { ?>
-                            <tr>
-                                <td>Harga Penawaran</td>
-                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?>)</td>
-                            </tr>
+
+                            <?php if ($get_mengikuti['sts_deal_negosiasi'] == 'deal') { ?>
+                                <tr>
+                                    <td>Harga Pemenang</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>Rp. <?= number_format($get_mengikuti['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td>Harga Pemenang</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?> Rupiah)</td>
+                                </tr>
+                            <?php } ?>
+
                         <?php } ?>
 
 
@@ -273,10 +292,10 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                <tr>
-                                                    <td class="text-center"><?= $i++ ?></td>
-                                                    <td><?= $value['nama_usaha'] ?></td>
-                                                </tr>
+                                                                                                                                                        <tr>
+                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
+                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                        </tr>
                     <?php } ?>
                 </tbody>
             </table> -->
