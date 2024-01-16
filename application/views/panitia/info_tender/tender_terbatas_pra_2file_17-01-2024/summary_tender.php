@@ -423,7 +423,7 @@
                             <th>Nama RUP</th>
                             <td><?= $row_rup['nama_rup'] ?></td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                             <th>Penyedia Terundang dan Terverifikasi</th>
                             <td>
                                 <table style="width: 100%;">
@@ -444,7 +444,7 @@
                                 </table>
 
                             </td>
-                        </tr> -->
+                        </tr>
 
 
                         <tr>

@@ -2,7 +2,6 @@
     <main class="container">
         <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
         <input type="hidden" name="url_byid_mengikuti" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_byid_mengikuti/') ?>">
-        <input type="hidden" name="url_simpan_status_file1" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_status_file1/') ?>">
         <div class="row">
             <div class="col">
                 <div class="card border-dark">
@@ -96,8 +95,8 @@
                                                 <th>No</th>
                                                 <th>Nama Peserta</th>
                                                 <!-- <th>Nilai Penawaran</th>
-                                                                                                                                                                                                                        <th>TKDN/PDN/IMPORT</th>
-                                                                                                                                                                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
+                                                                                                <th>TKDN/PDN/IMPORT</th>
+                                                                                                <th>Persentase TKDN/PDN/IMPORT </th> -->
                                                 <th>Lihat Dok Penawaran</th>
                                             </thead>
                                             <tbody>
@@ -131,8 +130,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>File</th>
-                                <th>Aksi</th>
+                                <th>Nama File</th>
+                                <!-- <th>File</th> -->
                             </tr>
                         </thead>
                         <tbody id="load_detail_file1">
