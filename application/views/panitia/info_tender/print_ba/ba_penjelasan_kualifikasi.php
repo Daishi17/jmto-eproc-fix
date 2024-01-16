@@ -142,7 +142,7 @@ function terbilang($nilai)
                 <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_penjelasan_kualifikasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_penjelasan_kualifikasi_no']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl']))) ?></b>,
+                    Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl_pelaksanaan'])) ?>)</b>,Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022, Tanggal 01 Agustus 2022, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 39/KPTS-JMTO/2022, Tanggal 28 April 2022 tentang Standar Prosedur Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan Perusahaan; <br>
                     telah melaksanakan Rapat Penjelasan Kualifikasi melalui Aplikasi E-Procurement untuk Pekerjaan :
                 </p>

@@ -146,16 +146,16 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_sampul1_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_sampul1_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul1_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul1_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> WIB , Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, 22 desember 2022 serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, 22 desember 2022 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan PT Jasamarga Tollroad Operator;
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_sampul1_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_sampul1_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_sampul1_jam_pelaksanaan'] ?> WIB , Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022, 01 agustus 2022 serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, 22 desember 2023 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan PT Jasamarga Tollroad Operator;
                 </p>
 
                 <p style="text-align:justify;">
-                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
+                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> dengan rincian sebagai berikut:
                 </p>
 
                 <ol type="I">
                     <li>
-                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) PESERTA</b></p>
+                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -165,10 +165,10 @@ function terbilang($nilai)
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
+                                foreach ($peserta_tender_pq_penawaran as $key => $value2) { ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td class="text-uppercase"><?= $value2['nama_usaha'] ?></td>
                                     </tr>
                                 <?php } ?>
 
@@ -177,7 +177,7 @@ function terbilang($nilai)
 
                     </li>
                     <li class="mt-3">
-                        <p><b>PENYEDIA JASA YANG MENGUNDUH DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq) ?> (<?= terbilang(count($peserta_tender_pq)) ?>) PESERTA</b></p>
+                        <p><b>PENYEDIA JASA YANG MENYAMPAIKAN ATAU MENGUPLOAD DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -187,31 +187,10 @@ function terbilang($nilai)
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                foreach ($peserta_tender_pq as $key => $value) { ?>
+                                foreach ($peserta_tender_pq_penawaran as $key => $value3) { ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
-                                    </tr>
-                                <?php } ?>
-
-                            </tbody>
-                        </table>
-                    </li>
-                    <li class="mt-3">
-                        <p><b>PENYEDIA JASA YANG MENYAMPAIKAN DAN MENGAMBIL DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Peserta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1;
-                                foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td class="text-uppercase"><?= $value3['nama_usaha'] ?></td>
                                     </tr>
                                 <?php } ?>
 
@@ -238,7 +217,7 @@ function terbilang($nilai)
                                 foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
                                         <td></td>
                                     </tr>
                                 <?php } ?>
@@ -252,11 +231,11 @@ function terbilang($nilai)
                         <table>
                             <tr>
                                 <td>Lampiran A</td>
-                                <td>&ensp;&ensp;Dokumen <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dan Addendumnya</td>
+                                <td>&ensp;&ensp;Dokumen <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dan Addendumnya (Jika Ada)</td>
                             </tr>
                             <tr>
                                 <td>Lampiran B</td>
-                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 170/KPTS-JMTO/2023 tanggal 22 desember 20 tentang Panitia Pengadaan Barang/Jasa </td>
+                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 81/KPTS-JMTO/2023 tanggal 01 agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
                             </tr>
                             <tr>
                                 <td>Lampiran C</td>
@@ -318,13 +297,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                                                                <tr>
-                                                                                                    <td><?= $i++ ?></td>
-                                                                                                    <td></td>
-                                                                                                    <td><?= $value['nama_usaha'] ?></td>
-                                                                                                    <td></td>
-                                                                                                    <td><span class="badge bg-success">Setuju</span></td>
-                                                                                                </tr>
+                                                                                                                                                                            <tr>
+                                                                                                                                                                                <td><?= $i++ ?></td>
+                                                                                                                                                                                <td></td>
+                                                                                                                                                                                <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                                <td></td>
+                                                                                                                                                                                <td><span class="badge bg-success">Setuju</span></td>
+                                                                                                                                                                            </tr>
                         <?php } ?>
 
                     </tbody>

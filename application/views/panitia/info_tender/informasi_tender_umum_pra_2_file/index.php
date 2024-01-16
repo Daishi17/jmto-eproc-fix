@@ -1548,12 +1548,6 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal (Pelaksanaan)</th>
-                                    <th>
-                                        <input type="date" name="ba_sampul1_tgl_pelaksanaan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl_pelaksanaan')" placeholder="Tanggal Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_tgl_pelaksanaan'] ?>">
-                                    </th>
-                                </tr>
-                                <tr>
                                     <th>Jam (Pelaksanaan)</th>
                                     <th>
                                         <input type="text" name="ba_sampul1_jam_pelaksanaan" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_jam_pelaksanaan')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_jam_pelaksanaan'] ?>">
