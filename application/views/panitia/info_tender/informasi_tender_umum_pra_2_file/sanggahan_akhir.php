@@ -1,8 +1,8 @@
-<input type="hidden" name="url_upload_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_pra/') ?>">
-<input type="hidden" name="url_hapus_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_pra/') ?>">
-<input type="hidden" name="url_get_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_pra') ?>">
-<input type="hidden" name="url_open_sanggahan_pra" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
-<input type="hidden" name="url_open_sanggahan_pra_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_PRAKUALIFIKASI' . '/') ?>">
+<input type="hidden" name="url_upload_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_akhir/') ?>">
+<input type="hidden" name="url_hapus_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_akhir/') ?>">
+<input type="hidden" name="url_get_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_akhir') ?>">
+<input type="hidden" name="url_open_sanggahan_akhir" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
+<input type="hidden" name="url_open_sanggahan_akhir_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_AKHIR' . '/') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
 <main class="container">
     <div class="row">
@@ -81,7 +81,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="tbl_sanggah_pra">
+                        <tbody id="tbl_sanggah_akhir">
 
                         </tbody>
                     </table>
@@ -90,18 +90,18 @@
         </div>
 </main>
 
-<div class="modal fade" id="modal_balas_sanggahan_pra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_balas_sanggahan_akhir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan Prakualifikasi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan akhirkualifikasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="javascript:;" id="form_sanggahan_prakualifikasi">
+            <form action="javascript:;" id="form_sanggahan_akhir">
                 <div class="modal-body">
                     <div class="alert alert-primary d-flex align-items-center" role="alert">
                         <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Balas Sanggahan Prakulifikasi !!! <br>
+                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Balas Sanggahan akhirkulifikasi !!! <br>
                         </div>
                     </div>
                     <div class="form-group">
@@ -114,11 +114,11 @@
                             </tr>
                             <tr>
                                 <th>Keterangan</th>
-                                <td><textarea name="ket_sanggah_pra_panitia" class="form-control"></textarea></td>
+                                <td><textarea name="ket_sanggah_akhir_panitia" class="form-control"></textarea></td>
                             </tr>
                             <tr>
                                 <th>Upload</th>
-                                <td><input type="file" name="file_sanggah_pra_panitia"></td>
+                                <td><input type="file" name="file_sanggah_akhir_panitia"></td>
                             </tr>
                         </table>
                     </div>

@@ -971,8 +971,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         // nilai hea
         $get_min_penawaran = $this->M_panitia->get_min_penawaran_hea($id_rup_post);
         $get_nilai_hea = $get_min_penawaran['min_nilai_hea'];
+        // var_dump($get_nilai_hea);die;
         $total_nilai_hea = $get_nilai_hea / $ev_hea_harga * 100;
-
         $data = [
             'ev_akhir_hea_teknis' => $ev_akhir_hea_teknis,
             'ev_akhir_hea_hps' => $ev_hea_harga / $total_hps_rup * 100,
@@ -1814,23 +1814,21 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
     // end sanggahan prakualifikasi
-
     public function get_sanggahan_akhir()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan_akhir($id_rup);
         $output = [
             'result_sanggahan_akhir' => $result_sanggahan_akhir,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-
     public function upload_sanggahan_akhir()
     {
-        // post 
+        // post
         $id_rup = $this->input->post('id_rup');
-        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $id_sanggah_akhir_detail = $this->input->post('id_vendor_mengikuti_paket');
         $ket_sanggah_akhir_panitia = $this->input->post('ket_sanggah_akhir_panitia');
 
         // get value vendor dan paket untuk genrate file
@@ -1850,11 +1848,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
                 'file_sanggah_akhir_panitia' => $fileData['file_name']
             ];
-
             $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
             ];
-            $this->M_panitia->update_mengikuti($upload, $where);
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
@@ -1867,9 +1864,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
 
         // get value vendor dan paket untuk genrate file
-        $nama_usaha = $this->session->userdata('nama_usaha');
-        $id_vendor = $this->session->userdata('id_vendor');
-
         $upload = [
             'ket_sanggah_akhir' => '',
             'file_sanggah_akhir' => ''
