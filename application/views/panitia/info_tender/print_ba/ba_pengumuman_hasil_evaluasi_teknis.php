@@ -207,7 +207,7 @@ function terbilang($nilai)
                                             foreach ($peserta_tender as $key => $value) { ?>
                                                 <tr>
                                                     <td><?= $i++ ?></td>
-                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                    <td class="text-capitalize"><?= $value['nama_usaha'] ?></td>
                                                     <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
                                                         <td><?= $value['ev_penawaran_teknis'] ?></td>
                                                     <?php } else { ?>

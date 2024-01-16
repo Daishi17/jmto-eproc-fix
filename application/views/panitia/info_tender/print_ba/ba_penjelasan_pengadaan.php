@@ -132,29 +132,29 @@ function terbilang($nilai)
             </center>
             <hr size="5">
             <center>
-                <div style="font-size:15px">
+                <div style="font-size:18px">
                     <label class="font-weight-bold">Nomor : <?= $row_rup['ba_penjelasan_no'] ?></label>
                     <br>
                     <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_penjelasan_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_penjelasan_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_penjelasan_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_penjelasan_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_penjelasan_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_penjelasan_tgl'])) ?>)</b>, Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022 Tanggal 01 Agustus 2022, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator nomor : 39/KPTS-JMTO/2022, Tanggal 28 April 2022 tentang Standar Prosedur Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan Perusahaan;
+                    Tahun <b class="text-capitalize"> <?= terbilang(date('Y', strtotime($row_rup['ba_penjelasan_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_penjelasan_tgl'])) ?>)</b>, Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 81/KPTS-JMTO/2022 Tanggal 01 Agustus 2022, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : 170/KPTS-JMTO/2023, Tanggal 22 Desember 2023 tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan PT Jasamarga Tollroad Operator;
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     Telah melaksanakan Rapat Penjelasan Dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?> secara virtual untuk Pekerjaan:
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     <b><?= $row_rup['nama_rup'] ?> </b>
                 </p>
 
-                <p style="text-align:justify; font-size:15px">
+                <p style="text-align:justify; font-size:18px">
                     dengan hasil dan jalannya rapat sebagai berikut :
                 </p>
 
@@ -184,7 +184,7 @@ function terbilang($nilai)
                     <li>Peserta yang tidak hadir pada Rapat Penjelasan <?= $row_rup['nama_metode_pengadaan'] ?> ini dianggap sudah memahami, mengerti, dan menerima semua ketentuan dalam Dokumen Pengadaan untuk kegiatan Pengadaan pekerjaan tersebut.</li>
                 </ol>
                 <br>
-                <p>Demikian Berita Acara Rapat Penjelasan Dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?> ini dibuat dengan sebenarnya, ditandatangani oleh Panitia Pengadaan dan wakil dari Peserta.</p>
+                <p>Demikian Berita Acara Rapat Penjelasan Dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?> ini dibuat dengan sebenarnya, disetujui oleh Panitia Pengadaan dan wakil dari Peserta.</p>
                 <br>
                 <br><br>
                 <br>
@@ -212,7 +212,7 @@ function terbilang($nilai)
                             <th class="text-center">NO</th>
                             <th class="text-center">NAMA</th>
                             <th class="text-center">KEDUDUKAN DALAM PANITIA</th>
-                            <th class="text-center">TANDA TANGAN</th>
+                            <th class="text-center">PERSETUJUAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -252,7 +252,7 @@ function terbilang($nilai)
                         <tr>
                             <th class="text-center">NO</th>
                             <th class="text-center">NAMA PERUSAHAAN</th>
-                            <th class="text-center">TANDA TANGAN</th>
+                            <th class="text-center">PERSETUJUAN</th>
                         </tr>
                     </thead>
                     <tbody>
