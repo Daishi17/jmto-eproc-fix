@@ -101,7 +101,7 @@
                         var btn_file1_administrasi = `<a href="javascript:;" onclick="upload_file1(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_administrasi')" class="btn btn-sm btn-warning text-white"><i class="fa fa-upload"></i> Ubah</a>`
                         var file1_administrasi_sts_validasi = `<select name="file1_administrasi_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_administrasi_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -110,7 +110,7 @@
                         var btn_file1_administrasi = `<a href="javascript:;" onclick="upload_file1(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_administrasi')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
                         var file1_administrasi_sts_validasi = `<select name="file1_administrasi_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_administrasi_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -122,7 +122,7 @@
 
                         var file1_organisasi_sts_validasi = `<select name="file1_organisasi_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_organisasi_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -132,7 +132,7 @@
 
                         var file1_organisasi_sts_validasi = `<select name="file1_organisasi_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_organisasi_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -145,7 +145,7 @@
 
                         var file1_pabrikan_sts_validasi = `<select name="file1_pabrikan_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_pabrikan_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -155,7 +155,7 @@
 
                         var file1_pabrikan_sts_validasi = `<select name="file1_pabrikan_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_pabrikan_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -167,7 +167,7 @@
 
                         var file1_peralatan_sts_validasi = `<select name="file1_peralatan_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_peralatan_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -177,7 +177,7 @@
 
                         var file1_peralatan_sts_validasi = `<select name="file1_peralatan_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_peralatan_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -189,7 +189,7 @@
 
                         var file1_personil_sts_validasi = `<select name="file1_personil_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_personil_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -199,7 +199,7 @@
 
                         var file1_personil_sts_validasi = `<select name="file1_personil_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_personil_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -211,7 +211,7 @@
 
                         var file1_makalah_teknis_sts_validasi = `<select name="file1_makalah_teknis_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_makalah_teknis_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -221,7 +221,7 @@
 
                         var file1_makalah_teknis_sts_validasi = `<select name="file1_makalah_teknis_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_makalah_teknis_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -233,7 +233,7 @@
 
                         var file1_pra_rk3_sts_validasi = `<select name="file1_pra_rk3_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_pra_rk3_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -243,7 +243,7 @@
 
                         var file1_pra_rk3_sts_validasi = `<select name="file1_pra_rk3_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_pra_rk3_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -255,7 +255,7 @@
 
                         var file1_spek_sts_validasi = `<select name="file1_spek_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_spek_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -266,7 +266,7 @@
 
                         var file1_spek_sts_validasi = `<select name="file1_spek_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file1_spek_sts')" class="form-control">
                                 <option value="">--Pilih--</option>
-                                <option value="0">Tidak Di Perlukan</option>
+                                <option value="3">Tidak Diperlukan</option>
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
@@ -392,7 +392,7 @@
                 value_name: value_name
             },
             success: function(response) {
-                Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                Swal.fire('Data Berhasil Disimpan!', '', 'success')
             }
         })
     }
