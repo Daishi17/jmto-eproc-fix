@@ -5,7 +5,6 @@
 <input type="hidden" name="url_byid_mengikuti" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_byid_mengikuti/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_kualifikasi/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_penawaran" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_penawaran/') ?>">
-<input type="hidden" name="url_simpan_evaluasi_penawaran_ba" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_penawaran_ba/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_hea_tkdn" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_tkdn/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_akhir_hea" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_hea/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_harga_terendah" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_harga_terendah/') ?>">
@@ -58,10 +57,3 @@
 
 <!-- status ba -->
 <input type="hidden" name="url_post_status_ba" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_status_ba') ?>">
-
-<!-- status ba -->
-<input type="hidden" name="url_post_status_kirim" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_status_kirim') ?>">
-
-<input type="hidden" name="url_kirim_notif_perubahan_dokumen" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/kirim_notif_perubahan_dokumen') ?>">
-
-<input type="hidden" name="url_simpan_kelengkapan_file2" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_kelengkapan_file2/') ?>">

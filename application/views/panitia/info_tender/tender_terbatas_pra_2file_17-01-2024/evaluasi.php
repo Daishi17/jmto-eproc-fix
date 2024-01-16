@@ -12,17 +12,17 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
-                        </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/evaluasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Evaluasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Prakualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
@@ -113,7 +113,7 @@
                                 <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                             </li>
                         <?php    } ?>
-
+                        
                         <?php if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                         <?php    } else if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                             <li class="nav-item" role="presentation">
@@ -228,7 +228,7 @@
                                                     <th><?= $row_rup['bobot_biaya'] ?>%</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody style="text-align: center;">
 
                                             </tbody>
                                         </table>
@@ -445,18 +445,17 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <div class="mb-3" style="margin-top: -10px;">
-                                <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text"  readonly class="form-control number_only bg-light" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
-                                <label for="" id="error_ev_teknis" class="text-danger"></label>
-                            </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="nilai_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
                             </div>
-
+                            <div class="mb-3" style="margin-top: -10px;">
+                                <label for="" class="form-label">Nilai Teknis</label>
+                                <input type="text" class="form-control number_only" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <label for="" id="error_ev_teknis" class="text-danger"></label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -477,6 +476,7 @@
                 <a class="navbar-brand">
                     <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
                     <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -500,12 +500,12 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <!-- <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah2()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp2" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
-                            </div> -->
+                            </div>
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Nilai TKDN</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_tkdn" placeholder="Nilai TKDN">
@@ -558,7 +558,7 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3" style="margin-top: 10px;">
                                 <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" readonly class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
+                                <input type="text" class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>

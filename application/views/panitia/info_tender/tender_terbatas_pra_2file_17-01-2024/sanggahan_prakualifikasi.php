@@ -1,8 +1,8 @@
-<input type="hidden" name="url_upload_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_akhir/') ?>">
-<input type="hidden" name="url_hapus_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_akhir/') ?>">
-<input type="hidden" name="url_get_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_akhir') ?>">
-<input type="hidden" name="url_open_sanggahan_akhir" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
-<input type="hidden" name="url_open_sanggahan_akhir_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_AKHIR' . '/') ?>">
+<input type="hidden" name="url_upload_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_pra/') ?>">
+<input type="hidden" name="url_hapus_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_pra/') ?>">
+<input type="hidden" name="url_get_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_pra') ?>">
+<input type="hidden" name="url_open_sanggahan_pra" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
+<input type="hidden" name="url_open_sanggahan_pra_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_PRAKUALIFIKASI' . '/') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
 <main class="container">
     <div class="row">
@@ -17,9 +17,6 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
                         </li>
                         <li class="nav-item">
@@ -29,7 +26,10 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang</a>
+                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan </a>
                         </li>
                     </ul>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                     <div class="flex-grow-1 bd-highlight">
                         <span class="text-dark">
-                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Sanggahan Pemenang</strong></small>
+                            <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Sanggahan Kualifikasi</strong></small>
                         </span>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="tbl_sanggah_akhir">
+                        <tbody id="tbl_sanggah_pra">
 
                         </tbody>
                     </table>
@@ -90,35 +90,35 @@
         </div>
 </main>
 
-<div class="modal fade" id="modal_balas_sanggahan_akhir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_balas_sanggahan_pra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan akhirkualifikasi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Balas Sanggahan Kualifikasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="javascript:;" id="form_sanggahan_akhir">
+            <form action="javascript:;" id="form_sanggahan_prakualifikasi">
                 <div class="modal-body">
                     <div class="alert alert-primary d-flex align-items-center" role="alert">
                         <div>
-                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Balas Sanggahan akhirkulifikasi !!! <br>
+                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Balas Sanggahan Prakulifikasi !!! <br>
                         </div>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="id_vendor_mengikuti_paket">
+                        <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
                         <table class="table table-bordered">
-                            <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
                             <tr>
                                 <th>Nama Penyedia</th>
                                 <td><label for="" id="nama_penyedia"></label></td>
                             </tr>
                             <tr>
                                 <th>Keterangan</th>
-                                <td><textarea name="ket_sanggah_akhir_panitia" class="form-control"></textarea></td>
+                                <td><textarea name="ket_sanggah_pra_panitia" class="form-control"></textarea></td>
                             </tr>
                             <tr>
                                 <th>Upload</th>
-                                <td><input type="file" name="file_sanggah_akhir_panitia"></td>
+                                <td><input type="file" name="file_sanggah_pra_panitia"></td>
                             </tr>
                         </table>
                     </div>

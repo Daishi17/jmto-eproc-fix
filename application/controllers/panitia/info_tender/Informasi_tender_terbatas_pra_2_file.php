@@ -27,8 +27,17 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
     public function informasi_pengadaan($id_url_rup)
     {
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+        $get_vendor_lolos =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi($data['row_rup']['id_rup']);
+        $id_vendor_lolos = array();
+        foreach ($get_vendor_lolos as $key => $value) {
+            $id_vendor_lolos[] = $value['id_vendor'];
+        }
+        $get_id_vendor = implode(",", $id_vendor_lolos);
+        $get_vendor_mengikuti =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($data['row_rup']['id_rup'], $get_id_vendor);
+        $data['peserta_tender2'] = $get_vendor_mengikuti;
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
@@ -103,7 +112,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
     public function get_evaluasi_kualifikasi($id_rup)
     {
         $result = $this->M_panitia->gettable_evaluasi($id_rup);
-        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra1file_umum_6($id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra_umum_6($id_rup);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
         $no = $_POST['start'];
@@ -118,9 +127,6 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             } else {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
             }
-
-
-
             // nilai keuangan
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->ev_keuangan == NULL) {
@@ -238,19 +244,11 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             } else {
 
                 $row[] = '<div class="text-center">
-                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kualifikasi'" . ')">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </button>
+                </a>
             </div>';
-
-
-                //     $row[] = '<div class="text-center">
-                //     <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kualifikasi'" . ')">
-                //         <i class="fa-solid fa-edit"></i>
-                //         <small>Evaluasi</small>
-                //     </a>
-                // </div>';
             }
 
 
@@ -260,6 +258,51 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->M_panitia->count_all_evaluasi($id_rup),
             "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_evaluasi_ba_teknis($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            if ($rs->ev_penawaran_teknis) {
+                $row[] =  $rs->ev_penawaran_teknis;
+            } else {
+                $row[] =  '<div class="text-end">0,00</div>';
+            }
+
+            if (!$rs->ev_penawaran_ket_ba) {
+                $row[] =  '<span class="badge bg-sm bg-secondary">Belum Di Evaluasi</span>';
+            } else {
+                if ($rs->ev_penawaran_ket_ba == 'Lulus') {
+                    $row[] = '<span class="badge bg-sm bg-success">Lulus</span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-danger">Gugur</span>';
+                }
+            }
+
+            $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','ba_teknis'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+              </div>';
+
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_penawaran($id_rup),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -276,50 +319,58 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
             if ($rs->nilai_penawaran) {
-                $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
+                $row[] = '<div class="text-end">' . number_format($rs->nilai_penawaran, 2, ',', '.') . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_penawaran_teknis) {
-                $row[] =  $rs->ev_penawaran_teknis;
+                $row[] = '<div class="text-center">' . $rs->ev_penawaran_teknis . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_penawaran_hps) {
-                $row[] =  number_format($rs->ev_penawaran_hps, 2, ',', '.');
+                $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_hps, 2, ',', '.') . '</div>';
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
-            if ($rs->ev_penawaran_biaya) {
-                $row[] =  number_format($rs->ev_penawaran_biaya, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-center badge bg-danger bg-sm">-</div>';
             } else {
-                $row[] =  '0,00';
-            }
-
-
-            if ($rs->ev_penawaran_akhir) {
-                $row[] =  number_format($rs->ev_penawaran_akhir, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
-            if ($rs->ev_penawaran_peringkat) {
-                $row[] =  $rs->ev_penawaran_peringkat;
-            } else {
-                $row[] =  '0';
-            }
-
-
-            if ($rs->ev_penawaran_akhir == NULL) {
-                $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Ketahui</span>';
-            } else {
-                if ($rs->ev_penawaran_akhir >= 60) {
-                    $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                if ($rs->ev_penawaran_biaya) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_biaya, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] = '<span class="badge bg-danger bg-sm">Tidak Sah</span>';
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+                if ($rs->ev_penawaran_akhir) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_penawaran_akhir, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+
+                if ($rs->ev_penawaran_peringkat) {
+                    $row[] =  $rs->ev_penawaran_peringkat;
+                } else {
+                    $row[] =  '0';
+                }
+            }
+
+
+            if ($rs->ev_penawaran_teknis == NULL) {
+                $row[] = '<div class="text-center badge bg-secondary bg-sm">Belum Di Ketahui</div>';
+            } else {
+                if ($rs->ev_penawaran_teknis >= 60) {
+                    if ($rs->ev_penawaran_hps >= 100) {
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    }
+                } else {
+                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 }
             }
 
@@ -360,58 +411,72 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
-
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->ev_hea_penawaran) {
-                $row[] =  number_format($rs->ev_hea_penawaran, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                $row[] =  '<div class="text-end badge bg-danger bg-sm">Gugur</div>';
             } else {
-                $row[] =  '0,00';
-            }
-
-            if ($rs->ev_hea_tkdn) {
-                $row[] =  number_format($rs->ev_hea_tkdn, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
-            if ($rs->ev_hea_harga) {
-                $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
-            }
-
-            $row[] = $rs->ev_hea_peringkat;
-
-            if ($rs->ev_hea_tkdn) {
-                if ($rs->ev_hea_tkdn >= $rup['persen_pencatatan'] && $rs->ev_hea_harga <= $rup['total_hps_rup']) {
-                    $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                if ($rs->nilai_penawaran) {
+                    $row[] = '<div class="text-end">' . number_format($rs->nilai_penawaran, 2, ',', '.') . '</div>';
                 } else {
-                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    $row[] =  '<div class="text-end">0,00</div>';
                 }
-            } else {
-                $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
+                if ($rs->ev_hea_tkdn) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_tkdn, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+
+                if ($rs->ev_hea_harga) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_harga, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+
+                $row[] = $rs->ev_hea_peringkat;
+
+                if ($rs->ev_hea_tkdn) {
+                    if ($rs->ev_hea_tkdn >= $rup['persen_pencatatan'] && $rs->ev_hea_harga <= $rup['total_hps_rup']) {
+                        $row[] = '<div class="text-center badge bg-success bg-sm">Sah</div>';
+                    } else {
+                        $row[] = '<div class="text-center badge bg-danger bg-sm">Gugur</div>';
+                    }
+                } else {
+                    $row[] = '<div class="text-center badge bg-secondary bg-sm">Belum Di Evaluasi</div>';
+                }
             }
-
-
-            if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
-                $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
-            } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
+                <a href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
                 </a>
               </div>';
             } else {
-                $row[] = '<div class="text-center">
-						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
-							<i class="fa-solid fa-edit"></i>
-							<small>Evaluasi</small>
-						</a>
-					  </div>';
+                if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
+                } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center">
+                    <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
+                        <i class="fa-solid fa-edit"></i>
+                        <small>Evaluasi</small>
+                    </a>
+                  </div>';
+                } else {
+                    $row[] = '<div class="text-center">
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Evaluasi</small>
+                            </a>
+                          </div>';
+                }
             }
+
 
 
             $data[] = $row;
@@ -433,38 +498,99 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
-
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
-            if ($rs->ev_hea_harga) {
-                $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-end bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-center bg-sm">-</div>';
+                $row[] =  '<div class="badge bg-danger text-center bg-sm">Gugur</div>';
+                $row[] = '<div class="text-center">
+                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Evaluasi</small>
+                </button>
+              </div>';
             } else {
-                $row[] =  '0,00';
-            }
+                if ($rs->ev_hea_harga) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_harga, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+                if ($rs->ev_akhir_hea_teknis) {
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
 
-            if ($rs->ev_akhir_hea_teknis) {
-                $row[] =  number_format($rs->ev_akhir_hea_teknis, 2, ',', '.');
-            } else {
-                $row[] =  '0,00';
+                if ($rs->ev_akhir_hea_hps) {
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_hps, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+
+                if ($rs->ev_akhir_hea_nilai) {
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+
+                if ($rs->ev_akhir_hea_akhir) {
+                    $row[] = '<div class="text-end">' .  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end">0,00</div>';
+                }
+                $row[] = '<div class="text-center">' .  $rs->ev_akhir_hea_peringkat . '</div>';
+
+                if ($rs->ev_akhir_hea_akhir) {
+                    if ($rs->ev_akhir_hea_akhir >= $rup['bobot_teknis']) {
+                        $row[] = '<div class="badge bg-success bg-sm text-center">Sah</div>';
+                    } else {
+                        $row[] = '<div class="badge bg-danger bg-sm text-center">Gugur</div>';
+                    }
+                } else {
+                    $row[] = '<div class="badge bg-secondary bg-sm text-center">Belum Di Evaluasi</div>';
+                }
+
+                if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center badge bg-danger"><small>Belum Memasuki Tahap Ini</small></div>';
+                } else if (date('Y-m-d H:i', strtotime($jadwal['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal['waktu_mulai'])) == date('Y-m-d H:i')) {
+                    $row[] = '<div class="text-center">
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Finalisasi</small>
+                            </a>
+                          </div>';
+                } else {
+                    $row[] = '<div class="text-center">
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Finalisasi</small>
+                            </a>
+                          </div>';
+                }
             }
 
             if ($rs->ev_akhir_hea_hps) {
                 $row[] =  number_format($rs->ev_akhir_hea_hps, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_akhir_hea_nilai) {
                 $row[] =  number_format($rs->ev_akhir_hea_nilai, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_akhir_hea_akhir) {
                 $row[] =  number_format($rs->ev_akhir_hea_akhir, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             $row[] = $rs->ev_akhir_hea_peringkat;
@@ -486,14 +612,14 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
                 $row[] = '<div class="text-center">
 						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
 							<i class="fa-solid fa-edit"></i>
-							<small>Evaluasi</small>
+							<small>Finalisasi</small>
 						</a>
 					  </div>';
             } else {
                 $row[] = '<div class="text-center">
 						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
 							<i class="fa-solid fa-edit"></i>
-							<small>Evaluasi</small>
+							<small>Finalisasi</small>
 						</a>
 					  </div>';
             }
@@ -529,19 +655,19 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_terendah_hps) {
                 $row[] =  number_format($rs->ev_terendah_hps, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
             if ($rs->ev_terendah_bobot) {
                 $row[] =  number_format($rs->ev_terendah_bobot, 2, ',', '.');
             } else {
-                $row[] =  '0,00';
+                $row[] =  '<div class="text-end">0,00</div>';
             }
 
 
@@ -657,45 +783,80 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
 
         // get nilai penawaran terendah
         $get_min_penawaran = $this->M_panitia->get_min_penawaran($id_rup_post);
-        $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
-        $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
-
-
-        if ($total_usulan_biaya == 0) {
-            $data = [
-                'nilai_penawaran' => $nilai_penawaran,
-                'ev_penawaran_teknis' => $ev_penawaran_teknis,
-                'ev_penawaran_hps' => $terhadap_hps,
-                'ev_penawaran_biaya' => $total_usulan_biaya
-            ];
-            $where = [
-                'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
-            ];
-            $this->M_panitia->update_evaluasi($data, $where);
-            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+        $cek_udah_ada_table = $this->M_panitia->cek_udah_ada_table($id_rup_post);
+        if (!$cek_udah_ada_table) {
+            if ($nilai_penawaran != 0) {
+                $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
+                $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
+                $data = [
+                    'nilai_penawaran' => $nilai_penawaran,
+                    'ev_penawaran_teknis' => $ev_penawaran_teknis,
+                    'ev_penawaran_hps' => $terhadap_hps,
+                    'ev_penawaran_biaya' => $total_usulan_biaya
+                ];
+                $where = [
+                    'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
+                ];
+                $this->M_panitia->update_evaluasi($data, $where);
+                $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+            } else {
+                $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
+                $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
+                $data = [
+                    'nilai_penawaran' => $nilai_penawaran,
+                    'ev_penawaran_teknis' => $ev_penawaran_teknis,
+                    'ev_penawaran_hps' => $terhadap_hps,
+                    'ev_penawaran_biaya' => 0
+                ];
+                $where = [
+                    'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
+                ];
+                $this->M_panitia->update_evaluasi($data, $where);
+                $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+            }
         } else {
-
-            $data = [
-                'nilai_penawaran' => $nilai_penawaran,
-                'ev_penawaran_teknis' => $ev_penawaran_teknis,
-                'ev_penawaran_hps' => $terhadap_hps,
-                'ev_penawaran_biaya' => $total_usulan_biaya
-            ];
-            $where = [
-                'id_vendor_mengikuti_paket'    => $id_vendor_mengikuti_paket
-            ];
-            $this->M_panitia->update_evaluasi($data, $where);
+            if ($nilai_penawaran != 0) {
+                $get_usulan_biaya = $get_min_penawaran['min_nilai_penawaran'];
+                $total_usulan_biaya = $get_usulan_biaya / $total_hps_rup * 100;
+                $data = [
+                    'nilai_penawaran' => $nilai_penawaran,
+                    'ev_penawaran_teknis' => $ev_penawaran_teknis,
+                    'ev_penawaran_hps' => $terhadap_hps,
+                    'ev_penawaran_biaya' => $total_usulan_biaya
+                ];
+                $where = [
+                    'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
+                ];
+                $this->M_panitia->update_evaluasi($data, $where);
+            } else {
+                $data = [
+                    'nilai_penawaran' => $nilai_penawaran,
+                    'ev_penawaran_teknis' => $ev_penawaran_teknis,
+                    'ev_penawaran_hps' => $terhadap_hps,
+                    'ev_penawaran_biaya' => 0
+                ];
+                $where = [
+                    'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
+                ];
+                $this->M_panitia->update_evaluasi($data, $where);
+            }
 
             // update biaya usulan 
             $get_min_penawaran2 = $this->M_panitia->get_min_penawaran($id_rup_post);
             $get_usulan_biaya2 = $get_min_penawaran2['min_nilai_penawaran'];
             $peserta = $this->M_panitia->get_peserta_tender_penawaran($id_rup_post);
             foreach ($peserta as $key => $value) {
+                if ($value['nilai_penawaran'] != 0) {
+                    $get_usulan_biaya2 = $get_min_penawaran2['min_nilai_penawaran'];
+                    $total_usulan_biaya2 = $get_usulan_biaya2 / $value['nilai_penawaran'] * 100;
+                } else {
+                    $total_usulan_biaya2 = 0;
+                }
                 $data2 = [
                     'nilai_penawaran' => $value['nilai_penawaran'],
                     'ev_penawaran_teknis' => $value['ev_penawaran_teknis'],
                     'ev_penawaran_hps' => $value['ev_penawaran_hps'],
-                    'ev_penawaran_biaya' => $get_usulan_biaya2 / $value['nilai_penawaran'] * 100,
+                    'ev_penawaran_biaya' => $total_usulan_biaya2,
                 ];
                 $where2 = [
                     'id_vendor_mengikuti_paket'    => $value['id_vendor_mengikuti_paket']
@@ -727,17 +888,34 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
                 ];
                 $this->M_panitia->update_evaluasi($data4, $where4);
             }
-
-
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
+    }
+
+    public function simpan_evaluasi_penawaran_ba()
+    {
+        $id_rup = $this->input->post('id_rup_post');
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $ev_penawaran_teknis = $this->input->post('ev_penawaran_teknis');
+        $ev_penawaran_ket_ba = $this->input->post('ev_penawaran_ket_ba');
+
+        $where = [
+            'id_vendor_mengikuti_paket' =>    $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'ev_penawaran_teknis' => $ev_penawaran_teknis,
+            'ev_penawaran_ket_ba' => $ev_penawaran_ket_ba,
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
     public function simpan_evaluasi_akhir_tkdn()
     {
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $row_vendor =  $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket);
         $id_rup_post = $this->input->post('id_rup_post');
-        $ev_hea_penawaran = $this->input->post('ev_hea_penawaran');
+        $ev_hea_penawaran = $row_vendor['nilai_penawaran'];
         $ev_hea_tkdn = $this->input->post('ev_hea_tkdn');
         $total_hps_rup = $this->input->post('total_hps_rup');
 
@@ -793,7 +971,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $ev_hea_harga = $this->input->post('ev_hea_harga');
         $ev_akhir_hea_teknis = $this->input->post('ev_akhir_hea_teknis');
         $total_hps_rup = $this->input->post('total_hps_rup');
-
+        $row_vendor =  $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket);
         //post teknis dan biaya
         $bobot_teknis = $this->input->post('bobot_teknis');
         $bobot_biaya = $this->input->post('bobot_biaya');
@@ -801,9 +979,8 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         // nilai hea
         $get_min_penawaran = $this->M_panitia->get_min_penawaran_hea($id_rup_post);
         $get_nilai_hea = $get_min_penawaran['min_nilai_hea'];
+        // var_dump($get_nilai_hea);die;
         $total_nilai_hea = $get_nilai_hea / $ev_hea_harga * 100;
-
-
         $data = [
             'ev_akhir_hea_teknis' => $ev_akhir_hea_teknis,
             'ev_akhir_hea_hps' => $ev_hea_harga / $total_hps_rup * 100,
@@ -939,28 +1116,12 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
                     }
                 }
             }
-            if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) {
-                $row[] = '<div class="text-center">
-                <button disabled class="btn btn-danger btn-sm shadow-lg text-white">
-                    <i class="fa-solid fa-edit"></i>
-                    <small>Belum Memasuki Tahap Ini</small>
-                </button>
-              </div>';
-            } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
-                $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
-                    <i class="fa-solid fa-edit"></i>
-                    <small>Evaluasi</small>
-                </a>
-              </div>';
-            } else {
-                $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
-                    <i class="fa-solid fa-edit"></i>
-                    <small>Evaluasi</small>
-                </a>
-              </div>';
-            }
+            $row[] = '<div class="text-center">
+            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Evaluasi</small>
+            </a>
+          </div>';
 
             $data[] = $row;
         }
@@ -1231,11 +1392,11 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
     {
         $id_url_rup = $this->input->post('id_url_rup');
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
-        $message = 'Token = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
+        $message = 'Kodefikasi = ' . $row_rup['token_panitia'] . ' , Nama Pengadaan = ' . $row_rup['nama_rup'] . '';
         $no_telpon = $this->session->userdata('no_telpon');
         $this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $message);
-        $type_email = 'token_penawaran';
-        $this->email_send->sen_row_email_token($type_email, $this->session->userdata('id_vendor'), $message);
+        // $type_email = 'token_penawaran';
+        // $this->email_send->sen_row_email_token($type_email, $this->session->userdata('id_pegawai'), $message);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
@@ -1248,21 +1409,22 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
 
         if ($row_rup['bobot_nilai'] == 1) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Selamat Anda Telah Memenangkan Pengadaan Paket ' . $row_rup['nama_rup'] . ' Dengan Penawaran Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . '';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         }
-
-        $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
-        $type_email = 'PENGUMUMAN PEMENANG';
-        $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
+        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
+        // $type_email = 'PENGUMUMAN PEMENANG';
+        // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
         $upload = [
-            'id_vendor_pemenang' => $get_rank1['id_vendor']
+            'id_vendor_pemenang' => $get_rank1['id_vendor'],
+            'sts_pengumuman_rup_trakhir' => 1
         ];
         $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $upload);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
     public function get_vendor_mengikuti_paket_penawaran()
     {
         $id_rup = $this->input->post('id_rup');
@@ -1593,7 +1755,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
     {
         // post
         $id_rup = $this->input->post('id_rup');
-        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $id_sanggah_pra_detail = $this->input->post('id_vendor_mengikuti_paket');
         $ket_sanggah_pra_panitia = $this->input->post('ket_sanggah_pra_panitia');
 
         // get value vendor dan paket untuk genrate file
@@ -1614,9 +1776,9 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
                 'file_sanggah_pra_panitia' => $fileData['file_name']
             ];
             $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+                'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
             ];
-            $this->M_panitia->update_mengikuti($upload, $where);
+            $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
@@ -1644,23 +1806,21 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
     // end sanggahan prakualifikasi
-
     public function get_sanggahan_akhir()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan_akhir($id_rup);
         $output = [
             'result_sanggahan_akhir' => $result_sanggahan_akhir,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-
     public function upload_sanggahan_akhir()
     {
-        // post 
+        // post
         $id_rup = $this->input->post('id_rup');
-        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $id_sanggah_akhir_detail = $this->input->post('id_vendor_mengikuti_paket');
         $ket_sanggah_akhir_panitia = $this->input->post('ket_sanggah_akhir_panitia');
 
         // get value vendor dan paket untuk genrate file
@@ -1680,11 +1840,10 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
                 'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
                 'file_sanggah_akhir_panitia' => $fileData['file_name']
             ];
-
             $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
             ];
-            $this->M_panitia->update_mengikuti($upload, $where);
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
@@ -1697,9 +1856,6 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
 
         // get value vendor dan paket untuk genrate file
-        $nama_usaha = $this->session->userdata('nama_usaha');
-        $id_vendor = $this->session->userdata('id_vendor');
-
         $upload = [
             'ket_sanggah_akhir' => '',
             'file_sanggah_akhir' => ''
@@ -1717,6 +1873,13 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+
+        $row_rup =  $this->M_panitia->get_rup($data['id_rup']);
+        if ($row_rup['bobot_nilai'] == 1) {
+            $data['peserta_vendor'] = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis($data['row_rup']['id_rup']);
+        } else {
+            $data['peserta_vendor'] = $this->M_panitia->jumlah_peserta_negosiasi($data['row_rup']['id_rup']);
+        }
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/negosiasi', $data);
         $this->load->view('template_tender/footer');
@@ -1726,12 +1889,31 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
     public function get_vendor_negosiasi()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
+        if ($row_rup['bobot_nilai'] == 1) {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_teknis($id_rup);
+        } else {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi($id_rup);
+        }
+
         $output = [
             'result_vendor_negosiasi' => $result_vendor_negosiasi,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
+
+    public function get_row_vendor_negosiasi()
+    {
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $row_vendor = $this->M_panitia->get_row_vendor_negosiasi($id_vendor_mengikuti_paket);
+        $output = [
+            'row_vendor' => $row_vendor,
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+
 
     public function simpan_link_negosiasi()
     {
@@ -2297,6 +2479,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['get_syarat_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_pembuktian_kualifikasi', $data);
     }
 
@@ -2333,7 +2516,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
 
     public function ba_hasil_evaluasi_teknis($id_url_rup)
     {
-        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
@@ -2347,7 +2530,7 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
-        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_sampul2', $data);
     }
@@ -2394,6 +2577,22 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
     }
 
+    public function ba_pengumuman_hasil_evaluasi_teknis($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_pengumuman_hasil_evaluasi_teknis', $data);
+    }
+
+    public function ba_penjelasan_kualifiaksi($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_penjelasan_kualifikasi', $data);
+    }
+
     public function lihat_undangan_penawran($id_url_rup)
     {
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
@@ -2401,10 +2600,19 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
-        $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
-        $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
-        $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
-        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+
+        if ($data['row_rup']['id_jadwal_tender'] == 1) {
+            $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
+            $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
+            $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
+            $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+        } else {
+            $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
+            $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra_umum_10($data['row_rup']['id_rup']);
+            $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra_umum_11($data['row_rup']['id_rup']);
+            $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra_umum_12($data['row_rup']['id_rup']);
+        }
+
         $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
     }
 
@@ -2417,22 +2625,6 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
     }
 
-
-    // public function update_status_aanwijzing_vendor()
-    // {
-    //     $id_vendor = $this->input->post('id_vendor');
-    //     $id_rup = $this->input->post('id_rup');
-
-    //     $where = [
-    //         'id_vendor' => $id_vendor,
-    //         'id_rup' => $id_rup
-    //     ];
-
-    //     $data = [
-    //         'sts_aanwijzing_pq' => 1
-    //     ];
-    //     $this->M_panitia->update_mengikuti($data, $where);
-    // }
 
     public function kirim_notif_perubahan_dokumen()
     {
@@ -2451,7 +2643,8 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             $this->M_panitia->update_dokumen_prakualifikasi($upload, $where);
             $row_dokumen = $this->M_panitia->get_row_dokumen_prakualifikasi($id_dokumen_prakualifikasi);
             $nama_dokumen = $row_dokumen['nama_dok_prakualifikasi'];
-            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+            $this->kirim_wa->kirim_wa_pengumuman_notif_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
+            // $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen_pra'));
         } else {
             $upload = [
                 'keterangan_dokumen' =>  $this->input->post('keterangan_dokumen'),
@@ -2462,7 +2655,8 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
             $this->M_panitia->update_dokumen_pengadaan($upload, $where);
             $row_dokumen = $this->M_panitia->get_row_dokumen_pengadaan($id_dokumen_pengadaan);
             $nama_dokumen = $row_dokumen['nama_dok_pengadaan'];
-            $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
+            $this->kirim_wa->kirim_wa_pengumuman_notif_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
+            // $this->email_send->sen_notifikasi_dokumen($id_rup, $nama_dokumen, $this->input->post('keterangan_dokumen'));
         }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
@@ -2473,67 +2667,246 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
         $type_deal = $this->input->post('type_deal');
         $id_rup = $this->input->post('id_rup');
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
         if ($type_deal == 'deal') {
             $upload = [
                 'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
                 'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
+                'sts_deal_negosiasi' => $type_deal,
             ];
             $where = [
                 'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
             ];
             $this->M_panitia->update_mengikuti($upload, $where);
         } else {
-            $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
-            $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
-            $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
+            if ($row_rup['bobot_nilai'] == 1) {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1_teknis($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2_teknis($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3_teknis($id_rup);
+            } else {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
+            }
             $peserta_negosiasi = $this->M_panitia->jumlah_peserta_negosiasi($id_rup);
             if ($peserta_negosiasi == 2) {
                 $where_pemenang_1 = [
                     'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 2,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_akhir_hea_peringkat' => 2,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat' => 2,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
                 $where_pemenang_2 = [
                     'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
             } else {
                 $where_pemenang_1 = [
                     'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 3,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_akhir_hea_peringkat' => 3,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat' => 3,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
                 $where_pemenang_2 = [
                     'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
-                
+
                 $where_pemenang_3 = [
                     'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
                 ];
-                $update_pemenang_3 = [
-                    'ev_terendah_peringkat' => 2
-                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_3 = [
+                        'ev_akhir_hea_peringkat' => 1
+                    ];
+                } else {
+                    $update_pemenang_3 = [
+                        'ev_terendah_peringkat' => 1
+                    ];
+                }
                 $this->M_panitia->update_mengikuti($update_pemenang_3, $where_pemenang_3);
             }
         }
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function save_status_ba()
+    {
+        $type = $this->input->post('type');
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+
+        $data = [
+            $post => $type,
+        ];
+
+        $where = [
+            'id_rup' => $id_rup,
+            'id_manajemen_user' => $this->session->userdata('id_manajemen_user')
+        ];
+        $this->M_panitia->panitia_mengikuti_update($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function save_status_kirim()
+    {
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+        $data = [
+            $post => 1,
+        ];
+        $this->M_panitia->update_rup_panitia($id_rup, $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function simpan_kelengkapan_file2()
+    {
+
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $kelengkapan_file2_1 = $this->input->post('kelengkapan_file2_1');
+        $kelengkapan_file2_2 = $this->input->post('kelengkapan_file2_2');
+        $kelengkapan_file2_3 = $this->input->post('kelengkapan_file2_3');
+        $kelengkapan_file2_4 = $this->input->post('kelengkapan_file2_4');
+        $kelengkapan_file2_5 = $this->input->post('kelengkapan_file2_5');
+        $kelengkapan_file2_6 = $this->input->post('kelengkapan_file2_6');
+
+        $where = [
+            'id_vendor_mengikuti_paket' =>    $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'kelengkapan_file2_1' => $kelengkapan_file2_1,
+            'kelengkapan_file2_2' => $kelengkapan_file2_2,
+            'kelengkapan_file2_3' => $kelengkapan_file2_3,
+            'kelengkapan_file2_4' => $kelengkapan_file2_4,
+            'kelengkapan_file2_5' => $kelengkapan_file2_5,
+            'kelengkapan_file2_6' => $kelengkapan_file2_6,
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function get_kelengkapan_file2($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            if ($rs->kelengkapan_file2_1 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_2 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_3 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_4 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_5 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_6 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+
+            $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kelengkapan_file2'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+              </div>';
+
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_penawaran($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function simpan_status_file1()
+    {
+        $name = $this->input->post('name');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $this->input->post('id_vendor_mengikuti_paket')
+        ];
+        $data = [
+            $name => $this->input->post('value_name')
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }
