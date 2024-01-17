@@ -712,7 +712,7 @@
                     <input type="hidden" name="nama_rup_penunjukan" value="<?= $row_rup['nama_rup'] ?>">
                     <div class="input-group">
                         <input type="file" class="form-control" accept=".xlsx, .xls, .pdf" name="file_surat_penunjukan_pemenang">
-                        <button class="btn btn-outline-secondary btn_penunjukan" type="submit">Upload</button>
+                        <button class="btn btn-outline-success btn_penunjukan" type="submit">Upload</button>
                     </div>
                 </form>
                 <br>
