@@ -1495,57 +1495,47 @@
     var form_sanggahan_akhir = $('#form_sanggahan_akhir')
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
-        var file_sanggah_akhir = $('[name="file_sanggah_akhir"]').val();
-        if (file_sanggah_akhir == '') {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Dokumen Wajib Di Isi!',
-            })
-        } else {
-            e.preventDefault();
-            $.ajax({
-                url: url_upload_sanggahan_akhir,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn-sanggah-akhir').attr("disabled", true);
-                },
-                success: function(response) {
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Membuat Data <b></b>',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_akhir').modal('hide')
-                            form_sanggahan_akhir[0].reset()
-                            load_dok_sanggahan_akhir()
-                            $('.btn-sanggah-akhir').attr("disabled", false);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
+        e.preventDefault();
+        $.ajax({
+            url: url_upload_sanggahan_akhir,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('.btn-sanggah-akhir').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Membuat Data <b></b>',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_balas_sanggahan_akhir').modal('hide')
+                        form_sanggahan_akhir[0].reset()
+                        load_dok_sanggahan_akhir()
+                        $('.btn-sanggah-akhir').attr("disabled", false);
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
 
-                        }
-                    })
-                }
-            })
-        }
+                    }
+                })
+            }
+        })
     })
 
     load_dok_sanggahan_akhir()
@@ -1585,7 +1575,7 @@
                         var ket_sanggah_akhir_panitia = '-'
                     }
 
-                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
+                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
                         if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
                             var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
                             var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
@@ -1596,7 +1586,7 @@
 
                     } else {
                         var file_sanggah_akhir_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                        var balas = '-'
+                        var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                     }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
@@ -1800,7 +1790,6 @@
         var total_hasil_negosiasi = $('[name="total_hasil_negosiasi"]').val()
         var keterangan_negosiasi = $('[name="keterangan_negosiasi"]').val()
         var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
-
         $.ajax({
             type: "POST",
             url: url_post_hasil_negosiasi,

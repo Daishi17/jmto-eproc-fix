@@ -44,8 +44,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+       
+       
         if ($data['row_rup']['bobot_nilai'] == 1) {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
+            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_ketika_ada_negosiasi($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
         } else if (($data['row_rup']['bobot_nilai'] == 2)) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_biaya($data['row_rup']['id_rup']);
@@ -1396,13 +1398,27 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
     {
         $id_url_rup = $this->input->post('id_url_rup');
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
-
         if ($row_rup['bobot_nilai'] == 1) {
-            $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis($row_rup['id_rup']);
+            if ($peserta_vendor > 2) {
+                $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            } else {
+                $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            }
+          
         } else {
-            $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi($row_rup['id_rup']);
+            if ($peserta_vendor > 2) {
+                $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            } else {
+                $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($row_rup['id_rup']);
+                $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            }
+            
         }
         $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
@@ -1836,7 +1852,15 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+            $upload = [
+                'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
+                'file_sanggah_akhir_panitia' => NULL,
+            ];
+            $where = [
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
+            ];
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 
@@ -2831,94 +2855,48 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
 
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            if ($rs->kelengkapan_file2_1 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
             } else {
-                if ($rs->kelengkapan_file2_1 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_1 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_2 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_3 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_4 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_5 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_6 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
             }
 
 
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-            } else {
-                if ($rs->kelengkapan_file2_2 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_2 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
-            }
-
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-            } else {
-                if ($rs->kelengkapan_file2_3 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_3 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
-            }
-
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-            } else {
-                if ($rs->kelengkapan_file2_4 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_4 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
-            }
-
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-            } else {
-                if ($rs->kelengkapan_file2_5 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_5 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
-            }
-
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-            } else {
-                if ($rs->kelengkapan_file2_6 == 1) {
-                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-                } else if ($rs->kelengkapan_file2_6 == 2) {
-                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
-                } else {
-                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-                }
-            }
-
-            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
-                $row[] = '<div class="text-center">
-                <button type="button" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
-                    <i class="fa-solid fa-edit"></i>
-                </button>
-              </div>';
-            } else {
-                $row[] = '<div class="text-center">
+            $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kelengkapan_file2'" . ')">
                     <i class="fa-solid fa-edit"></i>
                 </a>
               </div>';
-            }
-
-
 
 
 

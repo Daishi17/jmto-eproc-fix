@@ -110,6 +110,7 @@
                     <div class="form-group">
                         <input type="hidden" name="id_vendor_mengikuti_paket">
                         <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
+                        <input type="text" name="logic_upload">
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nama Penyedia</th>
