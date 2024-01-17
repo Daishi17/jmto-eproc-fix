@@ -2062,6 +2062,12 @@
                                         <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>
                                 </tr>
+                                <tr>
+                                    <th>Pengguna Barang/Jasa</th>
+                                    <th>
+                                        <input type="text" name="ba_pemenang_barang_jasa" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_barang_jasa')" placeholder="Pengguna Barang/Jasa" class="form-control" value="<?= $row_rup['ba_pemenang_barang_jasa'] ?>">
+                                    </th>
+                                </tr>
                             </table>
                         </div>
                         <div id="ba_11" style="display: none;" class="mt-3">
