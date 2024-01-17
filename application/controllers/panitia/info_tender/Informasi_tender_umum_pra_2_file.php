@@ -1400,20 +1400,25 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
         if ($row_rup['bobot_nilai'] == 1) {
             $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis($row_rup['id_rup']);
-            if ($peserta_vendor == 2) {
+            if ($peserta_vendor > 2) {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             } else {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             }
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+          
         } else {
             $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi($row_rup['id_rup']);
-            if ($peserta_vendor == 2) {
+            if ($peserta_vendor > 2) {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             } else {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($row_rup['id_rup']);
+                $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             }
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            
         }
         $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
