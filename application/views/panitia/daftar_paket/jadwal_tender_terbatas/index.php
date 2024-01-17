@@ -77,8 +77,8 @@
                                                     <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= date('Y-m-d H:i', strtotime($value2['waktu_mulai'])) ?>" type="text"></td>
                                                     <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
                                                 <?php } else { ?>
-                                                    <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" value="<?= $value2['waktu_mulai'] ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
-                                                    <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" value="<?= $value2['waktu_selesai']  ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
+                                                    <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" value="<?= $value2['waktu_mulai'] ?>" id="mulai<?= $mulai_detail++ ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
+                                                    <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" value="<?= $value2['waktu_selesai']  ?>" id="selesai<?= $selesai_detail++ ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
                                                 <?php  } ?>
 
                                                 <td>
