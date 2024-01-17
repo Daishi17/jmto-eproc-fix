@@ -2583,6 +2583,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $data['get_pemenang'] = $this->M_panitia->get_pemenang($data['row_rup']['id_rup']);
         $data['get_mengikuti'] = $this->M_panitia->get_mengikuti($data['row_rup']['id_rup']);
+        $data['get_mengikuti_deal_nego'] = $this->M_panitia->get_mengikuti_deal_nego($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
     }
 
