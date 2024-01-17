@@ -1451,56 +1451,47 @@
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
         var file_sanggah_akhir = $('[name="file_sanggah_akhir"]').val();
-        if (file_sanggah_akhir == '') {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Dokumen Wajib Di Isi!',
-            })
-        } else {
-            e.preventDefault();
-            $.ajax({
-                url: url_upload_sanggahan_akhir,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn-sanggah-akhir').attr("disabled", true);
-                },
-                success: function(response) {
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Membuat Data <b></b>',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_akhir').modal('hide')
-                            form_sanggahan_akhir[0].reset()
-                            load_dok_sanggahan_akhir()
-                            $('.btn-sanggah-akhir').attr("disabled", false);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
+        e.preventDefault();
+        $.ajax({
+            url: url_upload_sanggahan_akhir,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('.btn-sanggah-akhir').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Membuat Data <b></b>',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_balas_sanggahan_akhir').modal('hide')
+                        form_sanggahan_akhir[0].reset()
+                        load_dok_sanggahan_akhir()
+                        $('.btn-sanggah-akhir').attr("disabled", false);
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
 
-                        }
-                    })
-                }
-            })
-        }
+                    }
+                })
+            }
+        })
     })
 
     load_dok_sanggahan_akhir()
@@ -2981,10 +2972,8 @@
 </script>
 
 <script>
-
-
     // INI UNTUK TKDN HEA TERENDAH
-        
+
     $(document).ready(function() {
         var id_rup = $('[name="id_rup"]').val()
         $('#tbl_hea_tkdn_terendah').DataTable({
@@ -3078,7 +3067,7 @@
 
 
 
-    
+
     $(document).ready(function() {
         var id_rup = $('[name="id_rup"]').val()
         $('#tbl_peringkat_akhir_terendah_hea').DataTable({
@@ -3162,6 +3151,4 @@
             }
         })
     })
-
-
 </script>

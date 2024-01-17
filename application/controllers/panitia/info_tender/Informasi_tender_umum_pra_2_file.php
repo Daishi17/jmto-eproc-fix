@@ -1823,7 +1823,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $config['allowed_types'] = 'pdf|xlsx|xls';
         $config['max_size'] = 0;
         $this->load->library('upload', $config);
-
         if ($this->upload->do_upload('file_sanggah_akhir_panitia')) {
             $fileData = $this->upload->data();
             $upload = [
@@ -1836,7 +1835,14 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+            $upload = [
+                'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
+            ];
+            $where = [
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
+            ];
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 
