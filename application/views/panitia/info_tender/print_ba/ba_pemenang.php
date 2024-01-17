@@ -200,34 +200,34 @@ function terbilang($nilai)
                             <td><?= $get_pemenang['alamat'] ?></td>
                         </tr>
 
-                        <?php if ($get_mengikuti['ev_terendah_harga']) { ?>
-                            <?php if ($get_mengikuti['sts_deal_negosiasi'] == 'deal') { ?>
+                        <?php if ($get_mengikuti_deal_nego['ev_terendah_harga']) { ?>
+                            <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
                                 <tr>
                                     <td>Harga Pemenang</td>
                                     <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
                                 </tr>
                             <?php } else { ?>
                                 <tr>
                                     <td>Harga Pemenang</td>
                                     <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['ev_terendah_harga']) ?> Rupiah)</td>
+                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['ev_terendah_harga']) ?> Rupiah)</td>
                                 </tr>
                             <?php } ?>
 
                         <?php } else { ?>
 
-                            <?php if ($get_mengikuti['sts_deal_negosiasi'] == 'deal') { ?>
+                            <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
                                 <tr>
                                     <td>Harga Pemenang</td>
                                     <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
                                 </tr>
                             <?php } else { ?>
                                 <tr>
                                     <td>Harga Pemenang</td>
                                     <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?> Rupiah)</td>
+                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['nilai_penawaran']) ?> Rupiah)</td>
                                 </tr>
                             <?php } ?>
 
@@ -292,10 +292,10 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                                                                                                                        <tr>
-                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
-                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                        </tr>
+                                                                                                                                                                        <tr>
+                                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
+                                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                        </tr>
                     <?php } ?>
                 </tbody>
             </table> -->
