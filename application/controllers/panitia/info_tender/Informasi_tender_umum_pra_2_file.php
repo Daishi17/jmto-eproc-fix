@@ -2830,48 +2830,94 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row[] = ++$no;
             $row[] = $rs->nama_usaha;
 
-            if ($rs->kelengkapan_file2_1 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
             } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-            }
-
-            if ($rs->kelengkapan_file2_2 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-            } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-            }
-
-            if ($rs->kelengkapan_file2_3 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-            } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-            }
-
-            if ($rs->kelengkapan_file2_4 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-            } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-            }
-
-            if ($rs->kelengkapan_file2_5 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-            } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
-            }
-
-            if ($rs->kelengkapan_file2_6 == 1) {
-                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
-            } else {
-                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                if ($rs->kelengkapan_file2_1 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_1 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
             }
 
 
-            $row[] = '<div class="text-center">
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            } else {
+                if ($rs->kelengkapan_file2_2 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_2 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
+            }
+
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            } else {
+                if ($rs->kelengkapan_file2_3 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_3 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
+            }
+
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            } else {
+                if ($rs->kelengkapan_file2_4 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_4 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
+            }
+
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            } else {
+                if ($rs->kelengkapan_file2_5 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_5 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
+            }
+
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+            } else {
+                if ($rs->kelengkapan_file2_6 == 1) {
+                    $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+                } else if ($rs->kelengkapan_file2_6 == 2) {
+                    $row[] = '<span class="badge bg-sm bg-danger"><i class="fa fa-times"></i></span>';
+                } else {
+                    $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+                }
+            }
+
+            if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
+                $row[] = '<div class="text-center">
+                <button type="button" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+              </div>';
+            } else {
+                $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kelengkapan_file2'" . ')">
                     <i class="fa-solid fa-edit"></i>
                 </a>
               </div>';
+            }
+
+
 
 
 

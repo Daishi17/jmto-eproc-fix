@@ -1261,8 +1261,8 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Nomor SK Direksi</th>
-                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat Direksi" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
+                                    <th>Nomor SK PBJ</th>
+                                    <th> <input type="text" name="ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sk_direksi')" placeholder="Nomor Surat PBJ" class="form-control" value="<?= $row_rup['ba_sk_direksi'] ?>"></th>
                                 </tr>
                                 <tr>
                                     <th>Nomor SK Panitia</th>
@@ -1275,12 +1275,12 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Tanggal SK Direksi</th>
-                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
+                                    <th>Tanggal SK PBJ</th>
+                                    <th> <input type="text" name="tgl_ba_sk_direksi" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_direksi')" placeholder="Tanggal Surat PBJ" class="form-control" value="<?= $row_rup['tgl_ba_sk_direksi'] ?>"></th>
                                 </tr>
                                 <tr>
                                     <th>Tanggal SK Panitia</th>
-                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal Surat Direksi" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
+                                    <th> <input type="text" name="tgl_ba_sk_panitia" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tgl_ba_sk_panitia')" placeholder="Tanggal Surat Panitia" class="form-control" value="<?= $row_rup['tgl_ba_sk_panitia'] ?>"></th>
                                 </tr>
                             </thead>
                         </table>
