@@ -1955,19 +1955,16 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
 
-        if ($data['row_rup']['bobot_nilai'] == 1) {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
-            $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
-        } else if (($data['row_rup']['bobot_nilai'] == 2)) {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_biaya($data['row_rup']['id_rup']);
-            $data['get_rank1'] = $this->M_panitia->get_peserta_rank1_biaya($data['row_rup']['id_rup']);
-        } else {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
-            $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
-        }
-
-
-
+        // if ($data['row_rup']['bobot_nilai'] == 1) {
+        //     $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
+        //     $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
+        // } else if (($data['row_rup']['bobot_nilai'] == 2)) {
+        //     $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_biaya($data['row_rup']['id_rup']);
+        //     $data['get_rank1'] = $this->M_panitia->get_peserta_rank1_biaya($data['row_rup']['id_rup']);
+        // } else {
+        //     $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
+        //     $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
+        // }
         // get tahap
         $data['jadwal_pengumuman_pengadaan'] =  $this->M_jadwal->jadwal_pra_umum_1($data['row_rup']['id_rup']);
         $data['jadwal_dokumen_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_2($data['row_rup']['id_rup']);
@@ -2041,7 +2038,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra_umum_10($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['data_panitia'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
-        // $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/summary_tender', $data);
     }
     // ulang pengadaan
