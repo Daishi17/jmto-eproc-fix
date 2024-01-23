@@ -2084,7 +2084,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($peserta_tender as $key => $value) { ?>
+                                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                         <tr>
                                             <td scope="row"><?= $no++ ?></td>
                                             <td><?= $value['nama_usaha'] ?></td>

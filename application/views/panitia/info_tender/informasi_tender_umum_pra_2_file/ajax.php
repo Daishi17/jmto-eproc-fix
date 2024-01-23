@@ -166,6 +166,8 @@
 
     function reload_evaluasi_penawaran() {
         $('#tbl_evaluasi_penawaran').DataTable().ajax.reload();
+        $('#tbl_hea_tkdn').DataTable().ajax.reload();
+        $('#tbl_akhir_hea').DataTable().ajax.reload();
     }
 
     $(document).ready(function() {
