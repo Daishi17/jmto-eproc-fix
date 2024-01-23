@@ -513,19 +513,19 @@ Terimakasih');
 		$validasi_jadwal = $this->M_panitia->validasi_row_jadwal($id_rup);
 		$validasi_dok_izin_prinsip = $this->M_panitia->validasi_dok_izin_prinsip($id_rup);
 		$validasi_hps = $this->M_panitia->validasi_hps($id_rup);
-		// jenis_kontrak
-		$jenis_kontrak = $this->input->post('jenis_kontrak');
-		$data = [
-			'jenis_kontrak' => $jenis_kontrak
-		];
-		$this->M_panitia->update_rup_panitia($id_rup, $data);
-		$data_beban_tahun = [
-			'beban_tahun_anggaran' => $this->input->post('beban_tahun_anggaran')
-		];
-		$this->M_panitia->update_rup_panitia($id_rup, $data_beban_tahun);
-
-
-
+		$type = $this->input->post('type');
+		if ($type == 'beban') {
+			$data_beban_tahun = [
+				'beban_tahun_anggaran' => $this->input->post('beban_tahun_anggaran')
+			];
+			$this->M_panitia->update_rup_panitia($id_rup, $data_beban_tahun);
+		} else {
+			$jenis_kontrak = $this->input->post('jenis_kontrak');
+			$data = [
+				'jenis_kontrak' => $jenis_kontrak
+			];
+			$this->M_panitia->update_rup_panitia($id_rup, $data);
+		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -566,7 +566,6 @@ Terimakasih');
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else {
 			$id_url_rup = $this->input->post('id_url_rup');
-
 			$beban_tahun_anggaran = $this->input->post('beban_tahun_anggaran');
 			$bobot_nilai = $this->input->post('bobot_nilai');
 			$bobot_biaya = $this->input->post('bobot_biaya');
@@ -1465,7 +1464,8 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])

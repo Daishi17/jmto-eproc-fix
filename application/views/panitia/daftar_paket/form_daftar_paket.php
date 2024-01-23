@@ -317,9 +317,9 @@
                                             <div class="input-group mb-2">
                                                 <span class="input-group-text"><i class="fa-solid fa-square-pen px-1"></i></span>
                                                 <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
-                                                    <select class="form-select" name="jenis_kontrak" aria-label="Default select example" onchange="jenis_kontrak()" disabled>
+                                                    <select class="form-select" name="jenis_kontrak" aria-label="Default select example" onchange="jenis_kontrak('jenis_kontrak')" disabled>
                                                     <?php } else { ?>
-                                                        <select class="form-select" name="jenis_kontrak" aria-label="Default select example" onchange="jenis_kontrak()">
+                                                        <select class="form-select" name="jenis_kontrak" aria-label="Default select example" onchange="jenis_kontrak('jenis_kontrak')">
                                                         <?php   } ?>
 
                                                         <?php if (!$row_rup['jenis_kontrak']) { ?>
@@ -387,7 +387,7 @@
                                                 <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
                                                     <input type="text" class="form-control" name="beban_tahun_anggaran" readonly value="<?= $row_rup['beban_tahun_anggaran'] ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" class="form-control" name="beban_tahun_anggaran" onkeyup="beban_anggaran()" value="<?= $row_rup['beban_tahun_anggaran'] ?>">
+                                                    <input type="text" class="form-control" name="beban_tahun_anggaran" onkeyup="beban_anggaran('beban')" value="<?= $row_rup['beban_tahun_anggaran'] ?>">
                                                 <?php } ?>
 
                                             </div>

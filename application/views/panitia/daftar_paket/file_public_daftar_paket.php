@@ -315,7 +315,7 @@
 
 <!-- jenis kontrak, pembebanan tahun anggaran, bobot penilaian -->
 <script>
-    function jenis_kontrak() {
+    function jenis_kontrak(type) {
         var jenis_kontrak = $('[name="jenis_kontrak"]').val();
         var url_update_rup = $('[name="url_update_rup"]').val();
         var id_rup_global = $('[name="id_rup_global"]').val();
@@ -324,6 +324,7 @@
             url: url_update_rup,
             data: {
                 id_rup: id_rup_global,
+                type:type,
                 jenis_kontrak: jenis_kontrak
             },
             dataType: "JSON",
@@ -334,7 +335,7 @@
     }
 
 
-    function beban_anggaran() {
+    function beban_anggaran(type) {
         var beban_tahun_anggaran = $('[name="beban_tahun_anggaran"]').val();
         var url_update_rup = $('[name="url_update_rup"]').val();
         var id_rup_global = $('[name="id_rup_global"]').val();
@@ -343,6 +344,7 @@
             url: url_update_rup,
             data: {
                 id_rup: id_rup_global,
+                type:type,
                 beban_tahun_anggaran: beban_tahun_anggaran
             },
             dataType: "JSON",
