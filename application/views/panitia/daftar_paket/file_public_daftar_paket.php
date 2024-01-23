@@ -1868,6 +1868,8 @@
                     var jenis_kontrak = 'Terima Jadi(Turnkey)'
                 } else if (response['row_rup'].jenis_kontrak == 5) {
                     var jenis_kontrak = 'Persentase( % )'
+                } else if (response['row_rup'].jenis_kontrak == 6) {
+                    var jenis_kontrak = 'Kontrak Payung'
                 }
                 $('#jenis_kontrak').text(jenis_kontrak)
                 $('#bobot_teknis').text(response['row_rup'].bobot_teknis)

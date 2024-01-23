@@ -433,8 +433,8 @@ class Daftar_paket extends CI_Controller
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
 		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! 
-		 ' . $data_rup['nama_metode_pengadaan']  . ' :
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! ' .
+			$data_rup['nama_metode_pengadaan']  . ' :
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
 Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
