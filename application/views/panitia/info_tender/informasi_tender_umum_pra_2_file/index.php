@@ -1446,7 +1446,7 @@
                                     </tr>
                                 </table>
                             </form>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header bg-primary text-white">
                                     <label for="">1. Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi</label>
                                 </div>
@@ -1514,7 +1514,7 @@
                                         </table>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
 
 
 
