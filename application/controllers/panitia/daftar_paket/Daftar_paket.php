@@ -519,12 +519,13 @@ Terimakasih');
 				'beban_tahun_anggaran' => $this->input->post('beban_tahun_anggaran')
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data_beban_tahun);
-		} else {
+		} else if ($type == 'jenis_kontrak') {
 			$jenis_kontrak = $this->input->post('jenis_kontrak');
 			$data = [
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
+		} else {
 		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
