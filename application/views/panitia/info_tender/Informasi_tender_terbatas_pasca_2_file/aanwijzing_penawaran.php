@@ -13,7 +13,7 @@
 
         .btn-grad5:hover {
             background-position: right center;
-            /* change the direction of the change here */
+            /* change the direction of the change ehere */
             color: #fff;
             box-shadow: 0 0 40px #1CB5E0;
             text-decoration: none;

@@ -2248,7 +2248,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_undangan_penawaran')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
-                <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
             </div>
         </div>
