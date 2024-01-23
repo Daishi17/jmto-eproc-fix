@@ -2173,6 +2173,7 @@
     function vendor_terpilih() {
         var id_rup_global = $('[name="id_rup_global"]').val();
         var url_get_rekanan_terpilih = $('[name="url_get_rekanan_terpilih"]').val()
+        var status_paket_diumumkan = $('[name="status_paket_diumumkan"]').val()
         $.ajax({
             type: "POST",
             url: url_get_rekanan_terpilih,
@@ -2185,6 +2186,11 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
+                    if (response[i].status_paket_diumumkan) {
+                        var field = '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>'
+                    } else {
+                        var field = '<td><button disabled class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Tender Sedang Berlangsung</button></td>'
+                    }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
                         '<td>' + response[i].nama_usaha + '</td>' +
@@ -2192,8 +2198,8 @@
                         '<td>' + response[i].kualifikasi_usaha + '</td>' +
                         '<td>' + '80' + '</td>' +
                         '<td>' + ' <center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>' + '</td>' +
-                        '<td><a href="javascript:;" onclick="batal_pilih(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-danger"><i class="fas fa fa-trash"></i> Batal Pilih</a></td>' +
-                        '</tr>'
+                        field + '</tr>'
+
                 }
                 $('#load_terpilih').html(html);
             }
@@ -2220,6 +2226,11 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
+                    if (response[i].status_paket_diumumkan) {
+                        var field = '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>'
+                    } else {
+                        var field = '<td><button disabled class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Tender Sedang Berlangsung</button></td>'
+                    }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
                         '<td>' + response[i].nama_usaha + '</td>' +
@@ -2227,7 +2238,7 @@
                         '<td>' + response[i].kualifikasi_usaha + '</td>' +
                         '<td>' + '80' + '</td>' +
                         '<td>' + ' <center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>' + '</td>' +
-                        '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>' +
+                        field +
                         '</tr>'
                 }
                 $('#load_rekomendasi').html(html);
@@ -2249,6 +2260,7 @@
             },
             dataType: "JSON",
             success: function(response) {
+
                 modal.modal('show')
                 var html = '';
                 var i;
