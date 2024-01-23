@@ -2097,7 +2097,7 @@ class Post_jadwal extends CI_Controller
     {
         $id_rup = $id_rup_global;
         $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
-        if ($row_rup['id_jadwal_rup'] == 3 || $row_rup['id_jadwal_rup'] == 1) {
+        if ($row_rup['id_jadwal_tender'] == 3 || $row_rup['id_jadwal_tender'] == 1) {
             $jadwal_asing = $this->M_panitia->jadwal_pengumuman_pasca_1($id_rup);
         } else {
             $jadwal_asing = $this->M_panitia->jadwal_pengumuman($id_rup);
