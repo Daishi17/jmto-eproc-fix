@@ -264,7 +264,7 @@ function terbilang($nilai)
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                        foreach ($deal as $key => $value) { ?>
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
