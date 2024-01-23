@@ -53,10 +53,10 @@ class Beranda extends CI_Controller
 				$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 			} else {
 				if ($jadwal_terakhir['waktu_mulai'] < $now) {
-					$row[] = '<span class="badge bg-success text-white">Pengadaan Sudah Selesai
+					$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 					</span>';
 				} else {
-					$row[] = '<span class="badge bg-danger text-white">Sedang Berlangsung
+					$row[] = '<span class="badge bg-success text-white">Sedang Berlangsung
 					</span>';
 				}
 			}
@@ -99,10 +99,10 @@ class Beranda extends CI_Controller
 				$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 			} else {
 				if ($jadwal_terakhir['waktu_mulai'] < $now) {
-					$row[] = '<span class="badge bg-success text-white">Pengadaan Sudah Selesai
+					$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 					</span>';
 				} else {
-					$row[] = '<span class="badge bg-danger text-white">Sedang Berlangsung
+					$row[] = '<span class="badge bg-success text-white">Sedang Berlangsung
 					</span>';
 				}
 			}
@@ -143,10 +143,10 @@ class Beranda extends CI_Controller
 				$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 			} else {
 				if ($jadwal_terakhir['waktu_mulai'] < $now) {
-					$row[] = '<span class="badge bg-success text-white">Pengadaan Sudah Selesai
+					$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 					</span>';
 				} else {
-					$row[] = '<span class="badge bg-danger text-white">Sedang Berlangsung
+					$row[] = '<span class="badge bg-success text-white">Sedang Berlangsung
 					</span>';
 				}
 			}

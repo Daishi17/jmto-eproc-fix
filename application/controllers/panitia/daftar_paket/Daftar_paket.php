@@ -63,10 +63,10 @@ class Daftar_paket extends CI_Controller
 					$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 				} else {
 					if ($jadwal_terakhir['waktu_mulai'] <= $now) {
-						$row[] = '<span class="badge bg-success text-white">Pengadaan Sudah Selesai
+						$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 						</span>';
 					} else {
-						$row[] = '<span class="badge bg-danger text-white">Sedang Berlangsung
+						$row[] = '<span class="badge bg-success text-white">Sedang Berlangsung
 						</span>';
 					}
 				}
@@ -433,7 +433,7 @@ class Daftar_paket extends CI_Controller
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
 		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! ' .
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO' .
 			$data_rup['nama_metode_pengadaan']  . ' :
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '

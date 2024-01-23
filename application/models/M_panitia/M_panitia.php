@@ -743,7 +743,7 @@ class M_panitia extends CI_Model
     // get datatable paket draft
 
     // GET RUP PAKET FINAL
-    var $order_paket =  array('tbl_rup.id_rup', 'tbl_rup.kode_rup', 'tbl_rup.tahun_rup', 'tbl_rup.nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'tbl_rup.id_rup', 'tbl_rup.id_rup', 'tbl_rup.id_rup');
+    var $order_paket =  array('tbl_rup.tahun_rup', 'tbl_rup.nama_rup', 'tbl_departemen.nama_departemen', 'tbl_jenis_pengadaan.nama_jenis_pengadaan', 'tbl_metode_pengadaan.nama_metode_pengadaan', 'total_hps_rup', 'tbl_rup.status_paket_panitia', 'tbl_rup.id_rup', 'tbl_rup.id_rup');
     // get nib
     private function _get_data_query_daftar_paket()
     {

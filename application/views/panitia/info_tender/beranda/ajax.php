@@ -232,7 +232,7 @@
                     if (sekarang < response['row_rup'].batas_pendaftaran_tender) {
                         html_status_paket += '<small><span class="badge bg-success text-white">Tender Sedang Berlangsung</span></small>';
                     } else {
-                        html_status_paket += '<small><span class="badge bg-danger text-white">Tender Sudah Selesai</span></small>';
+                        html_status_paket += '<small><span class="badge bg-success text-white">Tender Sedang Berlangsung</span></small>';
                     }
 
                     $('.load_status_paket').html(html_status_paket);

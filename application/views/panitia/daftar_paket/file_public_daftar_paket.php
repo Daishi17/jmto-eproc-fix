@@ -1926,7 +1926,7 @@
                         html_status_paket += '<small><span class="badge bg-warning text-dark">Draft Paket (Sedang Mengulang)</span></small>';
                         $('.load_status_paket').html(html_status_paket);
                     } else {
-                        html_status_paket += '<small><span class="badge bg-danger text-white">Tender Sedang Berlangsung</span></small>';
+                        html_status_paket += '<small><span class="badge bg-success text-white">Tender Sedang Berlangsung</span></small>';
                         $('.load_status_paket').html(html_status_paket);
                     }
                 }
