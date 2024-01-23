@@ -13,6 +13,9 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
                         </li>
                         <li class="nav-item">
@@ -20,9 +23,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
@@ -55,10 +55,10 @@
                                 <td>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ',', '.')  ?> </td>
                             </tr>
 
-                            <?php if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                            <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
 
 
-                            <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                            <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                 <tr>
                                     <th>TKDN</th>
                                     <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> % </td>
@@ -103,19 +103,23 @@
                 </div>
                 <div class="card-body">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
-                        </li>
+                        <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                        <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                            </li>
+                        <?php    } else { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                            </li>
+                        <?php    } ?>
 
-                        <?php if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
-
-
-                        <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
-
+                        <?php if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                        <?php    } else if (date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($pembukaan_penawaran_file_II['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                            </li>
                             <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
-                                </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
                                 </li>
@@ -125,21 +129,15 @@
                             <?php } else { ?>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn_terendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN Harga Terendah</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pringkat_akhir_heatkdn_terendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Terendah Hea</button>
                                 </li>
 
                             <?php }   ?>
-
                         <?php    } else { ?>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
+                            </li>
                             <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#evakhirpenawaran" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Evaluasi Akhir Penawaran</button>
-                                </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN</button>
                                 </li>
@@ -149,23 +147,13 @@
                             <?php } else { ?>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#peringkatakhirterendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Harga Terendah</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#evheatkdn_terendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Evaluasi HEA TKDN Harga Terendah</button>
-                                </li>
-
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pringkat_akhir_heatkdn_terendah" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Peringkat Akhir Terendah Hea</button>
                                 </li>
 
                             <?php }   ?>
                         <?php    } ?>
-
-
-
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="evkualifikasi" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="tab-pane fade show" id="evkualifikasi" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="container-fluid">
                                 <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                                     <div class="flex-grow-1 bd-highlight">
@@ -240,7 +228,7 @@
                                                     <th><?= $row_rup['bobot_biaya'] ?>%</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="text-align: center;">
+                                            <tbody>
 
                                             </tbody>
                                         </table>
@@ -367,75 +355,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        
-                        <div class="tab-pane fade" id="evheatkdn_terendah" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                                <div class="flex-grow-1 bd-highlight">
-                                    <span class="text-dark">
-                                        <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Evaluasi HEA TKDN Harga Terendah</strong></small>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div style="overflow-x: auto;">
-                                    <table class="table table-bordered" id="tbl_hea_tkdn_terendah">
-                                        <thead style="text-align: center;">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Perusahaan</th>
-                                                <th>Harga Penawaran <br> (Setelah Koreksi Aritmatika)</th>
-                                                <th>Nilai TKDN Penawaran</th>
-                                                <th>Harga Evaluasi Akhir (Hea)(Setelah Koreksi Aritmatika)</th>
-                                                <th>Peringkat Sementara Hea</th>
-                                                <th>Keterangan</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="pringkat_akhir_heatkdn_terendah" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                                <div class="flex-grow-1 bd-highlight">
-                                    <span class="text-dark">
-                                        <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Evaluasi HEA TKDN Harga Terendah</strong></small>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div style="overflow-x: auto;">
-                                    <table class="table table-bordered" id="tbl_peringkat_akhir_terendah_hea">
-                                        <thead style="text-align: center;">
-                                            <tr>
-                                                <th rowspan="2">No</th>
-                                                <th rowspan="2">Nama Perusahaan</th>
-                                                <th rowspan="2">Kelengkapan Dokumen Administrasi dan Teknis </th>
-                                                <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika) Hea</th>
-                                                <th rowspan="2">% Hea Penawaran Terhadap HPS</th>
-                                                <th>Nilai Biaya</th>
-                                                <th rowspan="2">Nilai Akhir HEA</th>
-                                                <th rowspan="2">Peringkat Akhir</th>
-                                                <th rowspan="2">Keterangan</th>
-                                                <th rowspan="2">Aksi</th>
-                                            </tr>
-                                            <tr>
-                                                <th>100%</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -479,7 +398,7 @@
                             </div>
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Evaluasi Teknis</label>
-                                <input type="text" class="form-control number_only" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
+                                <input type="text" class="form-control number_only" id="ev_teknis" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>
@@ -526,17 +445,18 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <div class="mb-3" style="margin-top: -10px;">
+                                <label for="" class="form-label">Nilai Teknis</label>
+                                <input type="text" readonly class="form-control number_only bg-light" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <label for="" id="error_ev_teknis" class="text-danger"></label>
+                            </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="nilai_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
                             </div>
-                            <div class="mb-3" style="margin-top: -10px;">
-                                <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" class="form-control number_only" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
-                                <label for="" id="error_ev_teknis" class="text-danger"></label>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -557,7 +477,6 @@
                 <a class="navbar-brand">
                     <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
                     <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -581,12 +500,12 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="" class="form-label">Harga Penawaran (Setelah Koreksi Aritmatika)</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_penawaran" placeholder="Harga Penawaran (Setelah Koreksi Aritmatika)" onkeyup="format_rupiah2()">
                                 <input type="text" class="form-control" placeholder="Rp." name="penawaran_rp2" disabled>
                                 <label for="" id="error_ev_keuangan" class="text-danger"></label>
-                            </div>
+                            </div> -->
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Nilai TKDN</label>
                                 <input type="text" class="form-control number_only" name="ev_hea_tkdn" placeholder="Nilai TKDN">
@@ -639,7 +558,7 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3" style="margin-top: 10px;">
                                 <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text" class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
+                                <input type="text" readonly class="form-control number_only" name="ev_akhir_hea_teknis" placeholder="Nilai Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>
@@ -704,98 +623,3 @@
         </div>
     </div>
 </div>
-
-<!-- hea_tkdn_terendah -->
-<div class="modal fade" id="modal_evaluasi_hea_tkdn_terendah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="navbar-brand">
-                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="form_evaluasi_hea_tkdn_terendah" action="javascript:;">
-                <input type="hidden" value="<?= $row_rup['total_hps_rup'] ?>" name="total_hps_rup">
-                <input type="hidden" value="<?= $row_rup['id_rup'] ?>" name="id_rup_post">
-                <input type="hidden" value="<?= $row_rup['bobot_teknis'] ?>" name="bobot_teknis">
-                <input type="hidden" value="<?= $row_rup['bobot_biaya'] ?>" name="bobot_biaya">
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                            <div class="flex-grow-1 bd-highlight">
-                                <span class="text-dark">
-                                    <small class="text-white">
-                                        <strong><i class="fa-solid fa-edit px-1"></i>
-                                            Evaluasi HEA TKDN TERENDAH<label for="" class="nama_usaha"></label>
-                                        </strong>
-                                    </small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <input type="hidden" name="id_vendor_mengikuti_paket">
-                            <div class="mb-3" style="margin-top: -10px;">
-                                <label for="" class="form-label">Nilai TKDN Penawaran</label>
-                                <input type="text" class="form-control number_only" name="ev_hea_tkdn_terendah" placeholder="Nilai TKDN">
-                                <label for="" id="error_ev_teknis" class="text-danger"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success" id="btn_ev_tkdn">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- harga terendah -->
-<div class="modal fade" id="modal_evaluasi_harga_terendah_hea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="navbar-brand">
-                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="form_evaluasi_harga_terendah_hea" action="javascript:;">
-                <input type="hidden" value="<?= $row_rup['total_hps_rup'] ?>" name="total_hps_rup">
-                <input type="hidden" value="<?= $row_rup['id_rup'] ?>" name="id_rup_post">
-                <input type="hidden" value="<?= $row_rup['bobot_teknis'] ?>" name="bobot_teknis">
-                <input type="hidden" value="<?= $row_rup['bobot_biaya'] ?>" name="bobot_biaya">
-                <input type="hidden" name="ev_hea_harga">
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                            <div class="flex-grow-1 bd-highlight">
-                                <span class="text-dark">
-                                    <small class="text-white">
-                                        <strong><i class="fa-solid fa-edit px-1"></i>
-                                            Evaluasi Peringkat Akhir Harga Terendah Hea<label for="" class="nama_usaha"></label>
-                                        </strong>
-                                    </small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <input type="hidden" name="id_vendor_mengikuti_paket">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success" id="btn_ev_hea_akhir">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-

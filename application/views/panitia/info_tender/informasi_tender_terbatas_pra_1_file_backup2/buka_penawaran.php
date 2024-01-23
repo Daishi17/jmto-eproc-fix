@@ -2,6 +2,7 @@
     <main class="container">
         <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
         <input type="hidden" name="url_byid_mengikuti" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_byid_mengikuti/') ?>">
+        <input type="hidden" name="url_simpan_status_file1" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_status_file1/') ?>">
         <div class="row">
             <div class="col">
                 <div class="card border-dark">
@@ -25,14 +26,6 @@
                                         <th>Nama Metode Pemilihan </th>
                                         <td><?= $row_rup['nama_metode_pengadaan'] ?></td>
                                     </tr>
-                                    <tr>
-                                        <th>HPS</th>
-                                        <td>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ',', '.')  ?> </td>
-                                    </tr>
-                                    <tr>
-                                        <th>TKDN</th>
-                                        <td><?= number_format($row_rup['persen_pencatatan'], 2, ',', '.')  ?> </td>
-                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -41,9 +34,20 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-file1" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Dokumen Pengadaan File I</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
-                            </li>
+                            <?php if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                                <!-- belom mulai -->
+
+                            <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
+                                </li>
+
+                            <?php    } else { ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
+                                </li>
+
+                            <?php    } ?>
 
                         </ul>
 
@@ -92,8 +96,8 @@
                                                 <th>No</th>
                                                 <th>Nama Peserta</th>
                                                 <!-- <th>Nilai Penawaran</th>
-                                                                        <th>TKDN/PDN/IMPORT</th>
-                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
+                                                                                                                                                                                                                        <th>TKDN/PDN/IMPORT</th>
+                                                                                                                                                                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
                                                 <th>Lihat Dok Penawaran</th>
                                             </thead>
                                             <tbody>
@@ -127,8 +131,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama File</th>
-                                <!-- <th>File</th> -->
+                                <th>File</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="load_detail_file1">

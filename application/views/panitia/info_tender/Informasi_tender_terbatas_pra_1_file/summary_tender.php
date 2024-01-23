@@ -423,7 +423,7 @@
                             <th>Nama RUP</th>
                             <td><?= $row_rup['nama_rup'] ?></td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                             <th>Penyedia Terundang dan Terverifikasi</th>
                             <td>
                                 <table style="width: 100%;">
@@ -444,7 +444,7 @@
                                 </table>
 
                             </td>
-                        </tr> -->
+                        </tr>
 
 
                         <tr>
@@ -606,7 +606,6 @@
                     <h4 class="text-center">PESERTA PENGADAAN</h4>
                     <table class="table table-bordered">
                         <tr>
-                            <th>No</th>
                             <th>Nama Peserta</th>
                             <th>Tanggal Daftar</th>
                         </tr>
@@ -762,42 +761,37 @@
                             </tbody>
                         </table>
                     </div>
-                    <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                    <?php  } else { ?>
-                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                            <div class="flex-grow-1 bd-highlight">
-                                <span class="text-dark">
-                                    <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Peringkat Akhir Harga Terendah</strong></small>
-                                </span>
-                            </div>
+                    <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 bd-highlight">
+                            <span class="text-dark">
+                                <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Peringkat Akhir Harga Terendah</strong></small>
+                            </span>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-bordered" id="tbl_peringkat_akhir_terendah">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th rowspan="2">No</th>
-                                        <th rowspan="2">Nama Perusahaan</th>
-                                        <th rowspan="2">Kelengkapan Dokumen Administrasi dan Teknis </th>
-                                        <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika)</th>
-                                        <th rowspan="2">% Penawaran Terhadap HPS</th>
-                                        <th>Nilai Biaya</th>
-                                        <th rowspan="2">Peringkat Akhir</th>
-                                        <th rowspan="2">Keterangan</th>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered" id="tbl_peringkat_akhir_terendah">
+                            <thead style="text-align: center;">
+                                <tr>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Nama Perusahaan</th>
+                                    <th rowspan="2">Kelengkapan Dokumen Administrasi dan Teknis </th>
+                                    <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika)</th>
+                                    <th rowspan="2">% Penawaran Terhadap HPS</th>
+                                    <th>Nilai Biaya</th>
+                                    <th rowspan="2">Peringkat Akhir</th>
+                                    <th rowspan="2">Keterangan</th>
 
-                                    </tr>
-                                    <tr>
-                                        <th>100%</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                </tr>
+                                <tr>
+                                    <th>100%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
-                        </div>
-                    <?php   }
-                    ?>
-
+                    </div>
 
                     <h4 class="text-center">SANGGAHAN</h4>
                     <table class="table table-bordered">

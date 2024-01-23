@@ -548,9 +548,6 @@ Terimakasih');
 		} else if ($validasi_jenis_kontrak) {
 			$erorr = 'jenis_kontrak_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if (!$validasi_beban_tahun_anggaran) {
-			$erorr = 'beban_tahun_anggaran';
-			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else if ($validasi_bobot_nilai) {
 			$erorr = 'bobot_nilai_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
@@ -1525,8 +1522,7 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else {
-		}
+		} else { }
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
