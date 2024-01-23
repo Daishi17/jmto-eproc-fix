@@ -839,7 +839,7 @@ class M_panitia extends CI_Model
     // get datatable paket draft
 
     // GET RUP PAKET FINAL
-    var $order_paket_tender_umum =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order_paket_tender_umum =  array('tahun_rup', 'nama_rup', 'nama_departemen', 'nama_jenis_pengadaan', 'total_hps_rup', 'status_paket_panitia', 'tbl_rup.id_rup');
     // get nib
     private function _get_data_query_daftar_paket_tender_umum()
     {
@@ -922,7 +922,7 @@ class M_panitia extends CI_Model
         return $this->db->count_all_results();
     }
 
-    var $order_paket_tender_terbatas =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order_paket_tender_terbatas =  array('tahun_rup', 'nama_rup', 'nama_departemen', 'nama_jenis_pengadaan', 'total_hps_rup', 'status_paket_panitia', 'tbl_rup.id_rup');
     // get nib
     private function _get_data_query_daftar_paket_tender_terbatas()
     {
@@ -1006,7 +1006,7 @@ class M_panitia extends CI_Model
     }
     // PENUNJUKAN LANGSUNG
 
-    var $order_paket_penunjukan_langsung =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order_paket_penunjukan_langsung =  array('tahun_rup', 'nama_rup', 'nama_departemen', 'nama_jenis_pengadaan', 'total_hps_rup', 'status_paket_panitia', 'tbl_rup.id_rup');
     // get nib
     private function _get_data_query_daftar_paket_penunjukan_langsung()
     {

@@ -2059,7 +2059,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen SPT</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -2093,7 +2093,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen SPT</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -2205,7 +2205,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen Neraca Keuangan</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -2239,7 +2239,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen Neraca Keuangan</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -2350,7 +2350,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen Laporan Keuangan</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -2384,7 +2384,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h5 class="modal-title text-white">Validasi Dokumen Siup</h5>
+                <h5 class="modal-title text-white">Validasi Dokumen Laporan Keuangan</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

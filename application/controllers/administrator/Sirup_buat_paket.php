@@ -266,8 +266,7 @@ class Sirup_buat_paket extends CI_Controller
 				'tgl_berlaku_skdp' => date('Y-m-d'),
 			];
 			$this->M_rup->tambah_izin_usaha($data);
-		} else {
-		}
+		} else { }
 
 		if (!$cek_syarat_izin_teknis) {
 			$data = [
@@ -280,8 +279,7 @@ class Sirup_buat_paket extends CI_Controller
 				'tahun_akhir_neraca_keuangan' => '2020',
 			];
 			$this->M_rup->tambah_izin_teknis($data);
-		} else {
-		}
+		} else { }
 
 		foreach ($result_jadwal as $key => $value) {
 			$id = $this->uuid->v4();
@@ -305,6 +303,15 @@ class Sirup_buat_paket extends CI_Controller
 
 		$row_rup = $this->M_rup->get_row_rup($id_url_rup);
 		$ambil_role_2 = $this->M_karyawan->ambil_role_2();
+		// kirim notif ke panitia yang di pilih
+		$get_panitia_terpilih  = $this->M_rup->get_panitia($row_rup['id_rup']);
+		$message = 'Anda menjadi Panitia Pengadaan Untuk Paket Tender ' . $row_rup['nama_metode_pengadaan']  . $row_rup['nama_rup'];
+		foreach ($get_panitia_terpilih as $key => $value2) {
+			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
+		}
+
+		$this->email_send->sen_email_finalisasi_panitia($row_rup['id_rup']);
+
 		// ini menambah admin sebagai panitia
 		foreach ($ambil_role_2 as $key => $value) {
 			$id = $this->uuid->v4();

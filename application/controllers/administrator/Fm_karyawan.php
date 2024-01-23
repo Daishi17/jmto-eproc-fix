@@ -16,7 +16,6 @@ class Fm_karyawan extends CI_Controller
 		if (!$role == 1) {
 			redirect('auth');
 		}
-
 	}
 
 	public function index()
@@ -121,7 +120,6 @@ class Fm_karyawan extends CI_Controller
 			// $this->form_validation->set_rules('nip', 'NIK', 'required|trim|is_unique[tbl_pegawai.nip]', ['required' => 'Nama Section Wajib Diisi!', 'is_unique' => 'NIK Sudah Terdaftar']);
 			$this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required|trim', ['required' => 'Nama Pegawai Wajib Diisi!']);
 			$this->form_validation->set_rules('id_departemen', 'Nama Departemen', 'required|trim', ['required' => 'Departemen Wajib Diisi!']);
-			$this->form_validation->set_rules('id_section', 'Nama Section', 'required|trim', ['required' => 'Section Wajib Diisi!']);
 			$this->form_validation->set_rules('email', 'Email Pegawai', 'required|trim|valid_email|is_unique[tbl_pegawai.nip]', ['required' => 'Email Email Pegawai Wajib Diisi!', 'valid_email' => 'Email Tidak Valid',  'is_unique' => 'Email Sudah Terdaftar']);
 			$this->form_validation->set_rules('no_telpon', 'No Telpon', 'required|trim', ['required' => 'No. Telpon Wajib Diisi!']);
 			// $this->form_validation->set_rules('id_role', 'Nama Section', 'required|trim', ['required' => 'Role Wajib Diisi!']);
@@ -133,7 +131,6 @@ class Fm_karyawan extends CI_Controller
 					'error' => [
 						'nip' => form_error('nip'),
 						'nama_pegawai' => form_error('nama_pegawai'),
-						'id_section' => form_error('id_section'),
 						'id_departemen' => form_error('id_departemen'),
 						'email' => form_error('email'),
 						'no_telpon' => form_error('no_telpon'),
@@ -162,7 +159,6 @@ class Fm_karyawan extends CI_Controller
 			$this->form_validation->set_rules('nip', 'NIK', 'required|trim|is_unique[tbl_pegawai.nip]', ['required' => 'Nama Section Wajib Diisi!', 'is_unique' => 'NIK Sudah Terdaftar']);
 			$this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required|trim', ['required' => 'Nama Pegawai Wajib Diisi!']);
 			$this->form_validation->set_rules('id_departemen', 'Nama Departemen', 'required|trim', ['required' => 'Departemen Wajib Diisi!']);
-			$this->form_validation->set_rules('id_section', 'Nama Section', 'required|trim', ['required' => 'Section Wajib Diisi!']);
 			$this->form_validation->set_rules('email', 'Email Pegawai', 'required|trim|valid_email|is_unique[tbl_pegawai.nip]', ['required' => 'Email Email Pegawai Wajib Diisi!', 'valid_email' => 'Email Tidak Valid',  'is_unique' => 'Email Sudah Terdaftar']);
 			$this->form_validation->set_rules('no_telpon', 'No Telpon', 'required|trim', ['required' => 'No. Telpon Wajib Diisi!']);
 			// $this->form_validation->set_rules('id_role', 'Nama Section', 'required|trim', ['required' => 'Role Wajib Diisi!']);
@@ -174,7 +170,6 @@ class Fm_karyawan extends CI_Controller
 					'error' => [
 						'nip' => form_error('nip'),
 						'nama_pegawai' => form_error('nama_pegawai'),
-						'id_section' => form_error('id_section'),
 						'id_departemen' => form_error('id_departemen'),
 						'email' => form_error('email'),
 						'no_telpon' => form_error('no_telpon'),
@@ -331,8 +326,7 @@ class Fm_karyawan extends CI_Controller
 							'email' => $row->getCellAtIndex(4),
 							'no_telpon' => $row->getCellAtIndex(5),
 						);
-						if ($jika_ada_nip) {
-						} else {
+						if ($jika_ada_nip) { } else {
 							if ($nama_pegawai == '') {
 								# code...
 							} else {
