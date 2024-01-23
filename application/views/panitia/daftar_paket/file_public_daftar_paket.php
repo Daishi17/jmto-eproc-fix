@@ -324,7 +324,7 @@
             url: url_update_rup,
             data: {
                 id_rup: id_rup_global,
-                type:type,
+                type: type,
                 jenis_kontrak: jenis_kontrak
             },
             dataType: "JSON",
@@ -344,7 +344,7 @@
             url: url_update_rup,
             data: {
                 id_rup: id_rup_global,
-                type:type,
+                type: type,
                 beban_tahun_anggaran: beban_tahun_anggaran
             },
             dataType: "JSON",
@@ -403,6 +403,7 @@
             })
         }
 
+        location.reload()
 
     }
 
