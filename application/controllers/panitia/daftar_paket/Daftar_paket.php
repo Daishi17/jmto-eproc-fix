@@ -431,9 +431,10 @@ class Daftar_paket extends CI_Controller
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! ' .
-			$data_rup['nama_metode_pengadaan']  . ' :
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! 
+		 ' . $data_rup['nama_metode_pengadaan']  . ' :
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
 Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
@@ -450,10 +451,7 @@ Terimakasih');
 			$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
-
-
 		// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
-		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
@@ -515,19 +513,19 @@ Terimakasih');
 		$validasi_jadwal = $this->M_panitia->validasi_row_jadwal($id_rup);
 		$validasi_dok_izin_prinsip = $this->M_panitia->validasi_dok_izin_prinsip($id_rup);
 		$validasi_hps = $this->M_panitia->validasi_hps($id_rup);
-		// jenis_kontrak
-		$jenis_kontrak = $this->input->post('jenis_kontrak');
-		$data = [
-			'jenis_kontrak' => $jenis_kontrak
-		];
-		$this->M_panitia->update_rup_panitia($id_rup, $data);
-		$data_beban_tahun = [
-			'beban_tahun_anggaran' => $this->input->post('beban_tahun_anggaran')
-		];
-		$this->M_panitia->update_rup_panitia($id_rup, $data_beban_tahun);
-
-
-
+		$type = $this->input->post('type');
+		if ($type == 'beban') {
+			$data_beban_tahun = [
+				'beban_tahun_anggaran' => $this->input->post('beban_tahun_anggaran')
+			];
+			$this->M_panitia->update_rup_panitia($id_rup, $data_beban_tahun);
+		} else {
+			$jenis_kontrak = $this->input->post('jenis_kontrak');
+			$data = [
+				'jenis_kontrak' => $jenis_kontrak
+			];
+			$this->M_panitia->update_rup_panitia($id_rup, $data);
+		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -568,7 +566,6 @@ Terimakasih');
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else {
 			$id_url_rup = $this->input->post('id_url_rup');
-
 			$beban_tahun_anggaran = $this->input->post('beban_tahun_anggaran');
 			$bobot_nilai = $this->input->post('bobot_nilai');
 			$bobot_biaya = $this->input->post('bobot_biaya');
@@ -1467,7 +1464,8 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])

@@ -186,8 +186,13 @@ class Email_send
     public function sen_email_pengumuman($id_rup)
     {
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
+        if ($row_rup['id_jadwal_tender'] == 9) {
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
+        } else {
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($id_rup);
+        }
         $nama_rup = $row_rup['nama_rup'];
+        $nama_metode_pengadaan = $row_rup['nama_metode_pengadaan'];
         $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
         $nama_jenis_pengadaan = $row_rup['nama_jenis_pengadaan'];
         $this->ci->load->library('email');
@@ -212,8 +217,18 @@ class Email_send
             $this->ci->email->to($value['email']);
         }
         // Ganti dengan email tujuan
+        $nama_rup = $row_rup['nama_rup'];
+        $nama_metode_pengadaan = $row_rup['nama_metode_pengadaan'];
+        $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
+        $nama_jenis_pengadaan = $row_rup['nama_jenis_pengadaan'];
         $this->ci->email->subject("E-PROCUREMENT JMTO : PAKET TENDER TERBARU UNTUK ANDA !!!");
-        $this->ci->email->message("Selamat! Anda Telah Menerima Undangan Paket Tender Baru, Dengan Nama Paket: ' . $nama_rup . ' , Jenis Pengadaan: ' . $nama_jenis_pengadaan . ' Ikuti Pengadaan Segera Sebelum Batas Pendaftaran Habis Pada: ' . $batas_pendaftaran_tender . '  Silakan Login Disini Segera https://eprocurement.jmto.co.id/auth");
+        $this->ci->email->message("Pengumuman Tender PT JMTO ! 
+$nama_metode_pengadaan :
+Nama Paket: $nama_rup 
+Jenis Pengadaan: $nama_jenis_pengadaan
+Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
+Selambat-Lambatnya Pada : $batas_pendaftaran_tender
+Terimakasih");
         $this->ci->email->send();
     }
 
