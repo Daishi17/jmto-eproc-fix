@@ -1140,7 +1140,7 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor');
-        $this->db->where_in('tbl_vendor.id_vendor', [86,123,130]);
+        $this->db->where_in('tbl_vendor.id_vendor', [86, 123, 130]);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2590,7 +2590,6 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
-        $this->db->limit(1);
         $query = $this->db->get();
         return $query->result_array();
     }

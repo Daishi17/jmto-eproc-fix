@@ -2189,10 +2189,11 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
-                    if (response[i].status_paket_diumumkan) {
-                        var field = '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>'
-                    } else {
+                    if (status_paket_diumumkan) {
+
                         var field = '<td><button disabled class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Tender Sedang Berlangsung</button></td>'
+                    } else {
+                        var field = '<td><a href="javascript:;" onclick="batal_pilih(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-danger"><i class="fas fa fa-trash"></i> Batal Pilih</a></td>'
                     }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
