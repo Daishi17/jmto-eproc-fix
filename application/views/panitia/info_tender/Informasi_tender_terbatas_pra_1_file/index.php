@@ -352,7 +352,7 @@
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
@@ -419,7 +419,12 @@
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
-
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_penjelasan_no']) { ?>
+                                                                <th>Berita Acara Rapat Penjelasan Dokumen Pengadaan</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_penjelasan_pengadaan/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
                                                                 <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
@@ -2100,12 +2105,12 @@
                         <tr>
                             <th>Nilai Jaminan Penawaran</th>
                             <th>
-                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
+                                <input type="text" name="nilai_jaminan_penawaran" id="value_undangan1" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'nilai_jaminan_penawaran')" placeholder="Nilai Jaminan" class="form-control" value="<?= $row_rup['nilai_jaminan_penawaran'] ?>">
                             </th>
                         </tr>
                         <tr>
                             <th>Masa Berlaku Penawaran</th>
-                            <th><input type="text" id="value_undangan2" name="masa_berlaku_penawaran" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'masa_berlaku_penawaran')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['masa_berlaku_penawaran'] ?>"></th>
+                            <th><input type="text" id="value_undangan2" name="masa_berlaku_penawaran" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'masa_berlaku_penawaran')" class=" form-control" placeholder="Masa Berlaku Penawaran" class="form-control" value="<?= $row_rup['masa_berlaku_penawaran'] ?>"></th>
                         </tr>
                     </thead>
                 </table>

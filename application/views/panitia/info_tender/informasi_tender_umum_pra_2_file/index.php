@@ -442,7 +442,18 @@
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
-
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_evaluasi_no']) { ?>
+                                                                <th>Berita Acara Hasil Evaluasi</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        <tr>
+                                                            <?php if ($row_rup['ba_penjelasan_no']) { ?>
+                                                                <th>Berita Acara Rapat Penjelasan Dokumen Pengadaan</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_penjelasan_pengadaan/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
                                                                 <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
