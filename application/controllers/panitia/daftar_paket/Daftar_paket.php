@@ -549,7 +549,7 @@ Terimakasih');
 		} else if ($validasi_jenis_kontrak) {
 			$erorr = 'jenis_kontrak_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_beban_tahun_anggaran) {
+		} else if (!$validasi_beban_tahun_anggaran) {
 			$erorr = 'beban_tahun_anggaran';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else if ($validasi_bobot_nilai) {
