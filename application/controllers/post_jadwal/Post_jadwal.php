@@ -2087,7 +2087,7 @@ class Post_jadwal extends CI_Controller
                     'waktu_mulai' => $jadwal_mulai,
                     'waktu_selesai' => $jadwal_selesai
                 ];
-                // update_jadwal 21
+                // update_jadwal 211
                 $this->M_panitia->update_jadwal_rup_tender_terbatas_22_jadwal($data, $where);
             }
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
