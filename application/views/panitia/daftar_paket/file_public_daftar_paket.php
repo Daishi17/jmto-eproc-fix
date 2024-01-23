@@ -2369,13 +2369,17 @@
 <script>
     $(document).ready(function() {
         $('.table_terekomendasi').DataTable({
-            "ordering": true,
+            "ordering": false,
+            "searching": false,
+            "paginate": false,
         });
     });
 
     $(document).ready(function() {
         $('.table_rekomendasi_1').DataTable({
-            "ordering": true,
+            "ordering": false,
+            "searching": false,
+            "paginate": false,
         });
     });
 </script>
