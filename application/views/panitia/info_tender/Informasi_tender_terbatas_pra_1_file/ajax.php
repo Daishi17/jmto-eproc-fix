@@ -1215,19 +1215,33 @@
     }
 
     function kirim(id_rup, sts) {
-        var url_post_status_kirim = $('[name="url_post_status_kirim"]').val()
-        $.ajax({
-            type: "POST",
-            url: url_post_status_kirim,
-            dataType: "JSON",
-            data: {
-                post: sts,
-                id_rup: id_rup
-            },
-            success: function(response) {
-                Swal.fire('Data Berhasil Di Kirim!', '', 'success')
+        Swal.fire({
+            title: "Anda Yakin Ingin Mengirim?",
+            text: "Pengumuman/Berita Acara Yang Sudah Dikirim Tidak Bisa Dibatalkan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Kirim!"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                var url_post_status_kirim = $('[name="url_post_status_kirim"]').val()
+                $.ajax({
+                    type: "POST",
+                    url: url_post_status_kirim,
+                    dataType: "JSON",
+                    data: {
+                        post: sts,
+                        id_rup: id_rup
+                    },
+                    success: function(response) {
+                        Swal.fire('Data Berhasil Di Kirim!', '', 'success')
+                    }
+                })
             }
-        })
+        });
+
     }
 
     function Kirim_pengumuman(id_url_rup) {

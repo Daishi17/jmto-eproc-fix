@@ -209,7 +209,7 @@
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <!-- belom mulai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian" disabled>
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Jadwal Ini
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
                                     </button>
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
@@ -341,18 +341,18 @@
                         <tr>
                             <th>Undangan Penawaran</th>
                             <th>
-                                <?php if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                                <?php if (date('Y-m-d H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
                                     </button>
 
-                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
@@ -402,40 +402,40 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_pembuktian_no']) { ?>
+                                                            <?php if ($row_rup['ba_penjelasan_kualifikasi_no']) { ?>
                                                                 <th>Berita Acara Penjelasan Kualifikasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_pembuktian_no']) { ?>
                                                                 <th>Berita Acara Pembuktian Kualifikasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pembuktian_kualifikasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_pembuktian_kualifikasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_evaluasi_no']) { ?>
                                                                 <th>Berita Acara Hasil Evaluasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_hasil_evaluasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
 
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no']) { ?>
                                                                 <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_I/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_sampul_I/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['undangan_rapat_no']) { ?>
                                                                 <th>Undangan Rapat Presentasi Teknis</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_undangan_rapat/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_undangan_rapat/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_evaluasi_teknis_no']) { ?>
                                                                 <th>Berita Acara Hasil Evaluasi Teknis</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_hasil_evaluasi_teknis/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
@@ -447,26 +447,26 @@
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul2_no']) { ?>
                                                                 <th>Berita Acara Pembukaan Dokumen Penawaran File II</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_sampul_II/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
                                                                 <th>Berita Acara Klarifikasi & Penilaian Kewajaran Harga</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_evaluasinegosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_evaluasinegosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_negosiasi_no']) { ?>
                                                                 <th>Berita Acara Evaluasi dan Negosiasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
 
                                                         <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
                                                                 <th>Pengumuman Pemenang Pengadaan</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
 
@@ -773,7 +773,7 @@
                                     </tr>
                                 </table>
                             </form>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header bg-primary text-white">
                                     <label for="">1. Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi</label>
                                 </div>
@@ -841,7 +841,7 @@
                                         </table>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
 
 
 
@@ -1625,6 +1625,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_undangan_pembuktian')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
             </div>
         </div>
     </div>
@@ -1687,6 +1688,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_hasil_prakualifikasi')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
             </div>
         </div>
     </div>
@@ -2110,6 +2112,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_undangan_penawaran')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
             </div>
         </div>
     </div>

@@ -425,7 +425,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <?php if ($row_rup['ba_pembuktian_no']) { ?>
+                                                            <?php if ($row_rup['ba_penjelasan_kualifikasi_no']) { ?>
                                                                 <th>Berita Acara Penjelasan Kualifikasi</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_penjelasan_kualifiaksi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
