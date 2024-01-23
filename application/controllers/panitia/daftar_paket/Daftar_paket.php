@@ -433,8 +433,8 @@ class Daftar_paket extends CI_Controller
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
 		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! 
-		 ' . $data_rup['nama_metode_pengadaan']  . ' :
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! ' .
+			$data_rup['nama_metode_pengadaan']  . ' :
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
 Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
@@ -524,6 +524,45 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
+		} else { }
+		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
+		// beban_tahun_anggaran
+		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
+		// bobot_nilai
+		$validasi_bobot_nilai = $this->M_panitia->validasi_bobot_nilai($id_rup);
+		// bobot_teknis
+		$validasi_bobot_teknis = $this->M_panitia->validasi_bobot_teknis($id_rup);
+		// bobot_biaya
+		$validasi_bobot_biaya = $this->M_panitia->validasi_bobot_biaya($id_rup);
+		// syarat_tender_kualifikasi
+		$validasi_syarat_tender_kualifikasi = $this->M_panitia->validasi_syarat_tender_kualifikasi($id_rup);
+		if (!$validasi_jadwal) {
+			$erorr = 'jadwal_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if (!$validasi_dok_izin_prinsip) {
+			$erorr = 'dok_izin_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_hps) {
+			$erorr = 'hps_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_jenis_kontrak) {
+			$erorr = 'jenis_kontrak_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if (!$validasi_beban_tahun_anggaran) {
+			$erorr = 'beban_tahun_anggaran';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_bobot_nilai) {
+			$erorr = 'bobot_nilai_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_bobot_teknis) {
+			$erorr = 'bobot_teknis_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_bobot_biaya) {
+			$erorr = 'bobot_biaya_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
+		} else if ($validasi_syarat_tender_kualifikasi) {
+			$erorr = 'syarat_tender_kualifikasi_validasi';
+			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else {
 			$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 			// beban_tahun_anggaran
