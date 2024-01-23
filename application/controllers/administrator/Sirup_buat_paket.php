@@ -314,7 +314,7 @@ class Sirup_buat_paket extends CI_Controller
 			} else {
 				$nama_role = 'Anggota';
 			}
-			$message = 'Anda menjadi ' . $nama_role . ' Panitia Pengadaan Untuk Paket ' . $row_rup['nama_metode_pengadaan']  . ' ' . $row_rup['nama_rup'] . ', silahkan dibuatkan paket tender penyedia.';
+			$message = 'Anda menjadi ' . $nama_role . ' Panitia Pengadaan Untuk Paket ' . $row_rup['nama_metode_pengadaan']  . ' ' . $row_rup['nama_rup'] . ', silahkan login ke link https://eprocurement.jmto.co.id/auth dibuatkan paket tender penyedia.';
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
 
