@@ -1667,6 +1667,7 @@
                         }
                     }).then((result) => {
                         /* Read more about handling dismissals below */
+                        // update
                         if (result.dismiss === Swal.DismissReason.timer) {
 
                         }
