@@ -458,6 +458,7 @@
                             form_evaluasi_kualifikasi[0].reset();
                             reload_evaluasi_kualifikasi()
                             reload_evaluasi_penawaran()
+                            location.reload()
                         }
                     }).then((result) => {
                         /* Read more about handling dismissals below */

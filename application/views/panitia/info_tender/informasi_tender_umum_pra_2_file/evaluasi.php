@@ -106,11 +106,11 @@
                         <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                         <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                             </li>
                         <?php    } else { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                             </li>
                         <?php    } ?>
 
@@ -447,7 +447,7 @@
                             <input type="hidden" name="id_vendor_mengikuti_paket">
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Nilai Teknis</label>
-                                <input type="text"  readonly class="form-control number_only bg-light" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
+                                <input type="text" readonly class="form-control number_only bg-light" onkeyup="penawaran_teknis_nilai()" name="ev_penawaran_teknis" placeholder="Nilai Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                             <div class="mb-3">
