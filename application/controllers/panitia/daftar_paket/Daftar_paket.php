@@ -431,6 +431,7 @@ class Daftar_paket extends CI_Controller
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+		$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
 		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! 
 		 ' . $data_rup['nama_metode_pengadaan']  . ' :
@@ -447,13 +448,10 @@ Terimakasih');
 			} else {
 				$nama_role = 'Anggota';
 			}
-			$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login untuk monitoring proses tender berlangsung.';
+			$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
-
-
 		// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
-		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
@@ -1659,6 +1657,7 @@ Terimakasih');
 			'id_rup' => $this->input->post('id_rup_global'),
 		];
 		$this->M_panitia->panitia_mengikuti_update($data, $where);
+		$this->M_panitia->update_rup_panitia($this->input->post('id_rup_global'), $data);
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
 	}
 }

@@ -1136,7 +1136,6 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-
     public function get_peserta_tender_umumkan($data)
     {
         $this->db->select('*');
