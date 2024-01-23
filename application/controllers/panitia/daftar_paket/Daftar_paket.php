@@ -447,7 +447,7 @@ Terimakasih');
 			} else {
 				$nama_role = 'Anggota';
 			}
-			$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login untuk monitoring proses tender berlangsung.';
+			$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
 
