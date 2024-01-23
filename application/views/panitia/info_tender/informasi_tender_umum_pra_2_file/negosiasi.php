@@ -69,7 +69,7 @@
                         </span>
                     </div>
                 </div>
-                <?php if ($peserta_vendor > 2) { ?>
+                <?php if ($peserta_vendor < 2) { ?>
 
                 <?php   } else { ?>
                     <div class="card-body">
