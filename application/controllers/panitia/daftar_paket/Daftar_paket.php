@@ -1659,6 +1659,7 @@ Terimakasih');
 			'id_rup' => $this->input->post('id_rup_global'),
 		];
 		$this->M_panitia->panitia_mengikuti_update($data, $where);
+		$this->M_panitia->update_rup_panitia($this->input->post('id_rup_global'), $data);
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
 	}
 }

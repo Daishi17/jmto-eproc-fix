@@ -1473,7 +1473,7 @@
                         '<td>' + response['dok_pengadaan'][i].nama_dok_pengadaan + '</td>' +
                         '<td>' + '  <a target="_blank" href="' + open_dokumen_pengadaan + response['dok_pengadaan'][i].file_dok_pengadaan + '" class="btn btn-sm btn-danger">' +
                         '<i class="fa-solid fa-folder-open"></i>' +
-                        ' File Dokumen Prakualifikasi' +
+                        ' File Dokumen' +
                         '</a>' + '</td>' +
                         '<td style="text-align:center;">' +
                         '<a href="javascript:;" onclick="hapus_dok_pengadaan(' + response['dok_pengadaan'][i].id_dokumen_pengadaan + ')" class="btn btn-danger btn-sm" > <i class="fa-solid fa-trash"></i></a>' +
@@ -1533,7 +1533,7 @@
                         '<td>' + response['dok_prakualifikasi'][i].nama_dok_prakualifikasi + '</td>' +
                         '<td>' + '<a target="_blank" href="' + open_dokumen_prakualifikasi + response['dok_prakualifikasi'][i].file_dok_prakualifikasi + '" class="btn btn-sm btn-danger">' +
                         '<i class="fa-solid fa-folder-open"></i>' +
-                        ' File Dokumen Prakualifikasi' +
+                        ' File Dokumen' +
                         '</a>' + '</td>' +
                         '<td style="text-align:center;">' +
                         '<a href="javascript:;" onclick="hapus_dok_prakualifikasi(' + response['dok_prakualifikasi'][i].id_dokumen_prakualifikasi + ')" class="btn btn-danger btn-sm" > <i class="fa-solid fa-trash"></i></a>' +
@@ -2379,6 +2379,9 @@
             success: function(response) {
                 $('#modal-xl-pakta').modal('hide')
                 Swal.fire('Pakta Integritas Berhasil Di Setujui!', '', 'success')
+                setTimeout(() => {
+                    window.location.href = ''
+                }, 1500);
             }
         })
     }
