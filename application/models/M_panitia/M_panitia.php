@@ -2529,6 +2529,16 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+    public function jadwal_pengumuman_pasca_1($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->like('nama_jadwal_rup', 'Pengumuman Tender Terbatas');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function jadwal_pengumuman($id_rup)
     {
         $this->db->select('*');
@@ -2538,6 +2548,7 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+    	
 
     public function jadwal_pengumuman_penandatangan_kontrak($id_rup)
     {
