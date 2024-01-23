@@ -44,8 +44,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
-       
-       
+
+
         if ($data['row_rup']['bobot_nilai'] == 1) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_ketika_ada_negosiasi($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
@@ -1407,7 +1407,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
                 $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             }
-          
         } else {
             $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi($row_rup['id_rup']);
             if ($peserta_vendor > 2) {
@@ -1418,7 +1417,6 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
                 $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             }
-            
         }
         $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
@@ -1787,7 +1785,14 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+            $upload = [
+                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia
+            ];
+            $where = [
+                'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
+            ];
+            $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 
