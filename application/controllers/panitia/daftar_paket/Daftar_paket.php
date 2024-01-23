@@ -432,7 +432,13 @@ class Daftar_paket extends CI_Controller
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-
+		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO ! 
+		Tender ' . $data_rup['nama_metode_pengadaan']  . ' :
+		Nama Paket: ' . $data_rup['nama_rup'] . ' 
+		Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
+		Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
+		Selambat-Lambatnya Pada : 
+		Terimakasih');
 		foreach ($get_panitia_terpilih as $key => $value2) {
 			if ($value2['role_panitia'] == 1) {
 				$nama_role = 'Ketua';
@@ -445,9 +451,9 @@ class Daftar_paket extends CI_Controller
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
 
-		$this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
+
+		// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
 		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
-		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
@@ -1461,7 +1467,8 @@ class Daftar_paket extends CI_Controller
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])

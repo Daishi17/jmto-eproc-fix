@@ -81,7 +81,7 @@ class Kirim_wa
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
+        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($id_rup);
         $data_vendor = array();
         foreach ($get_vendor_mengikuti as $key => $value) {
             $data_vendor[] = $value['no_telpon'];
