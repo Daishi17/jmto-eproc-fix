@@ -256,14 +256,14 @@ function terbilang($nilai)
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                        foreach ($deal as $key => $value) { ?>
                             <tr>
                                 <td class="text-center"><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <?php if ($value['persetujuan_klarifikasi_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>
-                                    <td class="text-center"><span class="badge bg-danger">Todak Setuju</span></td>
+                                    <td class="text-center"><span class="badge bg-danger">Tidak Setuju</span></td>
                                 <?php }  ?>
 
                             </tr>

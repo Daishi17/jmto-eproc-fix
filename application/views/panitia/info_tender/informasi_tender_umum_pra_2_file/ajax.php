@@ -2109,6 +2109,16 @@
     function onkeyup_global_rup(id_rup, post_type) {
         var url_post_pengumuman_hasil_kualifikasi = $('[name="url_post_pengumuman_hasil_kualifikasi"]').val()
         var value = $('[name="' + post_type + '"]').val()
+
+        if (post_type == 'ba_negosiasi_penawaran') {
+            var ba_negosiasi_penawaran = $('[name="ba_negosiasi_penawaran"]').val()
+            var rupiahFormat = ba_negosiasi_penawaran.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            $('[name="ba_negosiasi_penawaran2"]').val('Rp. ' + rupiahFormat)
+        } else if (post_type == 'ba_negosiasi_harga') {
+            var ba_negosiasi_penawaran = $('[name="ba_negosiasi_harga"]').val()
+            var rupiahFormat2 = ba_negosiasi_penawaran.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            $('[name="ba_negosiasi_harga2"]').val('Rp. ' + rupiahFormat2)
+        }
         $.ajax({
             url: url_post_pengumuman_hasil_kualifikasi,
             type: 'post',
