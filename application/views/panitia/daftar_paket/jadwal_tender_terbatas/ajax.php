@@ -1472,12 +1472,14 @@
             },
             success: function(response) {
                 if (response == 'success') {
+                     update_batas_tender()
                     Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                     form_jadwal_tender_terbatas[0].reset();
                     $('.btnSave').attr('disabled', false);
                     setTimeout(() => {
                         window.location.href = ''
                     }, "1500");
+                    update_batas_tender()
                 }
             }
         });
@@ -1521,7 +1523,9 @@
             },
             dataType: "JSON",
             success: function(response) {
+                 update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
+                update_batas_tender()
                 window.location.href = '';
             }
         });
@@ -1537,6 +1541,7 @@
             },
             dataType: "JSON",
             success: function(response) {
+                 update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                 window.location.href = '';
             }
@@ -1600,6 +1605,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
+                             update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_ubah_jadwal[0].reset();
                             $('.btn_save_jadwal').attr("disabled", false)
@@ -1635,6 +1641,7 @@
             processData: false,
             success: function(response) {
                 if (response['error']) {
+                     update_batas_tender()
                     Swal.fire('Maaf Jadwal Udah Ada Yang Acc Nih!', '', 'warning')
                     // $("#alasan").html(response['error']['alasan']);
                 } else {
@@ -1653,6 +1660,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
+                             update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_acc_jadwal[0].reset();
                             $('#modal_acc_jadwal').modal('hide');
@@ -1671,7 +1679,15 @@
 
             }
         })
-
-
     })
+
+    function update_batas_tender() {
+        var id_rup_global = $('[name="id_rup_global"]').val()
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url('post_jadwal/post_jadwal/batas_akhir_pendaftaran/') ?>' + id_rup_global,
+            dataType: "JSON",
+            success: function(response) {}
+        });
+    }
 </script>

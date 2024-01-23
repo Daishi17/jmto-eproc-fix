@@ -317,11 +317,11 @@
 <script>
     function jenis_kontrak(type) {
         var jenis_kontrak = $('[name="jenis_kontrak"]').val();
-        var url_update_rup = $('[name="url_update_rup"]').val();
+        var url_update_rup2 = $('[name="url_update_rup2"]').val();
         var id_rup_global = $('[name="id_rup_global"]').val();
         $.ajax({
             type: "POST",
-            url: url_update_rup,
+            url: url_update_rup2,
             data: {
                 id_rup: id_rup_global,
                 type: type,
@@ -333,15 +333,13 @@
             }
         })
     }
-
-
     function beban_anggaran(type) {
         var beban_tahun_anggaran = $('[name="beban_tahun_anggaran"]').val();
-        var url_update_rup = $('[name="url_update_rup"]').val();
+        var url_update_rup2 = $('[name="url_update_rup2"]').val();
         var id_rup_global = $('[name="id_rup_global"]').val();
         $.ajax({
             type: "POST",
-            url: url_update_rup,
+            url: url_update_rup2,
             data: {
                 id_rup: id_rup_global,
                 type: type,

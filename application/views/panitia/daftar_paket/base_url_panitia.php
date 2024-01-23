@@ -15,6 +15,7 @@
 <input type="hidden" name="url_get_dok_izin_prinsip" value="<?= base_url('panitia/daftar_paket/daftar_paket/get_dok_izin_prinsip/') ?>">
 <input type="hidden" name="url_hapus_izin_prinsip" value="<?= base_url('panitia/daftar_paket/daftar_paket/hapus_izin_prinsip/') ?>">
 <input type="hidden" name="url_update_rup" value="<?= base_url('panitia/daftar_paket/daftar_paket/url_update_rup') ?>">
+<input type="hidden" name="url_update_rup2" value="<?= base_url('panitia/daftar_paket/daftar_paket/url_update_rup2') ?>">
 <input type="hidden" name="url_update_live_rup" value="<?= base_url('panitia/daftar_paket/daftar_paket/url_update_live_rup') ?>">
 <input type="hidden" name="url_cek_dokumen_hps" value="<?= base_url('file_paket/') ?>">
 

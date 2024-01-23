@@ -383,10 +383,10 @@ class Post_jadwal extends CI_Controller
     {
         $id_jadwal_rup = $this->input->post('id_jadwal_rup');
         $id_rup = $id_rup_global;
-
+        $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
         $jadwal_rup_row = $this->M_panitia->get_jadwal_plus_id_row($id_jadwal_rup, $id_rup);
+        $jadwal_selesqai_pengumuman = $this->M_panitia->jadwal_pengumuman($id_rup);
         $jadwal_rup = $this->M_panitia->get_jadwal_plus_id_result($id_jadwal_rup, $id_rup);
-
         if ($jadwal_rup_row['waktu_mulai'] == '' && $jadwal_rup_row['waktu_selesai'] == '') {
             $i = 0;
             $o = 1;
@@ -408,7 +408,6 @@ class Post_jadwal extends CI_Controller
         } else {
             $iO = 1;
             $iE = 1;
-
             foreach ($jadwal_rup as $key => $value) {
 
                 if ($value['waktu_mulai'] == '' && $value['waktu_selesai'] == '') {
@@ -426,7 +425,6 @@ class Post_jadwal extends CI_Controller
                     'waktu_mulai' => date('Y-m-d H:i', strtotime($jadwal_mulai1)),
                     'waktu_selesai' => date('Y-m-d H:i', strtotime($jadwal_selesai1))
                 ];
-                // update_jadwal 21
                 $this->M_panitia->update_jadwal_rup_tender_terbatas_22_jadwal($data, $where);
             }
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
@@ -2094,5 +2092,16 @@ class Post_jadwal extends CI_Controller
             }
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
+    }
+    public function batas_akhir_pendaftaran($id_rup_global)
+    {
+        $id_rup = $id_rup_global;
+        $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
+        $jadwal_selesai = $this->M_panitia->jadwal_pengumuman($id_rup);
+        $data1_1 = [
+            'batas_pendaftaran_tender' => $jadwal_selesai['waktu_selesai']
+        ];
+        // update_batas_pendaftaran ke_rup
+        $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $data1_1);
     }
 }
