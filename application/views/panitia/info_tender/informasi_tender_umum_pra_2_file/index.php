@@ -179,10 +179,10 @@
                                                                 <td><a style="width: 100%;" target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_dok_prakualifikasi']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a>
                                                                     <?php if ($value['sts_dokumen_tambahan'] == 1) { ?>
                                                                         <a href="javascript:;" onclick="notifikasi_dokumen_kualifikasi(<?= $value['id_dokumen_prakualifikasi'] ?>)" class="btn btn-block btn-sm btn-warning mt-2"><i class="fas fa fa-file"></i> Kirim Info Ubah Dokumen</a>
-                                                                </td>
-                                                            <?php } else { ?>
-                                                            <?php }
-                                                            ?>
+                                                                    </td>
+                                                                <?php } else { ?>
+                                                                <?php }
+                                                                ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>

@@ -431,12 +431,25 @@ class Daftar_paket extends CI_Controller
 			'sts_ulang' => 0
 		];
 		$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+		$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
+
+		foreach ($get_panitia_terpilih as $key => $value2) {
+			if ($value2['role_panitia'] == 1) {
+				$nama_role = 'Ketua';
+			} else if ($value2['role_panitia'] == 2) {
+				$nama_role = 'Sekretaris';
+			} else {
+				$nama_role = 'Anggota';
+			}
+			$message = 'Paket Tender ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login untuk monitoring proses tender berlangsung.';
+			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
+		}
+
+		$this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
 		// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 		$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
-
-
 
 	public function update_dok_izin_prinsip()
 	{

@@ -69,7 +69,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         // $data['jadwal_masa_sanggah_akhir'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
         // $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
 
-                // get tahap
+        // get tahap
         // $data['jadwal_pengumuman_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_1($data['row_rup']['id_rup']);
         // $data['jadwal_dokumen_kualifikasi'] =  $this->M_jadwal->jadwal_pra1file_umum_2($data['row_rup']['id_rup']);
         $data['jadwal_aanwijzing_pq'] =  $this->M_jadwal->jadwal_pra1file_umum_3($data['row_rup']['id_rup']);
@@ -2443,5 +2443,34 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['peserta_tender'] = $this->M_panitia->cek_direktur_utama($data['mengikuti']['id_vendor']);
         $data['row_rup'] = $this->M_panitia->get_rup($data['mengikuti']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/pakta_integritas', $data);
+    }
+
+    public function save_status_kirim()
+    {
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+        $data = [
+            $post => 1,
+        ];
+        $this->M_panitia->update_rup_panitia($id_rup, $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function save_status_ba()
+    {
+        $type = $this->input->post('type');
+        $post = $this->input->post('post');
+        $id_rup = $this->input->post('id_rup');
+
+        $data = [
+            $post => $type,
+        ];
+
+        $where = [
+            'id_rup' => $id_rup,
+            'id_manajemen_user' => $this->session->userdata('id_manajemen_user')
+        ];
+        $this->M_panitia->panitia_mengikuti_update($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

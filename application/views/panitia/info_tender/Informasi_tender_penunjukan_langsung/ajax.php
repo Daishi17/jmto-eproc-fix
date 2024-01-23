@@ -88,8 +88,6 @@
             }
         })
     }
-
-
 </script>
 <script>
     // jadwal
@@ -2069,11 +2067,11 @@
             dataType: "JSON",
             data: {
                 id_dokumen_pengadaan: id_dokumen_pengadaan,
-                id_dokumen_prakualifikasi:id_dokumen_prakualifikasi,
+                id_dokumen_prakualifikasi: id_dokumen_prakualifikasi,
                 keterangan_dokumen: keterangan_dokumen,
-                keterangan_dokumen_pra:keterangan_dokumen_pra,
+                keterangan_dokumen_pra: keterangan_dokumen_pra,
                 id_rup: id_rup,
-                type_notif_dokumen:type_notif_dokumen
+                type_notif_dokumen: type_notif_dokumen
             },
             // beforeSend: function() {
             //     $('.btn_dapatkan_token').attr("disabled", true);
@@ -2854,5 +2852,58 @@
         var ba_negosiasi_harga = $('[name="ba_negosiasi_harga"]').val()
         var rupiahFormat = ba_negosiasi_harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         $('[name="ba_negosiasi_harga2"]').val('Rp. ' + rupiahFormat)
+    }
+
+    function setujui_ba(value, type) {
+        var url_post_status_ba = $('[name="url_post_status_ba"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        if (type == 'setuju') {
+            var sts = 1;
+        } else {
+            var sts = 2;
+        }
+        $.ajax({
+            type: "POST",
+            url: url_post_status_ba,
+            dataType: "JSON",
+            data: {
+                post: value,
+                type: sts,
+                id_rup: id_rup
+            },
+            success: function(response) {
+                Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+            }
+        })
+    }
+
+    function kirim(id_rup, sts) {
+        Swal.fire({
+            title: "Anda Yakin Ingin Mengirim?",
+            text: "Pengumuman/Berita Acara Yang Sudah Dikirim Tidak Bisa Dibatalkan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Kirim!"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                var url_post_status_kirim = $('[name="url_post_status_kirim"]').val()
+                $.ajax({
+                    type: "POST",
+                    url: url_post_status_kirim,
+                    dataType: "JSON",
+                    data: {
+                        post: sts,
+                        id_rup: id_rup
+                    },
+                    success: function(response) {
+                        Swal.fire('Data Berhasil Di Kirim!', '', 'success')
+                    }
+                })
+            }
+        });
+
     }
 </script>

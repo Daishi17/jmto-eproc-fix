@@ -305,8 +305,16 @@ class Sirup_buat_paket extends CI_Controller
 		$ambil_role_2 = $this->M_karyawan->ambil_role_2();
 		// kirim notif ke panitia yang di pilih
 		$get_panitia_terpilih  = $this->M_rup->get_panitia($row_rup['id_rup']);
-		$message = 'Anda menjadi Panitia Pengadaan Untuk Paket Tender ' . $row_rup['nama_metode_pengadaan']  . $row_rup['nama_rup'];
+
 		foreach ($get_panitia_terpilih as $key => $value2) {
+			if ($value2['role_panitia'] == 1) {
+				$nama_role = 'Ketua';
+			} else if ($value2['role_panitia'] == 2) {
+				$nama_role = 'Sekretaris';
+			} else {
+				$nama_role = 'Anggota';
+			}
+			$message = 'Anda menjadi ' . $nama_role . ' Panitia Pengadaan Untuk Paket ' . $row_rup['nama_metode_pengadaan']  . ' ' . $row_rup['nama_rup'] . ', silahkan dibuatkan paket tender penyedia.';
 			$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 		}
 
