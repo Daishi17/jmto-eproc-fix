@@ -17,8 +17,6 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
-                        <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
                         </li>
@@ -28,7 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang</a>
                         </li>
@@ -69,30 +69,24 @@
                         </span>
                     </div>
                 </div>
-                <?php if ($peserta_vendor < 2) { ?>
+                <div class="card-body">
+                    <div style="overflow-x: auto;">
+                        <table class="table table-bordered" id="tbl_evaluasi">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th width="50px">No</th>
+                                    <th width="200px">Nama Peserta</th>
+                                    <th>Tanggal Negosiasi</th>
+                                    <th>Link Meet (Jika Daring)</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_vendor_negosiasi">
 
-                <?php   } else { ?>
-                    <div class="card-body">
-                        <div style="overflow-x: auto;">
-                            <table class="table table-bordered" id="tbl_evaluasi">
-                                <thead class="bg-primary text-white">
-                                    <tr>
-                                        <th width="50px">No</th>
-                                        <th width="200px">Nama Peserta</th>
-                                        <th>Tanggal Negosiasi</th>
-                                        <th>Link Meet (Jika Daring)</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl_vendor_negosiasi">
-
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                <?php   }
-                ?>
-
+                </div>
             </div>
         </div>
 </main>
@@ -152,8 +146,7 @@
                     <br>
                     <div class="form-group">
                         <label for="">Total Negosisasi</label>
-                        <input type="text" id="total_hasil_negosiasi" name="total_hasil_negosiasi" class="form-control">
-                        <input type="text" style="width: 200px;" name="hasil_curency_negoku" id="tanpa-rupiah2" readonly class="form-control float-right">
+                        <input type="text" name="total_hasil_negosiasi" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
