@@ -1884,6 +1884,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
+
     public function upload_sanggahan_pra()
     {
         // post
@@ -1914,7 +1915,14 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+            $upload = [
+                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia
+            ];
+            $where = [
+                'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
+            ];
+            $this->M_panitia->update_mengikuti_sanggah_pra($upload, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 
