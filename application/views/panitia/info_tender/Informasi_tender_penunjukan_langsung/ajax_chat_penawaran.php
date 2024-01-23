@@ -340,7 +340,7 @@
             });
         });
         scrollToBottom()
-
+        // new update
         function scrollToBottom() {
             $("#letakpesan").animate({
                 scrollToBottom: 0
