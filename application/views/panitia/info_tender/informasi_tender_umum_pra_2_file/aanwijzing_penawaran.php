@@ -456,6 +456,10 @@
                                 <th>Upload Bukti </th>
                                 <td><input type="file" class="form-control"></td>
                             </tr>
+                            <tr>
+                                <th>Export Chat </th>
+                                <td><a href="<?= base_url('export_chat/export_chat_anwijzing_penawaran/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
+                            </tr>
                         </table>
                     </div>
                 </div>

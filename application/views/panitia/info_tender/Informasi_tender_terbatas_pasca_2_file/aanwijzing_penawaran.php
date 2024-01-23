@@ -455,6 +455,11 @@
                                 <th>Upload Bukti </th>
                                 <td><input type="file" class="form-control"></td>
                             </tr>
+
+                            <tr>
+                                <th>Export Chat </th>
+                                <td><a href="<?= base_url('export_chat/export_chat_anwijzing_penawaran/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -477,9 +482,9 @@
 
                     </div>
                     <div class="card-footer card-footer_chat" style="background-image: radial-gradient(circle at 50% -20.71%, #cfa8ff 0, #9d8bff 25%, #6c6cd8 50%, #3f4ea4 75%, #153375 100%);">
-                    <div class="replay_orang" style="display: none;">
-                        <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
-                          <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
+                        <div class="replay_orang" style="display: none;">
+                            <label for="" id="nama_usaha_replay" class="text-white"></label> <br> <label for="" id="replay_tujuan_terlihat" class="text-white"></label>
+                            <a href="javascript:;" class="badge bg-info float-right" onclick="hapus_replay()">X</a>
                         </div>
                         <form id="form_keuangan_add" enctype="multipart/form-data">
                             <input type="hidden" name="replay_tujuan">

@@ -2535,6 +2535,16 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+    public function jadwal_pengumuman_penandatangan_kontrak($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->like('nama_jadwal_rup', 'Penandatanganan Kontrak');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_jadwal_min_id_result($id_jadwal_rup, $id_rup)
     {
         $this->db->select('*');

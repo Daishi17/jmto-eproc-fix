@@ -2097,9 +2097,12 @@ class Post_jadwal extends CI_Controller
     {
         $id_rup = $id_rup_global;
         $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
-        $jadwal_selesai = $this->M_panitia->jadwal_pengumuman($id_rup);
+        $jadwal_asing = $this->M_panitia->jadwal_pengumuman($id_rup);
+        $jadwal_penandatanganan = $this->M_panitia->jadwal_pengumuman_penandatangan_kontrak($id_rup);
         $data1_1 = [
-            'batas_pendaftaran_tender' => $jadwal_selesai['waktu_selesai']
+            'batas_pendaftaran_tender' => $jadwal_asing['waktu_selesai'],
+            'awal_pendaftaran_tender' => $jadwal_asing['waktu_mulai'],
+            'selesai_semua_tender' => $jadwal_penandatanganan['waktu_selesai']
         ];
         // update_batas_pendaftaran ke_rup
         $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $data1_1);
