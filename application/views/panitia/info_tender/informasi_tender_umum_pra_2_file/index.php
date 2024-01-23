@@ -1239,7 +1239,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_hasil_prakualifikasi')" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
-                <a href="https://jmto-vms.kintekindo.net/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/" class="btn btn-primary" data-bs-dismiss="modal">Lihat</a>
             </div>
         </div>
     </div>

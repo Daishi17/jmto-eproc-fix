@@ -106,11 +106,11 @@
                         <?php if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                         <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                             </li>
                         <?php    } else { ?>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
+                                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#evkualifikasi" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Evaluasi Akhir Kualifikasi</button>
                             </li>
                         <?php    } ?>
 
@@ -398,7 +398,7 @@
                             </div>
                             <div class="mb-3" style="margin-top: -10px;">
                                 <label for="" class="form-label">Evaluasi Teknis</label>
-                                <input type="text" class="form-control number_only" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
+                                <input type="text" class="form-control number_only" id="ev_teknis" disabled name="ev_teknis" placeholder="Evaluasi Teknis">
                                 <label for="" id="error_ev_teknis" class="text-danger"></label>
                             </div>
                         </div>

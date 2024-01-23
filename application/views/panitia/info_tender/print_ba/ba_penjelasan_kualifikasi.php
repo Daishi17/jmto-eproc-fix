@@ -133,9 +133,9 @@ function terbilang($nilai)
             <hr size="5">
             <center>
                 <div style="font-size:18px">
-                    <label class="font-weight-bold">Nomor : <?= $row_rup['ba_pembuktian_no'] ?></label>
+                    <label class="font-weight-bold">Nomor : <?= $row_rup['ba_penjelasan_kualifikasi_no'] ?></label>
                     <br>
-                    <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_pembuktian_tgl']) ?></label>
+                    <label class="font-weight-bold">Tanggal : <?= tgl_indo($row_rup['ba_penjelasan_kualifikasi_tgl']) ?></label>
                 </div>
             </center>
             <div class="container">

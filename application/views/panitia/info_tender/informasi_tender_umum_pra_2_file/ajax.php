@@ -310,6 +310,7 @@
                     modal_evaluasi_kualifikasi.modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                    $('[name="ev_teknis"]').prop('disabled', true);
                 } else if (type == 'penawaran') {
                     modal_evaluasi_penawaran.modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
@@ -458,7 +459,6 @@
                             form_evaluasi_kualifikasi[0].reset();
                             reload_evaluasi_kualifikasi()
                             reload_evaluasi_penawaran()
-                            location.reload()
                         }
                     }).then((result) => {
                         /* Read more about handling dismissals below */
