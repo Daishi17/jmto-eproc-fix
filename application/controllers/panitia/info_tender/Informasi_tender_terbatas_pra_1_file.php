@@ -2658,6 +2658,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
+        $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_negosiasi', $data);
     }
 
@@ -2668,6 +2670,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
+        $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_evaluasinegosiasi', $data);
     }
 

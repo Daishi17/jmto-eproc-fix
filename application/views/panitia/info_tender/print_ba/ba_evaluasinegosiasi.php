@@ -149,7 +149,7 @@ function terbilang($nilai)
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
-                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $row_rup['ba_negosiasi_vendor'] ?></b>
+                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $deal_row['nama_usaha'] ?></b>
                 </p>
 
                 <p style="text-align:justify; font-size:18px">

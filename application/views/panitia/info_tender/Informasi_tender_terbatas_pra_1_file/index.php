@@ -458,13 +458,13 @@
                                                         <tr>
                                                             <?php if ($row_rup['ba_klarifikasi_no']) { ?>
                                                                 <th>Berita Acara Klarifikasi & Penilaian Kewajaran Harga</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_evaluasinegosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_evaluasinegosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_negosiasi_no']) { ?>
                                                                 <th>Berita Acara Evaluasi dan Negosiasi</th>
-                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_umum_pra_2_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/Informasi_tender_terbatas_pra_1_file/ba_negosiasi/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
 
@@ -1260,14 +1260,14 @@
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeydown="format_rupiah_ba_sampul2()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
+                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
                                         <input type="text" class="form-control" name="ba_negosiasi_penawaran2" value="Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeydown="format_rupiah_ba_sampul3()" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
+                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
                                         <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>

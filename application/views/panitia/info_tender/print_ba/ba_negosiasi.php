@@ -177,10 +177,10 @@ function terbilang($nilai)
                         <p><b>Penetapan Hasil Evaluasi dan Negosiasi Harga : </b></p>
                         <ol>
                             <li>
-                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari PT Dapensi Trio Usaha dengan nilai <b>Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator adalah <b>Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_harga']) ?></i>)
+                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari <?= $row_rup['ba_negosiasi_vendor'] ?> dengan nilai <b>Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> adalah <b>Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_harga']) ?></i>)
                             </li>
                             <li>
-                                Dengan demikian Panitia mengusulkan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator bahwa PT Dapensi Trio Usaha berhak untuk melaksanakan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.
+                                Dengan demikian Panitia mengusulkan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator bahwa <?= $row_rup['ba_negosiasi_vendor'] ?> berhak untuk melaksanakan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.
                             </li>
                             <li>
                                 Untuk selanjutnya apabila disetujui oleh <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator dapat ditindak lanjuti dengan pembuatan perjanjian kerja sama <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.
@@ -272,7 +272,7 @@ function terbilang($nilai)
                                 <?php if ($value['persetujuan_ba_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>
-                                    <td class="text-center"><span class="badge bg-danger">Todak Setuju</span></td>
+                                    <td class="text-center"><span class="badge bg-danger">Tidak Setuju</span></td>
                                 <?php }  ?>
                             </tr>
                         <?php } ?>
