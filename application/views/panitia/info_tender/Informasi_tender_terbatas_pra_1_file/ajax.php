@@ -1996,7 +1996,6 @@
 </script> -->
 <script>
     load_vendor_negosiasi()
-
     function load_vendor_negosiasi() {
         var id_rup = $('[name="id_rup"]').val()
         var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
@@ -2061,6 +2060,7 @@
             success: function(response) {
                 console.log(response);
                 $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
+                $('[name="hasil_curency_negoku"]').val(response['row_vendor'].total_hasil_negosiasi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
                 $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
             }
         })
@@ -2076,7 +2076,6 @@
         var total_hasil_negosiasi = $('[name="total_hasil_negosiasi"]').val()
         var keterangan_negosiasi = $('[name="keterangan_negosiasi"]').val()
         var modal_hasil_negosiasi = $('#modal_hasil_negosiasi');
-
         $.ajax({
             type: "POST",
             url: url_post_hasil_negosiasi,
@@ -2105,6 +2104,69 @@
             }
         })
     }
+    var form_upload_link_negosiasi = $('#form_upload_link_negosiasi')
+    form_upload_link_negosiasi.on('submit', function(e) {
+        var url_simpan_link_negosiasi = $('[name="url_simpan_link_negosiasi"]').val();
+        e.preventDefault();
+        var tanggal_negosiasi = $('[name="tanggal_negosiasi"]').val()
+        var link_negosiasi = $('[name="link_negosiasi"]').val()
+        if (tanggal_negosiasi == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "Tanggal Negosiasi Masih Kosong!",
+                icon: "warning"
+            });
+        } else if (link_negosiasi == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "Link Negosiasi Masih Kosong!",
+                icon: "warning"
+            });
+        } else {
+            $.ajax({
+                url: url_simpan_link_negosiasi,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn_simpan_negosiasi').attr("disabled", true);
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Proses Data <b></b>',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            $('.btn_simpan_negosiasi').attr("disabled", false);
+                            $('#modal_negosiasi').modal('hide')
+                            load_vendor_negosiasi()
+                            form_upload_link_negosiasi[0].reset();
+
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+
+                }
+            })
+        }
+
+    })
 
     // INI UNTUK KIRIM NOTIFIKASI DOKUMEN PERUBAHAN
     function notifikasi_dokumen(id_dokumen_pengadaan) {
@@ -3203,4 +3265,28 @@
             }
         })
     })
+</script>
+
+<script>
+    $("#total_hasil_negosiasi").keyup(function() {
+        var harga = $("#total_hasil_negosiasi").val();
+        var tanpa_rupiah = document.getElementById('tanpa-rupiah2');
+        tanpa_rupiah.value = formatRupiah(this.value, 'Rp. ');
+        /* Fungsi */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    });
 </script>

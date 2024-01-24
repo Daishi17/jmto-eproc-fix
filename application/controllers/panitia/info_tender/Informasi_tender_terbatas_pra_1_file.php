@@ -1916,7 +1916,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $upload = [
-                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia
+                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia,
+                'file_sanggah_pra_panitia' => NULL
             ];
             $where = [
                 'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
@@ -2029,12 +2030,18 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     public function get_vendor_negosiasi()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi($id_rup);
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
+        if ($row_rup['bobot_nilai'] == 1) {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file($id_rup);
+        } else {
+            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file($id_rup);
+        }
         $output = [
             'result_vendor_negosiasi' => $result_vendor_negosiasi,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
 
     public function get_row_vendor_negosiasi()
     {
@@ -2046,77 +2053,23 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-    public function buat_hasil_negosiasi()
+
+
+    public function simpan_link_negosiasi()
     {
         // post
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
-        $type_deal = $this->input->post('type_deal');
-        $id_rup = $this->input->post('id_rup');
-        if ($type_deal == 'deal') {
-            $upload = [
-                'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-            ];
-            $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
-            ];
-            $this->M_panitia->update_mengikuti($upload, $where);
-        } else {
-            $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_1($id_rup);
-            $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_2($id_rup);
-            $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_3($id_rup);
-            $peserta_negosiasi = $this->M_panitia->jumlah_peserta_negosiasi($id_rup);
-            if ($peserta_negosiasi == 2) {
-                $where_pemenang_1 = [
-                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
-                ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 2,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
-                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
-                $where_pemenang_2 = [
-                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
-                ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
-                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
-            } else {
-                $where_pemenang_1 = [
-                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
-                ];
-                $update_pemenang_1 = [
-                    'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
-                    'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
-                    'ev_terendah_peringkat' => 3,
-                    'sts_deal_negosiasi' => $this->input->post('sts_deal_negosiasi'),
-                ];
-                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
-                $where_pemenang_2 = [
-                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
-                ];
-                $update_pemenang_2 = [
-                    'ev_terendah_peringkat' => 1
-                ];
-                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
+        $upload = [
+            'tanggal_negosiasi' =>  $this->input->post('tanggal_negosiasi'),
+            'link_negosiasi' =>  $this->input->post('link_negosiasi')
+        ];
 
-                $where_pemenang_3 = [
-                    'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
-                ];
-                $update_pemenang_3 = [
-                    'ev_terendah_peringkat' => 2
-                ];
-                $this->M_panitia->update_mengikuti($update_pemenang_3, $where_pemenang_3);
-            }
-        }
+        $where = [
+            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+        ];
+        $this->M_panitia->update_mengikuti($upload, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
-
-
 
     public function kirim_notif_perubahan_dokumen()
     {
@@ -2151,22 +2104,119 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 
-
-    public function simpan_link_negosiasi()
+    public function buat_hasil_negosiasi()
     {
         // post
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
-        $upload = [
-            'tanggal_negosiasi' =>  $this->input->post('tanggal_negosiasi'),
-            'link_negosiasi' =>  $this->input->post('link_negosiasi')
-        ];
+        $type_deal = $this->input->post('type_deal');
+        $id_rup = $this->input->post('id_rup');
+        $row_rup =  $this->M_panitia->get_rup($id_rup);
+        if ($type_deal == 'deal') {
+            $upload = [
+                'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                'sts_deal_negosiasi' => $type_deal,
+            ];
+            $where = [
+                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+            ];
+            $this->M_panitia->update_mengikuti($upload, $where);
+        } else {
+            if ($row_rup['bobot_nilai'] == 1) {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_1_teknis($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_2_teknis($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_3_teknis($id_rup);
+            } else {
+                $pemenang_1 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_1($id_rup);
+                $pemenang_2 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_2($id_rup);
+                $pemenang_3 = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_3($id_rup);
+            }
+            $peserta_negosiasi = $this->M_panitia->jumlah_peserta_negosiasi($id_rup);
+            if ($peserta_negosiasi == 2) {
+                $where_pemenang_1 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
+                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat_akhir_hea' => 2,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat_akhir_hea' => 2,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                }
+                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
+                $where_pemenang_2 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
+                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                }
+                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
+            } else {
+                $where_pemenang_1 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_1['id_vendor_mengikuti_paket'],
+                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat_akhir_hea' => 3,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                } else {
+                    $update_pemenang_1 = [
+                        'total_hasil_negosiasi' =>  $this->input->post('total_hasil_negosiasi'),
+                        'keterangan_negosiasi' =>  $this->input->post('keterangan_negosiasi'),
+                        'ev_terendah_peringkat_akhir_hea' => 3,
+                        'sts_deal_negosiasi' => $type_deal,
+                    ];
+                }
+                $this->M_panitia->update_mengikuti($update_pemenang_1, $where_pemenang_1);
+                $where_pemenang_2 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_2['id_vendor_mengikuti_paket'],
+                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                } else {
+                    $update_pemenang_2 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                }
+                $this->M_panitia->update_mengikuti($update_pemenang_2, $where_pemenang_2);
 
-        $where = [
-            'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
-        ];
-        $this->M_panitia->update_mengikuti($upload, $where);
+                $where_pemenang_3 = [
+                    'id_vendor_mengikuti_paket' => $pemenang_3['id_vendor_mengikuti_paket'],
+                ];
+                if ($row_rup['bobot_nilai'] == 1) {
+                    $update_pemenang_3 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                } else {
+                    $update_pemenang_3 = [
+                        'ev_terendah_peringkat_akhir_hea' => 1
+                    ];
+                }
+                $this->M_panitia->update_mengikuti($update_pemenang_3, $where_pemenang_3);
+            }
+        }
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
 
 
     // save undangan pembuktian

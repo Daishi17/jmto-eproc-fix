@@ -2332,6 +2332,19 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_result_vendor_negosiasi_pra_1_file($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_result_vendor_negosiasi_teknis($id_rup)
     {
         $this->db->select('*');
@@ -2346,6 +2359,7 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
     // 
+
     public function get_result_vendor_negosiasi_1_teknis($id_rup)
     {
         $this->db->select('*');
@@ -2429,6 +2443,93 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+
+    // PRA 1 FILE
+    public function get_result_vendor_negosiasi_pra_1_file_1_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_result_vendor_negosiasi_pra_1_file_2_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 2);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_result_vendor_negosiasi_pra_1_file_3_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 3);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_result_vendor_negosiasi_pra_1_file_1($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_result_vendor_negosiasi_pra_1_file_2($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 2);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_result_vendor_negosiasi_pra_1_file_3($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_harga_hea_terendah !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 3);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
 
     public function get_row_vendor_negosiasi($id_vendor_mengikuti_paket)
     {

@@ -1949,6 +1949,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $this->M_panitia->update_mengikuti($upload, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
+    
     function summary_tender($id_url_rup)
     {
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
