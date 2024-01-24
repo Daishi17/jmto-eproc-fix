@@ -373,8 +373,14 @@
                             }
                         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
                     });
-                } else {
-
+                } else if (type == 'ba_teknis') {
+                    $('#modal_ba_teknis').modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                } else if (type == 'kelengkapan_file2') {
+                    $('#modal_kelengkapan_file2').modal('show')
+                    $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
                 }
 
             }
@@ -3289,4 +3295,87 @@
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
     });
+
+    $(document).ready(function() {
+        var id_rup = $('[name="id_rup"]').val()
+        $('#tbl_kelengkapan_file2').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "autoWidth": false,
+            "bDestroy": true,
+            // "buttons": ["excel", "pdf", "print", "colvis"],
+            initComplete: function() {
+                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+            },
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_kelengkapan_file2/') ?>' + id_rup,
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+    });
+
+    function load_table_kelengkapan_file2() {
+        $('#tbl_kelengkapan_file2').DataTable().ajax.reload();
+    }
+
+    var form_evaluasi_kelengkapan_file2 = $('#form_evaluasi_kelengkapan_file2')
+    form_evaluasi_kelengkapan_file2.on('submit', function(e) {
+        var url_simpan_kelengkapan_file2 = $('[name="url_simpan_kelengkapan_file2"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_simpan_kelengkapan_file2,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_penawaran_ba').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_kelengkapan_file2').modal('hide')
+                        form_evaluasi_kelengkapan_file2[0].reset();
+                        load_table_kelengkapan_file2()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+            }
+        })
+    })
 </script>

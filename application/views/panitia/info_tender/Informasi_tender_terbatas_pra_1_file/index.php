@@ -2168,3 +2168,86 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal_kelengkapan_file2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form_evaluasi_kelengkapan_file2" action="javascript:;">
+                <input type="hidden" value="<?= $row_rup['id_rup'] ?>" name="id_rup_post">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                            <div class="flex-grow-1 bd-highlight">
+                                <span class="text-dark">
+                                    <small class="text-white">
+                                        <strong><i class="fa-solid fa-edit px-1"></i>
+                                            Kelengkapan Dokumen File II <label for="" class="nama_usaha"></label>
+                                        </strong>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" name="id_vendor_mengikuti_paket">
+                            <div class="mb-1">
+                                <label for="" class="form-label">1. Surat Penawaran</label>
+                                <select name="kelengkapan_file2_1" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                                <br>
+                                <label for="" class="form-label">2. Daftar Kuantitas dan Harga</label>
+                                <select name="kelengkapan_file2_2" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                                <br>
+                                <label for="" class="form-label">3. Analisa Harga Satuan</label>
+                                <select name="kelengkapan_file2_3" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                                <br>
+                                <label for="" class="form-label">4. Daftar Harga Satuan (Jika Ada)</label>
+                                <select name="kelengkapan_file2_4" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                                <br>
+                                <label for="" class="form-label">5. Surat Pernyataan Nilai Tingkat Komponen Dalam Negeri (TKDN)</label>
+                                <select name="kelengkapan_file2_5" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                                <br>
+                                <label for="" class="form-label">6. Surat Keterangan Nilai TKDN (dari Kemenperin Jika Ada)</label>
+                                <select name="kelengkapan_file2_6" id="" class="form-control">
+                                    <option value="">--Pilih--</option>
+                                    <option value="1">Lengkap</option>
+                                    <option value="2">Tidak Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
