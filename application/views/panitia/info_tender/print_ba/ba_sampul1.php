@@ -213,37 +213,72 @@ function terbilang($nilai)
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1;
-                                foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
-                                        <td>
-                                            <?php
+                                <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                    <?php $i = 1;
+                                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                            <td>
+                                                <?php
 
 
-                                            $sts_valid_0 = $value['file1_administrasi_sts'] == 0 || $value['file1_organisasi_sts'] == 0 || $value['file1_pabrikan_sts'] == 0 || $value['file1_peralatan_sts'] == 0 || $value['file1_personil_sts'] == 0 || $value['file1_makalah_teknis_sts'] == 0 || $value['file1_pra_rk3_sts'] == 0 || $value['file1_spek_sts'] == 0;
+                                                $sts_valid_0 = $value['file1_administrasi_sts'] == 0 || $value['file1_teknis_sts'] == 0 || $value['file2_penawaran_sts'] == 0 || $value['file2_dkh_sts'] == 0;
 
-                                            $sts_valid = $value['file1_administrasi_sts'] == 1 && $value['file1_organisasi_sts'] == 1 && $value['file1_pabrikan_sts'] == 1 && $value['file1_peralatan_sts'] == 1 && $value['file1_personil_sts'] == 1 && $value['file1_makalah_teknis_sts'] == 1 && $value['file1_pra_rk3_sts'] == 1 && $value['file1_spek_sts'] == 1 || $value['file1_administrasi_sts'] == 3 && $value['file1_organisasi_sts'] == 3 && $value['file1_pabrikan_sts'] == 3 && $value['file1_peralatan_sts'] == 3 && $value['file1_personil_sts'] == 3 && $value['file1_makalah_teknis_sts'] == 3 && $value['file1_pra_rk3_sts'] == 3 && $value['file1_spek_sts'] == 3;
+                                                $sts_valid = $value['file1_administrasi_sts'] == 1 && $value['file1_teknis_sts'] == 1 && $value['file2_penawaran_sts'] == 1 && $value['file2_dkh_sts'] == 1 || $value['file1_administrasi_sts'] == 3 && $value['file1_teknis_sts'] == 3 && $value['file2_penawaran_sts'] == 3 && $value['file2_dkh_sts'] == 3;
 
-                                            $sts_tdk_valid = $value['file1_administrasi_sts'] == 2 || $value['file1_organisasi_sts'] == 2 || $value['file1_pabrikan_sts'] == 2 || $value['file1_peralatan_sts'] == 2 || $value['file1_personil_sts'] == 2 || $value['file1_makalah_teknis_sts'] == 2 || $value['file1_pra_rk3_sts'] == 2 || $value['file1_spek_sts'] == 2;
+                                                $sts_tdk_valid = $value['file1_administrasi_sts'] == 2 || $value['file1_teknis_sts'] == 2 || $value['file2_penawaran_sts'] == 2 || $value['file2_dkh_sts'] == 2;
 
-                                            if ($sts_valid_0) { ?>
-                                                <span class="badge bg-warning text-white">Belum Diperiksa</span>
+                                                if ($sts_valid_0) { ?>
+                                                    <span class="badge bg-warning text-white">Belum Diperiksa</span>
 
-                                            <?php } else if ($sts_valid) { ?>
-                                                <span class="badge bg-success text-white">Lengkap</span>
-                                            <?php } else if ($sts_tdk_valid) { ?>
-                                                <span class="badge bg-danger text-white">Tidak Lengkap</span>
-                                            <?php } else {   ?>
-                                                <span class="badge bg-success text-white">Lengkap</span>
-                                            <?php } ?>
+                                                <?php } else if ($sts_valid) { ?>
+                                                    <span class="badge bg-success text-white">Lengkap</span>
+                                                <?php } else if ($sts_tdk_valid) { ?>
+                                                    <span class="badge bg-danger text-white">Tidak Lengkap</span>
+                                                <?php } else {   ?>
+                                                    <span class="badge bg-success text-white">Lengkap</span>
+                                                <?php } ?>
 
 
 
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <?php $i = 1;
+                                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                            <td>
+                                                <?php
+
+
+                                                $sts_valid_0 = $value['file1_administrasi_sts'] == 0 || $value['file1_organisasi_sts'] == 0 || $value['file1_pabrikan_sts'] == 0 || $value['file1_peralatan_sts'] == 0 || $value['file1_personil_sts'] == 0 || $value['file1_makalah_teknis_sts'] == 0 || $value['file1_pra_rk3_sts'] == 0 || $value['file1_spek_sts'] == 0;
+
+                                                $sts_valid = $value['file1_administrasi_sts'] == 1 && $value['file1_organisasi_sts'] == 1 && $value['file1_pabrikan_sts'] == 1 && $value['file1_peralatan_sts'] == 1 && $value['file1_personil_sts'] == 1 && $value['file1_makalah_teknis_sts'] == 1 && $value['file1_pra_rk3_sts'] == 1 && $value['file1_spek_sts'] == 1 || $value['file1_administrasi_sts'] == 3 && $value['file1_organisasi_sts'] == 3 && $value['file1_pabrikan_sts'] == 3 && $value['file1_peralatan_sts'] == 3 && $value['file1_personil_sts'] == 3 && $value['file1_makalah_teknis_sts'] == 3 && $value['file1_pra_rk3_sts'] == 3 && $value['file1_spek_sts'] == 3;
+
+                                                $sts_tdk_valid = $value['file1_administrasi_sts'] == 2 || $value['file1_organisasi_sts'] == 2 || $value['file1_pabrikan_sts'] == 2 || $value['file1_peralatan_sts'] == 2 || $value['file1_personil_sts'] == 2 || $value['file1_makalah_teknis_sts'] == 2 || $value['file1_pra_rk3_sts'] == 2 || $value['file1_spek_sts'] == 2;
+
+                                                if ($sts_valid_0) { ?>
+                                                    <span class="badge bg-warning text-white">Belum Diperiksa</span>
+
+                                                <?php } else if ($sts_valid) { ?>
+                                                    <span class="badge bg-success text-white">Lengkap</span>
+                                                <?php } else if ($sts_tdk_valid) { ?>
+                                                    <span class="badge bg-danger text-white">Tidak Lengkap</span>
+                                                <?php } else {   ?>
+                                                    <span class="badge bg-success text-white">Lengkap</span>
+                                                <?php } ?>
+
+
+
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php  }  ?>
+
 
                             </tbody>
                         </table>
@@ -303,34 +338,6 @@ function terbilang($nilai)
                     </tbody>
                 </table>
                 <br><br>
-                <!-- <center>
-                    <b class="text-uppercase">PESERTA PENAWARAN TENDER YANG MELAKUKAN PEMASUKAN DOKUMEN PENAWARAN </b>
-                </center>
-                <br>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama </th>
-                            <th>Perusahaan</th>
-                            <th>Jabatan</th>
-                            <th>TTD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td><?= $i++ ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td><span class="badge bg-success">Setuju</span></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </tr>
-                        <?php } ?>
-
-                    </tbody>
-                </table> -->
             </div>
         </form>
     </div>

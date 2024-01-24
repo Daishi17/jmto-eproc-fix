@@ -2564,6 +2564,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_lolos'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_sampul1', $data);
@@ -2707,6 +2708,113 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $post => 1,
         ];
         $this->M_panitia->update_rup_panitia($id_rup, $data);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function simpan_status_file1()
+    {
+        $name = $this->input->post('name');
+
+        $where = [
+            'id_vendor_mengikuti_paket' => $this->input->post('id_vendor_mengikuti_paket')
+        ];
+        $data = [
+            $name => $this->input->post('value_name')
+        ];
+        $this->M_panitia->update_mengikuti($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+    public function get_kelengkapan_file2($id_rup)
+    {
+        $result = $this->M_panitia->gettable_evaluasi_penawaran($id_rup);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_usaha;
+
+            if ($rs->kelengkapan_file2_1 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_2 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_3 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_4 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_5 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+            if ($rs->kelengkapan_file2_6 == 1) {
+                $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
+            } else {
+                $row[] = '<span class="badge bg-sm bg-secondary">-</span>';
+            }
+
+
+            $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kelengkapan_file2'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+              </div>';
+
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_penawaran($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_penawaran($id_rup),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function simpan_kelengkapan_file2()
+    {
+
+        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+
+        $kelengkapan_file2_1 = $this->input->post('kelengkapan_file2_1');
+        $kelengkapan_file2_2 = $this->input->post('kelengkapan_file2_2');
+        $kelengkapan_file2_3 = $this->input->post('kelengkapan_file2_3');
+        $kelengkapan_file2_4 = $this->input->post('kelengkapan_file2_4');
+        $kelengkapan_file2_5 = $this->input->post('kelengkapan_file2_5');
+        $kelengkapan_file2_6 = $this->input->post('kelengkapan_file2_6');
+
+        $where = [
+            'id_vendor_mengikuti_paket' =>    $id_vendor_mengikuti_paket
+        ];
+        $data = [
+            'kelengkapan_file2_1' => $kelengkapan_file2_1,
+            'kelengkapan_file2_2' => $kelengkapan_file2_2,
+            'kelengkapan_file2_3' => $kelengkapan_file2_3,
+            'kelengkapan_file2_4' => $kelengkapan_file2_4,
+            'kelengkapan_file2_5' => $kelengkapan_file2_5,
+            'kelengkapan_file2_6' => $kelengkapan_file2_6,
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }
