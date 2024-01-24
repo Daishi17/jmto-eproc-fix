@@ -1299,6 +1299,7 @@
 </script>
 
 <script>
+    // upload sanggahan prakualifikasi
     var form_sanggahan_prakualifikasi = $('#form_sanggahan_prakualifikasi')
     form_sanggahan_prakualifikasi.on('submit', function(e) {
         var url_upload_sanggahan_pra = $('[name="url_upload_sanggahan_pra"]').val();
@@ -1415,6 +1416,7 @@
     function balas_sanggahan_pra(id_sanggah_pra_detail, nama_usaha) {
         var modal_balas_sanggahan_pra = $('#modal_balas_sanggahan_pra');
         $('[name="id_vendor_mengikuti_paket"]').val(id_sanggah_pra_detail)
+        console.log(id_sanggah_pra_detail);
         $('#nama_penyedia').text(nama_usaha)
         modal_balas_sanggahan_pra.modal('show');
 
@@ -1456,100 +1458,51 @@
         })
     }
 
-    // upload sanggahan akhir
+
     var form_sanggahan_akhir = $('#form_sanggahan_akhir')
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
-        var file_sanggah_akhir_panitia = $('[name="file_sanggah_akhir_panitia"]').val();
-        if (file_sanggah_akhir_panitia == '') {
-            var logic_upload = $('[name="logic_upload"]').val(1);
-            e.preventDefault();
-            $.ajax({
-                url: url_upload_sanggahan_akhir,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn-sanggah-akhir').attr("disabled", true);
-                },
-                success: function(response) {
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Membuat Data <b></b>',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_akhir').modal('hide')
-                            form_sanggahan_akhir[0].reset()
-                            load_dok_sanggahan_akhir()
-                            $('.btn-sanggah-akhir').attr("disabled", false);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
+        e.preventDefault();
+        $.ajax({
+            url: url_upload_sanggahan_akhir,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('.btn-sanggah-akhir').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Membuat Data <b></b>',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_balas_sanggahan_akhir').modal('hide')
+                        form_sanggahan_akhir[0].reset()
+                        load_dok_sanggahan_akhir()
+                        $('.btn-sanggah-akhir').attr("disabled", false);
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
 
-                        }
-                    })
-                }
-            })
-        } else {
-            var logic_upload = $('[name="logic_upload"]').val(2);
-            e.preventDefault();
-            $.ajax({
-                url: url_upload_sanggahan_akhir,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn-sanggah-akhir').attr("disabled", true);
-                },
-                success: function(response) {
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Membuat Data <b></b>',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_akhir').modal('hide')
-                            form_sanggahan_akhir[0].reset()
-                            load_dok_sanggahan_akhir()
-                            $('.btn-sanggah-akhir').attr("disabled", false);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-
-                        }
-                    })
-                }
-            })
-        }
-
-
+                    }
+                })
+            }
+        })
     })
 
     load_dok_sanggahan_akhir()
@@ -1589,18 +1542,18 @@
                         var ket_sanggah_akhir_panitia = '-'
                     }
 
-                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
+                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
                         if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
                             var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                         } else {
                             var file_sanggah_akhir_panitia = '-'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                         }
 
                     } else {
                         var file_sanggah_akhir_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                        var balas = '-'
+                        var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
                     }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
@@ -1619,58 +1572,11 @@
         })
     }
 
-    function balas_sanggahan_akhir(id_vendor_mengikuti_paket, nama_usaha) {
-        var modal_balas_sanggahan_akhir = $('#modal_balas_sanggahan_akhir');
-        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
-        $('#nama_penyedia').text(nama_usaha)
-        modal_balas_sanggahan_akhir.modal('show');
-
-    }
-
-    function delete_sanggah_akhir(id_vendor_mengikuti_paket) {
-        var url_hapus_sanggahan_akhir = $('[name="url_hapus_sanggahan_akhir"]').val()
-        Swal.fire({
-            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhir?',
-            text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Yakin!',
-            cancelButtonText: 'Batal!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "POST",
-                    url: url_hapus_sanggahan_akhir,
-                    data: {
-                        id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
-                    },
-                    dataType: "JSON",
-                    success: function(response) {
-                        if (response == 'success') {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Sanggahan akhir Berhasil Di Batalkan!',
-                                'success'
-                            )
-                            load_dok_sanggahan_akhir()
-                        }
-                    }
-                })
-
-            }
-        })
-    }
-</script>
-
-<!-- <script>
-    // upload sanggahan prakualifikasi
-    var form_sanggahan_prakualifikasi = $('#form_sanggahan_prakualifikasi')
-    form_sanggahan_prakualifikasi.on('submit', function(e) {
-        var url_upload_sanggahan_pra = $('[name="url_upload_sanggahan_pra"]').val();
-        var file_sanggah_pra_panitia = $('[name="file_sanggah_pra_panitia"]').val();
-        if (file_sanggah_pra_panitia == '') {
+    var form_sanggahan_akhir = $('#form_sanggahan_akhir')
+    form_sanggahan_akhir.on('submit', function(e) {
+        var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
+        var file_sanggah_akhir_panitia = $('[name="file_sanggah_akhir_panitia"]').val();
+        if (file_sanggah_akhir_panitia == '') {
             e.preventDefault();
             Swal.fire({
                 icon: 'error',
@@ -1680,7 +1586,7 @@
         } else {
             e.preventDefault();
             $.ajax({
-                url: url_upload_sanggahan_pra,
+                url: url_upload_sanggahan_akhir,
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -1706,9 +1612,9 @@
                         willClose: () => {
                             clearInterval(timerInterval)
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_pra').modal('hide')
-                            form_sanggahan_prakualifikasi[0].reset()
-                            load_dok_sanggahan_pra()
+                            $('#modal_balas_sanggahan_akhir').modal('hide')
+                            form_sanggahan_akhir[0].reset()
+                            load_dok_sanggahan_akhir()
                             $('.btn-sanggah').attr("disabled", false);
                         }
                     }).then((result) => {
@@ -1721,244 +1627,11 @@
             })
         }
     })
-    load_dok_sanggahan_pra()
 
-    function load_dok_sanggahan_pra() {
-        var id_rup = $('[name="id_rup"]').val()
-        var url_get_sanggahan_pra = $('[name="url_get_sanggahan_pra"]').val()
-        var url_open_sanggahan_pra = $('[name="url_open_sanggahan_pra"]').val()
-        var url_open_sanggahan_pra_panitia = $('[name="url_open_sanggahan_pra_panitia"]').val()
-        $.ajax({
-            type: "POST",
-            url: url_get_sanggahan_pra,
-            data: {
-                id_rup: id_rup,
-            },
-            dataType: "JSON",
-            success: function(response) {
-                var html = '';
-                var i;
-                var no = 1;
-                for (i = 0; i < response['result_sanggahan_pra'].length; i++) {
-                    if (response['result_sanggahan_pra'][i].ket_sanggah_pra) {
-                        var ket_sanggah_pra = response['result_sanggahan_pra'][i].ket_sanggah_pra
-                    } else {
-                        var ket_sanggah_pra = '-'
-                    }
-
-                    if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
-                        var file_sanggah_pra = '<a target="_blank" href="' + url_open_sanggahan_pra + response['result_sanggahan_pra'][i].nama_usaha + '/SANGGAHAN_PRAKUALIFIKASI/' + response['result_sanggahan_pra'][i].file_sanggah_pra + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                    } else {
-                        var file_sanggah_pra = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                    }
-
-                    if (response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia) {
-                        var ket_sanggah_pra_panitia = response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia
-                    } else {
-                        var ket_sanggah_pra_panitia = '-'
-                    }
-
-                    if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
-                        if (response['result_sanggahan_pra'][i].file_sanggah_pra_panitia) {
-                            var file_sanggah_pra_panitia = '<a target="_blank" href="' + url_open_sanggahan_pra_panitia + response['result_sanggahan_pra'][i].file_sanggah_pra_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
-                        } else {
-                            var file_sanggah_pra_panitia = '-'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
-                        }
-
-                    } else {
-                        var file_sanggah_pra_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                        var balas = '-'
-                    }
-                    html += '<tr>' +
-                        '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + response['result_sanggahan_pra'][i].nama_usaha + '</small></td>' +
-                        '<td><small>' + ket_sanggah_pra + '</small></td>' +
-                        '<td><small>' + file_sanggah_pra + '</small></td>' +
-                        '<td><small>' + file_sanggah_pra_panitia + '</small></td>' +
-                        '<td><small>' + ket_sanggah_pra_panitia + '</small></td>' +
-                        '<td>' + balas + '</td>' +
-                        '</tr>';
-                    '</tr>';
-
-                }
-                $('#tbl_sanggah_pra').html(html);
-            }
-        })
-    }
-
-    function balas_sanggahan_pra(id_vendor_mengikuti_paket, nama_usaha) {
-        var modal_balas_sanggahan_pra = $('#modal_balas_sanggahan_pra');
-        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
-        $('#nama_penyedia').text(nama_usaha)
-        modal_balas_sanggahan_pra.modal('show');
-
-    }
-
-    function delete_sanggah_pra(id_vendor_mengikuti_paket) {
-        var url_hapus_sanggahan_pra = $('[name="url_hapus_sanggahan_pra"]').val()
-        Swal.fire({
-            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan Prakualifikasi?',
-            text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Yakin!',
-            cancelButtonText: 'Batal!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "POST",
-                    url: url_hapus_sanggahan_pra,
-                    data: {
-                        id_vendor_mengikuti_paket: id_vendor_mengikuti_paket,
-                    },
-                    dataType: "JSON",
-                    success: function(response) {
-                        if (response == 'success') {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Sanggahan Prakualifikasi Berhasil Di Batalkan!',
-                                'success'
-                            )
-                            load_dok_sanggahan_pra()
-                        }
-                    }
-                })
-
-            }
-        })
-    }
-
-    // upload sanggahan akhir
-    var form_sanggahan_akhir = $('#form_sanggahan_akhir')
-    form_sanggahan_akhir.on('submit', function(e) {
-        var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();
-        var file_sanggah_akhir = $('[name="file_sanggah_akhir"]').val();
-        if (file_sanggah_akhir == '') {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Dokumen Wajib Di Isi!',
-            })
-        } else {
-            e.preventDefault();
-            $.ajax({
-                url: url_upload_sanggahan_akhir,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('.btn-sanggah-akhir').attr("disabled", true);
-                },
-                success: function(response) {
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Sedang Proses Menyimpan Data!',
-                        html: 'Membuat Data <b></b>',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                // b.textContent = Swal.getTimerRight()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
-                            $('#modal_balas_sanggahan_akhir').modal('hide')
-                            form_sanggahan_akhir[0].reset()
-                            load_dok_sanggahan_akhir()
-                            $('.btn-sanggah-akhir').attr("disabled", false);
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-
-                        }
-                    })
-                }
-            })
-        }
-    })
-
-    load_dok_sanggahan_akhir()
-
-    function load_dok_sanggahan_akhir() {
-        var id_rup = $('[name="id_rup"]').val()
-        var url_get_sanggahan_akhir = $('[name="url_get_sanggahan_akhir"]').val()
-        var url_open_sanggahan_akhir = $('[name="url_open_sanggahan_akhir"]').val()
-        var url_open_sanggahan_akhir_panitia = $('[name="url_open_sanggahan_akhir_panitia"]').val()
-        $.ajax({
-            type: "POST",
-            url: url_get_sanggahan_akhir,
-            data: {
-                id_rup: id_rup,
-            },
-            dataType: "JSON",
-            success: function(response) {
-                var html = '';
-                var i;
-                var no = 1;
-                for (i = 0; i < response['result_sanggahan_akhir'].length; i++) {
-                    if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir) {
-                        var ket_sanggah_akhir = response['result_sanggahan_akhir'][i].ket_sanggah_akhir
-                    } else {
-                        var ket_sanggah_akhir = '-'
-                    }
-
-                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
-                        var file_sanggah_akhir = '<a target="_blank" href="' + url_open_sanggahan_akhir + response['result_sanggahan_akhir'][i].nama_usaha + '/SANGGAHAN_AKHIR/' + response['result_sanggahan_akhir'][i].file_sanggah_akhir + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                    } else {
-                        var file_sanggah_akhir = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                    }
-
-                    if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia) {
-                        var ket_sanggah_akhir_panitia = response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia
-                    } else {
-                        var ket_sanggah_akhir_panitia = '-'
-                    }
-
-                    if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
-                        if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
-                            var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
-                        } else {
-                            var file_sanggah_akhir_panitia = '-'
-                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
-                        }
-
-                    } else {
-                        var file_sanggah_akhir_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
-                        var balas = '-'
-                    }
-                    html += '<tr>' +
-                        '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + response['result_sanggahan_akhir'][i].nama_usaha + '</small></td>' +
-                        '<td><small>' + ket_sanggah_akhir + '</small></td>' +
-                        '<td><small>' + file_sanggah_akhir + '</small></td>' +
-                        '<td><small>' + file_sanggah_akhir_panitia + '</small></td>' +
-                        '<td><small>' + ket_sanggah_akhir_panitia + '</small></td>' +
-                        '<td>' + balas + '</td>' +
-                        '</tr>';
-                    '</tr>';
-
-                }
-                $('#tbl_sanggah_akhir').html(html);
-            }
-        })
-    }
-
-    function balas_sanggahan_akhir(id_vendor_mengikuti_paket, nama_usaha) {
+    function balas_sanggahan_akhir(id_sanggah_akhir_detail, nama_usaha) {
         var modal_balas_sanggahan_akhir = $('#modal_balas_sanggahan_akhir');
-        $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+        $('[name="id_vendor_mengikuti_paket"]').val(id_sanggah_akhir_detail)
+        console.log(id_sanggah_akhir_detail);
         $('#nama_penyedia').text(nama_usaha)
         modal_balas_sanggahan_akhir.modal('show');
 
@@ -1967,7 +1640,7 @@
     function delete_sanggah_akhir(id_vendor_mengikuti_paket) {
         var url_hapus_sanggahan_akhir = $('[name="url_hapus_sanggahan_akhir"]').val()
         Swal.fire({
-            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhir?',
+            title: 'Apakah Anda Yakin Ingin Batalkan Sanggahan akhirkualifikasi?',
             text: 'Peringatan! Data Yang Sudah Di Hapus Tidak Dapat Di Kembalikan Lagi! ',
             icon: 'warning',
             showCancelButton: true,
@@ -1988,7 +1661,7 @@
                         if (response == 'success') {
                             Swal.fire(
                                 'Berhasil!',
-                                'Sanggahan akhir Berhasil Di Batalkan!',
+                                'Sanggahan Akhir Berhasil Di Batalkan!',
                                 'success'
                             )
                             load_dok_sanggahan_akhir()
@@ -1999,7 +1672,8 @@
             }
         })
     }
-</script> -->
+</script>
+
 <script>
     load_vendor_negosiasi()
 

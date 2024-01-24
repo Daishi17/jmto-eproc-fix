@@ -2292,6 +2292,17 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+    public function get_peserta_rank1_pra_1_file_biaya($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_peserta_rank1_biaya_dengan_negosiasi($id_rup)
     {
         $this->db->select('*');

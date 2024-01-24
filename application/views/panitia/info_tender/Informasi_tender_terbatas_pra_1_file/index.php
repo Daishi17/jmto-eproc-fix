@@ -1539,13 +1539,13 @@
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
-                                    <?php if ($value['ev_terendah_peringkat'] == 1) { ?>
+                                    <?php if ($value['ev_terendah_peringkat_akhir_hea'] == 1) { ?>
                                         <i class="fas fa fa-star text-warning"></i>
                                     <?php   } else { ?>
                                         <i class="fas fa fa-times text-danger"></i>
                                     <?php   }  ?>
                                 </td>
-                                <td><?= $value['ev_terendah_peringkat'] ?></td>
+                                <td><?= $value['ev_terendah_peringkat_akhir_hea'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

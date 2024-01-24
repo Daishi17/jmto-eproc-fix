@@ -1541,11 +1541,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
 
         if ($row_rup['bobot_nilai'] == 1) {
-            $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-            $message = 'Selamat PT ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk Tender Umum/Terbatas ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
+            $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
+            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk '.$row_rup['nama_metode_pengadaan'].' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         } else {
-            $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-            $message = 'Selamat PT ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk Tender Umum/Terbatas ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
+            $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
+            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk '.$row_rup['nama_metode_pengadaan'].' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         }
 
         $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
@@ -1885,6 +1885,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     }
 
 
+
     public function upload_sanggahan_pra()
     {
         // post
@@ -1916,8 +1917,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
             $upload = [
-                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia,
-                'file_sanggah_pra_panitia' => NULL
+                'ket_sanggah_pra_panitia' => $ket_sanggah_pra_panitia
             ];
             $where = [
                 'id_sanggah_pra_detail' => $id_sanggah_pra_detail,
@@ -1948,23 +1948,21 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
     // end sanggahan prakualifikasi
-
     public function get_sanggahan_akhir()
     {
         $id_rup = $this->input->post('id_rup');
-        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan($id_rup);
+        $result_sanggahan_akhir = $this->M_panitia->get_result_vendor_sanggahan_akhir($id_rup);
         $output = [
             'result_sanggahan_akhir' => $result_sanggahan_akhir,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-
     public function upload_sanggahan_akhir()
     {
-        // post 
+        // post
         $id_rup = $this->input->post('id_rup');
-        $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
+        $id_sanggah_akhir_detail = $this->input->post('id_vendor_mengikuti_paket');
         $ket_sanggah_akhir_panitia = $this->input->post('ket_sanggah_akhir_panitia');
 
         // get value vendor dan paket untuk genrate file
@@ -1984,14 +1982,21 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
                 'file_sanggah_akhir_panitia' => $fileData['file_name']
             ];
-
             $where = [
-                'id_vendor_mengikuti_paket' => $id_vendor_mengikuti_paket,
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
             ];
-            $this->M_panitia->update_mengikuti($upload, $where);
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+            $upload = [
+                'ket_sanggah_akhir_panitia' => $ket_sanggah_akhir_panitia,
+                'file_sanggah_akhir_panitia' => NULL,
+            ];
+            $where = [
+                'id_sanggah_akhir_detail' => $id_sanggah_akhir_detail,
+            ];
+            $this->M_panitia->update_mengikuti_sanggah_akhir($upload, $where);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 
@@ -2001,9 +2006,6 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
 
         // get value vendor dan paket untuk genrate file
-        $nama_usaha = $this->session->userdata('nama_usaha');
-        $id_vendor = $this->session->userdata('id_vendor');
-
         $upload = [
             'ket_sanggah_akhir' => '',
             'file_sanggah_akhir' => ''
