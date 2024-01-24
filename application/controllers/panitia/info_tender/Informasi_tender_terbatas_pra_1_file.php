@@ -37,13 +37,13 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
 
         if ($data['row_rup']['bobot_nilai'] == 1) {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
+            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_pra_1_file_biaya($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
         } else if (($data['row_rup']['bobot_nilai'] == 2)) {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_biaya($data['row_rup']['id_rup']);
+            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_pra_1_file_biaya($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1_biaya($data['row_rup']['id_rup']);
         } else {
-            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang($data['row_rup']['id_rup']);
+            $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_pra_1_file_biaya($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
         }
 
