@@ -3,7 +3,7 @@
     <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
     <div class="row">
         <div class="col">
-            <div class="card border-dark">
+            <div class="card border-dark" style="position: fixed; top:100px;z-index:999;width:95%;">
                 <div class="card-header border-dark bg-white text-black">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
@@ -24,7 +24,7 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
-                       
+
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>
@@ -369,7 +369,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="tab-pane fade" id="evheatkdn_terendah" role="tabpanel" aria-labelledby="pills-contact-tab">
                             <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                                 <div class="flex-grow-1 bd-highlight">
@@ -418,7 +418,7 @@
                                                 <th rowspan="2">Nama Perusahaan</th>
                                                 <th rowspan="2">Kelengkapan Dokumen Administrasi dan Teknis </th>
                                                 <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika) Hea</th>
-                                                <th rowspan="2">% Hea Penawaran Terhadap HPS</th>
+                                                <th rowspan="2">% HEA Penawaran Terhadap HPS</th>
                                                 <th>Nilai Biaya</th>
                                                 <th rowspan="2">Nilai Akhir HEA</th>
                                                 <th rowspan="2">Peringkat Akhir</th>
@@ -605,7 +605,7 @@
     </div>
 </div>
 
-<!-- akhir_hea -->
+<!-- akhir_HEA -->
 <div class="modal fade" id="modal_evaluasi_akhir_hea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -799,4 +799,3 @@
         </div>
     </div>
 </div>
-

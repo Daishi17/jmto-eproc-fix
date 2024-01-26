@@ -1486,6 +1486,7 @@
         })
     }
 
+    
     var form_sanggahan_akhir = $('#form_sanggahan_akhir')
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();

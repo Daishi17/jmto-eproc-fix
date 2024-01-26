@@ -259,7 +259,7 @@ function terbilang($nilai)
                     </tbody>
                 </table>
                 <br>
-                DAFTAR PEMERIKSAAN PEMBUKTIAN SYARAT TAMBAHAN KUALIFIKASI (Nama Paket Pekerjaan)
+                DAFTAR PEMERIKSAAN PEMBUKTIAN SYARAT TAMBAHAN KUALIFIKASI <label for="" class="text-uppercase"></label>(<?= $row_rup['nama_rup']  ?>)
                 <br>
                 <br>
                 <ol>

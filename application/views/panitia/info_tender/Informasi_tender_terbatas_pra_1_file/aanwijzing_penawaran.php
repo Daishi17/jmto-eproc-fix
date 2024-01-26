@@ -391,7 +391,7 @@
     </style>
     <div class="row">
         <div class="col">
-            <div class="card border-dark">
+            <div class="card border-dark" style="position: fixed; top:100px;z-index:999;width:95%;">
                 <div class="card-header border-dark bg-white text-black">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
@@ -412,7 +412,7 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
-                       
+
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>

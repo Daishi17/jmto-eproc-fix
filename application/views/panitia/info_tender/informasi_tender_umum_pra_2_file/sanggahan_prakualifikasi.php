@@ -7,7 +7,7 @@
 <main class="container">
     <div class="row">
         <div class="col">
-            <div class="card border-dark">
+            <div class="card border-dark" style="position: fixed; top:100px;z-index:999;width:95%;">
                 <div class="card-header border-dark bg-white text-black">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">

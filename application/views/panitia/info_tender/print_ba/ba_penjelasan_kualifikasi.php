@@ -141,7 +141,7 @@ function terbilang($nilai)
             <div class="container">
                 <p style="text-align:justify; font-size:18px">
                     Pada Hari ini <b><?= $row_rup['ba_penjelasan_kualifikasi_hari'] ?></b>,
-                    Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_penjelasan_kualifikasi_no']))) ?></b>,
+                    Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl_pelaksanaan']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_penjelasan_kualifikasi_tgl_pelaksanaan'])) ?>)</b>,Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : <?= $row_rup['ba_sk_panitia'] ?>, Tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?>, serta berdasarkan dan dengan mempertimbangkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor : <?= $row_rup['ba_sk_direksi'] ?>, Tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Standar Prosedur Pelaksanaan Pengadaan Barang/Jasa Di Lingkungan Perusahaan; <br>
                     telah melaksanakan Rapat Penjelasan Kualifikasi melalui Aplikasi E-Procurement untuk Pekerjaan :
