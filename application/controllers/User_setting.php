@@ -34,4 +34,30 @@ class User_setting extends CI_Controller
 			redirect('user_setting');
 		}
 	}
+
+	public function ubah_password_panitia()
+	{
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|matches[confirmPassword]', ['required' => 'Password Wajib Diisi!', 'matches' => 'Password Tidak Sama']);
+		$this->form_validation->set_rules('confirmPassword', 'Password', 'required|trim|matches[password]', ['required' => 'Password Verifikasi harus diisi!', 'matches' => 'Password Tidak Sama']);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Password Tidak Sama!</div>');
+			redirect('user_setting');
+		} else {
+			$password  = $this->input->post('password');
+			$data = [
+				'password' => password_hash($password, PASSWORD_DEFAULT),
+			];
+			$this->M_karyawan->updatepassword($data, $this->session->userdata('id_pegawai'));
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Password Berhasil Di Ubah!</div>');
+			redirect('user_setting/user_setting_panitia');
+		}
+	}
+
+	public function user_setting_panitia()
+	{
+		$this->load->view('template_tender/header');
+		$this->load->view('user_setting_panitia/index'); 
+		$this->load->view('template_tender/footer');
+        $this->load->view('user_setting_panitia/ajax');
+	}
 }
