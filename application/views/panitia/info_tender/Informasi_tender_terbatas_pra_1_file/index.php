@@ -432,6 +432,12 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
+                                                            <?php if ($row_rup['ba_sampul1_no_2']) { ?>
+                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
+                                                                <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/informasi_tender_terbatas_pra_1_file/ba_sampul_I_2/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
+                                                            <?php } ?>
+                                                        </tr>
+                                                        <tr>
                                                             <?php if ($row_rup['undangan_rapat_no']) { ?>
                                                                 <th>Undangan Rapat Presentasi Teknis</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/informasi_tender_umum_pra_2_file/ba_undangan_rapat/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
@@ -628,6 +634,7 @@
                     <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
                     <option value="10">4. Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
                     <option value="3">5. Berita Acara Pembukaan File I</option>
+                    <option value="14">5.1 Berita Acara Pembukaan File I</option>
                     <option value="4">6. Undangan Rapat Presentasi Teknis</option>
                     <option value="11">7. Berita Acara Presentasi Teknis Tender</option>
                     <option value="5">8. Berita Acara Hasil Evaluasi Teknis</option>
@@ -941,6 +948,110 @@
 
                                     <table class="table table-bordered">
                                         <table class="table table-bordered" id="tbl_ba_sampul13">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Perusahaan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ba_14" style="display: none;" class="mt-3">
+                            <div class="d-flex">
+                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_terbatas_pra_1_file' . '/ba_sampul_I_2' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+                                &ensp;&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1_2','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
+                                <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1_2','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1_2')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                            </div>
+
+                            <br>
+                            <br>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nomor Berita Acara</th>
+                                    <th>
+                                        <input type="text" name="ba_sampul1_no_2" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_no_2')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_sampul1_no_2'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Berita Acara</th>
+                                    <th>
+                                        <input type="date" name="ba_sampul1_tgl_2" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_tgl_2')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_sampul1_tgl_2'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Hari (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_sampul1_hari_2" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_hari_2')" placeholder="Hari Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_hari_2'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Jam (Pelaksanaan)</th>
+                                    <th>
+                                        <input type="text" name="ba_sampul1_jam_pelaksanaan_2" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_sampul1_jam_pelaksanaan_2')" placeholder="Jam Pelaksanaan" class="form-control" value="<?= $row_rup['ba_sampul1_jam_pelaksanaan_2'] ?>">
+                                    </th>
+                                </tr>
+                            </table>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for="">I. PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI </label>
+                                </div>
+                                <div class="card-body">
+
+                                    <table class="table table-bordered">
+                                        <table class="table table-bordered" id="tbl_ba_sampul11_1">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Perusahaan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for="">II.PENYEDIA JASA YANG MEMBELI DAN MENGAMBIL DOKUMEN PENGADAAN </label>
+                                </div>
+                                <div class="card-body">
+
+                                    <table class="table table-bordered">
+                                        <table class="table table-bordered" id="tbl_ba_sampul12_1">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Perusahaan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <label for="">III.PENYEDIA JASA YANG HADIR & MELAKUKAN PEMASUKAN DOKUMEN PENAWARAN </label>
+                                </div>
+                                <div class="card-body">
+
+                                    <table class="table table-bordered">
+                                        <table class="table table-bordered" id="tbl_ba_sampul13_1">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>

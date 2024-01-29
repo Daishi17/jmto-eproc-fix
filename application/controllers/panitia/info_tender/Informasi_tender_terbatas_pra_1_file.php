@@ -1542,10 +1542,10 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         if ($row_rup['bobot_nilai'] == 1) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
-            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk '.$row_rup['nama_metode_pengadaan'].' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
+            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk ' . $row_rup['nama_metode_pengadaan'] . ' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
-            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk '.$row_rup['nama_metode_pengadaan'].' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
+            $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk ' . $row_rup['nama_metode_pengadaan'] . ' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         }
 
         $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
@@ -2621,6 +2621,19 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_sampul1', $data);
     }
+
+
+    public function ba_sampul_I_2($id_url_rup)
+    {
+        $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_lolos'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $this->load->view('panitia/info_tender/print_ba/ba_sampul1_2', $data);
+    }
+
 
     public function ba_undangan_rapat($id_url_rup)
     {
