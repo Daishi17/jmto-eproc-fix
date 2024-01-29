@@ -49,7 +49,7 @@
                     <i class="fa-solid fa-tv px-1"></i>
                     E-TenderJMTO
                 </small>
-            </a>&nbsp;
+            </a>&nbsp; &nbsp;
             <a class="navbar-brand">
                 <small class="text-white">
                     ||
