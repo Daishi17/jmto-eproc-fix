@@ -447,7 +447,7 @@
                             </tr>
                             <tr>
                                 <th>Tanggal dan Jam</th>
-                                <td><input type="text" name="aanwijzing_pw_tanggal" class="form-control" placeholder="ex. 13-Januari-2024 pukul 10:00 WIB" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tanggal')" value="<?= $row_rup['aanwijzing_pw_tanggal'] ?>"></td>
+                                <td><input type="text" name="aanwijzing_pw_tanggal" class="form-control datet" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tanggal')" value="<?= $row_rup['aanwijzing_pw_tanggal'] ?>"></td>
                             </tr>
                             <tr>
                                 <th>Link Meet (Jika Daring) </th>

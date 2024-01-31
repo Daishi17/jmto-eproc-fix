@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="<?php echo base_url(); ?>/assets/brand/jm1.png" />
     <link href="<?php echo base_url(); ?>/assets/css///bs5-style.css" rel="stylesheet">
     <!-- DataTables -->
+    <link href="<?= base_url('assets/datetimepicekernew/plugins/'); ?>jquery.datetimepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -28,6 +29,8 @@
 
     <!-- Select2 -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins-lte/select2/css/select2.css">
+
+
 </head>
 
 <body class="bg-white">
@@ -100,18 +103,18 @@
                         <small>Laporan</small>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <li>
-                                <a class="dropdown-item" href="<?= base_url('administrator/laporan_total') ?>">
-                                    <i class="fa-solid fa-chart-simple px-1"></i>
-                                    <small>Tabel Total Tender</small>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="<?= base_url('administrator/laporan_total/grafik_dan_rekap') ?>">
-                                    <i class="fa-solid fa-chart-pie px-1"></i>
-                                    <small>Grafik & Rekap Tender</small>
-                                </a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item" href="<?= base_url('administrator/laporan_total') ?>">
+                                <i class="fa-solid fa-chart-simple px-1"></i>
+                                <small>Tabel Total Tender</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="<?= base_url('administrator/laporan_total/grafik_dan_rekap') ?>">
+                                <i class="fa-solid fa-chart-pie px-1"></i>
+                                <small>Grafik & Rekap Tender</small>
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -150,7 +153,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="<?= base_url('user_setting/user_setting_panitia')?>"><small><i class="fa-solid fa-user-gear px-1"></i>User Setting</small></a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('user_setting/user_setting_panitia') ?>"><small><i class="fa-solid fa-user-gear px-1"></i>User Setting</small></a></li>
                             <li><a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><small><i class="fa-solid fa-right-from-bracket px-1"></i>Log-Out System</small></a></li>
                         </ul>
                     </div>&nbsp;

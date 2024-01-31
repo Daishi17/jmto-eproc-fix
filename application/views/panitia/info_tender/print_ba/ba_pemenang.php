@@ -238,7 +238,7 @@ function terbilang($nilai)
                         <tr>
                             <td>Jangka Waktu<br> Pelaksanaan</td>
                             <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Bulan</td>
+                            <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
                         </tr>
                     </table>
                 </div>
@@ -292,10 +292,10 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                    <td class="text-center"><?= $i++ ?></td>
-                                                                                                                                                                                                                    <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                    <tr>
+                                                                                                                                                                                                                        <td class="text-center"><?= $i++ ?></td>
+                                                                                                                                                                                                                        <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                                                                    </tr>
                     <?php } ?>
                 </tbody>
             </table> -->

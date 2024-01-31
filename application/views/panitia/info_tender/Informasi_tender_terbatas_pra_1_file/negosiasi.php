@@ -112,7 +112,7 @@
                     <br>
                     <div class="form-group">
                         <label for="">Tanggal Negosiasi</label>
-                        <input type="datetime-local" name="tanggal_negosiasi" class="form-control">
+                        <input type="text" name="tanggal_negosiasi" class="form-control datet">
                     </div>
                     <br>
                     <div class="form-group">
