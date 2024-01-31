@@ -3185,10 +3185,4 @@
             }
         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
     });
-
-    $('.tanggal_negosiasi').datetimepicker({
-        timepicker: true,
-        datetimepicker: true,
-        format: 'Y-m-d H:i',
-    })
 </script>

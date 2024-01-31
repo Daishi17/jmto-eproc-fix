@@ -19,9 +19,8 @@
 <script src="<?php echo base_url(); ?>/assets/js/jam_tgl.min.js"></script>
 <!-- JQUERY-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- ChartJS -->
-<script src="<?php echo base_url(); ?>/assets/plugins-lte/chart.js/Chart.min.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js//chart_validator.js"></script> <!-- DataTables  & Plugins -->
+<script src="<?php echo base_url(); ?>/assets/plugins-lte/jquery/jquery.min.js"></script>
+<!-- DataTables  & Plugins -->
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -34,9 +33,16 @@
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/plugins-lte/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/datatable_master.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>/assets/plugins-lte/select2/js/select2.full.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>/assets/js/select2_style.js"></script> -->
 
-<!-- <script src="<?php echo base_url(); ?>/assets/js/datatable_master.js"></script> -->
-<!-- <script src="<?= base_url('js_folder/data_rekanan.min.js') ?>"></script> -->
+<script src="<?php echo base_url(); ?>/assets/plugins-lte/chart.js/Chart.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/chart_admin.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/datetimepicekernew/plugins/'); ?>jquery.datetimepicker.full.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets/plugins-lte/select2/js/select2.full.min.js"></script>
 <script>
     let log_off = new Date();
     log_off.setHours(log_off.getHours() + 2);
@@ -53,6 +59,11 @@
         let log_off = new Date();
         log_off.setHours(log_off.getHours() + 2);
         log_off = new Date(log_off);
+    })
+    $('.datet').datetimepicker({
+        timepicker: true,
+        datetimepicker: true,
+        format: 'Y-m-d H:i',
     })
 </script>
 </body>
