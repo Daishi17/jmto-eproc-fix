@@ -1549,10 +1549,9 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
             $message = 'Selamat ' . $get_rank1['nama_usaha'] . ' Dinyatakan sebagai calon Pemenang untuk ' . $row_rup['nama_metode_pengadaan'] . ' ' . $row_rup['nama_rup'] . ', dan masa sanggah pemenang selama 2 (dua) hari kerja sejak pengumuman ini';
         }
-
         $this->kirim_wa->kirim_wa_vendor_terdaftar($get_rank1['no_telpon'], $message);
-        $type_email = 'PENGUMUMAN PEMENANG';
-        $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
+        // $type_email = 'PENGUMUMAN PEMENANG';
+        // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
         $upload = [
             'id_vendor_pemenang' => $get_rank1['id_vendor']
         ];
