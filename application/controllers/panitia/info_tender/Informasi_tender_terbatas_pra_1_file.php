@@ -28,6 +28,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
     public function informasi_pengadaan($id_url_rup)
     {
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
