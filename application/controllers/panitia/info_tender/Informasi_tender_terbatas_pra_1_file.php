@@ -1089,7 +1089,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $result = $this->M_panitia->gettable_syarat_tambahan($id_rup);
         // urgensi hitung pake syarat buat cek valid atau Gugur
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
-        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra_umum_6($id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra1file_umum_6($id_rup);
 
         $data = [];
         $no = $_POST['start'];
