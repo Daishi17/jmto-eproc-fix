@@ -200,6 +200,34 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                Dokumen Persetujuan Dan Penetapan
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Nama Dokumen</th>
+                                                            <th>File</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $no = 1;
+                                                        foreach ($dok_ip as $key => $value) { ?>
+                                                            <tr>
+                                                                <td scope="row"><?= $no++ ?></td>
+                                                                <td><?= $value['nama_file'] ?></td>
+                                                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_IZIN_PRINSIP_DAN_HPS' . '/' . $value['file_dokumen']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </th>
                         </tr>
@@ -475,7 +503,7 @@
                                                         </tr>
 
                                                         <tr>
-                                                            <?php if ($row_rup['ba_klarifikasi_no']) { ?>
+                                                            <?php if ($row_rup['ba_pemenang_no']) { ?>
                                                                 <th>Pengumuman Pemenang Pengadaan</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/informasi_tender_umum_pra_2_file/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
@@ -1491,21 +1519,27 @@
                             <br>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Nomor Berita Acara</th>
+                                    <th>Nomor Pengumuman</th>
                                     <th>
-                                        <input type="text" name="ba_pemenang_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
+                                        <input type="text" name="ba_pemenang_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Pengumuman" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Berita Acara</th>
+                                    <th>Tanggal Pengumuman</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
+                                        <input type="date" name="ba_pemenang_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal Pengumuman" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Persetujuan Direktur Utama</th>
+                                    <th>Nomor Permohonan Persetujuan Pemenang/Negosiasi</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
+                                        <input type="text" name="ba_pemenang_no_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no_persetujuan')" placeholder="Nomor Permohonan Persetujuan Pemenang/Negosiasi" class="form-control" value="<?= $row_rup['ba_pemenang_no_persetujuan'] ?>">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Permohonan persetujuan Pemenang/Negosiasi</th>
+                                    <th>
+                                        <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal Permohonan persetujuan Pemenang/Negosiasi" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>
                                 </tr>
                             </table>

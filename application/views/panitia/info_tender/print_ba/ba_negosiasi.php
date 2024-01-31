@@ -155,7 +155,12 @@ function terbilang($nilai)
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
-                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran Administrasi dan Teknis (File I) untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
+                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+
+                    <?php } else { ?>
+                        Administrasi dan Teknis (File I)
+                    <?php }
+                    ?> untuk Pekerjaan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator di Ruang Rapat PT Jasamarga Tollroad Operator dengan rincian sebagai berikut:
                 </p>
 
                 <ol type="I">

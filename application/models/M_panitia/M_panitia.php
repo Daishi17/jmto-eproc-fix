@@ -1257,6 +1257,17 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_peserta_tender_ba_pra_penawaran_terendahperingkat1($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat', 1);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_peserta_tender_count($id_rup)
     {
         $this->db->select('*');
@@ -2276,6 +2287,8 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
         $this->db->order_by('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
@@ -2376,7 +2389,9 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
-        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        // $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
         $query = $this->db->get();
         return $query->result_array();
     }

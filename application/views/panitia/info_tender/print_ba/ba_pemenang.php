@@ -179,7 +179,7 @@ function terbilang($nilai)
 
                 </div>
             </div>
-            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl'])) ?> telah mendapatkan Persetujuan <?= $row_rup['ba_pemenang_barang_jasa'] ?> PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
+            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no_persetujuan'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl_persetujuan']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> telah mendapatkan Persetujuan <?= $row_rup['ba_pemenang_barang_jasa'] ?> PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
 
             <div class="card">
                 <div class="card-header">
@@ -292,10 +292,10 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
-                                                                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                        </tr>
+                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                    <td class="text-center"><?= $i++ ?></td>
+                                                                                                                                                                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                                                                </tr>
                     <?php } ?>
                 </tbody>
             </table> -->

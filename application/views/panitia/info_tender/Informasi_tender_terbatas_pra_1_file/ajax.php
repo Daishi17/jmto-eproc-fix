@@ -1702,12 +1702,20 @@
                     } else {
                         var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
                     }
+                    if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == null) {
+                        var kesepakatan = '<small class="badge bg-warning">Belum Ada Kesepakatan</small>'
+                    } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'deal') {
+                        var kesepakatan = '<small class="badge bg-success">Deal</small>'
+                    } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'tidak_deal') {
+                        var kesepakatan = '<small class="badge bg-danger">Tidak Deal</small>'
+                    }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
                         '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
                         '<td>' + tanggal_negoasiasi + '</td>' +
                         '<td>' + lin_nego + '</td>' +
                         '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
+                        '<td>' + kesepakatan + '</td>' +
                         '</tr>';
                     '</tr>';
 
@@ -3177,4 +3185,10 @@
             }
         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
     });
+
+    $('.tanggal_negosiasi').datetimepicker({
+        timepicker: true,
+        datetimepicker: true,
+        format: 'Y-m-d H:i',
+    })
 </script>

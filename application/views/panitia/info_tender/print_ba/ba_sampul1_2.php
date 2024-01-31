@@ -130,7 +130,7 @@ function terbilang($nilai)
             </div>
             <center>
                 <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">BERITA ACARA</h4>
-                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN FILE I (ADMINISTRASI DAN TEKNIS)</h4>
+                <h4 class="text-uppercase font-weight-bold" style="line-height: 1;">PEMBUKAAN DOKUMEN PENAWARAN</h4>
                 <h5 class="text-uppercase font-weight-bold" style="line-height: 1;"><?= $row_rup['nama_rup'] ?> </h5>
             </center>
             <hr size="5">
@@ -209,6 +209,7 @@ function terbilang($nilai)
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Peserta</th>
+                                    <th>Harga Penawaran</th>
                                     <th>Kelengkapan Dokumen</th>
                                 </tr>
                             </thead>
@@ -219,6 +220,7 @@ function terbilang($nilai)
                                         <tr>
                                             <td><?= $i++ ?></td>
                                             <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                            <td><?= number_format($value['ev_terendah_harga'], 2, ",", "."); ?></td>
                                             <td>
                                                 <?php
 
@@ -282,6 +284,11 @@ function terbilang($nilai)
 
                             </tbody>
                         </table>
+                    </li>
+                    <br>
+                    <li class="mt-3">
+                        <p><b>PENETAPAN PENAWAR PERINGKAT KE-1 : </b></p>
+                        <p>Berdasarkan hasil pemeriksaan Dokumen Penawaran dan penilaian terhadap harga Penawar sebagaimana diatas dengan ini Panitia menetapkan bahwa peserta penawar berhak untuk mengikuti Rapat Klarifikasi Negosiasi adalah <b><?= $peserta_peringkat1['nama_usaha'] ?></b> dengan nilai penawaran sebesar <b>Rp. <?= number_format($value['ev_terendah_harga'], 2, ",", "."); ?></b> <i>(<?= terbilang($value['ev_terendah_harga']) ?>)</i> termasuk PPN 11%.</p>
                     </li>
 
                     <li class="mt-3">

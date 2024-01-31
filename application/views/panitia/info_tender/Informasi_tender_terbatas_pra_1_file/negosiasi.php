@@ -79,6 +79,7 @@
                                     <th>Tanggal Negosiasi</th>
                                     <th>Link Meet (Jika Daring)</th>
                                     <th>Aksi</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_vendor_negosiasi">
@@ -111,7 +112,7 @@
                     <br>
                     <div class="form-group">
                         <label for="">Tanggal Negosiasi</label>
-                        <input type="date" name="tanggal_negosiasi" class="form-control">
+                        <input type="datetime-local" name="tanggal_negosiasi" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
