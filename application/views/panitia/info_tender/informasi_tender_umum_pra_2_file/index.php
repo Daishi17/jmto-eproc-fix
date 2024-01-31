@@ -61,6 +61,10 @@
                             <th>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ",", "."); ?> </th>
                         </tr>
                         <tr>
+                            <th>Jangka Waktu Pelaksanaan Pekerjaan</th>
+                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari</th>
+                        </tr>
+                        <tr>
                             <th>Jadwal Pengadaan</th>
                             <th>
                                 <button type="button" class="btn btn-sm btn-primary" onclick="lihat_detail_jadwal('<?= $row_rup['id_url_rup'] ?>')">
