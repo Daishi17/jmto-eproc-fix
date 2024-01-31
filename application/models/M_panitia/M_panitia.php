@@ -1115,6 +1115,16 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+    public function get_mengikuti_vendor($id_vendor_mengikuti_paket)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_vendor_mengikuti_paket', $id_vendor_mengikuti_paket);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_mengikuti_deal_nego($id_rup)
     {
         $this->db->select('*');
