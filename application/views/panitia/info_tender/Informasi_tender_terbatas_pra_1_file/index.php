@@ -58,12 +58,6 @@
                             <th>Nilai HPS</th>
                             <th>Rp. <?= number_format($row_rup['total_hps_rup'], 2, ",", "."); ?> </th>
                         </tr>
-
-                        <tr>
-                            <th>Jangka Waktu Pelaksanaan Pekerjaan</th>
-                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari</th>
-                        </tr>
-
                         <tr>
                             <th>Jadwal Pengadaan</th>
                             <th>
@@ -1735,13 +1729,9 @@
                     }
                 }
             </style>
-                <div class="loader_before mt-2 mb-2" style="display: block;">
-                            <a class="btn btn-success btn_kirim_pengumuman" onclick="Kirim_pengumuman('<?= $row_rup['id_url_rup'] ?>')"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim Pengumuman</a>
-                        </div>
             <?php if ($role_panitia['role_panitia'] == 1 || $role_panitia['role_panitia'] == 2) { ?>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 
                     <?php if ($row_rup['sts_pengumuman_rup_trakhir'] == 1) { ?>
                         <button class="btn btn-warning" disabled><i class="fa fa-paper-plane" aria-hidden="true"></i> Pengumuman Pemenang Sudah Dikirim</button>
                     <?php } else { ?>
