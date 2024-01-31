@@ -406,8 +406,8 @@
                                     <small>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text">Rp.</span>
-                                            <input id="nilai_pencatatan2" type="text" value="<?= "Rp " . number_format($row_rup['nilai_pencatatan']) ?>" class="form-control" placeholder="Nilai Pencatatan" readonly style="background-color: #ffffe0;">
-                                            <input type="hidden" name="nilai_pencatatan">
+                                            <input id="nilai_pencatatan2" type="text" value="<?= "Rp " . number_format($row_rup['nilai_pencatatan'], 2, ",", ".") ?>" class="form-control" placeholder="Nilai Pencatatan" readonly style="background-color: #ffffe0;">
+                                            <input type="hidden" name="nilai_pencatatan" value="<?= $row_rup['nilai_pencatatan'] ?>">
                                         </div>
                                         <!-- persen_pencatatan -->
                                         <small class="text-danger persen_pencatatan_validation"></small>

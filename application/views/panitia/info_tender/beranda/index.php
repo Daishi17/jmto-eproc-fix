@@ -76,7 +76,7 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>
@@ -110,7 +110,7 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>
@@ -141,7 +141,7 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>
@@ -188,13 +188,13 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                              
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -222,7 +222,7 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>
@@ -269,7 +269,7 @@
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
                                                 <th class="col-1"><small class="text-white">Status</small></th>
                                                 <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
+                                                        <div class="text-center">Keterangan</div>
                                                     </small></th>
                                             </tr>
                                         </thead>

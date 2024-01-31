@@ -363,12 +363,12 @@
                         <tr>
                             <th>Pembukaan Penawaran</th>
                             <th>
-                                <?php if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file1['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                                <?php if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-primary" disabled>
                                         <i class="fa fa-folder-open" aria-hidden="true"></i> Belum Memasuki Tahap Ini
                                     </button>
 
-                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file1['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembukaan_file1['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                                <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_presentasi_evaluasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#buka_dokumen_penawaran">
                                         <i class="fa fa-folder-open" aria-hidden="true"></i> Buka Dokumen Penawaran
                                     </button>
@@ -433,7 +433,7 @@
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no_2']) { ?>
-                                                                <th>Berita Acara Pembukaan Dokumen Penawaran File I (Administrasi Dan Teknis)</th>
+                                                                <th>Berita Acara Pembukaan Penawaran Tender Terbatas Satu File</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/informasi_tender_terbatas_pra_1_file/ba_sampul_I_2/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -634,7 +634,7 @@
                     <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
                     <option value="10">4. Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
                     <option value="3">5. Berita Acara Pembukaan File I</option>
-                    <option value="14">5.1 Berita Acara Pembukaan File I</option>
+                    <option value="14">5.1 Berita Acara Pembukaan Penawaran Tender Terbatas Satu File</option>
                     <option value="4">6. Undangan Rapat Presentasi Teknis</option>
                     <option value="11">7. Berita Acara Presentasi Teknis Tender</option>
                     <option value="5">8. Berita Acara Hasil Evaluasi Teknis</option>

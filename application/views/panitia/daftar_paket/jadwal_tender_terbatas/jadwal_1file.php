@@ -61,6 +61,8 @@
                                     $benertext_detail = 1;
                                     $erorr_row_detail = 1;
                                     $name_jadwal_detail = 1;
+                                    $input_mulai = 1;
+                                    $input_selesai = 1;
                                     $i = 1;
                                     foreach ($jadwal as  $value2) { ?>
                                         <tr id="erorr_jadwal_row<?= $erorr_row_detail++ ?>">
@@ -74,11 +76,11 @@
                                             </div>
                                             <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
                                                 <?php if ($value2['sts_perubahan_jadwal'] == 1) { ?>
-                                                    <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= date('Y-m-d H:i', strtotime($value2['waktu_mulai'])) ?>" type="text"></td>
-                                                    <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
+                                                    <td><input class="form-control form-control-sm input_mulai<?= $input_mulai++ ?>" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= date('Y-m-d H:i', strtotime($value2['waktu_mulai'])) ?>" type="text"></td>
+                                                    <td><input class="form-control form-control-sm input_selesai<?= $input_selesai++ ?>" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
                                                 <?php } else { ?>
-                                                    <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" value="<?= $value2['waktu_mulai'] ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
-                                                    <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" value="<?= $value2['waktu_selesai']  ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
+                                                    <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" value="<?= $value2['waktu_mulai'] ?>" id="mulai<?= $mulai_detail++ ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
+                                                    <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" value="<?= $value2['waktu_selesai']  ?>" id="selesai<?= $selesai_detail++ ?>" type="text" style="background-color: #e9e9e9;" readonly></td>
                                                 <?php  } ?>
 
                                                 <td>
@@ -113,8 +115,8 @@
                                                 </td>
 
                                             <?php } else { ?>
-                                                <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= $value2['waktu_mulai'] ?>" type="text"></td>
-                                                <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
+                                                <td><input class="form-control form-control-sm input_mulai<?= $input_mulai++ ?>" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= $value2['waktu_mulai'] ?>" type="text"></td>
+                                                <td><input class="form-control form-control-sm input_selesai<?= $input_selesai++ ?>" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
                                                 <td>
                                                     <?php if ($value2['waktu_mulai'] == '' && $value2['waktu_selesai'] == '') { ?>
                                                         <?php if ($i == 1) { ?>

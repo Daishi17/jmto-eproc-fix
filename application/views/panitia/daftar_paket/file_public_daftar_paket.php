@@ -333,6 +333,7 @@
             }
         })
     }
+
     function beban_anggaran(type) {
         var beban_tahun_anggaran = $('[name="beban_tahun_anggaran"]').val();
         var url_update_rup2 = $('[name="url_update_rup2"]').val();
@@ -2047,6 +2048,7 @@
                     },
                     willClose: () => {
                         clearInterval(timerInterval)
+                        form_simpan_syarat_tambahan[0].reset()
                         Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                         $('.file_syarat_tambahan_btn').attr("disabled", false);
                         get_syarat_tambahan()

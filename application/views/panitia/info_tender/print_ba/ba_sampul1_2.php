@@ -325,9 +325,9 @@ function terbilang($nilai)
 
                                 </td>
                                 <td class="text-center">
-                                    <?php if ($value['sts_ba_sampul1'] == 1) { ?>
+                                    <?php if ($value['sts_ba_sampul1_2'] == 1) { ?>
                                         <span class="badge bg-success text-white">Setuju</span>
-                                    <?php  } else if ($value['sts_ba_sampul1'] == 2) { ?>
+                                    <?php  } else if ($value['sts_ba_sampul1_2'] == 2) { ?>
                                         <span class="badge bg-danger text-white">Tidak Setuju</span>
                                     <?php  } else { ?>
                                         <span class="badge bg-success">Belum Di Ceklist</span>
