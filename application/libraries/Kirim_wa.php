@@ -78,8 +78,8 @@ class Kirim_wa
 
     public function kirim_wa_pengumuman($id_rup, $message)
     {
-        $token = '3HGKVEwLaF7rIt@ZhVcV';
-        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        // $token = '3HGKVEwLaF7rIt@ZhVcV';
+        $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         if ($row_rup['id_jadwal_tender'] == 9) {
             $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
