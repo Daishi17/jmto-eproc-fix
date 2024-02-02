@@ -2961,4 +2961,36 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         $this->M_panitia->update_mengikuti($data, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
+
+    public function pakta_integritas($id_vendor_mengikuti_paket)
+    {
+        $data['vendor'] = $this->M_panitia->get_mengikuti_vendor($id_vendor_mengikuti_paket);
+        $data['rup'] = $this->M_panitia->get_rup($data['vendor']['id_rup']);
+        $data['nama_usaha'] = $data['vendor']['nama_usaha'];
+        $this->load->view('panitia/info_tender/surat_pernyataan_penyedia/pakta_integritas', $data);
+    }
+
+    public function surat_pernyataan_minat($id_vendor_mengikuti_paket)
+    {
+        $data['vendor'] = $this->M_panitia->get_mengikuti_vendor($id_vendor_mengikuti_paket);
+        $data['rup'] = $this->M_panitia->get_rup($data['vendor']['id_rup']);
+        $data['nama_usaha'] = $data['vendor']['nama_usaha'];
+        $this->load->view('panitia/info_tender/surat_pernyataan_penyedia/surat_pernyataan_minat', $data);
+    }
+
+    public function surat_kebenaran_data($id_vendor_mengikuti_paket)
+    {
+        $data['vendor'] = $this->M_panitia->get_mengikuti_vendor($id_vendor_mengikuti_paket);
+        $data['rup'] = $this->M_panitia->get_rup($data['vendor']['id_rup']);
+        $data['nama_usaha'] = $data['vendor']['nama_usaha'];
+        $this->load->view('panitia/info_tender/surat_pernyataan_penyedia/surat_kebenaran_data', $data);
+    }
+
+    public function surat_pernyataan($id_vendor_mengikuti_paket)
+    {
+        $data['vendor'] = $this->M_panitia->get_mengikuti_vendor($id_vendor_mengikuti_paket);
+        $data['rup'] = $this->M_panitia->get_rup($data['vendor']['id_rup']);
+        $data['nama_usaha'] = $data['vendor']['nama_usaha'];
+        $this->load->view('panitia/info_tender/surat_pernyataan_penyedia/surat_pernyataan', $data);
+    }
 }

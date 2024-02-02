@@ -281,6 +281,69 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-header bg-primary text-white">
+                                                    Surat Pernyataan Penyedia
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <td rowspan="2">No</td>
+                                                                <td rowspan="2">Nama Penyedia</td>
+                                                                <td colspan="4">Surat Pernyataan</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Pakta Integritas</td>
+                                                                <td>Surat Pernyataan Minat</td>
+                                                                <td>Surat Pernyataan Kebenaran Data <br> Dalam Formulir Isian Kualifikasi
+                                                                </td>
+                                                                <td>Surat Pernyataan</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $no = 1;
+                                                            foreach ($peserta_tender as $key => $value) { ?>
+                                                                <tr>
+                                                                    <td scope="row"><?= $no++ ?></td>
+                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_2'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_pernyataan_minat' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_3'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_kebenaran_data' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_4'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_pernyataan' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </th>
                             </tr>
@@ -307,6 +370,69 @@
                                                         </thead>
                                                         <tbody>
 
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-header bg-primary text-white">
+                                                    Surat Pernyataan Penyedia
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <td rowspan="2">No</td>
+                                                                <td rowspan="2">Nama Penyedia</td>
+                                                                <td colspan="4">Surat Pernyataan</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Pakta Integritas</td>
+                                                                <td>Surat Pernyataan Minat</td>
+                                                                <td>Surat Pernyataan Kebenaran Data <br> Dalam Formulir Isian Kualifikasi
+                                                                </td>
+                                                                <td>Surat Pernyataan</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $no = 1;
+                                                            foreach ($peserta_tender as $key => $value) { ?>
+                                                                <tr>
+                                                                    <td scope="row"><?= $no++ ?></td>
+                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_2'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_pernyataan_minat' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_3'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_kebenaran_data' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php if ($value['sts_suratpernyataan_4'] == 1) { ?>
+                                                                            <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/surat_pernyataan' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
+                                                                        <?php  } else { ?>
+                                                                            <span class="badge bg-danger">Belum Menyetujui</span>
+                                                                        <?php   } ?>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
