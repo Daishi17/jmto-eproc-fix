@@ -711,6 +711,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
+        $this->db->order_by('tbl_panitia.role_panitia');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -1143,6 +1144,19 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_peserta_tender2($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3048,5 +3062,128 @@ class M_panitia extends CI_Model
         $this->db->where('id_rup', $id_rup);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    var $order_keuangan =  array('id_vendor_keuangan', 'tahun_lapor', 'file_laporan_auditor', 'file_laporan_keuangan', 'sts_validasi', 'id_vendor_keuangan');
+    private function _get_data_query_keuangan($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_keuangan');
+        $this->db->join('tbl_vendor', 'tbl_vendor_keuangan.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_keuangan.id_vendor', $id_vendor);
+        $i = 0;
+        foreach ($this->order_keuangan as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_keuangan) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_keuangan[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_vendor_keuangan.id_vendor', 'ASC');
+        }
+    }
+
+    public function gettable_keuangan($id_vendor) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_keuangan($id_vendor); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_filtered_keuangan($id_vendor)
+    {
+        $this->_get_data_query_keuangan($id_vendor); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all_keuangan($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_keuangan');
+        $this->db->where('tbl_vendor_keuangan.id_vendor', $id_vendor);
+        return $this->db->count_all_results();
+    }
+
+    var $order_neraca_keuangan = array('id_vendor', 'no_kontrak', 'nama_pekerjaan', 'id_jenis_usaha', 'tanggal_kontrak', 'instansi_pemberi', 'nilai_kontrak', 'id_vendor', 'id_vendor');
+
+    private function _get_data_query_neraca_keuangan($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_neraca_keuangan');
+        $this->db->join('tbl_vendor', 'tbl_vendor_neraca_keuangan.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_neraca_keuangan.id_vendor', $id_vendor);
+        $i = 0;
+        foreach ($this->order_nib as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_pengalaman_excel) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_pengalaman_excel[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_vendor_neraca_keuangan.id_vendor', 'DESC');
+        }
+    }
+
+    public function gettable_neraca_keuangan($id_vendor) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_neraca_keuangan($id_vendor); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function count_filtered_data_neraca_keuangan($id_vendor)
+    {
+        $this->_get_data_query_neraca_keuangan($id_vendor); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+
+    public function count_all_data_neraca_keuangan($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_neraca_keuangan');
+        $this->db->where('tbl_vendor_neraca_keuangan.id_vendor', $id_vendor);
+        return $this->db->count_all_results();
     }
 }

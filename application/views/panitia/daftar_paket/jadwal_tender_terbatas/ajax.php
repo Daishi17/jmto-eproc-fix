@@ -19,12 +19,12 @@
 
 <!-- row_1 -->
 <script>
-    $('#mulai1').datetimepicker({
+    $('.input_mulai1').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-    $('#selesai1').datetimepicker({
+    $('.input_selesai1').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -54,13 +54,12 @@
 <!-- selesai2 -->
 <!-- selesai1 -->
 <script>
-    $('#mulai2').datetimepicker({
+    $('.input_mulai2').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai2').datetimepicker({
+    $('.input_selesai2').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -108,13 +107,12 @@
 <!-- selesai3 -->
 <!-- selesai2 -->
 <script>
-    $('#mulai3').datetimepicker({
+    $('.input_mulai3').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai3').datetimepicker({
+    $('.input_selesai3').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -163,13 +161,12 @@
 <!-- selesai4 -->
 <!-- selesai3 -->
 <script>
-    $('#mulai4').datetimepicker({
+    $('.input_mulai4').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai4').datetimepicker({
+    $('.input_selesai4').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -218,13 +215,12 @@
 <!-- selesai5 -->
 <!-- selesai4 -->
 <script>
-    $('#mulai5').datetimepicker({
+    $('.input_mulai5').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai5').datetimepicker({
+    $('.input_selesai5').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -272,13 +268,12 @@
 <!-- selesai6 -->
 <!-- selesai5 -->
 <script>
-    $('#mulai6').datetimepicker({
+    $('.input_mulai6').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai6').datetimepicker({
+    $('.input_selesai6').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -327,13 +322,12 @@
 <!-- selesai7 -->
 <!-- selesai6 -->
 <script>
-    $('#mulai7').datetimepicker({
+    $('.input_mulai7').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai7').datetimepicker({
+    $('.input_selesai7').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -381,13 +375,12 @@
 <!-- selesai8 -->
 <!-- selesai7 -->
 <script>
-    $('#mulai8').datetimepicker({
+    $('.input_mulai8').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai8').datetimepicker({
+    $('.input_selesai8').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -435,13 +428,12 @@
 <!-- selesai9 -->
 <!-- selesai8 -->
 <script>
-    $('#mulai9').datetimepicker({
+    $('.input_mulai9').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai9').datetimepicker({
+    $('.input_selesai9').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -489,13 +481,12 @@
 <!-- selesai10 -->
 <!-- selesai9 -->
 <script>
-    $('#mulai10').datetimepicker({
+    $('.input_mulai10').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai10').datetimepicker({
+    $('.input_selesai10').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -544,13 +535,12 @@
 <!-- selesai11 -->
 <!-- selesai10 -->
 <script>
-    $('#mulai11').datetimepicker({
+    $('.input_mulai11').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai11').datetimepicker({
+    $('.input_selesai11').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -598,13 +588,12 @@
 <!-- selesai12 -->
 <!-- selesai11 -->
 <script>
-    $('#mulai12').datetimepicker({
+    $('.input_mulai12').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai12').datetimepicker({
+    $('.input_selesai12').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -652,13 +641,12 @@
 <!-- selesai13 -->
 <!-- selesai12 -->
 <script>
-    $('#mulai13').datetimepicker({
+    $('.input_mulai13').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai13').datetimepicker({
+    $('.input_selesai13').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -706,13 +694,12 @@
 <!-- selesai14 -->
 <!-- selesai13 -->
 <script>
-    $('#mulai14').datetimepicker({
+    $('.input_mulai14').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai14').datetimepicker({
+    $('.input_selesai14').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -760,13 +747,12 @@
 <!-- selesai15 -->
 <!-- selesai14 -->
 <script>
-    $('#mulai15').datetimepicker({
+    $('.input_mulai15').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai15').datetimepicker({
+    $('.input_selesai15').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -814,13 +800,12 @@
 <!-- selesai16 -->
 <!-- selesai15 -->
 <script>
-    $('#mulai16').datetimepicker({
+    $('.input_mulai16').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai16').datetimepicker({
+    $('.input_selesai16').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -868,13 +853,12 @@
 <!-- selesai17 -->
 <!-- selesai16 -->
 <script>
-    $('#mulai17').datetimepicker({
+    $('.input_mulai17').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai17').datetimepicker({
+    $('.input_selesai17').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -922,13 +906,12 @@
 <!-- selesai18 -->
 <!-- selesai17 -->
 <script>
-    $('#mulai18').datetimepicker({
+    $('.input_mulai18').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai18').datetimepicker({
+    $('.input_selesai18').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -977,13 +960,12 @@
 <!-- selesai19 -->
 <!-- selesai18 -->
 <script>
-    $('#mulai19').datetimepicker({
+    $('.input_mulai19').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai19').datetimepicker({
+    $('.input_selesai19').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -1032,13 +1014,12 @@
 <!-- selesai20 -->
 <!-- selesai19 -->
 <script>
-    $('#mulai20').datetimepicker({
+    $('.input_mulai20').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai20').datetimepicker({
+    $('.input_selesai20').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -1087,13 +1068,12 @@
 <!-- selesai21 -->
 <!-- selesai20 -->
 <script>
-    $('#mulai21').datetimepicker({
+    $('.input_mulai21').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-
-    $('#selesai21').datetimepicker({
+    $('.input_selesai21').datetimepicker({
         timepicker: true,
         datetimepicker: true,
         format: 'Y-m-d H:i',
@@ -1236,48 +1216,6 @@
             $("#erorr_jadwal_row4").css("background-color", "red");
             $("#erorr_jadwal_row4").css("color", "white");
             $('.btnSave').attr('disabled', 'disabled');
-        } else if (selesai5.getTime() < mulai5.getTime()) {
-            $('#error-jadwal5').show();
-            $("#erorr_jadwal_row5").css("background-color", "red");
-            $("#erorr_jadwal_row5").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai5.getTime() < selesai4.getTime()) {
-            $('#error-jadwal5').show();
-            $("#erorr_jadwal_row5").css("background-color", "red");
-            $("#erorr_jadwal_row5").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (selesai6.getTime() < mulai6.getTime()) {
-            $('#error-jadwal6').show();
-            $("#erorr_jadwal_row6").css("background-color", "red");
-            $("#erorr_jadwal_row6").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai6.getTime() < selesai5.getTime()) {
-            $('#error-jadwal6').show();
-            $("#erorr_jadwal_row6").css("background-color", "red");
-            $("#erorr_jadwal_row6").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (selesai7.getTime() < mulai7.getTime()) {
-            $('#error-jadwal7').show();
-            $("#erorr_jadwal_row7").css("background-color", "red");
-            $("#erorr_jadwal_row7").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai7.getTime() < selesai6.getTime()) {
-            $('#error-jadwal7').show();
-            $("#erorr_jadwal_row7").css("background-color", "red");
-            $("#erorr_jadwal_row7").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (selesai8.getTime() < mulai8.getTime()) {
-            $('#error-jadwal8').show();
-            $("#erorr_jadwal_row8").css("background-color", "red");
-            $("#erorr_jadwal_row8").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai8.getTime() < selesai7.getTime()) {
-            $('#error-jadwal8').show();
-            $("#erorr_jadwal_row8").css("background-color", "red");
-            $("#erorr_jadwal_row8").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-            // 9
-            // 8
         } else if (selesai9.getTime() < mulai9.getTime()) {
             $('#error-jadwal9').show();
             $("#erorr_jadwal_row9").css("background-color", "red");
@@ -1472,7 +1410,7 @@
             },
             success: function(response) {
                 if (response == 'success') {
-                     update_batas_tender()
+                    update_batas_tender()
                     Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                     form_jadwal_tender_terbatas[0].reset();
                     $('.btnSave').attr('disabled', false);
@@ -1523,7 +1461,7 @@
             },
             dataType: "JSON",
             success: function(response) {
-                 update_batas_tender()
+                update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                 update_batas_tender()
                 window.location.href = '';
@@ -1541,7 +1479,7 @@
             },
             dataType: "JSON",
             success: function(response) {
-                 update_batas_tender()
+                update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                 window.location.href = '';
             }
@@ -1605,7 +1543,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
-                             update_batas_tender()
+                            update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_ubah_jadwal[0].reset();
                             $('.btn_save_jadwal').attr("disabled", false)
@@ -1641,7 +1579,7 @@
             processData: false,
             success: function(response) {
                 if (response['error']) {
-                     update_batas_tender()
+                    update_batas_tender()
                     Swal.fire('Maaf Jadwal Udah Ada Yang Acc Nih!', '', 'warning')
                     // $("#alasan").html(response['error']['alasan']);
                 } else {
@@ -1660,7 +1598,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
-                             update_batas_tender()
+                            update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_acc_jadwal[0].reset();
                             $('#modal_acc_jadwal').modal('hide');

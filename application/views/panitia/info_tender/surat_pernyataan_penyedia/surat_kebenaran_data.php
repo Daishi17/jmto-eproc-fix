@@ -3,7 +3,7 @@
 
 <head>
     <title>SURAT PERNYATAAN
-        KEBENARAN DATA DALAM FORMULIR ISIAN KUALIFIKASI
+        KEBENARAN DATA
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -128,14 +128,13 @@ function terbilang($nilai)
             <img class="pull-right" alt="LOGO" src="<?= base_url() ?>assets/logo_ba/logo_ba.png" width="50%" style="opacity: 0.5;" />
         </div>
         <center>
-            <h4>SURAT PERNYATAAN <br>
-                KEBENARAN DATA DALAM FORMULIR ISIAN KUALIFIKASI
+            <h4>SURAT PERNYATAAN KEBENARAN DATA
             </h4>
         </center>
         <br>
-        <label for="">Kami atas nama Pengurus <b><?= $nama_usaha ?></b> dalam rangka <b><?= $rup['nama_rup'] ?></b> menyatakan dengan sesungguhnya bahwa semua data yang disampaikan dalam Formulir Isian Kualifikasi untuk <b><?= $rup['nama_rup'] ?></b> adalah BENAR. </label>
+        <label for="">Kami atas nama Pengurus <b><?= $nama_usaha ?></b> menyatakan dengan sesungguhnya bahwa semua data yang disampaikan dalam proses pengadaan untuk <b><?= $rup['nama_rup'] ?></b> adalah BENAR. </label>
         <br>
-        <label for="">Jika dikemudian hari ditemukan penipuan/pemalsuan atas data-data yang disampaikan tersebut, maka <b><?= $nama_usaha ?></b> dan Saya yang bertindak untuk dan atas nama <b><?= $rup['nama_rup'] ?></b> bersedia dikenakan Sanksi berupa : </label>
+        <label for="">Jika dikemudian hari ditemukan penipuan/pemalsuan atas data-data yang disampaikan tersebut, maka kami atas nama pengurus <b><?= $nama_usaha ?></b> bersedia dikenakan Sanksi berupa : </label>
         <ol>
             <li>) Peserta langsung dinyatakan gugur; dan</li>
             <li>) Jaminan Penawaran disita dan menjadi hak Pengguna Jasa; dan</li>

@@ -288,16 +288,16 @@ function terbilang($nilai)
                         <p><b>DAFTAR LAMPIRAN YANG MENGIKAT BERITA ACARA INI : </b></p>
                         <table>
                             <tr>
-                                <td>Lampiran A</td>
-                                <td>&ensp;&ensp;Dokumen <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dan Addendumnya (Jika Ada)</td>
+                                <td width="150px">Lampiran A</td>
+                                <td>Dokumen <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dan Addendumnya (Jika Ada)</td>
                             </tr>
                             <tr>
-                                <td>Lampiran B</td>
-                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 81/KPTS-JMTO/2023 tanggal 01 agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
+                                <td width="150px">Lampiran B</td>
+                                <td>Keputusan Direksi Nomor : 81/KPTS-JMTO/2023 tanggal 01 agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
                             </tr>
                             <tr>
-                                <td>Lampiran C</td>
-                                <td>&ensp;&ensp;Dokumen Penawaran dari penyedia jasa</td>
+                                <td width="150px">Lampiran C</td>
+                                <td>Dokumen Penawaran dari penyedia jasa</td>
                             </tr>
                         </table>
                     </li>

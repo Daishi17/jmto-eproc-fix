@@ -383,6 +383,74 @@
                     $('#modal_kelengkapan_file2').modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                } else if (type == 'neraca_keuangan') {
+                    $('#lihat_neraca_keuangan').modal('show')
+                    $('#nama_usaha_tambahan2').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $(document).ready(function() {
+                        $('#tbl_neraca_keuangan').DataTable({
+                            "responsive": false,
+                            "ordering": true,
+                            "processing": true,
+                            "serverSide": true,
+                            "autoWidth": false,
+                            "bDestroy": true,
+                            // "buttons": ["excel", "pdf", "print", "colvis"],
+                            initComplete: function() {
+                                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+                            },
+                            "order": [],
+                            "ajax": {
+                                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_table_nerca_keuangan/') ?>' + response['row_vendor_mengikuti'].id_vendor,
+                                "type": "POST",
+                            },
+                            "columnDefs": [{
+                                "target": [-1],
+                                "orderable": false
+                            }],
+                            "oLanguage": {
+                                "sSearch": "Pencarian : ",
+                                "sEmptyTable": "Data Tidak Tersedia",
+                                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                                "sProcessing": "Memuat Data...."
+                            }
+                        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+                    });
+                } else if (type == 'laporan_keuangan') {
+                    $('#lihat_laporan_keuangan').modal('show')
+                    $('#nama_usaha_tambahan3').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $(document).ready(function() {
+                        $('#tbl_laporan_keuangan').DataTable({
+                            "responsive": false,
+                            "ordering": true,
+                            "processing": true,
+                            "serverSide": true,
+                            "autoWidth": false,
+                            "bDestroy": true,
+                            // "buttons": ["excel", "pdf", "print", "colvis"],
+                            initComplete: function() {
+                                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+                            },
+                            "order": [],
+                            "ajax": {
+                                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_keuangan/') ?>' + response['row_vendor_mengikuti'].id_vendor,
+                                "type": "POST",
+                            },
+                            "columnDefs": [{
+                                "target": [-1],
+                                "orderable": false
+                            }],
+                            "oLanguage": {
+                                "sSearch": "Pencarian : ",
+                                "sEmptyTable": "Data Tidak Tersedia",
+                                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                                "sProcessing": "Memuat Data...."
+                            }
+                        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+                    });
                 }
 
             }
@@ -1486,7 +1554,7 @@
         })
     }
 
-    
+
     var form_sanggahan_akhir = $('#form_sanggahan_akhir')
     form_sanggahan_akhir.on('submit', function(e) {
         var url_upload_sanggahan_akhir = $('[name="url_upload_sanggahan_akhir"]').val();

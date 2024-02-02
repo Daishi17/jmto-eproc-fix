@@ -6,6 +6,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
 {
     // var $link_vendor = 'http://localhost/jmto-vms/file_paket/';
     var $link_vendor = 'https://jmto-vms.kintekindo.net/file_paket/';
+    var $dok_vendor  = 'https://drtproc.jmto.co.id/file_vms/';
     function __construct()
     {
         parent::__construct();
@@ -37,8 +38,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         }
         $get_id_vendor = implode(",", $id_vendor_lolos);
         $get_vendor_mengikuti =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($data['row_rup']['id_rup'], $get_id_vendor);
-        $data['peserta_tender2'] = $get_vendor_mengikuti;
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender2'] = $this->M_panitia->get_peserta_tender2($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
@@ -1130,20 +1131,36 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                     <i class="fa-solid fa-edit"></i>
                     <small>Belum Memasuki Tahap Ini</small>
                 </button>
-              </div>';
+              </div> ';
             } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
                 </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','neraca_keuangan'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Neraca Keuangan</small>
+                </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','laporan_keuangan'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Laporan Keuangan</small>
+                </a>
               </div>';
             } else {
                 $row[] = '<div class="text-center">
-                <button href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" disabled>
+                <button href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
                 </button>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','neraca_keuangan'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Neraca Keuangan</small>
+                </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','laporan_keuangan'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Laporan Keuangan</small>
+                </a>
               </div>';
             }
 
@@ -2992,5 +3009,79 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['rup'] = $this->M_panitia->get_rup($data['vendor']['id_rup']);
         $data['nama_usaha'] = $data['vendor']['nama_usaha'];
         $this->load->view('panitia/info_tender/surat_pernyataan_penyedia/surat_pernyataan', $data);
+    }
+
+    public function get_table_nerca_keuangan($id_vendor)
+    {
+        $resultss = $this->M_panitia->gettable_neraca_keuangan($id_vendor);
+        $data = [];
+        $no = $_POST['start'];
+        $nama_usaha = $this->session->userdata('nama_usaha');
+        $date = date('Y');
+        $file_path = 'file_vms/' . $nama_usaha . '/Neraca';
+        foreach ($resultss as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            if ($rs->sts_token_dokumen == 1) {
+                $row[] = '<label for="" style="white-space: nowrap; 
+				width: 100px; 
+				overflow: hidden;
+				text-overflow: ellipsis;">' . $rs->file_dokumen_neraca . '</label>';
+            } else {
+                $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Neraca/' . $rs->file_dokumen_neraca . '"  class="btn btn-sm btn-warning btn-block">' . $rs->file_dokumen_neraca . '</a>';
+            }
+            if ($rs->sts_token_dokumen == 2) {
+                $row[] = '<center>
+            	<a href="javascript:;" class="btn btn-success btn-sm shadow-lg"  <i class="fa-solid fa-lock px-1"></i> Enkrip</a></center>';
+            } else {
+                $row[] = '<center>
+            	<a href="javascript:;" class="btn btn-warning btn-sm shadow-lg"  <i class="fa-solid fa-lock-open px-1"></i> Dekrip</a></center>';
+            }
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_data_neraca_keuangan($id_vendor),
+            "recordsFiltered" => $this->M_panitia->count_filtered_data_neraca_keuangan($id_vendor),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    function get_keuangan($id_vendor)
+    {
+        $result = $this->M_panitia->gettable_keuangan($id_vendor);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($result as $rs) {
+
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->tahun_lapor;
+            $row[] = $rs->jenis_audit;
+            if ($rs->jenis_audit == 'Audit') {
+                if ($rs->sts_token_dokumen == 1) {
+                    $row[] = '<center><span class="badge bg-danger text-white">Terenkripsi <i class="fa-solid fa-lock px-1"></i> </span></center>';
+                } else {
+                    $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Laporan_keuangan/' . $rs->file_laporan_auditor . '" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;"  class="btn btn-sm btn-warning btn-block">' . $rs->file_laporan_auditor . '</a>';
+                }
+            } else {
+                $row[] = '<span class="badge bg-secondary">Tidak Audit</span>';
+            }
+
+            if ($rs->sts_token_dokumen == 1) {
+                $row[] = '<center><span class="badge bg-danger text-white">Terenkripsi <i class="fa-solid fa-lock px-1"></i></span></center>';
+            } else {
+                $row[] = '<a href="javascript:;" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;" onclick="DownloadFile_keuangan(\'' . $rs->id_url . '\')" class="btn btn-sm btn-warning btn-block">' . $rs->file_laporan_keuangan . '</a>';
+            }
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_keuangan($id_vendor),
+            "recordsFiltered" => $this->M_panitia->count_filtered_keuangan($id_vendor),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 }

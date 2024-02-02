@@ -32,19 +32,19 @@
                         <!-- test -->
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-file1" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Dokumen Pengadaan File I</button>
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-file1" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Dokumen Penawaran File I</button>
                             </li>
                             <?php if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                 <!-- belom mulai -->
 
                             <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembukaan_file2['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Penawaran File II</button>
                                 </li>
 
                             <?php    } else { ?>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Pengadaan File II</button>
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-file2" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Dokumen Penawaran File II</button>
                                 </li>
 
                             <?php    } ?>
@@ -58,7 +58,7 @@
                     <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                         <div class="flex-grow-1 bd-highlight">
                             <span class="text-dark">
-                                <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Dokumen Pengadaan</strong></small>
+                                <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Dokumen Penawaran</strong></small>
                             </span>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <div class="tab-pane fade show active" id="pills-file1" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div class="card">
                                     <div class="card-header bg-primary text-white">
-                                        Dokumen Pengadaan File I
+                                        Dokumen Penawaran File I
                                     </div>
                                     <div class="card-body">
                                         <table id="table_vendor_mengikuti_paket" class="table table-stripped table-bordered">
@@ -75,7 +75,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nama Peserta</th>
-                                                    <th>Lihat & Download Dokumen Pengadaan</th>
+                                                    <th class="text-center">Periksa Dokumen Penawaran</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,17 +88,14 @@
                             <div class="tab-pane fade" id="pills-file2" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 <div class="card">
                                     <div class="card-header bg-danger text-white">
-                                        Dokumen Pengadaan File II
+                                        Dokumen Penawaran File II
                                     </div>
                                     <div class="card-body">
                                         <table id="table_vendor_mengikuti_paket_penawaran_II" class="table table-stripped table-bordered">
                                             <thead>
                                                 <th>No</th>
                                                 <th>Nama Peserta</th>
-                                                <!-- <th>Nilai Penawaran</th>
-                                                                                                                                                                                                                        <th>TKDN/PDN/IMPORT</th>
-                                                                                                                                                                                                                        <th>Persentase TKDN/PDN/IMPORT </th> -->
-                                                <th>Lihat Dok Penawaran</th>
+                                                <th>Periksa Dokumen Penawaran</th>
                                             </thead>
                                             <tbody>
 
