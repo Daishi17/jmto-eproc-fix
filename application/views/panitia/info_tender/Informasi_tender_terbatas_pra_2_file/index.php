@@ -327,7 +327,7 @@
                                                             <tr>
                                                                 <td>Pakta Integritas</td>
                                                                 <td>Surat Pernyataan Minat</td>
-                                                                <td>Surat Pernyataan Kebenaran Data <br> Dalam Formulir Isian Kualifikasi
+                                                                <td>Surat Pernyataan Kebenaran Data
                                                                 </td>
                                                                 <td>Surat Pernyataan</td>
                                                             </tr>
