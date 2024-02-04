@@ -3134,7 +3134,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_neraca_keuangan.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_neraca_keuangan.id_vendor', $id_vendor);
         $i = 0;
-        foreach ($this->order_nib as $item) // looping awal
+        foreach ($this->order_neraca_keuangan as $item) // looping awal
         {
             if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
             {
@@ -3150,7 +3150,7 @@ class M_panitia extends CI_Model
                     );
                 }
 
-                if (count($this->order_pengalaman_excel) - 1 == $i)
+                if (count($this->order_neraca_keuangan) - 1 == $i)
                     $this->db->group_end();
             }
             $i++;

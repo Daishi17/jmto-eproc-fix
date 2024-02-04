@@ -1,5 +1,4 @@
 <main class="container">
-    <input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">
     <style>
         .btn-grad5 {
             width: 100%;
@@ -441,20 +440,18 @@
                                 <th>Nama Metode Pemilihan </th>
                                 <td><?= $row_rup['metode_kualifikasi'] ?></td>
                             </tr>
-
                             <tr>
                                 <th>Nama Tempat </th>
-                                <td><input type="text" name="aanwijzing_pq_tempat" class="form-control" placeholder="Nama Tempat" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_tempat')" value="<?= $row_rup['aanwijzing_pq_tempat'] ?>"></td>
+                                <td><input type="text" class="form-control" placeholder="Nama Tempat"></td>
                             </tr>
                             <tr>
-                                <th>Tanggal dan Jam</th>
-                                <td><input type="text" name="aanwijzing_pq_tanggal" class="form-control datet" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_tanggal')" value="<?= $row_rup['aanwijzing_pq_tanggal'] ?>"></td>
+                                <th>Tanggal </th>
+                                <td><input type="datetime-local" class="form-control"></td>
                             </tr>
                             <tr>
                                 <th>Link Meet (Jika Daring) </th>
-                                <td><input type="text" name="aanwijzing_pq_link" class="form-control" placeholder="Link Meet" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_link')" value="<?= $row_rup['aanwijzing_pq_link'] ?>"></td>
+                                <td><input type="text" class="form-control" placeholder="Link Meet"></td>
                             </tr>
-
                             <tr>
                                 <th>Upload Bukti </th>
                                 <td><input type="file" class="form-control"></td>

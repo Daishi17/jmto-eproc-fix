@@ -1,7 +1,7 @@
 <input type="hidden" name="url_upload_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_pra/') ?>">
 <input type="hidden" name="url_hapus_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_pra/') ?>">
 <input type="hidden" name="url_get_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_pra') ?>">
-<input type="hidden" name="url_open_sanggahan_pra" value="https://drtproc.jmto.co.id/file_paket/<?= $row_rup['nama_rup'] ?>/">
+<input type="hidden" name="url_open_sanggahan_pra" value="http://localhost/jmto-vms/file_paket/<?= $row_rup['nama_rup'] ?>/">
 <input type="hidden" name="url_open_sanggahan_pra_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_PRAKUALIFIKASI' . '/') ?>">
 <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
 <main class="container">

@@ -5,7 +5,7 @@ error_reporting(0);
 class Informasi_tender_umum_pra_2_file extends CI_Controller
 {
     // var $link_vendor = 'http://localhost/jmto-vms/file_paket/';
-    var $link_vendor = 'https://jmto-vms.kintekindo.net/file_paket/';
+    var $link_vendor = 'https://drtproc.jmto.co.id/file_paket/';
     var $dok_vendor  = 'https://drtproc.jmto.co.id/file_vms/';
     function __construct()
     {
@@ -41,6 +41,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender2'] = $this->M_panitia->get_peserta_tender2($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
+        $data['dok_ip'] = $this->M_panitia->get_dokumen_izin_prinsip($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
@@ -737,8 +738,8 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $row_vendor_mengikuti = $this->M_panitia->row_vendor_mengikuti($id_vendor_mengikuti_paket);
         // link cross
         $rup = $this->M_panitia->get_rup($row_vendor_mengikuti['id_rup']);
-        $link_vendor = 'http://localhost/jmto-vms/';
-        $link_vendor2 = 'http://localhost/jmto-vms/';
+        $link_vendor = 'https://drtproc.jmto.co.id/';
+        $link_vendor2 = 'https://drtproc.jmto.co.id/';
         $data = [
             'row_vendor_mengikuti' => $row_vendor_mengikuti,
             'link_vendor' => $link_vendor,
@@ -1138,11 +1139,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
                 </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','neraca_keuangan'" . ')">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','neraca_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Neraca Keuangan</small>
                 </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','laporan_keuangan'" . ')">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
                 </a>
@@ -1153,11 +1154,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
                 </button>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','neraca_keuangan'" . ')">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','neraca_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Neraca Keuangan</small>
                 </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor . "','laporan_keuangan'" . ')">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
                 </a>
@@ -1186,7 +1187,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $row[] = $rs->nama_syarat_tambahan;
-            $row[] = '<a target="_blank" href="http://localhost/jmto-vms/file_paket/' .  $nama_rup['nama_rup'] .  '/' . $rs->nama_usaha . '/SYARAT_TAMBAHAN' . '/' . $rs->file_syarat_tambahan . '" class="btn btn-sm btn-warning text-white"><i class="fa fa-file"></i></a>';
+            $row[] = '<a target="_blank" href="' . $this->link_vendor .  $nama_rup['nama_rup'] .  '/' . $rs->nama_usaha . '/SYARAT_TAMBAHAN' . '/' . $rs->file_syarat_tambahan . '" class="btn btn-sm btn-warning text-white"><i class="fa fa-file"></i></a>';
             if ($rs->status == NULL) {
                 $row[] = '<span class="badge bg-secondary">Tidak Dievaluasi</span>';
             } else if ($rs->status == 1) {
