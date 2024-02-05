@@ -35,6 +35,16 @@ class Email_send
             'smtp_crypto'  => 'tls',
             'charset'   => 'utf-8'
         );
+        // $config = array(
+        //     'protocol' => 'smtp',
+        //     'smtp_host' => 'smtp.jasamarga.co.id',
+        //     'smtp_port' => 587,
+        //     'smtp_user' => 'e-procurement@jmto.co.id',
+        //     'smtp_pass' => 'tehgelas123!',
+        //     'mailtype'  => 'html',
+        //     'smtp_crypto'  => 'tls'
+        // );
+
         $this->ci->email->initialize($config);
         $this->ci->email->set_newline("\r\n");
         // Email dan nama pengirim

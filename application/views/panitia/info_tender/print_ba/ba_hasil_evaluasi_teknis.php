@@ -178,7 +178,7 @@ function terbilang($nilai)
                                         <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
                                             <td><?= $value['ev_penawaran_teknis'] ?></td>
                                         <?php } else { ?>
-                                            <td>-</td>
+                                            <td><?= $value['ev_penawaran_teknis'] ?></td>
                                         <?php }
                                         ?>
                                         <td>

@@ -1616,7 +1616,142 @@ class M_panitia extends CI_Model
 
     // evaluasi akhir hea
     var $order_evaluasi_akhir_hea =  array('tbl_vendor_mengikuti_paket.id_rup', 'tbl_vendor_mengikuti_paket.nama_usaha', 'tbl_vendor_mengikuti_paket.ev_hea_penawaran', 'tbl_vendor_mengikuti_paket.ev_hea_tkdn', 'tbl_vendor_mengikuti_paket.ev_hea_harga', 'tbl_vendor_mengikuti_paket.ev_hea_peringkat', 'tbl_vendor_mengikuti_paket.ev_hea_keterangan', 'tbl_rup.id_rup');
-    private function _get_data_query_evaluasi_akhir_hea($id_rup)
+    private function _get_data_query_evaluasi_akhir_hea($id_rup, $persen_pencatatan)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_tkdn >=', $persen_pencatatan);
+        $i = 0;
+        foreach ($this->order_evaluasi_akhir_hea as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_evaluasi_akhir_hea) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_evaluasi_akhir_hea[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_rup.id_rup', 'DESC');
+        }
+    }
+
+    public function gettable_evaluasi_akhir_hea($id_rup, $persen_pencatatan) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_evaluasi_akhir_hea($id_rup, $persen_pencatatan); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_all_evaluasi_akhir_hea($id_rup, $persen_pencatatan)
+    {
+        $this->_get_data_query_evaluasi_akhir_hea($id_rup, $persen_pencatatan); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_filtered_evaluasi_akhir_hea($id_rup, $persen_pencatatan)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_tkdn >=', $persen_pencatatan);
+        return $this->db->count_all_results();
+    }
+
+    private function _get_data_query_evaluasi_akhir_hea_file1_akhir($id_rup, $persen_pencatatan)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_tkdn_terendah >=', $persen_pencatatan);
+        $i = 0;
+        foreach ($this->order_evaluasi_akhir_hea as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_evaluasi_akhir_hea) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_evaluasi_akhir_hea[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_rup.id_rup', 'DESC');
+        }
+    }
+
+    public function gettable_evaluasi_akhir_hea_file1_akhir($id_rup, $persen_pencatatan) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_evaluasi_akhir_hea_file1_akhir($id_rup, $persen_pencatatan); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_all_evaluasi_akhir_hea_file1_akhir($id_rup, $persen_pencatatan)
+    {
+        $this->_get_data_query_evaluasi_akhir_hea($id_rup, $persen_pencatatan); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_filtered_evaluasi_akhir_hea_file1_akhir($id_rup, $persen_pencatatan)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_hea_tkdn >=', $persen_pencatatan);
+        return $this->db->count_all_results();
+    }
+
+
+    private function _get_data_query_evaluasi_akhir_hea_file1($id_rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
@@ -1653,9 +1788,9 @@ class M_panitia extends CI_Model
         }
     }
 
-    public function gettable_evaluasi_akhir_hea($id_rup) //nam[ilin data pake ini
+    public function gettable_evaluasi_akhir_hea_file1($id_rup) //nam[ilin data pake ini
     {
-        $this->_get_data_query_evaluasi_akhir_hea($id_rup); //ambil data dari get yg di atas
+        $this->_get_data_query_evaluasi_akhir_hea_file1($id_rup); //ambil data dari get yg di atas
         if ($_POST['length'] != -1) {
             $this->db->limit($_POST['length'], $_POST['start']);
         }
@@ -1663,14 +1798,14 @@ class M_panitia extends CI_Model
         return $query->result();
     }
 
-    public function count_all_evaluasi_akhir_hea($id_rup)
+    public function count_all_evaluasi_akhir_hea_file1($id_rup)
     {
-        $this->_get_data_query_evaluasi_akhir_hea($id_rup); //ambil data dari get yg di atas
+        $this->_get_data_query_evaluasi_akhir_hea_file1($id_rup); //ambil data dari get yg di atas
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_filtered_evaluasi_akhir_hea($id_rup)
+    public function count_filtered_evaluasi_akhir_hea_file1($id_rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
