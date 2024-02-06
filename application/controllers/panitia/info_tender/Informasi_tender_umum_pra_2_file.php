@@ -428,10 +428,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
               </div>';
             } else {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','penawaran'" . ')">
+                <button href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </a>
+                </button>
               </div>';
             }
 
@@ -500,10 +500,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white">
+                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </a>
+                </button>
               </div>';
             } else {
                 if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
@@ -517,11 +517,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                   </div>';
                 } else {
                     $row[] = '<div class="text-center">
-                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
-                                <i class="fa-solid fa-edit"></i>
-                                <small>Evaluasi</small>
-                            </a>
-                          </div>';
+                <button href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Evaluasi</small>
+                </button>
+              </div>';
                 }
             }
 
@@ -615,11 +615,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                           </div>';
                 } else {
                     $row[] = '<div class="text-center">
-                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','akhir_hea'" . ')">
-                                <i class="fa-solid fa-edit"></i>
-                                <small>Finalisasi</small>
-                            </a>
-                          </div>';
+                    <button href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
+                        <i class="fa-solid fa-edit"></i>
+                        <small>Evaluasi</small>
+                    </button>
+                  </div>';
                 }
             }
 
