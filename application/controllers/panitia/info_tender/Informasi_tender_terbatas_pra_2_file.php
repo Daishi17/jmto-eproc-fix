@@ -3085,4 +3085,16 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
+    public function cetak_jadwal($id_url_rup)
+    {
+        $data['jadwal'] = $this->M_panitia->get_jadwal($id_url_rup);
+        $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $root_jadwal = $data['row_rup']['root_jadwal'];
+        $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+        $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
+        $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
+        $this->load->view('panitia/info_tender/print_ba/cetak_jadwal', $data);
+        $this->load->view('panitia/info_tender/print_ba/ajax_jadwal', $data);
+    }
 }

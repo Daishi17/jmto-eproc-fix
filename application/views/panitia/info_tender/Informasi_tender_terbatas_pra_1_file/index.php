@@ -2122,7 +2122,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <a class="btn btn-success" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'cetak_jadwal/' . $row_rup['id_url_rup']) ?>" target="_blank">Cetak Jadwal</a>
             </div>
         </div>
     </div>

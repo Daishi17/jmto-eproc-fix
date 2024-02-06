@@ -105,7 +105,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h5 class="modal-title text-white">Kirim Pesan</h5>
+                <h5 class="modal-title text-white">Kirim Pesan <label for="" id="nama_usaha_pesan"></label></h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -230,7 +230,7 @@
                                 <label for="">Masa Berlaku Selesai</label>
                                 <input type="date" name="masa_berlaku_daftar_hitam_selesai" id="" class="form-control">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="">Dokumen Pendukung / Penunjang</label>
                                 <input type="file" name="file_dok_daftar_hitam" id="" class="form-control">

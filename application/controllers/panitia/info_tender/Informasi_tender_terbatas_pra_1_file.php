@@ -433,7 +433,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function get_evaluasi_akhir_hea($id_rup)
     {
-        $result = $this->M_panitia->gettable_evaluasi_akhir_hea($id_rup);
+        $result = $this->M_panitia->gettable_evaluasi_akhir_hea_file1($id_rup);
         $rup = $this->M_panitia->get_rup($id_rup);
         $data = [];
         $no = $_POST['start'];
@@ -495,8 +495,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         }
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea($id_rup),
-            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea($id_rup),
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea_file1($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea_file1($id_rup),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -504,7 +504,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function get_evaluasi_akhir_harga_terendah($id_rup)
     {
-        $result = $this->M_panitia->gettable_evaluasi_akhir_hea($id_rup);
+        $result = $this->M_panitia->gettable_evaluasi_akhir_hea_file1($id_rup);
         $rup = $this->M_panitia->get_rup($id_rup);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
@@ -538,7 +538,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
 
-            $row[] = $rs->ev_terendah_peringkat;
+            $row[] = '<div class="text-center">' . $rs->ev_terendah_peringkat . '</div>';
 
             if ($rs->ev_terendah_hps) {
                 if ($rs->ev_terendah_hps <= $rup['bobot_biaya']) {
@@ -561,8 +561,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         }
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea($id_rup),
-            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea($id_rup),
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea_file1($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea_file1($id_rup),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -573,7 +573,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function get_evaluasi_hea_tkdn_harga_terendah($id_rup)
     {
-        $result = $this->M_panitia->gettable_evaluasi_akhir_hea($id_rup);
+        $result = $this->M_panitia->gettable_evaluasi_akhir_hea_file1($id_rup);
         $rup = $this->M_panitia->get_rup($id_rup);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
@@ -601,11 +601,19 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 $row[] =  '0,00';
             }
 
-            $row[] = $rs->ev_hea_tkdn_terendah_peringkat;
+            if ($rs->ev_hea_tkdn_terendah >= $rup['persen_pencatatan']) {
+                $row[] = '<div class="text-center">' . $rs->ev_hea_tkdn_terendah_peringkat . '</div>';
+            } else {
+                $row[] = '<span class="badge bg-danger bg-sm">-</span>';
+            }
 
             if ($rs->ev_terendah_hps) {
                 if ($rs->ev_terendah_hps <= $rup['bobot_biaya']) {
-                    $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    if ($rs->ev_hea_tkdn_terendah >= $rup['persen_pencatatan']) {
+                        $row[] = '<span class="badge bg-success bg-sm">Sah</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
                 } else {
                     $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                 }
@@ -622,8 +630,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         }
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea($id_rup),
-            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea($id_rup),
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea_file1($id_rup),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea_file1($id_rup),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -681,8 +689,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function get_evaluasi_pringkat_akhir_harga_terendah_hea($id_rup)
     {
-        $result = $this->M_panitia->gettable_evaluasi_akhir_hea($id_rup);
         $rup = $this->M_panitia->get_rup($id_rup);
+        $result = $this->M_panitia->gettable_evaluasi_akhir_hea_file1_akhir($id_rup, $rup['persen_pencatatan']);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
         $no = $_POST['start'];
@@ -721,7 +729,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
 
 
-            $row[] = $rs->ev_terendah_peringkat_akhir_hea;
+            $row[] =  '<div class="text-center">' . $rs->ev_terendah_peringkat_akhir_hea . '</div>';
 
             if ($rs->ev_terendah_hps_pringkat_akhir_hea) {
                 if ($rs->ev_terendah_hps_pringkat_akhir_hea <= $rup['bobot_biaya']) {
@@ -744,8 +752,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         }
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea($id_rup),
-            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea($id_rup),
+            "recordsTotal" => $this->M_panitia->count_all_evaluasi_akhir_hea_file1_akhir($id_rup, $rup['persen_pencatatan']),
+            "recordsFiltered" => $this->M_panitia->count_filtered_evaluasi_akhir_hea_file1_akhir($id_rup, $rup['persen_pencatatan']),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -3057,5 +3065,17 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function cetak_jadwal($id_url_rup)
+    {
+        $data['jadwal'] = $this->M_panitia->get_jadwal($id_url_rup);
+        $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+        $root_jadwal = $data['row_rup']['root_jadwal'];
+        $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+        $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
+        $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
+        $this->load->view('panitia/info_tender/print_ba/cetak_jadwal', $data);
+        $this->load->view('panitia/info_tender/print_ba/ajax_jadwal', $data);
     }
 }

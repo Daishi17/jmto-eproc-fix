@@ -91,6 +91,7 @@
             success: function(response) {
                 if (type == 'pesan') {
                     $('[name="id_url_vendor"]').val(id_vendor)
+                    $('#nama_usaha_pesan').text(response['row_vendor'].nama_usaha)
                     modal_pesan.modal('show')
                 } else if (type == 'undang') {
                     modal_undang.modal('show')

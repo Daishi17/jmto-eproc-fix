@@ -3,6 +3,7 @@
     var url_get_rekanan_tervalidasi = $('[name="url_get_rekanan_tervalidasi"').val()
     $(document).ready(function() {
         fill_datatable();
+
         function fill_datatable(sts_upload_dokumen = '', sts_dokumen_cek = '') {
             tbl_rekanan_tervalidasi.DataTable({
                 "responsive": false,
@@ -64,6 +65,7 @@
             }
         })
     });
+
     function Reload_table_rekanan_baru() {
         tbl_rekanan_tervalidasi.DataTable().ajax.reload();
     }
@@ -89,6 +91,7 @@
                 if (type == 'pesan') {
                     $('[name="id_url_vendor"]').val(id_vendor)
                     modal_pesan.modal('show')
+                    $('#nama_usaha_pesan').text(response['row_vendor'].nama_usaha)
                 } else if (type == 'undang') {
                     modal_undang.modal('show')
                     $('[name="id_url_vendor"]').val(id_vendor)
