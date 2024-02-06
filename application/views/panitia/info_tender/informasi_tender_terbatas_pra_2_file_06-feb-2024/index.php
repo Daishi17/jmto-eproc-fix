@@ -274,8 +274,8 @@
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
-                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Pembuktian
+                                    <button type="button" class="btn btn-sm btn-danger" disabled>
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } ?>
                             </th>
@@ -519,8 +519,8 @@
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
+                                    <button type="button" disabled class="btn btn-sm btn-danger">
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>
@@ -541,7 +541,7 @@
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#undangan_penawaran">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_penawaran" disabled>
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Undangan Penawaran
                                     </button> <a target="_blank" href="<?= base_url('panitia/info_tender/' . $row_rup['root_jadwal']) ?>/lihat_undangan_penawran/<?= $row_rup['id_url_rup'] ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 
