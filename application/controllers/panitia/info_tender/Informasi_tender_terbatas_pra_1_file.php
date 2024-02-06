@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
-// error_reporting(0);
+error_reporting(0);
 class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 {
     // var $link_vendor = 'http://localhost/jmto-vms/file_paket/';
@@ -74,6 +74,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
         // end get tahap
 
+        $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
