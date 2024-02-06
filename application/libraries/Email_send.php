@@ -153,7 +153,7 @@ class Email_send
         foreach ($result_vendor as $key => $value) {
             $this->ci->email->to($value['email']);
         }
-        // Ganti dengan email tujuan
+        // Ganti dengan email tujuan asdasd
         $this->ci->email->subject("E-PROCUREMENT JMTO : PENGUMUMAN PAKET TENDER BARU UNTUK ANDA SEGERA IKUTI !!!");
         $this->ci->email->message("NAMA PAKET : $nama_rup Silakan Ikuti Tender Sebelum Batas Waktu Pendaftaran Berakhir");
         $this->ci->email->send();
