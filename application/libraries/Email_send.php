@@ -149,13 +149,11 @@ class Email_send
         $this->ci->email->set_newline("\r\n");
         // Email dan nama pengirim
         $this->ci->email->from('e-procurement@jmto.co.id', 'JMTO');
-
         // Email penerima
-
         foreach ($result_vendor as $key => $value) {
             $this->ci->email->to($value['email']);
         }
-        // Ganti dengan email tujuan
+        // Ganti dengan email tujuan asdasd
         $this->ci->email->subject("E-PROCUREMENT JMTO : PENGUMUMAN PAKET TENDER BARU UNTUK ANDA SEGERA IKUTI !!!");
         $this->ci->email->message("NAMA PAKET : $nama_rup Silakan Ikuti Tender Sebelum Batas Waktu Pendaftaran Berakhir");
         $this->ci->email->send();
@@ -199,8 +197,10 @@ class Email_send
         if ($row_rup['id_jadwal_tender'] == 9) {
             $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
         } else {
-            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($id_rup);
+            $data_vendor = $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($data_vendor);
         }
+        // var_dump($get_vendor_mengikuti);die;
         $nama_rup = $row_rup['nama_rup'];
         $nama_metode_pengadaan = $row_rup['nama_metode_pengadaan'];
         $batas_pendaftaran_tender = $row_rup['batas_pendaftaran_tender'];
