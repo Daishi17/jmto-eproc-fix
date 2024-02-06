@@ -2166,21 +2166,19 @@
                                 <tr>
                                     <th>Nama Perusahaan</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
+                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" placeholder="Nama Perusahaan" class="form-control" value="<?= $deal_nego['nama_usaha'] ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_penawaran2" value="Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".");  ?>" disabled>
+                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".");  ?>" disabled>
+                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
