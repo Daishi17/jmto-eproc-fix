@@ -790,7 +790,7 @@
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($get_pemenang as $key => $value) { ?>
+                        foreach ($peserta_tender2 as $key => $value) { ?>
                             <tr>
                                 <td scope="row"><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
@@ -2304,7 +2304,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Persetujuan Direktur Utama</th>
+                                    <th>Tanggal Persetujuan</th>
                                     <th>
                                         <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>

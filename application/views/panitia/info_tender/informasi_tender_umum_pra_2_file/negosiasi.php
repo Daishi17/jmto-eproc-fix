@@ -163,7 +163,7 @@
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <a href="javascript:;" class="btn btn-success" onclick="deal_negosiasi('deal')"> Deal Negosisasi</a>
+                    <a href="javascript:;" class="btn btn-success" onclick="deal_negosiasi('deal')"> Deal Negosiasi</a>
                     <a href="javascript:;" class="btn btn-danger" onclick="deal_negosiasi('tidak_deal')"> Tidak Deal Negosiasi</a>
                 </div>
             </div>
