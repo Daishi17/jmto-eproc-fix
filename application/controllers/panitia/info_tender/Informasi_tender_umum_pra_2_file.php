@@ -46,7 +46,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
-
+        $data['hak_mengumumkan'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
 
         if ($data['row_rup']['bobot_nilai'] == 1) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_ketika_ada_negosiasi($data['row_rup']['id_rup']);

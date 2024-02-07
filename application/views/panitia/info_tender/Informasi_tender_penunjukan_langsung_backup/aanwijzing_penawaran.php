@@ -1,5 +1,4 @@
 <main class="container">
-    <input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">
     <style>
         .btn-grad5 {
             width: 100%;
@@ -392,7 +391,7 @@
     </style>
     <div class="row">
         <div class="col">
-            <div class="card border-dark" style="position: fixed; top:100px;z-index:999;width:95%;">
+            <div class="card border-dark">
                 <div class="card-header border-dark bg-white text-black">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
@@ -400,9 +399,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
@@ -413,7 +409,9 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>
@@ -440,22 +438,19 @@
                                 <th>Nama Metode Pemilihan </th>
                                 <td><?= $row_rup['nama_metode_pengadaan'] ?></td>
                             </tr>
-
                             <tr>
                                 <th>Nama Tempat </th>
-                                <td><input type="text" name="aanwijzing_pw_tempat" class="form-control" placeholder="Nama Tempat" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tempat')" value="<?= $row_rup['aanwijzing_pw_tempat'] ?>"></td>
+                                <td><input type="text" class="form-control" placeholder="Nama Tempat"></td>
                             </tr>
                             <tr>
-                                <th>Tanggal dan Jam</th>
-                                <td><input type="text" name="aanwijzing_pw_tanggal" class="form-control datet" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tanggal')" value="<?= $row_rup['aanwijzing_pw_tanggal'] ?>"></td>
+                                <th>Tanggal </th>
+                                <td><input type="datetime-local" class="form-control"></td>
                             </tr>
                             <tr>
                                 <th>Link Meet (Jika Daring) </th>
-                                <td><input type="text" name="aanwijzing_pw_link" class="form-control" placeholder="Link Meet" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_link')" value="<?= $row_rup['aanwijzing_pw_link'] ?>"></td>
+                                <td><input type="text" class="form-control" placeholder="Link Meet"></td>
                             </tr>
-
                             <tr>
-
                                 <th>Upload Bukti </th>
                                 <td><input type="file" class="form-control"></td>
                             </tr>

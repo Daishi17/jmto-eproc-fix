@@ -9,10 +9,6 @@
 <input type="hidden" name="url_simpan_evaluasi_hea_tkdn" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_tkdn/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_akhir_hea" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_hea/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_harga_terendah" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_harga_terendah/') ?>">
-<input type="hidden" name="url_simpan_evaluasi_harga_terendah_hea" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_harga_terendah_hea/') ?>">
-
-<!-- new evaluasi hea harga terendah -->
-<input type="hidden" name="url_simpan_evaluasi_hea_tkdn_terendah" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_tkdn_terendah/') ?>">
 
 <!-- syarat tambahan -->
 <input type="hidden" name="url_byid_syarat_tambahan" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_byid_syarat_tambahan/') ?>">
@@ -58,6 +54,7 @@
 
 <!-- hasil prakualifikasi -->
 <input type="hidden" name="url_post_pengumuman_hasil_kualifikasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_pengumuman_hasil_kualifikasi') ?>">
+
 
 <!-- status ba -->
 <input type="hidden" name="url_post_status_ba" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/save_status_ba') ?>">
