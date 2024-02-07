@@ -1713,6 +1713,9 @@
                 if (response == 'jadwal_validasi') {
                     Swal.fire('Buat Jadwal Dahulu!', '', 'warning')
                     $('.btn_simpan_paket').attr("disabled", false);
+                } else if (response == 'vendor_validasi') {
+                    Swal.fire('Penyedia Belum Ada Yang Dipilih!', '', 'warning')
+                    $('.btn_simpan_paket').attr("disabled", false);
                 } else if (response == 'dok_izin_validasi') {
                     Swal.fire('Dokumen Izin Prinsip Belum Di Isi!', '', 'warning')
                     $('.btn_simpan_paket').attr("disabled", false);

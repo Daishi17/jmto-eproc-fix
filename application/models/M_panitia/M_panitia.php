@@ -3026,6 +3026,15 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function validasi_rup($id_rup)
+    {
+
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->where('tbl_rup.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 
 
     public function validasi_hps($id_rup)
