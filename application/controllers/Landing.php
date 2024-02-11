@@ -52,7 +52,7 @@ class Landing extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $res->nama_rup;
-			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = "Rp " . number_format($res->total_hps_rup, 2, ',', '.');
 			$row[] = $res->batas_pendaftaran_tender;
 			$data[] = $row;
 		}
@@ -64,7 +64,7 @@ class Landing extends CI_Controller
 		);
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
-
+	// penambahan landing
 	public function datatable_pengadaan_konsultansi()
 	{
 		$result = $this->M_landing->gettable_pengadaan_konsultansi();
@@ -74,7 +74,7 @@ class Landing extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $res->nama_rup;
-			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = "Rp " . number_format($res->total_hps_rup, 2, ',', '.');
 			$row[] = $res->batas_pendaftaran_tender;
 			$data[] = $row;
 		}
@@ -95,7 +95,7 @@ class Landing extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $res->nama_rup;
-			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = "Rp " . number_format($res->total_hps_rup, 2, ',', '.');
 			$row[] = $res->batas_pendaftaran_tender;
 			$data[] = $row;
 		}
@@ -117,7 +117,7 @@ class Landing extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $res->nama_rup;
-			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = "Rp " . number_format($res->total_hps_rup, 2, ',', '.');
 			$row[] = $res->batas_pendaftaran_tender;
 			$data[] = $row;
 		}
