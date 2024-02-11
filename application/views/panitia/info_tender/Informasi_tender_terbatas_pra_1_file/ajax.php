@@ -3286,4 +3286,131 @@
             }
         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
     });
+
+
+    var form_mengulang_pengadaan = $('#form_mengulang_pengadaan')
+    form_mengulang_pengadaan.on('submit', function(e) {
+        e.preventDefault();
+        var alasan_ulang = $('[name="alasan_ulang"]').val()
+        var file_ulang_paket = $('[name="file_ulang_paket"]').val()
+        var url_ulang_pengadaan = $('[name="url_ulang_pengadaan"]').val()
+        if (alasan_ulang == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "Alasan Harus Di Isi!",
+                icon: "warning"
+            });
+        } else if (file_ulang_paket == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "File Pendukung Harus Di Upload!",
+                icon: "warning"
+            });
+        } else {
+            $.ajax({
+                url: url_ulang_pengadaan,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn_simpan_negosiasi').attr("disabled", true);
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Proses Data <b></b>',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            form_mengulang_pengadaan[0].reset();
+                            setTimeout(() => {
+                                window.location.href = $('[name="redirect"]').val()
+                            }, 2000);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+
+                }
+            })
+        }
+
+    })
+
+    var form_batal_pengadaan = $('#form_batal_pengadaan')
+    form_batal_pengadaan.on('submit', function(e) {
+        e.preventDefault();
+        var alasan_batal = $('[name="alasan_batal"]').val()
+        var file_batal_paket = $('[name="file_batal_paket"]').val()
+        var url_batal_pengadaan = $('[name="url_batal_pengadaan"]').val()
+        if (alasan_batal == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "Alasan Harus Di Isi!",
+                icon: "warning"
+            });
+        } else if (file_batal_paket == '') {
+            Swal.fire({
+                title: "Gagal!",
+                text: "File Pendukung Harus Di Upload!",
+                icon: "warning"
+            });
+        } else {
+            $.ajax({
+                url: url_batal_pengadaan,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.btn_simpan_negosiasi').attr("disabled", true);
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Proses Data <b></b>',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                            form_batal_pengadaan[0].reset();
+                            setTimeout(() => {
+                                window.location.href = $('[name="redirect"]').val()
+                            }, 2000);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    })
+
+                }
+            })
+        }
+
+    })
 </script>

@@ -720,8 +720,13 @@
                         </tr>
 
                     </table>
-                    <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
-                    <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
+                    <?php if ($hak_mengumumkan['role_panitia'] == 1 || $hak_mengumumkan['role_panitia'] == 2) { ?>
+                        <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
+                    <?php } else { ?>
+
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
@@ -790,7 +795,7 @@
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($get_pemenang as $key => $value) { ?>
+                        foreach ($peserta_tender2 as $key => $value) { ?>
                             <tr>
                                 <td scope="row"><?= $i++ ?></td>
                                 <td><?= $value['nama_usaha'] ?></td>
@@ -2166,21 +2171,19 @@
                                 <tr>
                                     <th>Nama Perusahaan</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
+                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" placeholder="Nama Perusahaan" class="form-control" value="<?= $deal_nego['nama_usaha'] ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_penawaran2" value="Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".");  ?>" disabled>
+                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".");  ?>" disabled>
+                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
@@ -2304,7 +2307,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Persetujuan Direktur Utama</th>
+                                    <th>Tanggal Persetujuan</th>
                                     <th>
                                         <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>

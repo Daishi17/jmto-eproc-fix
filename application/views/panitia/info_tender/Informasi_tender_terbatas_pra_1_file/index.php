@@ -697,6 +697,14 @@
                         </tr>
 
                     </table>
+
+                    <?php if ($hak_mengumumkan['role_panitia'] == 1 || $hak_mengumumkan['role_panitia'] == 2) { ?>
+                        <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
+                    <?php } else { ?>
+
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
@@ -1530,15 +1538,18 @@
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_penawaran" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_penawaran')" placeholder="Harga Penawaran" class="form-control" value="<?= $row_rup['ba_negosiasi_penawaran'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_penawaran2" value="Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".");  ?>" disabled>
+                                        <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                            <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".");  ?>" disabled>
+                                        <?php } else { ?>
+                                            <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>
+                                        <?php } ?>
+
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_harga" class="form-control number_only" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_harga')" placeholder="Harga Negosiasi" class="form-control" value="<?= $row_rup['ba_negosiasi_harga'] ?>">
-                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".");  ?>" disabled>
+                                        <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".");  ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
@@ -2648,6 +2659,84 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mengulang_pengadaan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-refresh" aria-hidden="true"></i> Mengulang Pengadaan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form_mengulang_pengadaan" action="javascript:;" enctype="multipart/form-data">
+                <input type="hidden" name="id_rup_ulang" value="<?= $row_rup['id_rup'] ?>">
+                <input type="hidden" name="nama_rup_ulang" value="<?= $row_rup['nama_rup'] ?>">
+                <div class="modal-body">
+                    <div class="alert alert-primary d-flex align-items-center" role="alert">
+                        <div>
+                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Mengulang Pengadaan !!! <br>
+                            <ol>
+                                <li>Paket Yang Di Ulang Dapat Di Umumkan Oleh Ketua Panitia / Sekretaris Yang Telah Di Tetapkan</li>
+                                <li>Paket Yang Di Ulang Tidak Menghilangkan Peserta Pengadaan Yang Sudah Mengikuti</li>
+                                <li>Paket Yang Di Ulang Tidak Menghilangkan Dokumen Peserta Pengadaan Pengadaan Yang Sudah Di Upload</li>
+                                <!-- <li>Undangan Presentasi</li>
+                                <li>Addendum Dokumen Pengadaan</li> -->
+                            </ol>
+                        </div>
+                    </div>
+                    <br>
+                    <label>Alasan Mengulang Pengadaan</label>
+                    <textarea name="alasan_ulang" class="form-control"></textarea>
+                    <br>
+                    <label>File Pendukung</label>
+                    <input type="file" class="form-control" accept=".pdf" name="file_ulang_paket">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="batal_pengadaan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-upload" aria-hidden="true"></i> Batal Pengadaan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form_batal_pengadaan" action="javascript:;" enctype="multipart/form-data">
+                <input type="hidden" name="id_rup_batal" value="<?= $row_rup['id_rup'] ?>">
+                <input type="hidden" name="nama_rup_batal" value="<?= $row_rup['nama_rup'] ?>">
+                <div class="modal-body">
+                    <div class="alert alert-primary d-flex align-items-center" role="alert">
+                        <div>
+                            <i class="fa fa-info-circle" aria-hidden="true"> </i> Batal Pengadaan !!! <br>
+                            <ol>
+                                <li>Paket Yang Di Batal Tidak Dapat Di Umumkan Oleh Ketua Panitia / Sekretaris Yang Telah Di Tetapkan</li>
+                                <li>Paket Yang Di Batal Akan Menghilangkan Peserta Pengadaan Yang Sudah Mengikuti</li>
+                                <li>Paket Yang Di Batal Akan Menghilangkan Dokumen Peserta Pengadaan Yang Sudah Di Upload</li>
+                                <!-- <li>Undangan Presentasi</li>
+                                <li>Addendum Dokumen Pengadaan</li> -->
+                            </ol>
+                        </div>
+                    </div>
+                    <br>
+                    <label>Alasan Batal Pengadaan</label>
+                    <textarea name="alasan_batal" class="form-control"></textarea>
+                    <br>
+                    <label>File Pendukung</label>
+                    <input type="file" class="form-control" accept=".pdf" name="file_batal_paket">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success btn_file_ba" type="submit">Upload</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -167,11 +167,11 @@ function terbilang($nilai)
                         <table>
                             <tr>
                                 <td>Nama Perusahaan</td>
-                                <th>: <?= $row_rup['ba_negosiasi_vendor'] ?></th>
+                                <th>: <?= $deal_nego['nama_usaha'] ?></th>
                             </tr>
                             <tr>
                                 <td>Harga Penawaran</td>
-                                <th>: Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?> Rupiah</i>)</th>
+                                <th>: Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($deal_nego['nilai_penawaran']) ?> Rupiah</i>)</th>
                             </tr>
                         </table>
                     </li>
@@ -180,7 +180,7 @@ function terbilang($nilai)
                         <p><b>Penetapan Hasil Evaluasi dan Negosiasi Harga : </b></p>
                         <ol>
                             <li>
-                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari <?= $row_rup['ba_negosiasi_vendor'] ?> dengan nilai <b>Rp. <?= number_format($row_rup['ba_negosiasi_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> adalah <b>Rp. <?= number_format($row_rup['ba_negosiasi_harga'], 2, ",", ".") ?></b> (<i><?= terbilang($row_rup['ba_negosiasi_harga']) ?></i>)
+                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari <?= $row_rup['ba_negosiasi_vendor'] ?> dengan nilai <b>Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($deal_nego['nilai_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> adalah <b>Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".") ?></b> (<i><?= terbilang($deal_nego['total_hasil_negosiasi']) ?></i>)
                             </li>
                             <li>
                                 Dengan demikian Panitia mengusulkan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator bahwa <?= $row_rup['ba_negosiasi_vendor'] ?> berhak untuk melaksanakan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.

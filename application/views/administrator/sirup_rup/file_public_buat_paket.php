@@ -52,8 +52,8 @@
                 modal_paket.modal('show');
                 var html_ruas = '';
                 if (response['row_rup']['id_metode_pengadaan'] == 3) {
-                    $('[name="metode_kualifikasi"]').attr('disabled', true);
-                    $('[name="metode_dokumen"]').attr('disabled', true);
+                    // $('[name="metode_kualifikasi"]').attr('disabled', true);
+                    // $('[name="metode_dokumen"]').attr('disabled', true);
                     $.ajax({
                         type: 'GET',
                         url: '<?= base_url('administrator/sirup_buat_paket/get_jenis_jadwal_juksung/') ?>' + response['row_rup']['id_url_rup'],

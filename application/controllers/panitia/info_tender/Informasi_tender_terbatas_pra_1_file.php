@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
-// error_reporting(0);
+error_reporting(0);
 class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 {
     // var $link_vendor = 'http://localhost/jmto-vms/file_paket/';
@@ -38,7 +38,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
-
+        $data['hak_mengumumkan'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
         if ($data['row_rup']['bobot_nilai'] == 1) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_pra_1_file_biaya($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
@@ -74,6 +74,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
         // end get tahap
 
+        $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
@@ -2747,7 +2748,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
-        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
+        $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
         $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_negosiasi', $data);
     }
@@ -2783,6 +2784,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $data['get_pemenang'] = $this->M_panitia->get_pemenang($data['row_rup']['id_rup']);
         $data['get_mengikuti'] = $this->M_panitia->get_mengikuti($data['row_rup']['id_rup']);
+        if ($data['row_rup']['id_jadwal_tender'] == 1) {
+            $data['jadwal_sanggah_pemenang'] =  $this->M_jadwal->jadwal_pra1file_umum_19($data['row_rup']['id_rup']);
+        } else {
+            $data['jadwal_sanggah_pemenang'] =  $this->M_jadwal->jadwal_pra_umum_20($data['row_rup']['id_rup']);
+        }
         $this->load->view('panitia/info_tender/print_ba/ba_pemenang', $data);
     }
 
@@ -3077,5 +3083,75 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
         $this->load->view('panitia/info_tender/print_ba/cetak_jadwal', $data);
         $this->load->view('panitia/info_tender/print_ba/ajax_jadwal', $data);
+    }
+
+    public function ulang_pengadaan()
+    {
+        $id_rup = $this->input->post('id_rup_ulang');
+        $nama_rup = $this->input->post('nama_rup_ulang');
+        $alasan_ulang = $this->input->post('alasan_ulang');
+
+
+        $date = date('Y');
+        if (!is_dir('file_paket/' . $nama_rup . '/FILE_ULANG')) {
+            mkdir('file_paket/' . $nama_rup . '/FILE_ULANG', 0777, TRUE);
+        }
+
+        $config['upload_path'] = './file_paket/' . $nama_rup  . '/FILE_ULANG';
+        $config['allowed_types'] = 'pdf|xlsx|xls';
+        $config['max_size'] = 0;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file_ulang_paket')) {
+            $fileData = $this->upload->data();
+
+            $upload = [
+                'file_ulang_paket' => $fileData['file_name'],
+                'alasan_ulang' => $alasan_ulang,
+                'sts_ulang' => 1,
+                'status_paket_diumumkan' => 0,
+                'status_paket_panitia' => 1
+            ];
+            $this->M_panitia->update_rup_panitia($id_rup, $upload);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+        } else {
+            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+        }
+    }
+
+    public function batal_pengadaan()
+    {
+        $id_rup = $this->input->post('id_rup_batal');
+        $nama_rup = $this->input->post('nama_rup_batal');
+        $alasan_batal = $this->input->post('alasan_batal');
+
+
+        $date = date('Y');
+        if (!is_dir('file_paket/' . $nama_rup . '/FILE_BATAL')) {
+            mkdir('file_paket/' . $nama_rup . '/FILE_BATAL', 0777, TRUE);
+        }
+
+        $config['upload_path'] = './file_paket/' . $nama_rup  . '/FILE_BATAL';
+        $config['allowed_types'] = 'pdf|xlsx|xls';
+        $config['max_size'] = 0;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file_batal_paket')) {
+            $fileData = $this->upload->data();
+
+            $upload = [
+                'file_batal_paket' => $fileData['file_name'],
+                'alasan_batal' => $alasan_batal,
+                'sts_batal' => 1,
+                'status_paket_diumumkan' => 0,
+                'status_paket_panitia' => 0
+            ];
+            $this->M_panitia->update_rup_panitia($id_rup, $upload);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+        } else {
+            $this->output->set_content_type('application/json')->set_output(json_encode('gagal'));
+        }
     }
 }

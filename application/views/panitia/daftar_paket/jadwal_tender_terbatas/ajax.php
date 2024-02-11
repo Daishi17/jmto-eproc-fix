@@ -1342,25 +1342,6 @@
             $("#erorr_jadwal_row19").css("color", "white");
             $('.btnSave').attr('disabled', 'disabled');
 
-        } else if (mulai19.getTime() < selesai18.getTime()) {
-            $('#error-jadwal19').show();
-            $("#erorr_jadwal_row19").css("background-color", "red");
-            $("#erorr_jadwal_row19").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-            // 20
-            // 19
-        } else if (selesai20.getTime() < mulai20.getTime()) {
-            $('#error-jadwal20').show();
-            $("#erorr_jadwal_row20").css("background-color", "red");
-            $("#erorr_jadwal_row20").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai20.getTime() < selesai19.getTime()) {
-            $('#error-jadwal20').show();
-            $("#erorr_jadwal_row20").css("background-color", "red");
-            $("#erorr_jadwal_row20").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-            // 21
-            // 20
         } else if (selesai21.getTime() < mulai21.getTime()) {
             $('#error-jadwal21').show();
             $("#erorr_jadwal_row21").css("background-color", "red");

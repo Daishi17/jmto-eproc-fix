@@ -12,7 +12,6 @@ class Fm_unit_area extends CI_Controller
 		if (!$role == 1) {
 			redirect('auth');
 		}
-
 	}
 
 	public function index()
