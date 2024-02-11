@@ -1530,7 +1530,7 @@
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                        <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".");  ?>" disabled>
                                         <?php } else { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>
