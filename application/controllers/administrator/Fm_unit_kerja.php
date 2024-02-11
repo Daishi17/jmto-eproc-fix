@@ -13,7 +13,6 @@ class Fm_unit_kerja extends CI_Controller
 		if (!$role == 1) {
 			redirect('auth');
 		}
-
 	}
 
 	public function index()
