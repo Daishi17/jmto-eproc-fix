@@ -349,12 +349,8 @@ class M_panitia extends CI_Model
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Kecil', 'Menengah']);
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Kecil') {
             $this->db->where('tbl_vendor.kualifikasi_usaha', 'Kecil');
-<<<<<<< HEAD
-        } else {
-=======
         } else if ($row_paket['syarat_tender_kualifikasi'] == 'Semua') {
             $this->db->where_in('tbl_vendor.kualifikasi_usaha', ['Menengah', 'Besar', 'Kecil']);
->>>>>>> afa93f158e881a34d3a87a44baa98a1049fdc785
         }
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
@@ -736,6 +732,7 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_manajemen_user', 'tbl_panitia.id_manajemen_user = tbl_manajemen_user.id_manajemen_user', 'left');
         $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
         $this->db->where('id_rup', $id_rup);
+        $this->db->where('tbl_pegawai.id_role !=', 1);
         $this->db->where_in('tbl_panitia.role_panitia', [1, 2]);
         $query = $this->db->get();
         return $query->result_array();

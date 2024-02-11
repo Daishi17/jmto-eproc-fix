@@ -42,4 +42,91 @@ class Landing extends CI_Controller
 		);
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
+
+	public function datatable_pengadaan_barang()
+	{
+		$result = $this->M_landing->gettable_pengadaan_barang();
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $res) {
+			$row = array();
+			$row[] = ++$no;
+			$row[] = $res->nama_rup;
+			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = $res->batas_pendaftaran_tender;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_landing->count_all_pengadaan_barang(),
+			"recordsFiltered" => $this->M_landing->count_filtered_pengadaan_barang(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function datatable_pengadaan_konsultansi()
+	{
+		$result = $this->M_landing->gettable_pengadaan_konsultansi();
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $res) {
+			$row = array();
+			$row[] = ++$no;
+			$row[] = $res->nama_rup;
+			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = $res->batas_pendaftaran_tender;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_landing->count_all_pengadaan_konsultansi(),
+			"recordsFiltered" => $this->M_landing->count_filtered_pengadaan_konsultansi(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+	public function datatable_pengadaan_jasa_lain()
+	{
+		$result = $this->M_landing->gettable_pengadaan_jasa_lain();
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $res) {
+			$row = array();
+			$row[] = ++$no;
+			$row[] = $res->nama_rup;
+			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = $res->batas_pendaftaran_tender;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_landing->count_all_pengadaan_jasa_lain(),
+			"recordsFiltered" => $this->M_landing->count_filtered_pengadaan_jasa_lain(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function datatable_pengadaan_pemborongan()
+	{
+		$result = $this->M_landing->gettable_pengadaan_pemborongan();
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $res) {
+			$row = array();
+			$row[] = ++$no;
+			$row[] = $res->nama_rup;
+			$row[] = "Rp " . number_format($res->total_hps_rup,2,',','.');
+			$row[] = $res->batas_pendaftaran_tender;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_landing->count_all_pengadaan_pemborongan(),
+			"recordsFiltered" => $this->M_landing->count_filtered_pengadaan_pemborongan(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
 }

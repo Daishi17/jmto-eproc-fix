@@ -347,14 +347,13 @@ header("Content-Security-Policy: img-src 'self' *");
                         <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                <table class="table table-striped table-bordered" id="table_pengadaan_barang" style="font-style: italic;font-size:10px;color:black">
                                     <thead class="thead-inverse bg-dark text-white">
                                         <tr>
                                             <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
                                             <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
                                             <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
                                             <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -366,17 +365,16 @@ header("Content-Security-Policy: img-src 'self' *");
                     </div>
                     <div class="section-title mb-4">
                         <h3 class="title">DATA PENGADAAN JASA KONSULTASI</h3>
-                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <p class="mb-0">Data Tender Jasa Konsultan Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                <table class="table table-striped table-bordered" id="table_pengadaan_konsultansi" style="font-style: italic;font-size:10px;color:black">
                                     <thead class="thead-inverse bg-dark text-white">
                                         <tr>
                                             <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
                                             <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
                                             <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
                                             <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -388,17 +386,16 @@ header("Content-Security-Policy: img-src 'self' *");
                     </div>
                     <div class="section-title mb-4">
                         <h3 class="title">DATA PENGADAAN JASA KONTRUKSI</h3>
-                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <p class="mb-0">Data Tender Jasa Kontruksi Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                <table class="table table-striped table-bordered" id="table_pengadaan_pemborongan" style="font-style: italic;font-size:10px;color:black">
                                     <thead class="thead-inverse bg-dark text-white">
                                         <tr>
                                             <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
                                             <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
                                             <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
                                             <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -410,17 +407,16 @@ header("Content-Security-Policy: img-src 'self' *");
                     </div>
                     <div class="section-title mb-4">
                         <h3 class="title">DATA PENGADAAN JASALAINYA</h3>
-                        <p class="mb-0">Data Tender Pengadaan Barang Yang Ada Pada E-procurement JMTO.</p>
+                        <p class="mb-0">Data Tender Pengadaan Jasa lain Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered table_berita" style="font-style: italic;font-size:10px;color:black">
+                                <table class="table table-striped table-bordered" id="table_pengadaan_jasa_lain"  style="font-style: italic;font-size:10px;color:black">
                                     <thead class="thead-inverse bg-dark text-white">
                                         <tr>
                                             <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
                                             <th style="width:400px">Nama Paket <i class="fa fa-database" aria-hidden="true"></i></th>
                                             <th>Hps <i class="fa fa-usd" aria-hidden="true"></i></th>
                                             <th>Akhir Pendaftaran <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                                            <th>Persyaratan <i class="fa fa-files-o" aria-hidden="true"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -601,6 +597,113 @@ header("Content-Security-Policy: img-src 'self' *");
         })
     });
 
+    $(document).ready(function() {
+        $('#table_pengadaan_barang').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('landing/datatable_pengadaan_barang') ?>',
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('#table_pengadaan_jasa_lain').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('landing/datatable_pengadaan_jasa_lain') ?>',
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('#table_pengadaan_pemborongan').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('landing/datatable_pengadaan_pemborongan') ?>',
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('#table_pengadaan_konsultansi').DataTable({
+            "responsive": false,
+            "ordering": true,
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "order": [],
+            "ajax": {
+                "url": '<?= base_url('landing/datatable_pengadaan_konsultansi') ?>',
+                "type": "POST",
+            },
+            "columnDefs": [{
+                "target": [-1],
+                "orderable": false
+            }],
+            "oLanguage": {
+                "sSearch": "Pencarian : ",
+                "sEmptyTable": "Data Tidak Tersedia",
+                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                "sProcessing": "Memuat Data...."
+            }
+        })
+    });
     function reload_table() {
         $('#table_berita').DataTable().ajax.reload();
     }
