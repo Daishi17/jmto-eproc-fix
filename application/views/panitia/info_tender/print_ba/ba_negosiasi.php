@@ -154,7 +154,7 @@ function terbilang($nilai)
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_negosiasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_negosiasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_negosiasi_jam'] ?> WIB bertempat di PT. Jasamarga Tollroad Operator di Gedung Cabang Jagorawi Lt. 4, Plaza Tol Taman Mini Indonesia Indah, kami yang bertandatangan di bawah ini selaku Panitia Pengadaan Barang dan Jasa yang dibentuk berdasarkan Surat Keputusan Direksi Nomor : <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?>, selanjutnya Panitia melakukan Evaluasi dan negosiasi harga <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator dengan hasil sebagai berikut :
                 </p>
                 <p style="text-align:justify; font-size:18px">
-                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                    telah menerima Dokumen Penawaran dari para calon penyedia jasa dan dilakukan Rapat Pembukaan Dokumen Penawaran <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
                     <?php } else { ?>
                         Administrasi dan Teknis (File I)
                     <?php }
@@ -171,7 +171,12 @@ function terbilang($nilai)
                             </tr>
                             <tr>
                                 <td>Harga Penawaran</td>
-                                <th>: Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($deal_nego['nilai_penawaran']) ?> Rupiah</i>)</th>
+                                <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
+                                    <th>: Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".") ?> (<i><?= terbilang($deal_nego['ev_terendah_harga']) ?> Rupiah</i>)</th>
+                                <?php } else { ?>
+                                    <th>: Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?> (<i><?= terbilang($deal_nego['nilai_penawaran']) ?> Rupiah</i>)</th>
+                                <?php } ?>
+
                             </tr>
                         </table>
                     </li>
@@ -180,7 +185,16 @@ function terbilang($nilai)
                         <p><b>Penetapan Hasil Evaluasi dan Negosiasi Harga : </b></p>
                         <ol>
                             <li>
-                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari <?= $row_rup['ba_negosiasi_vendor'] ?> dengan nilai <b>Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?></b> (<i><?= terbilang($deal_nego['nilai_penawaran']) ?>Rupiah</i>) sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> adalah <b>Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".") ?></b> (<i><?= terbilang($deal_nego['total_hasil_negosiasi']) ?></i>)
+                                Berdasarkan hasil penetapan harga penawar, Panitia melakukan Evaluasi dan Negosiasi Harga penawaran dari <?= $row_rup['ba_negosiasi_vendor'] ?> dengan nilai
+                                <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
+                                    <b>Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".") ?></b>
+                                    (<i><?= terbilang($deal_nego['ev_terendah_harga']) ?>Rupiah</i>)
+                                <?php } else { ?>
+                                    <b>Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".") ?></b>
+                                    (<i><?= terbilang($deal_nego['nilai_penawaran']) ?>Rupiah</i>)
+                                <?php } ?>
+
+                                sudah termasuk PPn 11%, serta berdasarkan harga perkiraan sendiri, maka Panitia dan <?= $row_rup['ba_negosiasi_vendor'] ?> telah melakukan kesepakatan bersama dengan menetapkan harga <?= $row_rup['nama_rup'] ?> adalah <b>Rp. <?= number_format($deal_nego['total_hasil_negosiasi'], 2, ",", ".") ?></b> (<i><?= terbilang($deal_nego['total_hasil_negosiasi']) ?></i>)
                             </li>
                             <li>
                                 Dengan demikian Panitia mengusulkan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator bahwa <?= $row_rup['ba_negosiasi_vendor'] ?> berhak untuk melaksanakan <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator.

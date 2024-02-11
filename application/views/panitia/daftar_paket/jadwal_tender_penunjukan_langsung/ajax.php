@@ -1681,7 +1681,7 @@
 </script>
 
 <script>
-        function update_batas_tender() {
+    function update_batas_tender() {
         var id_rup_global = $('[name="id_rup_global"]').val()
         $.ajax({
             type: "POST",

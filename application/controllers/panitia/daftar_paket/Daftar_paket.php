@@ -268,7 +268,7 @@ class Daftar_paket extends CI_Controller
 		$id_vendor = $this->input->post('id_vendor');
 		$id_rup = $this->input->post('id_rup_global');
 		$row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
-		if ($row_rup['id_jadwal_tender'] == 9) {
+		if ($row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 10) {
 			$cek_hanya_satu_vendor = $this->M_panitia->cek_vendor_mengikuti_penunjukan_langsung($id_rup);
 			if ($cek_hanya_satu_vendor) {
 				$this->output->set_content_type('application/json')->set_output(json_encode('sudah_ada'));
@@ -333,7 +333,7 @@ class Daftar_paket extends CI_Controller
 		$this->load->view('panitia/template_menu/header_menu');
 		$this->load->view('panitia/daftar_paket/js_header_paket');
 		$this->load->view('panitia/daftar_paket/base_url_panitia');
-		if ($data['row_rup']['id_jadwal_tender'] == 5 || $data['row_rup']['id_jadwal_tender'] == 2) {
+		if ($data['row_rup']['id_jadwal_tender'] == 5 || $data['row_rup']['id_jadwal_tender'] == 2  || $data['row_rup']['id_jadwal_tender'] == 10) {
 			// tender terbatas dengan 18 jadwal
 			$this->load->view('panitia/daftar_paket/jadwal_tender_terbatas/index', $data);
 			$this->load->view('administrator/template_menu/footer_menu');
