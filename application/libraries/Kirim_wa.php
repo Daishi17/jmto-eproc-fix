@@ -89,17 +89,15 @@ class Kirim_wa
             }
             $nomor_telpon = implode(",", $data_vendor);
         } else {
-            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($id_rup);
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($row_rup);
             $data_vendor = array();
             foreach ($get_vendor_mengikuti as $key => $value) {
                 $data_vendor[] = $value['no_telpon'];
             }
-            // $nomor_telpon = '085295582907,085710448281,08978201075';
             $nomor_telpon = implode(",", $data_vendor);
         }
-        var_dump($nomor_telpon);
-        die;
         $target = $nomor_telpon;
+        // var_dump($target);die;
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.fonnte.com/send',
