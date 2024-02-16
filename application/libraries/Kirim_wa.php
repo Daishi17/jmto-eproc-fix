@@ -94,8 +94,11 @@ class Kirim_wa
             foreach ($get_vendor_mengikuti as $key => $value) {
                 $data_vendor[] = $value['no_telpon'];
             }
+            // $nomor_telpon = '085295582907,085710448281,08978201075';
             $nomor_telpon = implode(",", $data_vendor);
         }
+        var_dump($nomor_telpon);
+        die;
         $target = $nomor_telpon;
         $curl = curl_init();
         curl_setopt_array($curl, array(
