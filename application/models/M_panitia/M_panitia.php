@@ -1176,7 +1176,7 @@ class M_panitia extends CI_Model
         $resultArray = explode(",", $string);
         $this->db->select('*');
         $this->db->from('tbl_vendor');
-        $this->db->where_in('tbl_vendor.id_vendor', $resultArray); // Use where_in to match against multiple values
+        $this->db->where_in('tbl_vendor.id_vendor', $resultArray); 
         $query = $this->db->get();
         
         return $query->result_array();
