@@ -54,6 +54,7 @@
                     $(".id_role").html(response['error']['id_role']);
                     $(".password").html(response['error']['password']);
                     $(".password2").html(response['error']['password2']);
+                    // $(".email").html(response['error']['email']);
                 } else {
                     let timerInterval
                     Swal.fire({
