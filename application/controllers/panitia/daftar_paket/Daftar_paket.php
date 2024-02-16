@@ -430,7 +430,7 @@ class Daftar_paket extends CI_Controller
 			$jadwal_batas_selesai = $this->M_jadwal->jadwal_pra1file_umum_1($data_rup['id_rup']);
 		}
 
-		if ($data_rup['sts_ulang'] == 1) {
+		if ($data_rup['file_ulang_paket']) {
 			$data = [
 				'status_paket_panitia' => 2,
 				'status_paket_diumumkan' => 1,
