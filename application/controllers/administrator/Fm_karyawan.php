@@ -205,6 +205,7 @@ class Fm_karyawan extends CI_Controller
 	public function data_section($id_departemen)
 	{
 		$data = $this->M_section->get_section($id_departemen);
+		$data_row = $this->M_section->get_section_row($id_departemen);
 		echo '<option value="">--Pilih Section--</option>';
 		foreach ($data as $key => $value) {
 			echo '<option value="' . $value['id_section'] . '">' . $value['nama_section'] . '</option>';

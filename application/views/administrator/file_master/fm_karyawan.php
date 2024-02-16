@@ -126,7 +126,6 @@
                                                 <div class="input-group mb-1">
                                                     <span class="input-group-text"><i class="fa-solid fa-map"></i></span>
                                                     <select class="form-select" aria-label="Default select example" name="id_section" id="form_section">
-
                                                     </select>
                                                 </div>
                                                 <small class="id_section text-danger"></small>
@@ -179,7 +178,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <center>
-                        <a class="btn btn-success btn-sm" href="<?= base_url('file_admin/FORMAT_IMPORT KARYAWAN.xlsx')?>">Download Format</a>
+                        <a class="btn btn-success btn-sm" href="<?= base_url('file_admin/FORMAT_IMPORT KARYAWAN.xlsx') ?>">Download Format</a>
                     </center>
                     <br>
                     <?= form_open_multipart('administrator/fm_karyawan/import_data_karyawan') ?>

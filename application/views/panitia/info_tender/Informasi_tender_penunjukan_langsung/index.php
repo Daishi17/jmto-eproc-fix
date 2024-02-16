@@ -696,9 +696,19 @@
                             </th>
                         </tr>
                     </table>
+
                     <?php if ($hak_mengumumkan['role_panitia'] == 1 || $hak_mengumumkan['role_panitia'] == 2) { ?>
-                        <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
-                        <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
+                        <?php if (date('Y-m-d H:i', strtotime($row_rup['selesai_semua_tender']))  >= date('Y-m-d H:i')) { ?>
+
+
+                            <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white">Mengulang Pengadaan <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                            <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white">Batal Pengadaan <i class="fa fa-ban" aria-hidden="true"></i></button>
+                        <?php    } else { ?>
+                            <button data-bs-toggle="modal" data-bs-target="#mengulang_pengadaan" class="btn btn-warning text-white" disabled>Pengadaan Sudah Selesai <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                            <button data-bs-toggle="modal" data-bs-target="#batal_pengadaan" class="btn btn-danger text-white" disabled>Pengadaan Sudah Selesai <i class="fa fa-ban" aria-hidden="true"></i></button>
+
+                        <?php    } ?>
+
                     <?php } else { ?>
 
                     <?php } ?>
