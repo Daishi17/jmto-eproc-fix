@@ -34,9 +34,8 @@ class Daftar_paket extends CI_Controller
 		$this->load->view('panitia/daftar_paket/file_public_daftar_paket');
 	}
 
-	function send_email_regis() {
-		
-	}
+	function send_email_regis()
+	{ }
 
 
 	public function get_draft_paket()

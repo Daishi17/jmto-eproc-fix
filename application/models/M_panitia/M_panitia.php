@@ -480,14 +480,14 @@ class M_panitia extends CI_Model
         foreach ($array_kbli_siup as $row) {
             $mergedResult[$row['id_vendor']] = $row;
         }
-        // kbli siujk
-        foreach ($array_kbli_siujk as $row) {
-            $mergedResult[$row['id_vendor']] = $row;
-        }
-        // kbli nib
-        foreach ($array_kbli_nib as $row) {
-            $mergedResult[$row['id_vendor']] = $row;
-        }
+        // // kbli siujk
+        // foreach ($array_kbli_siujk as $row) {
+        //     $mergedResult[$row['id_vendor']] = $row;
+        // }
+        // // kbli nib
+        // foreach ($array_kbli_nib as $row) {
+        //     $mergedResult[$row['id_vendor']] = $row;
+        // }
         // result_kbli
         if (isset($mergedResult[$row['id_vendor']])) {
             $mergedResult[$row['id_vendor']] = array_merge($mergedResult[$row['id_vendor']], $row);
@@ -609,7 +609,6 @@ class M_panitia extends CI_Model
                 $this->db->where_in('tbl_vendor_nib.sts_seumur_hidup', [2]);
             } else {
                 $this->db->where('tbl_vendor_nib.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_nib']);
-                $this->db->where('tbl_vendor_nib.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_nib']);
                 $this->db->where_in('tbl_vendor_nib.sts_seumur_hidup', [1, 2]);
             }
         } else {
@@ -617,16 +616,16 @@ class M_panitia extends CI_Model
         }
 
         // cek sbu syart izin
-        if ($syarat_izin_usaha['sts_checked_sbu'] == 1) {
-            if ($syarat_izin_usaha['sts_masa_berlaku_sbu'] == 2) {
-                $this->db->where_in('tbl_vendor_sbu.sts_seumur_hidup', [2]);
-            } else {
-                $this->db->where('tbl_vendor_sbu.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_sbu']);
-                $this->db->where('tbl_vendor_sbu.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_sbu']);
-            }
-        } else {
-            // $this->db->where('tbl_vendor.id_vendor', null);
-        }
+        // if ($syarat_izin_usaha['sts_checked_sbu'] == 1) {
+        //     if ($syarat_izin_usaha['sts_masa_berlaku_sbu'] == 2) {
+        //         $this->db->where_in('tbl_vendor_sbu.sts_seumur_hidup', [2]);
+        //     } else {
+        //         $this->db->where('tbl_vendor_sbu.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_sbu']);
+        //         $this->db->where('tbl_vendor_sbu.sts_seumur_hidup', $syarat_izin_usaha['sts_masa_berlaku_sbu']);
+        //     }
+        // } else {
+        //     $this->db->where('tbl_vendor.id_vendor', null);
+        // }
 
 
         $query = $this->db->get();
