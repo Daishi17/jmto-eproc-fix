@@ -258,7 +258,7 @@ class M_rup extends CI_Model
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order_panitia[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         } else {
-            $this->db->order_by('tbl_panitia.id_panitia', 'DESC');
+            $this->db->order_by('tbl_panitia.role_panitia', 'ASC');
         }
     }
 
