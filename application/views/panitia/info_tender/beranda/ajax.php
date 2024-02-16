@@ -178,7 +178,7 @@
                     $('#bobot_teknis').text(response['row_rup'].bobot_teknis)
                     $('#bobot_biaya').text(response['row_rup'].bobot_biaya)
                 } else if (response['row_rup'].bobot_nilai == 2) {
-                    $('#bobot_nilai').text('Bobot Teknis')
+                    $('#bobot_nilai').text('Biaya Terendah')
                     $('#bobot_teknis').text(response['row_rup'].bobot_teknis)
                 } else {
                     $('#bobot_nilai').text('Bobot Biaya')
@@ -229,10 +229,12 @@
                     $('.load_status_paket').html(html_status_paket);
                 } else {
                     var sekarang = new Date();
-                    if (sekarang < response['row_rup'].batas_pendaftaran_tender) {
+                    var selesai = new Date(response['row_rup'].selesai_semua_tender);
+                    // console.log(sekarang, selesai);
+                    if (sekarang < selesai) {
                         html_status_paket += '<small><span class="badge bg-success text-white">Tender Sedang Berlangsung</span></small>';
                     } else {
-                        html_status_paket += '<small><span class="badge bg-success text-white">Tender Sedang Berlangsung</span></small>';
+                        html_status_paket += '<small><span class="badge bg-success text-white">Tender Sudah Selesai</span></small>';
                     }
 
                     $('.load_status_paket').html(html_status_paket);

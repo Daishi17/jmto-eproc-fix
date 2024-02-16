@@ -67,11 +67,11 @@
         var tanpa_rupiah = document.getElementById('rupiah_total_pagu_rup');
         tanpa_rupiah.value = formatRupiah(this.value, 'Rp. ');
         var persen_pencatatan = $('[name="persen_pencatatan"]').val()
-        var nilai_pencatatan = (harga * persen_pencatatan) / 100;
+        var nilai_pencatatan = (harga * persen_pencatatan) / 100 / 1.11;
         $('[name="nilai_pencatatan"]').val(nilai_pencatatan);
-         $.ajax({
+        $.ajax({
             type: "GET",
-            url: '<?= base_url('get_rupiah/ambil_rupiah/')?>' + nilai_pencatatan,
+            url: '<?= base_url('get_rupiah/ambil_rupiah/') ?>' + nilai_pencatatan,
             dataType: "JSON",
             success: function(response) {
                 $('#nilai_pencatatan2').val(response['rupiah_nilai_pencatatan'])
@@ -98,11 +98,11 @@
     $(".persen_pencatatan").keyup(function() {
         var harga = $(".total_pagu_rup").val();
         var persen_pencatatan = $('[name="persen_pencatatan"]').val()
-        var nilai_pencatatan = (harga * persen_pencatatan) / 100;
+        var nilai_pencatatan = (harga * persen_pencatatan) / 100 / 1.11;
         $('[name="nilai_pencatatan"]').val(nilai_pencatatan);
-         $.ajax({
+        $.ajax({
             type: "GET",
-            url: '<?= base_url('get_rupiah/ambil_rupiah/')?>' + nilai_pencatatan,
+            url: '<?= base_url('get_rupiah/ambil_rupiah/') ?>' + nilai_pencatatan,
             dataType: "JSON",
             success: function(response) {
                 $('#nilai_pencatatan2').val(response['rupiah_nilai_pencatatan'])
@@ -319,7 +319,7 @@
                             $('.detail_lokasi_rup_validation').html('');
                             Swal.fire('Rup Berhasil Di UPDATE!', '', 'success')
                             setTimeout(() => {
-                                location.replace('<?= base_url('administrator/Sirup_rup')?>');
+                                location.replace('<?= base_url('administrator/Sirup_rup') ?>');
                             }, 3000);
                             Get_kode_rup();
                             get_ruas();

@@ -1852,8 +1852,8 @@
                 if (response['row_rup'].id_jadwal_tender == 9) {
                     $('#nama_metode_pengadaan').text(response['row_rup'].nama_metode_pengadaan)
                     $('#kualifikasi_usaha').text(response['row_rup'].kualifikasi_usaha)
-                    $('#metode_kualifikasi').text('-')
-                    $('#metode_dokumen').text('-')
+                    $('#metode_kualifikasi').text(response['row_rup'].metode_kualifikasi)
+                    $('#metode_dokumen').text(response['row_rup'].metode_dokumen)
                 } else {
                     $('#nama_metode_pengadaan').text(response['row_rup'].nama_metode_pengadaan)
                     $('#kualifikasi_usaha').text(response['row_rup'].kualifikasi_usaha)

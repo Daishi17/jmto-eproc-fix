@@ -68,7 +68,7 @@
         var tanpa_rupiah = document.getElementById('rupiah_total_pagu_rup');
         tanpa_rupiah.value = formatRupiah(this.value, 'Rp. ');
         var persen_pencatatan = $('[name="persen_pencatatan"]').val()
-        var nilai_pencatatan = (harga * persen_pencatatan) / 100;
+        var nilai_pencatatan = (harga * persen_pencatatan) / 100 / 1.11;
         $('[name="nilai_pencatatan"]').val(nilai_pencatatan);
         $.ajax({
             type: "GET",
@@ -99,7 +99,7 @@
     $(".persen_pencatatan").keyup(function() {
         var harga = $(".total_pagu_rup").val();
         var persen_pencatatan = $('[name="persen_pencatatan"]').val()
-        var nilai_pencatatan = (harga * persen_pencatatan) / 100;
+        var nilai_pencatatan = (harga * persen_pencatatan) / 100 / 1.11;
         $('[name="nilai_pencatatan"]').val(nilai_pencatatan);
         $.ajax({
             type: "GET",
