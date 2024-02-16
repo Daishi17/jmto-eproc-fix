@@ -1173,10 +1173,10 @@ class M_panitia extends CI_Model
     public function get_peserta_tender_umumkan($data)
     {
         $string = $data['data_vendor_terundang'];
-        $resultArray = explode(",", $string);
+        $data_id_vendor = explode(",", $string);
         $this->db->select('*');
         $this->db->from('tbl_vendor');
-        $this->db->where_in('tbl_vendor.id_vendor', $resultArray); 
+        $this->db->where_in('tbl_vendor.id_vendor', $data_id_vendor); 
         $query = $this->db->get();
         
         return $query->result_array();
