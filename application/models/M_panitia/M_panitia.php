@@ -1174,13 +1174,11 @@ class M_panitia extends CI_Model
     {
         $string = $data['data_vendor_terundang'];
         $resultArray = explode(",", $string);
-
         $this->db->select('*');
         $this->db->from('tbl_vendor');
-        foreach ($resultArray as $value) {
-            $this->db->where('tbl_vendor.id_vendor', $value);
-        }
+        $this->db->where_in('tbl_vendor.id_vendor', $resultArray); // Use where_in to match against multiple values
         $query = $this->db->get();
+        
         return $query->result_array();
     }
 

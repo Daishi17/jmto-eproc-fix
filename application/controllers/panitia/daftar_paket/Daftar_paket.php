@@ -443,7 +443,7 @@ class Daftar_paket extends CI_Controller
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
 Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
-Pendaftaran Pada : ' . $data_rup['batas_pendaftaran_tender']  . ' s.d ' . $jadwal_batas_selesai['waktu_selesai'] . '
+Pendaftaran Pada : ' . $data_rup['awal_pendaftaran_tender']  . ' s.d ' . $data_rup['batas_pendaftaran_tender'] . '
 Terimakasih');
 			foreach ($get_panitia_terpilih as $key => $value2) {
 				if ($value2['role_panitia'] == 1) {
@@ -473,7 +473,7 @@ Terimakasih');
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
 Jenis Pengadaan: ' . $data_rup['nama_jenis_pengadaan']  . '
 Silahkan Mengikuti Melalui Link Ini : https://drtproc.jmto.co.id/auth 
-Pendaftaran Pada : ' . $data_rup['batas_pendaftaran_tender']  . ' s.d ' . $jadwal_batas_selesai['waktu_selesai'] . '
+Pendaftaran Pada : ' . $data_rup['awal_pendaftaran_tender']  . ' s.d ' . $data_rup['batas_pendaftaran_tender'] . '
 Terimakasih');
 			foreach ($get_panitia_terpilih as $key => $value2) {
 				if ($value2['role_panitia'] == 1) {

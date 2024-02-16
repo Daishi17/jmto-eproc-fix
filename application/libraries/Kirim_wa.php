@@ -96,8 +96,8 @@ class Kirim_wa
             }
             $nomor_telpon = implode(",", $data_vendor);
         }
-        var_dump($get_vendor_mengikuti);die;
         $target = $nomor_telpon;
+        var_dump($target);die;
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.fonnte.com/send',
