@@ -436,11 +436,8 @@ class Daftar_paket extends CI_Controller
 				'status_paket_diumumkan' => 1,
 				'sts_ulang' => 0
 			];
-			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+
 			$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
-
-
 			$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender Ulang PT JMTO' .
 				$data_rup['nama_metode_pengadaan']  . ' :
 Nama Paket: ' . $data_rup['nama_rup'] . ' 
@@ -459,6 +456,9 @@ Terimakasih');
 				$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 				$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 			}
+			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+
 			// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
 			$this->output->set_content_type('application/json')->set_output(json_encode($data));
 		} else {
@@ -467,8 +467,6 @@ Terimakasih');
 				'status_paket_diumumkan' => 1,
 				'sts_ulang' => 0
 			];
-			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 			$get_panitia_terpilih  = $this->M_rup->get_panitia($data_rup['id_rup']);
 			$this->kirim_wa->kirim_wa_pengumuman($data_rup['id_rup'], 'Pengumuman Tender PT JMTO' .
 				$data_rup['nama_metode_pengadaan']  . ' :
@@ -488,6 +486,10 @@ Terimakasih');
 				$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 				$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 			}
+			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+
+
 			// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
 			$this->output->set_content_type('application/json')->set_output(json_encode($data));
 		}
