@@ -320,18 +320,18 @@ class Sirup_buat_paket extends CI_Controller
 
 		$this->email_send->sen_email_finalisasi_panitia($row_rup['id_rup']);
 
-		// ini menambah admin sebagai panitia
-		foreach ($ambil_role_2 as $key => $value) {
-			$id = $this->uuid->v4();
-			$id = str_replace('-', '', $id);
-			$data  = array(
-				'id_url_panitia' => $id,
-				'id_manajemen_user' => $value['id_manajemen_user'],
-				'role_panitia' => 1,
-				'id_rup' => $row_rup['id_rup']
-			);
-			$this->db->insert('tbl_panitia', $data);
-		}
+		// // ini menambah admin sebagai panitia
+		// foreach ($ambil_role_2 as $key => $value) {
+		// 	$id = $this->uuid->v4();
+		// 	$id = str_replace('-', '', $id);
+		// 	$data  = array(
+		// 		'id_url_panitia' => $id,
+		// 		'id_manajemen_user' => $value['id_manajemen_user'],
+		// 		'role_panitia' => 1,
+		// 		'id_rup' => $row_rup['id_rup']
+		// 	);
+		// 	$this->db->insert('tbl_panitia', $data);
+		// }
 
 		$response = [
 			'success' => 'Rup Paket Berhasil Di Buat'
