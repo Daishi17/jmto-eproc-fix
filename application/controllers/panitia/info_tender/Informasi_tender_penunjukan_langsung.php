@@ -3102,12 +3102,31 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         if (!is_dir('file_paket/' . $nama_rup . '/FILE_ULANG')) {
             mkdir('file_paket/' . $nama_rup . '/FILE_ULANG', 0777, TRUE);
         }
-
+        $get_panitia_terpilih  = $this->M_rup->get_panitia($id_rup);
+        $get_vendor_mengikuti  = $this->M_panitia->get_peserta_tender($id_rup);
+        $data_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
         $config['upload_path'] = './file_paket/' . $nama_rup  . '/FILE_ULANG';
         $config['allowed_types'] = 'pdf|xlsx|xls';
         $config['max_size'] = 0;
 
         $this->load->library('upload', $config);
+
+        foreach ($get_panitia_terpilih as $key => $value2) {
+            if ($value2['role_panitia'] == 1) {
+                $nama_role = 'Ketua';
+            } else if ($value2['role_panitia'] == 2) {
+                $nama_role = 'Sekretaris';
+            } else {
+                $nama_role = 'Anggota';
+            }
+            $message = $alasan_ulang;
+            $this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
+        }
+
+        foreach ($get_vendor_mengikuti as $key => $value) {
+            $message = $alasan_ulang;
+            $this->kirim_wa->kirim_wa_vendor_terdaftar($value['no_telpon'], $message);
+        }
 
         if ($this->upload->do_upload('file_ulang_paket')) {
             $fileData = $this->upload->data();

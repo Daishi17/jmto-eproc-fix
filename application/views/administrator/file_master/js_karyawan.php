@@ -118,6 +118,9 @@
                     $('[name="password"]').attr('disabled', true)
                     $('[name="password2"]').attr('disabled', true)
                     $('#modal-xl-tambah').modal('show')
+                    var html = ''
+                    html += '<option value="' + response.id_section + '">' + response.nama_section + '</option>'
+                    $('#form_section').html(html)
                 } else if (type == 'aktif') {
                     Question_aktifkan(response.id_pegawai, response.nama_pegawai);
                 } else if (type == 'nonaktif') {
