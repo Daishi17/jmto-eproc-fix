@@ -687,13 +687,10 @@ Terimakasih');
 							$data['syarat_izin_teknis_tender'] = $this->M_panitia->get_syarat_izin_teknis_tender($data['row_rup']['id_rup']);
 							$data['result_kbli'] = $this->M_panitia->result_kbli();
 							$data['result_sbu'] = $this->M_panitia->result_sbu();
-
-
 							// // lolos kualifikasi
 							// cek vendor terundang
 							// lolos izin_usaha paket
 							$syarat_izin_usaha = $this->M_panitia->cek_syarat_izin_usaha($data['row_rup']['id_rup']);
-
 							$cek_syarat_kbli = $this->M_panitia->cek_syarat_kbli($data['row_rup']['id_rup']);
 							$cek_syarat_kbli_sbu = $this->M_panitia->cek_syarat_sbu($data['row_rup']['id_rup']);
 							$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($data['row_rup']['id_rup']);
@@ -707,7 +704,6 @@ Terimakasih');
 							// $data_vendor_lolos_skdp_kbli = $this->M_panitia->data_vendor_lolos_skdp_kbli($cek_syarat_kbli);
 							// sbu
 							$data_vendor_lolos_sbu_kbli = $this->M_panitia->data_vendor_lolos_sbu_kbli($cek_syarat_kbli_sbu);
-
 							// spt
 							$data_vendor_lolos_spt = $this->M_panitia->data_vendor_lolos_spt($cek_syarat_teknis);
 							// laporan keuangan

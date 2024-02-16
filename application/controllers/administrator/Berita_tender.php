@@ -23,9 +23,9 @@ class Berita_tender extends CI_Controller
     {
         $data['departemen'] = $this->M_karyawan->get_departemen();
         $data['section'] = $this->M_karyawan->get_section();
-        $this->load->view('template_menu/header_menu');
+        $this->load->view('panitia/daftar_paket/js_header_paket');
         $this->load->view('administrator/file_master/berita_tender', $data);
-        $this->load->view('template_menu/footer_menu');
+        $this->load->view('administrator/template_menu/footer_menu');
         $this->load->view('administrator/file_master/berita_tender_ajax');
     }
 
