@@ -88,8 +88,6 @@ class Kirim_wa
                 $data_vendor[] = $value['no_telpon'];
             }
             $nomor_telpon = implode(",", $data_vendor);
-            var_dump('9', $nomor_telpon);
-            die;
         } else {
             $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($id_rup);
             $data_vendor = array();
@@ -97,11 +95,7 @@ class Kirim_wa
                 $data_vendor[] = $value['no_telpon'];
             }
             $nomor_telpon = implode(",", $data_vendor);
-            var_dump('9', $nomor_telpon);
-            die;
         }
-
-
         $target = $nomor_telpon;
         $curl = curl_init();
         curl_setopt_array($curl, array(
