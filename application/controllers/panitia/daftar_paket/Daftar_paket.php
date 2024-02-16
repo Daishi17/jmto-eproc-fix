@@ -34,8 +34,8 @@ class Daftar_paket extends CI_Controller
 		$this->load->view('panitia/daftar_paket/file_public_daftar_paket');
 	}
 
-	function send_email_regis() {
-		
+	function send_email_regis()
+	{
 	}
 
 
@@ -205,6 +205,7 @@ class Daftar_paket extends CI_Controller
 
 
 		$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
+		
 
 		// $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
 
@@ -234,7 +235,8 @@ class Daftar_paket extends CI_Controller
 		$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($data['row_rup']['id_rup']);
 		// siup
 		$data_vendor_lolos_siup_kbli = $this->M_panitia->data_vendor_lolos_siup_kbli($cek_syarat_kbli);
-
+		var_dump('umummm',  $data_vendor_lolos_siup_kbli);
+		die;
 		// nib
 		$data_vendor_lolos_nib_kbli = $this->M_panitia->data_vendor_lolos_nib_kbli($cek_syarat_kbli);
 		// var_dump($data_vendor_lolos_nib_kbli);
@@ -569,7 +571,8 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
-		} else { }
+		} else {
+		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -1634,7 +1637,8 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
