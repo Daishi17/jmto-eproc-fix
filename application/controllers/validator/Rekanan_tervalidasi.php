@@ -6,7 +6,6 @@ class Rekanan_tervalidasi extends CI_Controller
 {
 	// URL GLOBAL
 	var $url_dokumen_vendor = 'https://drtproc.jmto.co.id/datapenyedia/';
-
 	// var $dok_vendor  = 'http://localhost/jmto-vms/file_vms/';
 	var $dok_vendor  = 'https://drtproc.jmto.co.id/file_vms/';
 
@@ -33,7 +32,8 @@ class Rekanan_tervalidasi extends CI_Controller
 		$id_url_vendor = $this->input->post('id_url_vendor');
 		$pesan = $this->input->post('pesan');
 		$type_email = 'KIRIM-PESAN';
-		$this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
+		// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
+
 		$data = $this->M_Rekanan_tervalidasi->get_row_vendor($id_url_vendor);
 		$no_telpon = $data['no_telpon'];
 		$this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $pesan);
@@ -558,7 +558,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen SIUP dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen SIUP Anda";
+				$message = "Dokumen SIUP dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen SIUP Anda";
 				$type_email = 'SIUP';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -640,7 +640,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 				$type_email = 'KBLI-SIUP';
-				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Silahkan Segera Ubah KODE KBLI anda pada dokumen SIUP";
+				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Ubah KODE KBLI anda pada dokumen SIUP";
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
 				$get_row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor_id_vendor($id_vendor['id_vendor']);
@@ -797,7 +797,6 @@ class Rekanan_tervalidasi extends CI_Controller
 		$type_kbli = $this->input->post('type_kbli');
 		$alasan_validator = $this->input->post('alasan_validator');
 		$id_url = $this->input->post('id_url_nib');
-
 		$nm_validator = $this->session->userdata('nama_pegawai');
 
 		if (!$type_kbli) {
@@ -871,7 +870,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen NIB dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen NIB Anda";
+				$message = "Dokumen NIB dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen NIB Anda";
 				$type_email = 'NIB';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -953,7 +952,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 				$type_email = 'KBLI-NIB';
-				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Silahkan Segera Ubah KODE KBLI anda pada dokumen NIB";
+				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Ubah KODE KBLI anda pada dokumen NIB";
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
 				$get_row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor_id_vendor($id_vendor['id_vendor']);
@@ -1184,7 +1183,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 
-				$message = "Dokumen SBU dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen SBU Anda";
+				$message = "Dokumen SBU dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen SBU Anda";
 				$type_email = 'SBU';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -1266,7 +1265,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 				$type_email = 'KODE-SBU';
-				$message = "Jenis SBU dengan kode SBU "  . $id_vendor['kode_sbu'] . "-" . $id_vendor['nama_sbu'] . " Gagal Di Validasi Silahkan Segera Ubah KODE sbu anda pada dokumen SIUP";
+				$message = "Jenis SBU dengan kode SBU "  . $id_vendor['kode_sbu'] . "-" . $id_vendor['nama_sbu'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Ubah KODE sbu anda pada dokumen SIUP";
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
 				$get_row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor_id_vendor($id_vendor['id_vendor']);
@@ -1492,7 +1491,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen SIUJK dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen SIUJK Anda";
+				$message = "Dokumen SIUJK dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen SIUJK Anda";
 				$type_email = 'SIUJK';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -1574,7 +1573,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 				$type_email = 'KBLI-SIUJK';
-				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Silahkan Segera Ubah KODE KBLI anda pada dokumen SIUJK";
+				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Ubah KODE KBLI anda pada dokumen SIUJK";
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
 				$get_row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor_id_vendor($id_vendor['id_vendor']);
@@ -1752,7 +1751,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen AKTA-PENDIRIAN dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen AKTA-PENDIRIAN Anda";
+				$message = "Dokumen AKTA-PENDIRIAN dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen AKTA-PENDIRIAN Anda";
 				$type_email = 'AKTA-PENDIRIAN';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -1958,7 +1957,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen AKTA-PERUBAHAN dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen AKTA-PERUBAHAN Anda";
+				$message = "Dokumen AKTA-PERUBAHAN dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen AKTA-PERUBAHAN Anda";
 				$type_email = 'AKTA-PERUBAHAN';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -2229,7 +2228,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen PEMILIK dengan nomor NIK/PASPOR "  . $id_vendor['nik'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen PEMILIK Anda";
+			$message = "Dokumen PEMILIK dengan nomor NIK/PASPOR "  . $id_vendor['nik'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen PEMILIK Anda";
 			$type_email = 'PEMILIK';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -2463,7 +2462,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen PENGURUS dengan nomor NIK/PASPOR "  . $id_vendor['nik'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen PENGURUS Anda";
+			$message = "Dokumen PENGURUS dengan nomor NIK/PASPOR "  . $id_vendor['nik'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen PENGURUS Anda";
 			$type_email = 'PENGURUS';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -2651,7 +2650,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen PENGALAMAN dengan NOMOR KONTRAK "  . $id_vendor['no_kontrak'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen PENGALAMAN Anda";
+			$message = "Dokumen PENGALAMAN dengan NOMOR KONTRAK "  . $id_vendor['no_kontrak'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen PENGALAMAN Anda";
 			$type_email = 'PENGALAMAN';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -2850,7 +2849,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen SPPKP dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen SPPKP Anda";
+			$message = "Dokumen SPPKP dengan nomor surat "  . $id_vendor['no_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen SPPKP Anda";
 			$type_email = 'SPPKP';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -3023,7 +3022,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen NPWP dengan nomor NPWP "  . $id_vendor['no_npwp'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen NPWP Anda";
+			$message = "Dokumen NPWP dengan nomor NPWP "  . $id_vendor['no_npwp'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen NPWP Anda";
 			$type_email = 'NPWP';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -3276,7 +3275,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen SPT dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen SPT Anda";
+			$message = "Dokumen SPT dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen SPT Anda";
 			$type_email = 'SPT';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 			// ambil di sini
@@ -3339,10 +3338,6 @@ class Rekanan_tervalidasi extends CI_Controller
 			$row[] = ++$no;
 			if ($rs->sts_token_dokumen == 1) {
 				$row[] = '<label for="" style="white-space: nowrap; width: 100px; overflow: hidden;text-overflow: ellipsis;">' . $rs->file_dokumen_neraca . '</label>';
-				// $row[] = '<label for="" style="white-space: nowrap; 
-				// width: 100px; 
-				// overflow: hidden;
-				// text-overflow: ellipsis;">' . $rs->file_dokumen_sertifikat . '</label>';
 			} else {
 				$row[] = '<a target="_blank" href="' . $this->dok_vendor . $nama_pt['nama_usaha'] . '/' . 'Neraca/' . $rs->file_dokumen_neraca . '" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;"  class="btn btn-sm btn-warning btn-block">' . $rs->file_dokumen_neraca . '</a>';
 				// $row[] = '<a href="javascript:;" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;" onclick="DownloadFile_neraca(\'' . $rs->id_url_neraca . '\'' . ',' . '\'' . 'neraca_sertifikat' . '\')" class="btn btn-sm btn-warning btn-block">' . $rs->file_dokumen_sertifikat . '</a>';
@@ -3994,7 +3989,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'tgl_periksa' => date('Y-m-d H:i'),
 					'notifikasi' => 1
 				];
-				$message = "Dokumen SKDP dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen skdp Anda";
+				$message = "Dokumen SKDP dengan nomor surat "  . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen skdp Anda";
 				$type_email = 'skdp';
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
@@ -4076,7 +4071,7 @@ class Rekanan_tervalidasi extends CI_Controller
 					'notifikasi' => 1
 				];
 				$type_email = 'KBLI-skdp';
-				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Silahkan Segera Ubah KODE KBLI anda pada dokumen skdp";
+				$message = "Jenis KBLI dengan kode KBLI "  . $id_vendor['kode_kbli'] . "-" . $id_vendor['nama_kbli'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Ubah KODE KBLI anda pada dokumen skdp";
 				$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 				// ambil di sini
 				$get_row_vendor = $this->M_Rekanan_tervalidasi->get_row_vendor_id_vendor($id_vendor['id_vendor']);
@@ -4303,7 +4298,7 @@ class Rekanan_tervalidasi extends CI_Controller
 				'tgl_periksa' => date('Y-m-d H:i'),
 				'notifikasi' => 1
 			];
-			$message = "Dokumen lainnya dengan nomor surat " . $id_vendor['nomor_surat'] . " Gagal Di Validasi Silahkan Segera Upload Ulang Dokumen lainnya Anda";
+			$message = "Dokumen lainnya dengan nomor surat " . $id_vendor['nomor_surat'] . " Gagal Di Validasi Karena " . $alasan_validator . " Silahkan Segera Upload Ulang Dokumen lainnya Anda";
 			$type_email = 'lainnya';
 			$this->email_send->sen_row_email($type_email, $id_vendor['id_vendor'], $message);
 		}
