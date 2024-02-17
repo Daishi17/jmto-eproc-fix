@@ -55,7 +55,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= base_url('administrator/berita_tender') ?>">
                                 <i class="fa-solid fa-newspaper px-1"></i>
                                 <small>Buat Berita / Pengumuman</small>
                             </a>
