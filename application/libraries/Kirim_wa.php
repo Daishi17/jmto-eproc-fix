@@ -74,8 +74,7 @@ class Kirim_wa
         $response = curl_exec($curl);
         curl_close($curl);
     }
-
-
+    
     public function kirim_wa_pengumuman($id_rup, $message)
     {
         $token = '3HGKVEwLaF7rIt@ZhVcV';
@@ -96,8 +95,6 @@ class Kirim_wa
             }
             $nomor_telpon = implode(",", $data_vendor);
         }
-
-
         $target = $nomor_telpon;
         $curl = curl_init();
         curl_setopt_array($curl, array(
