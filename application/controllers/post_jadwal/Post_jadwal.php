@@ -2097,10 +2097,12 @@ class Post_jadwal extends CI_Controller
     {
         $id_rup = $id_rup_global;
         $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
-        if ($row_rup['id_jadwal_tender'] == 3 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 6) {
+        if ($row_rup['id_jadwal_tender'] == 3 || $row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 6) {
             $jadwal_pengumuman = $this->M_panitia->jadwal_pengumuman_pasca_1($id_rup);
         } else if ($row_rup['id_jadwal_tender'] == 9) {
             $jadwal_pengumuman = $this->M_panitia->jadwal_pengumuman_juksung($id_rup);
+        } else if ($row_rup['id_jadwal_tender'] == 1) {
+            $jadwal_pengumuman = $this->M_panitia->jadwal_pengumuman_terbatas_1file($id_rup);
         } else {
             $jadwal_pengumuman = $this->M_panitia->jadwal_pengumuman($id_rup);
         }
