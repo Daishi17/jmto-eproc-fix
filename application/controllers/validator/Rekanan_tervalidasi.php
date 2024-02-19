@@ -32,7 +32,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$id_url_vendor = $this->input->post('id_url_vendor');
 		$pesan = $this->input->post('pesan');
 		$type_email = 'KIRIM-PESAN';
-		// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
+		$this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
 
 		$data = $this->M_Rekanan_tervalidasi->get_row_vendor($id_url_vendor);
 		$no_telpon = $data['no_telpon'];
