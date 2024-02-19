@@ -22,7 +22,6 @@ class Email_send
         } else {
             $data = $this->ci->M_Rekanan_tervalidasi->get_id_vendor($data);
         }
-
         $email = $data['email'];
         $this->ci->load->library('email');
         $config = array(
@@ -39,9 +38,7 @@ class Email_send
         $this->ci->email->set_newline("\r\n");
         // Email dan nama pengirim
         $this->ci->email->from('e-procurement@jmto.co.id', 'JMTO');
-
         // Email penerima
-
         $this->ci->email->to($email); // Ganti dengan email tujuan
 
         if ($type == 'SIUP') {
