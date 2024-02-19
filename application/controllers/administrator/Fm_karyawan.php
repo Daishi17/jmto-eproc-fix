@@ -159,7 +159,7 @@ class Fm_karyawan extends CI_Controller
 			$this->form_validation->set_rules('nip', 'NIK', 'required|trim|is_unique[tbl_pegawai.nip]', ['required' => 'Nama Section Wajib Diisi!', 'is_unique' => 'NIK Sudah Terdaftar']);
 			$this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required|trim', ['required' => 'Nama Pegawai Wajib Diisi!']);
 			$this->form_validation->set_rules('id_departemen', 'Nama Departemen', 'required|trim', ['required' => 'Departemen Wajib Diisi!']);
-			$this->form_validation->set_rules('email', 'Email Pegawai', 'required|trim|valid_email|is_unique[tbl_pegawai.nip]', ['required' => 'Email Email Pegawai Wajib Diisi!', 'valid_email' => 'Email Tidak Valid',  'is_unique' => 'Email Sudah Terdaftar']);
+			// $this->form_validation->set_rules('email', 'Email Pegawai', 'required|trim|valid_email|is_unique[tbl_pegawai.nip]', ['required' => 'Email Email Pegawai Wajib Diisi!', 'valid_email' => 'Email Tidak Valid',  'is_unique' => 'Email Sudah Terdaftar']);
 			$this->form_validation->set_rules('no_telpon', 'No Telpon', 'required|trim', ['required' => 'No. Telpon Wajib Diisi!']);
 			// $this->form_validation->set_rules('id_role', 'Nama Section', 'required|trim', ['required' => 'Role Wajib Diisi!']);
 			// $this->form_validation->set_rules('password', 'Password', 'required|trim|matches[password2]', ['required' => 'Password Wajib Diisi!', 'matches' => 'Password Tidak Sama']);

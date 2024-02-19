@@ -251,7 +251,6 @@ class Sirup_buat_paket extends CI_Controller
 		$result_jadwal = $this->M_jenis_jadwal->generate_jadwal($row_rup['id_jadwal_tender']);
 		$cek_ke_jadwal_rup = $this->M_jenis_jadwal->cek_jadwal_rup($row_rup['id_rup']);
 		$this->M_jenis_jadwal->delete_jadwal_rup($row_rup['id_rup']);
-
 		// INI UNTUK CHECKER GENERATE PERSYARATAN 
 		$cek_syarat_izin = $this->M_rup->cek_syarat_izin_usaha($row_rup['id_rup']);
 		$cek_syarat_izin_teknis = $this->M_rup->cek_syarat_izin_teknis($row_rup['id_rup']);
