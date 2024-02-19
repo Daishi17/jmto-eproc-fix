@@ -32,7 +32,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
-        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_ikut($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_ip'] = $this->M_panitia->get_dokumen_izin_prinsip($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
