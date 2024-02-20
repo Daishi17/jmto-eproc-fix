@@ -153,7 +153,7 @@ function terbilang($nilai)
 
 
                 <ol>
-                    <li> Rapat Penjelasan Kualifikasi dimulai pada pukul <?= $row_rup['ba_penjelasan_kualifikasi_jam'] ?> WIB dan dilaksanakan melalui Aplikasi E-Procurement yang dihadiri oleh Panitia Pengadaan dan Peserta Kualifikasi Tender Umum/Terbatas.</li>
+                    <li> Rapat Penjelasan Kualifikasi dimulai pada pukul <?= $row_rup['ba_penjelasan_kualifikasi_jam'] ?> WIB dan dilaksanakan melalui Aplikasi E-Procurement yang dihadiri oleh Panitia Pengadaan dan Peserta Kualifikasi <?= $row_rup['nama_metode_pengadaan'] ?> .</li>
                     <li>
                         Hal-hal yang disampaikan pada Rapat Penjelasan Kualifikasi ini adalah :
                         <ol type="a">
@@ -174,7 +174,7 @@ function terbilang($nilai)
 
 
 
-                <p style="text-align:justify; font-size:18px">Demikian Berita Acara Penjelasan Kualifikasi ini dibuat dengan sebenarnya, ditandatangani oleh Panitia Pengadaan dan wakil dari Peserta..</p>
+                <p style="text-align:justify; font-size:18px">Demikian Berita Acara Penjelasan Kualifikasi ini dibuat dengan sebenarnya dan disetujui oleh Panitia Pengadaan.</p>
                 <br>
                 <br>
                 <br>
