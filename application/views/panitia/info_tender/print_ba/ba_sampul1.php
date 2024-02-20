@@ -293,7 +293,7 @@ function terbilang($nilai)
                             </tr>
                             <tr>
                                 <td width="150px">Lampiran B</td>
-                                <td>Keputusan Direksi Nomor : 81/KPTS-JMTO/2023 tanggal 01 agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
+                                <td>Keputusan Direksi Nomor : <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> tentang Panitia Pengadaan Barang/Jasa </td>
                             </tr>
                             <tr>
                                 <td width="150px">Lampiran C</td>

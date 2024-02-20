@@ -958,6 +958,12 @@
                                             <input type="date" name="ba_evaluasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_tgl'] ?>">
                                         </th>
                                     </tr>
+                                    <tr>
+                                        <th>Jam Berita Acara</th>
+                                        <th>
+                                            <input type="text" name="ba_evaluasi_jam" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_jam')" placeholder="Jam BA" class="form-control" value="<?= $row_rup['ba_evaluasi_jam'] ?>">
+                                        </th>
+                                    </tr>
                                 </table>
                             </form>
                             <!-- <div class="card">
