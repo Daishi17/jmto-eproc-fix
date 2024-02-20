@@ -362,7 +362,7 @@
 
                 if (response['dok_izin_prinsip']) {
                     // detail jadwal
-                    var open_dokumen_izin_prinsip = 'https://jmto-eproc.kintekindo.net/' + 'file_paket/' + response['row_rup'].nama_rup + '/DOKUMEN_IZIN_PRINSIP_DAN_HPS' + '/';
+                    var open_dokumen_izin_prinsip = 'https://eprocurement.jmto.co.id/' + 'file_paket/' + response['row_rup'].nama_rup + '/DOKUMEN_IZIN_PRINSIP_DAN_HPS' + '/';
                     var html_dok_izin_prinsip = '';
                     var i_i;
                     for (i_i = 0; i_i < response['dok_izin_prinsip'].length; i_i++) {

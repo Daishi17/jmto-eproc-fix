@@ -39,11 +39,9 @@ class M_jenis_jadwal extends CI_Model
         return $query->result_array();
     }
 
-
-    
     // INI UNTUK GENERATE JADWAL TESTING
     // data
-
+    
     public function generate_jadwal($id_jadwal_tender)
     {
         $this->db->select('*');
