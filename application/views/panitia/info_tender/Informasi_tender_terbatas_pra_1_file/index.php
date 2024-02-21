@@ -193,7 +193,7 @@
                                                                 <td scope="row"><?= $no++ ?></td>
                                                                 <td><?= $value['nama_syarat_tambahan'] ?></td>
                                                                 <?php if ($value['file_syarat_tambahan']) { ?>
-                                                                    <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/DOKUMEN_PRAKUALIFIKASI' . '/' . $value['file_syarat_tambahan']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> </td>
+                                                                    <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SYARAT_TAMBAHAN' . '/' . $value['file_syarat_tambahan']) ?>" class="btn btn-sm btn-danger"><i class="fas fa fa-file"></i> View</a> </td>
                                                                 <?php } else { ?>
                                                                     <td><span class="badge bg-danger">Tidak Ada File</span> </td>
                                                                 <?php  } ?>

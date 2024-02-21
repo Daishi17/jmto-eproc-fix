@@ -300,7 +300,7 @@ function terbilang($nilai)
                                                     <span class="badge bg-danger">Gugur</span>
                                                 <?php } ?>
                                             <?php } else { ?>
-                                                <span class="badge bg-danger">Gugur</span>
+                                                <span class="badge bg-danger">Belum Upload</span>
                                             <?php  }   ?>
 
                                         </td>
