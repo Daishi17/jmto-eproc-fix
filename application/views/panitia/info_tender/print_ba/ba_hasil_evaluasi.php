@@ -144,7 +144,7 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_evaluasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan telah mengadakan Rapat Evaluasi Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> dengan hasil-hasil sebagai berikut:
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_evaluasi_jam'] ?> Panitia Pengadaan telah mengadakan Rapat Evaluasi Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> dengan hasil-hasil sebagai berikut:
                 </p>
 
                 <ol>

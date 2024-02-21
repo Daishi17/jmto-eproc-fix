@@ -295,16 +295,16 @@ function terbilang($nilai)
                         <p><b>DAFTAR LAMPIRAN YANG MENGIKAT BERITA ACARA INI : </b></p>
                         <table>
                             <tr>
-                                <td>Lampiran A</td>
-                                <td>&ensp;&ensp;Dokumen Pengadaan Pekerjaan <?= $row_rup['nama_rup'] ?> dan Addendumnya</td>
+                                <td width="150px">Lampiran A</td>
+                                <td>Dokumen Pengadaan Pekerjaan <?= $row_rup['nama_rup'] ?> dan Addendumnya</td>
                             </tr>
                             <tr>
-                                <td>Lampiran B</td>
-                                <td>&ensp;&ensp;Keputusan Direksi Nomor : 81/KPTS-JMTO/2023 tanggal 01 agustus 2022 tentang Panitia Pengadaan Barang/Jasa </td>
+                                <td width="150px">Lampiran B</td>
+                                <td>Keputusan Direksi Nomor : <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> tentang Panitia Pengadaan Barang/Jasa </td>
                             </tr>
                             <tr>
-                                <td>Lampiran C</td>
-                                <td>&ensp;&ensp;Dokumen Penawaran dari penyedia jasa</td>
+                                <td width="150px">Lampiran C</td>
+                                <td>Dokumen Penawaran dari penyedia jasa</td>
                             </tr>
                         </table>
                     </li>
