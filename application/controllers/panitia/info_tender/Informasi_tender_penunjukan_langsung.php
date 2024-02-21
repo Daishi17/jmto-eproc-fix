@@ -3042,7 +3042,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-    function get_keuangan($id_vendor)
+    public function get_keuangan($id_vendor)
     {
         $result = $this->M_panitia->gettable_keuangan($id_vendor);
         $data = [];
@@ -3066,7 +3066,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             if ($rs->sts_token_dokumen == 1) {
                 $row[] = '<center><span class="badge bg-danger text-white">Terenkripsi <i class="fa-solid fa-lock px-1"></i></span></center>';
             } else {
-                $row[] = '<a href="javascript:;" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;" onclick="DownloadFile_keuangan(\'' . $rs->id_url . '\')" class="btn btn-sm btn-warning btn-block">' . $rs->file_laporan_keuangan . '</a>';
+                $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Laporan_keuangan/' . $rs->file_laporan_keuangan . '" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;"  class="btn btn-sm btn-warning btn-block">' . $rs->file_laporan_keuangan . '</a>';
             }
             $data[] = $row;
         }
@@ -3074,6 +3074,50 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->M_panitia->count_all_keuangan($id_vendor),
             "recordsFiltered" => $this->M_panitia->count_filtered_keuangan($id_vendor),
+            "data" => $data
+        );
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_pengalaman($id_vendor)
+    {
+        $results = $this->M_panitia->gettable_pengalaman_manajerial($id_vendor);
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($results as $rs) {
+            $row = array();
+            $row[] = ++$no;
+            $row[] = $rs->nama_pekerjaan;
+            $row[] = $rs->instansi_pemberi;
+            $row[] = $rs->no_kontrak . ' & ' . date('d-m-Y', strtotime($rs->tanggal_kontrak));
+            $row[] = date('d-m-Y', strtotime($rs->tanggal_akhir_kontrak));
+            $row[] = "Rp " . number_format($rs->nilai_kontrak, 2, ',', '.');
+            $row[] = $rs->progres . '%';
+            $row[] = $rs->jangka_waktu . ' Bulan';
+            if ($rs->file_kontrak_pengalaman == NULL) {
+                $row[] = '<span class="badge bg-primary">Belum Upload File Kontrak</span>';
+            } else {
+                if ($rs->sts_validasi == NULL || $rs->sts_validasi == 0) {
+                    $row[] = '<span class="badge bg-secondary">Belum Di Periksa</span>';
+                } else if ($rs->sts_validasi == 1) {
+                    $row[] = '<span class="badge bg-success">Sudah Tervalidasi</span>';
+                } else if ($rs->sts_validasi == 2) {
+                    $row[] = '<span class="badge bg-danger">Tidak Valid</span>';
+                } else if ($rs->sts_validasi == 3) {
+                    $row[] = '<span class="badge bg-warning">Revisi</span>';
+                }
+            }
+            if ($rs->sts_token_dokumen_pengalaman == 1) {
+                $row[] = '<center><span class="badge bg-danger text-white">Terenkripsi <i class="fa-solid fa-lock px-1"></i></span></center>';
+            } else {
+                $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Pengalaman/' . $rs->file_kontrak_pengalaman . '" style="white-space: nowrap;width: 200px;overflow: hidden;text-overflow: ellipsis;"  class="btn btn-sm btn-warning btn-block">' . $rs->file_kontrak_pengalaman . '</a>';
+            }
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_panitia->count_all_data_pengalaman_manajerial($id_vendor),
+            "recordsFiltered" => $this->M_panitia->count_filtered_data_pengalaman_manajerial($id_vendor),
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));

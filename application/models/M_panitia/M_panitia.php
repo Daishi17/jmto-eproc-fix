@@ -1156,7 +1156,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
-        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2115,6 +2115,29 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->where('tbl_vendor_syarat_tambahan.status', 1);
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
+        return $this->db->count_all_results();
+    }
+
+    public function cek_valid_belum_dicekvendor($id_rup, $id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_syarat_tambahan');
+        $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
+        $this->db->where('tbl_vendor_syarat_tambahan.status', NULL);
+        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
+        return $this->db->count_all_results();
+    }
+    public function cek_tidak_valid_dicekvendor($id_rup, $id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_syarat_tambahan');
+        $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
+        $this->db->where('tbl_vendor_syarat_tambahan.status', 2);
         $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
         $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
         return $this->db->count_all_results();
@@ -3364,6 +3387,69 @@ class M_panitia extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_vendor_neraca_keuangan');
         $this->db->where('tbl_vendor_neraca_keuangan.id_vendor', $id_vendor);
+        return $this->db->count_all_results();
+    }
+
+
+    var $order_pengalaman =  array('tbl_vendor_pengalaman.id_vendor', 'nama_pekerjaan', 'instansi_pemberi', 'tanggal_kontrak', 'tanggal_kontrak', 'instansi_pemberi', 'nilai_kontrak', 'tbl_vendor_pengalaman.id_vendor', 'tbl_vendor_pengalaman.id_vendor', 'tbl_vendor_pengalaman.id_vendor');
+
+    private function _get_data_query_pengalaman_manjerial($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_pengalaman');
+        $this->db->join('tbl_vendor', 'tbl_vendor_pengalaman.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_pengalaman.id_vendor', $id_vendor);
+        $this->db->order_by('tbl_vendor_pengalaman.id_pengalaman', 'DESC');
+        $i = 0;
+        foreach ($this->order_pengalaman as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_pengalaman) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_pengalaman[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_vendor_pengalaman.id_pengalaman', 'DESC');
+        }
+    }
+
+    public function gettable_pengalaman_manajerial($id_vendor) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_pengalaman_manjerial($id_vendor); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function count_filtered_data_pengalaman_manajerial($id_vendor)
+    {
+        $this->_get_data_query_pengalaman_manjerial($id_vendor); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all_data_pengalaman_manajerial($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_pengalaman');
+        $this->db->where('tbl_vendor_pengalaman.id_vendor', $id_vendor);
         return $this->db->count_all_results();
     }
 }

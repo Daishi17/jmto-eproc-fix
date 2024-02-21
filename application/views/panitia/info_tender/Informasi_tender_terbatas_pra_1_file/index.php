@@ -240,9 +240,9 @@
                             <th>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <!-- belom mulai -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian" disabled>
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Belum Memasuki Tahap Ini
-                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
@@ -2185,7 +2185,6 @@
                                 <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td><?= $value['no_telpon'] ?></td>
-                                <!-- <td><a class="btn btn-sm btn-danger text-white" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'pakta_integritas_penyedia/' . $value['id_vendor_mengikuti_paket']) ?>">Lihat Pakta Integritas</a></td> -->
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -2608,13 +2607,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Syarat Tambahan Penyedia <label for="" id="nama_usaha_tambahan2"></label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Neraca Keuangan <label for="" id="nama_usaha_tambahan2"></label></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Lakukan Validasi Syarat Tambahan Penyedia !!! <br>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Neraca Keuangan Penyedia <br>
                     </div>
                 </div>
                 <table class="table table-bordered" id="tbl_neraca_keuangan">
@@ -2641,13 +2640,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Syarat Tambahan Penyedia <label for="" id="nama_usaha_tambahan3"></label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Laporan Keuangan Penyedia <label for="" id="nama_usaha_tambahan3"></label></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Lakukan Validasi Syarat Tambahan Penyedia !!! <br>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Laporan Keuangan Penyedia <br>
                     </div>
                 </div>
                 <table class="table table-bordered" id="tbl_laporan_keuangan">
@@ -2669,6 +2668,52 @@
                     <tbody>
                     </tbody>
                 </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="lihat_pengalaman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Pengalaman Pekerjaan Penyedia <label for="" id="nama_usaha_tambahan4"></label></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <div>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Pengalaman Pekerjaan Penyedia !!! <br>
+                    </div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="font-size: 13px;text-align:center" id="tbl_pengalaman" class="table table-sm table-bordered table-striped">
+                        <thead class="bg-danger">
+                            <tr>
+                                <th class="text-white">No</th>
+                                <th style="width:8%;"><small class="text-white">Nama Pekerjaan</small></th>
+                                <th style="width:8%;"><small class="text-white">Pemberi Kerja / Tugas</small></th>
+                                <th style="width:23%;"><small class="text-white">Nomor Kontrak & Tanggal Mulai Awal Kontrak Tgl/Bln/Tahun</small></th>
+                                <th style="width:9%;"><small class="text-white">Tanggal Akhir Kontrak Tgl/Bln/Tahun</small></th>
+                                <th style="width:9%;"><small class="text-white">Nilai Kontrak</small></th>
+                                <th style="width:10%;"><small class="text-white">Progres</small></th>
+                                <th style="width:10%;"><small class="text-white">Jangka Waktu Pelaksanaan</small></th>
+                                <th style="width:8%;">
+                                    <small class="text-white">
+                                        <div class="text-center">Status Validasi</div>
+                                    </small>
+                                </th>
+                                <th style="width:10%;"><small class="text-white">File</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
