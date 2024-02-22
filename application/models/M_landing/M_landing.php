@@ -71,6 +71,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 4);
         $i = 0;
         foreach ($this->order_paket as $item) // looping awal
@@ -124,6 +125,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 4);
         return $this->db->count_all_results();
     }
@@ -136,6 +138,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 2);
         $i = 0;
         foreach ($this->order_paket as $item) // looping awal
@@ -189,6 +192,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 2);
         return $this->db->count_all_results();
     }
@@ -202,6 +206,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 3);
         $i = 0;
         foreach ($this->order_paket as $item) // looping awal
@@ -255,6 +260,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 3);
         return $this->db->count_all_results();
     }
@@ -267,6 +273,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 1);
         $i = 0;
         foreach ($this->order_paket as $item) // looping awal
@@ -320,6 +327,7 @@ class M_landing extends CI_Model
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->where('tbl_rup.status_paket_panitia', 2);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->where('tbl_rup.id_jenis_pengadaan', 3);
         return $this->db->count_all_results();
     }

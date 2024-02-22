@@ -406,7 +406,7 @@ header("Content-Security-Policy: img-src 'self' *");
                         </div>
                     </div>
                     <div class="section-title mb-4">
-                        <h3 class="title">DATA PENGADAAN JASALAINYA</h3>
+                        <h3 class="title">DATA PENGADAAN JASA LAINYA</h3>
                         <p class="mb-0">Data Tender Pengadaan Jasa lain Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">

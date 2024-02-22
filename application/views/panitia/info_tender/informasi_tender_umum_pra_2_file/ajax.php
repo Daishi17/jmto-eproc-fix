@@ -451,6 +451,40 @@
                             }
                         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
                     });
+                } else if (type == 'pengalaman') {
+                    $('#lihat_pengalaman').modal('show')
+                    $('#nama_usaha_tambahan4').text(response['row_vendor_mengikuti'].nama_usaha)
+                    $(document).ready(function() {
+                        $('#tbl_pengalaman').DataTable({
+                            "responsive": false,
+                            "ordering": true,
+                            "processing": true,
+                            "serverSide": true,
+                            "autoWidth": false,
+                            "bDestroy": true,
+                            // "buttons": ["excel", "pdf", "print", "colvis"],
+                            initComplete: function() {
+                                this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+                            },
+                            "order": [],
+                            "ajax": {
+                                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_pengalaman/') ?>' + response['row_vendor_mengikuti'].id_vendor,
+                                "type": "POST",
+                            },
+                            "columnDefs": [{
+                                "target": [-1],
+                                "orderable": false
+                            }],
+                            "oLanguage": {
+                                "sSearch": "Pencarian : ",
+                                "sEmptyTable": "Data Tidak Tersedia",
+                                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                                "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                                "sProcessing": "Memuat Data...."
+                            }
+                        }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+                    });
                 }
 
             }

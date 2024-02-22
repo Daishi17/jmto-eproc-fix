@@ -74,13 +74,13 @@ class Kirim_wa
         $response = curl_exec($curl);
         curl_close($curl);
     }
-    
+
     public function kirim_wa_pengumuman($id_rup, $message)
     {
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        if ($row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 2|| $row_rup['id_jadwal_tender'] == 3  || $row_rup['id_jadwal_tender'] == 6 || $row_rup['id_jadwal_tender'] == 10) {
+        if ($row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 3  || $row_rup['id_jadwal_tender'] == 6 || $row_rup['id_jadwal_tender'] == 10) {
             $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
             $data_vendor = array();
             foreach ($get_vendor_mengikuti as $key => $value) {
@@ -96,6 +96,7 @@ class Kirim_wa
             $nomor_telpon = implode(",", $data_vendor);
         }
         $target = $nomor_telpon;
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.fonnte.com/send',
@@ -208,6 +209,8 @@ NAMA PAKET : .' . $nama_rup . ', NAMA DOKUMEN : ' . $nama_dokumen . ', KETERANGA
         $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_jadwal_rup);
         $ambil_nama_paket =  $this->ci->M_panitia->get_row_rup($id_rup);
         $get_panitia_aja =  $this->ci->M_panitia->get_panitia_ketua_sekertaris($id_rup);
+        var_dump($get_panitia_aja);
+        die;
         $data_pegawai = array();
         foreach ($get_panitia_aja as $key => $value) {
             $data_pegawai[] = $value['no_telpon'];
