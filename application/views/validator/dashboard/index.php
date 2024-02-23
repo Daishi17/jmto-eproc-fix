@@ -157,11 +157,11 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Info Perubahan Penyedia Rekanan</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Info Perubahan Dokumen DRT</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table class="table">
+                <table class="table" id="table_perubahan">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -169,10 +169,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($vendor_perubahan as $key => $value) { ?>
+                        <?php $i = 1;
+                        foreach ($vendor_perubahan as $key => $value) { ?>
                             <tr>
-                                <th>No</th>
-                                <th>Nama Penyedia</th>
+                                <th><?= $i++ ?></th>
+                                <th><?= $value['nama_usaha'] ?></th>
                             </tr>
                         <?php } ?>
 

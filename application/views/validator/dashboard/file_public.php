@@ -221,4 +221,6 @@
         }, 500);
 
     }
+
+    $('#table_perubahan').DataTable()
 </script>
