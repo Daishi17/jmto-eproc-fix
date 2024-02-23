@@ -429,8 +429,10 @@ class Daftar_paket extends CI_Controller
 	{
 		$id_url_rup = $this->input->post('id_url_rup');
 		$data_rup = $this->M_rup->get_row_rup($id_url_rup);
-		if ($data_rup['id_jadwal_tender'] == 1 || $data_rup['id_jadwal_tender'] == 9 || $data_rup['id_jadwal_tender'] == 2) {
+		if ($data_rup['id_jadwal_tender'] == 9 || $data_rup['id_jadwal_tender'] == 2) {
 			$jadwal_batas_selesai = $this->M_jadwal->jadwal_pra_umum_1($data_rup['id_rup']);
+		} else if ($data_rup['id_jadwal_tender'] == 1) {
+			$jadwal_batas_selesai = $this->M_jadwal->jadwal_pra1file_umum_1($data_rup['id_rup']);
 		} else {
 			$jadwal_batas_selesai = $this->M_jadwal->jadwal_pra1file_umum_1($data_rup['id_rup']);
 		}

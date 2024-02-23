@@ -157,11 +157,27 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Info </h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Info Perubahan Penyedia Rekanan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Penyedia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($vendor_perubahan as $key => $value) { ?>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Penyedia</th>
+                            </tr>
+                        <?php } ?>
 
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
