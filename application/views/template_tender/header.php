@@ -170,7 +170,6 @@
                                 <small>Guide || FAQ</small>
                             </a>
                         <?php  } ?>
-
                     </div>
 
                 </div>

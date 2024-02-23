@@ -250,9 +250,7 @@ Terimakasih");
         $this->ci->email->set_newline("\r\n");
         // Email dan nama pengirim
         $this->ci->email->from('e-procurement@jmto.co.id', 'JMTO');
-
         // Email penerima
-
         foreach ($get_panitia_mengikuti as $key => $value) {
             $this->ci->email->to($value['email']);
         }
