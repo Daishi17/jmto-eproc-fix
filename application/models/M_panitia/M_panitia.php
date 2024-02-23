@@ -725,7 +725,6 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_manajemen_user', 'tbl_panitia.id_manajemen_user = tbl_manajemen_user.id_manajemen_user', 'left');
         $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
         $this->db->where('id_rup', $id_rup);
-        $this->db->where('tbl_pegawai.id_role !=', 1);
         $this->db->where_in('tbl_panitia.role_panitia', [1, 2]);
         $query = $this->db->get();
         return $query->result_array();
