@@ -167,21 +167,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="font-size:14px" class="nav-link" data-toggle="dropdown" href="#">
-                            <span class="text-navy">
-                                <i class="fas fa-caret-square-down"></i>
-                                Guide || FAQ
-                            </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <a style="font-size:14px" href="#" class="dropdown-item">
-                                <i class="far fa-file-pdf mr-2"></i>Dokumen User Guide
+                        <?php if ($this->session->userdata('role') == 2) { ?>
+                            <!-- panitia -->
+                            <a target="_blank" href="<?= base_url('assets/user_guide/Manual_Book_Panitia.pdf') ?>" class="nav-link px-2 text-white">
+                                <i class="fa-regular fa-file-pdf"></i>
+                                <small>Guide || FAQ</small>
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a style="font-size:14px" href="#" class="dropdown-item">
-                                <i class="nav-icon fas fa-headset mr-2"></i> FAQ
+                        <?php } else { ?>
+                            <a target="_blank" href="<?= base_url('assets/user_guide/Manual_Book_Panitia.pdf') ?>" class="nav-link px-2 text-white">
+                                <i class="fa-regular fa-file-pdf"></i>
+                                <small>Guide || FAQ</small>
                             </a>
-                        </div>
+                        <?php  } ?>
                     </li>
                     <li class="nav-item dropdown">
                         <a style="font-size:14px" class="navbar-brand nav-link" data-toggle="dropdown" href="#">
