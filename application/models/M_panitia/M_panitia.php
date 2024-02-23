@@ -3451,4 +3451,134 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_pengalaman.id_vendor', $id_vendor);
         return $this->db->count_all_results();
     }
+
+    public function get_ba_1($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_pembuktian_kualifikasi', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_2($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_evaluasi', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_3($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_sampul1', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_4($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_undangan', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_5($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_evaluasi_teknis', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_6($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_sampul2', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_7($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_negosiasi', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_8($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_klarifikasi_harga', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_9($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_penjelasan', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_10($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_pemenang', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_11($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_pengumuman_hasil_evaluasi_teknis', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_12($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_penjelasan_kualifikasi', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_ba_13($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_panitia');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('sts_ba_sampul1_2', null);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

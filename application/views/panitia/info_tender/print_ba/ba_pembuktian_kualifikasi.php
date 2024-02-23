@@ -167,9 +167,17 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan =  $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td class="text-center"><?= $i++ ?></td>
-                                <td><b class="text-uppercase"><?= $value['nama_usaha'] ?></b></td>
+                                <td><b class="text-uppercase"><?= $nama_perusahaan ?></b></td>
                                 <td class="text-center">
                                     <b><?= $value['ba_pembuktian_hadir'] ?></b>
                                 </td>
@@ -265,7 +273,15 @@ function terbilang($nilai)
                 <ol>
                     <?php $i = 1;
                     foreach ($peserta_tender as $key => $value) { ?>
-                        <li><?= $value['nama_usaha'] ?></li>
+                        <?php
+                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                        if ($subs_string == 'PT') {
+                            $nama_perusahaan =  $value['nama_usaha'];
+                        } else {
+                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                        }
+                        ?>
+                        <li><?= $nama_perusahaan ?></li>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

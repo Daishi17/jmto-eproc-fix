@@ -85,6 +85,21 @@ class Informasi_tender_terbatas_pra_2_file extends CI_Controller
 
         $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
 
+        $data['ba_1_cek'] = $this->M_panitia->get_ba_1($data['row_rup']['id_rup']);
+        $data['ba_2_cek'] = $this->M_panitia->get_ba_2($data['row_rup']['id_rup']);
+        $data['ba_3_cek'] = $this->M_panitia->get_ba_3($data['row_rup']['id_rup']);
+        $data['ba_4_cek'] = $this->M_panitia->get_ba_4($data['row_rup']['id_rup']);
+        $data['ba_5_cek'] = $this->M_panitia->get_ba_5($data['row_rup']['id_rup']);
+        $data['ba_6_cek'] = $this->M_panitia->get_ba_6($data['row_rup']['id_rup']);
+        $data['ba_7_cek'] = $this->M_panitia->get_ba_7($data['row_rup']['id_rup']);
+        $data['ba_8_cek'] = $this->M_panitia->get_ba_8($data['row_rup']['id_rup']);
+        $data['ba_9_cek'] = $this->M_panitia->get_ba_9($data['row_rup']['id_rup']);
+        $data['ba_10_cek'] = $this->M_panitia->get_ba_10($data['row_rup']['id_rup']);
+        $data['ba_11_cek'] = $this->M_panitia->get_ba_11($data['row_rup']['id_rup']);
+        $data['ba_12_cek'] = $this->M_panitia->get_ba_12($data['row_rup']['id_rup']);
+        $data['ba_13_cek'] = $this->M_panitia->get_ba_13($data['row_rup']['id_rup']);
+
+
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);

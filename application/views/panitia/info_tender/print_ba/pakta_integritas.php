@@ -231,9 +231,17 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                        <?php
+                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                        if ($subs_string == 'PT') {
+                            $nama_perusahaan =  $value['nama_usaha'];
+                        } else {
+                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                        }
+                        ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= $value['nama_usaha'] ?></td>
+                            <td><?= $nama_perusahaan ?></td>
                             <td><?= $row_rup['nama_rup'] ?></td>
                             <td><?= $value['waktu_undangan_rapat'] ?></td>
                         </tr>

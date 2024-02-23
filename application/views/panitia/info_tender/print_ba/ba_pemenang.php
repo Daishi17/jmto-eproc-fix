@@ -192,7 +192,15 @@ function terbilang($nilai)
                         <tr>
                             <td>Nama Perusahaan</td>
                             <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <td><?= $get_mengikuti_deal_nego['nama_usaha'] ?></td>
+                            <?php
+                            $subs_string = substr($get_mengikuti_deal_nego['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan =  $get_mengikuti_deal_nego['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' .  $get_mengikuti_deal_nego['nama_usaha'];
+                            }
+                            ?>
+                            <td><?= $nama_perusahaan  ?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
@@ -298,10 +306,10 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                                                                                <td class="text-center"><?= $i++ ?></td>
-                                                                                                                                                                                                                                                                <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                                                                            </tr>
+                                                                                                                                                                                                                                                                        <tr>
+                                                                                                                                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
+                                                                                                                                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                                                                                                                        </tr>
                     <?php } ?>
                 </tbody>
             </table> -->

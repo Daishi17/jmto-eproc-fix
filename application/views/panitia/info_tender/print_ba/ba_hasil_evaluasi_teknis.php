@@ -172,9 +172,17 @@ function terbilang($nilai)
 
                                 <?php $i = 1;
                                 foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                    <?php
+                                    $subs_string = substr($value['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    } else {
+                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    }
+                                    ?>
                                     <tr>
                                         <td><?= $i++  ?></td>
-                                        <td><?= $value['nama_usaha'] ?></td>
+                                        <td><?= $nama_perusahaan ?></td>
                                         <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
                                             <td><?= $value['ev_penawaran_teknis'] ?></td>
                                         <?php } else { ?>

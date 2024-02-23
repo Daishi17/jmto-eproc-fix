@@ -153,7 +153,15 @@ function terbilang($nilai)
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                }
+                                ?>
+                                <li><?= $nama_perusahaan ?></li>
                             <?php } ?>
                         </ol>
                     </li>
@@ -162,7 +170,15 @@ function terbilang($nilai)
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender_pq as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                }
+                                ?>
+                                <li><?= $nama_perusahaan ?></li>
                             <?php } ?>
                         </ol>
                     </li>
@@ -172,7 +188,15 @@ function terbilang($nilai)
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
-                                <li><?= $value['nama_usaha'] ?></li>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                }
+                                ?>
+                                <li><?= $nama_perusahaan ?></li>
                             <?php } ?>
                         </ol>
                     </li>

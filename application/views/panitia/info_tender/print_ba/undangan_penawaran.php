@@ -304,9 +304,17 @@ function terbilang($nilai)
                 <tbody>
                     <?php $i = 1;
                     foreach ($peserta_tender_pq as $key => $value) { ?>
+                        <?php
+                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                        if ($subs_string == 'PT') {
+                            $nama_perusahaan =  $value['nama_usaha'];
+                        } else {
+                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                        }
+                        ?>
                         <tr>
                             <td class="text-center"><?= $i++ ?></td>
-                            <td><?= $value['nama_usaha'] ?></td>
+                            <td><?= $nama_perusahaan ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>

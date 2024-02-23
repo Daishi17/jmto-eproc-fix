@@ -147,9 +147,16 @@ function terbilang($nilai)
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_klarifikasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_klarifikasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_klarifikasi_tgl'])) ?>)</b>, Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_direksi'] ?> tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Penilaian Kewajaran Harga untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator
                 </p>
-
+                <?php
+                $subs_string = substr($deal_row['nama_usaha'], 0, 2);
+                if ($subs_string == 'PT') {
+                    $nama_perusahaan = $deal_row['nama_usaha'];
+                } else {
+                    $nama_perusahaan = 'PT ' . $deal_row['nama_usaha'];
+                }
+                ?>
                 <p style="text-align:justify; font-size:18px">
-                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $deal_row['nama_usaha'] ?></b>
+                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $nama_perusahaan  ?></b>
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
@@ -257,9 +264,17 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($deal as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td class="text-center"><?= $i++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <?php if ($value['persetujuan_klarifikasi_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>

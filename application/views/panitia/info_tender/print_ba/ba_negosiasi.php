@@ -166,8 +166,16 @@ function terbilang($nilai)
                         <p><b> PESERTA PENAWARAN </b></p>
                         <table>
                             <tr>
+                                <?php
+                                $subs_string = substr($deal_nego['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $deal_nego['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $deal_nego['nama_usaha'];
+                                }
+                                ?>
                                 <td>Nama Perusahaan</td>
-                                <th>: <?= $deal_nego['nama_usaha'] ?></th>
+                                <th>: <?= $nama_perusahaan ?></th>
                             </tr>
                             <tr>
                                 <td>Harga Penawaran</td>

@@ -166,9 +166,17 @@ function terbilang($nilai)
                             <tbody>
                                 <?php $i = 1;
                                 foreach ($peserta_tender_pq_penawaran as $key => $value2) { ?>
+                                    <?php
+                                    $subs_string = substr($value2['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT') {
+                                        $nama_perusahaan =  $value2['nama_usaha'];
+                                    } else {
+                                        $nama_perusahaan = 'PT ' .  $value2['nama_usaha'];
+                                    }
+                                    ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td class="text-uppercase"><?= $value2['nama_usaha'] ?></td>
+                                        <td class="text-uppercase"><?= $nama_perusahaan ?></td>
                                     </tr>
                                 <?php } ?>
 
@@ -188,9 +196,17 @@ function terbilang($nilai)
                             <tbody>
                                 <?php $i = 1;
                                 foreach ($peserta_tender_pq_penawaran as $key => $value3) { ?>
+                                    <?php
+                                    $subs_string = substr($value3['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT') {
+                                        $nama_perusahaan =  $value3['nama_usaha'];
+                                    } else {
+                                        $nama_perusahaan = 'PT ' .  $value3['nama_usaha'];
+                                    }
+                                    ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td class="text-uppercase"><?= $value3['nama_usaha'] ?></td>
+                                        <td class="text-uppercase"><?= $nama_perusahaan ?></td>
                                     </tr>
                                 <?php } ?>
 
@@ -216,9 +232,17 @@ function terbilang($nilai)
                                 <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
                                     <?php $i = 1;
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT') {
+                                            $nama_perusahaan =  $value['nama_usaha'];
+                                        } else {
+                                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                        }
+                                        ?>
                                         <tr>
                                             <td><?= $i++ ?></td>
-                                            <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                            <td class="text-uppercase"><?= $nama_perusahaan ?></td>
                                             <td>
                                                 <?php
 
@@ -248,9 +272,17 @@ function terbilang($nilai)
                                 <?php } else { ?>
                                     <?php $i = 1;
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT') {
+                                            $nama_perusahaan =  $value['nama_usaha'];
+                                        } else {
+                                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                        }
+                                        ?>
                                         <tr>
                                             <td><?= $i++ ?></td>
-                                            <td class="text-uppercase"><?= $value['nama_usaha'] ?></td>
+                                            <td class="text-uppercase"><?= $nama_perusahaan ?></td>
                                             <td>
                                                 <?php
 
