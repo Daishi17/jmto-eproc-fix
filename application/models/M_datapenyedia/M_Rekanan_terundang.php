@@ -95,7 +95,8 @@ class M_Rekanan_terundang extends CI_Model
         return $query->row_array();
     }
 
-    function get_result_rekanan_terundang() {
+    function get_result_rekanan_terundang()
+    {
         $this->db->select('*');
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_provinsi', 'tbl_vendor.id_provinsi = tbl_provinsi.id_provinsi', 'left');
@@ -2075,6 +2076,15 @@ class M_Rekanan_terundang extends CI_Model
         return $query->result_array();
     }
 
+    public function cek_jika_ada_dokumen_pengajuan_result()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor');
+        $this->db->join('tbl_pengajuan_perubahan_dokumen', 'tbl_vendor.id_vendor = tbl_pengajuan_perubahan_dokumen.id_vendor', 'left');
+        $this->db->where('tbl_pengajuan_perubahan_dokumen.status_perubahan_dokumen', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 
     var $order4 =  array('id_dokumen_perubahan', 'id_vendor', 'jenis_dokumen_perubahan', 'status_perubahan_dokumen', 'waktu_pengajuan', 'id_dokumen_perubahan');

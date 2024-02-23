@@ -117,7 +117,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $cek_tidakvalid_vendor = $this->M_panitia->cek_tidak_valid_dicekvendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
 
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
@@ -335,7 +340,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->nilai_penawaran) {
                 $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
             } else {
@@ -423,7 +433,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ev_hea_penawaran) {
                 $row[] =  number_format($rs->ev_hea_penawaran, 2, ',', '.');
             } else {
@@ -482,7 +497,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ev_hea_harga) {
                 $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
             } else {
@@ -554,7 +574,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
             } else {
@@ -623,7 +648,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
@@ -739,7 +769,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
             } else {
@@ -1167,7 +1202,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $cek_null_syarat = $this->M_panitia->cek_null_syarat($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
                     $row[] = '<span class="badge bg-success">Lulus</span>';
@@ -1689,7 +1729,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             $row[] = '<div class="text-center">
 			<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','lihat_dokumen_penawaran_1'" . ')">
 				<i class="fa-solid fa-eye"></i>
@@ -1717,7 +1762,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
             // } else {
@@ -1794,7 +1844,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
             // } else {
@@ -2500,7 +2555,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ba_check_ev1 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2542,7 +2602,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ba_check_ev2 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2584,7 +2649,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
             if ($rs->ba_check_ev3 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2653,7 +2723,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
 
             $data[] = $row;
         }
@@ -2674,7 +2749,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
 
             $data[] = $row;
         }
@@ -2930,7 +3010,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                $row[] = 'PT ' . $rs->nama_usaha;
+            }
 
             if ($rs->kelengkapan_file2_1 == 1) {
                 $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';

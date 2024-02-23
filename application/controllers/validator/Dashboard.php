@@ -10,6 +10,8 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('M_Dashboard/M_Dashboard');
+		$this->load->model('M_datapenyedia/M_Rekanan_terundang');
+		$this->load->model('M_datapenyedia/M_Rekanan_tervalidasi');
 		$role = $this->session->userdata('role');
 		if (!$role == 1 || !$role == 2) {
 			redirect('auth');
@@ -50,7 +52,7 @@ class Dashboard extends CI_Controller
 			'rekanan_terundang_nov' => $this->M_Dashboard->count_terundang_nov(),
 			'rekanan_terundang_des' => $this->M_Dashboard->count_terundang_des(),
 		];
-
+		$data['vendor_perubahan'] = $this->M_Rekanan_terundang->cek_jika_ada_dokumen_pengajuan_result();
 		$this->load->view('template_menu/header_menu');
 		$this->load->view('validator/dashboard/index', $data);
 		$this->load->view('template_menu/footer_menu');

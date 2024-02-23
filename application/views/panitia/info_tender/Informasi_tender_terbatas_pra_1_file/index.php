@@ -310,9 +310,17 @@
                                                         <tbody>
                                                             <?php $no = 1;
                                                             foreach ($peserta_tender as $key => $value) { ?>
+                                                                <?php
+                                                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                                                if ($subs_string == 'PT') {
+                                                                    $nama_perusahaan = $value['nama_usaha'];
+                                                                } else {
+                                                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                                                }
+                                                                ?>
                                                                 <tr>
                                                                     <td scope="row"><?= $no++ ?></td>
-                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                    <td><?= $nama_perusahaan ?></td>
                                                                     <td>
                                                                         <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
                                                                             <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
@@ -405,9 +413,17 @@
                                                         <tbody>
                                                             <?php $no = 1;
                                                             foreach ($peserta_tender as $key => $value) { ?>
+                                                                <?php
+                                                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                                                if ($subs_string == 'PT') {
+                                                                    $nama_perusahaan = $value['nama_usaha'];
+                                                                } else {
+                                                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                                                }
+                                                                ?>
                                                                 <tr>
                                                                     <td scope="row"><?= $no++ ?></td>
-                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                    <td><?= $nama_perusahaan ?></td>
                                                                     <td>
                                                                         <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
                                                                             <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
@@ -879,9 +895,17 @@
                                     <tbody>
                                         <?php $i = 1;
                                         foreach ($peserta_tender as $key => $value) { ?>
+                                            <?php
+                                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                                            if ($subs_string == 'PT') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            } else {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            }
+                                            ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $value['nama_usaha'] ?></td>
+                                                <td><?= $nama_perusahaan ?></td>
                                                 <td>
                                                     <select name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>">
                                                         <?php if ($value['ba_pembuktian_hadir']) { ?>
@@ -1331,9 +1355,17 @@
                                 <tbody>
                                     <?php $i = 1;
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT') {
+                                            $nama_perusahaan = $value['nama_usaha'];
+                                        } else {
+                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                        }
+                                        ?>
                                         <tr>
                                             <td><?= $i++ ?></td>
-                                            <td><?= $value['nama_usaha'] ?></td>
+                                            <td><?= $nama_perusahaan ?></td>
                                             <td>
                                                 <?= $row_rup['nama_rup'] ?>
                                             </td>
@@ -1712,9 +1744,17 @@
                                 <tbody>
                                     <?php $no = 1;
                                     foreach ($peserta_tender as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT') {
+                                            $nama_perusahaan = $value['nama_usaha'];
+                                        } else {
+                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                        }
+                                        ?>
                                         <tr>
                                             <td scope="row"><?= $no++ ?></td>
-                                            <td><?= $value['nama_usaha'] ?></td>
+                                            <td><?= $nama_perusahaan ?></td>
                                             <td><a class="btn btn-sm btn-primary" target="_blank" href="https://drtproc.jmto.co.id/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/<?= $value['ba_presentasi_teknis'] ?>"><i class="fa fa-eye"></i> Lihat</a></td>
                                         </tr>
                                     <?php } ?>
@@ -1835,9 +1875,17 @@
                     <tbody>
                         <?php $i = 1;
                         foreach ($get_pemenang as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td scope="row"><?= $i++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
                                     <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
@@ -1966,9 +2014,17 @@
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <td><input type="text" name="wkt_undang_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_waktu(<?= $value['id_vendor_mengikuti_paket'] ?>, 'wkt_undang_pembuktian')" value="<?= $value['wkt_undang_pembuktian'] ?>"></td>
                                 <td><input type="text" name="metode_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_metode(<?= $value['id_vendor_mengikuti_paket'] ?>, 'metode_pembuktian')" value="<?= $value['metode_pembuktian'] ?>"></td>
                             </tr>
@@ -2180,9 +2236,17 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td><?= $value['no_telpon'] ?></td>
                             </tr>
@@ -2286,9 +2350,17 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            }
+                            ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <?php
                                 $time = time();
                                 $waktu_aanwijzing = strtotime($jadwal_aanwijzing_pq['waktu_mulai']);
@@ -2368,9 +2440,15 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
+                            <?php $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            } ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan ?></td>
                                 <?php
                                 $time = time();
                                 $waktu_aanwijzing_penawaran = strtotime($jadwal_aanwijzing['waktu_mulai']);

@@ -23,7 +23,7 @@
                 pointStrokeColor: 'rgba(60,141,188,1)',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                data: [<?= $rekanan_baru_jan ?>, <?= $rekanan_baru_feb ?>, <?= $rekanan_baru_mar ?>, <?= $rekanan_baru_apr ?>, <?= $rekanan_baru_mei ?>, <?= $rekanan_baru_jun ?>, <?= $rekanan_baru_jul ?>, <?= $rekanan_baru_jul ?>, <?= $rekanan_baru_ags ?>, <?= $rekanan_baru_sep ?>, <?= $rekanan_baru_okt ?>, <?= $rekanan_baru_nov ?>, <?= $rekanan_baru_des ?>]
+                data: [ <?= $rekanan_baru_jan ?> , <?= $rekanan_baru_feb ?> , <?= $rekanan_baru_mar ?> , <?= $rekanan_baru_apr ?> , <?= $rekanan_baru_mei ?> , <?= $rekanan_baru_jun ?> , <?= $rekanan_baru_jul ?> , <?= $rekanan_baru_jul ?> , <?= $rekanan_baru_ags ?> , <?= $rekanan_baru_sep ?> , <?= $rekanan_baru_okt ?> , <?= $rekanan_baru_nov ?> , <?= $rekanan_baru_des ?> ]
             }]
         }
 
@@ -68,7 +68,7 @@
                 pointStrokeColor: 'rgba(60,141,188,1)',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                data: [<?= $rekanan_terundang_jan ?>, <?= $rekanan_terundang_feb ?>, <?= $rekanan_terundang_mar ?>, <?= $rekanan_terundang_apr ?>, <?= $rekanan_terundang_mei ?>, <?= $rekanan_terundang_jun ?>, <?= $rekanan_terundang_jul ?>, <?= $rekanan_terundang_jul ?>, <?= $rekanan_terundang_ags ?>, <?= $rekanan_terundang_sep ?>, <?= $rekanan_terundang_okt ?>, <?= $rekanan_terundang_nov ?>, <?= $rekanan_terundang_des ?>]
+                data: [ <?= $rekanan_terundang_jan ?> , <?= $rekanan_terundang_feb ?> , <?= $rekanan_terundang_mar ?> , <?= $rekanan_terundang_apr ?> , <?= $rekanan_terundang_mei ?> , <?= $rekanan_terundang_jun ?> , <?= $rekanan_terundang_jul ?> , <?= $rekanan_terundang_jul ?> , <?= $rekanan_terundang_ags ?> , <?= $rekanan_terundang_sep ?> , <?= $rekanan_terundang_okt ?> , <?= $rekanan_terundang_nov ?> , <?= $rekanan_terundang_des ?> ]
             }]
         }
 
@@ -211,4 +211,14 @@
         //     options: stackedBarChartOptions
         // })
     })
+
+
+    load_perubahan()
+
+    function load_perubahan() {
+        setTimeout(() => {
+            $('#modal_perubahan').modal('show')
+        }, 500);
+
+    }
 </script>
