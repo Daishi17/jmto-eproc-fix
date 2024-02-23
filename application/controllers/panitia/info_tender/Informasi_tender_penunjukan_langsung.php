@@ -2854,7 +2854,6 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $this->M_panitia->panitia_mengikuti_update($data, $where);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
-
     public function save_status_kirim()
     {
         $post = $this->input->post('post');
@@ -2862,6 +2861,27 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data = [
             $post => 1,
         ];
+        $row_rup = $this->M_rup->get_row_rup_by_id_rup($id_rup);
+        if ($post == 'sts_undangan_pembuktian') {
+            $message = 'Pengumuman/Undangan Pembuktian Kualifikasi :
+Nama Paket: ' . $row_rup['nama_rup'] . '
+Status : Telah di Umumkan
+Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
+Terimakasih';
+        } else if ($post == 'sts_hasil_prakualifikasi') {
+            $message = 'Pengumuman/Undangan Hasil Prakualifikasi :
+Nama Paket: ' . $row_rup['nama_rup'] . '
+Status : Telah di Umumkan
+Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
+Terimakasih';
+        } else if ($post == 'sts_undangan_penawaran') {
+            $message = 'Pengumuman/Undangan Penawaran :
+Nama Paket: ' . $row_rup['nama_rup'] . '
+Status : Telah di Umumkan
+Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
+Terimakasih';
+        }
+        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         $this->M_panitia->update_rup_panitia($id_rup, $data);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }

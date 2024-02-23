@@ -263,6 +263,8 @@
                         <tr>
                             <th>Undangan Pembuktian</th>
                             <th>
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian"> asdas
+                            </button>
                                 <?php if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
                                     <!-- belom mulai -->
                                     <button type="button" class="btn btn-sm btn-danger" disabled>
