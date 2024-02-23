@@ -300,11 +300,11 @@
                                 </a>
                             </li>
                             <!-- <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-solid fa-chart-area px-1"></i>
-                                    <small>Progres Kinerja Rekanan</small>
-                                </a>
-                            </li> -->
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa-solid fa-chart-area px-1"></i>
+                                        <small>Progres Kinerja Rekanan</small>
+                                    </a>
+                                </li> -->
                         </ul>
                     </li>
                 <?php  }
@@ -341,10 +341,19 @@
                         </ul>
                     </div>&nbsp;
                     <div class="flex-shrink-0">
-                        <a href="" class="nav-link px-2 text-white">
-                            <i class="fa-regular fa-file-pdf"></i>
-                            <small>Guide || FAQ</small>
-                        </a>
+                        <?php if ($this->session->userdata('role') == 2) { ?>
+                            <!-- panitia -->
+                            <a target="_blank" href="<?= base_url('assets/user_guide/Manual_Book_Panitia.pdf') ?>" class="nav-link px-2 text-white">
+                                <i class="fa-regular fa-file-pdf"></i>
+                                <small>Guide || FAQ</small>
+                            </a>
+                        <?php } else { ?>
+                            <a target="_blank" href="<?= base_url('assets/user_guide/Manual_Book_Panitia.pdf') ?>" class="nav-link px-2 text-white">
+                                <i class="fa-regular fa-file-pdf"></i>
+                                <small>Guide || FAQ</small>
+                            </a>
+                        <?php  } ?>
+
                     </div>
 
                 </div>
