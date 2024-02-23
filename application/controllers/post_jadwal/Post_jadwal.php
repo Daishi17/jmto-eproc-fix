@@ -499,7 +499,6 @@ class Post_jadwal extends CI_Controller
                 'user_create' => $this->session->userdata('nama_pegawai')
             ];
             $this->M_jadwal->insert_alasan($data);
-
             $where = [
                 'id_jadwal_rup' => $id_jadwal_rup
             ];
@@ -509,16 +508,15 @@ class Post_jadwal extends CI_Controller
                     'alasan' => $alasan,
                 ];
                 $this->M_jadwal->update_status($data2, $where);
-                $this->output->set_content_type('application/json')->set_output(json_encode('success'));
             } else {
                 $data2 = [
                     'sts_perubahan_jadwal' => 2,
                     'alasan' => $alasan,
                 ];
                 $this->M_jadwal->update_status($data2, $where);
-                $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek, $id_jadwal_rup, $alasan);
-                $this->output->set_content_type('application/json')->set_output(json_encode('success'));
             }
+            $this->kirim_wa->kirim_wa_perubahan_jadwal($id_rup_cek, $id_jadwal_rup, $alasan);
+            $this->output->set_content_type('application/json')->set_output(json_encode('success'));
         }
     }
 

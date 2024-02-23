@@ -209,8 +209,6 @@ NAMA PAKET : .' . $nama_rup . ', NAMA DOKUMEN : ' . $nama_dokumen . ', KETERANGA
         $row_rup =  $this->ci->M_panitia->get_row_alasan_jadwal($id_jadwal_rup);
         $ambil_nama_paket =  $this->ci->M_panitia->get_row_rup($id_rup);
         $get_panitia_aja =  $this->ci->M_panitia->get_panitia_ketua_sekertaris($id_rup);
-        var_dump($get_panitia_aja);
-        die;
         $data_pegawai = array();
         foreach ($get_panitia_aja as $key => $value) {
             $data_pegawai[] = $value['no_telpon'];
