@@ -2082,6 +2082,7 @@ class M_Rekanan_terundang extends CI_Model
         $this->db->from('tbl_vendor');
         $this->db->join('tbl_pengajuan_perubahan_dokumen', 'tbl_vendor.id_vendor = tbl_pengajuan_perubahan_dokumen.id_vendor', 'left');
         $this->db->where('tbl_pengajuan_perubahan_dokumen.status_perubahan_dokumen', 1);
+        $this->db->where('tbl_vendor.sts_terundang', 1);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();

@@ -153,36 +153,48 @@
 </main>
 
 
-<div class="modal fade" id="modal_perubahan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Info Perubahan Dokumen DRT</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table" id="table_perubahan">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Penyedia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($vendor_perubahan as $key => $value) { ?>
+<?php if ($vendor_perubahan) { ?>
+    <div class="modal fade" id="modal_perubahan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Info Perubahan Dokumen DRT</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="table_perubahan">
+                        <thead>
                             <tr>
-                                <th><?= $i++ ?></th>
-                                <th><?= $value['nama_usaha'] ?></th>
+                                <th style="width: 10%;">No</th>
+                                <th>Nama Penyedia</th>
                             </tr>
-                        <?php } ?>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1;
+                            foreach ($vendor_perubahan as $key => $value) { ?>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                }
+                                ?>
+                                <tr>
+                                    <th style="width: 10%;"><?= $i++ ?></th>
+                                    <th><?= $nama_perusahaan ?></th>
+                                </tr>
+                            <?php } ?>
 
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php } else { ?>
+
+<?php } ?>
