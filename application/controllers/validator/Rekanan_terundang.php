@@ -31,32 +31,14 @@ class Rekanan_terundang extends CI_Controller
 
 	public function pesan()
 	{
-		// $id_url_vendor = $this->input->post('id_url_vendor');
-		// $pesan = $this->input->post('pesan');
-		// $type_email = 'KIRIM-PESAN';
-		// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
-		// $data = $this->M_Rekanan_terundang->get_row_vendor($id_url_vendor);
-		// $no_telpon = $data['no_telpon'];
-		// $this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $pesan);
-		$data_kirim = array(
-			'number' => 1,
-			'current' => date('Y-m-d'),
-			'pesan' => 'Bismiilah'
-		);
-		$post_data = json_encode($data_kirim);
-		$ch = curl_init();
-		$option = array(
-			CURLOPT_URL => 'https://jmto-eproc.kintekindo.net/send_email_jmto/sen_row_email',
-			CURLOPT_POST => 1,
-			CURLOPT_POSTFIELDS => $post_data,
-			CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_HTTPHEADER => array('Content-Type: application/json')
-		);
-
-		$result = curl_setopt_array($ch, $option);
-		curl_exec($ch);
-		json_decode(json_encode($result), true);
-		curl_close($ch);
+		$id_url_vendor = $this->input->post('id_url_vendor');
+		$data = $this->M_Rekanan_tervalidasi->get_row_vendor($id_url_vendor);
+		$pesan = $this->input->post('pesan');
+		$type_email = 'KIRIM-PESAN';
+		$data = $this->M_Rekanan_tervalidasi->get_row_vendor($id_url_vendor);
+		$no_telpon = $data['no_telpon'];
+		$this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
+		$this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $pesan);
 	}
 
 	public function undang()
