@@ -113,7 +113,6 @@
                                 <option value="1">Sesuai</option>
                                 <option value="2">Tidak Sesuai</option>
                             </select>`
-
                     }
 
                     if (response['row_vendor_mengikuti']['file1_teknis']) {
@@ -176,35 +175,57 @@
                             </select>`
                     }
 
+                    if (response['row_vendor_mengikuti']['file2_tkdn']) {
+                        var file2_tkdn = `<a target="_blank" href="${response.link_vendor + 'file_paket/' + response['rup'].nama_rup + '/' + response['row_vendor_mengikuti'].nama_usaha + '/' + 'DOKUMEN_PENGADAAN_FILE_II' + '/' + response['row_vendor_mengikuti'].file2_tkdn}" class="btn btn-sm btn-success text-white"><i class="fa fa-file"></i> Buka</a>`
+                        var btn_file2_tkdn = `<a target="_blank" href="javascript:;" onclick="upload_file2(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn')" class="btn btn-sm btn-warning text-white"><i class="fa fa-upload"></i> Ubah</a>`
+                        var file2_tkdn_sts_validasi = `<select name="file2_tkdn_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn_sts')" class="form-control">
+                            <option value="">--Pilih--</option>
+                            <option value="3">Tidak Diperlukan</option>
+                            <option value="1">Sesuai</option>
+                            <option value="2">Tidak Sesuai</option>
+                        </select>`
+                    } else {
+                        var file2_tkdn = `<span class="badge bg-danger">Tidak Di Upload</span>`
+                        var btn_file2_tkdn = `<a href="javascript:;" onclick="upload_file2(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
+                        var file2_tkdn_sts_validasi = `<select name="file2_tkdn_sts" onchange="validasi(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn_sts')" class="form-control">
+                            <option value="">--Pilih--</option>
+                            <option value="3">Tidak Diperlukan</option>
+                            <option value="1">Sesuai</option>
+                            <option value="2">Tidak Sesuai</option>
+                        </select>`
+                    }
 
                     html += `<tr>
                                 <td>1.&ensp;File Penawaran Administrasi</td>
                                 <td>${file1_administrasi}</td>
                                 <td>${file1_administrasi_sts_validasi}</td>
-                               
                             </tr>
                             <tr>
                                 <td>2.&ensp;File Penawaran Teknis</td>
                                 <td>${file1_teknis}</td>
                                 <td>${file1_teknis_sts_validasi}</td>
-                              
                             </tr>
                             <tr>
                                 <td>3. Dokumen Penawaran Harga</td>
                                 <td>${file2_penawaran}</td>
                                 <td>${file2_penawaran_sts_validasi}</td>
-                                 
                               </tr>
                               <tr>
                                 <td>4. File DKH</td>
                                 <td>${file2_dkh}</td>
                                 <td>${file2_dkh_sts_validasi}</td>
+                              </tr>
+                              <tr>
+                                <td>5. File TKDN</td>
+                                <td>${file2_tkdn}</td>
+                                <td>${file2_tkdn_sts_validasi}</td>
                               </tr>`
                     $('#load_detail_file1').html(html)
                     $('[name="file1_administrasi_sts"]').val(response['row_vendor_mengikuti'].file1_administrasi_sts)
                     $('[name="file1_teknis_sts"]').val(response['row_vendor_mengikuti'].file1_teknis_sts)
                     $('[name="file2_penawaran_sts"]').val(response['row_vendor_mengikuti'].file2_penawaran_sts)
                     $('[name="file2_dkh_sts"]').val(response['row_vendor_mengikuti'].file2_dkh_sts)
+                    $('[name="file2_tkdn_sts"]').val(response['row_vendor_mengikuti'].file2_tkdn_sts)
                 }
 
             }
@@ -220,6 +241,8 @@
             var value_name = $('[name="file2_penawaran_sts"]').val()
         } else if (name == 'file2_dkh_sts') {
             var value_name = $('[name="file2_dkh_sts"]').val()
+        } else if (name == 'file2_tkdn_sts') {
+            var value_name = $('[name="file2_tkdn_sts"]').val()
         }
 
         var url_simpan_status_file1 = $('[name="url_simpan_status_file1"]').val()

@@ -229,7 +229,7 @@ function terbilang($nilai)
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
                                     <?php $i = 1;
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                         <?php
@@ -247,11 +247,11 @@ function terbilang($nilai)
                                                 <?php
 
 
-                                                $sts_valid_0 = $value['file1_administrasi_sts'] == 0 || $value['file1_teknis_sts'] == 0 || $value['file2_penawaran_sts'] == 0 || $value['file2_dkh_sts'] == 0;
+                                                $sts_valid_0 = $value['file1_administrasi_sts'] == 0 || $value['file1_teknis_sts'] == 0 || $value['file2_penawaran_sts'] == 0 || $value['file2_dkh_sts'] == 0 || $value['file2_tkdn_sts'] == 0;
 
-                                                $sts_valid = $value['file1_administrasi_sts'] == 1 && $value['file1_teknis_sts'] == 1 && $value['file2_penawaran_sts'] == 1 && $value['file2_dkh_sts'] == 1 || $value['file1_administrasi_sts'] == 3 && $value['file1_teknis_sts'] == 3 && $value['file2_penawaran_sts'] == 3 && $value['file2_dkh_sts'] == 3;
+                                                $sts_valid = $value['file1_administrasi_sts'] == 1 && $value['file1_teknis_sts'] == 1 && $value['file2_penawaran_sts'] == 1 && $value['file2_dkh_sts'] == 1 && $value['file2_tkdn_sts'] == 1 || $value['file1_administrasi_sts'] == 3 && $value['file1_teknis_sts'] == 3 && $value['file2_penawaran_sts'] == 3 && $value['file2_dkh_sts'] == 3 && $value['file2_tkdn_sts'] == 3;
 
-                                                $sts_tdk_valid = $value['file1_administrasi_sts'] == 2 || $value['file1_teknis_sts'] == 2 || $value['file2_penawaran_sts'] == 2 || $value['file2_dkh_sts'] == 2;
+                                                $sts_tdk_valid = $value['file1_administrasi_sts'] == 2 || $value['file1_teknis_sts'] == 2 || $value['file2_penawaran_sts'] == 2 || $value['file2_dkh_sts'] == 2 || $value['file2_tkdn_sts'] == 2;
 
                                                 if ($sts_valid_0) { ?>
                                                     <span class="badge bg-warning text-white">Belum Diperiksa</span>

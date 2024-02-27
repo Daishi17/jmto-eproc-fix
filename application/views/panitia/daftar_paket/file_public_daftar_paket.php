@@ -1031,7 +1031,7 @@
                 var i;
                 for (i = 0; i < response['result_syarat_tender_kbli'].length; i++) {
                     html += '<tr>' +
-                        '<td>' + response['result_syarat_tender_kbli'][i].nama_kbli + '</td>' +
+                        '<td>' + response['result_syarat_tender_kbli'][i].kode_kbli + ' | ' + response['result_syarat_tender_kbli'][i].nama_kbli + '</td>' +
                         '<td><a href="javascript:;" onclick="hapus_kbli_syarat(' + response['result_syarat_tender_kbli'][i].id_syarat_kbli_tender + ')" class="btn btn-sm btn-danger"><i class="fas fa fa-trash"></i> Hapus</a></td>' +
                         '</tr>'
                 }

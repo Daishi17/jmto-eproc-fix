@@ -35,7 +35,8 @@ class Daftar_paket extends CI_Controller
 	}
 
 	function send_email_regis()
-	{ }
+	{
+	}
 
 
 	public function get_draft_paket()
@@ -180,35 +181,23 @@ class Daftar_paket extends CI_Controller
 		$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($id_rup);
 		// siup
 		$data_vendor_lolos_siup_kbli = $this->M_panitia->data_vendor_lolos_siup_kbli($cek_syarat_kbli);
-
 		// nib
 		$data_vendor_lolos_nib_kbli = $this->M_panitia->data_vendor_lolos_nib_kbli($cek_syarat_kbli);
-
 		// siujk
 		$data_vendor_lolos_siujk_kbli = $this->M_panitia->data_vendor_lolos_siujk_kbli($cek_syarat_kbli);
-
 		// skdp
 		// $data_vendor_lolos_skdp_kbli = $this->M_panitia->data_vendor_lolos_skdp_kbli($cek_syarat_kbli);
 
 		// sbu
 		$data_vendor_lolos_sbu_kbli = $this->M_panitia->data_vendor_lolos_sbu_kbli($cek_syarat_kbli_sbu);
-
 		// spt
 		$data_vendor_lolos_spt = $this->M_panitia->data_vendor_lolos_spt($cek_syarat_teknis);
-
 		// laporan keuangan
 		$data_vendor_lolos_laporan_keuangan = $this->M_panitia->data_vendor_lolos_laporan_keuangan($cek_syarat_teknis);
-
 		// neraca keuangan
 		$data_vendor_lolos_neraca_keuangan = $this->M_panitia->data_vendor_lolos_neraca_keuangan($cek_syarat_teknis);
-
-
 		$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
-
-
 		// $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
-
-
 		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($data_respon));
@@ -493,8 +482,8 @@ Terimakasih');
 				$message = 'Paket ' . $data_rup['nama_metode_pengadaan']  . ' ' . $data_rup['nama_rup'] . ' Telah diumumkan, silahkan login ke https://eprocurement.jmto.co.id/auth untuk monitoring proses tender berlangsung.';
 				$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 			}
-			// $this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-			// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
+			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 
 
 			// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
@@ -572,7 +561,8 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
-		} else { }
+		} else {
+		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -1637,7 +1627,8 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
