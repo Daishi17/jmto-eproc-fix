@@ -344,16 +344,26 @@
                         var btn_file2_dkh = `<a href="javascript:;" onclick="upload_file2(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_dkh')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
                     }
 
+                    if (response['row_vendor_mengikuti']['file2_tkdn']) {
+                        var file2_tkdn = `<a target="_blank" href="${response.link_vendor + 'file_paket/' + response['rup'].nama_rup + '/' + response['row_vendor_mengikuti'].nama_usaha + '/' + 'DOKUMEN_PENGADAAN_FILE_II' + '/' + response['row_vendor_mengikuti'].file2_tkdn}" class="btn btn-sm btn-success text-white"><i class="fa fa-file"></i> Buka</a>`
+                        var btn_file2_tkdn = `<a target="_blank" href="javascript:;" onclick="upload_file2(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn')" class="btn btn-sm btn-warning text-white"><i class="fa fa-upload"></i> Ubah</a>`
+                    } else {
+                        var file2_tkdn = `<span class="badge bg-danger">Tidak Di Upload</span>`
+                        var btn_file2_tkdn = `<a href="javascript:;" onclick="upload_file2(${response['row_vendor_mengikuti']['id_vendor_mengikuti_paket']},'file2_tkdn')" class="btn btn-sm btn-danger"><i class="fa fa-upload"></i> Upload</a>`
+                    }
+
                     var html2 = '';
                     html2 += `<tr>
                                   <td>1. Dokumen Penawaran Harga</td>
                                   <td>${file2_penawaran}</td>
-                                 
                               </tr>
                               <tr>
                                   <td>2. File DKH</td>
                                   <td>${file2_dkh}</td>
-                                 
+                              </tr>
+                              <tr>
+                                  <td>3. File TKDN</td>
+                                  <td>${file2_tkdn}</td>
                               </tr>`
                     $('#load_dok_file2').html(html2)
                 }

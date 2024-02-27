@@ -595,7 +595,8 @@ class M_panitia extends CI_Model
         if ($syarat_izin_usaha['sts_checked_siup'] == 1) {
             if ($syarat_izin_usaha['sts_masa_berlaku_siup'] == 2) {
                 // catatan ketika seumur hidup di vendor harus di default tanggalnya ke 2050
-                $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [2]);
+                $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
+                $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
             } else {
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
@@ -605,8 +606,8 @@ class M_panitia extends CI_Model
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
             if ($syarat_izin_usaha['sts_masa_berlaku_nib'] == 2) {
-                // $this->db->where('tbl_vendor_nib.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_nib']);
-                $this->db->where_in('tbl_vendor_nib.sts_seumur_hidup', [2]);
+                $this->db->where('tbl_vendor_nib.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_nib']);
+                $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
             } else {
                 $this->db->where('tbl_vendor_nib.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_nib']);
                 $this->db->where_in('tbl_vendor_nib.sts_seumur_hidup', [1, 2]);
@@ -618,7 +619,8 @@ class M_panitia extends CI_Model
         // cek sbu syart izin
         if ($syarat_izin_usaha['sts_checked_sbu'] == 1) {
             if ($syarat_izin_usaha['sts_masa_berlaku_sbu'] == 2) {
-                $this->db->where_in('tbl_vendor_sbu.sts_seumur_hidup', [2]);
+                $this->db->where('tbl_vendor_nib.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_nib']);
+                $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
             } else {
                 $this->db->where('tbl_vendor_sbu.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_sbu']);
                 $this->db->where_in('tbl_vendor_sbu.sts_seumur_hidup', [1, 2]);
