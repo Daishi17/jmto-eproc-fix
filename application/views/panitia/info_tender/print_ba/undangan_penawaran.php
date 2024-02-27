@@ -244,17 +244,18 @@ function terbilang($nilai)
                 <li>
                     <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
                     <table>
-                    <tr>
+                        <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pra1file_umum_13['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pra1file_umum_13['waktu_selesai']))) ?> </th>
+                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
                             <th width="250px">Waktu</th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_pra1file_umum_13['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pra1file_umum_13['waktu_selesai'])) ?> WIB</th>
+                            <th> <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_selesai'])) ?> WIB</th>
                         </tr>
+
                         <tr>
                             <th width="250px">Tempat </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
