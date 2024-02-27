@@ -179,13 +179,13 @@ function terbilang($nilai)
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai']))) ?> </th>
+                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
                             <th width="250px">Waktu</th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
+                            <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
                         </tr>
 
                         <tr>
@@ -202,13 +202,13 @@ function terbilang($nilai)
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
+                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
                             <th width="250px">Waktu</th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
+                            <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
                         </tr>
 
                         <tr>
@@ -244,16 +244,16 @@ function terbilang($nilai)
                 <li>
                     <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
                     <table>
-                        <tr>
+                    <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
+                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pra1file_umum_13['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pra1file_umum_13['waktu_selesai']))) ?> </th>
                         </tr>
 
                         <tr>
                             <th width="250px">Waktu</th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
+                            <th> <?= date('H:i', strtotime($jadwal_pra1file_umum_13['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pra1file_umum_13['waktu_selesai'])) ?> WIB</th>
                         </tr>
                         <tr>
                             <th width="250px">Tempat </th>
