@@ -1692,7 +1692,11 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_rapat_penjelasan')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+
+                                <?php if ($ba_9_cek) { ?>
+                                <?php } else { ?>
+                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_rapat_penjelasan')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                                <?php } ?>
 
                             </div>
                             <br>

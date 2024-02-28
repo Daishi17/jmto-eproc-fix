@@ -35,8 +35,7 @@ class Daftar_paket extends CI_Controller
 	}
 
 	function send_email_regis()
-	{
-	}
+	{ }
 
 
 	public function get_draft_paket()
@@ -561,8 +560,7 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
-		} else {
-		}
+		} else { }
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -1627,8 +1625,7 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else {
-		}
+		} else { }
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
@@ -1822,5 +1819,18 @@ Terimakasih');
 		$this->M_panitia->panitia_mengikuti_update($data, $where);
 		$this->M_panitia->update_rup_panitia($this->input->post('id_rup_global'), $data);
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
+	}
+
+
+	public function cetak_jadwal($id_url_rup)
+	{
+		$data['jadwal'] = $this->M_panitia->get_jadwal($id_url_rup);
+		$data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
+		$root_jadwal = $data['row_rup']['root_jadwal'];
+		$data['root_jadwal'] = $data['row_rup']['root_jadwal'];
+		$this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_global', $data);
+		$this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
+		$this->load->view('panitia/info_tender/print_ba/cetak_jadwal', $data);
+		$this->load->view('panitia/info_tender/print_ba/ajax_jadwal', $data);
 	}
 }

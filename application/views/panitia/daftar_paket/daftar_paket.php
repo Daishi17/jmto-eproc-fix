@@ -382,160 +382,166 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="modal_detail_jadwal">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="navbar-brand">
-                        <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                        <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-                    </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card border-dark shadow-lg">
-                                <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
-                                    <div class="flex-grow-1 bd-highlight">
-                                        <span class="text-white">
-                                            <i class="fa-regular fa-rectangle-list px-1"></i>
-                                            <small><strong>Detail Jadwal</strong></small>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered table-sm shadow-lg">
-                                        <thead class="bg-secondary text-white">
-                                            <tr>
-                                                <th><small>No</small></th>
-                                                <th><small>Nama Jadwal</small></th>
-                                                <th><small>Waktu Mulai</small></th>
-                                                <th><small>Waktu Selesai</small></th>
-                                                <th><small>Status Tahap</small></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="load_jadwal">
 
-                                        </tbody>
-                                    </table>
+</main>
+
+
+<div class="modal fade" tabindex="-1" id="modal_detail_jadwal">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-dark shadow-lg">
+                            <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1 bd-highlight">
+                                    <span class="text-white">
+                                        <i class="fa-regular fa-rectangle-list px-1"></i>
+                                        <small><strong>Detail Jadwal</strong></small>
+                                    </span>
                                 </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-sm shadow-lg">
+                                    <thead class="bg-secondary text-white">
+                                        <tr>
+                                            <th><small>No</small></th>
+                                            <th><small>Nama Jadwal</small></th>
+                                            <th><small>Waktu Mulai</small></th>
+                                            <th><small>Waktu Selesai</small></th>
+                                            <th><small>Status Tahap</small></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="load_jadwal">
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer d-flex justify-content-start">
-                    <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-rectangle-xmark"></i>
-                        Keluar
-                    </button>
+            </div>
+            <div class="modal-footer d-flex justify-content-start">
+                <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-rectangle-xmark"></i>
+                    Keluar
+                </button>
+                <div id="btn_print_jadwal">
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" tabindex="-1" id="modal-xl-tambah">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="navbar-brand">
-                        <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                        <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-                    </a>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card border-dark shadow-lg">
-                                <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
-                                    <div class="flex-grow-1 bd-highlight">
-                                        <span class="text-white">
-                                            <i class="fa-regular fa-rectangle-list px-1"></i>
-                                            <small><strong>Form Data - Daftar Paket Penyedia</strong></small>
-                                        </span>
-                                    </div>
+<div class="modal fade" tabindex="-1" id="modal-xl-tambah">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-dark shadow-lg">
+                            <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1 bd-highlight">
+                                    <span class="text-white">
+                                        <i class="fa-regular fa-rectangle-list px-1"></i>
+                                        <small><strong>Form Data - Daftar Paket Penyedia</strong></small>
+                                    </span>
                                 </div>
-                                <div class="card-body">
-                                    <div class="col-md-12">
-                                        <div class="card border-primary shadow-lg">
-                                            <div class="card-header border-primary"><small class="text-primary"><b><i class="fa-solid fa-money-check-dollar px-1"></i>Daftar Paket Pengadaan Yang Sudah Finalisasi</b></small></div>
-                                            <div class="card-body">
-                                                <form>
-                                                    <div class="row g-1">
-                                                        <div class="col-sm-2">
-                                                            <div class="input-group mb-1">
-                                                                <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-                                                                <select class="form-select" aria-label="Default select example" placeholder="Pilih Tahun..">
-                                                                    <option selected>Pilih Tahun</option>
-                                                                    <option value="0">All</option>
-                                                                    <option value="1">2023</option>
-                                                                    <option value="2">2024</option>
-                                                                    <option value="3">2025</option>
-                                                                    <option value="4">2026</option>
-                                                                    <option value="5">2027</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-5">
-                                                            <div class="input-group mb-2">
-                                                                <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
-                                                                <select class="form-select" aria-label="Default select example">
-                                                                    <option selected>Pilih Jenis Pengadaan</option>
-                                                                    <option value="0">All</option>
-                                                                    <option value="1">Jasa Lain</option>
-                                                                    <option value="2">Jasa Konsultasi</option>
-                                                                    <option value="3">Jasa Pemborongan / Konstruksi</option>
-                                                                    <option value="4">Pengadaan Barang</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-5">
-                                                            <div class="input-group mb-2">
-                                                                <span class="input-group-text"><i class="fa-solid fa-map"></i></span>
-                                                                <select class="form-select" aria-label="Default select example">
-                                                                    <option selected>Pilih Metode Pengadaan</option>
-                                                                    <option value="0">All</option>
-                                                                    <option value="1">Tender Umum</option>
-                                                                    <option value="2">Seleksi Umum</option>
-                                                                    <option value="3">Penunjukan Langsung</option>
-                                                                    <option value="4">Tender Terbatas</option>
-                                                                    <option value="5">Seleksi Terbatas</option>
-                                                                    <option value="6">Pengadaan Langsung</option>
-                                                                </select>
-                                                            </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <div class="card border-primary shadow-lg">
+                                        <div class="card-header border-primary"><small class="text-primary"><b><i class="fa-solid fa-money-check-dollar px-1"></i>Daftar Paket Pengadaan Yang Sudah Finalisasi</b></small></div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="row g-1">
+                                                    <div class="col-sm-2">
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                                                            <select class="form-select" aria-label="Default select example" placeholder="Pilih Tahun..">
+                                                                <option selected>Pilih Tahun</option>
+                                                                <option value="0">All</option>
+                                                                <option value="1">2023</option>
+                                                                <option value="2">2024</option>
+                                                                <option value="3">2025</option>
+                                                                <option value="4">2026</option>
+                                                                <option value="5">2027</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <button type="button" class="btn btn-sm btn-secondary">
-                                                            <i class="fa-solid fa-filter px-1"></i>
-                                                            Filter Data
-                                                        </button>
+                                                    <div class="col-sm-5">
+                                                        <div class="input-group mb-2">
+                                                            <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Pilih Jenis Pengadaan</option>
+                                                                <option value="0">All</option>
+                                                                <option value="1">Jasa Lain</option>
+                                                                <option value="2">Jasa Konsultasi</option>
+                                                                <option value="3">Jasa Pemborongan / Konstruksi</option>
+                                                                <option value="4">Pengadaan Barang</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <table id="tbl_rup_finalisasi" class="table table-bordered table-sm table-striped">
-                                                                <thead class="bg-secondary">
-                                                                    <tr>
-                                                                        <th style="width:8%;"><small class="text-white">Tahun</small></th>
-                                                                        <th style="width:17%;"><small class="text-white">Nama Paket</small></th>
-                                                                        <th style="width:12%;"><small class="text-white">Departemen</small></th>
-                                                                        <th style="width:17%;"><small class="text-white">Total Pagu (Rp)</small></th>
-                                                                        <th style="width:15%;"><small class="text-white">Jenis Pengadaan</small></th>
-                                                                        <th style="width:13%;"><small class="text-white">Metode Pengadaan</small></th>
-                                                                        <th style="width:18%;"><small class="text-white">
-                                                                                <div class="text-center">Options</div>
-                                                                            </small></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
+                                                    <div class="col-sm-5">
+                                                        <div class="input-group mb-2">
+                                                            <span class="input-group-text"><i class="fa-solid fa-map"></i></span>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Pilih Metode Pengadaan</option>
+                                                                <option value="0">All</option>
+                                                                <option value="1">Tender Umum</option>
+                                                                <option value="2">Seleksi Umum</option>
+                                                                <option value="3">Penunjukan Langsung</option>
+                                                                <option value="4">Tender Terbatas</option>
+                                                                <option value="5">Seleksi Terbatas</option>
+                                                                <option value="6">Pengadaan Langsung</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <button type="button" class="btn btn-sm btn-secondary">
+                                                        <i class="fa-solid fa-filter px-1"></i>
+                                                        Filter Data
+                                                    </button>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table id="tbl_rup_finalisasi" class="table table-bordered table-sm table-striped">
+                                                            <thead class="bg-secondary">
+                                                                <tr>
+                                                                    <th style="width:8%;"><small class="text-white">Tahun</small></th>
+                                                                    <th style="width:17%;"><small class="text-white">Nama Paket</small></th>
+                                                                    <th style="width:12%;"><small class="text-white">Departemen</small></th>
+                                                                    <th style="width:17%;"><small class="text-white">Total Pagu (Rp)</small></th>
+                                                                    <th style="width:15%;"><small class="text-white">Jenis Pengadaan</small></th>
+                                                                    <th style="width:13%;"><small class="text-white">Metode Pengadaan</small></th>
+                                                                    <th style="width:18%;"><small class="text-white">
+                                                                            <div class="text-center">Options</div>
+                                                                        </small></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
 
-                                                            </table>
-                                                        </div>
+                                                        </table>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -543,13 +549,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer d-flex justify-content-start">
-                    <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-rectangle-xmark"></i>
-                        Keluar
-                    </button>
-                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-start">
+                <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-rectangle-xmark"></i>
+                    Keluar
+                </button>
             </div>
         </div>
     </div>
-</main>
+</div>

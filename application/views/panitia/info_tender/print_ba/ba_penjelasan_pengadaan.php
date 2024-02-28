@@ -170,8 +170,8 @@ function terbilang($nilai)
                             <li>Pekerjaan dan Informasi Umum</li>
                             <li>Informasi Jadwal Kegiatan</li>
                             <li>Metode Evaluasi Penawaran</li>
-                            <li>Ketentuan – ketentuan sesuai dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?></li>
-                            <li>Dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?> ( Buku I – V)</li>
+                            <li>Ketentuan - ketentuan sesuai dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?></li>
+                            <li>Dokumen Pengadaan <?= $row_rup['nama_metode_pengadaan'] ?> </li>
                         </ol>
                     </li>
                     <br>
@@ -179,7 +179,7 @@ function terbilang($nilai)
                     <br>
                     <li>Addendum Dokumen Pengadaan dimaksud merupakan satu kesatuan dan bagian yang tidak terpisahkan dengan Dokumen Pengadaan sebagaimana terlampir</li>
                     <br>
-                    <li>Hal – hal yang tercantum dalam Notulen Rapat Penjelasan <?= $row_rup['nama_metode_pengadaan'] ?> merupakan Lampiran dan bagian yang tidak terpisahkan dari Berita Acara Rapat Penjelasan ini.</li>
+                    <li>Hal - hal yang tercantum dalam Notulen Rapat Penjelasan <?= $row_rup['nama_metode_pengadaan'] ?> merupakan Lampiran dan bagian yang tidak terpisahkan dari Berita Acara Rapat Penjelasan ini.</li>
                     <br>
                     <li>Peserta yang tidak hadir pada Rapat Penjelasan <?= $row_rup['nama_metode_pengadaan'] ?> ini dianggap sudah memahami, mengerti, dan menerima semua ketentuan dalam Dokumen Pengadaan untuk kegiatan Pengadaan pekerjaan tersebut.</li>
                 </ol>
@@ -232,9 +232,9 @@ function terbilang($nilai)
 
                                 </td>
                                 <td class="text-center">
-                                    <?php if ($value['sts_ba_evaluasi'] == 1) { ?>
+                                    <?php if ($value['sts_ba_penjelasan'] == 1) { ?>
                                         <span class="badge bg-success text-white">Setuju</span>
-                                    <?php  } else if ($value['sts_ba_evaluasi'] == 2) { ?>
+                                    <?php  } else if ($value['sts_ba_penjelasan'] == 2) { ?>
                                         <span class="badge bg-danger text-white">Tidak Setuju</span>
                                     <?php  } else { ?>
                                         <span class="badge bg-success">Belum Di Ceklist</span>
