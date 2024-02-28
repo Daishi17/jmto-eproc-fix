@@ -54,7 +54,7 @@ header("Content-Security-Policy: img-src 'self' *");
                                     </a>
                                     <!-- Dropdown Menu -->
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="https://jmto-vms.kintekindo.net/auth"><i> Penyedia</i></a></li>
+                                        <li><a class="dropdown-item" href="https://drtproc.jmto.co.id/auth"><i> Penyedia</i></a></li>
                                         <li><a class="dropdown-item" href="<?= base_url('auth') ?>"><i> Non Penyedia</i></a></li>
                                     </ul>
                                 </li>
@@ -410,7 +410,7 @@ header("Content-Security-Policy: img-src 'self' *");
                         <p class="mb-0">Data Tender Pengadaan Jasa lain Yang Ada Pada E-procurement JMTO.</p>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered" id="table_pengadaan_jasa_lain"  style="font-style: italic;font-size:10px;color:black">
+                                <table class="table table-striped table-bordered" id="table_pengadaan_jasa_lain" style="font-style: italic;font-size:10px;color:black">
                                     <thead class="thead-inverse bg-dark text-white">
                                         <tr>
                                             <th>No <i class="fa fa-list-ol" aria-hidden="true"></i></th>
@@ -704,6 +704,7 @@ header("Content-Security-Policy: img-src 'self' *");
             }
         })
     });
+
     function reload_table() {
         $('#table_berita').DataTable().ajax.reload();
     }
