@@ -244,28 +244,16 @@ function terbilang($nilai)
                 <li>
                     <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
                     <table>
-<<<<<<< HEAD
-                    <tr>
-                        <?= $jadwal_pembukaan_file1 .'asdasdasd'?>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pembukaan_file1['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pembukaan_file1['waktu_selesai']))) ?> </th>
-=======
                         <tr>
                             <th width="250px">Tanggal </th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
                             <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_selesai']))) ?> </th>
->>>>>>> 5dae93eee9872ecfcf324a54fbb8299f67eb8325
                         </tr>
 
                         <tr>
                             <th width="250px">Waktu</th>
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
-<<<<<<< HEAD
-                            <th> <?= date('H:i', strtotime($jadwal_pembukaan_file1['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pembukaan_file1['waktu_selesai'])) ?> WIB</th>
-=======
                             <th> <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_selesai'])) ?> WIB</th>
->>>>>>> 5dae93eee9872ecfcf324a54fbb8299f67eb8325
                         </tr>
 
                         <tr>
@@ -273,8 +261,6 @@ function terbilang($nilai)
                             <th>&ensp;&ensp;:&ensp;&ensp;</th>
                             <th>Melalui Aplikasi E-Tender </th>
                         </tr>
-
-
                     </table>
                 </li>
             </ol>

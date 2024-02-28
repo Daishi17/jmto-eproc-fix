@@ -159,7 +159,7 @@
                         </div>
                         <div class="msg_cotainer">
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
+                           <span class="msg_time">${kapan}, ${time}</span>
                         </div> </div>`;
                             } else if (d.dokumen_chat) {
                                 html += `<label class="badge badge-primary ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -169,7 +169,7 @@
                         <div class="msg_cotainer">
                         <a href="<?= base_url('/file_chat/') ?>${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
+                           <span class="msg_time">${kapan}, ${time}</span>
                         </div>
                      </div>`;
                             } else if (d.img_chat) {
@@ -180,7 +180,7 @@
                         <div class="msg_cotainer">
 								<img width="100%" src="<?= base_url('file_chat/') ?>${d.img_chat}"> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
+                           <span class="msg_time">${kapan}, ${time}</span>
                         </div>
                       
                      </div>`;
@@ -240,7 +240,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -255,7 +255,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 } else if (d.dokumen_chat) {
@@ -291,7 +291,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -392,4 +392,22 @@
             }
         })
     }
+</script>
+
+
+<script>
+function copyContent(value) {
+    if (value) {
+        navigator.clipboard.writeText(value)
+            .then(function() {
+                alert('Value copied to clipboard: ' + value);
+            })
+            .catch(function(error) {
+                console.error('Unable to copy value: ', error);
+                alert('Unable to copy value. Please try again.');
+            });
+    } else {
+        alert('No value found to copy.');
+    }
+}
 </script>

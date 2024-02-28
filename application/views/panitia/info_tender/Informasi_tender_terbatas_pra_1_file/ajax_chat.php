@@ -247,7 +247,7 @@
                                             '<span class="msg_time">' +
                                             '' + kapan + '' +
                                             '' + time + '' +
-                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                             '</div>' +
                                             '</div>';
                                     }
@@ -294,7 +294,7 @@
                                             '<span class="msg_time">' +
                                             '' + kapan + '' +
                                             '' + time + '' +
-                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                             '</div>' +
                                             '</div>';
                                     }
@@ -310,7 +310,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 } else if (d.dokumen_chat) {
@@ -346,7 +346,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -447,4 +447,26 @@
             }
         })
     }
+</script>
+
+<script>
+function copyContent(value) {
+    // Check if the value exists
+    if (value) {
+        // Copy the value to the clipboard
+        navigator.clipboard.writeText(value)
+            .then(function() {
+                // Provide feedback to the user
+                alert('Value copied to clipboard: ' + value);
+            })
+            .catch(function(error) {
+                // Handle errors
+                console.error('Unable to copy value: ', error);
+                alert('Unable to copy value. Please try again.');
+            });
+    } else {
+        // If the value is empty or undefined, inform the user
+        alert('No value found to copy.');
+    }
+}
 </script>
