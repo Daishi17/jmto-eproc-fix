@@ -421,13 +421,14 @@
         }
     </style>
     <div class="row">
+        <div class="img_cont">
+            <img src="<?= base_url('assets/chat_logo.png') ?>" class="rounded-circle user_img">
+            <span class="online_icon"></span>
+        </div>
         <div class="col">
             <div class="card-header card-chat">
                 <div class="d-flex bd-highlight">
-                    <div class="img_cont">
-                        <img src="<?= base_url('assets/chat_logo.png') ?>" class="rounded-circle user_img">
-                        <span class="online_icon"></span>
-                    </div>
+
                     <div class="user_info">
                         <span style="font-size: 13px;color:#000046">Forum Chat Paket <?= $row_rup['nama_rup'] ?></span>
                         <p style="font-size: 13px;color:#000046">Kode Tender : <?= $row_rup['kode_rup'] ?></p>
@@ -484,6 +485,10 @@
         log_off.setHours(log_off.getHours() + 2);
         log_off = new Date(log_off);
     })
+
+    setTimeout(() => {
+        window.print()
+    }, 2000);
 </script>
 </body>
 
