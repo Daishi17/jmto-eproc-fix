@@ -213,7 +213,7 @@
                         <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
                         </div>
                         <div class="msg_cotainer">
-                        <a target="_blank" href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                        <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
                            <span class="msg_time">${kapan}, ${time}  	</span>
                         </div>
@@ -240,7 +240,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -255,7 +255,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 } else if (d.dokumen_chat) {
@@ -264,7 +264,7 @@
                         <img src="<?= base_url('assets/vendor.png') ?>" alt="" class="rounded-circle user_img_msg">
                         </div>
                         <div class="msg_cotainer">
-                        <a target="_blank" href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                        <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
                            <span class="msg_time">${kapan}, ${time}  	</span>
                         </div>
@@ -291,7 +291,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -365,6 +365,7 @@
         $('#replay_tujuan_terlihat').html('')
     }
 
+
     function onkeyup_global_rup(id_rup, post_type) {
         var url_post_pengumuman_hasil_kualifikasi = $('[name="url_post_pengumuman_hasil_kualifikasi"]').val()
         var value = $('[name="' + post_type + '"]').val()
@@ -391,4 +392,27 @@
             }
         })
     }
+</script>
+
+
+<script>
+function copyContent(value) {
+    // Check if the value exists
+    if (value) {
+        // Copy the value to the clipboard
+        navigator.clipboard.writeText(value)
+            .then(function() {
+                // Provide feedback to the user
+                alert('Value copied to clipboard: ' + value);
+            })
+            .catch(function(error) {
+                // Handle errors
+                console.error('Unable to copy value: ', error);
+                alert('Unable to copy value. Please try again.');
+            });
+    } else {
+        // If the value is empty or undefined, inform the user
+        alert('No value found to copy.');
+    }
+}
 </script>

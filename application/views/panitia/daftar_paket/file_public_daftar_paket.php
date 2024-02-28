@@ -1812,6 +1812,24 @@
         $('#tbl_daftar_paket').DataTable().ajax.reload();
     }
 
+    function formatDateIndo(dateString) {
+        // Array untuk nama bulan Indonesia
+        var months = [
+            "Januari", "Februari", "Maret",
+            "April", "Mei", "Juni", "Juli",
+            "Agustus", "September", "Oktober",
+            "November", "Desember"
+        ];
+
+        var parts = dateString.split("-");
+        var day = parts[2];
+        var monthIndex = parseInt(parts[1]) - 1;
+        var year = parts[0];
+
+        var formattedDate = months[monthIndex] + " " + year;
+        return formattedDate;
+    }
+
     function byid_paket(id_url_rup) {
         var url_cek_dokumen_hps = $('[name="url_cek_dokumen_hps"]').val()
         var url_by_id_rup = $('[name="url_by_id_rup"]').val()
@@ -1844,8 +1862,13 @@
                 $('#nama_departemen').text(response['row_rup'].nama_departemen)
                 $('#nama_section').text(response['row_rup'].nama_section)
                 $('#nama_rup').text(response['row_rup'].nama_rup)
-                $('#jangka_waktu_mulai_pelaksanaan').text(response['row_rup'].jangka_waktu_mulai_pelaksanaan)
-                $('#jangka_waktu_selesai_pelaksanaan').text(response['row_rup'].jangka_waktu_selesai_pelaksanaan)
+                var jangkaWaktuMulai = response['row_rup'].jangka_waktu_mulai_pelaksanaan;
+                var formattedDate_mulai = formatDateIndo(jangkaWaktuMulai);
+                var jangkaWaktuselesai = response['row_rup'].jangka_waktu_selesai_pelaksanaan;
+                var formattedDate_selesai = formatDateIndo(jangkaWaktuselesai);
+
+                $('#jangka_waktu_mulai_pelaksanaan').text(formattedDate_mulai)
+                $('#jangka_waktu_selesai_pelaksanaan').text(formattedDate_selesai)
                 $('#jangka_waktu_hari_pelaksanaan').text(response['row_rup'].jangka_waktu_hari_pelaksanaan)
                 $('#nama_jenis_anggaran').text(response['row_rup'].nama_jenis_anggaran)
                 $('#nama_jenis_pengadaan').text(response['row_rup'].nama_jenis_pengadaan)

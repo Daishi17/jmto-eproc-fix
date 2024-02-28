@@ -405,14 +405,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th class="col-2 vertical-align: middle; bg-light"><small>Tanggal Pengadaan</small></th>
+                                    <th class="col-2 vertical-align: middle; bg-light"><small>Waktu Pelaksanaan</small></th>
                                     <td class="col-4 vertical-align: middle;">
                                         <small>
                                             <i class="fa-solid fa-calendar-days px-1"></i>
                                             <label for="" id="jangka_waktu_mulai_pelaksanaan"></label> - <label for="" id="jangka_waktu_selesai_pelaksanaan"></label>
                                         </small>
                                     </td>
-                                    <th class="col-2 vertical-align: middle; bg-light"><small>Waktu Pelaksana (hari)</small></th>
+                                    <th class="col-2 vertical-align: middle; bg-light"><small>Waktu Pelaksanaan (hari)</small></th>
                                     <td class="col-4 vertical-align: middle;">
                                         <small>
                                             <i class="fa-solid fa-clock px-1"></i>
