@@ -2046,11 +2046,8 @@
                         '<td>Panitia</td>' +
                         '<td>' + alasan + '</td>' +
                         '</tr>';
-
-
                 }
                 $('#load_jadwal').html(html);
-                $('#btn_print_jadwal').html('<a target="_blank" href="<?= base_url('panitia/daftar_paket/daftar_paket/cetak_jadwal/') ?>' + id_url_rup + '" class="btn btn-success">Cetak Jadwal</a>');
             }
         })
     }

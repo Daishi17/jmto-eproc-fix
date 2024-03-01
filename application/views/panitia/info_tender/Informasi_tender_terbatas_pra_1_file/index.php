@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <th>Jangka Waktu Pelaksanaan Pekerjaan</th>
-                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari</th>
+                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari Kalender</th>
                         </tr>
                         <tr>
                             <th>Jadwal Pengadaan</th>
@@ -2737,6 +2737,9 @@
                             <th>No</th>
                             <th>
                                 <div class="text-center">File Neraca Keuangan</div>
+                            </th>
+                            <th>
+                                <div class="text-center">Aksi</div>
                             </th>
                         </tr>
                     </thead>

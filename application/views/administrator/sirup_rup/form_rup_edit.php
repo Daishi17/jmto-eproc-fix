@@ -464,7 +464,7 @@
                                                         <div class="input-group mb-2">
                                                             <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
                                                             <input type="number" value="<?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?>" name="jangka_waktu_hari_pelaksanaan" class="form-control" placeholder="360">
-                                                            <span class="input-group-text">Hari Kalender</span>
+                                                            <span class="input-group-text">Hari</span>
                                                         </div>
                                                         <!-- jangka_waktu_hari_pelaksanaan -->
                                                         <small class="text-danger jangka_waktu_hari_pelaksanaan_validation"></small>

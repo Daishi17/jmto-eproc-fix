@@ -3448,3 +3448,64 @@
 
     })
 </script>
+
+<script>
+    function by_id_neraca_keuangan(id_neraca, type) {
+        var modal_edit_neraca = $('#modal-xl-neraca-edit');
+        if (type == 'lihat') {
+            saveData = 'lihat';
+        }
+
+        if (type == 'lihat') {
+            $.ajax({
+                type: "GET",
+                url: '<?= base_url('datapenyedia/by_id_neraca/') ?>' + id_neraca,
+                dataType: "JSON",
+                success: function(response) {
+                    if (type == 'edit') {
+                        modal_edit_neraca.modal('show');
+                        // tahun belom
+                        console.log(response['row_file_excel']);
+
+
+                        $('[name="tahun_mulai_edit"]').val(response['row_neraca'].tahun_mulai);
+                        $('[name="tahun_selesai_edit"]').val(response['row_neraca'].tahun_selesai);
+
+                        $('[name="nilai_tahun_kolom_1_1"]').val(response['row_file_excel'][1][2]);
+                        $('[name="nilai_tahun_kolom_2_1"]').val(response['row_file_excel'][1][3]);
+
+                        $('[name="nilai_tahun_kolom_1_2"]').val(response['row_file_excel'][2][2]);
+                        $('[name="nilai_tahun_kolom_2_2"]').val(response['row_file_excel'][2][3]);
+
+                        $('[name="nilai_tahun_kolom_1_3"]').val(response['row_file_excel'][3][2]);
+                        $('[name="nilai_tahun_kolom_2_3"]').val(response['row_file_excel'][3][3]);
+
+                        $('[name="nilai_tahun_kolom_1_4"]').val(response['row_file_excel'][4][2]);
+                        $('[name="nilai_tahun_kolom_2_4"]').val(response['row_file_excel'][4][3]);
+
+                        $('[name="nilai_tahun_kolom_1_5"]').val(response['row_file_excel'][5][2]);
+                        $('[name="nilai_tahun_kolom_2_5"]').val(response['row_file_excel'][5][3]);
+
+                        $('[name="nilai_tahun_kolom_1_6"]').val(response['row_file_excel'][6][2]);
+                        $('[name="nilai_tahun_kolom_2_6"]').val(response['row_file_excel'][6][3]);
+
+                        $('[name="nilai_tahun_kolom_1_7"]').val(response['row_file_excel'][7][2]);
+                        $('[name="nilai_tahun_kolom_2_7"]').val(response['row_file_excel'][7][3]);
+
+                        $('[name="nilai_tahun_kolom_1_8"]').val(response['row_file_excel'][8][2]);
+                        $('[name="nilai_tahun_kolom_2_8"]').val(response['row_file_excel'][8][3]);
+                        $('[name="id_neraca"]').val(response['row_neraca'].id_neraca);
+
+                    } else if (type == 'hapus') {
+                        Question_hapus_neraca(response['row_neraca'].id_url_neraca, response['row_neraca'].nama_akuntan_public);
+                    } else {
+
+                    }
+                }
+            })
+        } else {
+
+        }
+
+    }
+</script>

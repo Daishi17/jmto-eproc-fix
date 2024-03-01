@@ -420,7 +420,6 @@
                 for (i = 0; i < response['jadwal'].length; i++) {
                     var times_mulai = new Date(response['jadwal'][i].waktu_mulai)
                     var times_selesai = new Date(response['jadwal'][i].waktu_selesai)
-
                     // mulai
                     const tanggal_mulaiku = times_mulai;
                     const options_mulai = {
@@ -445,7 +444,6 @@
                         timeZone: 'Asia/Jakarta',
                     };
                     const data_selesaiku = tanggal_selesaiku.toLocaleString('id-ID', options_selesai);
-
 
                     var waktu_mulai = new Date(response['jadwal'][i].waktu_mulai);
                     var waktu_selesai = new Date(response['jadwal'][i].waktu_selesai);
@@ -478,14 +476,9 @@
                         '<td><small>' + data_mulaiku + '</small></td>' +
                         '<td><small>' + data_selesaiku + '</small></td>' +
                         '<td>' + status_waktu + '</td>' +
-                        '<td>Panitia</td>' +
-                        '<td>' + alasan + '</td>' +
                         '</tr>';
-
-
                 }
                 $('#load_jadwal').html(html);
-                $('#btn_print_jadwal').html('<a target="_blank" href="<?= base_url('panitia/daftar_paket/daftar_paket/cetak_jadwal/') ?>' + id_url_rup + '" class="btn btn-success">Cetak Jadwal</a>');
             }
         })
     }

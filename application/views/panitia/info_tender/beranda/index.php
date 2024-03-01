@@ -300,28 +300,25 @@
             </div>
         </div>
     </div>
-
-
-</main>
-
-<div class="modal fade" id="modal-xl-detail">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="navbar-brand">
-                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="card border-dark">
-                    <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                        <div class="flex-grow-1 bd-highlight">
-                            <span class="text-white">
-                                <i class="fa-solid fa-table px-1"></i>
-                                <small><strong>List Data - Paket Penyedia</strong></small>
-                            </span>
+    <div class="modal fade" id="modal-xl-detail">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="navbar-brand">
+                        <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                        <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card border-dark">
+                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                            <div class="flex-grow-1 bd-highlight">
+                                <span class="text-white">
+                                    <i class="fa-solid fa-table px-1"></i>
+                                    <small><strong>List Data - Paket Penyedia</strong></small>
+                                </span>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-sm shadow-lg">
@@ -501,258 +498,255 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="card-body">
+                                                <table class="table table-bordered border-dark table-sm shadow-lg">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="2">
+                                                                <small>Persyaratan Administrasi / Legalitas</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Jenis Persyaratan</small>
+                                                            </th>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Keterangan Persyaratan</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <small>Kualifikasi Usaha</small>
+                                                            </td>
+                                                            <td>
+                                                                <small><label for="" id="syarat_tender_kualifikasi"></label></small>
+                                                            </td>
+                                                        </tr>
+                                                        <div id="siup_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Surat Izin Usaha Perdagangan (SIUP)</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="sts_masa_berlaku_siup"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+
+                                                        <div id="nib_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Nomor Induk Berusaha (NIB/TDP)</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="sts_masa_berlaku_nib"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+
+                                                        <div id="sbu_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Sertifikat Badan Usaha (SBU)</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="sts_masa_berlaku_sbu"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+
+                                                        <div id="siujk_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Surat Izin Jasa Konstruksi (SIUJK)</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="sts_masa_berlaku_siujk"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+
+                                                        <div id="skdp_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Surat Keterangan Domisili Perusahan (SKDP)</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="sts_masa_berlaku_skdp"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table table-bordered border-dark table-sm shadow-lg">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="2">
+                                                                <small>Persyaratan Teknis</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Jenis Persyaratan</small>
+                                                            </th>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Keterangan Persyaratan</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <div id="spt_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Surat Pemberitahuan Tahunan (SPT) Badan</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="tahun_spt"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                        <div id="keuangan_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Laporan Keuangan</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="tahun_keuangan"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                        <!-- neraca -->
+                                                        <div id="neraca_izin" style="display: none;">
+                                                            <tr>
+                                                                <td>
+                                                                    <small>Neraca Keuangan</small>
+                                                                </td>
+                                                                <td>
+                                                                    <small><label for="" id="tahun_neraca"></label></small>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table table-bordered border-dark table-sm shadow-lg">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="3">
+                                                                <small>Persyaratan Tambahan</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Keterangan Persyaratan</small>
+                                                            </th>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Format Dokumen</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="load_syarat_tambahan">
+                                                    </tbody>
+                                                </table>
+
+
+                                                <table class="table table-bordered border-dark table-sm shadow-lg">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="3">
+                                                                <small>DOKUMEN IZIN PRINSIP DAN HPS</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>Nama Dokumen</small>
+                                                            </th>
+                                                            <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
+                                                                <small>File Dokumen</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbl_dok_izin_prinsip_detail">
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <table class="table table-bordered border-dark table-sm shadow-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="2">
-                                                            <small>Persyaratan Administrasi / Legalitas</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Jenis Persyaratan</small>
-                                                        </th>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Keterangan Persyaratan</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <small>Kualifikasi Usaha</small>
-                                                        </td>
-                                                        <td>
-                                                            <small><label for="" id="syarat_tender_kualifikasi"></label></small>
-                                                        </td>
-                                                    </tr>
-                                                    <div id="siup_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Surat Izin Usaha Perdagangan (SIUP)</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="sts_masa_berlaku_siup"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
+                                    </td>
+                                </tr>
 
-                                                    <div id="nib_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Nomor Induk Berusaha (NIB/TDP)</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="sts_masa_berlaku_nib"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-
-                                                    <div id="sbu_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Sertifikat Badan Usaha (SBU)</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="sts_masa_berlaku_sbu"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-
-                                                    <div id="siujk_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Surat Izin Jasa Konstruksi (SIUJK)</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="sts_masa_berlaku_siujk"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-
-                                                    <div id="skdp_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Surat Keterangan Domisili Perusahan (SKDP)</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="sts_masa_berlaku_skdp"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-                                                </tbody>
-                                            </table>
-                                            <table class="table table-bordered border-dark table-sm shadow-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="2">
-                                                            <small>Persyaratan Teknis</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Jenis Persyaratan</small>
-                                                        </th>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Keterangan Persyaratan</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <div id="spt_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Surat Pemberitahuan Tahunan (SPT) Badan</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="tahun_spt"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-                                                    <div id="keuangan_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Laporan Keuangan</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="tahun_keuangan"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-                                                    <!-- neraca -->
-                                                    <div id="neraca_izin" style="display: none;">
-                                                        <tr>
-                                                            <td>
-                                                                <small>Neraca Keuangan</small>
-                                                            </td>
-                                                            <td>
-                                                                <small><label for="" id="tahun_neraca"></label></small>
-                                                            </td>
-                                                        </tr>
-                                                    </div>
-                                                </tbody>
-                                            </table>
-                                            <table class="table table-bordered border-dark table-sm shadow-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="3">
-                                                            <small>Persyaratan Tambahan</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Keterangan Persyaratan</small>
-                                                        </th>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Format Dokumen</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="load_syarat_tambahan">
-                                                </tbody>
-                                            </table>
-
-
-                                            <table class="table table-bordered border-dark table-sm shadow-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-danger" style="text-align:center; vertical-align:middle;" colspan="3">
-                                                            <small>DOKUMEN IZIN PRINSIP DAN HPS</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>Nama Dokumen</small>
-                                                        </th>
-                                                        <th class="text-white bg-secondary" style="text-align:left; vertical-align:middle;">
-                                                            <small>File Dokumen</small>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="tbl_dok_izin_prinsip_detail">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-start">
-                <div id="button_ke_info_tender"></div>
-                <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-rectangle-xmark"></i>
-                    Keluar
-                </button>
+                <div class="modal-footer justify-content-start">
+                    <div id="button_ke_info_tender"></div>
+                    <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-rectangle-xmark"></i>
+                        Keluar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" tabindex="-1" id="modal_detail_jadwal">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="navbar-brand">
-                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="card border-dark shadow-lg">
-                            <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
-                                <div class="flex-grow-1 bd-highlight">
-                                    <span class="text-white">
-                                        <i class="fa-regular fa-rectangle-list px-1"></i>
-                                        <small><strong>Detail Jadwal</strong></small>
-                                    </span>
+    <div class="modal fade" tabindex="-1" id="modal_detail_jadwal">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="navbar-brand">
+                        <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                        <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card border-dark shadow-lg">
+                                <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
+                                    <div class="flex-grow-1 bd-highlight">
+                                        <span class="text-white">
+                                            <i class="fa-regular fa-rectangle-list px-1"></i>
+                                            <small><strong>Detail Jadwal</strong></small>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-bordered table-sm shadow-lg">
-                                    <thead class="bg-secondary text-white">
-                                        <tr>
-                                            <th><small>No</small></th>
-                                            <th><small>Nama Jadwal</small></th>
-                                            <th><small>Waktu Mulai</small></th>
-                                            <th><small>Waktu Selesai</small></th>
-                                            <th><small>Status Tahap</small></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="load_jadwal">
+                                <div class="card-body">
+                                    <table class="table table-bordered table-sm shadow-lg">
+                                        <thead class="bg-secondary text-white">
+                                            <tr>
+                                                <th><small>No</small></th>
+                                                <th><small>Nama Jadwal</small></th>
+                                                <th><small>Waktu Mulai</small></th>
+                                                <th><small>Waktu Selesai</small></th>
+                                                <th><small>Status Tahap</small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="load_jadwal">
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-start">
-                <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-rectangle-xmark"></i>
-                    Keluar
-                </button>
-                <div id="btn_print_jadwal">
-
+                <div class="modal-footer d-flex justify-content-start">
+                    <button type="button" class="btn btn-default btn-danger" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-rectangle-xmark"></i>
+                        Keluar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>

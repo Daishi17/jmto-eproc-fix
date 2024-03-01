@@ -143,13 +143,13 @@ function terbilang($nilai)
                 <p style="text-align:justify; font-size:15px">
                     Pada Hari ini <b><?= $row_rup['ba_evaluasi_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
-                    Bulan <b class="text-capitalize"> <?= terbilang(date('m', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_evaluasi_jam'] ?> Panitia Pengadaan telah mengadakan Rapat Evaluasi Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b> dengan hasil-hasil sebagai berikut:
+                    Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_evaluasi_tgl']))) ?></b>,
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_evaluasi_jam'] ?> Panitia Pengadaan telah mengadakan Rapat Evaluasi Prakualifikasi Peserta <?= $row_rup['nama_metode_pengadaan'] ?> <b><?= $row_rup['nama_rup'] ?></b>, dengan hasil-hasil sebagai berikut:
                 </p>
 
                 <ol>
                     <li>
-                        Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi sebanyak <?= count($peserta_tender) ?>(<?= terbilang(count($peserta_tender)) ?>) Perusahaan, yaitu:
+                        Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi sebanyak <?= count($peserta_tender) ?> ( <?= terbilang(count($peserta_tender)) ?> ) Perusahaan, yaitu:
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender as $key => $value) { ?>
@@ -166,7 +166,7 @@ function terbilang($nilai)
                         </ol>
                     </li>
                     <li class="mt-3">
-                        Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq) ?>(<?= terbilang(count($peserta_tender_pq)) ?>) Perusahaan, yaitu:
+                        Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq) ?> ( <?= terbilang(count($peserta_tender_pq)) ?> ) Perusahaan, yaitu:
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender_pq as $key => $value) { ?>
@@ -184,7 +184,7 @@ function terbilang($nilai)
                     </li>
                     <li class="mt-3">
                         <p>Panitia Pengadaan melakukan evaluasi terhadap Dokumen Prakualifikasi yang masuk, meliputi aspek administrasi, keuangan dan teknis.</p>
-                        <p> Setelah melakukan evaluasi, Panitia Pengadaan sepakat menilai dan menetapkan bahwa Perusahaan yang memenuhi persyaratan Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?> ) Perusahaan, yaitu:</p>
+                        <p> Setelah melakukan evaluasi, Panitia Pengadaan sepakat menilai dan menetapkan bahwa Perusahaan yang memenuhi persyaratan Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq_lolos) ?> ( <?= terbilang(count($peserta_tender_pq_lolos)) ?> ) Perusahaan, yaitu:</p>
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
@@ -206,9 +206,17 @@ function terbilang($nilai)
                 <br>
                 <br>
                 <br>
-                <div class="float-right" style="margin-left:800px">
+                <!-- <div class="float-right" style="margin-left:800px">
                     <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
-                </div>
+                </div> -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>
@@ -219,13 +227,6 @@ function terbilang($nilai)
                 <br>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br> <br>
-                <br> <br>
-                <br> <br>
-                <br> <br>
                 <br>
                 <br>
                 <center>

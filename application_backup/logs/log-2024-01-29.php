@@ -1,0 +1,21 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2024-01-29 12:31:46 --> Severity: Notice --> Trying to get property 'nip' of non-object C:\laragon\www\jmto-eproc\application\libraries\Role_login.php 21
+ERROR - 2024-01-29 12:36:13 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:36:13 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:37:59 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:37:59 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:38:46 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:38:46 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:42:15 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:42:15 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:42:52 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388
+ERROR - 2024-01-29 12:48:04 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:48:04 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:52:52 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388
+ERROR - 2024-01-29 12:56:17 --> Severity: Notice --> Undefined variable: result_ruas_by_departemnt C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:56:17 --> Severity: Warning --> Invalid argument supplied for foreach() C:\laragon\www\jmto-eproc\application\views\administrator\sirup_rup\form_rup_edit.php 136
+ERROR - 2024-01-29 12:58:41 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388
+ERROR - 2024-01-29 13:02:11 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388
+ERROR - 2024-01-29 15:51:40 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388
+ERROR - 2024-01-29 16:41:02 --> Severity: error --> Exception: Too few arguments to function Daftar_paket::by_id_rup(), 0 passed in C:\laragon\www\jmto-eproc\system\core\CodeIgniter.php on line 533 and exactly 1 expected C:\laragon\www\jmto-eproc\application\controllers\panitia\daftar_paket\Daftar_paket.php 388

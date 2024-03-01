@@ -35,7 +35,8 @@ class Daftar_paket extends CI_Controller
 	}
 
 	function send_email_regis()
-	{ }
+	{
+	}
 
 
 	public function get_draft_paket()
@@ -560,7 +561,8 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
-		} else { }
+		} else {
+		}
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -1625,7 +1627,8 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else { }
+		} else {
+		}
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
@@ -1820,7 +1823,6 @@ Terimakasih');
 		$this->M_panitia->update_rup_panitia($this->input->post('id_rup_global'), $data);
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
 	}
-
 
 	public function cetak_jadwal($id_url_rup)
 	{

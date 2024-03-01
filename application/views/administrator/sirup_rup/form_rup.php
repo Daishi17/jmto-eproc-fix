@@ -447,7 +447,7 @@
                                                         <div class="input-group mb-2">
                                                             <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
                                                             <input type="number" readonly name="jangka_waktu_hari_pelaksanaan" style="background-color: #ffffe0;" class="form-control" placeholder="00">
-                                                            <span class="input-group-text">Hari Kalender</span>
+                                                            <span class="input-group-text">Hari</span>
                                                         </div>
                                                         <!-- jangka_waktu_hari_pelaksanaan -->
                                                         <small class="text-danger jangka_waktu_hari_pelaksanaan_validation"></small>
