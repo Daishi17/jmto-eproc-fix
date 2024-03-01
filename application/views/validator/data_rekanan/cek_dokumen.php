@@ -1147,6 +1147,50 @@
                 <div class="card">
                     <div class="card-header bg-primary">
                         <center>
+                            <h4 class="text-white">SKDP</h4>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No Surat</th>
+                                    <th>Status Validasi</th>
+                                    <th>Nama Validator</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rincian_skdp">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <center>
+                            <h4 class="text-white">KBLI SKDP</h4>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Kode KBLI/Jenis</th>
+                                    <th>Status Validasi</th>
+                                    <th>Nama Validator</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rincian_kbli_skdp">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <center>
                             <h4 class="text-white">Akta Pendirian</h4>
                         </center>
                     </div>

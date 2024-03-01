@@ -1173,8 +1173,16 @@
                         '</td>' +
                         '</tr>';
                     $('#load_skdp').html(html_skdp);
-                    var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
 
+                    var html_skdp_rincian = ''
+                    html_skdp_rincian += '<tr>' +
+                        '<td>' + response['row_skdp'].nomor_surat + '</td>' +
+                        '<td>' + sts_validasi + '</td>' +
+                        '<td>' + nama_validator + '</td>' +
+                        '</tr>';
+                    $('#rincian_skdp').html(html_skdp_rincian);
+
+                    var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
                     $(document).ready(function() {
                         $('#tbl_kbli_skdp').DataTable({
                             "responsive": true,
