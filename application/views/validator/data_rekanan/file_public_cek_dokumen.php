@@ -1173,8 +1173,11 @@
                         '</td>' +
                         '</tr>';
                     $('#load_skdp').html(html_skdp);
+                } else {
 
-                    var html_skdp_rincian = ''
+                }
+
+                var html_skdp_rincian = ''
                     html_skdp_rincian += '<tr>' +
                         '<td>' + response['row_skdp'].nomor_surat + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -1195,7 +1198,7 @@
                             "buttons": ["excel", "pdf", "print", "colvis"],
                             "order": [],
                             "ajax": {
-                                "url": url_kbli_skdp + response['row_skdp'].id_vendor,
+                                "url": url_kbli_skdp + response['id_vendor'].id_vendor,
                                 "type": "POST",
                             },
                             "columnDefs": [{
@@ -1235,9 +1238,6 @@
                             '</tr>';
                     }
                     $('#rincian_kbli_skdp').html(html_kbli_skdp);
-                } else {
-
-                }
                 // end skdp
 
                 // lainnya

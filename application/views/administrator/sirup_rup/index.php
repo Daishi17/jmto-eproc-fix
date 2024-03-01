@@ -326,7 +326,7 @@
                                                 <i class="fa-solid fa-calendar-days fa-lg px-2"></i>
                                                 <small id="waktu_pelakasanaan"> &nbsp;</small>
                                                 <i class="fa-solid fa-calendar-days fa-lg px-2"></i>
-                                                <small id="hari_pelaksanaan"> &nbsp;</small> Hari
+                                                <small id="hari_pelaksanaan"> &nbsp;</small> Hari Kalender
                                             </td>
                                         </tr>
                                         <tr>
