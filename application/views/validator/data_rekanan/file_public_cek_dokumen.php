@@ -1176,60 +1176,68 @@
                 } else {
 
                 }
-                var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
-                $(document).ready(function() {
-                    $('#tbl_kbli_skdp').DataTable({
-                        "responsive": true,
-                        "ordering": true,
-                        "processing": true,
-                        "serverSide": true,
-                        "dom": 'Bfrtip',
-                        "bDestroy": true,
-                        "autoWidth": false,
-                        "buttons": ["excel", "pdf", "print", "colvis"],
-                        "order": [],
-                        "ajax": {
-                            "url": url_kbli_skdp + response['id_vendor'].id_vendor,
-                            "type": "POST",
-                        },
-                        "columnDefs": [{
-                            "target": [-1],
-                            "orderable": false
-                        }],
-                        "oLanguage": {
-                            "sSearch": "Pencarian : ",
-                            "sEmptyTable": "Data Tidak Tersedia",
-                            "sLoadingRecords": "Silahkan Tunggu - loading...",
-                            "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
-                            "sZeroRecords": "Tidak Ada Data Yang Di Cari",
-                            "sProcessing": "Memuat Data...."
-                        }
-                    })
-                });
 
-                var html_kbli_skdp = '';
-                for (i = 0; i < response['kbli_skdp'].length; i++) {
-                    if (response['kbli_skdp'][i].sts_kbli_skdp == null || response['kbli_skdp'][i].sts_kbli_skdp == 0) {
-                        var sts_validasi = '<span class="badge bg-secondary">Belum Di Periksa</span>'
-                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 1) {
-                        var sts_validasi = '<span class="badge bg-success">Sudah Valid</span>'
-                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 2) {
-                        var sts_validasi = '<span class="badge bg-danger">Tidak Valid</span>'
-                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 3) {
-                        var sts_validasi = '<span class="badge bg-warning">Revisi</span>'
-                    }
-                    if (response['kbli_skdp'][i].nama_validator) {
-                        var nama_validator = response['kbli_skdp'][i].nama_validator
-                    } else {
-                        var nama_validator = '-'
-                    }
-                    html_kbli_skdp += '<tr>' +
-                        '<td>' + response['kbli_skdp'][i].kode_kbli + '|' + response['kbli_skdp'][i].nama_kbli + '</td>' +
+                var html_skdp_rincian = ''
+                    html_skdp_rincian += '<tr>' +
+                        '<td>' + response['row_skdp'].nomor_surat + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
                         '<td>' + nama_validator + '</td>' +
                         '</tr>';
-                }
-                $('#rincian_kbli_skdp').html(html_kbli_skdp);
+                    $('#rincian_skdp').html(html_skdp_rincian);
+
+                    var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
+                    $(document).ready(function() {
+                        $('#tbl_kbli_skdp').DataTable({
+                            "responsive": true,
+                            "ordering": true,
+                            "processing": true,
+                            "serverSide": true,
+                            "dom": 'Bfrtip',
+                            "bDestroy": true,
+                            "autoWidth": false,
+                            "buttons": ["excel", "pdf", "print", "colvis"],
+                            "order": [],
+                            "ajax": {
+                                "url": url_kbli_skdp + response['id_vendor'].id_vendor,
+                                "type": "POST",
+                            },
+                            "columnDefs": [{
+                                "target": [-1],
+                                "orderable": false
+                            }],
+                            "oLanguage": {
+                                "sSearch": "Pencarian : ",
+                                "sEmptyTable": "Data Tidak Tersedia",
+                                "sLoadingRecords": "Silahkan Tunggu - loading...",
+                                "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
+                                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                                "sProcessing": "Memuat Data...."
+                            }
+                        })
+                    });
+                    var html_kbli_skdp = '';
+                    for (i = 0; i < response['kbli_skdp'].length; i++) {
+                        if (response['kbli_skdp'][i].sts_kbli_skdp == null || response['kbli_skdp'][i].sts_kbli_skdp == 0) {
+                            var sts_validasi = '<span class="badge bg-secondary">Belum Di Periksa</span>'
+                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 1) {
+                            var sts_validasi = '<span class="badge bg-success">Sudah Valid</span>'
+                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 2) {
+                            var sts_validasi = '<span class="badge bg-danger">Tidak Valid</span>'
+                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 3) {
+                            var sts_validasi = '<span class="badge bg-warning">Revisi</span>'
+                        }
+                        if (response['kbli_skdp'][i].nama_validator) {
+                            var nama_validator = response['kbli_skdp'][i].nama_validator
+                        } else {
+                            var nama_validator = '-'
+                        }
+                        html_kbli_skdp += '<tr>' +
+                            '<td>' + response['kbli_skdp'][i].kode_kbli + '|' + response['kbli_skdp'][i].nama_kbli + '</td>' +
+                            '<td>' + sts_validasi + '</td>' +
+                            '<td>' + nama_validator + '</td>' +
+                            '</tr>';
+                    }
+                    $('#rincian_kbli_skdp').html(html_kbli_skdp);
                 // end skdp
 
                 // lainnya
