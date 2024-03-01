@@ -1586,6 +1586,28 @@ class M_Rekanan_tervalidasi extends CI_Model
         return $query->num_rows();
     }
 
+    function cek_vendor_tervalidasi_kbli_skdp($id_vendor)
+    {
+        $this->db->select('sts_kbli_skdp');
+        $this->db->from('tbl_vendor_kbli_skdp');
+        $this->db->where('sts_kbli_skdp', 1);
+        $this->db->where('id_vendor', $id_vendor);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function cek_vendor_tdk_valid_kbli_skdp($id_vendor)
+    {
+        $this->db->select('sts_kbli_skdp');
+        $this->db->from('tbl_vendor_kbli_skdp');
+        $this->db->where_in('sts_kbli_skdp', [0, 2, 3]);
+        $this->db->where('id_vendor', $id_vendor);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
     function cek_vendor_tervalidasi_akta_pendirian($id_vendor)
     {
         $this->db->select('sts_validasi');
