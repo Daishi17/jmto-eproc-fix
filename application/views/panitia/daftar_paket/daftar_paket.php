@@ -145,7 +145,7 @@
                                             </th>
                                             <td>
                                                 <i class="fa-solid fa-clock px-2"></i>
-                                                <small id="jangka_waktu_hari_pelaksanaan"></small>&nbsp; Hari
+                                                <small id="jangka_waktu_hari_pelaksanaan"></small>&nbsp; Hari Kalender
                                             </td>
                                         </tr>
                                         <tr>

@@ -416,7 +416,7 @@
                                     <td class="col-4 vertical-align: middle;">
                                         <small>
                                             <i class="fa-solid fa-clock px-1"></i>
-                                            <label for="" id="jangka_waktu_hari_pelaksanaan"></label>
+                                            <label for="" id="jangka_waktu_hari_pelaksanaan"> </label> Hari Kalender
                                         </small>
                                     </td>
                                 </tr>
@@ -745,6 +745,9 @@
                         <i class="fa-solid fa-rectangle-xmark"></i>
                         Keluar
                     </button>
+                    <div id="btn_print_jadwal">
+
+                    </div>
                 </div>
             </div>
         </div>
