@@ -52,8 +52,6 @@
                 modal_paket.modal('show');
                 var html_ruas = '';
                 if (response['row_rup']['id_metode_pengadaan'] == 3) {
-                    // $('[name="metode_kualifikasi"]').attr('disabled', true);
-                    // $('[name="metode_dokumen"]').attr('disabled', true);
                     $.ajax({
                         type: 'GET',
                         url: '<?= base_url('administrator/sirup_buat_paket/get_jenis_jadwal_juksung/') ?>' + response['row_rup']['id_url_rup'],
@@ -62,7 +60,13 @@
                         }
                     });
                 } else {
-
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?= base_url('administrator/sirup_buat_paket/get_jenis_jadwal_rup/') ?>' + response['row_rup']['id_url_rup'],
+                        success: function(html) {
+                            $('#jenis_jadwal').html(html);
+                        }
+                    });
                 }
                 $('[name="random_kode"]').val(response['row_rup']['id_url_rup']);
                 $('#kode_rup').text(response['row_rup']['kode_rup']);
@@ -283,6 +287,7 @@
                         modal_detail.modal('hide');
                         Swal.fire('Rup Berhasil Di Finalisasi!', '', 'success')
                         Reload_table_rup();
+                        location.reload()
                     }
                 })
 
@@ -408,7 +413,8 @@
                     dataType: "JSON",
                     success: function(response) {
                         Swal.fire('Paket Berhasil Dibuat!', '', 'success');
-                        Reload_table_rup_final()
+                        Reload_table_rup_final();
+                        Reload_table_rup();
                     }
                 })
 

@@ -410,6 +410,16 @@ class Sirup_buat_paket extends CI_Controller
 		}
 	}
 
+	public function get_jenis_jadwal_rup($id_url_rup) //satuan kerja
+	{
+		$row_rup = $this->M_rup->get_row_rup($id_url_rup);
+		$id_jadwal_tender = $row_rup['id_jadwal_tender'];
+		$data = $this->M_jenis_jadwal->get_result_jenis_jadwal_paket_tender($id_jadwal_tender);
+		foreach ($data as $key => $value) {
+			echo '<option value="' . $value['id_jadwal_tender'] . '">' . $value['nama_jadwal_pengadaan'] . '</option>';
+		}
+	}
+
 	public function get_jenis_jadwal_juksung($id_url_rup) //satuan kerja
 	{
 		echo '<option value="9">Penunjukan Langsung</option>';

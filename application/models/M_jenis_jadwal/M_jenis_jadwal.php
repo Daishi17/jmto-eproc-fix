@@ -70,4 +70,13 @@ class M_jenis_jadwal extends CI_Model
     {
         $this->db->insert('tbl_jadwal_rup', $data);
     }
+
+    public function get_result_jenis_jadwal_paket_tender($id_jadwal_tender)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_tender');
+        $this->db->where('id_jadwal_tender', $id_jadwal_tender);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
