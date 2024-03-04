@@ -60,7 +60,7 @@ class Rekanan_tervalidasi extends CI_Controller
 		$pesan = '<i>Kepada Yth.<br><b id="nama_usaha">' . $data['nama_usaha'] . '</b><br></i><i>,Dokumen Anda Pada Aplikasi DRT JMTO Sudah Lengkap Silahkan Lakukan Pembuktian Kelengkapan Dokumen Pada Tanggal : ' . date('d-m-Y', strtotime($tanggal)) . ', Hari ' . $hari . ', Jam ' . $jam . ', ' . $keterangan;
 		$pesan_wa = 'Kepada Yth. ' . $data['nama_usaha'] . ' Dokumen Anda Pada Aplikasi DRT JMTO Sudah Lengkap Silahkan Lakukan Pembuktian Kelengkapan Dokumen Pada Tanggal : ' . date('d-m-Y', strtotime($tanggal)) . ', Hari ' . $hari . ', Jam ' . $jam . ', ' . $keterangan;
 		$type_email = 'KIRIM-UNDANGAN';
-		// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
+		$this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
 		$data = $this->M_Rekanan_tervalidasi->get_row_vendor($id_url_vendor);
 		$no_telpon = $data['no_telpon'];
 		$this->kirim_wa->kirim_wa_vendor_terdaftar($no_telpon, $pesan_wa);
