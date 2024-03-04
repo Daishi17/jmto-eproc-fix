@@ -35,8 +35,7 @@ class Daftar_paket extends CI_Controller
 	}
 
 	function send_email_regis()
-	{
-	}
+	{ }
 
 
 	public function get_draft_paket()
@@ -353,7 +352,7 @@ class Daftar_paket extends CI_Controller
 
 	public function get_rup_terfinalisasi()
 	{
-		$result = $this->M_panitia->gettable_rup_paket_final();
+		$result = $this->M_panitia->gettable_rup_paket_final_panitia();
 		$data = [];
 		$no = $_POST['start'];
 		foreach ($result as $rs) {
@@ -372,8 +371,8 @@ class Daftar_paket extends CI_Controller
 		}
 		$output = array(
 			"draw" => $_POST['draw'],
-			"recordsTotal" => $this->M_panitia->count_all_rup_paket_final(),
-			"recordsFiltered" => $this->M_panitia->count_filtered_rup_paket_final(),
+			"recordsTotal" => $this->M_panitia->count_all_rup_paket_final_panitia(),
+			"recordsFiltered" => $this->M_panitia->count_filtered_rup_paket_final_panitia(),
 			"data" => $data
 		);
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
@@ -563,8 +562,7 @@ Terimakasih');
 				'jenis_kontrak' => $jenis_kontrak
 			];
 			$this->M_panitia->update_rup_panitia($id_rup, $data);
-		} else {
-		}
+		} else { }
 		$validasi_jenis_kontrak = $this->M_panitia->validasi_jenis_kontrak($id_rup);
 		// beban_tahun_anggaran
 		$validasi_beban_tahun_anggaran = $this->M_panitia->validasi_beban_tahun_anggaran($id_rup);
@@ -1629,8 +1627,7 @@ Terimakasih');
 			$data = [
 				'tahun_akhir_neraca_keuangan' => $tahun_akhir_neraca_keuangan,
 			];
-		} else {
-		}
+		} else { }
 		$this->M_panitia->update_syarat_izin_teknis_tender($row_rup['id_rup'], $data);
 		$response = [
 			'row_syarat_izin_teknis_tender' => $this->M_panitia->get_syarat_izin_teknis_tender($row_rup['id_rup'])
