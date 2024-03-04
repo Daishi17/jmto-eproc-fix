@@ -233,3 +233,15 @@
         })
     }
 </script>
+
+<script>
+    function validateTime(inputField) {
+        var regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+        if (regex.test(inputField.value)) {
+            inputField.setCustomValidity(''); 
+        } else {
+            inputField.setCustomValidity('Masukkan waktu dalam format 24 jam (HH:MM)'); 
+        }
+    }
+</script>

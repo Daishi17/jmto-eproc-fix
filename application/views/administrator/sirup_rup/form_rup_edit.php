@@ -430,7 +430,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center bg-secondary text-white" colspan="2">
-                                                    <small>Tahun Jamak</small>
+                                                    <small>Tahun Anggaran</small>
                                                 </th>
                                                 <th class="text-center bg-secondary text-white" scope="col">
                                                     <small>Jangka Waktu</small>
