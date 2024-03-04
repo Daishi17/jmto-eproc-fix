@@ -443,6 +443,7 @@
                     success: function(response) {
                         modal_detail.modal('hide');
                         Swal.fire('Rup Berhasil Di Finalisasi!', '', 'success')
+                        Reload_table_rup_final();
                         Reload_table_rup();
                     }
                 })

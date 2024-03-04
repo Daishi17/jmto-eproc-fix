@@ -344,7 +344,7 @@
                                         </tr>
                                         <tr>
                                             <th class="bg-light">
-                                                <small>Tahun Jamak</small>
+                                                <small>Masa Pelaksanaan</small>
                                             </th>
                                             <td>
                                                 <i class="fa-solid fa-calendar-days px-2"></i>
@@ -355,7 +355,7 @@
                                             </th>
                                             <td>
                                                 <i class="fa-solid fa-clock px-2"></i>
-                                                <small id="hari_pelaksanaan"></small>&nbsp;&nbsp;<small>Hari</small>
+                                                <small id="hari_pelaksanaan"></small>&nbsp;&nbsp;<small>Hari Kalender</small>
                                             </td>
                                         </tr>
                                         <tr>

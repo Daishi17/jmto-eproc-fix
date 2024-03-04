@@ -207,7 +207,6 @@
                                                 <div id="detail_jadwal">
 
                                                 </div>
-
                                             </td>
                                         </tr>
                                         <tr>

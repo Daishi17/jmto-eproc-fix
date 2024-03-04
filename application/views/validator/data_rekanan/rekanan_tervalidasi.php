@@ -181,7 +181,7 @@
                             <label class="col-form-label" style="text-align: right;">Tanggal<span style="color:red;">*</span></label>
                             <input class="tanggal_mulai form-control form-control-sm" type="date" name="tanggal" required="">
                             <label class="col-form-label" style="text-align: right;">Jam<span style="color:red;">*</span></label>
-                            <input class="form-control form-control-sm" type="time" name="jam" required="">
+                            <input class="form-control form-control-sm" type="text" name="jam" required onchange="validateTime(this)">
                             <label class="col-form-label" style="text-align: right;">Keterangan</label>
                             <textarea name="keterangan" class="form-control"></textarea>
                             <br>
