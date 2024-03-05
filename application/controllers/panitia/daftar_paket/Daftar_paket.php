@@ -583,22 +583,22 @@ Terimakasih');
 		} else if (!$validasi_dok_izin_prinsip) {
 			$erorr = 'dok_izin_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_hps) {
+		} else if (!$validasi_hps) {
 			$erorr = 'hps_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_jenis_kontrak) {
+		} else if (!$validasi_jenis_kontrak) {
 			$erorr = 'jenis_kontrak_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_bobot_nilai) {
+		} else if (!$validasi_bobot_nilai) {
 			$erorr = 'bobot_nilai_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_bobot_teknis) {
+		} else if (!$validasi_bobot_teknis) {
 			$erorr = 'bobot_teknis_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_bobot_biaya) {
+		} else if (!$validasi_bobot_biaya) {
 			$erorr = 'bobot_biaya_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-		} else if ($validasi_syarat_tender_kualifikasi) {
+		} else if (!$validasi_syarat_tender_kualifikasi) {
 			$erorr = 'syarat_tender_kualifikasi_validasi';
 			$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 		} else {
@@ -619,25 +619,25 @@ Terimakasih');
 			} else if (!$validasi_dok_izin_prinsip) {
 				$erorr = 'dok_izin_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_hps) {
+			} else if (!$validasi_hps) {
 				$erorr = 'hps_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_jenis_kontrak) {
+			} else if (!$validasi_jenis_kontrak) {
 				$erorr = 'jenis_kontrak_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_beban_tahun_anggaran) {
+			} else if (!$validasi_beban_tahun_anggaran) {
 				$erorr = 'beban_tahun_anggaran';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_bobot_nilai) {
+			} else if (!$validasi_bobot_nilai) {
 				$erorr = 'bobot_nilai_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_bobot_teknis) {
+			} else if (!$validasi_bobot_teknis) {
 				$erorr = 'bobot_teknis_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_bobot_biaya) {
+			} else if (!$validasi_bobot_biaya) {
 				$erorr = 'bobot_biaya_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
-			} else if ($validasi_syarat_tender_kualifikasi) {
+			} else if (!$validasi_syarat_tender_kualifikasi) {
 				$erorr = 'syarat_tender_kualifikasi_validasi';
 				$this->output->set_content_type('application/json')->set_output(json_encode($erorr));
 			} else {
