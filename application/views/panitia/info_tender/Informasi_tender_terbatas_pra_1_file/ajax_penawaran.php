@@ -206,17 +206,17 @@
                                 <td>${file1_teknis_sts_validasi}</td>
                             </tr>
                             <tr>
-                                <td>3. Dokumen Penawaran Harga</td>
+                                <td>3. Dokumen Penawaran Harga, Lampiran DKH dan Lampiran TKDN</td>
                                 <td>${file2_penawaran}</td>
                                 <td>${file2_penawaran_sts_validasi}</td>
                               </tr>
                               <tr>
-                                <td>4. File DKH</td>
+                                <td>4. FIle DKH (Excel)</td>
                                 <td>${file2_dkh}</td>
                                 <td>${file2_dkh_sts_validasi}</td>
                               </tr>
                               <tr>
-                                <td>5. File TKDN</td>
+                                <td>5. File TKDN (Excel)</td>
                                 <td>${file2_tkdn}</td>
                                 <td>${file2_tkdn_sts_validasi}</td>
                               </tr>`
