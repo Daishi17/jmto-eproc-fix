@@ -244,6 +244,7 @@ function terbilang($nilai)
                                         <tr>
                                             <td><?= $i++ ?></td>
                                             <td class="text-uppercase"><?= $nama_perusahaan ?></td>
+                                            <td class="text-uppercase">Rp. <?= number_format($value['nilai_penawaran'], 2, ",", "."); ?></td>
                                             <td>
                                                 <?php
 
@@ -284,6 +285,7 @@ function terbilang($nilai)
                                         <tr>
                                             <td><?= $i++ ?></td>
                                             <td class="text-uppercase"><?= $nama_perusahaan ?></td>
+                                            <td class="text-uppercase">Rp. <?= number_format($value['nilai_penawaran'], 2, ",", "."); ?></td>
                                             <td>
                                                 <?php
 
