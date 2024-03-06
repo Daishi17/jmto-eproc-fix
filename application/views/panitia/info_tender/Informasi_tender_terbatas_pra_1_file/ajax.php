@@ -1415,6 +1415,7 @@
                         willClose: () => {
                             Swal.fire('Berhasil Diumumkan!', '', 'success')
                             setTimeout(() => {
+                                location.reload()
                                 $('.btn_kirim_pengumuman').attr("disabled", false);
                             }, 2000);
 

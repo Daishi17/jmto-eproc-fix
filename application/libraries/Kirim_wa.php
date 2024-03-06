@@ -162,18 +162,18 @@ class Kirim_wa
         $token = '3HGKVEwLaF7rIt@ZhVcV';
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        $get_vendor_lolos =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi($id_rup);
+        $get_vendor_lolos =  $this->ci->M_panitia->get_peserta_tender_ikut($id_rup);
         $id_vendor_lolos = array();
         foreach ($get_vendor_lolos as $key => $value) {
-            $id_vendor_lolos[] = $value['id_vendor'];
+            $id_vendor_lolos[] = $value['no_telpon'];
         }
-        $get_id_vendor = implode(",", $id_vendor_lolos);
-        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($id_rup, $get_id_vendor);
-        $data_vendor = array();
-        foreach ($get_vendor_mengikuti as $key => $valu2) {
-            $data_vendor[] = $valu2['no_telpon'];
-        }
-        $nomor_telpon = implode(",", $data_vendor);
+        // $get_id_vendor = implode(",", $id_vendor_lolos);
+        // $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($id_rup, $get_id_vendor);
+        // $data_vendor = array();
+        // foreach ($get_vendor_mengikuti as $key => $valu2) {
+        //     $data_vendor[] = $valu2['no_telpon'];
+        // }
+        $nomor_telpon = implode(",", $id_vendor_lolos);
         $target = $nomor_telpon;
         $nama_rup = $row_rup['nama_rup'];
         $curl = curl_init();

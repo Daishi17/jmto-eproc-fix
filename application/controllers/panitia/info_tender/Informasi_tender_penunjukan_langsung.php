@@ -1811,7 +1811,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
     public function kirim_pesanya($id_rup)
     {
-        $isi = $this->input->post('isi');
+        $isi =  str_replace("\n", " ", $this->input->post('isi'));
         $id_pengirim = $this->input->post('id_pengirim');
         $id_penerima = $this->input->post('id_penerima');
         $replay_tujuan = $this->input->post('replay_tujuan');
@@ -1894,7 +1894,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
     public function kirim_pesanya_penawaran($id_rup)
     {
-        $isi = $this->input->post('isi');
+        $isi =  str_replace("\n", " ", $this->input->post('isi'));
         $id_pengirim = $this->input->post('id_pengirim');
         $id_penerima = $this->input->post('id_penerima');
         $replay_tujuan = $this->input->post('replay_tujuan');

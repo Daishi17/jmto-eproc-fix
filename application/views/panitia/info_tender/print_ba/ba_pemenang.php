@@ -177,9 +177,10 @@ function terbilang($nilai)
             <div class="row mt-2">
                 <div class="container">
 
+
                 </div>
             </div>
-            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no_persetujuan'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl_persetujuan']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> telah mendapatkan Persetujuan <?= $row_rup['ba_pemenang_barang_jasa'] ?> PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
+            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no_persetujuan'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl_persetujuan']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> telah mendapatkan Persetujuan Pengguna Barang/Jasa <?= $row_rup['ba_pemenang_barang_jasa'] ?> PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
 
             <div class="card">
                 <div class="card-header">
@@ -289,31 +290,44 @@ function terbilang($nilai)
             <div class="float-left">
                 <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
             </div>
-            <!-- <br>
             <br>
             <br>
             <br>
             <br>
-            <center><b><?= $row_rup['nama_rup'] ?></b></center>
-            <label for=""><b></b> Peserta Penawaran </label>
+            <br>
+            <br>
+            <br>
+            <center><h4><?= $row_rup['nama_rup'] ?></h4></center>
+            <br>
+            <br>
+            <label for=""><b></b> PESERTA PENAWARAN </label>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th class="text-center">NO</th>
-                        <th class="text-center">PERUSAHAAN</th>
+                        <th class="text-center">NAMA PESERTA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1;
-                    foreach ($peserta_tender_pq as $key => $value) { ?>
-                                                                                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                                                                                            <td class="text-center"><?= $i++ ?></td>
-                                                                                                                                                                                                                                                                            <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                                                                                        </tr>
+                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                        <tr>
+                            <td class="text-center"><?= $i++ ?></td>
+                            <td>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                }
+                                ?><?= $nama_perusahaan ?>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
-            </table> -->
-
+            </table>
+<br><br><br>
         </form>
     </div>
 

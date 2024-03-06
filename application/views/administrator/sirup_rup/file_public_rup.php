@@ -379,8 +379,11 @@
                 $('#nama_metode_pengadaan').text(response['row_rup']['nama_metode_pengadaan']);
                 $('#nama_jenis_anggaran').text(response['row_rup']['nama_jenis_anggaran']);
                 $('#total_pagu_rup').text(formatRupiah(response['row_rup']['total_pagu_rup'], 'Rp.'));
-                $('#waktu_pelakasanaan').text(response['row_rup']['jangka_waktu_mulai_pelaksanaan'] +
-                    ' s/d ' + response['row_rup']['jangka_waktu_selesai_pelaksanaan']);
+                var jangkaWaktuMulai = response['row_rup'].jangka_waktu_mulai_pelaksanaan;
+                var formattedDate_mulai = formatDateIndo(jangkaWaktuMulai);
+                var jangkaWaktuselesai = response['row_rup'].jangka_waktu_selesai_pelaksanaan;
+                var formattedDate_selesai = formatDateIndo(jangkaWaktuselesai);
+                $('#waktu_pelakasanaan').text(formattedDate_mulai + ' s/d ' + formattedDate_selesai);
                 $('#hari_pelaksanaan').text(response['row_rup']['jangka_waktu_hari_pelaksanaan']);
                 $('#status_pencatatan').text(response['row_rup']['status_pencatatan']);
                 $('#persen_pencatatan').text(response['row_rup']['persen_pencatatan'] + '%');
@@ -443,8 +446,9 @@
                     success: function(response) {
                         modal_detail.modal('hide');
                         Swal.fire('Rup Berhasil Di Finalisasi!', '', 'success')
-                        Reload_table_rup_final();
+                        location.reload()
                         Reload_table_rup();
+                        Reload_table_rup_final();
                     }
                 })
 
@@ -559,4 +563,24 @@
             }
         });
     });
+</script>
+
+<script>
+    function formatDateIndo(dateString) {
+        // Array untuk nama bulan Indonesia
+        var months = [
+            "Januari", "Februari", "Maret",
+            "April", "Mei", "Juni", "Juli",
+            "Agustus", "September", "Oktober",
+            "November", "Desember"
+        ];
+
+        var parts = dateString.split("-");
+        var day = parts[2];
+        var monthIndex = parseInt(parts[1]) - 1;
+        var year = parts[0];
+
+        var formattedDate = months[monthIndex] + " " + year;
+        return formattedDate;
+    }
 </script>

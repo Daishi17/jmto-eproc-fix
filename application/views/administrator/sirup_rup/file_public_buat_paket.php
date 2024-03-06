@@ -243,10 +243,12 @@
                                 $('#modal-xl-paket').modal('hide');
                                 $('#modal-xl-tambah').modal('hide');
                                 Swal.fire('Paket Berhasil Dibuat!', '', 'success');
+                                location.reload()
                                 Reload_table_rup_final();
                                 Reload_table_rup();
                             } else {
                                 Swal.fire(response['validasi'], '', 'warning');
+                                location.reload()
                                 Reload_table_rup_final();
                                 Reload_table_rup();
                             }
@@ -286,8 +288,8 @@
                     success: function(response) {
                         modal_detail.modal('hide');
                         Swal.fire('Rup Berhasil Di Finalisasi!', '', 'success')
-                        Reload_table_rup();
                         location.reload()
+                        Reload_table_rup();
                     }
                 })
 
@@ -413,6 +415,7 @@
                     dataType: "JSON",
                     success: function(response) {
                         Swal.fire('Paket Berhasil Dibuat!', '', 'success');
+                        location.reload()
                         Reload_table_rup_final();
                         Reload_table_rup();
                     }

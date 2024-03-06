@@ -1404,11 +1404,11 @@
                         },
                         willClose: () => {
                             Swal.fire('Berhasil Diumumkan!', '', 'success')
+                            location.reload()
                             setTimeout(() => {
                                 $('.btn_kirim_pengumuman').attr("disabled", false);
                                 $('.loader_after').css("display", 'none');
                                 $('.loader_before').css("display", 'block');
-                                location.reload()
                             }, 2000);
 
                         }
