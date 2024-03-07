@@ -196,8 +196,7 @@ class Rekanan_terundang extends CI_Controller
 					$this->M_Rekanan_terundang->update_vendor($data, $where);
 				}
 			} else {
-				if ($value['sts_dokumen_cek'] == NULL) {
-				} else if ($value['sts_dokumen_cek'] == 1) {
+				if ($value['sts_dokumen_cek'] == NULL) { } else if ($value['sts_dokumen_cek'] == 1) {
 					if ($cek_siup_update == 1 && $cek_kbli_siup_update == 1 && $cek_nib_update == 1 && $cek_kbli_nib_update && $cek_akta_pendirian_update == 1  && $cek_pemilik_update == 1 && $cek_pengurus_update == 1 && $cek_pengalaman_update == 1 && $cek_sppkp_update == 1 && $cek_npwp_update == 1 && $cek_spt_update == 1 && $cek_neraca_keuangan_update == 1 && $cek_keuangan_update == 1) {
 						if ($cek_tdk_valid_siup_update == 1 || $cek_tdk_valid_kbli_siup_update == 1 || $cek_tdk_valid_nib_update == 1 || $cek_tdk_valid_kbli_nib_update || $cek_tdk_valid_akta_pendirian_update == 1  || $cek_tdk_valid_pemilik_update == 1 || $cek_tdk_valid_pengurus_update == 1 || $cek_tdk_valid_pengalaman_update == 1 || $cek_tdk_valid_sppkp_update == 1 || $cek_tdk_valid_npwp_update == 1 || $cek_tdk_valid_spt_update == 1 || $cek_tdk_valid_neraca_keuangan_update == 1 || $cek_tdk_valid_keuangan_update == 1) {
 							$where = [
