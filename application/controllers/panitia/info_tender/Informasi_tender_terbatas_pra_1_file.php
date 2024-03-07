@@ -1932,7 +1932,9 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function kirim_pesanya($id_rup)
     {
-        $isi = $this->input->post('isi');
+
+        $data_isi = $this->input->post('isi');
+        $isi = str_replace("\n", " ", $data_isi);
         $id_pengirim = $this->input->post('id_pengirim');
         $id_penerima = $this->input->post('id_penerima');
         $replay_tujuan = $this->input->post('replay_tujuan');
@@ -2015,7 +2017,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     public function kirim_pesanya_penawaran($id_rup)
     {
-        $isi = $this->input->post('isi');
+        $data_isi = $this->input->post('isi');
+        $isi = str_replace("\n", " ", $data_isi);
         $id_pengirim = $this->input->post('id_pengirim');
         $id_penerima = $this->input->post('id_penerima');
         $replay_tujuan = $this->input->post('replay_tujuan');
@@ -2902,6 +2905,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
         $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
         $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_negosiasi', $data);
