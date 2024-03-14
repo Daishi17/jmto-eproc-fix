@@ -16,7 +16,7 @@ class M_Dashboard extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->where('sts_rup_buat_paket', 1);
+        $this->db->where('status_paket_diumumkan', 1);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -25,7 +25,18 @@ class M_Dashboard extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->where('status_paket_panitia', 1);
+        $this->db->where('status_paket_diumumkan', 1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_paket_tender_selesai()
+    {
+        $date = date('Y-m-d H:i');
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->where('status_paket_diumumkan', 1);
+        $this->db->where('selesai_semua_tender <=', $date);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -392,7 +403,6 @@ class M_Dashboard extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
-        $this->db->where('tbl_rup.status_paket_panitia', 2);
         $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
         $query = $this->db->get();
         return $query->num_rows();
@@ -400,6 +410,7 @@ class M_Dashboard extends CI_Model
 
     function count_paket_tender_selesai_panitia()
     {
+        $date = date('Y-m-d H:i');
         $this->db->select('*');
         $this->db->from('tbl_rup');
         $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
@@ -413,7 +424,7 @@ class M_Dashboard extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
-        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where('tbl_rup.selesai_semua_tender <=', $date);
         $query = $this->db->get();
         return $query->num_rows();
     }
