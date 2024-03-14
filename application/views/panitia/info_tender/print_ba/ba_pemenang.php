@@ -194,14 +194,21 @@ function terbilang($nilai)
                             <td>Nama Perusahaan</td>
                             <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
                             <?php
+
                             $subs_string = substr($get_mengikuti_deal_nego['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT') {
-                                $nama_perusahaan =  $get_mengikuti_deal_nego['nama_usaha'];
+                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
                             } else {
-                                $nama_perusahaan = 'PT ' .  $get_mengikuti_deal_nego['nama_usaha'];
+                                if ($get_mengikuti_deal_nego['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                    $nama_perusahaan1 = 'PT ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                    $nama_perusahaan1 = 'CV ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Koperasi') {
+                                    $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
+                                }
                             }
                             ?>
-                            <td><?= $nama_perusahaan  ?></td>
+                            <td><?= $nama_perusahaan1  ?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
@@ -297,7 +304,9 @@ function terbilang($nilai)
             <br>
             <br>
             <br>
-            <center><h4><?= $row_rup['nama_rup'] ?></h4></center>
+            <center>
+                <h4><?= $row_rup['nama_rup'] ?></h4>
+            </center>
             <br>
             <br>
             <label for=""><b></b> PESERTA PENAWARAN </label>
@@ -316,18 +325,25 @@ function terbilang($nilai)
                             <td>
                                 <?php
                                 $subs_string = substr($value['nama_usaha'], 0, 2);
-                                if ($subs_string == 'PT') {
+                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                     $nama_perusahaan = $value['nama_usaha'];
                                 } else {
-                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    }
                                 }
-                                ?><?= $nama_perusahaan ?>
+                                ?>
+                                <?= $nama_perusahaan ?>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
-<br><br><br>
+            <br><br><br>
         </form>
     </div>
 

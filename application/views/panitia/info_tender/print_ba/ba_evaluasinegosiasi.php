@@ -147,12 +147,19 @@ function terbilang($nilai)
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_klarifikasi_tgl']))) ?></b>,
                     Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_klarifikasi_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_klarifikasi_tgl'])) ?>)</b>, Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_direksi'] ?> tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Penilaian Kewajaran Harga untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollroad Operator
                 </p>
+
                 <?php
                 $subs_string = substr($deal_row['nama_usaha'], 0, 2);
-                if ($subs_string == 'PT') {
-                    $nama_perusahaan = $deal_row['nama_usaha'];
+                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                    $nama_perusahaan1 = $deal_row['nama_usaha'];
                 } else {
-                    $nama_perusahaan = 'PT ' . $deal_row['nama_usaha'];
+                    if ($deal_row['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                        $nama_perusahaan1 = 'PT ' . $deal_row['nama_usaha'];
+                    } else if ($deal_row['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                        $nama_perusahaan1 = 'CV ' . $deal_row['nama_usaha'];
+                    } else if ($deal_row['bentuk_usaha']  == 'Koperasi') {
+                        $nama_perusahaan1 = $deal_row['nama_usaha'];
+                    }
                 }
                 ?>
                 <p style="text-align:justify; font-size:18px">

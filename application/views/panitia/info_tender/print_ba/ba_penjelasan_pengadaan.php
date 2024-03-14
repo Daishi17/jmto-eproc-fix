@@ -260,10 +260,16 @@ function terbilang($nilai)
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                             <?php
                             $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT') {
-                                $nama_perusahaan =  $value['nama_usaha'];
+                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                $nama_perusahaan = $value['nama_usaha'];
                             } else {
-                                $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                }
                             }
                             ?>
                             <tr>

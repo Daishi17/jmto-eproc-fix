@@ -155,7 +155,7 @@ function terbilang($nilai)
 
                 <ol type="I">
                     <li>
-                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
+                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -165,13 +165,19 @@ function terbilang($nilai)
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                foreach ($peserta_tender_pq_penawaran as $key => $value2) { ?>
+                                foreach ($peserta_tender_pq_lolos as $key => $value2) { ?>
                                     <?php
                                     $subs_string = substr($value2['nama_usaha'], 0, 2);
-                                    if ($subs_string == 'PT') {
-                                        $nama_perusahaan =  $value2['nama_usaha'];
+                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                        $nama_perusahaan = $value2['nama_usaha'];
                                     } else {
-                                        $nama_perusahaan = 'PT ' .  $value2['nama_usaha'];
+                                        if ($value2['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                            $nama_perusahaan = 'PT ' . $value2['nama_usaha'];
+                                        } else if ($value2['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                            $nama_perusahaan = 'CV ' . $value2['nama_usaha'];
+                                        } else if ($value2['bentuk_usaha']  == 'Koperasi') {
+                                            $nama_perusahaan = $value2['nama_usaha'];
+                                        }
                                     }
                                     ?>
                                     <tr>
@@ -198,10 +204,16 @@ function terbilang($nilai)
                                 foreach ($peserta_tender_pq_penawaran as $key => $value3) { ?>
                                     <?php
                                     $subs_string = substr($value3['nama_usaha'], 0, 2);
-                                    if ($subs_string == 'PT') {
-                                        $nama_perusahaan =  $value3['nama_usaha'];
+                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                        $nama_perusahaan = $value3['nama_usaha'];
                                     } else {
-                                        $nama_perusahaan = 'PT ' .  $value3['nama_usaha'];
+                                        if ($value3['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                            $nama_perusahaan = 'PT ' . $value3['nama_usaha'];
+                                        } else if ($value3['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                            $nama_perusahaan = 'CV ' . $value3['nama_usaha'];
+                                        } else if ($value3['bentuk_usaha']  == 'Koperasi') {
+                                            $nama_perusahaan = $value3['nama_usaha'];
+                                        }
                                     }
                                     ?>
                                     <tr>
@@ -235,10 +247,16 @@ function terbilang($nilai)
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                         <?php
                                         $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
-                                            $nama_perusahaan =  $value['nama_usaha'];
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                            $nama_perusahaan = $value['nama_usaha'];
                                         } else {
-                                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
                                         ?>
                                         <tr>
@@ -276,10 +294,16 @@ function terbilang($nilai)
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                         <?php
                                         $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
-                                            $nama_perusahaan =  $value['nama_usaha'];
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                            $nama_perusahaan = $value['nama_usaha'];
                                         } else {
-                                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
                                         ?>
                                         <tr>
@@ -320,12 +344,19 @@ function terbilang($nilai)
                     </li>
                     <br>
                     <li class="mt-3">
+
                         <?php
                         $subs_string = substr($peserta_peringkat1['nama_usaha'], 0, 2);
-                        if ($subs_string == 'PT') {
-                            $nama_perusahaan =  $peserta_peringkat1['nama_usaha'];
+                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                            $nama_perusahaan = $peserta_peringkat1['nama_usaha'];
                         } else {
-                            $nama_perusahaan = 'PT ' .  $peserta_peringkat1['nama_usaha'];
+                            if ($peserta_peringkat1['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                $nama_perusahaan = 'PT ' . $peserta_peringkat1['nama_usaha'];
+                            } else if ($peserta_peringkat1['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                $nama_perusahaan = 'CV ' . $peserta_peringkat1['nama_usaha'];
+                            } else if ($peserta_peringkat1['bentuk_usaha']  == 'Koperasi') {
+                                $nama_perusahaan = $peserta_peringkat1['nama_usaha'];
+                            }
                         }
                         ?>
                         <p><b>PENETAPAN PENAWAR PERINGKAT KE-1 : </b></p>

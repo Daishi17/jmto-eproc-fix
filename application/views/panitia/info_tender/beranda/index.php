@@ -69,8 +69,9 @@
                                     <table id="tbl_paket_tender_umum" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
                                                 <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Paket Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Departemen</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
@@ -103,8 +104,9 @@
                                     <table id="tbl_paket_tender_terbatas" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
                                                 <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Paket Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Departemen</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
@@ -134,8 +136,9 @@
                                     <table id="example3" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
                                                 <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Paket Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Departemen</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
@@ -181,8 +184,9 @@
                                     <table id="tbl_paket_tender_penunjukan_langsung" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
                                                 <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Paket Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Departemen</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
