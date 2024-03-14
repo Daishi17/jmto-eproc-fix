@@ -39,6 +39,7 @@
                     <table id="tbl_daftar_paket" class="table table-bordered table-sm table-striped">
                         <thead class="bg-secondary">
                             <tr>
+                                <th style="width:1%;"><small class="text-white">No</small></th>
                                 <th style="width:10%;"><small class="text-white">Tahun</small></th>
                                 <th style="width:25%;"><small class="text-white">Nama Paket Penyedia</small></th>
                                 <th style="width:10%;"><small class="text-white">Departemen</small></th>
@@ -524,6 +525,7 @@
                                                         <table id="tbl_rup_finalisasi" class="table table-bordered table-sm table-striped">
                                                             <thead class="bg-secondary">
                                                                 <tr>
+                                                                    <th style="width:1%;"><small class="text-white">No</small></th>
                                                                     <th style="width:8%;"><small class="text-white">Tahun</small></th>
                                                                     <th style="width:17%;"><small class="text-white">Nama Paket</small></th>
                                                                     <th style="width:12%;"><small class="text-white">Departemen</small></th>

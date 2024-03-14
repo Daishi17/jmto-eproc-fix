@@ -139,7 +139,7 @@ function terbilang($nilai)
                     <tr>
                         <td width="100px">Hal</td>
                         <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                        <td>Hal</td>
+                        <td>Undangan Penawaran</td>
                     </tr>
                 </table>
                 <table>
@@ -242,7 +242,7 @@ function terbilang($nilai)
                 </li>
                 <br>
                 <li>
-                    <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
+                    <b>Upload Dokumen Penawaran (File Administrasi, Teknis dan Harga)</b><br>
                     <table>
                         <tr>
                             <th width="250px">Tanggal </th>
@@ -305,10 +305,16 @@ function terbilang($nilai)
                     foreach ($peserta_tender_pq as $key => $value) { ?>
                         <?php
                         $subs_string = substr($value['nama_usaha'], 0, 2);
-                        if ($subs_string == 'PT') {
-                            $nama_perusahaan =  $value['nama_usaha'];
+                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                            $nama_perusahaan = $value['nama_usaha'];
                         } else {
-                            $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            }
                         }
                         ?>
                         <tr>

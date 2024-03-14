@@ -181,7 +181,7 @@ class Email_send
     public function sen_email_pengumuman($id_rup)
     {
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
-        if ($row_rup['id_jadwal_tender'] == 9) {
+        if ($row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 3  || $row_rup['id_jadwal_tender'] == 6 || $row_rup['id_jadwal_tender'] == 10) {
             $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
         } else {
             $data_vendor = $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);

@@ -1247,6 +1247,7 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.file1_administrasi !=', null);
         $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();

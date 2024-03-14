@@ -208,10 +208,16 @@ function terbilang($nilai)
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                             <?php
                             $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT') {
-                                $nama_perusahaan =  $value['nama_usaha'];
+                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                $nama_perusahaan = $value['nama_usaha'];
                             } else {
-                                $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                }
                             }
                             ?>
                             <tr>
@@ -325,10 +331,16 @@ function terbilang($nilai)
                             foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                 <?php
                                 $subs_string = substr($value['nama_usaha'], 0, 2);
-                                if ($subs_string == 'PT') {
-                                    $nama_perusahaan =  $value['nama_usaha'];
+                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
                                 } else {
-                                    $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    }
                                 }
                                 ?>
                                 <tr>
@@ -381,10 +393,16 @@ function terbilang($nilai)
                             foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                 <?php
                                 $subs_string = substr($value['nama_usaha'], 0, 2);
-                                if ($subs_string == 'PT') {
-                                    $nama_perusahaan =  $value['nama_usaha'];
+                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
                                 } else {
-                                    $nama_perusahaan = 'PT ' .  $value['nama_usaha'];
+                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    }
                                 }
                                 ?>
                                 <tr>
@@ -516,13 +534,13 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td><?= $i++ ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td><?= $value['nama_usaha'] ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="text-center"><span class="badge bg-success">Setuju</span></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td><?= $i++ ?></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td class="text-center"><span class="badge bg-success">Setuju</span></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </tr>
                         <?php } ?>
 
                     </tbody>

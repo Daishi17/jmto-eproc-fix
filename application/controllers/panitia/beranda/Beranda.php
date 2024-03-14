@@ -44,6 +44,7 @@ class Beranda extends CI_Controller
 		foreach ($result as $rs) {
 			$jadwal_terakhir = $this->M_jadwal->jadwal_pra_umum_22($rs->id_rup);
 			$row = array();
+			$row[] = ++$no;
 			$row[] = '<small>' . $rs->tahun_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_departemen . '</small>';
@@ -90,6 +91,7 @@ class Beranda extends CI_Controller
 				$jadwal_terakhir = $this->M_jadwal->jadwal_pra_umum_22($rs->id_rup);
 			}
 			$row = array();
+			$row[] = ++$no;
 			$row[] = '<small>' . $rs->tahun_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_departemen . '</small>';
@@ -134,6 +136,7 @@ class Beranda extends CI_Controller
 		foreach ($result as $rs) {
 			$jadwal_terakhir = $this->M_jadwal->jadwal_pra_umum_22($rs->id_rup);
 			$row = array();
+			$row[] = ++$no;
 			$row[] = '<small>' . $rs->tahun_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_departemen . '</small>';

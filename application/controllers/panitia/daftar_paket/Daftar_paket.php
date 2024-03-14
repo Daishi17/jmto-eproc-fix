@@ -52,6 +52,7 @@ class Daftar_paket extends CI_Controller
 				$jadwal_terakhir = $this->M_jadwal->jadwal_pra_umum_22($rs->id_rup);
 			}
 			$row = array();
+			$row[] = ++$no;
 			$row[] = '<small>' . $rs->tahun_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_rup . '</small>';
 			$row[] = '<small>' . $rs->nama_departemen . '</small>';
@@ -222,8 +223,8 @@ class Daftar_paket extends CI_Controller
 		$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($data['row_rup']['id_rup']);
 		// siup
 		$data_vendor_lolos_siup_kbli = $this->M_panitia->data_vendor_lolos_siup_kbli($cek_syarat_kbli);
-		var_dump('umummm',  $data_vendor_lolos_siup_kbli);
-		die;
+		// var_dump('umummm',  $data_vendor_lolos_siup_kbli);
+		// die;
 		// nib
 		$data_vendor_lolos_nib_kbli = $this->M_panitia->data_vendor_lolos_nib_kbli($cek_syarat_kbli);
 		// var_dump($data_vendor_lolos_nib_kbli);
@@ -357,6 +358,7 @@ class Daftar_paket extends CI_Controller
 		$no = $_POST['start'];
 		foreach ($result as $rs) {
 			$row = array();
+			$row[] = ++$no;
 			$row[] = $rs->tahun_rup;
 			$row[] = $rs->nama_rup;
 			$row[] = $rs->nama_departemen;

@@ -142,10 +142,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
 
             if ($cek_valid_vendor >= $hitung_syarat) {
@@ -365,10 +371,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->nilai_penawaran) {
                 $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
@@ -458,10 +470,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ev_hea_penawaran) {
                 $row[] =  number_format($rs->ev_hea_penawaran, 2, ',', '.');
@@ -522,10 +540,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ev_hea_harga) {
                 $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
@@ -599,10 +623,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
@@ -673,10 +703,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
@@ -794,10 +830,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
@@ -1227,10 +1269,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
@@ -1754,10 +1802,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             $row[] = '<div class="text-center">
 			<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','lihat_dokumen_penawaran_1'" . ')">
@@ -1787,10 +1841,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
@@ -1869,10 +1929,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
@@ -2585,10 +2651,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ba_check_ev1 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
@@ -2632,10 +2704,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ba_check_ev2 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
@@ -2679,10 +2757,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
             if ($rs->ba_check_ev3 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
@@ -2753,10 +2837,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
 
             $data[] = $row;
@@ -2779,10 +2869,16 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
 
             $data[] = $row;
@@ -3063,10 +3159,16 @@ Terimakasih';
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
-            if ($subs_string == 'PT') {
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                 $row[] = $rs->nama_usaha;
             } else {
-                $row[] = 'PT ' . $rs->nama_usaha;
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
             }
 
             if ($rs->kelengkapan_file2_1 == 1) {
