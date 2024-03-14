@@ -1883,10 +1883,11 @@
             },
             dataType: "JSON",
             success: function(response) {
-                console.log(response);
                 $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
                 $('[name="hasil_curency_negoku"]').val(response['row_vendor'].total_hasil_negosiasi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
                 $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
+
+
             }
         })
 

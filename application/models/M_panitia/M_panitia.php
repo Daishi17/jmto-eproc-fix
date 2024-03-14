@@ -539,8 +539,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_spt[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_spt);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
         // // lolos_keuangan
         if ($cek_syarat_teknis['sts_checked_laporan_keuangan'] == 1) {
@@ -550,8 +552,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_laporan_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_laporan_keuangan);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
         // // lolos_neraca_keuangan
         if ($cek_syarat_teknis['sts_checked_neraca_keuangan'] == 1) {
@@ -561,8 +565,10 @@ class M_panitia extends CI_Model
                     $id_vendor_terundang_neraca_keuangan[] = $row['id_vendor'];
                 }
                 $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang_neraca_keuangan);
-            } else { }
-        } else { }
+            } else {
+            }
+        } else {
+        }
 
 
         // cek_vendor terundang by_kbli
@@ -572,7 +578,8 @@ class M_panitia extends CI_Model
                 $id_vendor_terundang[] = $row['id_vendor'];
             }
             $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        } else { }
+        } else {
+        }
 
 
 
@@ -586,7 +593,8 @@ class M_panitia extends CI_Model
                 $this->db->where('tbl_vendor_siup.tgl_berlaku >=', $syarat_izin_usaha['tgl_berlaku_siup']);
                 $this->db->where_in('tbl_vendor_siup.sts_seumur_hidup', [1, 2]);
             }
-        } else { }
+        } else {
+        }
 
         // cek nib syart izin
         if ($syarat_izin_usaha['sts_checked_nib'] == 1) {
@@ -2180,7 +2188,8 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
-        if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) { } else {
+        if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) {
+        } else {
             $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >=', 60);
         }
         $i = 0;
@@ -2567,6 +2576,7 @@ class M_panitia extends CI_Model
 
     public function get_result_vendor_negosiasi_pra_1_file($id_rup)
     {
+        // Query untuk mendapatkan hasil teratas tanpa mempertimbangkan sts_deal_negosiasi
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
@@ -2575,10 +2585,30 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
-        // $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat_akhir_hea', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_terendah_peringkat', 1);
+        $this->db->limit(1);
         $query = $this->db->get();
-        return $query->result_array();
+        $result = $query->result_array();
+
+        // Jika hasil pertama ditemukan dan sts_deal_negosiasi tidak kosong, langsung kembalikan hasilnya
+        if (!empty($result) && $result[0]['sts_deal_negosiasi'] == null) {
+            return $result;
+        } else {
+            // Jika hasil pertama kosong atau sts_deal_negosiasi kosong, cari hasil lain dengan sts_deal_negosiasi yang tidak kosong
+            $this->db->select('*');
+            $this->db->from('tbl_vendor_mengikuti_paket');
+            $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+            $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+            $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+            $this->db->where('tbl_vendor_mengikuti_paket.sts_deal_negosiasi IS NOT NULL');
+            $query = $this->db->get();
+            $result = $query->result_array();
+
+            // Kembalikan hasil yang ditemukan, mungkin hasilnya kosong jika tidak ada yang ditemukan
+            return $result;
+        }
     }
+
 
     public function get_result_vendor_negosiasi_teknis($id_rup)
     {
