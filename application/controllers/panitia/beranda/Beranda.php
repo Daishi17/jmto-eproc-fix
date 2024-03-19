@@ -22,6 +22,7 @@ class Beranda extends CI_Controller
 		$this->load->model('M_panitia/M_count');
 		$this->load->model('M_panitia/M_jadwal');
 	}
+
 	public function index()
 	{
 		$id_manajemenen_user = $this->session->userdata('id_manajemen_user');
@@ -35,6 +36,7 @@ class Beranda extends CI_Controller
 		$this->load->view('template_tender/footer');
 		$this->load->view('panitia/info_tender/beranda/ajax');
 	}
+
 	public function get_draft_paket_tender_umum()
 	{
 		$result = $this->M_panitia->gettable_daftar_paket_tender_umum();
@@ -100,7 +102,7 @@ class Beranda extends CI_Controller
 			if ($rs->status_paket_panitia == 1) {
 				$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 			} else {
-				if ($jadwal_terakhir['waktu_mulai'] < $now) {
+				if ($rs->selesai_semua_tender < $now) {
 					$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 					</span>';
 				} else {

@@ -220,7 +220,7 @@ class M_jadwal extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_jadwal_rup');
         $this->db->where('id_rup', $id_rup);
-        $this->db->where('nama_jadwal_rup', 'Penandatanganan Kontrak');
+        $this->db->like('nama_jadwal_rup', 'Penandatanganan Kontrak');
         $query = $this->db->get();
         return $query->row_array();
     }

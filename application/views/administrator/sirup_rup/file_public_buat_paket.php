@@ -49,6 +49,11 @@
             url: url_by_id_rup_paket + id_url_rup,
             dataType: "JSON",
             success: function(response) {
+                $('#btn_simpan_paket').show()
+                $('#jenis_jadwal_edit').show()
+                $('#jenis_jadwal_edit2').show()
+                $('#jenis_jadwal_edit3').show()
+                $('#btn_kehalaman_sebelumnya').show()
                 modal_paket.modal('show');
                 var html_ruas = '';
                 if (response['row_rup']['id_metode_pengadaan'] == 3) {
@@ -198,8 +203,9 @@
                     url: url_hapus_panitia + id_url_panitia,
                     dataType: "JSON",
                     success: function(response) {
+
                         Swal.fire('User Panitia Berhasil Di Hapus!', '', 'success')
-                        by_id_rup(random_kode)
+                        by_id_rup2(random_kode)
                     }
                 })
 
@@ -338,7 +344,7 @@
                     } else {
                         Swal.fire('Panitia Berhasil Di Tambah!', '', 'success')
                     }
-                    by_id_rup(random_kode)
+                    by_id_rup2(random_kode)
                     var nama_panitia = $('[name="nama_panitia"]').val('');
                 }
             }
@@ -481,5 +487,115 @@
 
         var formattedDate = months[monthIndex] + " " + year;
         return formattedDate;
+    }
+
+    function by_id_rup2(id_url_rup) {
+        var url_by_id_rup_paket = $('[name="url_by_id_rup_paket"]').val();
+        var modal_paket = $('#modal-xl-paket');
+        var tbl_panitia = $('#tbl_panitia')
+        var url_get_panitia_buat_paket = $('[name="url_get_panitia_buat_paket"').val()
+        $.ajax({
+            type: "GET",
+            url: url_by_id_rup_paket + id_url_rup,
+            dataType: "JSON",
+            success: function(response) {
+                $('#btn_simpan_paket').hide()
+                $('#jenis_jadwal_edit').hide()
+                $('#jenis_jadwal_edit2').hide()
+                $('#jenis_jadwal_edit3').hide()
+                $('#btn_kehalaman_sebelumnya').hide()
+                modal_paket.modal('show');
+                var html_ruas = '';
+                if (response['row_rup']['id_metode_pengadaan'] == 3) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?= base_url('administrator/sirup_buat_paket/get_jenis_jadwal_juksung/') ?>' + response['row_rup']['id_url_rup'],
+                        success: function(html) {
+                            $('#jenis_jadwal').html(html);
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?= base_url('administrator/sirup_buat_paket/get_jenis_jadwal_rup/') ?>' + response['row_rup']['id_url_rup'],
+                        success: function(html) {
+                            $('#jenis_jadwal').html(html);
+                        }
+                    });
+                }
+                $('[name="random_kode"]').val(response['row_rup']['id_url_rup']);
+                $('#kode_rup').text(response['row_rup']['kode_rup']);
+                $('#tahun_rup').text(response['row_rup']['tahun_rup']);
+                $('#nama_departemen').text(response['row_rup']['nama_departemen']);
+                // add to paket
+                $('#nama_departemen2').text(response['row_rup']['nama_departemen']);
+                // end add
+                $('#nama_section').text(response['row_rup']['nama_section']);
+                $('#nama_rup').text(response['row_rup']['nama_rup']);
+                $('#detail_lokasi_rup').text(response['row_rup']['detail_lokasi_rup']);
+                $('#deskripsi_rup').text(response['row_rup']['deskripsi_rup']);
+                $('#nama_provinsi').text(response['row_rup']['nama_provinsi']);
+                $('#nama_kabupaten').text(response['row_rup']['nama_kabupaten']);
+                $('#nama_jenis_pengadaan').text(response['row_rup']['nama_jenis_pengadaan']);
+                $('#nama_metode_pengadaan').text(response['row_rup']['nama_metode_pengadaan']);
+                $('#nama_jenis_anggaran').text(response['row_rup']['nama_jenis_anggaran']);
+                $('#total_pagu_rup').text(formatRupiah(response['row_rup']['total_pagu_rup'], 'Rp.'));
+                var jangkaWaktuMulai = response['row_rup'].jangka_waktu_mulai_pelaksanaan;
+                var formattedDate_mulai = formatDateIndo(jangkaWaktuMulai);
+                var jangkaWaktuselesai = response['row_rup'].jangka_waktu_selesai_pelaksanaan;
+                var formattedDate_selesai = formatDateIndo(jangkaWaktuselesai);
+
+                $('#waktu_pelakasanaan').text(formattedDate_mulai +
+                    ' s/d ' + formattedDate_selesai);
+                $('#hari_pelaksanaan').text(response['row_rup']['jangka_waktu_hari_pelaksanaan']);
+                $('#status_pencatatan').text(response['row_rup']['status_pencatatan']);
+                $('#persen_pencatatan').text(response['row_rup']['persen_pencatatan']);
+                $('#jenis_produk').text(response['row_rup']['jenis_produk']);
+                $('#kualifikasi_usaha').text(response['row_rup']['kualifikasi_usaha']);
+                $('#detail_ruas_rup').text(response['row_rup']['nama_ruas']);
+                $('[name="metode_kualifikasi"]').val(response['metode']['metode_kualifikasi']);
+                $('[name="metode_dokumen"]').val(response['metode']['metode_dokumen']);
+                $('[name="id_jadwal_tender"]').val(response['row_rup']['id_jadwal_tender']);
+                var i = 0;
+                for (i = 0; i < response['result_ruas_rup'].length; i++) {
+                    html_ruas += `${response['result_ruas_rup'][i].nama_ruas}, `
+                }
+                $('#detail_ruas_rup').html(html_ruas)
+
+                $(document).ready(function() {
+                    tbl_panitia.DataTable({
+                        "responsive": false,
+                        "ordering": true,
+                        "paging": false,
+                        "info": false,
+                        "processing": true,
+                        "serverSide": true,
+                        "autoWidth": false,
+                        "bDestroy": true,
+                        "order": [],
+                        "ajax": {
+                            "url": url_get_panitia_buat_paket,
+                            "type": "POST",
+                            data: {
+                                random_kode: response['row_rup']['id_url_rup']
+                            },
+                        },
+                        "columnDefs": [{
+                            "target": [-1],
+                            "orderable": false
+                        }],
+                        "oLanguage": {
+                            "sSearch": "Pencarian : ",
+                            "sEmptyTable": "Data Tidak Tersedia",
+                            "sLoadingRecords": "Silahkan Tunggu - loading...",
+                            "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                            "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                            "sProcessing": "Memuat Data...."
+                        }
+                    });
+                });
+
+            }
+        })
     }
 </script>

@@ -372,6 +372,8 @@ class Sirup_buat_paket extends CI_Controller
 				<i class="fa-regular fa-circle-up px-1"></i>
 					<small>Finalisasi</small>
 				</button>
+				<a href="javascript:;" class="btn btn-warning btn-sm  shadow-lg" onClick="by_id_rup2(' . "'" . $rs->id_url_rup . "'" . ')"><i class="fa-solid fa-users-viewfinder px-1"></i>
+				<small>Edit Panitia</small></a>
 			</div>';
 			}
 

@@ -453,14 +453,14 @@
                                                     </thead>
 
 
-                                                    <thead>
+                                                    <thead id="jenis_jadwal_edit">
                                                         <tr>
                                                             <th class="bg-danger text-white text-center" colspan="3">
                                                                 <small>Pemilihan Jenis Jadwal Pengadaan</small>
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <thead>
+                                                    <thead id="jenis_jadwal_edit2">
                                                         <tr>
                                                             <th class="text-center bg-secondary text-white" scope="col">
                                                                 <small>Metode Kualifikasi Pengadaan</small>
@@ -473,7 +473,7 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="jenis_jadwal_edit3">
                                                         <tr>
                                                             <td>
                                                                 <div class="input-group mb-2">
@@ -513,11 +513,11 @@
                                 </from>
                             </div>
                             <div class="card-footer bg-transparent border-dark">
-                                <a href="javascript:;" onclick="Buat_rup()" class="btn btn-default btn-primary">
+                                <a href="javascript:;" onclick="Buat_rup()" class="btn btn-default btn-primary" id="btn_simpan_paket">
                                     <i class="fa-solid fa-floppy-disk px-1"></i>
                                     Simpan Data Paket
                                 </a>
-                                <button class="btn btn-warning" data-bs-target="#modal-xl-tambah" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                <button class="btn btn-warning" data-bs-target="#modal-xl-tambah" data-bs-toggle="modal" data-bs-dismiss="modal" id="btn_kehalaman_sebelumnya">
                                     <i class="fa-solid fa-angles-left px-1"></i>
                                     Kehalaman Sebelumnya
                                 </button>
