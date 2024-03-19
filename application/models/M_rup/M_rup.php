@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_rup extends CI_Model
 {
 
-    var $order =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order =  array('kode_urut_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
 
     // get nib
     private function _get_data_query_rup()
@@ -45,7 +45,7 @@ class M_rup extends CI_Model
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         } else {
-            $this->db->order_by('tbl_rup.id_rup', 'DESC');
+            $this->db->order_by('tbl_rup.kode_urut_rup', 'DESC');
         }
     }
 
