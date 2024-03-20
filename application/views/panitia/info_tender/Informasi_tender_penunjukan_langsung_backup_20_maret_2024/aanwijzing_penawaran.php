@@ -415,7 +415,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a target="_blank" class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>
                     </ul>
                 </div>
@@ -461,7 +461,7 @@
                             </tr>
                             <tr>
                                 <th>Export Chat </th>
-                                <td><a target="_blank" href="<?= base_url('export_chat/export_chat_anwijzing_penawaran/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
+                                <td><a href="<?= base_url('export_chat/export_chat_anwijzing_penawaran/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
                             </tr>
                         </table>
                     </div>

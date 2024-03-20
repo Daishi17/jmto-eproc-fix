@@ -183,7 +183,7 @@
             },
             "order": [],
             "ajax": {
-                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn_harga_terendah/') ?>' + id_rup,
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn/') ?>' + id_rup,
                 "type": "POST",
             },
             "columnDefs": [{
@@ -221,7 +221,7 @@
             },
             "order": [],
             "ajax": {
-                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_pringkat_akhir_harga_terendah_hea/') ?>' + id_rup,
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_akhir_hea/') ?>' + id_rup,
                 "type": "POST",
             },
             "columnDefs": [{
@@ -1415,7 +1415,6 @@
                         willClose: () => {
                             Swal.fire('Berhasil Diumumkan!', '', 'success')
                             setTimeout(() => {
-                                location.reload()
                                 $('.btn_kirim_pengumuman').attr("disabled", false);
                             }, 2000);
 
@@ -1845,22 +1844,9 @@
                     } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'tidak_deal') {
                         var kesepakatan = '<small class="badge bg-danger">Tidak Deal</small>'
                     }
-                    var text = response['result_vendor_negosiasi'][i].nama_usaha
-                    var sub_string = text.substring(2, 0)
-                    if (sub_string == 'PT' || sub_string == 'CV' || sub_string == 'Koperasi') {
-                        var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
-                    } else {
-                        if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Perseroan Terbatas (PT)') {
-                            var nama_perusahaan = 'PT ' + response['result_vendor_negosiasi'][i].nama_usaha
-                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
-                            var nama_perusahaan = 'CV ' + response['result_vendor_negosiasi'][i].nama_usaha
-                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Koperasi') {
-                            var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
-                        }
-                    }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + nama_perusahaan + '</small></td>' +
+                        '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
                         '<td>' + tanggal_negoasiasi + '</td>' +
                         '<td>' + lin_nego + '</td>' +
                         '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
@@ -1896,11 +1882,10 @@
             },
             dataType: "JSON",
             success: function(response) {
+                console.log(response);
                 $('[name="total_hasil_negosiasi"]').val(response['row_vendor'].total_hasil_negosiasi)
                 $('[name="hasil_curency_negoku"]').val(response['row_vendor'].total_hasil_negosiasi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
                 $('[name="keterangan_negosiasi"]').val(response['row_vendor'].keterangan_negosiasi)
-
-
             }
         })
 
@@ -3336,7 +3321,6 @@
         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
     });
 
-
     var form_mengulang_pengadaan = $('#form_mengulang_pengadaan')
     form_mengulang_pengadaan.on('submit', function(e) {
         e.preventDefault();
@@ -3462,65 +3446,4 @@
         }
 
     })
-</script>
-
-<script>
-    function by_id_neraca_keuangan(id_neraca, type) {
-        var modal_edit_neraca = $('#modal-xl-neraca-edit');
-        if (type == 'lihat') {
-            saveData = 'lihat';
-        }
-
-        if (type == 'lihat') {
-            $.ajax({
-                type: "GET",
-                url: '<?= base_url('datapenyedia/by_id_neraca/') ?>' + id_neraca,
-                dataType: "JSON",
-                success: function(response) {
-                    if (type == 'edit') {
-                        modal_edit_neraca.modal('show');
-                        // tahun belom
-                        console.log(response['row_file_excel']);
-
-
-                        $('[name="tahun_mulai_edit"]').val(response['row_neraca'].tahun_mulai);
-                        $('[name="tahun_selesai_edit"]').val(response['row_neraca'].tahun_selesai);
-
-                        $('[name="nilai_tahun_kolom_1_1"]').val(response['row_file_excel'][1][2]);
-                        $('[name="nilai_tahun_kolom_2_1"]').val(response['row_file_excel'][1][3]);
-
-                        $('[name="nilai_tahun_kolom_1_2"]').val(response['row_file_excel'][2][2]);
-                        $('[name="nilai_tahun_kolom_2_2"]').val(response['row_file_excel'][2][3]);
-
-                        $('[name="nilai_tahun_kolom_1_3"]').val(response['row_file_excel'][3][2]);
-                        $('[name="nilai_tahun_kolom_2_3"]').val(response['row_file_excel'][3][3]);
-
-                        $('[name="nilai_tahun_kolom_1_4"]').val(response['row_file_excel'][4][2]);
-                        $('[name="nilai_tahun_kolom_2_4"]').val(response['row_file_excel'][4][3]);
-
-                        $('[name="nilai_tahun_kolom_1_5"]').val(response['row_file_excel'][5][2]);
-                        $('[name="nilai_tahun_kolom_2_5"]').val(response['row_file_excel'][5][3]);
-
-                        $('[name="nilai_tahun_kolom_1_6"]').val(response['row_file_excel'][6][2]);
-                        $('[name="nilai_tahun_kolom_2_6"]').val(response['row_file_excel'][6][3]);
-
-                        $('[name="nilai_tahun_kolom_1_7"]').val(response['row_file_excel'][7][2]);
-                        $('[name="nilai_tahun_kolom_2_7"]').val(response['row_file_excel'][7][3]);
-
-                        $('[name="nilai_tahun_kolom_1_8"]').val(response['row_file_excel'][8][2]);
-                        $('[name="nilai_tahun_kolom_2_8"]').val(response['row_file_excel'][8][3]);
-                        $('[name="id_neraca"]').val(response['row_neraca'].id_neraca);
-
-                    } else if (type == 'hapus') {
-                        Question_hapus_neraca(response['row_neraca'].id_url_neraca, response['row_neraca'].nama_akuntan_public);
-                    } else {
-
-                    }
-                }
-            })
-        } else {
-
-        }
-
-    }
 </script>

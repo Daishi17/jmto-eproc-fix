@@ -399,13 +399,13 @@
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/informasi_pengadaan' . '/' . $row_rup['id_url_rup']) ?>"><i class="fa fa-columns" aria-hidden="true"></i> Informasi Pengadaan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
+                            <a class="nav-link  active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (PQ)</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white " style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_prakualifikasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Kualifikasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-comments" aria-hidden="true"></i> Aanwijzing (Penawaran)</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/evaluasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Evaluasi</a>
@@ -413,9 +413,8 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/negosiasi' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-tags" aria-hidden="true"></i> Negosiasi</a>
                         </li>
-
                         <li class="nav-item">
-                            <a target="_blank" class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
+                            <a class="nav-link bg-primary text-white" style="margin-left: 5px;" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/sanggahan_akhir' . '/'  . $row_rup['id_url_rup']) ?>"><i class="fa fa-hourglass-start" aria-hidden="true"></i> Sanggahan Pemenang </a>
                         </li>
                     </ul>
                 </div>
@@ -435,6 +434,7 @@
                             <tr>
                                 <th>Nama Jenis Pengadaan</th>
                                 <td><?= $row_rup['nama_jenis_pengadaan'] ?></td>
+
                             </tr>
                             <tr>
                                 <th>Nama Metode Pemilihan </th>
@@ -443,26 +443,26 @@
 
                             <tr>
                                 <th>Nama Tempat </th>
-                                <td><input type="text" name="aanwijzing_pw_tempat" class="form-control" placeholder="Nama Tempat" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tempat')" value="<?= $row_rup['aanwijzing_pw_tempat'] ?>"></td>
+                                <td><input type="text" name="aanwijzing_pq_tempat" class="form-control" placeholder="Nama Tempat" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_tempat')" value="<?= $row_rup['aanwijzing_pq_tempat'] ?>"></td>
                             </tr>
                             <tr>
                                 <th>Tanggal dan Jam</th>
-                                <td><input type="text" name="aanwijzing_pw_tanggal" class="form-control datet" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_tanggal')" value="<?= $row_rup['aanwijzing_pw_tanggal'] ?>"></td>
+                                <td><input type="text" name="aanwijzing_pq_tanggal" class="form-control datet" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_tanggal')" value="<?= $row_rup['aanwijzing_pq_tanggal'] ?>"></td>
                             </tr>
                             <tr>
                                 <th>Link Meet (Jika Daring) </th>
-                                <td><input type="text" name="aanwijzing_pw_link" class="form-control" placeholder="Link Meet" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pw_link')" value="<?= $row_rup['aanwijzing_pw_link'] ?>"></td>
+                                <td><input type="text" name="aanwijzing_pq_link" class="form-control" placeholder="Link Meet" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_link')" value="<?= $row_rup['aanwijzing_pq_link'] ?>"></td>
                             </tr>
 
                             <tr>
-
                                 <th>Upload Bukti </th>
                                 <td><input type="file" class="form-control"></td>
                             </tr>
                             <tr>
                                 <th>Export Chat </th>
-                                <td><a target="_blank" href="<?= base_url('export_chat/export_chat_anwijzing_penawaran/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
+                                <td><a href="<?= base_url('export_chat/export_chat_anwijing/' . $row_rup['id_url_rup']) ?>" class="btn btn-warning"> Export Chat</a></td>
                             </tr>
+
                         </table>
                     </div>
                 </div>

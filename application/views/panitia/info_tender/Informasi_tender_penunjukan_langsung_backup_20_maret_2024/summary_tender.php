@@ -914,7 +914,7 @@
                 },
                 "order": [],
                 "ajax": {
-                    "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn_harga_terendah/') ?>' + id_rup,
+                    "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn/') ?>' + id_rup,
                     "type": "POST",
                 },
                 "columnDefs": [{
@@ -946,7 +946,7 @@
                 },
                 "order": [],
                 "ajax": {
-                    "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_pringkat_akhir_harga_terendah_hea/') ?>' + id_rup,
+                    "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_akhir_hea/') ?>' + id_rup,
                     "type": "POST",
                 },
                 "columnDefs": [{

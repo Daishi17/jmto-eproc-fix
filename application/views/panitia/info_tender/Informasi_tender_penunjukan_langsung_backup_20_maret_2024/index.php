@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <th>Jangka Waktu Pelaksanaan Pekerjaan</th>
-                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari Kalender</th>
+                            <th><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> Hari</th>
                         </tr>
                         <tr>
                             <th>Jadwal Pengadaan</th>
@@ -242,16 +242,16 @@
                                     <!-- belom mulai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } ?>
                             </th>
                         </tr>
@@ -275,7 +275,7 @@
                                                                 <th>No</th>
                                                                 <th>Nama Penyedia</th>
                                                                 <th>Status</th>
-                                                                <th class="text-center">Aksi</th>
+                                                                <th>Aksi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -310,23 +310,9 @@
                                                         <tbody>
                                                             <?php $no = 1;
                                                             foreach ($peserta_tender as $key => $value) { ?>
-                                                                <?php
-                                                                $subs_string = substr($value['nama_usaha'], 0, 2);
-                                                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                                                    $nama_perusahaan = $value['nama_usaha'];
-                                                                } else {
-                                                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                                                        $nama_perusahaan = $value['nama_usaha'];
-                                                                    }
-                                                                }
-                                                                ?>
                                                                 <tr>
                                                                     <td scope="row"><?= $no++ ?></td>
-                                                                    <td><?= $nama_perusahaan ?></td>
+                                                                    <td><?= $value['nama_usaha'] ?></td>
                                                                     <td>
                                                                         <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
                                                                             <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
@@ -384,7 +370,7 @@
                                                                 <th>No</th>
                                                                 <th>Nama Penyedia</th>
                                                                 <th>Status</th>
-                                                                <th class="text-center">Aksi</th>
+                                                                <th>Aksi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -419,23 +405,9 @@
                                                         <tbody>
                                                             <?php $no = 1;
                                                             foreach ($peserta_tender as $key => $value) { ?>
-                                                                <?php
-                                                                $subs_string = substr($value['nama_usaha'], 0, 2);
-                                                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                                                    $nama_perusahaan = $value['nama_usaha'];
-                                                                } else {
-                                                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                                                        $nama_perusahaan = $value['nama_usaha'];
-                                                                    }
-                                                                }
-                                                                ?>
                                                                 <tr>
                                                                     <td scope="row"><?= $no++ ?></td>
-                                                                    <td><?= $nama_perusahaan ?></td>
+                                                                    <td><?= $value['nama_usaha'] ?></td>
                                                                     <td>
                                                                         <?php if ($value['sts_suratpernyataan_1'] == 1) { ?>
                                                                             <a target="_blank" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/pakta_integritas' . '/' . $value['id_vendor_mengikuti_paket']) ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Lihat</a>
@@ -723,8 +695,8 @@
 
                             </th>
                         </tr>
-
                     </table>
+
                     <?php if ($hak_mengumumkan['role_panitia'] == 1 || $hak_mengumumkan['role_panitia'] == 2) { ?>
                         <?php if (date('Y-m-d H:i', strtotime($row_rup['selesai_semua_tender']))  >= date('Y-m-d H:i')) { ?>
 
@@ -740,7 +712,6 @@
                     <?php } else { ?>
 
                     <?php } ?>
-
                 </div>
             </div>
         </div>
@@ -854,10 +825,7 @@
                                 <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_pembuktian_kualifikasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pembuktian_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pembuktian_kualifikasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_1_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_pembuktian')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_pembuktian')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
                             <br>
                             <br>
@@ -910,17 +878,9 @@
                                     <tbody>
                                         <?php $i = 1;
                                         foreach ($peserta_tender as $key => $value) { ?>
-                                            <?php
-                                            $subs_string = substr($value['nama_usaha'], 0, 2);
-                                            if ($subs_string == 'PT') {
-                                                $nama_perusahaan = $value['nama_usaha'];
-                                            } else {
-                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                            }
-                                            ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $nama_perusahaan ?></td>
+                                                <td><?= $value['nama_usaha'] ?></td>
                                                 <td>
                                                     <select name="ba_pembuktian_hadir<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onchange="onkeyup_ba_kualifikas_hadir(<?= $value['id_vendor_mengikuti_paket'] ?>, 'ba_pembuktian_hadir')" value="<?= $value['ba_pembuktian_hadir'] ?>">
                                                         <?php if ($value['ba_pembuktian_hadir']) { ?>
@@ -972,11 +932,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_evaluasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_evaluasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_2_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_hasil_evaluasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_hasil_evaluasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
                             <br>
                             <br>
@@ -999,12 +955,6 @@
                                         <th>Tanggal Berita Acara</th>
                                         <th>
                                             <input type="date" name="ba_evaluasi_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_evaluasi_tgl'] ?>">
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jam Berita Acara</th>
-                                        <th>
-                                            <input type="text" name="ba_evaluasi_jam" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_jam')" placeholder="Jam BA" class="form-control" value="<?= $row_rup['ba_evaluasi_jam'] ?>">
                                         </th>
                                     </tr>
                                 </table>
@@ -1088,10 +1038,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_3_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1195,11 +1142,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1_2','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul1_2','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_13_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1_2')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1_2')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1303,7 +1246,6 @@
                                 <a href="javascript:;" onclick="setujui_ba('sts_undangan','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_undangan','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
                                 <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_undangan_presentasi_teknis')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-
                             </div>
 
                             <br>
@@ -1382,17 +1324,9 @@
                                 <tbody>
                                     <?php $i = 1;
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                        <?php
-                                        $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
-                                            $nama_perusahaan = $value['nama_usaha'];
-                                        } else {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                        }
-                                        ?>
                                         <tr>
                                             <td><?= $i++ ?></td>
-                                            <td><?= $nama_perusahaan ?></td>
+                                            <td><?= $value['nama_usaha'] ?></td>
                                             <td>
                                                 <?= $row_rup['nama_rup'] ?>
                                             </td>
@@ -1411,11 +1345,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_evaluasi_teknis','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_evaluasi_teknis','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_5_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_evaluasi_teknis')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_evaluasi_teknis')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1501,14 +1431,11 @@
                         <div id="ba_6" style="display: none;" class="mt-3">
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_sampul_II' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul2','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_sampul2','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_6_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul2')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul2')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1575,15 +1502,11 @@
                         </div>
                         <div id="ba_7" style="display: none;" class="mt-3">
                             <div class="d-flex">
-                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_terbatas_pra_1_file' . '/ba_negosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_negosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_7_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1616,13 +1539,13 @@
                                 <tr>
                                     <th>Nama Perusahaan</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $deal_nego['nama_usaha'] ?>" disabled>
+                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                        <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9) { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".");  ?>" disabled>
                                         <?php } else { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>
@@ -1651,11 +1574,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_klarifikasi_harga','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_klarifikasi_harga','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_8_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_evaluasi_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_evaluasi_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
                             <br>
                             <br>
@@ -1704,12 +1623,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-
-                                <?php if ($ba_9_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_rapat_penjelasan')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
-
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_rapat_penjelasan')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
                             <br>
                             <br>
@@ -1742,6 +1656,7 @@
 
                         </div>
                         <div id="ba_9" style="display: none;" class="mt-3">
+
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_pemenang_tender' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
                                 &ensp;&ensp;
@@ -1790,17 +1705,9 @@
                                 <tbody>
                                     <?php $no = 1;
                                     foreach ($peserta_tender as $key => $value) { ?>
-                                        <?php
-                                        $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
-                                            $nama_perusahaan = $value['nama_usaha'];
-                                        } else {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                        }
-                                        ?>
                                         <tr>
                                             <td scope="row"><?= $no++ ?></td>
-                                            <td><?= $nama_perusahaan ?></td>
+                                            <td><?= $value['nama_usaha'] ?></td>
                                             <td><a class="btn btn-sm btn-primary" target="_blank" href="https://drtproc.jmto.co.id/file_paket/<?= $row_rup['nama_rup'] ?>/<?= $value['nama_usaha'] ?>/DOKUMEN_PRESENTASI_TEKNIS_PENGADAAN/<?= $value['ba_presentasi_teknis'] ?>"><i class="fa fa-eye"></i> Lihat</a></td>
                                         </tr>
                                     <?php } ?>
@@ -1813,7 +1720,6 @@
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pengumuman_hasil_evaluasi_teknis','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pengumuman_hasil_evaluasi_teknis','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
                                 <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_pengumuman_hasil_evaluasi_teknis')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-
                             </div>
                             <br>
                             <br>
@@ -1840,6 +1746,7 @@
                                 </table>
                             </form>
                         </div>
+
                         <div id="ba_13" style="display: none;" class="mt-3">
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_penjelasan_kualifiaksi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
@@ -1847,10 +1754,7 @@
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan_kualifikasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
-                                <?php if ($ba_12_cek) { ?>
-                                <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_evaluasi_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
-                                <?php } ?>
+                                <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_penjelasan_kualifikasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                             </div>
 
                             <br>
@@ -1924,23 +1828,9 @@
                     <tbody>
                         <?php $i = 1;
                         foreach ($get_pemenang as $key => $value) { ?>
-                            <?php
-                            $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                $nama_perusahaan = $value['nama_usaha'];
-                            } else {
-                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                    $nama_perusahaan = $value['nama_usaha'];
-                                }
-                            }
-                            ?>
                             <tr>
                                 <td scope="row"><?= $i++ ?></td>
-                                <td><?= $nama_perusahaan ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
                                     <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
@@ -2006,7 +1896,6 @@
                     ?>
                 </div>
             <?php  } else { ?>
-             
             <?php   }  ?>
 
 
@@ -2070,23 +1959,9 @@
                     <tbody>
                         <?php $i = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <?php
-                            $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                $nama_perusahaan = $value['nama_usaha'];
-                            } else {
-                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                    $nama_perusahaan = $value['nama_usaha'];
-                                }
-                            }
-                            ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $nama_perusahaan ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
                                 <td><input type="text" name="wkt_undang_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_waktu(<?= $value['id_vendor_mengikuti_paket'] ?>, 'wkt_undang_pembuktian')" value="<?= $value['wkt_undang_pembuktian'] ?>"></td>
                                 <td><input type="text" name="metode_pembuktian<?= $value['id_vendor_mengikuti_paket'] ?>" class="form-control" onkeyup="onkeyup_undang_penyedia_metode(<?= $value['id_vendor_mengikuti_paket'] ?>, 'metode_pembuktian')" value="<?= $value['metode_pembuktian'] ?>"></td>
                             </tr>
@@ -2292,31 +2167,18 @@
                             <th>Nama Peserta</th>
                             <th>Email</th>
                             <th>Telepon</th>
-                            <!-- <th>Pakta Integritas</th> -->
+                            <th>Pakta Integritas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <?php
-                            $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                $nama_perusahaan = $value['nama_usaha'];
-                            } else {
-                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                    $nama_perusahaan = $value['nama_usaha'];
-                                }
-                            }
-                            ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $nama_perusahaan ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td><?= $value['no_telpon'] ?></td>
+                                <td><a class="btn btn-sm btn-danger text-white" href="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'pakta_integritas_penyedia/' . $value['id_vendor_mengikuti_paket']) ?>">Lihat Pakta Integritas</a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -2418,23 +2280,9 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <?php
-                            $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                $nama_perusahaan = $value['nama_usaha'];
-                            } else {
-                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                    $nama_perusahaan = $value['nama_usaha'];
-                                }
-                            }
-                            ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $nama_perusahaan ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
                                 <?php
                                 $time = time();
                                 $waktu_aanwijzing = strtotime($jadwal_aanwijzing_pq['waktu_mulai']);
@@ -2514,15 +2362,9 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <?php $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT') {
-                                $nama_perusahaan = $value['nama_usaha'];
-                            } else {
-                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                            } ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
-                                <td><?= $nama_perusahaan ?></td>
+                                <td><?= $value['nama_usaha'] ?></td>
                                 <?php
                                 $time = time();
                                 $waktu_aanwijzing_penawaran = strtotime($jadwal_aanwijzing['waktu_mulai']);
@@ -2759,13 +2601,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Neraca Keuangan <label for="" id="nama_usaha_tambahan2"></label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Syarat Tambahan Penyedia <label for="" id="nama_usaha_tambahan2"></label></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Neraca Keuangan Penyedia <br>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Lakukan Validasi Syarat Tambahan Penyedia !!! <br>
                     </div>
                 </div>
                 <table class="table table-bordered" id="tbl_neraca_keuangan">
@@ -2774,9 +2616,6 @@
                             <th>No</th>
                             <th>
                                 <div class="text-center">File Neraca Keuangan</div>
-                            </th>
-                            <th>
-                                <div class="text-center">Aksi</div>
                             </th>
                         </tr>
                     </thead>
@@ -2795,13 +2634,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Laporan Keuangan Penyedia <label for="" id="nama_usaha_tambahan3"></label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-bullhorn" aria-hidden="true"></i> Syarat Tambahan Penyedia <label for="" id="nama_usaha_tambahan3"></label></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Laporan Keuangan Penyedia <br>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Lakukan Validasi Syarat Tambahan Penyedia !!! <br>
                     </div>
                 </div>
                 <table class="table table-bordered" id="tbl_laporan_keuangan">

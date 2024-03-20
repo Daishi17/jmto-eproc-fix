@@ -373,7 +373,7 @@ class M_jadwal extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_jadwal_rup');
         $this->db->where('id_rup', $id_rup);
-        $this->db->where('nama_jadwal_rup', 'Pengambilan Dokumen Pengadaan/Download Dokumen Pengadaan');
+        $this->db->like('nama_jadwal_rup', 'Pengambilan Dokumen Pengadaan/Download Dokumen Pengadaan');
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -535,13 +535,33 @@ class M_jadwal extends CI_Model
         return $query->row_array();
     }
 
+    public function jadwal_juksung_10($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('nama_jadwal_rup', 'Pengumuman Hasil Prakualifikasi');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
 
     public function jadwal_juksung_16($id_rup)
     {
         $this->db->select('*');
         $this->db->from('tbl_jadwal_rup');
         $this->db->where('id_rup', $id_rup);
-        $this->db->like('nama_jadwal_rup', 'Penetapan Pemenang Pengadaan');
+        $this->db->like('nama_jadwal_rup', 'Penetapan dan Pengumuman Pemenang Pengadaan');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function jadwal_juksung_17($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->like('nama_jadwal_rup', 'Penunjukan Pelaksanaan Pekerjaan (Gunning)');
         $query = $this->db->get();
         return $query->row_array();
     }
