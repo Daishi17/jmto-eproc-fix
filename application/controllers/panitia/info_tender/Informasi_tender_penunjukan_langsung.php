@@ -1306,18 +1306,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
             if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
+                <button disabled class="btn btn-danger btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
-                    <small>Evaluasi</small>
-                </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','neraca_keuangan'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Neraca Keuangan</small>
-                </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Laporan Keuangan</small>
-                </a>
+                    <small>Belum Memasuki Tahap Ini</small>
+                </button>
               </div>';
             } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
@@ -1333,6 +1325,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
                 </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Pengalaman</small>
+                </a>
               </div>';
             } else {
                 $row[] = '<div class="text-center">
@@ -1347,6 +1343,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
+                </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Pengalaman</small>
                 </a>
               </div>';
             }
@@ -1730,9 +1730,11 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
         $data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
+        $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+
         // var_dump($data_vendor_terundang_by_kbli);
         // die;
-        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli);
+        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 
         // yang dapat mengumumkan 
         $data['diumumkan_oleh'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
@@ -3063,7 +3065,8 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
         $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
         $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
-        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
+        $data['jadwal_pemasukan_file1'] =  $this->M_jadwal->jadwal_juksung_11($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
     }
 
@@ -3294,13 +3297,7 @@ Terimakasih';
             } else {
                 $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Neraca/' . $rs->file_dokumen_neraca . '"  class="btn btn-sm btn-warning btn-block">' . $rs->file_dokumen_neraca . '</a>';
             }
-            if ($rs->sts_token_dokumen == 2) {
-                $row[] = '<center>
-            	<a href="javascript:;" class="btn btn-success btn-sm shadow-lg"  <i class="fa-solid fa-lock px-1"></i> Enkrip</a></center>';
-            } else {
-                $row[] = '<center>
-            	<a href="javascript:;" class="btn btn-warning btn-sm shadow-lg"  <i class="fa-solid fa-lock-open px-1"></i> Dekrip</a></center>';
-            }
+            $row[] = '<a  href="javascript:;" class="btn btn-info btn-sm" style="width:150px" onClick="by_id_neraca_keuangan(' . "'" . $rs->id_neraca . "','lihat'" . ')"><i class="fa-solid fa-users-viewfinder px-1"></i> Lihat</a>';
             $data[] = $row;
         }
         $output = array(
@@ -3311,6 +3308,7 @@ Terimakasih';
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
 
     public function get_keuangan($id_vendor)
     {

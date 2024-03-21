@@ -228,8 +228,8 @@ class Daftar_paket extends CI_Controller
 		$cek_syarat_teknis = $this->M_panitia->cek_syarat_teknis($data['row_rup']['id_rup']);
 		// siup
 		$data_vendor_lolos_siup_kbli = $this->M_panitia->data_vendor_lolos_siup_kbli($cek_syarat_kbli);
-		var_dump('umummm',  $data_vendor_lolos_siup_kbli);
-		die;
+		// var_dump('umummm',  $data_vendor_lolos_siup_kbli);
+		// die;
 		// nib
 		$data_vendor_lolos_nib_kbli = $this->M_panitia->data_vendor_lolos_nib_kbli($cek_syarat_kbli);
 		// var_dump($data_vendor_lolos_nib_kbli);
@@ -257,8 +257,8 @@ class Daftar_paket extends CI_Controller
 
 		// var_dump($data_vendor_terundang_by_kbli);
 		// die;
-		// $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
-		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+		$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+		$data_respon = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($data_respon));
 	}

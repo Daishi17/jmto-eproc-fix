@@ -576,13 +576,13 @@ class M_panitia extends CI_Model
         } else { }
 
 
-        // if ($data_vendor_terundang_by_kbli_sbu) {
-        //     $id_vendor_terundang = array();
-        //     foreach ($data_vendor_terundang_by_kbli_sbu as $row) {
-        //         $id_vendor_terundang[] = $row['id_vendor'];
-        //     }
-        //     $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
-        // } else { }
+        if ($data_vendor_terundang_by_kbli_sbu) {
+            $id_vendor_terundang = array();
+            foreach ($data_vendor_terundang_by_kbli_sbu as $row) {
+                $id_vendor_terundang[] = $row['id_vendor'];
+            }
+            $this->db->where_in('tbl_vendor.id_vendor', $id_vendor_terundang);
+        } else { }
 
 
 

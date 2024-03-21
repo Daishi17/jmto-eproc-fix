@@ -242,7 +242,7 @@ function terbilang($nilai)
                 </li>
                 <br>
                 <li>
-                    <b>Upload Dokumen Penawaran (File I dan File II)</b><br>
+                    <b>Upload Dokumen Penawaran (File Administrasi, Teknis dan Harga)</b><br>
                     <table>
                         <tr>
                             <th width="250px">Tanggal </th>
