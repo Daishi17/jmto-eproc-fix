@@ -634,11 +634,24 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                     $row[] =  $rs->nama_usaha;
                 }
             }
-            if ($cek_valid_vendor >= $hitung_syarat) {
+
+            $sts_valid_0 = $rs->file1_administrasi_sts == 0 || $rs->file1_teknis_sts == 0 || $rs->file2_penawaran_sts == 0 || $rs->file2_dkh_sts == 0 || $rs->file2_tkdn_sts == 0;
+
+            $sts_valid = $rs->file1_administrasi_sts == 1 && $rs->file1_teknis_sts == 1 && $rs->file2_penawaran_sts == 1 && $rs->file2_dkh_sts == 1 && $rs->file2_tkdn_sts == 1 || $rs->file1_administrasi_sts == 3 && $rs->file1_teknis_sts == 3 && $rs->file2_penawaran_sts == 3 && $rs->file2_dkh_sts == 3 && $rs->file2_tkdn_sts == 3;
+
+            $sts_tdk_valid = $rs->file1_administrasi_sts == 2 || $rs->file1_teknis_sts == 2 || $rs->file2_penawaran_sts == 2 || $rs->file2_dkh_sts == 2 || $rs->file2_tkdn_sts == 2;
+
+
+            if ($sts_valid_0) {
+                $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+            } else if ($sts_valid) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
-            } else {
+            } else if ($sts_tdk_valid) {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
+            } else {
+                $row[] = '<span class="badge bg-success">Lulus</span>';
             }
+
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
