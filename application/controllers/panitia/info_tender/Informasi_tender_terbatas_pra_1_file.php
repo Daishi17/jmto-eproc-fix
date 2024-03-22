@@ -1771,7 +1771,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     function kirim_pengumuman_pemenang()
     {
-        $id_url_rup = $this->input->post('id_url_rup');
+        $id_url_rup = '97cbd5e88ae4486888b0b16d05ecf72c';
         $row_rup = $this->M_rup->get_row_rup($id_url_rup);
         $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis_pra_1($row_rup['id_rup']);
         if ($peserta_vendor > 2) {
@@ -1781,6 +1781,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
             $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         }
+        var_dump($get_rank1);die;
         $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
         // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
