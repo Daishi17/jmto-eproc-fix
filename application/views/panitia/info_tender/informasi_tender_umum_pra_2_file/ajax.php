@@ -3148,3 +3148,442 @@
         }
     });
 </script>
+
+<!-- ba panitia terpilih -->
+<script>
+    load_panitia_ba()
+
+    function load_panitia_ba() {
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            type: "GET",
+            url: '<?= base_url('panitia/info_tender/panitia_terpilih/get_panitia_ba/') ?>' + id_rup,
+            dataType: "JSON",
+            success: function(response) {
+                var html = '';
+                var a;
+                var a1 = 1;
+                for (a = 0; a < response.length; a++) {
+                    if (response[a].sts_ba_1 == 1) {
+                        var sts_panitia_ba1 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba1 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[a].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[a].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[a].sts_ba_1 == 1) {
+                        var button_ba1 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[a].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_1' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba1 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[a].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_1' + '\')">Non-Aktifkan</a>'
+                    }
+                    html += `<tr>
+                                <td>${a1++}</td>
+                                <td>${response[a].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba1}</td>
+                                <td>${button_ba1}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_1').html(html);
+
+                var html2 = '';
+                var b;
+                var b1 = 1;
+                for (b = 0; b < response.length; b++) {
+                    if (response[b].sts_ba_2 == 1) {
+                        var sts_panitia_ba2 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba2 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[b].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[b].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[b].sts_ba_2 == 1) {
+                        var button_ba2 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[b].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_2' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba2 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[b].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_2' + '\')">Non-Aktifkan</a>'
+                    }
+                    html2 += `<tr>
+                                <td>${b1++}</td>
+                                <td>${response[b].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba2}</td>
+                                <td>${button_ba2}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_2').html(html2);
+
+                var html3 = '';
+                var c;
+                var c1 = 1;
+                for (c = 0; c < response.length; c++) {
+                    if (response[c].sts_ba_3 == 1) {
+                        var sts_panitia_ba3 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba3 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[c].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[c].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[c].sts_ba_3 == 1) {
+                        var button_ba3 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[c].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_3' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba3 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[c].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_3' + '\')">Non-Aktifkan</a>'
+                    }
+                    html3 += `<tr>
+                                <td>${c1++}</td>
+                                <td>${response[c].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba3}</td>
+                                <td>${button_ba3}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_3').html(html3);
+
+                var html4 = '';
+                var d;
+                var d1 = 1;
+                for (d = 0; d < response.length; d++) {
+                    if (response[d].sts_ba_4 == 1) {
+                        var sts_panitia_ba4 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba4 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[d].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[d].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[d].sts_ba_4 == 1) {
+                        var button_ba4 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[d].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_4' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba4 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[d].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_4' + '\')">Non-Aktifkan</a>'
+                    }
+                    html4 += `<tr>
+                                <td>${d1++}</td>
+                                <td>${response[d].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba4}</td>
+                                <td>${button_ba4}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_4').html(html4);
+
+                var html5 = '';
+                var f;
+                var f1 = 1;
+                for (f = 0; f < response.length; f++) {
+                    if (response[f].sts_ba_5 == 1) {
+                        var sts_panitia_ba5 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba5 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[f].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[f].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[f].sts_ba_5 == 1) {
+                        var button_ba5 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[f].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_5' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba5 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[f].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_5' + '\')">Non-Aktifkan</a>'
+                    }
+                    html5 += `<tr>
+                                <td>${f1++}</td>
+                                <td>${response[f].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba5}</td>
+                                <td>${button_ba5}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_5').html(html5);
+
+                var html6 = '';
+                var g;
+                var g1 = 1;
+                for (g = 0; g < response.length; g++) {
+                    if (response[g].sts_ba_6 == 1) {
+                        var sts_panitia_ba6 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba6 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[g].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[g].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[g].sts_ba_6 == 1) {
+                        var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_6' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_6' + '\')">Non-Aktifkan</a>'
+                    }
+                    html6 += `<tr>
+                                <td>${g1++}</td>
+                                <td>${response[g].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba6}</td>
+                                <td>${button_ba6}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_6').html(html6);
+
+                var html6 = '';
+                var g;
+                var g1 = 1;
+                for (g = 0; g < response.length; g++) {
+                    if (response[g].sts_ba_6 == 1) {
+                        var sts_panitia_ba6 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba6 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[g].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[g].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[g].sts_ba_6 == 1) {
+                        var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_6' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_6' + '\')">Non-Aktifkan</a>'
+                    }
+                    html6 += `<tr>
+                                <td>${g1++}</td>
+                                <td>${response[g].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba6}</td>
+                                <td>${button_ba6}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_6').html(html6);
+
+                var html8 = '';
+                var h;
+                var h1 = 1;
+                for (h = 0; h < response.length; h++) {
+                    if (response[h].sts_ba_8 == 1) {
+                        var sts_panitia_ba8 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba8 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[h].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[h].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[h].sts_ba_8 == 1) {
+                        var button_ba8 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[h].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_8' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba8 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[h].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_8' + '\')">Non-Aktifkan</a>'
+                    }
+                    html8 += `<tr>
+                                <td>${h1++}</td>
+                                <td>${response[h].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba8}</td>
+                                <td>${button_ba8}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_8').html(html8);
+
+                var html10 = '';
+                var i;
+                var i1 = 1;
+                for (i = 0; i < response.length; i++) {
+                    if (response[i].sts_ba_10 == 1) {
+                        var sts_panitia_ba10 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba10 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[i].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[i].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[i].sts_ba_10 == 1) {
+                        var button_ba10 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[i].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_10' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba10 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[i].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_10' + '\')">Non-Aktifkan</a>'
+                    }
+                    html10 += `<tr>
+                                <td>${i1++}</td>
+                                <td>${response[i].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba10}</td>
+                                <td>${button_ba10}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_10').html(html10);
+
+                var html11 = '';
+                var j;
+                var j1 = 1;
+                for (j = 0; j < response.length; j++) {
+                    if (response[j].sts_ba_11 == 1) {
+                        var sts_panitia_ba11 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba11 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[j].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[j].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[j].sts_ba_11 == 1) {
+                        var button_ba11 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[j].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_11' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba11 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[j].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_11' + '\')">Non-Aktifkan</a>'
+                    }
+                    html11 += `<tr>
+                                <td>${j1++}</td>
+                                <td>${response[j].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba11}</td>
+                                <td>${button_ba11}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_11').html(html11);
+
+                var html12 = '';
+                var k;
+                var k1 = 1;
+                for (k = 0; k < response.length; k++) {
+                    if (response[k].sts_ba_12 == 1) {
+                        var sts_panitia_ba12 = '<span class="badge bg-danger">Tidak Aktif</span>'
+                    } else {
+                        var sts_panitia_ba12 = '<span class="badge bg-success">Aktif</span>'
+                    }
+
+                    if (response[k].role_panitia == 1) {
+                        var jabatan_panitia = 'Ketua'
+                    } else if (response[k].role_panitia == 2) {
+                        var jabatan_panitia = 'Sekretaris'
+                    } else {
+                        var jabatan_panitia = 'Anggota'
+                    }
+
+                    if (response[k].sts_ba_12 == 1) {
+                        var button_ba12 = '<a href="javascript:;" class="btn btn-sm btn-success" onclick="aktifkan_panitia(' + response[k].id_panitia + ',\'' + 'aktifkan' + '\',\'' + 'sts_ba_12' + '\')">Aktifkan</a>'
+                    } else {
+                        var button_ba12 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[k].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_12' + '\')">Non-Aktifkan</a>'
+                    }
+                    html12 += `<tr>
+                                <td>${k1++}</td>
+                                <td>${response[k].nama_pegawai}</td>
+                                <td>${jabatan_panitia}</td>
+                                <td>${sts_panitia_ba12}</td>
+                                <td>${button_ba12}</td>
+                            </tr>`
+                }
+                $('#tbl_panitia_ba_12').html(html12);
+            }
+        })
+    }
+
+    function aktifkan_panitia(id_panitia, type, name) {
+        if (type == 'nonaktifkan') {
+            Swal.fire({
+                title: "Anda Yakin Ingin Non-Aktifkan Panitia?",
+                text: "Ya/Tidak!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: '<?= base_url('panitia/info_tender/panitia_terpilih/post_aksi') ?>',
+                        dataType: "JSON",
+                        data: {
+                            field_value: 1,
+                            id_panitia: id_panitia,
+                            name_field: name
+                        },
+                        success: function(response) {
+                            Swal.fire('Data Berhasil Diupdate!', '', 'success')
+                            load_panitia_ba()
+                        }
+                    })
+                }
+            });
+        } else {
+            Swal.fire({
+                title: "Anda Yakin Ingin Aktifkan Panitia?",
+                text: "Ya/Tidak!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: '<?= base_url('panitia/info_tender/panitia_terpilih/post_aksi') ?>',
+                        dataType: "JSON",
+                        data: {
+                            field_value: '',
+                            id_panitia: id_panitia,
+                            name_field: name
+                        },
+                        success: function(response) {
+                            Swal.fire('Data Berhasil Diupdate!', '', 'success')
+                            load_panitia_ba()
+                        }
+                    })
+                }
+            });
+        }
+
+    }
+</script>
