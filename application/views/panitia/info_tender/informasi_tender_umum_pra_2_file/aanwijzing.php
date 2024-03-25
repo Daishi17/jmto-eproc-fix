@@ -540,7 +540,7 @@
 
                                         </div>
                                     <?php    } else { ?>
-                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Dokumen Pemilihan / Penawaran Sudah Habis..."></textarea>
+                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Kualifikasi Sudah Habis..."></textarea>
                                         <div class="input-group-append">
                                         </div>
                                     <?php    } ?>

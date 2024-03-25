@@ -468,7 +468,7 @@
                             <td><?= "Rp " . number_format($row_rup['total_pagu_rup'], 2, ',', '.'); ?></td>
                         </tr>
                         <tr>
-                            <th>Nilai Hps RUP</th>
+                            <th>Nilai Hps Pengadaan</th>
                             <td><?= "Rp " . number_format($row_rup['total_hps_rup'], 2, ',', '.'); ?></td>
                         </tr>
                         <tr>
@@ -493,27 +493,17 @@
                                     </tr>
                                     <tr>
                                         <th>Pembebanan Tahun Anggaran</th>
-                                        <?php
-                                        if ($row_rup['beban_tahun_anggaran'] == 1) { ?>
-                                            <td>Tahun Tunggal</td>
-                                        <?php } else if ($row_rup['beban_tahun_anggaran'] == 2) { ?>
-                                            <td>Tahun Jamak</td>
-                                        <?php } else { ?>
-                                            <td></td>
-                                        <?php  } ?>
+                                        <td><?= $row_rup['beban_tahun_anggaran'] ?></td>
 
                                     </tr>
-                                    <tr>
-                                        <th>Sumber Pendanaan</th>
-                                        <td>BUMN</td>
-                                    </tr>
+
                                 </table>
                             </td>
                         </tr>
                         <tr>
                             <th>Anggaran</th>
                             <td>
-                                <?= $row_rup['tahun_rup'] ?> - BUMN - <?= $row_rup['nama_jenis_anggaran'] ?> <br>
+                                <?= $row_rup['tahun_rup'] ?> - <?= $row_rup['nama_jenis_anggaran'] ?> <br>
                             </td>
                         </tr>
                         <tr>

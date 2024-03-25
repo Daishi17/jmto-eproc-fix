@@ -3122,3 +3122,144 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" id="modal-xl-neraca-edit">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card border-dark shadow-lg">
+                    <div class="card-header bg-dark d-flex bd-highlight">
+                        <div class="flex-grow-1 bd-highlight">
+                            <span class="text-white">
+                                <i class="fa-solid fa-align-justify px-1"></i>
+                                <small><strong>Form Data - Neraca Keuangan</strong></small>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <br>
+                        <form action="javascript:;" id="form_edit_neraca" method="post">
+                            <input type="hidden" name="id_neraca">
+                            <table class="table table-bordered">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th class="tg-9wq8" rowspan="2">NO</th>
+                                        <th class="tg-9wq8" rowspan="2">Uraian</th>
+                                        <th class="tg-9wq8" colspan="2">
+                                            <select name="tahun_mulai_edit" class="form-control" onchange="tahun_awal_edit()">
+                                                <option value="">--Pilih Tahun--</option>
+                                                <?php for ($i = 10; $i < 30; $i++) {  ?>
+                                                    <option value="20<?= $i ?>">20<?= $i ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </th>
+                                        <th class="tg-9wq8" colspan="2">
+                                            <input type="text" name="tahun_selesai_edit" readonly class="form-control">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-9wq8" colspan="2">(Rp).</th>
+                                        <th class="tg-9wq8" colspan="2">(Rp).</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-0pky">1</td>
+                                        <td class="tg-0pky">Penjelasan/Opini dari Auditor Kantor Akuntan Publik</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_1" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_1"></td>
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">2</td>
+                                        <td class="tg-za14">Jumlah Kas dan Bank</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_2" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah1_1" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_2"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah2_2" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">3</td>
+                                        <td class="tg-za14">Total Hutang</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_3" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah3_3" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_3"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah4_4" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">4</td>
+                                        <td class="tg-za14">Total Ekuitas</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_4" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah5_5" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_4"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah6_6" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">5</td>
+                                        <td class="tg-za14">Total Aktiva Lancar</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_5" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah7_7" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_5"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah8_8" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">6</td>
+                                        <td class="tg-za14">Total Hutang Lancar</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_6" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah9_9" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_6"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah10_10" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">7</td>
+                                        <td class="tg-7zrl">Laba Usaha</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_7" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah11_11" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_7"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah12_12" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">8</td>
+                                        <td class="tg-7zrl">EBITDA (Laba Usaha + Beban Penyusutan)</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_8" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah13_13" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_8"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah14_14" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_8"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-sm btn_simpan_excel">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -3544,28 +3544,29 @@ Terimakasih';
     function by_id_neraca($id_neraca)
     {
         // Load the Excel fileF
-        $row_neraca = $this->M_datapenyedia->get_row_neraca($id_neraca);
-        $nama_usaha = $this->session->userdata('nama_usaha');
+        $row_neraca = $this->M_panitia->get_row_neraca($id_neraca);
+        $id_vendor = $row_neraca['id_vendor'];
+        $get_vendor = $this->M_panitia->get_row_vendor($id_vendor);
+        $nama_usaha = $get_vendor['nama_usaha'];
         $date = date('Y');
-        if (!is_dir('file_vms/' . $nama_usaha . '/Neraca')) {
-            mkdir('file_vms/' . $nama_usaha . '/Neraca', 0777, TRUE);
-        }
         if ($row_neraca['sts_token_dokumen'] == 1) {
             $chiper = "AES-128-CBC";
             $option = 0;
             $iv = str_repeat("0", openssl_cipher_iv_length($chiper));
             $secret_token_dokumen1 = 'jmto.1' . $row_neraca['id_url_neraca'];
             $file_dokumen_neraca = openssl_decrypt($row_neraca['file_dokumen_neraca'], $chiper, $secret_token_dokumen1, $option, $iv);
-            $excelFilePath = './file_vms/' . $nama_usaha . '/Neraca' . '/' . $file_dokumen_neraca . ''; // Replace with the actual path to your Excel file
+            $excelFilePath = './../../';
+            // $excelFilePath = '../../file_vms/' . $nama_usaha . '/Neraca' . '/' . $file_dokumen_neraca . ''; // Replace with the actual path to your Excel file
         } else {
-            $excelFilePath = './file_vms/' . $nama_usaha . '/Neraca' . '/' . $row_neraca['file_dokumen_neraca'] . ''; // Replace with the actual path to your Excel file
+            $excelFilePath = './../../';
+            // $excelFilePath = '../../file_vms/' . $nama_usaha . '/Neraca' . '/' . $row_neraca['file_dokumen_neraca'] . ''; // Replace with the actual path to your Excel file
         }
         $spreadsheet = IOFactory::load($excelFilePath);
         $sheet = $spreadsheet->getActiveSheet();
         // Get the data from the Excel sheet
         $data = $sheet->toArray();
         $response = [
-            'row_neraca' => $this->M_datapenyedia->get_row_neraca($id_neraca),
+            'row_neraca' => $this->M_panitia->get_row_neraca($id_neraca),
             'row_file_excel' => $data
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($response));

@@ -3695,4 +3695,22 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
         return $this->db->count_all_results();
     }
+
+    public function get_row_neraca($id_neraca)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_neraca_keuangan');
+        $this->db->where('tbl_vendor_neraca_keuangan.id_neraca', $id_neraca);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_row_vendor($id_vendor)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor');
+        $this->db->where('tbl_vendor.id_vendor', $id_vendor);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }

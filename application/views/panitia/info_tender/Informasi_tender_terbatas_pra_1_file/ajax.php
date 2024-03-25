@@ -3467,6 +3467,7 @@
 <script>
     function by_id_neraca_keuangan(id_neraca, type) {
         var modal_edit_neraca = $('#modal-xl-neraca-edit');
+        var url_byid_neraca = $('[name="url_byid_neraca"]').val()
         if (type == 'lihat') {
             saveData = 'lihat';
         }
@@ -3474,13 +3475,13 @@
         if (type == 'lihat') {
             $.ajax({
                 type: "GET",
-                url: '<?= base_url('datapenyedia/by_id_neraca/') ?>' + id_neraca,
+                url: url_byid_neraca + id_neraca,
                 dataType: "JSON",
                 success: function(response) {
-                    if (type == 'edit') {
+                    if (type == 'lihat') {
                         modal_edit_neraca.modal('show');
                         // tahun belom
-                        console.log(response['row_file_excel']);
+                        // console.log(response['row_file_excel']);
 
 
                         $('[name="tahun_mulai_edit"]').val(response['row_neraca'].tahun_mulai);
