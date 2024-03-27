@@ -12,7 +12,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
-
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -33,7 +33,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_1 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -47,7 +47,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_2 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -61,7 +61,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_3 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -75,7 +75,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_4 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -90,7 +90,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_5 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -105,7 +105,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_6 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -119,7 +119,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_8 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -133,7 +133,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_10 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -147,7 +147,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_11 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -161,7 +161,7 @@ class M_panitia_terpilih extends CI_Model
         $this->db->where('tbl_panitia.id_rup', $id_rup);
         $this->db->where('tbl_manajemen_user.role', 5);
         $this->db->where('tbl_panitia.sts_ba_12 !=', 1);
-        $this->db->order_by('tbl_panitia.role_panitia');
+        $this->db->order_by('tbl_panitia.role_panitia', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }

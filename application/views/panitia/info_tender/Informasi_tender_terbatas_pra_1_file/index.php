@@ -3153,7 +3153,7 @@
                                         <th class="tg-9wq8" rowspan="2">NO</th>
                                         <th class="tg-9wq8" rowspan="2">Uraian</th>
                                         <th class="tg-9wq8" colspan="2">
-                                            <select name="tahun_mulai_edit" class="form-control" onchange="tahun_awal_edit()">
+                                            <select name="tahun_mulai_edit" class="form-control" onchange="tahun_awal_edit()" disabled>
                                                 <option value="">--Pilih Tahun--</option>
                                                 <?php for ($i = 10; $i < 30; $i++) {  ?>
                                                     <option value="20<?= $i ?>">20<?= $i ?></option>
@@ -3161,7 +3161,7 @@
                                             </select>
                                         </th>
                                         <th class="tg-9wq8" colspan="2">
-                                            <input type="text" name="tahun_selesai_edit" readonly class="form-control">
+                                            <input type="text" disabled name="tahun_selesai_edit" readonly class="form-control">
                                         </th>
                                     </tr>
                                     <tr>
@@ -3177,8 +3177,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_1"></td>
-                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_1"></td>
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_1"></td>
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_1"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">2</td>
@@ -3187,8 +3187,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah1_1" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_2"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah2_2" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_2"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah1_1" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_2"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah2_2" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_2"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">3</td>
@@ -3197,8 +3197,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah3_3" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_3"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah4_4" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_3"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah3_3" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_3"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah4_4" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_3"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">4</td>
@@ -3207,8 +3207,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah5_5" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_4"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah6_6" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_4"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah5_5" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_4"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah6_6" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_4"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">5</td>
@@ -3217,8 +3217,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah7_7" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_5"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah8_8" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_5"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah7_7" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_5"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah8_8" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_5"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">6</td>
@@ -3227,8 +3227,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah9_9" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_6"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah10_10" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_6"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah9_9" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_6"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah10_10" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_6"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0lax">7</td>
@@ -3237,8 +3237,8 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah11_11" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_7"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah12_12" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_7"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah11_11" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_7"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah12_12" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_7"></td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0lax">8</td>
@@ -3247,14 +3247,11 @@
                                         <option value="Audit">Audit</option>
                                         <option value="Tidak Audit">Tidak Audit</option>
                                     </select></td> -->
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah13_13" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_1_8"></td>
-                                        <td class="tg-0pky" colspan="2"><input id="rupiah14_14" class="rupiahku form-control form-control-sm" type="text" name="nilai_tahun_kolom_2_8"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah13_13" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_8"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah14_14" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_8"></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-sm btn_simpan_excel">Simpan</button>
-                            </div>
                         </form>
                     </div>
                 </div>

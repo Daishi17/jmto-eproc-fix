@@ -3544,6 +3544,9 @@ Terimakasih';
     function by_id_neraca($id_neraca)
     {
         // Load the Excel fileF
+        // $path = realpath(APPPATH . '../../../drtproc.jmto.co.id');
+        // var_dump($path);
+        // die;
         $row_neraca = $this->M_panitia->get_row_neraca($id_neraca);
         $id_vendor = $row_neraca['id_vendor'];
         $get_vendor = $this->M_panitia->get_row_vendor($id_vendor);
@@ -3555,11 +3558,9 @@ Terimakasih';
             $iv = str_repeat("0", openssl_cipher_iv_length($chiper));
             $secret_token_dokumen1 = 'jmto.1' . $row_neraca['id_url_neraca'];
             $file_dokumen_neraca = openssl_decrypt($row_neraca['file_dokumen_neraca'], $chiper, $secret_token_dokumen1, $option, $iv);
-            $excelFilePath = './../../';
-            // $excelFilePath = '../../file_vms/' . $nama_usaha . '/Neraca' . '/' . $file_dokumen_neraca . ''; // Replace with the actual path to your Excel file
+            $excelFilePath = './file_vms/' . $nama_usaha . '/Neraca' . '/' . $file_dokumen_neraca . ''; // Replace with the actual path to your Excel file
         } else {
-            $excelFilePath = './../../';
-            // $excelFilePath = '../../file_vms/' . $nama_usaha . '/Neraca' . '/' . $row_neraca['file_dokumen_neraca'] . ''; // Replace with the actual path to your Excel file
+            $excelFilePath = './file_vms/' . $nama_usaha . '/Neraca' . '/' . $row_neraca['file_dokumen_neraca'] . ''; // Replace with the actual path to your Excel file
         }
         $spreadsheet = IOFactory::load($excelFilePath);
         $sheet = $spreadsheet->getActiveSheet();

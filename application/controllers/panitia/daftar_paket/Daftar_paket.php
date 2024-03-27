@@ -66,7 +66,7 @@ class Daftar_paket extends CI_Controller
 				if ($rs->status_paket_panitia == 1) {
 					$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 				} else {
-					if ($jadwal_terakhir['waktu_mulai'] <= $now) {
+					if ($rs->selesai_semua_tender < $now) {
 						$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 						</span>';
 					} else {
@@ -491,7 +491,7 @@ Terimakasih');
 				$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 			}
 			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+			// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 
 
 			// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
