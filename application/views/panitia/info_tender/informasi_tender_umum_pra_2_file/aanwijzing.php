@@ -439,7 +439,7 @@
                             </tr>
                             <tr>
                                 <th>Nama Metode Pemilihan </th>
-                                <td><?= $row_rup['metode_kualifikasi'] ?></td>
+                                <td><?= $row_rup['nama_jadwal_pengadaan'] ?></td>
                             </tr>
 
                             <tr>
