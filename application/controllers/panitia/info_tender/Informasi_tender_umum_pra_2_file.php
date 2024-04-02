@@ -1579,7 +1579,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                 $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
             }
         }
-        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
+        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_lolos($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
         // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
         $upload = [
@@ -3102,20 +3102,23 @@ Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         } else if ($post == 'sts_hasil_prakualifikasi') {
             $message = 'Pengumuman/Undangan Hasil Prakualifikasi :
 Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         } else if ($post == 'sts_undangan_penawaran') {
             $message = 'Pengumuman/Undangan Penawaran :
 Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_lolos($row_rup['id_rup'], $message);
         }
-        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
+
         $this->M_panitia->update_rup_panitia($id_rup, $data);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
