@@ -290,4 +290,49 @@ untuk Tahapan $nama_jadwal dengan Alasan $pesan",
         $response = curl_exec($curl);
         curl_close($curl);
     }
+
+    public function kirim_wa_pengumuman_atau_undangan_lolos($id_rup, $message)
+    {
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
+        if ($row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 2 || $row_rup['id_jadwal_tender'] == 3  || $row_rup['id_jadwal_tender'] == 6 || $row_rup['id_jadwal_tender'] == 10) {
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_ba_pra_lolos($id_rup);
+            $data_vendor = array();
+            foreach ($get_vendor_mengikuti as $key => $value) {
+                $data_vendor[] = $value['no_telpon'];
+            }
+            $nomor_telpon = implode(",", $data_vendor);
+        } else {
+            $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_umumkan($row_rup);
+            $data_vendor = array();
+            foreach ($get_vendor_mengikuti as $key => $value) {
+                $data_vendor[] = $value['no_telpon'];
+            }
+            $nomor_telpon = implode(",", $data_vendor);
+        }
+        $target = $nomor_telpon;
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => $message,
+                'delay' => '40-60',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
 }

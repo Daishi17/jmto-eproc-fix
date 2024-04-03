@@ -634,11 +634,24 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                     $row[] =  $rs->nama_usaha;
                 }
             }
-            if ($cek_valid_vendor >= $hitung_syarat) {
+
+            $sts_valid_0 = $rs->file1_administrasi_sts == 0 || $rs->file1_teknis_sts == 0 || $rs->file2_penawaran_sts == 0 || $rs->file2_dkh_sts == 0 || $rs->file2_tkdn_sts == 0;
+
+            $sts_valid = $rs->file1_administrasi_sts == 1 && $rs->file1_teknis_sts == 1 && $rs->file2_penawaran_sts == 1 && $rs->file2_dkh_sts == 1 && $rs->file2_tkdn_sts == 1 || $rs->file1_administrasi_sts == 3 && $rs->file1_teknis_sts == 3 && $rs->file2_penawaran_sts == 3 && $rs->file2_dkh_sts == 3 && $rs->file2_tkdn_sts == 3;
+
+            $sts_tdk_valid = $rs->file1_administrasi_sts == 2 || $rs->file1_teknis_sts == 2 || $rs->file2_penawaran_sts == 2 || $rs->file2_dkh_sts == 2 || $rs->file2_tkdn_sts == 2;
+
+
+            if ($sts_valid_0) {
+                $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+            } else if ($sts_valid) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
-            } else {
+            } else if ($sts_tdk_valid) {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
+            } else {
+                $row[] = '<span class="badge bg-success">Lulus</span>';
             }
+
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
@@ -841,11 +854,29 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                     $row[] =  $rs->nama_usaha;
                 }
             }
-            if ($cek_valid_vendor >= $hitung_syarat) {
+            // if ($cek_valid_vendor >= $hitung_syarat) {
+            //     $row[] = '<span class="badge bg-success">Lulus</span>';
+            // } else {
+            //     $row[] = '<span class="badge bg-danger">Gugur</span>';
+            // }
+            // cekking file 1 dan 2
+            $sts_valid_0 = $rs->file1_administrasi_sts == 0 || $rs->file1_teknis_sts == 0 || $rs->file2_penawaran_sts == 0 || $rs->file2_dkh_sts == 0 || $rs->file2_tkdn_sts == 0;
+
+            $sts_valid = $rs->file1_administrasi_sts == 1 && $rs->file1_teknis_sts == 1 && $rs->file2_penawaran_sts == 1 && $rs->file2_dkh_sts == 1 && $rs->file2_tkdn_sts == 1 || $rs->file1_administrasi_sts == 3 && $rs->file1_teknis_sts == 3 && $rs->file2_penawaran_sts == 3 && $rs->file2_dkh_sts == 3 && $rs->file2_tkdn_sts == 3;
+
+            $sts_tdk_valid = $rs->file1_administrasi_sts == 2 || $rs->file1_teknis_sts == 2 || $rs->file2_penawaran_sts == 2 || $rs->file2_dkh_sts == 2 || $rs->file2_tkdn_sts == 2;
+
+
+            if ($sts_valid_0) {
+                $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+            } else if ($sts_valid) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
-            } else {
+            } else if ($sts_tdk_valid) {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
+            } else {
+                $row[] = '<span class="badge bg-success">Lulus</span>';
             }
+
             if ($rs->ev_hea_harga_hea_terendah) {
                 $row[] =  number_format($rs->ev_hea_harga_hea_terendah, 2, ',', '.');
             } else {
@@ -1733,9 +1764,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
         $data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
+        $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+
         // var_dump($data_vendor_terundang_by_kbli);
         // die;
-        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 
         // yang dapat mengumumkan 
         $data['diumumkan_oleh'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
@@ -1771,20 +1804,22 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
 
     function kirim_pengumuman_pemenang()
     {
-        $id_url_rup = '97cbd5e88ae4486888b0b16d05ecf72c';
-        $row_rup = $this->M_rup->get_row_rup($id_url_rup);
+        $id_url_rup = $this->input->post('id_url_rup');
+        $row_rup = $this->M_panitia->get_row_url_rup($id_url_rup);
         $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis_pra_1($row_rup['id_rup']);
+        // var_dump($row_rup['id_rup']);
+        // die;
         if ($peserta_vendor > 2) {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Harga Pemenang sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Harga Pemenang sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . ' Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         }
-        var_dump($get_rank1);die;
-        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
         // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
+
+        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
         $upload = [
             'id_vendor_pemenang' => $get_rank1['id_vendor'],
             'sts_pengumuman_rup_trakhir' => 1
@@ -3119,20 +3154,23 @@ Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         } else if ($post == 'sts_hasil_prakualifikasi') {
             $message = 'Pengumuman/Undangan Hasil Prakualifikasi :
 Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         } else if ($post == 'sts_undangan_penawaran') {
             $message = 'Pengumuman/Undangan Penawaran :
 Nama Paket: ' . $row_rup['nama_rup'] . '
 Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_lolos($row_rup['id_rup'], $message);
         }
-        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
+        // $this->kirim_wa->kirim_wa_pengumuman_atau_undangan($row_rup['id_rup'], $message);
         $this->M_panitia->update_rup_panitia($id_rup, $data);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }

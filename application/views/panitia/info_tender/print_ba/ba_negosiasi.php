@@ -221,25 +221,12 @@ function terbilang($nilai)
                     </li>
                 </ol>
                 <p>Demikian Berita Acara Evaluasi dan Negosiasi Harga ini dibuat dan ditandatangani sebagaimana tanggal tersebut diatas, dan akan disampaikan kepada <?= $row_rup['ba_negosiasi_usulan_jabatan'] ?> Selaku Pengguna Jasa PT Jasamarga Tollroad Operator untuk pengesahannya.</p>
-                <div class="float-right" style="margin-left:800px">
+                <!-- <div class="float-right" style="margin-left:800px">
                     <img width="500px" src="<?= base_url('assets/logo_ba/footer.png') ?>" alt="logo" style="opacity: 0.5;">
-                </div>
+                </div> -->
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <!-- <br> -->
                 <br>
                 <div class="float-left">
                     <img src="<?= base_url('assets/logo_ba/logo_ba2.png') ?>" alt="logo" width="30%" style="opacity: 0.5;">
@@ -249,6 +236,10 @@ function terbilang($nilai)
                 <br>
                 <br>
                 <br>
+                <br>
+                <center>
+                    <b> <?= $row_rup['nama_rup'] ?></b>
+                </center>
                 <br>
                 <b>Panitia Pengadaan</b>
                 <br>
@@ -297,14 +288,28 @@ function terbilang($nilai)
                     <tbody>
                         <?php $i = 1;
                         foreach ($deal as $key => $value) { ?>
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                $nama_perusahaan = $value['nama_usaha'];
+                            } else {
+                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                }
+                            }
+                            ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $value['nama_usaha'] ?></td>
+                                <td><?= $nama_perusahaan  ?></td>
                                 <td><?= $value['nama_jabatan_ba_nego'] ?></td>
                                 <?php if ($value['persetujuan_ba_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>
-                                    <td class="text-center"><span class="badge bg-danger">Tidak Setuju</span></td>
+                                    <td class="text-center"><span class="badge bg-danger">Belum Di Checklist</span></td>
                                 <?php }  ?>
                             </tr>
                         <?php } ?>

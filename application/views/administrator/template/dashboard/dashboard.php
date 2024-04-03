@@ -94,7 +94,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div>
                                                     <p class="mb-0 text-secondary"><small>Total Paket Tender Selesai</small></p>
-                                                    <h4 class="my-1 text-success">0</h4>
+                                                    <h4 class="my-1 text-success"><?= $paket_tender_selesai ?></h4>
                                                 </div>
                                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-envelope-circle-check fa-shake"></i></div>
                                             </div>

@@ -183,7 +183,7 @@
             },
             "order": [],
             "ajax": {
-                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn/') ?>' + id_rup,
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_hea_tkdn_harga_terendah/') ?>' + id_rup,
                 "type": "POST",
             },
             "columnDefs": [{
@@ -221,7 +221,7 @@
             },
             "order": [],
             "ajax": {
-                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_akhir_hea/') ?>' + id_rup,
+                "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_pringkat_akhir_harga_terendah_hea/') ?>' + id_rup,
                 "type": "POST",
             },
             "columnDefs": [{
@@ -1845,9 +1845,22 @@
                     } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'tidak_deal') {
                         var kesepakatan = '<small class="badge bg-danger">Tidak Deal</small>'
                     }
+                    var text = response['result_vendor_negosiasi'][i].nama_usaha
+                    var sub_string = text.substring(2, 0)
+                    if (sub_string == 'PT' || sub_string == 'CV' || sub_string == 'Koperasi') {
+                        var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                    } else {
+                        if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                            var nama_perusahaan = 'PT ' + response['result_vendor_negosiasi'][i].nama_usaha
+                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                            var nama_perusahaan = 'CV ' + response['result_vendor_negosiasi'][i].nama_usaha
+                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Koperasi') {
+                            var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                        }
+                    }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
+                        '<td><small>' + nama_perusahaan + '</small></td>' +
                         '<td>' + tanggal_negoasiasi + '</td>' +
                         '<td>' + lin_nego + '</td>' +
                         '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +

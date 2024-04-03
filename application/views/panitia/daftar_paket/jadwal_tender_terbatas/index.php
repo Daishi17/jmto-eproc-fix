@@ -115,8 +115,8 @@
                                                 </td>
 
                                             <?php } else { ?>
-                                                <td><input class="form-control form-control-sm" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= $value2['waktu_mulai'] ?>" type="text"></td>
-                                                <td><input class="form-control form-control-sm" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
+                                                <td><input class="form-control form-control-sm input_mulai<?= $input_mulai++ ?>" name="waktu_mulai[<?= $i ?>]" id="mulai<?= $mulai_detail++ ?>" value="<?= $value2['waktu_mulai'] ?>" type="text"></td>
+                                                <td><input class="form-control form-control-sm input_selesai<?= $input_selesai++ ?>" name="waktu_selesai[<?= $i ?>]" id="selesai<?= $selesai_detail++ ?>" value="<?= $value2['waktu_selesai']  ?>" type="text"></td>
                                                 <td>
                                                     <?php if ($value2['waktu_mulai'] == '' && $value2['waktu_selesai'] == '') { ?>
                                                         <?php if ($i == 1) { ?>

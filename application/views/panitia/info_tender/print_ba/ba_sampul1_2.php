@@ -348,19 +348,19 @@ function terbilang($nilai)
                         <?php
                         $subs_string = substr($peserta_peringkat1['nama_usaha'], 0, 2);
                         if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                            $nama_perusahaan = $peserta_peringkat1['nama_usaha'];
+                            $nama_perusahaan_peringkat1 = $peserta_peringkat1['nama_usaha'];
                         } else {
                             if ($peserta_peringkat1['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                $nama_perusahaan = 'PT ' . $peserta_peringkat1['nama_usaha'];
+                                $nama_perusahaan_peringkat1 = 'PT ' . $peserta_peringkat1['nama_usaha'];
                             } else if ($peserta_peringkat1['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                $nama_perusahaan = 'CV ' . $peserta_peringkat1['nama_usaha'];
+                                $nama_perusahaan_peringkat1 = 'CV ' . $peserta_peringkat1['nama_usaha'];
                             } else if ($peserta_peringkat1['bentuk_usaha']  == 'Koperasi') {
-                                $nama_perusahaan = $peserta_peringkat1['nama_usaha'];
+                                $nama_perusahaan_peringkat1 = $peserta_peringkat1['nama_usaha'];
                             }
                         }
                         ?>
                         <p><b>PENETAPAN PENAWAR PERINGKAT KE-1 : </b></p>
-                        <p>Berdasarkan hasil pemeriksaan Dokumen Penawaran dan penilaian terhadap harga Penawar sebagaimana diatas dengan ini Panitia menetapkan bahwa peserta penawar berhak untuk mengikuti Rapat Klarifikasi Negosiasi adalah <b><?= $nama_perusahaan ?></b> dengan nilai penawaran sebesar <b>Rp. <?= number_format($peserta_peringkat1['ev_terendah_harga'], 2, ",", "."); ?></b> <i>(<?= terbilang($peserta_peringkat1['ev_terendah_harga']) ?> Rupiah)</i> termasuk PPN 11%.</p>
+                        <p>Berdasarkan hasil pemeriksaan Dokumen Penawaran dan penilaian terhadap harga Penawar sebagaimana diatas dengan ini Panitia menetapkan bahwa peserta penawar berhak untuk mengikuti Rapat Klarifikasi Negosiasi adalah <b><?= $nama_perusahaan_peringkat1 ?></b> dengan nilai penawaran sebesar <b>Rp. <?= number_format($peserta_peringkat1['ev_terendah_harga'], 2, ",", "."); ?></b> <i>(<?= terbilang($peserta_peringkat1['ev_terendah_harga']) ?> Rupiah)</i> termasuk PPN 11%.</p>
                     </li>
 
                     <li class="mt-3">

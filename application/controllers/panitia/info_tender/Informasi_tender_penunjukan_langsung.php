@@ -32,14 +32,13 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
-        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
+        $data['peserta_tender'] = $this->M_panitia->get_peserta_tender_ikut($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_ip'] = $this->M_panitia->get_dokumen_izin_prinsip($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);
         $data['dok_tambahan'] = $this->M_panitia->result_syarat_tambahan($data['row_rup']['id_rup']);
         $data['hitung_peserta'] = $this->M_panitia->get_peserta_tender_count($data['row_rup']['id_rup']);
         $data['hak_mengumumkan'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
-
         if ($data['row_rup']['bobot_nilai'] == 1) {
             $data['get_pemenang'] = $this->M_panitia->get_peserta_pemenang_pra_1_file_biaya($data['row_rup']['id_rup']);
             $data['get_rank1'] = $this->M_panitia->get_peserta_rank1($data['row_rup']['id_rup']);
@@ -62,15 +61,30 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
         // $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
         // $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
-        $data['jadwal_pembukaan_file1'] =  $this->M_jadwal->jadwal_juksung_11($data['row_rup']['id_rup']);
-        // $data['jadwal_presentasi_evaluasi'] =  $this->M_jadwal->jadwal_pra1file_umum_14($data['row_rup']['id_rup']);
+        $data['jadwal_pembukaan_file1'] =  $this->M_jadwal->jadwal_pra1file_umum_14($data['row_rup']['id_rup']);
+        $data['jadwal_presentasi_evaluasi'] =  $this->M_jadwal->jadwal_pra1file_umum_14($data['row_rup']['id_rup']);
         // $data['jadwal_pengumuman_peringkat'] =  $this->M_jadwal->jadwal_pra1file_umum_15($data['row_rup']['id_rup']);
         // $data['jadwal_pembukaan_file2'] =  $this->M_jadwal->jadwal_pra1file_umum_16($data['row_rup']['id_rup']);
         // $data['jadwal_upload_ba'] =  $this->M_jadwal->jadwal_pra1file_umum_17($data['row_rup']['id_rup']);
         $data['jadwal_penetapan_pemenang'] =  $this->M_jadwal->jadwal_juksung_16($data['row_rup']['id_rup']);
         $data['jadwal_pengumuman_pemenang'] =  $this->M_jadwal->jadwal_juksung_16($data['row_rup']['id_rup']);
+        $data['jadwal_upload_surat_penunjukan'] =  $this->M_jadwal->jadwal_juksung_17($data['row_rup']['id_rup']);
         // $data['jadwal_masa_sanggah_akhir'] =  $this->M_jadwal->jadwal_pra1file_umum_20($data['row_rup']['id_rup']);
         // end get tahap
+
+        $data['ba_1_cek'] = $this->M_panitia->get_ba_1($data['row_rup']['id_rup']);
+        $data['ba_2_cek'] = $this->M_panitia->get_ba_2($data['row_rup']['id_rup']);
+        $data['ba_3_cek'] = $this->M_panitia->get_ba_3($data['row_rup']['id_rup']);
+        $data['ba_4_cek'] = $this->M_panitia->get_ba_4($data['row_rup']['id_rup']);
+        $data['ba_5_cek'] = $this->M_panitia->get_ba_5($data['row_rup']['id_rup']);
+        $data['ba_6_cek'] = $this->M_panitia->get_ba_6($data['row_rup']['id_rup']);
+        $data['ba_7_cek'] = $this->M_panitia->get_ba_7($data['row_rup']['id_rup']);
+        $data['ba_8_cek'] = $this->M_panitia->get_ba_8($data['row_rup']['id_rup']);
+        $data['ba_9_cek'] = $this->M_panitia->get_ba_9($data['row_rup']['id_rup']);
+        $data['ba_10_cek'] = $this->M_panitia->get_ba_10($data['row_rup']['id_rup']);
+        $data['ba_11_cek'] = $this->M_panitia->get_ba_11($data['row_rup']['id_rup']);
+        $data['ba_12_cek'] = $this->M_panitia->get_ba_12($data['row_rup']['id_rup']);
+        $data['ba_13_cek'] = $this->M_panitia->get_ba_13($data['row_rup']['id_rup']);
 
         $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
@@ -105,15 +119,28 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
     public function get_evaluasi_kualifikasi($id_rup)
     {
         $result = $this->M_panitia->gettable_evaluasi($id_rup);
-        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra1file_umum_6($id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_juksung_6($id_rup);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
+            $cek_belumvalid_vendor = $this->M_panitia->cek_valid_belum_dicekvendor($id_rup, $rs->id_vendor);
+            $cek_tidakvalid_vendor = $this->M_panitia->cek_tidak_valid_dicekvendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
 
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
@@ -122,7 +149,15 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                     $row[] = '<span class="badge bg-danger">Gugur</span>';
                 }
             } else {
-                $row[] = '<span class="badge bg-danger">Gugur</span>';
+                if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
+                    if ($cek_belumvalid_vendor) {
+                        $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+                    } else {
+                        $row[] = '<span class="badge bg-danger">Gugur</span>';
+                    }
+                } else {
+                    $row[] = '<span class="badge bg-danger">Gugur</span>';
+                }
             }
 
             // nilai keuangan
@@ -146,8 +181,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 }
             } else {
                 if ($rs->ev_keuangan == NULL) {
-                    $row[] = '00.00';
-                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
+                        if ($cek_belumvalid_vendor) {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+                        } else {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                        }
+                    } else {
+                        $row[] = '00.00';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
                 } else {
                     if ($rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_keuangan, 2, ',', '.');
@@ -188,8 +233,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 }
             } else {
                 if ($rs->ev_teknis == NULL) {
-                    $row[] = '00.00';
-                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
+                        if ($cek_belumvalid_vendor) {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+                        } else {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                        }
+                    } else {
+                        $row[] = '00.00';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
                 } else {
                     if ($rs->ev_teknis >= 60) {
                         $row[] = number_format($rs->ev_teknis, 2, ',', '.');
@@ -222,8 +277,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 }
             } else {
                 if ($rs->ev_kualifikasi_akhir == NULL) {
-                    $row[] = '00.00';
-                    $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
+                        if ($cek_belumvalid_vendor) {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
+                        } else {
+                            $row[] = '00.00';
+                            $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                        }
+                    } else {
+                        $row[] = '00.00';
+                        $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
+                    }
                 } else {
                     if ($rs->ev_teknis >= 60 && $rs->ev_keuangan >= 60) {
                         $row[] = number_format($rs->ev_kualifikasi_akhir, 2, ',', '.');
@@ -256,6 +321,8 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                     </div>';
                     }
                 } else {
+                    // ntar ubah lagi kalo salah
+
                     $row[] = '<div class="text-center">
                                 <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
                                     <i class="fa-solid fa-edit"></i>
@@ -264,12 +331,19 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                             </div>';
                 }
             } else {
+                // ntar ubah kalo salah ya
+                // $row[] = '<div class="text-center">
+                //             <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                //                 <i class="fa-solid fa-edit"></i>
+                //                 <small>Evaluasi</small>
+                //             </button>
+                //         </div>';
                 $row[] = '<div class="text-center">
-                            <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
-                                <i class="fa-solid fa-edit"></i>
-                                <small>Evaluasi</small>
-                            </button>
-                        </div>';
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','kualifikasi'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Evaluasi</small>
+                </a>
+            </div>';
             }
 
 
@@ -293,7 +367,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->nilai_penawaran) {
                 $row[] =  number_format($rs->nilai_penawaran, 2, ',', '.');
             } else {
@@ -381,7 +466,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ev_hea_penawaran) {
                 $row[] =  number_format($rs->ev_hea_penawaran, 2, ',', '.');
             } else {
@@ -440,7 +536,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ev_hea_harga) {
                 $row[] =  number_format($rs->ev_hea_harga, 2, ',', '.');
             } else {
@@ -512,7 +619,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
             } else {
@@ -581,7 +699,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ev_terendah_harga) {
                 $row[] =  number_format($rs->ev_terendah_harga, 2, ',', '.');
             } else {
@@ -697,7 +826,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             $cek_valid_vendor = $this->M_panitia->cek_valid_vendor($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 $row[] = '<span class="badge bg-success">Lulus</span>';
             } else {
@@ -1125,7 +1265,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
             $cek_null_syarat = $this->M_panitia->cek_null_syarat($id_rup, $rs->id_vendor);
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
                     $row[] = '<span class="badge bg-success">Lulus</span>';
@@ -1155,18 +1306,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
             if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
+                <button disabled class="btn btn-danger btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
-                    <small>Evaluasi</small>
-                </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','neraca_keuangan'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Neraca Keuangan</small>
-                </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Laporan Keuangan</small>
-                </a>
+                    <small>Belum Memasuki Tahap Ini</small>
+                </button>
               </div>';
             } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
@@ -1182,6 +1325,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
                 </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Pengalaman</small>
+                </a>
               </div>';
             } else {
                 $row[] = '<div class="text-center">
@@ -1196,6 +1343,10 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
+                </a>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
+                <i class="fa-solid fa-edit"></i>
+                <small>Pengalaman</small>
                 </a>
               </div>';
             }
@@ -1579,9 +1730,11 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
 
         $data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
 
+        $data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+
         // var_dump($data_vendor_terundang_by_kbli);
         // die;
-        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+        $data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 
         // yang dapat mengumumkan 
         $data['diumumkan_oleh'] = $this->M_panitia->get_yang_dapat_mengumumkan($data['row_rup']['id_rup']);
@@ -1647,7 +1800,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             $row[] = '<div class="text-center">
 			<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','lihat_dokumen_penawaran_1'" . ')">
 				<i class="fa-solid fa-eye"></i>
@@ -1675,7 +1839,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
             // } else {
@@ -1752,7 +1927,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             // if ($rs->nilai_penawaran_vendor) {
             //     $row[] = "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.');
             // } else {
@@ -1876,7 +2062,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
-        $data['jadwal_aanwizing'] = $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+        $data['jadwal_aanwizing'] = $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
         $data['data2'] = $this->M_tender->getDataById($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran', $data);
@@ -2458,7 +2644,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ba_check_ev1 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2500,7 +2697,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ba_check_ev2 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2542,7 +2750,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
             if ($rs->ba_check_ev3 == 1) {
                 $row[] = '<div class="text-center badge bg-success">Mengikuti</div>';
             } else {
@@ -2611,7 +2830,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
 
             $data[] = $row;
         }
@@ -2632,7 +2862,18 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
 
             $data[] = $row;
         }
@@ -2824,7 +3065,8 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['jadwal_pengumuman_hasil_kualifikasi'] =  $this->M_jadwal->jadwal_pra_umum_8($data['row_rup']['id_rup']);
         $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra1file_umum_10($data['row_rup']['id_rup']);
         $data['jadwal_aanwijzing'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
-        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_12($data['row_rup']['id_rup']);
+        $data['jadwal_upload_dokumen_penawaran'] =  $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
+        $data['jadwal_pemasukan_file1'] =  $this->M_jadwal->jadwal_juksung_11($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/undangan_penawaran', $data);
     }
 
@@ -2908,7 +3150,18 @@ Terimakasih';
         foreach ($result as $rs) {
             $row = array();
             $row[] = ++$no;
-            $row[] = $rs->nama_usaha;
+            $subs_string = substr($rs->nama_usaha, 0, 2);
+            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                $row[] = $rs->nama_usaha;
+            } else {
+                if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                    $row[] = 'PT ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                    $row[] = 'CV ' . $rs->nama_usaha;
+                } else if ($rs->bentuk_usaha == 'Koperasi') {
+                    $row[] =  $rs->nama_usaha;
+                }
+            }
 
             if ($rs->kelengkapan_file2_1 == 1) {
                 $row[] = '<span class="badge bg-sm bg-success"><i class="fa fa-check"></i></span>';
@@ -3044,13 +3297,7 @@ Terimakasih';
             } else {
                 $row[] = '<a target="_blank" href="' . $this->dok_vendor . $rs->nama_usaha . '/' . 'Neraca/' . $rs->file_dokumen_neraca . '"  class="btn btn-sm btn-warning btn-block">' . $rs->file_dokumen_neraca . '</a>';
             }
-            if ($rs->sts_token_dokumen == 2) {
-                $row[] = '<center>
-            	<a href="javascript:;" class="btn btn-success btn-sm shadow-lg"  <i class="fa-solid fa-lock px-1"></i> Enkrip</a></center>';
-            } else {
-                $row[] = '<center>
-            	<a href="javascript:;" class="btn btn-warning btn-sm shadow-lg"  <i class="fa-solid fa-lock-open px-1"></i> Dekrip</a></center>';
-            }
+            $row[] = '<a  href="javascript:;" class="btn btn-info btn-sm" style="width:150px" onClick="by_id_neraca_keuangan(' . "'" . $rs->id_neraca . "','lihat'" . ')"><i class="fa-solid fa-users-viewfinder px-1"></i> Lihat</a>';
             $data[] = $row;
         }
         $output = array(
@@ -3061,6 +3308,7 @@ Terimakasih';
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
 
     public function get_keuangan($id_vendor)
     {

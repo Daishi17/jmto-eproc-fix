@@ -242,16 +242,16 @@
                                     <!-- belom mulai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pembuktian_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } else { ?>
                                     <!-- udah selesai -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#undangan_pembuktian">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Undangan Pembuktian
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_undangan_pembuktian/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
                                 <?php    } ?>
                             </th>
                         </tr>
@@ -1575,7 +1575,7 @@
                         </div>
                         <div id="ba_7" style="display: none;" class="mt-3">
                             <div class="d-flex">
-                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_negosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_terbatas_pra_1_file' . '/ba_negosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
@@ -1616,7 +1616,7 @@
                                 <tr>
                                     <th>Nama Perusahaan</th>
                                     <th>
-                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $row_rup['ba_negosiasi_vendor'] ?>">
+                                        <input type="text" name="ba_negosiasi_vendor" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_negosiasi_vendor')" placeholder="Nama Perusahaan" class="form-control" value="<?= $deal_nego['nama_usaha'] ?>" disabled>
                                     </th>
                                 </tr>
                                 <tr>
@@ -2006,6 +2006,7 @@
                     ?>
                 </div>
             <?php  } else { ?>
+             
             <?php   }  ?>
 
 
