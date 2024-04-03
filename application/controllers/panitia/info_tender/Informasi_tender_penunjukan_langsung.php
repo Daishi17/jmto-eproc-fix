@@ -1255,7 +1255,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $result = $this->M_panitia->gettable_syarat_tambahan($id_rup);
         // urgensi hitung pake syarat buat cek valid atau Gugur
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
-        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_juksung_6($id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_juksung_4($id_rup);
 
         $data = [];
         $no = $_POST['start'];
@@ -2063,7 +2063,7 @@ class Informasi_tender_penunjukan_langsung extends CI_Controller
         $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $root_jadwal = $data['row_rup']['root_jadwal'];
         $data['root_jadwal'] = $data['row_rup']['root_jadwal'];
-        $data['jadwal_aanwizing'] = $this->M_jadwal->jadwal_pra1file_umum_11($data['row_rup']['id_rup']);
+        $data['jadwal_aanwizing'] = $this->M_jadwal->jadwal_juksung_12($data['row_rup']['id_rup']);
         $data['data2'] = $this->M_tender->getDataById($data['row_rup']['id_rup']);
         $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/aanwijzing_penawaran', $data);

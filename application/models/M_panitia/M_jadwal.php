@@ -513,7 +513,15 @@ class M_jadwal extends CI_Model
         return $query->row_array();
     }
 
-
+    public function jadwal_juksung_12($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->like('nama_jadwal_rup', 'Anwijzing Penawaran');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 
     public function jadwal_juksung_5($id_rup)
     {
