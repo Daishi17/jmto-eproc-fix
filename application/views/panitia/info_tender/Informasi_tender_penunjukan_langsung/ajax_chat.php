@@ -159,7 +159,7 @@
                         </div>
                         <div class="msg_cotainer">
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                         </div> </div>`;
                             } else if (d.dokumen_chat) {
                                 html += `<label class="badge badge-primary ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -169,8 +169,7 @@
                         <div class="msg_cotainer">
                         <a href="<?= base_url('/file_chat/') ?>${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
-                        </div>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>                        </div>
                      </div>`;
                             } else if (d.img_chat) {
                                 html += `<label class="badge badge-primary ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -180,7 +179,7 @@
                         <div class="msg_cotainer">
 								<img width="100%" src="<?= base_url('file_chat/') ?>${d.img_chat}"> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                         </div>
                       
                      </div>`;
@@ -208,7 +207,7 @@
                                     Membalas Chat :
                                     ${d.replay_isi} <br><br>
                                     ${d.isi}								
-                                    <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                     </div> </div>`;
                                     } else if (d.dokumen_chat) {
                                         html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -220,7 +219,7 @@
                                     Membalas Chat :
                                     ${d.replay_isi} <br><br>
                                     ${d.isi}								
-                                    <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                     </div>
                                 </div>`;
                                     } else if (d.img_chat) {
@@ -233,7 +232,7 @@
                                                 Membalas Chat :
                                     ${d.replay_isi} <br><br>
                                     ${d.isi}									
-                                        <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                        <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                         </div>
                                     
                                     </div>`;
@@ -259,7 +258,7 @@
                                     </div>
                                     <div class="msg_cotainer">
                                     ${d.isi}								
-                                    <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                     </div> </div>`;
                                     } else if (d.dokumen_chat) {
                                         html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -269,7 +268,7 @@
                                     <div class="msg_cotainer">
                                     <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                                     ${d.isi}								
-                                    <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                     </div>
                                 </div>`;
                                     } else if (d.img_chat) {
@@ -280,7 +279,7 @@
                                         <div class="msg_cotainer">
                                                 <img width="100%" src="https://drtproc.jmto.co.id/file_chat/${d.img_chat}"> <br>
                                         ${d.isi}								
-                                        <span class="msg_time">${kapan}, ${time}  	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                        <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                                         </div>
                                     
                                     </div>`;
@@ -404,6 +403,14 @@
 
         }
     });
+
+    function Replay(pengirim, isi, usaha) {
+        $('.replay_orang').css('display', 'block');
+        $('[name="replay_tujuan"]').val(usaha);
+        $('[name="replay_isi"]').val(isi);
+        $('#nama_usaha_replay').html(usaha)
+        $('#replay_tujuan_terlihat').html(isi)
+    }
 
     function Replay(pengirim, isi, usaha) {
         $('.replay_orang').css('display', 'block');

@@ -99,7 +99,7 @@
                                     html += '<div class="d-flex justify-content-end mb-4">' +
                                         '<div class="msg_cotainer_send">' +
                                         '<div class="bs-callout bs-callout-info">' +
-                                        'Membalas Chat :' +
+                                        'Membalas Chat : ' +
                                         '' + d.replay_isi + '' +
                                         '</div>' +
                                         '<br>' + d.isi + '' +
@@ -110,7 +110,7 @@
                                     html += '<div class="d-flex justify-content-end mb-4">' +
                                         '<div class="msg_cotainer_send">' +
                                         '<div class="bs-callout bs-callout-info">' +
-                                        'Membalas Chat :' +
+                                        'Membalas Chat : ' +
                                         '' + d.replay_isi + '' +
                                         '</div>' +
                                         '<a  class="text-primary" target="_blank" href="<?= base_url('file_chat/') ?>' + d.dokumen_chat + '">' + d.dokumen_chat + '</a>' +
@@ -122,7 +122,7 @@
                                     html += '<div class="d-flex justify-content-end mb-4">' +
                                         '<div class="msg_cotainer_send">' +
                                         '<div class="bs-callout bs-callout-info">' +
-                                        'Membalas Chat :' +
+                                        'Membalas Chat : ' +
                                         '' + d.replay_isi + '' +
                                         '</div>' +
                                         '<a  class="text-primary" target="_blank" href="<?= base_url('file_chat/') ?>' + d.img_chat + '"><img width="100%" src="<?= base_url('file_chat/') ?>' + d.img_chat + '"></a>' +
@@ -134,7 +134,7 @@
                                     html += '<div class="d-flex justify-content-end mb-4">' +
                                         '<div class="msg_cotainer_send">' +
                                         '<div class="bs-callout bs-callout-info">' +
-                                        'Membalas Chat :' +
+                                        'Membalas Chat : ' +
                                         '' + d.replay_isi + '' +
                                         '</div>' +
                                         '<br>' + d.isi + '' +
@@ -159,7 +159,7 @@
                         </div>
                         <div class="msg_cotainer">
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                         </div> </div>`;
                             } else if (d.dokumen_chat) {
                                 html += `<label class="badge badge-primary ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -169,8 +169,7 @@
                         <div class="msg_cotainer">
                         <a href="<?= base_url('/file_chat/') ?>${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>                        </div>
                      </div>`;
                             } else if (d.img_chat) {
                                 html += `<label class="badge badge-primary ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
@@ -180,7 +179,7 @@
                         <div class="msg_cotainer">
 								<img width="100%" src="<?= base_url('file_chat/') ?>${d.img_chat}"> <br>
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
+                           <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                         </div>
                       
                      </div>`;
@@ -191,58 +190,113 @@
                         </div>
                         <div class="msg_cotainer">
                            ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}	</span>
+                           <span class="msg_time">${kapan}, ${time}	<a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
                         </div>
                       
                      </div>`;
                             }
                         } else {
                             if (d.nama_pegawai) {
-                                if (d.dokumen_chat == null) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div> </div>`;
-                                } else if (d.dokumen_chat) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                        <a target="_blank" href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div>
-                     </div>`;
-                                } else if (d.img_chat) {
-                                    html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-								<img width="100%" src="https://drtproc.jmto.co.id/file_chat/${d.img_chat}"> <br>
-                           ${d.isi}								
-                           <span class="msg_time">${kapan}, ${time}  	</span>
-                        </div>
-                      
-                     </div>`;
+                                if (d.replay_tujuan) {
+                                    if (d.dokumen_chat == null) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    </div> </div>`;
+                                    } else if (d.dokumen_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                                    Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    </div>
+                                </div>`;
+                                    } else if (d.img_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                        <div class="img_cont_msg">
+                                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                        </div>
+                                        <div class="msg_cotainer">
+                                                <img width="100%" src="https://drtproc.jmto.co.id/file_chat/${d.img_chat}"> <br>
+                                                Membalas Chat :
+                                    ${d.replay_isi} <br><br>
+                                    ${d.isi}									
+                                        <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                        </div>
+                                    
+                                    </div>`;
+                                    } else {
+                                        html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
+                                            '<div class="img_cont_msg">' +
+                                            '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
+                                            '</div>' +
+                                            '<div class="msg_cotainer">' +
+                                            '' + d.isi + '' +
+                                            '<span class="msg_time">' +
+                                            '' + kapan + '' +
+                                            '' + time + '' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
                                 } else {
-                                    html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
-                                        '<div class="img_cont_msg">' +
-                                        '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
-                                        '</div>' +
-                                        '<div class="msg_cotainer">' +
-                                        '' + d.isi + '' +
-                                        '<span class="msg_time">' +
-                                        '' + kapan + '' +
-                                        '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
-                                        '</div>' +
-                                        '</div>';
+                                    if (d.dokumen_chat == null) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    </div> </div>`;
+                                    } else if (d.dokumen_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                    <div class="img_cont_msg">
+                                    <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                    <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                                    ${d.isi}								
+                                    <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                    </div>
+                                </div>`;
+                                    } else if (d.img_chat) {
+                                        html += `<label class="badge badge-danger ml-5" >Panitia</label><div class="d-flex justify-content-start mb-4">
+                                        <div class="img_cont_msg">
+                                        <img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">
+                                        </div>
+                                        <div class="msg_cotainer">
+                                                <img width="100%" src="https://drtproc.jmto.co.id/file_chat/${d.img_chat}"> <br>
+                                        ${d.isi}								
+                                        <span class="msg_time">${kapan}, ${time} <a href="javascript:;" class="badge badge-sm badge-primary" onclick="Replay('${d.id_pengirim}','${d.isi}','Panitia')">Reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent('${d.isi}')">Copy Text</a></span>
+                                        </div>
+                                    
+                                    </div>`;
+                                    } else {
+                                        html += '<label class="badge badge-danger ml-5" >' + d.nama_usaha + '</label><div class="d-flex justify-content-start mb-4">' +
+                                            '<div class="img_cont_msg">' +
+                                            '<img src="<?= base_url('assets/img/proc.png') ?>" alt="" class="rounded-circle user_img_msg">' +
+                                            '</div>' +
+                                            '<div class="msg_cotainer">' +
+                                            '' + d.isi + '' +
+                                            '<span class="msg_time">' +
+                                            '' + kapan + '' +
+                                            '' + time + '' +
+                                            '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
                                 }
                             } else {
                                 if (d.dokumen_chat == null) {
@@ -255,7 +309,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 } else if (d.dokumen_chat) {
@@ -264,7 +318,7 @@
                         <img src="<?= base_url('assets/vendor.png') ?>" alt="" class="rounded-circle user_img_msg">
                         </div>
                         <div class="msg_cotainer">
-                        <a target="_blank" href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
+                        <a href="https://drtproc.jmto.co.id/file_chat/${d.dokumen_chat}"> ${d.dokumen_chat}</a> <br>
                            ${d.isi}								
                            <span class="msg_time">${kapan}, ${time}  	</span>
                         </div>
@@ -291,7 +345,7 @@
                                         '<span class="msg_time">' +
                                         '' + kapan + '' +
                                         '' + time + '' +
-                                        '<a onclick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a>	</span>' +
+                                        '<a onClick="Replay(' + "'" + d.id_pengirim + "','" + d.isi + "','" + d.nama_usaha + "'" + ')" href="javascript:;" class="badge badge-sm badge-warning">reply</a> <a href="javascript:;" class="badge badge-sm badge-primary" onclick="copyContent(\'' + d.isi + '\')">Copy Text</a></span>' +
                                         '</div>' +
                                         '</div>';
                                 }
@@ -339,6 +393,7 @@
                 }
             });
         });
+
         scrollToBottom()
 
         function scrollToBottom() {
@@ -348,6 +403,14 @@
 
         }
     });
+
+    function Replay(pengirim, isi, usaha) {
+        $('.replay_orang').css('display', 'block');
+        $('[name="replay_tujuan"]').val(usaha);
+        $('[name="replay_isi"]').val(isi);
+        $('#nama_usaha_replay').html(usaha)
+        $('#replay_tujuan_terlihat').html(isi)
+    }
 
     function Replay(pengirim, isi, usaha) {
         $('.replay_orang').css('display', 'block');
@@ -390,5 +453,27 @@
 
             }
         })
+    }
+</script>
+
+<script>
+    function copyContent(value) {
+        // Check if the value exists
+        if (value) {
+            // Copy the value to the clipboard
+            navigator.clipboard.writeText(value)
+                .then(function() {
+                    // Provide feedback to the user
+                    alert('Value copied to clipboard: ' + value);
+                })
+                .catch(function(error) {
+                    // Handle errors
+                    console.error('Unable to copy value: ', error);
+                    alert('Unable to copy value. Please try again.');
+                });
+        } else {
+            // If the value is empty or undefined, inform the user
+            alert('No value found to copy.');
+        }
     }
 </script>

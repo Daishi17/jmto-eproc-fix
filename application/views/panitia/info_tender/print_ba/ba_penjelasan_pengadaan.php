@@ -257,7 +257,7 @@ function terbilang($nilai)
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($peserta_tender_pq as $key => $value) { ?>
+                        foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
                             <?php
                             $subs_string = substr($value['nama_usaha'], 0, 2);
                             if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
