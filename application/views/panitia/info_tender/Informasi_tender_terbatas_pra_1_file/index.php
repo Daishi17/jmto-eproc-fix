@@ -514,12 +514,12 @@
                                 <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_pengumuman_hasil_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Upload Hasil Kualifikasi
-                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/tender_diikuti/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>
 
@@ -620,7 +620,7 @@
                                                         </tr>
                                                         <tr>
                                                             <?php if ($row_rup['ba_sampul1_no_2']) { ?>
-                                                                <th>Berita Acara Pembukaan Penawaran Tender Terbatas Satu File</th>
+                                                                <th>Berita Acara Pembukaan Penawaran Satu File</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/informasi_tender_terbatas_pra_1_file/ba_sampul_I_2/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
                                                         </tr>
@@ -837,7 +837,7 @@
                     <option value="2">3. Berita Acara Hasil Evaluasi Kualifikasi</option>
                     <option value="10">4. Berita Acara Rapat Penjelasan Dokumen Pengadaan</option>
                     <option value="3">5. Berita Acara Pembukaan File I</option>
-                    <option value="14">5.1 Berita Acara Pembukaan Penawaran Tender Terbatas Satu File</option>
+                    <option value="14">5.1 Berita Acara Pembukaan Penawaran Satu File</option>
                     <option value="4">6. Undangan Rapat Presentasi Teknis</option>
                     <option value="11">7. Berita Acara Presentasi Teknis Tender</option>
                     <option value="5">8. Berita Acara Hasil Evaluasi Teknis</option>
@@ -850,6 +850,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div id="ba_1" style="display: none;" class="mt-3">
+
                             <div class="d-flex">
                                 <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_pembuktian_kualifikasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a> &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_pembuktian_kualifikasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
@@ -860,6 +861,21 @@
                                 <?php } ?>
                             </div>
                             <br>
+                            <label for="">Pilih Panitia </label>
+                            <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_2">
+                                </tbody>
+                            </table>
                             <br>
                             <form action="javascript:;">
                                 <table class="table table-bordered">
@@ -912,10 +928,16 @@
                                         foreach ($peserta_tender as $key => $value) { ?>
                                             <?php
                                             $subs_string = substr($value['nama_usaha'], 0, 2);
-                                            if ($subs_string == 'PT') {
+                                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                                 $nama_perusahaan = $value['nama_usaha'];
                                             } else {
-                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                    $nama_perusahaan = $value['nama_usaha'];
+                                                }
                                             }
                                             ?>
                                             <tr>
@@ -979,8 +1001,20 @@
 
                             </div>
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_3">
+                                </tbody>
+                            </table>
                             <br>
-
                             <form action="javascript:;">
                                 <table class="table table-bordered">
                                     <tr>
@@ -1093,8 +1127,20 @@
                                     <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_sampul1')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                                 <?php } ?>
                             </div>
-
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_5">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1201,8 +1247,20 @@
                                 <?php } ?>
 
                             </div>
-
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_6">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1384,10 +1442,16 @@
                                     foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
                                         <?php
                                         $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                             $nama_perusahaan = $value['nama_usaha'];
                                         } else {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
                                         ?>
                                         <tr>
@@ -1417,8 +1481,20 @@
                                 <?php } ?>
 
                             </div>
-
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_8">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1510,8 +1586,20 @@
                                 <?php } ?>
 
                             </div>
-
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_10">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1585,8 +1673,20 @@
                                 <?php } ?>
 
                             </div>
-
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_12">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1647,7 +1747,7 @@
                         </div>
                         <div id="ba_8" style="display: none;" class="mt-3">
                             <div class="d-flex">
-                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_umum_pra_2_file' . '/ba_evaluasinegosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
+                                <a href="<?= base_url('panitia/info_tender/' . 'informasi_tender_terbatas_pra_1_file' . '/ba_evaluasinegosiasi' . '/' . $row_rup['id_url_rup']) ?>" target="_blank" class="btn btn-sm btn-info float-end text-white"><i class="fa fa-eye"></i> Lihat Hasil</a>
                                 &ensp;&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_klarifikasi_harga','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_klarifikasi_harga','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
@@ -1658,6 +1758,19 @@
 
                             </div>
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_11">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1712,6 +1825,19 @@
 
                             </div>
                             <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_4">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -1792,10 +1918,16 @@
                                     foreach ($peserta_tender as $key => $value) { ?>
                                         <?php
                                         $subs_string = substr($value['nama_usaha'], 0, 2);
-                                        if ($subs_string == 'PT') {
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                             $nama_perusahaan = $value['nama_usaha'];
                                         } else {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
                                         ?>
                                         <tr>
@@ -1849,11 +1981,25 @@
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_penjelasan_kualifikasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
                                 <?php if ($ba_12_cek) { ?>
                                 <?php } else { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_evaluasi_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_penjelasan_kualifikasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                                 <?php } ?>
                             </div>
-
                             <br>
+                            <label for="">Pilih Panitia </label>
+                            <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_panitia_ba_1">
+                                </tbody>
+                            </table>
                             <br>
                             <table class="table table-bordered">
                                 <tr>
@@ -2006,7 +2152,7 @@
                     ?>
                 </div>
             <?php  } else { ?>
-             
+
             <?php   }  ?>
 
 
@@ -2218,9 +2364,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $subs_string = substr($get_rank1['nama_usaha'], 0, 2);
+                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                            $nama_perusahaan_rank1 = $get_rank1['nama_usaha'];
+                        } else {
+                            if ($get_rank1['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                $nama_perusahaan_rank1 = 'PT ' . $get_rank1['nama_usaha'];
+                            } else if ($get_rank1['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                $nama_perusahaan_rank1 = 'CV ' . $get_rank1['nama_usaha'];
+                            } else if ($get_rank1['bentuk_usaha']  == 'Koperasi') {
+                                $nama_perusahaan_rank1 = $get_rank1['nama_usaha'];
+                            }
+                        }
+                        ?>
                         <tr>
                             <td scope="row">1</td>
-                            <td><?= $get_rank1['nama_usaha'] ?></td>
+                            <td><?= $nama_perusahaan_rank1 ?></td>
                             <td><?= $get_rank1['email'] ?></td>
                             <td><i class="fas fa fa-star text-warning"></i></td>
                         </tr>
@@ -2514,12 +2674,20 @@
                     <tbody>
                         <?php $no = 1;
                         foreach ($peserta_tender as $key => $value) { ?>
-                            <?php $subs_string = substr($value['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT') {
+                            <?php
+                            $subs_string = substr($value['nama_usaha'], 0, 2);
+                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                 $nama_perusahaan = $value['nama_usaha'];
                             } else {
-                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                            } ?>
+                                if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                    $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                    $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                }
+                            }
+                            ?>
                             <tr>
                                 <td scope="row"><?= $no++ ?></td>
                                 <td><?= $nama_perusahaan ?></td>
@@ -2952,5 +3120,143 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="modal-xl-neraca-edit">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card border-dark shadow-lg">
+                    <div class="card-header bg-dark d-flex bd-highlight">
+                        <div class="flex-grow-1 bd-highlight">
+                            <span class="text-white">
+                                <i class="fa-solid fa-align-justify px-1"></i>
+                                <small><strong>Form Data - Neraca Keuangan</strong></small>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <br>
+                        <form action="javascript:;" id="form_edit_neraca" method="post">
+                            <input type="hidden" name="id_neraca">
+                            <table class="table table-bordered">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th class="tg-9wq8" rowspan="2">NO</th>
+                                        <th class="tg-9wq8" rowspan="2">Uraian</th>
+                                        <th class="tg-9wq8" colspan="2">
+                                            <select name="tahun_mulai_edit" class="form-control" onchange="tahun_awal_edit()" disabled>
+                                                <option value="">--Pilih Tahun--</option>
+                                                <?php for ($i = 10; $i < 30; $i++) {  ?>
+                                                    <option value="20<?= $i ?>">20<?= $i ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </th>
+                                        <th class="tg-9wq8" colspan="2">
+                                            <input type="text" disabled name="tahun_selesai_edit" readonly class="form-control">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-9wq8" colspan="2">(Rp).</th>
+                                        <th class="tg-9wq8" colspan="2">(Rp).</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-0pky">1</td>
+                                        <td class="tg-0pky">Penjelasan/Opini dari Auditor Kantor Akuntan Publik</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_1" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_1"></td>
+                                        <td class="tg-0pky" colspan="2"><input class="form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">2</td>
+                                        <td class="tg-za14">Jumlah Kas dan Bank</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_2" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah1_1" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_2"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah2_2" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">3</td>
+                                        <td class="tg-za14">Total Hutang</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_3" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah3_3" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_3"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah4_4" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">4</td>
+                                        <td class="tg-za14">Total Ekuitas</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_4" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah5_5" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_4"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah6_6" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">5</td>
+                                        <td class="tg-za14">Total Aktiva Lancar</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_5" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah7_7" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_5"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah8_8" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">6</td>
+                                        <td class="tg-za14">Total Hutang Lancar</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_6" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah9_9" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_6"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah10_10" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">7</td>
+                                        <td class="tg-7zrl">Laba Usaha</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_7" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah11_11" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_7"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah12_12" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">8</td>
+                                        <td class="tg-7zrl">EBITDA (Laba Usaha + Beban Penyusutan)</td>
+                                        <!-- <td class="tg-0pky"><select name="jenis_laporan_8" class="form-control form-control-sm" id="">
+                                        <option value="Audit">Audit</option>
+                                        <option value="Tidak Audit">Tidak Audit</option>
+                                    </select></td> -->
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah13_13" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_1_8"></td>
+                                        <td class="tg-0pky" colspan="2"><input id="rupiah14_14" class="rupiahku form-control form-control-sm" type="text" disabled name="nilai_tahun_kolom_2_8"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

@@ -439,7 +439,7 @@
                             </tr>
                             <tr>
                                 <th>Nama Metode Pemilihan </th>
-                                <td><?= $row_rup['metode_kualifikasi'] ?></td>
+                                <td><?= $row_rup['nama_jadwal_pengadaan'] ?></td>
                             </tr>
 
                             <tr>
@@ -540,7 +540,7 @@
 
                                         </div>
                                     <?php    } else { ?>
-                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Dokumen Pemilihan / Penawaran Sudah Habis..."></textarea>
+                                        <textarea disabled name="isi" class="form-control type_msg" placeholder="Waktu Penjelasan Kualifikasi Sudah Habis..."></textarea>
                                         <div class="input-group-append">
                                         </div>
                                     <?php    } ?>

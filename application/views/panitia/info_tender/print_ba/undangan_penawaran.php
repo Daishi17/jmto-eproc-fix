@@ -172,98 +172,195 @@ function terbilang($nilai)
 
             <p>Berdasarkan Pengumuman Hasil Kualifikasi Nomor <?= $row_rup['no_pengumuman_hasil_kualifikasi'] ?> tanggal <?= $row_rup['tanggal_pengumuman_hasil_kualifikasi'] ?> untuk <?= $row_rup['nama_metode_pengadaan'] ?> dengan <label class="text-lowercase"><?= $row_rup['metode_kualifikasi'] ?></label> <b> <?= $row_rup['nama_rup'] ?></b> dengan ini kami mengundang Saudara untuk mengikuti kegiatan Penawaran dengan jadwal sebagai berikut:</p>
 
-            <ol>
-                <li>
-                    <b>Download Dokumen Pengadaan</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
-                        </tr>
 
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
-                        </tr>
+            <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                <ol>
+                    <li>
+                        <b>Download Dokumen Pengadaan</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
+                            </tr>
 
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> Melalui Aplikasi E-Tender </th>
-                        </tr>
-                    </table>
-                </li>
-                <br>
-                <li>
-                    <b>Rapat Penjelasan (Aanwijzing)</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
-                        </tr>
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
+                            </tr>
 
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
-                        </tr>
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Rapat Penjelasan (Aanwijzing)</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
+                            </tr>
 
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Melalui Aplikasi E-Tender </th>
-                        </tr>
-                    </table>
-                </li>
-                <br>
-                <li>
-                    <b>Jaminan Penawaran</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Nilai Jaminan </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= $row_rup['nilai_jaminan_penawaran'] ?></th>
-                        </tr>
-                        <tr>
-                            <th width="250px">Masa Berlaku </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= $row_rup['masa_berlaku_penawaran'] ?></th>
-                        </tr>
-                        <tr>
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
+                            </tr>
 
-                            <th width="250px">Produk </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Bank Garansi sebagaimana yang ditetapkan oleh Menteri Keuangan tentang Bank-Bank yang mengatur penerbitan Bank Garansi </th>
-                        </tr>
-                    </table>
-                </li>
-                <br>
-                <li>
-                    <b>Upload Dokumen Penawaran (File Administrasi, Teknis dan Harga)</b><br>
-                    <table>
-                        <tr>
-                            <th width="250px">Tanggal </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_selesai']))) ?> </th>
-                        </tr>
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Jaminan Penawaran</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Nilai Jaminan </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= $row_rup['nilai_jaminan_penawaran'] ?></th>
+                            </tr>
+                            <tr>
+                                <th width="250px">Masa Berlaku </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= $row_rup['masa_berlaku_penawaran'] ?></th>
+                            </tr>
+                            <tr>
 
-                        <tr>
-                            <th width="250px">Waktu</th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th> <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_selesai'])) ?> WIB</th>
-                        </tr>
+                                <th width="250px">Produk </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Bank Garansi sebagaimana yang ditetapkan oleh Menteri Keuangan tentang Bank-Bank yang mengatur penerbitan Bank Garansi </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Upload Dokumen Penawaran (File Administrasi, Teknis dan Harga)</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_pemasukan_file1['waktu_selesai']))) ?> </th>
+                            </tr>
 
-                        <tr>
-                            <th width="250px">Tempat </th>
-                            <th>&ensp;&ensp;:&ensp;&ensp;</th>
-                            <th>Melalui Aplikasi E-Tender </th>
-                        </tr>
-                    </table>
-                </li>
-            </ol>
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_pemasukan_file1['waktu_selesai'])) ?> WIB</th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                </ol>
+            <?php } else { ?>
+                <ol>
+                    <li>
+                        <b>Download Dokumen Pengadaan</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai']))) ?> </th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_download_dokumen_pengadaan['waktu_selesai'])) ?> WIB</th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Rapat Penjelasan (Aanwijzing)</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_aanwijzing['waktu_selesai']))) ?> </th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) ?> WIB</th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Jaminan Penawaran</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Nilai Jaminan </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= $row_rup['nilai_jaminan_penawaran'] ?></th>
+                            </tr>
+                            <tr>
+                                <th width="250px">Masa Berlaku </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= $row_rup['masa_berlaku_penawaran'] ?></th>
+                            </tr>
+                            <tr>
+
+                                <th width="250px">Produk </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Bank Garansi sebagaimana yang ditetapkan oleh Menteri Keuangan tentang Bank-Bank yang mengatur penerbitan Bank Garansi </th>
+                            </tr>
+                        </table>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Upload Dokumen Penawaran (File Administrasi, Teknis dan Harga)</b><br>
+                        <table>
+                            <tr>
+                                <th width="250px">Tanggal </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th><?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai']))) ?> - <?= tgl_indo(date('d-m-Y', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai']))) ?> </th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Waktu</th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th> <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_mulai'])) ?> - <?= date('H:i', strtotime($jadwal_upload_dokumen_penawaran['waktu_selesai'])) ?> WIB</th>
+                            </tr>
+
+                            <tr>
+                                <th width="250px">Tempat </th>
+                                <th>&ensp;&ensp;:&ensp;&ensp;</th>
+                                <th>Melalui Aplikasi E-Tender </th>
+                            </tr>
+                        </table>
+                    </li>
+                </ol>
+            <?php } ?>
+
 
             <p>Demikian kami sampaikan, atas perhatian Saudara, diucapkan terima kasih.</p>
 

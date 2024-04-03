@@ -66,7 +66,7 @@ class Daftar_paket extends CI_Controller
 				if ($rs->status_paket_panitia == 1) {
 					$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 				} else {
-					if ($jadwal_terakhir['waktu_mulai'] <= $now) {
+					if ($rs->selesai_semua_tender < $now) {
 						$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 						</span>';
 					} else {
@@ -491,7 +491,7 @@ Terimakasih');
 				$this->kirim_wa->kirim_wa_vendor_terdaftar($value2['no_telpon'], $message);
 			}
 			$this->M_panitia->update_rup_panitia($data_rup['id_rup'], $data);
-			$this->email_send->sen_email_pengumuman($data_rup['id_rup']);
+			// $this->email_send->sen_email_pengumuman($data_rup['id_rup']);
 
 
 			// $this->email_send->sen_email_finalisasi_panitia($data_rup['id_rup']);
@@ -715,7 +715,8 @@ Terimakasih');
 							// neraca keuangan
 							$data_vendor_lolos_neraca_keuangan = $this->M_panitia->data_vendor_lolos_neraca_keuangan($cek_syarat_teknis);
 							$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
-							$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+							$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+							$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], 	$data_vendor_terundang_by_kbli_sbu);
 							$post_all_vendor = [];
 							foreach ($data_vendor_terundang as $value) {
 								$post_all_vendor[] = $value['id_vendor'];
@@ -775,7 +776,8 @@ Terimakasih');
 						// neraca keuangan
 						$data_vendor_lolos_neraca_keuangan = $this->M_panitia->data_vendor_lolos_neraca_keuangan($cek_syarat_teknis);
 						$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
-						$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+						$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+						$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 						$post_all_vendor = [];
 						foreach ($data_vendor_terundang as $value) {
 							$post_all_vendor[] = $value['id_vendor'];
@@ -904,7 +906,8 @@ Terimakasih');
 			// neraca keuangan
 			$data_vendor_lolos_neraca_keuangan = $this->M_panitia->data_vendor_lolos_neraca_keuangan($cek_syarat_teknis);
 			$data_vendor_terundang_by_kbli = $this->M_panitia->gabung_keseluruhan_vendor_terundang($data_vendor_lolos_siup_kbli, $data_vendor_lolos_nib_kbli, $data_vendor_lolos_siujk_kbli, $data_vendor_lolos_sbu_kbli);
-			$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup']);
+			$data_vendor_terundang_by_kbli_sbu = $this->M_panitia->gabung_keseluruhan_vendor_terundang_sbu($data_vendor_lolos_sbu_kbli);
+			$data_vendor_terundang = $this->M_panitia->result_vendor_terundang($syarat_izin_usaha, $cek_syarat_teknis, $data_vendor_lolos_spt, $data_vendor_lolos_laporan_keuangan, $data_vendor_lolos_neraca_keuangan, $data_vendor_terundang_by_kbli, $data['row_rup'], $data_vendor_terundang_by_kbli_sbu);
 			$post_all_vendor = [];
 			foreach ($data_vendor_terundang as $value) {
 				$post_all_vendor[] = $value['id_vendor'];

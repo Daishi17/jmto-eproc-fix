@@ -47,8 +47,8 @@
                                 <td><?= $row_rup['nama_jenis_pengadaan'] ?></td>
                             </tr>
                             <tr>
-                                <th>Nama Metode Pemilihan</th>
-                                <td><?= $row_rup['metode_kualifikasi'] ?> (<?= $row_rup['metode_dokumen'] ?>)</td>
+                                <th>Nama Metode Pemilihan </th>
+                                <td><?= $row_rup['nama_jadwal_pengadaan'] ?></td>
                             </tr>
                             <tr>
                                 <th>HPS</th>
