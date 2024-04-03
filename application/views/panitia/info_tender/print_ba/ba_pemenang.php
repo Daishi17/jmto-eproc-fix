@@ -256,12 +256,21 @@ function terbilang($nilai)
                             <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
                             <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
                         </tr>
+                        <?php if ($jadwal_sanggah_pemenang) { ?>
+                            <tr>
+                                <td>Masa Sanggah</td>
+                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
+                            </tr>
+                        <?php } else { ?>
+                            <tr>
+                                <td>Masa Sanggah</td>
+                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                <td>-</td>
+                            </tr>
+                        <?php }
+                        ?>
 
-                        <tr>
-                            <td>Masa Sanggah</td>
-                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
-                        </tr>
                     </table>
                 </div>
             </div>

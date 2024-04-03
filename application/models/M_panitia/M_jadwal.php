@@ -574,6 +574,18 @@ class M_jadwal extends CI_Model
         return $query->row_array();
     }
 
+    public function jadwal_juksung_9_10($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->like('nama_jadwal_rup', 'Masa Sanggah & Jawaban Sanggah terhadap Pemenang');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    
+
 
     // INI UNUTK JADWAL TENDER TERBATAS PASCAKUALIFIKASI 1 FILE
     public function jadwal_tender_terbatas_pasca_1_file_4($id_rup)
