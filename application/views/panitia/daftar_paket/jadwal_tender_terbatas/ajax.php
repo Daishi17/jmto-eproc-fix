@@ -491,41 +491,41 @@
         datetimepicker: true,
         format: 'Y-m-d H:i',
     })
-    document.getElementById("selesai10").onchange = function() {
-        validasi_selesai10()
-    };
-    document.getElementById("mulai10").onchange = function() {
-        validasi_mulai10()
-    };
-    // validasi mulai
-    function validasi_mulai10() {
-        const mulai10 = new Date($('#mulai10').val());
-        const selesai9 = new Date($('#selesai9').val());
-        if (mulai10.getTime() < selesai9.getTime()) {
-            $('#error-jadwal10').show();
-            $("#erorr_jadwal_row10").css("background-color", "red");
-            $("#erorr_jadwal_row10").css("color", "white");
-        } else {
-            $('#error-jadwal10').hide();
-            $("#erorr_jadwal_row10").css("background-color", "transparent");
-            $("#erorr_jadwal_row10").css("color", "black");
-        }
-    }
+    // document.getElementById("selesai10").onchange = function() {
+    //     validasi_selesai10()
+    // };
+    // document.getElementById("mulai10").onchange = function() {
+    //     validasi_mulai10()
+    // };
+    // // validasi mulai
+    // function validasi_mulai10() {
+    //     const mulai10 = new Date($('#mulai10').val());
+    //     const selesai9 = new Date($('#selesai9').val());
+    //     if (mulai10.getTime() < selesai9.getTime()) {
+    //         $('#error-jadwal10').show();
+    //         $("#erorr_jadwal_row10").css("background-color", "red");
+    //         $("#erorr_jadwal_row10").css("color", "white");
+    //     } else {
+    //         $('#error-jadwal10').hide();
+    //         $("#erorr_jadwal_row10").css("background-color", "transparent");
+    //         $("#erorr_jadwal_row10").css("color", "black");
+    //     }
+    // }
 
-    // validasi selesai
-    function validasi_selesai10() {
-        const mulai10 = new Date($('#mulai10').val());
-        const selesai10 = new Date($('#selesai10').val());
-        if (mulai10.getTime() > selesai10.getTime()) {
-            $('#error-jadwal10').show();
-            $("#erorr_jadwal_row10").css("background-color", "red");
-            $("#erorr_jadwal_row10").css("color", "white");
-        } else {
-            $('#error-jadwal10').hide();
-            $("#erorr_jadwal_row10").css("background-color", "transparent");
-            $("#erorr_jadwal_row10").css("color", "black");
-        }
-    }
+    // // validasi selesai
+    // function validasi_selesai10() {
+    //     const mulai10 = new Date($('#mulai10').val());
+    //     const selesai10 = new Date($('#selesai10').val());
+    //     if (mulai10.getTime() > selesai10.getTime()) {
+    //         $('#error-jadwal10').show();
+    //         $("#erorr_jadwal_row10").css("background-color", "red");
+    //         $("#erorr_jadwal_row10").css("color", "white");
+    //     } else {
+    //         $('#error-jadwal10').hide();
+    //         $("#erorr_jadwal_row10").css("background-color", "transparent");
+    //         $("#erorr_jadwal_row10").css("color", "black");
+    //     }
+    // }
 </script>
 
 
@@ -1228,18 +1228,6 @@
             $('.btnSave').attr('disabled', 'disabled');
             // 10
             // 9
-        } else if (selesai10.getTime() < mulai10.getTime()) {
-            $('#error-jadwal10').show();
-            $("#erorr_jadwal_row10").css("background-color", "red");
-            $("#erorr_jadwal_row10").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-        } else if (mulai10.getTime() < selesai9.getTime()) {
-            $('#error-jadwal10').show();
-            $("#erorr_jadwal_row10").css("background-color", "red");
-            $("#erorr_jadwal_row10").css("color", "white");
-            $('.btnSave').attr('disabled', 'disabled');
-            // 11
-            // 10
         } else if (mulai14.getTime() < selesai13.getTime()) {
             $('#error-jadwal14').show();
             $("#erorr_jadwal_row14").css("background-color", "red");

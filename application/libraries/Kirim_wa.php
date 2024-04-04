@@ -201,7 +201,49 @@ NAMA PAKET : .' . $nama_rup . ', NAMA DOKUMEN : ' . $nama_dokumen . ', KETERANGA
         curl_close($curl);
     }
 
+    public function kirim_wa_pengumuman_notif_dokumen_lolos($id_rup, $nama_dokumen, $keterangan)
+    {
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
+        $get_vendor_lolos =  $this->ci->M_panitia->get_peserta_tender_ba_pra_lolos($id_rup);
+        $id_vendor_lolos = array();
+        foreach ($get_vendor_lolos as $key => $value) {
+            $id_vendor_lolos[] = $value['no_telpon'];
+        }
+        // $get_id_vendor = implode(",", $id_vendor_lolos);
+        // $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($id_rup, $get_id_vendor);
+        // $data_vendor = array();
+        // foreach ($get_vendor_mengikuti as $key => $valu2) {
+        //     $data_vendor[] = $valu2['no_telpon'];
+        // }
+        $nomor_telpon = implode(",", $id_vendor_lolos);
+        $target = $nomor_telpon;
+        $nama_rup = $row_rup['nama_rup'];
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => 'PERUBAHAN DOKUMEN PENGADAAN / KUALIFIKASI
+NAMA PAKET : .' . $nama_rup . ', NAMA DOKUMEN : ' . $nama_dokumen . ', KETERANGAN : ' . $keterangan . '',
+                'delay' => '40-60',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
 
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
 
 
     public function kirim_wa_perubahan_jadwal($id_rup, $id_jadwal_rup, $pesan)

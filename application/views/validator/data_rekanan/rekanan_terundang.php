@@ -6,7 +6,7 @@
                     <div class="flex-grow-1 bd-highlight">
                         <span class="text-white">
                             <i class="fa-solid fa-table px-1"></i>
-                            <small><strong>Data Tabel - Data Rekanan Terundang (DRT)</strong></small>
+                            <small><strong>Data Tabel - Data Rekanan Tervalidasi (DRT)</strong></small>
                         </span>
                     </div>
                 </div>
