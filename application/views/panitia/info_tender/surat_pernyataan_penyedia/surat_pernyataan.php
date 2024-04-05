@@ -141,6 +141,7 @@ function terbilang($nilai)
                     <li>Tidak sedang dalam perselisihan dengan PT Jasamarga Tollroad Operator; dan</li>
                     <li>Tidak sedang masuk dalam Daftar Hitam di PT Jasamarga Tollroad Operator maupun Instansi/Lembaga Negeri/Swasta manapun.</li>
                     <li>tidak sedang dinyatakan pailit, tidak sedang dihentikan dan tidak sedang dalam pengawasan pengadilan.</li>
+                    <li>Direksi / Pimpinan Perusahaan secara hukum mempunyai kapasitas menandatangani kontrak, tidak sedang menjalani sanksi pidana dan/atau sebagai tersangka/terdakwa.</li>
                 </ol>
             </li>
         </ol>
