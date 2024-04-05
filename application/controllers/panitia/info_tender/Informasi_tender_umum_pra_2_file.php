@@ -41,6 +41,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $get_vendor_mengikuti =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($data['row_rup']['id_rup'], $get_id_vendor);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender2'] = $this->M_panitia->get_peserta_tender2($data['row_rup']['id_rup']);
+        $data['peserta_tender_lolos'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_ip'] = $this->M_panitia->get_dokumen_izin_prinsip($data['row_rup']['id_rup']);
         $data['dok_prakualifikasi'] = $this->M_panitia->get_dokumen_prakualifikasi($data['row_rup']['id_rup']);

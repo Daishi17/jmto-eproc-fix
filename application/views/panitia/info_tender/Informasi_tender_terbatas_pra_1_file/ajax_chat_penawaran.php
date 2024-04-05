@@ -35,7 +35,7 @@
             var id_pengirim = '<?= $this->session->userdata('id_pegawai') ?>';
             $.ajax({
                 type: "post",
-                url: "<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'ngeload_chatnya/') ?>" + id_rup,
+                url: "<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'ngeload_chatnya_penawaran/') ?>" + id_rup,
                 data: {
                     id_pengirim: id_pengirim,
                     id_penerima: id_penerima,

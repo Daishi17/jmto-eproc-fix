@@ -82,7 +82,7 @@
 
                         <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_aanwijzing_pq['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
                             <tr>
-                                <th> Peserta (Aanwijzing PQ)</th>
+                                <th>Jumlah Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
                                         <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
                                     </button></th>
@@ -90,12 +90,33 @@
 
                         <?php    } else { ?>
                             <tr>
-                                <th> Peserta (Aanwijzing PQ)</th>
+                                <th>Jumlah Peserta (Aanwijzing PQ)</th>
                                 <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_pq" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
                                         <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Kualifikasi
                                     </button></th>
                             </tr>
                         <?php    } ?>
+
+                        <?php if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_mulai']))  >= date('Y-m-d H:i')) { ?>
+                            <!-- belom mulai -->
+
+                        <?php    } else if (date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_aanwijzing['waktu_mulai'])) == date('Y-m-d H:i')) { ?>
+                            <tr>
+                                <th>Jumlah Peserta (Aanwijzing Penawaran)</th>
+                                <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_penawaran" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Penawaran
+                                    </button></th>
+                            </tr>
+
+                        <?php    } else { ?>
+                            <tr>
+                                <th>Jumlah Peserta (Aanwijzing Penawaran)</th>
+                                <th><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lihat_peserta_aanwijzing_penawaran" title="Peserta Aanwijzing Prakuakifikasi Yang Aktif">
+                                        <i class="fa fa-users" aria-hidden="true"></i> Peserta Aanwijzing Penawaran
+                                    </button></th>
+                            </tr>
+                        <?php    } ?>
+
                         <tr>
                             <th>Dokumen Pengadaan</th>
                             <th>
@@ -2660,7 +2681,7 @@
             <div class="modal-body">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <div>
-                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Peserta Ini Merupakan Peserta Yang Mengikuti Pengadaan !!! <br>
+                        <i class="fa fa-info-circle" aria-hidden="true"> </i> Peserta Ini Merupakan Peserta Yang Mengikuti Aanwijzing/Rapat Penjelasan !!! <br>
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -2673,7 +2694,7 @@
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        foreach ($peserta_tender as $key => $value) { ?>
+                        foreach ($peserta_tender_lolos as $key => $value) { ?>
                             <?php
                             $subs_string = substr($value['nama_usaha'], 0, 2);
                             if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
