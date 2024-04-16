@@ -371,7 +371,7 @@
             var id_rup = $('[name="id_rup"]').val()
             $.ajax({
                 type: "post",
-                url: "<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'kirim_pesanya/') ?>" + id_rup,
+                url: "<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'kirim_pesanya_penawaran/') ?>" + id_rup,
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
