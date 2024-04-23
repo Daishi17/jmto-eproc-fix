@@ -155,7 +155,7 @@ function terbilang($nilai)
 
                 <ol type="I">
                     <li>
-                        <p><b> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) PESERTA</b></p>
+                        <p><b class="text-uppercase"> PENYEDIA JASA YANG DINYATAKAN LULUS EVALUASI KUALIFIKASI SEBANYAK <?= count($peserta_tender_pq_lolos) ?> (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -191,7 +191,7 @@ function terbilang($nilai)
 
                     </li>
                     <li class="mt-3">
-                        <p><b>PENYEDIA JASA YANG MENYAMPAIKAN ATAU MENGUPLOAD DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
+                        <p><b class="text-uppercase">PENYEDIA JASA YANG MENYAMPAIKAN ATAU MENGUPLOAD DOKUMEN PENGADAAN SEBANYAK <?= count($peserta_tender_pq_penawaran) ?> (<?= terbilang(count($peserta_tender_pq_penawaran)) ?>) PESERTA</b></p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

@@ -406,6 +406,25 @@
         <br>
         <input type="hidden" value="<?= $row_rup['id_url_rup'] ?>" name="id_url_rup">
         <input type="hidden" value="<?= $row_rup['id_rup'] ?>" name="id_rup">
+
+        <input type="hidden" name="url_upload_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_pra/') ?>">
+        <input type="hidden" name="url_hapus_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_pra/') ?>">
+        <input type="hidden" name="url_get_sanggahan_pra" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_pra') ?>">
+        <input type="hidden" name="url_open_sanggahan_pra" value="https://drtproc.jmto.co.id/file_paket/<?= $row_rup['nama_rup'] ?>/">
+        <input type="hidden" name="url_open_sanggahan_pra_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_PRAKUALIFIKASI' . '/') ?>">
+
+        <input type="hidden" name="url_upload_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'upload_sanggahan_akhir/') ?>">
+        <input type="hidden" name="url_hapus_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'hapus_sanggahan_akhir/') ?>">
+        <input type="hidden" name="url_get_sanggahan_akhir" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_sanggahan_akhir') ?>">
+        <input type="hidden" name="url_open_sanggahan_akhir" value="https://drtproc.jmto.co.id/file_paket/<?= $row_rup['nama_rup'] ?>/">
+        <input type="hidden" name="url_open_sanggahan_akhir_panitia" value="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/SANGGAHAN_AKHIR' . '/') ?>">
+
+        <input type="hidden" name="url_get_vendor_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_vendor_negosiasi') ?>">
+        <input type="hidden" name="id_rup" value="<?= $row_rup['id_rup'] ?>">
+        <input type="hidden" name="url_simpan_link_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_link_negosiasi') ?>">
+        <input type="hidden" name="url_post_hasil_negosiasi" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'buat_hasil_negosiasi') ?>">
+        <input type="hidden" name="url_get_vendor_row" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_row_vendor_negosiasi') ?>">
+
         <form action="" id="form_data_PENGADAAN">
             <div class="content">
                 <div class="container-fluid">
@@ -423,7 +442,7 @@
                             <th>Nama RUP</th>
                             <td><?= $row_rup['nama_rup'] ?></td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                             <th>Penyedia Terundang dan Terverifikasi</th>
                             <td>
                                 <table style="width: 100%;">
@@ -444,7 +463,7 @@
                                 </table>
 
                             </td>
-                        </tr> -->
+                        </tr>
 
 
                         <tr>
@@ -654,7 +673,9 @@
                             </tr>
                         <?php } ?>
                     </table>
-                    <h4 class="text-center">HASIL EVALUASI</h4>
+
+
+                    <h4 class="text-center">HASIL EVALUASI PQ</h4>
                     <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                         <div class="flex-grow-1 bd-highlight">
                             <span class="text-dark">
@@ -692,10 +713,64 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <br>
+                    <h4 class="text-center">SANGGAHAN KUALIFIKASI</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NAMA PESERTA</th>
+                                <th>KETERANGAN PENYEDIA</th>
+                                <th>FILE SANGGAHAN PESERTA</th>
+                                <th>FILE BALASAN PANITIA</th>
+                                <th>KETERANGAN PANITIA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_sanggah_pra">
+
+
+                        </tbody>
+                    </table>
+                    <br>
+
+                    <h4 class="text-center">HASIL EVALUASI PENAWARAN</h4>
                     <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                         <div class="flex-grow-1 bd-highlight">
                             <span class="text-dark">
-                                <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Evalusi HEA TKDN</strong></small>
+                                <small class="text-white"><strong> Evalusi Akhir Penawaran</strong></small>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered" id="tbl_evaluasi_penawaran">
+                            <thead style="text-align: center;">
+                                <tr>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Nama Perusahaan</th>
+                                    <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika)</th>
+                                    <th>Nilai Teknis</th>
+                                    <th rowspan="2">% Terhadap HPS</th>
+                                    <th>Nilai Usulan Biaya</th>
+                                    <th rowspan="2">Nilai Akhir</th>
+                                    <th rowspan="2">Peringkat Akhir</th>
+                                    <th rowspan="2">Keterangan</th>
+                                </tr>
+                                <tr>
+                                    <th><?= $row_rup['bobot_teknis'] ?>%</th>
+                                    <th><?= $row_rup['bobot_biaya'] ?>%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 bd-highlight">
+                            <span class="text-dark">
+                                <small class="text-white"><strong> Evalusi HEA TKDN</strong></small>
                             </span>
                         </div>
                     </div>
@@ -730,10 +805,11 @@
                             </tbody>
                         </table>
                     </div>
+
                     <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                         <div class="flex-grow-1 bd-highlight">
                             <span class="text-dark">
-                                <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Peringkat Akhir HEA</strong></small>
+                                <small class="text-white"><strong> Peringkat Akhir HEA</strong></small>
                             </span>
                         </div>
                     </div>
@@ -762,51 +838,97 @@
                             </tbody>
                         </table>
                     </div>
-                    <?php if ($row_rup['bobot_nilai'] == 1) { ?>
-                    <?php  } else { ?>
-                        <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
-                            <div class="flex-grow-1 bd-highlight">
-                                <span class="text-dark">
-                                    <small class="text-white"><strong><i class="fa-solid fa-table px-1"></i> Data Tabel - Peringkat Akhir Harga Terendah</strong></small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered" id="tbl_peringkat_akhir_terendah">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th rowspan="2">No</th>
-                                        <th rowspan="2">Nama Perusahaan</th>
-                                        <th rowspan="2">Kelengkapan Dokumen Administrasi dan Teknis </th>
-                                        <th rowspan="2">Harga Penawaran <br> (Setelah Koreksi Aritmatika)</th>
-                                        <th rowspan="2">% Penawaran Terhadap HPS</th>
-                                        <th>Nilai Biaya</th>
-                                        <th rowspan="2">Peringkat Akhir</th>
-                                        <th rowspan="2">Keterangan</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>100%</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    <?php   }
-                    ?>
 
 
-                    <h4 class="text-center">SANGGAHAN</h4>
+                    <br>
+                    <h4 class="text-center">HASIL NEGOSIASI</h4>
                     <table class="table table-bordered">
-                        <tr>
-                            <th>SANGGAHAN</th>
-                            <th>PENGIRIM</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NAMA PESERTA</th>
+                                <th>TANGGAL NEGOSIASI</th>
+                                <th>LINK MEET (JIKA DARING)</th>
+                                <th>TOTAL NEGOSIASI</th>
+                                <th>KETERANGAN</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_vendor_negosiasi">
+
+
+                        </tbody>
                     </table>
                     <br>
+
+                    <h4 class="text-center">PERINGKAT PEMENANG</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Peserta</th>
+                                <th>Email</th>
+                                <th>Pemenang</th>
+                                <th>Peringkat Akhir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1;
+                            foreach ($peserta_tender2 as $key => $value) { ?>
+                                <?php
+                                $subs_string = substr($value['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                    $nama_perusahaan = $value['nama_usaha'];
+                                } else {
+                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    }
+                                }
+                                ?>
+                                <tr>
+                                    <td scope="row"><?= $i++ ?></td>
+                                    <td><?= $nama_perusahaan  ?></td>
+                                    <td><?= $value['email'] ?></td>
+                                    <td>
+                                        <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
+                                            <i class="fas fa fa-star text-warning"></i>
+                                        <?php   } else { ?>
+                                            <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
+                                                <i class="fas fa fa-star text-warning"></i>
+                                            <?php   } else { ?>
+                                                <i class="fas fa fa-times text-danger"></i>
+                                            <?php   }  ?>
+                                        <?php   }  ?>
+                                    </td>
+                                    <td><?= $value['ev_penawaran_peringkat']  ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    <br>
+
+                    <h4 class="text-center">SANGGAHAN PEMENANG</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NAMA PESERTA</th>
+                                <th>KETERANGAN PENYEDIA</th>
+                                <th>FILE SANGGAHAN PESERTA</th>
+                                <th>FILE BALASAN PANITIA</th>
+                                <th>KETERANGAN PANITIA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_sanggah_akhir">
+
+
+                        </tbody>
+                    </table>
+                    <br>
+
                     <h4 class="text-center">AANWIJZING PQ</h4>
                     <div class="card card_chat" style="background-image: linear-gradient(180deg, #b2eaff 0, #5389f2 50%, #003265 100%);">
                         <div class="card-header card-chat" style="background-image: linear-gradient(90deg, hsla(206, 98%, 48%, 1) 3%, hsla(60, 100%, 50%, 1) 70%);">
@@ -876,6 +998,39 @@
     <script>
         $(document).ready(function() {
             var id_rup = $('[name="id_rup"]').val()
+            $('#tbl_evaluasi_penawaran').DataTable({
+                "responsive": false,
+                "ordering": true,
+                "processing": false,
+                "serverSide": true,
+                "autoWidth": false,
+                "bDestroy": true,
+                // "buttons": ["excel", "pdf", "print", "colvis"],
+                initComplete: function() {
+                    this.api().buttons().container().appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+                },
+                "order": [],
+                "ajax": {
+                    "url": '<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'get_evaluasi_penawaran/') ?>' + id_rup,
+                    "type": "POST",
+                },
+                "columnDefs": [{
+                    "target": [-1],
+                    "orderable": false
+                }],
+                "oLanguage": {
+                    "sSearch": "Pencarian : ",
+                    "sEmptyTable": "Data Tidak Tersedia",
+                    "sLoadingRecords": "Silahkan Tunggu - loading...",
+                    "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                    "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                    "sProcessing": "Memuat Data...."
+                }
+            }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
+        });
+
+        $(document).ready(function() {
+            var id_rup = $('[name="id_rup"]').val()
             $('#tbl_evaluasi_kualifikasi').DataTable({
                 "ordering": true,
                 "serverSide": true,
@@ -905,6 +1060,8 @@
                 }
             }).buttons().container().appendTo('#tbl_evaluasi_kualifikasi .col-md-6:eq(0)');
         });
+
+
 
         $(document).ready(function() {
             var id_rup = $('[name="id_rup"]').val()
@@ -1615,6 +1772,207 @@
                 }
             });
 
+        }
+
+        load_dok_sanggahan_pra()
+
+        function load_dok_sanggahan_pra() {
+            var id_rup = $('[name="id_rup"]').val()
+            var url_get_sanggahan_pra = $('[name="url_get_sanggahan_pra"]').val()
+            var url_open_sanggahan_pra = $('[name="url_open_sanggahan_pra"]').val()
+            var url_open_sanggahan_pra_panitia = $('[name="url_open_sanggahan_pra_panitia"]').val()
+            $.ajax({
+                type: "POST",
+                url: url_get_sanggahan_pra,
+                data: {
+                    id_rup: id_rup,
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    var html = '';
+                    var i;
+                    var no = 1;
+                    for (i = 0; i < response['result_sanggahan_pra'].length; i++) {
+                        if (response['result_sanggahan_pra'][i].ket_sanggah_pra) {
+                            var ket_sanggah_pra = response['result_sanggahan_pra'][i].ket_sanggah_pra
+                        } else {
+                            var ket_sanggah_pra = '-'
+                        }
+
+                        if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
+                            var file_sanggah_pra = '<a target="_blank" href="' + url_open_sanggahan_pra + response['result_sanggahan_pra'][i].nama_usaha + '/SANGGAHAN_PRAKUALIFIKASI/' + response['result_sanggahan_pra'][i].file_sanggah_pra + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                        } else {
+                            var file_sanggah_pra = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                        }
+
+                        if (response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia) {
+                            var ket_sanggah_pra_panitia = response['result_sanggahan_pra'][i].ket_sanggah_pra_panitia
+                        } else {
+                            var ket_sanggah_pra_panitia = '-'
+                        }
+
+                        if (response['result_sanggahan_pra'][i].file_sanggah_pra) {
+                            if (response['result_sanggahan_pra'][i].file_sanggah_pra_panitia) {
+                                var file_sanggah_pra_panitia = '<a target="_blank" href="' + url_open_sanggahan_pra_panitia + response['result_sanggahan_pra'][i].file_sanggah_pra_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                                var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_sanggah_pra_detail + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            } else {
+                                var file_sanggah_pra_panitia = '-'
+                                var balas = '<a href="javascript:;"  onclick="balas_sanggahan_pra(\'' + response['result_sanggahan_pra'][i].id_sanggah_pra_detail + '\'' + ',' + '\'' + response['result_sanggahan_pra'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            }
+
+                        } else {
+                            var file_sanggah_pra_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                            var balas = '-'
+                        }
+                        html += '<tr>' +
+                            '<td><small>' + no++ + '</small></td>' +
+                            '<td><small>' + response['result_sanggahan_pra'][i].nama_usaha + '</small></td>' +
+                            '<td><small>' + ket_sanggah_pra + '</small></td>' +
+                            '<td><small>' + file_sanggah_pra + '</small></td>' +
+                            '<td><small>' + file_sanggah_pra_panitia + '</small></td>' +
+                            '<td><small>' + ket_sanggah_pra_panitia + '</small></td>' +
+                            '</tr>';
+                        '</tr>';
+
+                    }
+                    $('#tbl_sanggah_pra').html(html);
+                }
+            })
+        }
+
+        load_vendor_negosiasi()
+
+        function load_vendor_negosiasi() {
+            var id_rup = $('[name="id_rup"]').val()
+            var url_get_vendor_negosiasi = $('[name="url_get_vendor_negosiasi"]').val()
+            $.ajax({
+                type: "POST",
+                url: url_get_vendor_negosiasi,
+                data: {
+                    id_rup: id_rup,
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    var html = '';
+                    var i;
+                    var no = 1;
+                    for (i = 0; i < response['result_vendor_negosiasi'].length; i++) {
+                        if (response['result_vendor_negosiasi'][i].tanggal_negosiasi == null) {
+                            var tanggal_negoasiasi = '<small class="badge bg-warning">Belum Ada Tanggal Negosiasi</small>'
+                        } else {
+                            var tanggal_negoasiasi = '<small>' + response['result_vendor_negosiasi'][i].tanggal_negosiasi + '</small>'
+                        }
+                        if (response['result_vendor_negosiasi'][i].link_negosiasi == null) {
+                            var lin_nego = '<small class="badge bg-warning">Belum Ada Link Negosiasi</small>'
+                        } else {
+                            var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
+                        }
+                        if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == null) {
+                            var kesepakatan = '<small class="badge bg-warning">Belum Ada Kesepakatan</small>'
+                        } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'deal') {
+                            var kesepakatan = '<small class="badge bg-success">Deal</small>'
+                        } else if (response['result_vendor_negosiasi'][i].sts_deal_negosiasi == 'tidak_deal') {
+                            var kesepakatan = '<small class="badge bg-danger">Tidak Deal</small>'
+                        }
+                        var text = response['result_vendor_negosiasi'][i].nama_usaha
+                        var sub_string = text.substring(2, 0)
+                        if (sub_string == 'PT' || sub_string == 'CV' || sub_string == 'Koperasi') {
+                            var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                        } else {
+                            if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                                var nama_perusahaan = 'PT ' + response['result_vendor_negosiasi'][i].nama_usaha
+                            } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                                var nama_perusahaan = 'CV ' + response['result_vendor_negosiasi'][i].nama_usaha
+                            } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Koperasi') {
+                                var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                            }
+                        }
+                        if (response['result_vendor_negosiasi'][i].total_hasil_negosiasi) {
+                            var total_nego = response['result_vendor_negosiasi'][i].total_hasil_negosiasi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+                        } else {
+                            var total_nego = '-'
+                        }
+                        html += '<tr>' +
+                            '<td><small>' + no++ + '</small></td>' +
+                            '<td><small>' + nama_perusahaan + '</small></td>' +
+                            '<td>' + tanggal_negoasiasi + '</td>' +
+                            '<td>' + lin_nego + '</td>' +
+                            '<td>' + total_nego + '</td>' +
+                            '<td>' + kesepakatan + '</td>' +
+                            '</tr>';
+                        '</tr>';
+
+                    }
+                    $('#tbl_vendor_negosiasi').html(html);
+                }
+            })
+        }
+
+        load_dok_sanggahan_akhir()
+
+        function load_dok_sanggahan_akhir() {
+            var id_rup = $('[name="id_rup"]').val()
+            var url_get_sanggahan_akhir = $('[name="url_get_sanggahan_akhir"]').val()
+            var url_open_sanggahan_akhir = $('[name="url_open_sanggahan_akhir"]').val()
+            var url_open_sanggahan_akhir_panitia = $('[name="url_open_sanggahan_akhir_panitia"]').val()
+            $.ajax({
+                type: "POST",
+                url: url_get_sanggahan_akhir,
+                data: {
+                    id_rup: id_rup,
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    var html = '';
+                    var i;
+                    var no = 1;
+                    for (i = 0; i < response['result_sanggahan_akhir'].length; i++) {
+                        if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir) {
+                            var ket_sanggah_akhir = response['result_sanggahan_akhir'][i].ket_sanggah_akhir
+                        } else {
+                            var ket_sanggah_akhir = '-'
+                        }
+
+                        if (response['result_sanggahan_akhir'][i].file_sanggah_akhir) {
+                            var file_sanggah_akhir = '<a target="_blank" href="' + url_open_sanggahan_akhir + response['result_sanggahan_akhir'][i].nama_usaha + '/SANGGAHAN_AKHIR/' + response['result_sanggahan_akhir'][i].file_sanggah_akhir + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                        } else {
+                            var file_sanggah_akhir = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                        }
+
+                        if (response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia) {
+                            var ket_sanggah_akhir_panitia = response['result_sanggahan_akhir'][i].ket_sanggah_akhir_panitia
+                        } else {
+                            var ket_sanggah_akhir_panitia = '-'
+                        }
+
+                        if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
+                            if (response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia) {
+                                var file_sanggah_akhir_panitia = '<a target="_blank" href="' + url_open_sanggahan_akhir_panitia + response['result_sanggahan_akhir'][i].file_sanggah_akhir_panitia + '"><img src="<?= base_url('assets/img/pdf.png') ?>" alt="File Sanggah" width="30px"></a>'
+                                var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            } else {
+                                var file_sanggah_akhir_panitia = '-'
+                                var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                            }
+
+                        } else {
+                            var file_sanggah_akhir_panitia = '<span class="badge bg-secondary">Tidak Ada File</span>'
+                            var balas = '<a href="javascript:;"  onclick="balas_sanggahan_akhir(\'' + response['result_sanggahan_akhir'][i].id_sanggah_akhir_detail + '\'' + ',' + '\'' + response['result_sanggahan_akhir'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Balas </a>'
+                        }
+                        html += '<tr>' +
+                            '<td><small>' + no++ + '</small></td>' +
+                            '<td><small>' + response['result_sanggahan_akhir'][i].nama_usaha + '</small></td>' +
+                            '<td><small>' + ket_sanggah_akhir + '</small></td>' +
+                            '<td><small>' + file_sanggah_akhir + '</small></td>' +
+                            '<td><small>' + file_sanggah_akhir_panitia + '</small></td>' +
+                            '<td><small>' + ket_sanggah_akhir_panitia + '</small></td>' +
+                            '<td>' + balas + '</td>' +
+                            '</tr>';
+                        '</tr>';
+
+                    }
+                    $('#tbl_sanggah_akhir').html(html);
+                }
+            })
         }
     </script>
 </body>

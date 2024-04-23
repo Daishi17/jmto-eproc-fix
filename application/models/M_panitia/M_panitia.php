@@ -1407,6 +1407,8 @@ class M_panitia extends CI_Model
     // get evaluasi penawaran
     private function _get_data_query_evaluasi_penawaran($id_rup)
     {
+
+        $id_jadwal_tender = $this->db->query("SELECT id_jadwal_tender FROM tbl_rup WHERE id_rup = $id_rup")->row_array();
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
@@ -1414,6 +1416,18 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        if ($id_jadwal_tender['id_jadwal_tender'] == 1 || $id_jadwal_tender['id_jadwal_tender'] == 9 || $id_jadwal_tender['id_jadwal_tender'] == 10) { } else {
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_administrasi_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pabrikan_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_organisasi_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_peralatan_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_personil_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_makalah_teknis_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pra_rk3_sts', [1, 3]);
+            $this->db->where_in('tbl_vendor_mengikuti_paket.file1_spek_sts', [1, 3]);
+        }
+
+
         $i = 0;
         foreach ($this->order_evaluasi as $item) // looping awal
         {
@@ -3712,5 +3726,27 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor.id_vendor', $id_vendor);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_peserta_tender_ba_pra_penawaran_file1($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_administrasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pabrikan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_organisasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_peralatan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_personil_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_makalah_teknis_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pra_rk3_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_spek_sts', [1, 3]);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

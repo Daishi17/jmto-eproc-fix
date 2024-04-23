@@ -312,7 +312,7 @@
                                 <td>${file1_pra_rk3_sts_validasi}</td>
                             </tr>
                             <tr>
-                                <td>&ensp;&ensp; g. Dokumen Spesifikasi Perangkat (Khusus IT)</td>
+                                <td>&ensp;&ensp; g. Dokumen Spesifikasi Perangkat (Jika Dipersyaratkan)</td>
                                 <td>${file1_spek}</td>
                                 <td>${file1_spek_sts_validasi}</td>
                             </tr>`
