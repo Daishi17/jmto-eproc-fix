@@ -437,7 +437,7 @@
                                 <td><?= $row_rup['nama_jenis_pengadaan'] ?></td>
 
                             </tr>
-                            <tr>
+                             <tr>
                                 <th>Nama Metode Pemilihan </th>
                                 <td><?= $row_rup['nama_jadwal_pengadaan'] ?></td>
                             </tr>

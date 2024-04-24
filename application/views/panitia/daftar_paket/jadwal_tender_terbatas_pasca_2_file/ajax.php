@@ -1472,7 +1472,7 @@
             },
             success: function(response) {
                 if (response == 'success') {
-                    update_batas_tender()
+                   update_batas_tender()
                     Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                     form_jadwal_tender_terbatas[0].reset();
                     $('.btnSave').attr('disabled', false);
@@ -1522,7 +1522,7 @@
             },
             dataType: "JSON",
             success: function(response) {
-                update_batas_tender()
+               update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                 window.location.href = '';
             }
@@ -1539,7 +1539,7 @@
             },
             dataType: "JSON",
             success: function(response) {
-                update_batas_tender()
+               update_batas_tender()
                 Swal.fire('Jadwal Berhasil Di Update!', '', 'success')
                 window.location.href = '';
             }
@@ -1603,7 +1603,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
-                            update_batas_tender()
+                           update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_ubah_jadwal[0].reset();
                             $('.btn_save_jadwal').attr("disabled", false)
@@ -1656,7 +1656,7 @@
                         },
                         willClose: () => {
                             clearInterval(timerInterval)
-                            update_batas_tender()
+                           update_batas_tender()
                             Swal.fire('Data Berhasil Di Simpan!', '', 'success')
                             form_acc_jadwal[0].reset();
                             $('#modal_acc_jadwal').modal('hide');

@@ -615,6 +615,7 @@
                     <h4 class="text-center">PESERTA PENGADAAN</h4>
                     <table class="table table-bordered">
                         <tr>
+                            <th>No</th>
                             <th>Nama Peserta</th>
                             <th>Tanggal Daftar</th>
                         </tr>

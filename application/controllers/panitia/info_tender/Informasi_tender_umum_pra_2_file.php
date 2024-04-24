@@ -1239,7 +1239,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
                         if ($cek_valid_vendor >= $hitung_syarat) {
                             $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
                         } else {
-                            $row[] = '<span class="badge bg-warning">Belum Lengkap</span>';
+                            $row[] = '<span class="badge bg-warning">Tidak Lengkap</span>';
                         }
                     }
                 }
@@ -1268,10 +1268,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
               </div>';
             } else {
                 $row[] = '<div class="text-center">
-                <button href="javascript:;" class="btn btn-secondary btn-sm shadow-lg text-white" disabled>
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </button>
+                </a>
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','neraca_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Neraca Keuangan</small>

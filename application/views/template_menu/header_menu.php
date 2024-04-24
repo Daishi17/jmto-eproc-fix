@@ -225,13 +225,13 @@
                                 <li>
                                     <a class="dropdown-item" href="<?= base_url() ?>administrator/Sirup_rka">
                                         <i class="fa-solid fa-money-check-dollar px-1"></i>
-                                        <small>Rencana Kerja Anggaran Pengadaan (RKAP)</small>
+                                        <small>Buku Rencana Umum Pengadaan (RUP)</small>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="<?= base_url() ?>administrator/Sirup_rup">
                                         <i class="fa-solid fa-money-check px-1"></i>
-                                        <small>Rencana Umum Pengadaan (RUP)</small>
+                                        <small>Realisasi Rencana Umum Pengadaan (RUP)</small>
                                     </a>
                                 </li>
                                 <li>

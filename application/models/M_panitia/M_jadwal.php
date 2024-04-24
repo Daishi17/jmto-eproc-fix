@@ -584,7 +584,6 @@ class M_jadwal extends CI_Model
         return $query->row_array();
     }
 
-    
 
 
     // INI UNUTK JADWAL TENDER TERBATAS PASCAKUALIFIKASI 1 FILE

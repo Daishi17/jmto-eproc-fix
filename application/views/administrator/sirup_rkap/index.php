@@ -17,7 +17,7 @@
                     <div class="flex-grow-1 bd-highlight">
                         <span class="text-dark">
                             <i class="fa-solid fa-money-check-dollar px-1"></i>
-                            <small><strong>Data Tabel - Rencana Kerja Anggaran Pengadaan (RKAP)</strong></small>
+                            <small><strong>Data Tabel - Buku Rencana Umum Pengadaan (RUP)</strong></small>
                         </span>
                     </div>
                     <div class="bd-highlight">
@@ -68,7 +68,7 @@
                                         <div class="flex-grow-1 bd-highlight">
                                             <span class="text-white">
                                                 <i class="fa-regular fa-rectangle-list px-1"></i>
-                                                <small><strong>Form Data - Rencana Kerja Anggaran Pengadaan (RKAP)</strong></small>
+                                                <small><strong>Form Data - Buku Rencana Umum Pengadaan (RUP)</strong></small>
                                             </span>
                                         </div>
                                         <div class="bd-highlight" id="type_modal" style="display: block;">

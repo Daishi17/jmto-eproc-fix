@@ -441,7 +441,6 @@
                                 <th>Nama Metode Pemilihan </th>
                                 <td><?= $row_rup['nama_jadwal_pengadaan'] ?></td>
                             </tr>
-
                             <tr>
                                 <th>Nama Tempat </th>
                                 <td><input type="text" name="aanwijzing_pq_tempat" class="form-control" placeholder="Nama Tempat" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'aanwijzing_pq_tempat')" value="<?= $row_rup['aanwijzing_pq_tempat'] ?>"></td>
