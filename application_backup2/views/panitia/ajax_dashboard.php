@@ -1,3 +1,0 @@
-<script>
-    // ini untuk 
-</script>

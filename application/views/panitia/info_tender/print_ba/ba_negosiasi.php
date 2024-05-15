@@ -237,6 +237,8 @@ function terbilang($nilai)
                 <br>
                 <br>
                 <br>
+                <br>
+                <br>
                 <center>
                     <b> <?= $row_rup['nama_rup'] ?></b>
                 </center>
@@ -244,6 +246,14 @@ function terbilang($nilai)
                 <b>Panitia Pengadaan</b>
                 <br>
                 <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><b>NO</b></th>
+                            <th class="text-center"><b>NAMA</b></th>
+                            <th class="text-center"><b>KEDUDUKAN DALAM PANITIA</b></th>
+                            <th class="text-center"><b>STATUS/KETERANGAN</b></th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <?php $i = 1;
                         foreach ($panitia_tender as $key => $value) { ?>
@@ -281,8 +291,7 @@ function terbilang($nilai)
                         <tr>
                             <th>No</th>
                             <th>Perusahaan</th>
-                            <th>Jabatan</th>
-                            <th>TTD</th>
+                            <th>Status/Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -305,7 +314,6 @@ function terbilang($nilai)
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $nama_perusahaan  ?></td>
-                                <td><?= $value['nama_jabatan_ba_nego'] ?></td>
                                 <?php if ($value['persetujuan_ba_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>

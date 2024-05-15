@@ -27,6 +27,20 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div>
+                                                    <p class="mb-0 text-secondary"><small>Total Rekanan Baru</small></p>
+                                                    <h4 class="my-1 text-danger"><?= $baru ?></h4>
+                                                </div>
+                                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa-solid fa-user-shield fa-beat-fade"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
                                                     <p class="mb-0 text-secondary"><small>Total Rekanan Belum Tervalidasi</small></p>
                                                     <h4 class="my-1 text-danger"><?= $blm_tervalidasi ?></h4>
                                                 </div>
@@ -54,8 +68,21 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div>
-                                                    <p class="mb-0 text-secondary"><small>Total Data RUP</small></p>
+                                                    <p class="mb-0 text-secondary"><small>Realisasi Buku RUP</small></p>
                                                     <h4 class="my-1 text-success"><?= $rup ?></h4>
+                                                </div>
+                                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-money-check fa-fade"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <p class="mb-0 text-secondary"><small>Total Data Buku RUP</small></p>
+                                                    <h4 class="my-1 text-success"><?= $rkap ?></h4>
                                                 </div>
                                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-money-check fa-fade"></i></div>
                                             </div>
@@ -80,7 +107,7 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div>
-                                                    <p class="mb-0 text-secondary"><small>Total Paket Terder Berjalan</small></p>
+                                                    <p class="mb-0 text-secondary"><small>Total Paket Tender Berjalan</small></p>
                                                     <h4 class="my-1 text-info"><?= $paket_tender_berjalan ?></h4>
                                                 </div>
                                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa-solid fa-bullhorn fa-fade"></i></div>
@@ -128,6 +155,38 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col">
+                                    <div class="card radius-10 border-start border-0 border-3 border-warning">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <p class="mb-0 text-secondary"><small>Total Tender Ulang</small></p>
+                                                    <h4 class="my-1 text-warning"><?= $paket_tender_ulang ?></h4>
+                                                </div>
+                                                <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-address-book"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <p class="mb-0 text-secondary"><small>Total Tender Batal</small></p>
+                                                    <h4 class="my-1 text-danger"><?= $paket_tender_batal ?></h4>
+                                                </div>
+                                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa-solid fa-address-book"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

@@ -362,6 +362,7 @@ class Rekanan_terundang extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nama_usaha;
+			$row[] = $rs->email;
 			$row[] = implode(' , ', $jenis_izin);
 			$row[] = $rs->kualifikasi_usaha;
 			$row[] = '<small><span class="badge bg-primary text-white">Rekanan Terundang</span></small>';

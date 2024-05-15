@@ -40,7 +40,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $get_id_vendor = implode(",", $id_vendor_lolos);
         $get_vendor_mengikuti =  $this->M_panitia->get_peserta_tender_lolos_prakualifikasi_asli($data['row_rup']['id_rup'], $get_id_vendor);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
-        $data['peserta_tender2'] = $this->M_panitia->get_peserta_tender2($data['row_rup']['id_rup']);
+        $data['peserta_tender2'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['peserta_tender_lolos'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['dok_ip'] = $this->M_panitia->get_dokumen_izin_prinsip($data['row_rup']['id_rup']);
@@ -461,10 +461,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
 
 
-            if ($rs->ev_penawaran_teknis == NULL) {
-                $row[] = '<div class="text-center badge bg-secondary bg-sm">Belum Di Ketahui</div>';
+            if ($rs->ev_penawaran_akhir == NULL) {
+                $row[] = '<div class="text-center badge bg-danger bg-sm">Gugur</div>';
             } else {
-                if ($rs->ev_penawaran_teknis >= 60) {
+                if ($rs->ev_penawaran_akhir >= 60) {
                     if ($rs->ev_penawaran_hps >= 100) {
                         $row[] = '<span class="badge bg-danger bg-sm">Gugur</span>';
                     } else {
@@ -528,7 +528,11 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
                 $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
-                $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                if ($rs->ev_hea_tkdn) {
+                    $row[] = '<div class="text-end">' . number_format($rs->ev_hea_tkdn, 2, ',', '.') . '</div>';
+                } else {
+                    $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
+                }
                 $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
                 $row[] =  '<div class="text-end badge bg-danger bg-sm">-</div>';
                 $row[] =  '<div class="text-end badge bg-danger bg-sm">Gugur</div>';
@@ -569,10 +573,10 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
             if ($rs->ev_penawaran_hps >= 100 || $rs->ev_penawaran_hps == 0) {
                 $row[] = '<div class="text-center">
-                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','hea_tkdn'" . ')">
                     <i class="fa-solid fa-edit"></i>
                     <small>Evaluasi</small>
-                </button>
+                </a>
               </div>';
             } else {
                 if (date('Y-m-d H:i', strtotime($jadwal['waktu_mulai']))  >= date('Y-m-d H:i')) {
@@ -1225,16 +1229,16 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
-                    $row[] = '<span class="badge bg-success">Lulus</span>';
+                    $row[] = '<span class="badge bg-success">Lengkap</span>';
                 } else {
-                    $row[] = '<span class="badge bg-danger">Gugur</span>';
+                    $row[] = '<span class="badge bg-danger">Tidak Lengkap</span>';
                 }
             } else {
                 if ($cek_null_syarat) {
                     $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
                 } else {
                     if ($cek_tidak_valid) {
-                        $row[] = '<span class="badge bg-danger">Gugur</span>';
+                        $row[] = '<span class="badge bg-danger">Tidak Lengkap</span>';
                     } else {
                         if ($cek_valid_vendor >= $hitung_syarat) {
                             $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
@@ -1299,6 +1303,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $id_rup = $this->uri->segment(6);
         $nama_rup = $this->M_panitia->get_rup($id_rup);
         $result = $this->M_panitia->gettable_dokumen_syarat_tambahan($id_vendor, $id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra_umum_6($id_rup);
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
@@ -1313,12 +1318,30 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             } else {
                 $row[] = '<span class="badge bg-danger">Gugur</span>';
             }
-            $row[] = '<div class="text-center">
-						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_syarat_tambahan(' . "'" . $rs->id_vendor_syarat_tambahan . "','evaluasi_syarat_tambah'" . ')">
-							<i class="fa-solid fa-edit"></i>
-							<small>Evaluasi</small>
-						</a>
-					  </div>';
+
+            if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) {
+                $row[] = '<div class="text-center">
+                <button disabled class="btn btn-danger btn-sm shadow-lg text-white">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Belum Memasuki Tahap Ini</small>
+                </button>
+              </div> ';
+            } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
+                $row[] = '<div class="text-center">
+                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_syarat_tambahan(' . "'" . $rs->id_vendor_syarat_tambahan . "','evaluasi_syarat_tambah'" . ')">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Evaluasi</small>
+                </a>
+              </div>';
+            } else {
+                $row[] = '<div class="text-center">
+                <button disabled class="btn btn-secondary btn-sm shadow-lg text-white">
+                    <i class="fa-solid fa-edit"></i>
+                    <small>Tahap Sudah Selesai</small>
+                </button>
+              </div> ';
+            }
+
             $data[] = $row;
         }
         $output = array(
@@ -1570,23 +1593,23 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
             $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi_negosiasi_teknis($row_rup['id_rup']);
             if ($peserta_vendor > 2) {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1($row_rup['id_rup']);
-                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terima kasih atas ke-ikutsertaan Anda Ttd Panitia.';
             } else {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
-                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terima kasih atas ke-ikutsertaan Anda Ttd Panitia.';
             }
         } else {
             $peserta_vendor = $this->M_panitia->jumlah_peserta_negosiasi($row_rup['id_rup']);
             if ($peserta_vendor > 2) {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['ev_terendah_harga'], 2, ',', '.') . 'Terima kasih atas ke-ikutsertaan Anda Ttd Panitia.';
             } else {
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($row_rup['id_rup']);
                 $get_rank1 = $this->M_panitia->get_peserta_rank1_biaya($row_rup['id_rup']);
-                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+                $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Nilai penawaran sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terima kasih atas ke-ikutsertaan Anda Ttd Panitia.';
             }
         }
-        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_lolos($row_rup['id_rup'], $message);
+        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_hasil_teknis($row_rup['id_rup'], $message);
         // $type_email = 'PENGUMUMAN PEMENANG';
         // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
         $upload = [
@@ -2819,6 +2842,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
+        $data['get_peserta_tender_ba_pra_penawaran_file1'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran_file1($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
         $data['ba_teknis_detail'] = $this->M_panitia->get_ba_evaluasi_teknis($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia_terpilih->get_panitia_ba8($data['row_rup']['id_rup']);
@@ -2830,7 +2854,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
-        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_lolos($data['row_rup']['id_rup']);
+        $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran_file1($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia_terpilih->get_panitia_ba10($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_sampul2', $data);
     }
@@ -2842,6 +2866,7 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
         $data['peserta_tender_pq_penawaran'] = $this->M_panitia->get_peserta_tender_ba_pra_penawaran($data['row_rup']['id_rup']);
         $data['deal_nego'] = $this->M_panitia->get_peserta_rank1_biaya_dengan_negosiasi($data['row_rup']['id_rup']);
+        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
         $data['panitia_tender'] = $this->M_panitia_terpilih->get_panitia_ba12($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_negosiasi', $data);
     }
@@ -2851,8 +2876,16 @@ class Informasi_tender_umum_pra_2_file extends CI_Controller
         $data['row_rup'] = $data['row_rup'] = $this->M_rup->get_row_rup($id_url_rup);
         $data['peserta_tender'] = $this->M_panitia->get_peserta_tender($data['row_rup']['id_rup']);
         $data['peserta_tender_pq'] = $this->M_panitia->get_peserta_tender_ba_pra($data['row_rup']['id_rup']);
-        $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
-        $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
+
+        if ($data['row_rup']['id_jadwal_tender'] == 1 || $data['row_rup']['id_jadwal_tender'] == 9 || $data['row_rup']['id_jadwal_tender'] == 10) {
+            $data['deal'] = $this->M_panitia->deal($data['row_rup']['id_rup']);
+            $data['deal_row'] = $this->M_panitia->deal_row($data['row_rup']['id_rup']);
+        } else {
+            $data['deal'] = $this->M_panitia->deal_umum($data['row_rup']['id_rup']);
+            $data['deal_row'] = $this->M_panitia->deal_row_umum($data['row_rup']['id_rup']);
+        }
+
+
         $data['panitia_tender'] = $this->M_panitia_terpilih->get_panitia_ba11($data['row_rup']['id_rup']);
         $this->load->view('panitia/info_tender/print_ba/ba_evaluasinegosiasi', $data);
     }
@@ -3141,6 +3174,13 @@ Status : Telah di Umumkan
 Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
 Terimakasih';
             $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_lolos_penawaran($row_rup['id_rup'], $message);
+        } else if ($post == 'sts_kirim_pengumuman_hasil_evaluasi_teknis') {
+            $message = 'Pengumuman Hasil Evaluasi Teknis :
+Nama Paket: ' . $row_rup['nama_rup'] . '
+Status : Telah di Umumkan
+Silahkan Login Melalui Link Ini untuk  melihat pengumuman/undangan : https://drtproc.jmto.co.id/auth 
+Terimakasih';
+            $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_hasil_teknis($row_rup['id_rup'], $message);
         }
 
         $this->M_panitia->update_rup_panitia($id_rup, $data);
@@ -3425,5 +3465,20 @@ Terimakasih';
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/base_url_info_tender', $data);
         $this->load->view('panitia/info_tender/print_ba/cetak_jadwal', $data);
         $this->load->view('panitia/info_tender/print_ba/ajax_jadwal', $data);
+    }
+
+    public function simpan_evaluasi_akhir_tkdn_tak_dihitung($id_vendor_mengikuti_paket)
+    {
+        $ev_hea_tkdn = $this->uri->segment(6);
+        $data = [
+            'ev_hea_tkdn' => $ev_hea_tkdn,
+            'ev_hea_harga' => 0
+        ];
+
+        $where = [
+            'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

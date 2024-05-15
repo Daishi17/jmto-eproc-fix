@@ -309,7 +309,7 @@ untuk Tahapan $nama_jadwal dengan Alasan $pesan",
         //     $nomor_telpon = implode(",", $data_vendor);
         // }
 
-        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender($id_rup);
+        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_ikut($id_rup);
         $data_vendor = array();
         foreach ($get_vendor_mengikuti as $key => $value) {
             $data_vendor[] = $value['no_telpon'];
@@ -350,6 +350,7 @@ untuk Tahapan $nama_jadwal dengan Alasan $pesan",
         foreach ($get_vendor_mengikuti as $key => $value) {
             $data_vendor[] = $value['no_telpon'];
         }
+
         $nomor_telpon = implode(",", $data_vendor);
         $target = $nomor_telpon;
         $curl = curl_init();
@@ -382,6 +383,43 @@ untuk Tahapan $nama_jadwal dengan Alasan $pesan",
         // $token = 'Md6J!e+vNCB4LNZkAcTq';
         $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
         $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_ba_pra_penawaran_file1($id_rup);
+        $data_vendor = array();
+        foreach ($get_vendor_mengikuti as $key => $value) {
+            $data_vendor[] = $value['no_telpon'];
+        }
+        $nomor_telpon = implode(",", $data_vendor);
+        $target = $nomor_telpon;
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => $message,
+                'delay' => '40-60',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
+
+
+    public function kirim_wa_pengumuman_atau_undangan_hasil_teknis($id_rup, $message)
+    {
+        $token = '3HGKVEwLaF7rIt@ZhVcV';
+        // $token = 'Md6J!e+vNCB4LNZkAcTq';
+        $row_rup =  $this->ci->M_rup->get_row_rup_by_id_rup($id_rup);
+        $get_vendor_mengikuti =  $this->ci->M_panitia->get_peserta_tender_ba_pra_penawaran($id_rup);
         $data_vendor = array();
         foreach ($get_vendor_mengikuti as $key => $value) {
             $data_vendor[] = $value['no_telpon'];

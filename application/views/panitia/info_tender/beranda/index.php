@@ -432,7 +432,7 @@
                                             <label for="" id="status_pencatatan"></label>
                                         </small>
                                     </td>
-                                    <th class="col-2 vertical-align: middle; bg-light"><small>Persentase</small></th>
+                                    <th class="col-2 vertical-align: middle; bg-light"><small>Persentase TKDN</small></th>
                                     <td class="col-4 vertical-align: middle;">
                                         <small>
                                             <i class="fa-solid fa-percent px-1"></i>

@@ -75,5 +75,3 @@
 <!-- url_get_all_ruas -->
 <input type="hidden" name="url_get_all_ruas" value="<?= base_url('administrator/sirup_rup/get_ruas_data') ?>">
 <input type="hidden" name="url_get_id_ruas_rup" value="<?= base_url('administrator/sirup_rup/get_row_id_ruas_rup/') ?>">
-
-

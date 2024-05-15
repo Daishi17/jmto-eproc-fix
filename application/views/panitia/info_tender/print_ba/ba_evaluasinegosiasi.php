@@ -163,7 +163,7 @@ function terbilang($nilai)
                 }
                 ?>
                 <p style="text-align:justify; font-size:18px">
-                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $nama_perusahaan  ?></b>
+                    Penilaian Kewajaran Harga dan Klarifikasi dimulai pukul <?= $row_rup['ba_klarifikasi_jam'] ?> WIB melalui Virtual Meeting terhadap Peserta Penawaran Peringkat I yaitu <b><?= $nama_perusahaan1  ?></b>
                 </p>
 
                 <p style="text-align:justify; font-size:18px">
@@ -225,7 +225,7 @@ function terbilang($nilai)
                             <th class="text-center">NO</th>
                             <th class="text-center">NAMA</th>
                             <th class="text-center">KEDUDUKAN DALAM PANITIA</th>
-                            <th class="text-center">TANDA TANGAN</th>
+                            <th class="text-center">STATUS/KETERANGAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -265,7 +265,7 @@ function terbilang($nilai)
                         <tr>
                             <th class="text-center">NO</th>
                             <th class="text-center">NAMA PERUSAHAAN</th>
-                            <th class="text-center">TANDA TANGAN</th>
+                            <th class="text-center">STATUS/KETERANGAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -285,7 +285,7 @@ function terbilang($nilai)
                                 <?php if ($value['persetujuan_klarifikasi_nego']) { ?>
                                     <td class="text-center"><span class="badge bg-success">Setuju</span></td>
                                 <?php } else { ?>
-                                    <td class="text-center"><span class="badge bg-danger">Tidak Setuju</span></td>
+                                    <td class="text-center"><span class="badge bg-danger">Belum Ceklis</span></td>
                                 <?php }  ?>
 
                             </tr>

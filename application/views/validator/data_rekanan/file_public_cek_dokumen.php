@@ -60,7 +60,7 @@
                     }
                     html_siup += '<tr>' +
                         '<td>' + response['row_siup'].nomor_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -177,7 +177,7 @@
                     }
                     html_nib += '<tr>' +
                         '<td>' + response['row_nib'].nomor_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -296,7 +296,7 @@
                     }
                     html_sbu += '<tr>' +
                         '<td>' + response['row_sbu'].nomor_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen_sbu + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -415,7 +415,7 @@
                     }
                     html_siujk += '<tr>' +
                         '<td>' + response['row_siujk'].nomor_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -553,7 +553,7 @@
                     }
                     html_akta_perubahan += '<tr>' +
                         '<td>' + response['row_akta_perubahan'].no_surat + '</td>' +
-                        '<td>' + response['row_akta_perubahan'].tgl_berlaku_akta + '</td>' +
+                        '<td>' + conver_date_indo(response['row_akta_perubahan'].tgl_berlaku_akta) + '</td>' +
                         '<td>' + 'Rp. ' + rupiah + '</td>' +
                         '<td>' + response['row_akta_perubahan'].kualifikasi_usaha + '</td>' +
                         '<td>' + dokumen + '</td>' +
@@ -632,7 +632,7 @@
                     }
                     html_akta_pendirian += '<tr>' +
                         '<td>' + response['row_akta_pendirian'].no_surat + '</td>' +
-                        '<td>' + response['row_akta_pendirian'].tgl_berlaku_akta + '</td>' +
+                        '<td>' + conver_date_indo(response['row_akta_pendirian'].tgl_berlaku_akta) + '</td>' +
                         '<td>' + 'Rp ' + rupiah + '</td>' +
                         '<td>' + response['row_akta_pendirian'].kualifikasi_usaha + '</td>' +
                         '<td>' + dokumen + '</td>' +
@@ -888,7 +888,7 @@
                     }
                     html_sppkp += '<tr>' +
                         '<td>' + response['row_sppkp'].no_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -950,7 +950,7 @@
                     }
                     html_npwp += '<tr>' +
                         '<td>' + response['row_npwp'].no_npwp + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -1164,7 +1164,7 @@
                     }
                     html_skdp += '<tr>' +
                         '<td>' + response['row_skdp'].nomor_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -1178,66 +1178,66 @@
                 }
 
                 var html_skdp_rincian = ''
-                    html_skdp_rincian += '<tr>' +
-                        '<td>' + response['row_skdp'].nomor_surat + '</td>' +
+                html_skdp_rincian += '<tr>' +
+                    '<td>' + response['row_skdp'].nomor_surat + '</td>' +
+                    '<td>' + sts_validasi + '</td>' +
+                    '<td>' + nama_validator + '</td>' +
+                    '</tr>';
+                $('#rincian_skdp').html(html_skdp_rincian);
+
+                var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
+                $(document).ready(function() {
+                    $('#tbl_kbli_skdp').DataTable({
+                        "responsive": true,
+                        "ordering": true,
+                        "processing": true,
+                        "serverSide": true,
+                        "dom": 'Bfrtip',
+                        "bDestroy": true,
+                        "autoWidth": false,
+                        "buttons": ["excel", "pdf", "print", "colvis"],
+                        "order": [],
+                        "ajax": {
+                            "url": url_kbli_skdp + response['id_vendor'].id_vendor,
+                            "type": "POST",
+                        },
+                        "columnDefs": [{
+                            "target": [-1],
+                            "orderable": false
+                        }],
+                        "oLanguage": {
+                            "sSearch": "Pencarian : ",
+                            "sEmptyTable": "Data Tidak Tersedia",
+                            "sLoadingRecords": "Silahkan Tunggu - loading...",
+                            "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
+                            "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                            "sProcessing": "Memuat Data...."
+                        }
+                    })
+                });
+                var html_kbli_skdp = '';
+                for (i = 0; i < response['kbli_skdp'].length; i++) {
+                    if (response['kbli_skdp'][i].sts_kbli_skdp == null || response['kbli_skdp'][i].sts_kbli_skdp == 0) {
+                        var sts_validasi = '<span class="badge bg-secondary">Belum Di Periksa</span>'
+                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 1) {
+                        var sts_validasi = '<span class="badge bg-success">Sudah Valid</span>'
+                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 2) {
+                        var sts_validasi = '<span class="badge bg-danger">Tidak Valid</span>'
+                    } else if (response['kbli_skdp'][i].sts_kbli_skdp == 3) {
+                        var sts_validasi = '<span class="badge bg-warning">Revisi</span>'
+                    }
+                    if (response['kbli_skdp'][i].nama_validator) {
+                        var nama_validator = response['kbli_skdp'][i].nama_validator
+                    } else {
+                        var nama_validator = '-'
+                    }
+                    html_kbli_skdp += '<tr>' +
+                        '<td>' + response['kbli_skdp'][i].kode_kbli + '|' + response['kbli_skdp'][i].nama_kbli + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
                         '<td>' + nama_validator + '</td>' +
                         '</tr>';
-                    $('#rincian_skdp').html(html_skdp_rincian);
-
-                    var url_kbli_skdp = $('[name="url_kbli_skdp"]').val()
-                    $(document).ready(function() {
-                        $('#tbl_kbli_skdp').DataTable({
-                            "responsive": true,
-                            "ordering": true,
-                            "processing": true,
-                            "serverSide": true,
-                            "dom": 'Bfrtip',
-                            "bDestroy": true,
-                            "autoWidth": false,
-                            "buttons": ["excel", "pdf", "print", "colvis"],
-                            "order": [],
-                            "ajax": {
-                                "url": url_kbli_skdp + response['id_vendor'].id_vendor,
-                                "type": "POST",
-                            },
-                            "columnDefs": [{
-                                "target": [-1],
-                                "orderable": false
-                            }],
-                            "oLanguage": {
-                                "sSearch": "Pencarian : ",
-                                "sEmptyTable": "Data Tidak Tersedia",
-                                "sLoadingRecords": "Silahkan Tunggu - loading...",
-                                "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
-                                "sZeroRecords": "Tidak Ada Data Yang Di Cari",
-                                "sProcessing": "Memuat Data...."
-                            }
-                        })
-                    });
-                    var html_kbli_skdp = '';
-                    for (i = 0; i < response['kbli_skdp'].length; i++) {
-                        if (response['kbli_skdp'][i].sts_kbli_skdp == null || response['kbli_skdp'][i].sts_kbli_skdp == 0) {
-                            var sts_validasi = '<span class="badge bg-secondary">Belum Di Periksa</span>'
-                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 1) {
-                            var sts_validasi = '<span class="badge bg-success">Sudah Valid</span>'
-                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 2) {
-                            var sts_validasi = '<span class="badge bg-danger">Tidak Valid</span>'
-                        } else if (response['kbli_skdp'][i].sts_kbli_skdp == 3) {
-                            var sts_validasi = '<span class="badge bg-warning">Revisi</span>'
-                        }
-                        if (response['kbli_skdp'][i].nama_validator) {
-                            var nama_validator = response['kbli_skdp'][i].nama_validator
-                        } else {
-                            var nama_validator = '-'
-                        }
-                        html_kbli_skdp += '<tr>' +
-                            '<td>' + response['kbli_skdp'][i].kode_kbli + '|' + response['kbli_skdp'][i].nama_kbli + '</td>' +
-                            '<td>' + sts_validasi + '</td>' +
-                            '<td>' + nama_validator + '</td>' +
-                            '</tr>';
-                    }
-                    $('#rincian_kbli_skdp').html(html_kbli_skdp);
+                }
+                $('#rincian_kbli_skdp').html(html_kbli_skdp);
                 // end skdp
 
                 // lainnya
@@ -1283,7 +1283,7 @@
                     html_lainnya += '<tr>' +
                         '<td>' + response['row_lainnya'].nomor_surat + '</td>' +
                         '<td>' + response['row_lainnya'].nama_surat + '</td>' +
-                        '<td>' + tgl_berlaku + '</td>' +
+                        '<td>' + conver_date_indo(tgl_berlaku) + '</td>' +
                         '<td>' + dokumen + '</td>' +
                         '<td>' + dekrip + '</td>' +
                         '<td>' + sts_validasi + '</td>' +
@@ -5345,4 +5345,54 @@
         })
     })
     // end js crud lainnya
+
+
+    function conver_date_indo(d) {
+        if (d == '<label>Seumur Hidup</label>') {
+            return 'Seumur Hidup'
+        } else {
+            var al = "";
+            if (d == null || d == "" || d == "null") {
+                al = "";
+            } else {
+                var tgl = d.split("-")[2];
+                var bln = d.split("-")[1];
+                var thn = d.split("-")[0];
+
+                if (bln == 01) {
+                    bln = 'Januari'
+                } else if (bln == 02) {
+                    bln = 'Febuari'
+                } else if (bln == 03) {
+                    bln = 'Maret'
+                } else if (bln == 04) {
+                    bln = 'April'
+                } else if (bln == 05) {
+                    bln = 'Mei'
+                } else if (bln == 06) {
+                    bln = 'Juni'
+                } else if (bln == 07) {
+                    bln = 'Juli'
+                } else if (bln == 08) {
+                    bln = 'Agustus'
+                } else if (bln == 09) {
+                    bln = 'September'
+                } else if (bln == 10) {
+                    bln = 'Oktober'
+                } else if (bln == 11) {
+                    bln = 'November'
+                } else if (bln == 12) {
+                    bln = 'Desember'
+                }
+
+                al = tgl + " " + bln + " " + thn;
+            }
+            return al;
+        }
+
+    }
+
+    function bulan_indo() {
+
+    }
 </script>

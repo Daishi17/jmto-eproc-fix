@@ -3,15 +3,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_metode_pengadaan extends CI_Model
 {
-    
+
     public function get_result_metode_pengadaan()
     {
         $this->db->select('*');
         $this->db->from('tbl_metode_pengadaan');
+        $this->db->where('sts_aktif', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
     public function get_row_metode_pengadaan($id_metode_pengadaan)
     {
         $this->db->select('*');

@@ -54,8 +54,7 @@ class M_count extends CI_Model
         $this->db->from('tbl_rup');
         $this->db->where('tbl_rup.id_metode_pengadaan', 1);
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
-        if ($row_user['role'] == 2) {
-        } else {
+        if ($row_user['role'] == 2) { } else {
             $this->db->where('tbl_rup.id_departemen', $row_user['id_departemen']);
         }
         $this->db->group_by('tbl_rup.id_rup');
@@ -69,8 +68,7 @@ class M_count extends CI_Model
         $this->db->from('tbl_rup');
         $this->db->where('tbl_rup.id_metode_pengadaan', 4);
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
-        if ($row_user['role'] == 2) {
-        } else {
+        if ($row_user['role'] == 2) { } else {
             $this->db->where('tbl_rup.id_departemen', $row_user['id_departemen']);
         }
         $this->db->group_by('tbl_rup.id_rup');
@@ -125,9 +123,9 @@ class M_count extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
-        $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         // Tender Umum
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         $this->db->group_by('tbl_vendor_mengikuti_paket.id_rup');
         $i = 0;
         foreach ($this->order_paket_tender_umum as $item) // looping awal
@@ -192,7 +190,7 @@ class M_count extends CI_Model
         $this->db->where('tbl_rup.status_paket_panitia', 1);
         $this->db->where('tbl_rup.id_metode_pengadaan', 1);
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
-
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
         return $this->db->count_all_results();
     }
 
@@ -217,6 +215,7 @@ class M_count extends CI_Model
         // Tender Umum
         $this->db->where('tbl_rup.id_metode_pengadaan', 4);
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [1, 2, 3, 6]);
         $this->db->group_by('tbl_vendor_mengikuti_paket.id_rup');
         $i = 0;
         foreach ($this->order_paket_tender_terbatas as $item) // looping awal
@@ -281,7 +280,95 @@ class M_count extends CI_Model
         $this->db->where('tbl_rup.status_paket_panitia', 1);
         $this->db->where('tbl_rup.id_metode_pengadaan', 4);
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [1, 2, 3, 6]);
+        return $this->db->count_all_results();
+    }
 
+
+    private function _get_data_query_daftar_paket_tender_juksung()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_rup.id_rup = tbl_vendor_mengikuti_paket.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
+        $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
+        $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
+        $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
+        $this->db->join('tbl_provinsi', 'tbl_rup.id_provinsi = tbl_provinsi.id_provinsi', 'left');
+        $this->db->join('tbl_kabupaten', 'tbl_rup.id_kabupaten = tbl_kabupaten.id_kabupaten', 'left');
+        $this->db->join('tbl_jenis_pengadaan', 'tbl_rup.id_jenis_pengadaan = tbl_jenis_pengadaan.id_jenis_pengadaan', 'left');
+        $this->db->join('tbl_metode_pengadaan', 'tbl_rup.id_metode_pengadaan = tbl_metode_pengadaan.id_metode_pengadaan', 'left');
+        $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
+        $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
+        $this->db->where('tbl_rup.status_paket_diumumkan', 1);
+        // Tender Umum
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [9, 10]);
+        $this->db->group_by('tbl_vendor_mengikuti_paket.id_rup');
+        $i = 0;
+        foreach ($this->order_paket_tender_terbatas as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_paket_tender_terbatas) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_paket_tender_terbatas[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_rup.id_rup', 'DESC');
+        }
+    }
+
+    public function gettable_daftar_paket_tender_juksung() //nam[ilin data pake ini
+    {
+        $this->_get_data_query_daftar_paket_tender_juksung(); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_filtered_daftar_paket_tender_juksung()
+    {
+        $this->_get_data_query_daftar_paket_tender_juksung(); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function count_all_daftar_paket_tender_juksung()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_rup.id_rup = tbl_vendor_mengikuti_paket.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
+        $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
+        $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
+        $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
+        $this->db->join('tbl_provinsi', 'tbl_rup.id_provinsi = tbl_provinsi.id_provinsi', 'left');
+        $this->db->join('tbl_kabupaten', 'tbl_rup.id_kabupaten = tbl_kabupaten.id_kabupaten', 'left');
+        $this->db->join('tbl_jenis_pengadaan', 'tbl_rup.id_jenis_pengadaan = tbl_jenis_pengadaan.id_jenis_pengadaan', 'left');
+        $this->db->join('tbl_metode_pengadaan', 'tbl_rup.id_metode_pengadaan = tbl_metode_pengadaan.id_metode_pengadaan', 'left');
+        $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
+        $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
+        $this->db->where('tbl_rup.status_paket_panitia', 1);
+        $this->db->where('tbl_rup.id_metode_pengadaan', 4);
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [1, 2, 3, 6]);
         return $this->db->count_all_results();
     }
 
@@ -421,5 +508,33 @@ class M_count extends CI_Model
         return $this->db->get()->row_array();
     }
 
+
     // table untuk
+
+    public function hitung_tender_umum()
+    {
+        $this->db->from('tbl_rup');
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function hitung_tender_terbatas()
+    {
+        $this->db->from('tbl_rup');
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [1, 2, 3, 6]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function hitung_tender_juksung()
+    {
+        $this->db->from('tbl_rup');
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [9, 10]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

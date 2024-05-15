@@ -1291,7 +1291,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $result = $this->M_panitia->gettable_syarat_tambahan($id_rup);
         // urgensi hitung pake syarat buat cek valid atau Gugur
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
-        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra1file_umum_4($id_rup);
+        $jadwal_evaluasi_dokumen_kualifikasi =  $this->M_jadwal->jadwal_pra_umum_6($id_rup);
 
         $data = [];
         $no = $_POST['start'];
@@ -1315,38 +1315,32 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             }
             if ($cek_valid_vendor >= $hitung_syarat) {
                 if ($rs->sts_suratpernyataan_1 == 1 && $rs->sts_suratpernyataan_2 == 1 && $rs->sts_suratpernyataan_3 == 1 && $rs->sts_suratpernyataan_4 == 1) {
-                    $row[] = '<span class="badge bg-success">Lulus</span>';
+                    $row[] = '<span class="badge bg-success">Lengkap</span>';
                 } else {
-                    $row[] = '<span class="badge bg-danger">Gugur</span>';
+                    $row[] = '<span class="badge bg-danger">Tidak Lengkap</span>';
                 }
             } else {
                 if ($cek_null_syarat) {
-                    if ($cek_tidak_valid) {
-                        $row[] = '<span class="badge bg-danger">Gugur</span>';
-                    } else {
-                        $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
-                    }
+                    $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
                 } else {
                     if ($cek_tidak_valid) {
-                        $row[] = '<span class="badge bg-danger">Gugur</span>';
+                        $row[] = '<span class="badge bg-danger">Tidak Lengkap</span>';
                     } else {
                         if ($cek_valid_vendor >= $hitung_syarat) {
-                            $row[] = '<span class="badge bg-danger">Gugur</span>';
+                            $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
                         } else {
-                            $row[] = '<span class="badge bg-warning">Belum Lengkap</span>';
+                            $row[] = '<span class="badge bg-warning">Tidak Lengkap</span>';
                         }
                     }
                 }
             }
-
-
             if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai']))  >= date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
                 <button disabled class="btn btn-danger btn-sm shadow-lg text-white">
                     <i class="fa-solid fa-edit"></i>
                     <small>Belum Memasuki Tahap Ini</small>
                 </button>
-              </div>';
+              </div> ';
             } else if (date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_selesai'])) >= date('Y-m-d H:i') || date('Y-m-d H:i', strtotime($jadwal_evaluasi_dokumen_kualifikasi['waktu_mulai'])) == date('Y-m-d H:i')) {
                 $row[] = '<div class="text-center">
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','syarat_tambahan'" . ')">
@@ -1361,10 +1355,6 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
                 </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Pengalaman</small>
-                </a>
               </div>';
             } else {
                 $row[] = '<div class="text-center">
@@ -1379,10 +1369,6 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','laporan_keuangan'" . ')">
                 <i class="fa-solid fa-edit"></i>
                 <small>Laporan Keuangan</small>
-                </a>
-                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pengalaman'" . ')">
-                <i class="fa-solid fa-edit"></i>
-                <small>Pengalaman</small>
                 </a>
               </div>';
             }
@@ -3569,5 +3555,21 @@ Terimakasih';
             'row_file_excel' => $data
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
+    }
+
+    public function simpan_evaluasi_akhir_tkdn_tak_dihitung($id_vendor_mengikuti_paket)
+    {
+        $ev_hea_tkdn_terendah = $this->uri->segment(6);
+        $data = [
+            'ev_hea_tkdn_terendah' => $ev_hea_tkdn_terendah,
+            'ev_hea_harga_hea_terendah' => 0,
+            'ev_hea_tkdn_terendah_peringkat' => ''
+        ];
+
+        $where = [
+            'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

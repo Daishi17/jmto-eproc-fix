@@ -286,7 +286,7 @@
                                                 <td>
                                                     <small>
                                                         <select name="id_provinsi" id="provinsitambah" class="form-control select2bs4" style="width: 100%;">
-                                                            <option>Pilih Provinsi</option>
+                                                            <option value="">Pilih Provinsi</option>
                                                             <?php foreach ($provinsi as $key => $value) { ?>
                                                                 <option value="<?= $value['id_provinsi'] ?>"><?= $value['nama_provinsi'] ?></option>
                                                             <?php  } ?>
@@ -333,7 +333,7 @@
                                         <div class="input-group mb-2">
                                             <span class="input-group-text"><i class="fa-solid fa-business-time"></i></span>
                                             <select name="kualifikasi_usaha" class="form-control select2bs4">
-                                                <option>Pilih Kualifikasi Usaha</option>
+                                                <option value="">Pilih Kualifikasi Usaha</option>
                                                 <option value="Besar">Besar</option>
                                                 <option value="Menengah">Menengah</option>
                                                 <option value="Kecil">Kecil</option>
@@ -348,7 +348,7 @@
                                         <div class="input-group mb-2">
                                             <span class="input-group-text"><i class="fa-solid fa-recycle"></i></span>
                                             <select name="jenis_produk" class="form-control select2bs4">
-                                                <option>Jenis Produk</option>
+                                                <option value="">Pilih Jenis Produk</option>
                                                 <option value="Menggunakan Produk Dalam Negri">Menggunakan Produk Dalam Negri</option>
                                                 <option value="Menggunakan Produk Luar Negri"> Menggunakan Produk Luar Negri</option>
                                             </select>
@@ -361,13 +361,17 @@
                             <tr>
                                 <th class="bg-light">
                                     <small>Status Pencatatan (TKDN/PDN/Import) </small>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <small>Persentase TKDN</small>
                                 </th>
                                 <td>
                                     <small>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text"><i class="fa-solid fa-right-left"></i></span>
                                             <select name="status_pencatatan" class="form-control select2bs4">
-                                                <option>Pilih Status Pencatatan</option>
+                                                <option value="">Pilih Status Pencatatan</option>
                                                 <option value="TKDN">TKDN</option>
                                                 <option value="PDN">PDN</option>
                                                 <option value="IMPORT">IMPORT</option>
@@ -376,16 +380,17 @@
                                         <!-- status_pencatatan -->
                                         <small class="text-danger status_pencatatan_validation"></small>
                                     </small>
-                                </td>
-                                <td>
                                     <small>
                                         <div class="input-group mb-2">
-                                            <span class="input-group-text">%</span>
-                                            <input name="persen_pencatatan" type="text" pattern="\d*" maxlength="4" class="form-control persen_pencatatan" placeholder="Persentase">
+                                            <span class="input-group-text">% TKDN</span>
+                                            <input name="persen_pencatatan" type="text" pattern="\d*" maxlength="5" class="form-control persen_pencatatan" placeholder="Persentase">
                                         </div>
                                         <!-- persen_pencatatan -->
                                         <small class="text-danger persen_pencatatan_validation"></small>
                                     </small>
+                                </td>
+                                <td>
+
                                     <small>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text">Rp.</span>
@@ -477,10 +482,10 @@
                                                     <small>Departemen</small>
                                                 </th>
                                                 <th class="text-center bg-secondary text-white" scope="col">
-                                                    <small>Total Pagu RKAP</small>
+                                                    <small>Total Pagu Buku RUP</small>
                                                 </th>
                                                 <th class="text-center bg-secondary text-white" scope="col">
-                                                    <small>Total Pagu RUP</small>
+                                                    <small>Total Pagu Realisasi RUP</small>
                                                 </th>
                                             </tr>
                                         </thead>

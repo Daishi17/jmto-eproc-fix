@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
     <!-- sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?php echo base_url(); ?>/assets/swal2.min.js"></script>
 
     <link href="<?php echo base_url(); ?>/assets/css/bs5-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/assets/css/bs4-card.css" rel="stylesheet">

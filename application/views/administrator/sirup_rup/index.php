@@ -81,7 +81,7 @@
                                         <a href="<?= base_url() ?>/administrator/sirup_rup/buat_rup_non_rkap">
                                             <button type="button" class="btn btn-warning btn-sm shadow-lg">
                                                 <i class="fa-solid fa-circle-plus px-1"></i>
-                                                Tambah RUP Non RKAP
+                                                Tambah RUP Diluar Buku
                                             </button>
                                         </a>
                                     </div>
@@ -89,37 +89,39 @@
                                 <div class="card-body">
                                     <div class="col-md-12">
                                         <div class="card border-primary shadow-lg">
-                                            <div class="card-header"><small class="text-primary"><b><i class="fa-solid fa-money-check-dollar px-1"></i>Info Rencana Kerja Anggaran (RKA) / Buat RUP Berdasarkan RKAP</b></small></div>
+                                            <div class="card-header"><small class="text-primary"><b><i class="fa-solid fa-money-check-dollar px-1"></i>Info Rencana Program Kerja/Buat RUP Berdasarkan Buku RUP</b></small></div>
                                             <div class="card-body">
                                                 <div class="row g-1">
                                                     <div class="col-sm-3">
                                                         <div class="input-group mb-1">
                                                             <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-                                                            <select class="form-select" aria-label="Default select example">
+                                                            <select class="form-select" aria-label="Default select example" id="tahun_rkap">
                                                                 <option selected>Pilih Tahun</option>
                                                                 <option value="0">All</option>
-                                                                <option value="1">2023</option>
-                                                                <option value="2">2024</option>
-                                                                <option value="3">2025</option>
-                                                                <option value="4">2026</option>
-                                                                <option value="5">2027</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                                <option value="2025">2025</option>
+                                                                <option value="2026">2026</option>
+                                                                <option value="2027">2027</option>
+                                                                <option value="2028">2028</option>
+                                                                <option value="2029">2029</option>
+                                                                <option value="2030">2030</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         <div class="input-group mb-2">
                                                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Pilih Departemen</option>
-                                                                <option value="0">All</option>
-                                                                <option value="1">Human Capital & General Affair</option>
-                                                                <option value="2">Finance & Accounting</option>
-                                                                <option value="3">Operation 1</option>
+                                                            <select class="form-select" aria-label="Default select example" id="id_departemen">
+                                                                <option>Pilih Departemen</option>
+                                                                <?php foreach ($result_departemen as $key => $value) { ?>
+                                                                    <option value="<?= $value['id_departemen'] ?>"><?= $value['nama_departemen'] ?></option>
+                                                                <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <button type="button" class="btn btn-sm btn-info">
+                                                        <button type="button" id="filter3" class="btn btn-sm btn-info">
                                                             <i class="fa-solid fa-filter px-1"></i>
                                                             Filter Data
                                                         </button>
@@ -133,9 +135,9 @@
                                                                 <tr>
                                                                     <th style="width:10%;"><small class="text-white">Kode</small></th>
                                                                     <th style="width:10%;"><small class="text-white">Tahun</small></th>
-                                                                    <th style="width:20%;"><small class="text-white">Nama Program RKAP</small></th>
+                                                                    <th style="width:20%;"><small class="text-white">Nama Buku RUP</small></th>
                                                                     <th style="width:15%;"><small class="text-white">Departemen</small></th>
-                                                                    <th style="width:15%;"><small class="text-white">Total Pagu (Rp)</small></th>
+                                                                    <th style="width:15%;"><small class="text-white">Total Pagu Buku RUP (Rp)</small></th>
                                                                     <th style="width:10%;"><small class="text-white">Status</small></th>
                                                                     <th style="width:10%;"><small class="text-white">
                                                                             <div class="text-center">Options</div>

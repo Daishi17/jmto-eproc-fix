@@ -1277,19 +1277,19 @@ class Post_jadwal extends CI_Controller
 
 
         // jadwal 19
-        $jadwal_mulai = date('Y-m-d H:i', strtotime($waktu_mulai[19]));
-        $jadwal_selesai = date('Y-m-d H:i', strtotime($waktu_selesai[19]));
-        $id_jadwal = $id_jadwal_rup[19];
-        $where19 = [
-            'id_jadwal_rup' => $id_jadwal,
-        ];
-        $data19 = [
-            'waktu_mulai' => $jadwal_mulai,
-            'waktu_selesai' => $jadwal_selesai,
-            'sts_perubahan_jadwal' => 0
-        ];
-        // update_jadwal 19
-        $this->M_panitia->update_jadwal_rup_tender_terbatas_22_jadwal($data19, $where19);
+        // $jadwal_mulai = date('Y-m-d H:i', strtotime($waktu_mulai[19]));
+        // $jadwal_selesai = date('Y-m-d H:i', strtotime($waktu_selesai[19]));
+        // $id_jadwal = $id_jadwal_rup[19];
+        // $where19 = [
+        //     'id_jadwal_rup' => $id_jadwal,
+        // ];
+        // $data19 = [
+        //     'waktu_mulai' => $jadwal_mulai,
+        //     'waktu_selesai' => $jadwal_selesai,
+        //     'sts_perubahan_jadwal' => 0
+        // ];
+        // // update_jadwal 19
+        // $this->M_panitia->update_jadwal_rup_tender_terbatas_22_jadwal($data19, $where19);
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 

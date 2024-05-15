@@ -515,8 +515,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success" id="btn_ev_tkdn">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" onclick="simpan_tkdn_tidak_dihitung()" class="btn btn-primary" id="btn_ev_tkdn">Simpan (Tidak Di hitung)</button>
+                    <button type="submit" class="btn btn-success" id="btn_ev_tkdn">Simpan (Di hitung)</button>
                 </div>
             </form>
         </div>

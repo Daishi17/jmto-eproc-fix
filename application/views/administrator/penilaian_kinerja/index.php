@@ -36,22 +36,22 @@
                                     <i class="fa-solid fa-gift"></i>
                                     <small><b>Tender Terbatas &nbsp;<span class="badge bg-secondary"><?= count($count_tender_terbatas) ?></span></b></small>
                                 </button>
-                                <button class="nav-link text-dark" id="nav-seleksiumum-tab" data-bs-toggle="tab" data-bs-target="#nav-seleksiumum" type="button" role="tab" aria-controls="nav-seleksiumum" aria-selected="true">
+                                <!-- <button class="nav-link text-dark" id="nav-seleksiumum-tab" data-bs-toggle="tab" data-bs-target="#nav-seleksiumum" type="button" role="tab" aria-controls="nav-seleksiumum" aria-selected="true">
                                     <i class="fa-solid fa-gift"></i>
                                     <small><b>Seleksi Umum &nbsp;<span class="badge bg-secondary">0</span></b></small>
-                                </button>
+                                </button> -->
                                 <button class="nav-link text-dark" id="nav-juksung-tab" data-bs-toggle="tab" data-bs-target="#nav-juksung" type="button" role="tab" aria-controls="nav-juksung" aria-selected="true">
                                     <i class="fa-solid fa-gift"></i>
-                                    <small><b>Penunjukan Langsung &nbsp;<span class="badge bg-secondary">0</span></b></small>
+                                    <small><b>Penunjukan Langsung &nbsp;<span class="badge bg-secondary"><?= count($count_tender_juksung) ?></span></b></small>
                                 </button>
-                                <button class="nav-link text-dark" id="nav-selekterbatas-tab" data-bs-toggle="tab" data-bs-target="#nav-selekterbatas" type="button" role="tab" aria-controls="nav-selekterbatas" aria-selected="true">
+                                <!-- <button class="nav-link text-dark" id="nav-selekterbatas-tab" data-bs-toggle="tab" data-bs-target="#nav-selekterbatas" type="button" role="tab" aria-controls="nav-selekterbatas" aria-selected="true">
                                     <i class="fa-solid fa-gift"></i>
                                     <small><b>Seleksi Terbatas &nbsp;<span class="badge bg-secondary">0</span></b></small>
                                 </button>
                                 <button class="nav-link text-dark" id="nav-penglangsung-tab" data-bs-toggle="tab" data-bs-target="#nav-penglangsung" type="button" role="tab" aria-controls="nav-penglangsung" aria-selected="true">
                                     <i class="fa-solid fa-gift"></i>
                                     <small><b>Pengadaan Langsung &nbsp;<span class="badge bg-secondary">0</span></b></small>
-                                </button>
+                                </button> -->
                             </div>
                             <div class="tab-content p-3 border bg-light" id="nav-tabContent">
                                 <div class="tab-pane fade active show" id="nav-tenderumum" role="tabpanel" aria-labelledby="nav-tenderumum-tab">
@@ -69,14 +69,13 @@
                                     <table id="tbl_paket_tender_umum" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Nama Rup</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Harga Negosiasi</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
                                                 <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
-                                                <th class="col-2"><small class="text-white">Performance Kinerja</small></th>
-                                                <th class="col-2"><small class="text-white">Performance Peringatan</small></th>
                                                 <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
                                                 <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
@@ -104,18 +103,21 @@
                                     <table id="tbl_paket_tender_terbatas" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Departemen</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
-                                                <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
-                                                <th class="col-1"><small class="text-white">Status</small></th>
-                                                <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
-                                                    </small></th>
+                                                <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                                                <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -135,15 +137,15 @@
                                     <table id="example3" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Departemen</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
-                                                <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
-                                                <th class="col-1"><small class="text-white">Status</small></th>
-                                                <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
-                                                    </small></th>
+                                                <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                                                <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -179,36 +181,23 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <table id="example5" class="table table-bordered border-dark table-sm table-striped">
+                                    <table id="tbl_paket_tender_juksung" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Departemen</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
-                                                <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
-                                                <th class="col-1"><small class="text-white">Status</small></th>
-                                                <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
-                                                    </small></th>
+                                                <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                                                <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><small>2023</small></td>
-                                                <td><small>Pengadaan Sewa Keamanan / Securty</small></td>
-                                                <td><small>General Affair</small></td>
-                                                <td><small>Jasa Lain</small></td>
-                                                <td><small>1.300.000.000</small></td>
-                                                <td><small><span class="badge bg-danger">Tender Sudah Selesai</span></small></td>
-                                                <td>
-                                                    <div class="text-center">
-                                                        <button type="button" class="btn btn-info btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#modal-xl-detail">
-                                                            <i class="fa-solid fa-users-viewfinder"></i>
-                                                            <small>Detail</small>
-                                                        </button>
-                                                    </div>
-                                                </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -229,15 +218,15 @@
                                     <table id="example9" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Departemen</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
-                                                <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
-                                                <th class="col-1"><small class="text-white">Status</small></th>
-                                                <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
-                                                    </small></th>
+                                                <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                                                <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -276,15 +265,15 @@
                                     <table id="example11" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
-                                                <th class="col-1"><small class="text-white">Tahun</small></th>
-                                                <th class="col-3"><small class="text-white">Nama Paket Penyedia</small></th>
-                                                <th class="col-2"><small class="text-white">Departemen</small></th>
+                                                <th style="width: 1%;"><small class="text-white">No</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
+                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
-                                                <th class="col-2"><small class="text-white">Total HPS (Rp)</small></th>
-                                                <th class="col-1"><small class="text-white">Status</small></th>
-                                                <th class="col-1"><small class="text-white">
-                                                        <div class="text-center">#</div>
-                                                    </small></th>
+                                                <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                                                <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>

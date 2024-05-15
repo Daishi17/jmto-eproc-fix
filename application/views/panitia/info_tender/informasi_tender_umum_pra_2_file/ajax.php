@@ -1832,9 +1832,23 @@
                     } else {
                         var lin_nego = '<small>' + response['result_vendor_negosiasi'][i].link_negosiasi + '</small>'
                     }
+
+                    var text = response['result_vendor_negosiasi'][i].nama_usaha
+                    var sub_string = text.substring(2, 0)
+                    if (sub_string == 'PT' || sub_string == 'CV' || sub_string == 'Koperasi') {
+                        var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                    } else {
+                        if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Perseroan Terbatas (PT)') {
+                            var nama_perusahaan = 'PT ' + response['result_vendor_negosiasi'][i].nama_usaha
+                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
+                            var nama_perusahaan = 'CV ' + response['result_vendor_negosiasi'][i].nama_usaha
+                        } else if (response['result_vendor_negosiasi'][i].bentuk_usaha == 'Koperasi') {
+                            var nama_perusahaan = response['result_vendor_negosiasi'][i].nama_usaha
+                        }
+                    }
                     html += '<tr>' +
                         '<td><small>' + no++ + '</small></td>' +
-                        '<td><small>' + response['result_vendor_negosiasi'][i].nama_usaha + '</small></td>' +
+                        '<td><small>' + nama_perusahaan + '</small></td>' +
                         '<td>' + tanggal_negoasiasi + '</td>' +
                         '<td>' + lin_nego + '</td>' +
                         '<td><a href="javascript:;"  onclick="upload_link_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Kirim Undangan </a> <a href="javascript:;"  onclick="upload_hasil_negoasiasi(\'' + response['result_vendor_negosiasi'][i].id_vendor_mengikuti_paket + '\'' + ',' + '\'' + response['result_vendor_negosiasi'][i].nama_usaha + '\')" class="btn btn-sm btn-success"><i class="fas fa fa-edit"></i> Hasil Negosiasi </a></td>' +
@@ -3585,5 +3599,49 @@
             });
         }
 
+    }
+
+    function simpan_tkdn_tidak_dihitung() {
+        var id_vendor_mengikuti_paket = $('[name="id_vendor_mengikuti_paket"]').val()
+        var ev_hea_tkdn = $('[name="ev_hea_tkdn"]').val()
+
+        var url_simpan_evaluasi_hea_tkdn_tak_dihitung = $('[name="url_simpan_evaluasi_hea_tkdn_tak_dihitung"]').val();
+
+        $.ajax({
+            url: url_simpan_evaluasi_hea_tkdn_tak_dihitung + id_vendor_mengikuti_paket + '/' + ev_hea_tkdn,
+            method: "POST",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#btn_ev_tkdn').attr("disabled", false);
+                        $('#modal_evaluasi_hea_tkdn').modal('hide')
+                        form_evaluasi_hea_tkdn[0].reset();
+                        reload_evaluasi_hea_tkdn()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+            }
+        })
     }
 </script>

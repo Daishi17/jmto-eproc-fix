@@ -21,7 +21,11 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
     <!-- sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/sweetalert2/sweetalert2.js"> -->
+
+    <script src="<?php echo base_url(); ?>/assets/swal2.min.js"></script>
 
     <link href="<?php echo base_url(); ?>/assets/css/bs5-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/assets/css/bs4-card.css" rel="stylesheet">
@@ -275,19 +279,25 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-chart-pie"></i>
-                            <small>Laporan</small>
+                            <small>Laporan Dan Penilaian Kinerja</small>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= base_url('administrator/laporan_efisiensi') ?>">
                                     <i class="fa-solid fa-chart-simple px-1"></i>
-                                    <small>Tabel Total Tender</small>
+                                    <small>Draft Laporan Efisiensi Pengadaan</small>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-solid fa-chart-pie px-1"></i>
-                                    <small>Grafik & Rekap Tender</small>
+                                <a class="dropdown-item" href="<?= base_url('administrator/laporan_pengadaan_vendor') ?>">
+                                    <i class="fa-solid fa-chart-simple px-1"></i>
+                                    <small>Draft Laporan Nama Vendor dan Pengadaan</small>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('administrator/laporan_tkdn') ?>">
+                                    <i class="fa-solid fa-chart-simple px-1"></i>
+                                    <small>Draft Monitoring PDN, TKDN dan Impor Jm Group</small>
                                 </a>
                             </li>
                             <li>
@@ -299,12 +309,7 @@
                                     <small>Penilaian Kinerja Rekanan</small>
                                 </a>
                             </li>
-                            <!-- <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa-solid fa-chart-area px-1"></i>
-                                        <small>Progres Kinerja Rekanan</small>
-                                    </a>
-                                </li> -->
+
                         </ul>
                     </li>
                 <?php  }

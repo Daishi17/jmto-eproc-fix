@@ -297,7 +297,7 @@
                     dataType: "JSON",
                     success: function(response) {
                         Reload_table_rekanan_baru()
-                        Swal.fire('Good job!', 'Data Beharhasil Setujui!', 'success');
+                        Swal.fire('Good job!', 'Data Berhasil Setujui!', 'success');
                         $('#datatable_pengajuan_dokumen').DataTable({
                             "responsive": false,
                             "ordering": true,
@@ -353,7 +353,7 @@
                     },
                     dataType: "JSON",
                     success: function(response) {
-                        Swal.fire('Good job!', 'Data Beharhasil Tolak!', 'success');
+                        Swal.fire('Good job!', 'Data Berhasil Tolak!', 'success');
                         $('#datatable_pengajuan_dokumen').DataTable({
                             "responsive": false,
                             "ordering": true,

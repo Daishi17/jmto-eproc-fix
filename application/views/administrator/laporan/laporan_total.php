@@ -10,7 +10,8 @@
                         </span>
                     </h6>
                 </div>
-            </div><hr>
+            </div>
+            <hr>
             <div class="card border-dark">
                 <div class="card-header border-dark bg-warning d-flex justify-content-between align-items-center">
                     <div class="flex-grow-1 bd-highlight">
@@ -19,7 +20,7 @@
                             <small><strong>Data Tabel - Total Tender</strong></small>
                         </span>
                     </div>
-                   
+
                 </div>
                 <div class="card-body">
                     <div style="overflow-x: auto;">
@@ -52,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>

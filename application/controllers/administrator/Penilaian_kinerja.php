@@ -21,6 +21,7 @@ class Penilaian_kinerja extends CI_Controller
 		$this->load->model('M_panitia/M_panitia');
 		$this->load->model('M_panitia/M_count');
 		$this->load->model('M_panitia/M_jadwal');
+		$this->load->model('M_laporan/M_laporan_kinerja');
 		$this->load->model('Penilaian_vendor_model');
 		$role = $this->session->userdata('role');
 		if (!$role == 1) {
@@ -38,8 +39,9 @@ class Penilaian_kinerja extends CI_Controller
 		$data['paket_tender_berjalan'] = $this->M_Dashboard->count_paket_tender_berjalan();
 		$id_manajemenen_user = $this->session->userdata('id_manajemen_user');
 		$row_management_user = $this->M_count->get_row_pegawai($id_manajemenen_user);
-		$data['count_tender_umum'] = $this->M_count->count_tender_umum_area($row_management_user);
-		$data['count_tender_terbatas'] = $this->M_count->count_tender_terbatas_unit_area($row_management_user);
+		$data['count_tender_umum'] = $this->M_count->hitung_tender_umum();
+		$data['count_tender_terbatas'] = $this->M_count->hitung_tender_terbatas();
+		$data['count_tender_juksung'] = $this->M_count->hitung_tender_juksung();
 		$this->load->view('template_menu/header_menu');
 		$this->load->view('administrator/penilaian_kinerja/index', $data);
 		$this->load->view('template_menu/footer_menu');
@@ -51,49 +53,22 @@ class Penilaian_kinerja extends CI_Controller
 		$data['row_mengikuti_paket'] = $this->M_count->get_row_vendor_mengikuti_paket($id_vendor_mengikuti_paket);
 		$id_rup = $data['row_mengikuti_paket']['id_rup'];
 		$id_vendor = $data['row_mengikuti_paket']['id_vendor'];
-		// INI UNTUK PEKERJAAN KONTRUKSI
-		$data['kontruksi_1'] = $this->M_count->get_penilaian_kinerja_kontruksi_1();
-		$data['kontruksi_2'] = $this->M_count->get_penilaian_kinerja_kontruksi_2();
-		$data['kontruksi_3'] = $this->M_count->get_penilaian_kinerja_kontruksi_3();
-		$data['kontruksi_4'] = $this->M_count->get_penilaian_kinerja_kontruksi_4();
-		$data['kontruksi_5'] = $this->M_count->get_penilaian_kinerja_kontruksi_5();
-		$data['kontruksi_6'] = $this->M_count->get_penilaian_kinerja_kontruksi_6();
-		$data['kontruksi_7'] = $this->M_count->get_penilaian_kinerja_kontruksi_7();
-		$data['kontruksi_8'] = $this->M_count->get_penilaian_kinerja_kontruksi_8();
-		$data['kontruksi_9'] = $this->M_count->get_penilaian_kinerja_kontruksi_9();
-		$data['kontruksi_10'] = $this->M_count->get_penilaian_kinerja_kontruksi_10();
-		$data['kontruksi_11'] = $this->M_count->get_penilaian_kinerja_kontruksi_11();
-		$data['kontruksi_12'] = $this->M_count->get_penilaian_kinerja_kontruksi_12();
-		$data['kontruksi_13'] = $this->M_count->get_penilaian_kinerja_kontruksi_13();
-		$data['kontruksi_14'] = $this->M_count->get_penilaian_kinerja_kontruksi_14();
-		$data['kontruksi_15'] = $this->M_count->get_penilaian_kinerja_kontruksi_15();
-		$data['kontruksi_16'] = $this->M_count->get_penilaian_kinerja_kontruksi_16();
-		$data['kontruksi_17'] = $this->M_count->get_penilaian_kinerja_kontruksi_17();
-		$data['cek_jika_ada_kontruksi_1'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_1($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_2'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_2($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_3'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_3($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_4'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_4($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_5'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_5($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_6'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_6($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_7'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_7($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_8'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_8($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_9'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_9($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_10'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_10($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_11'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_11($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_12'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_12($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_13'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_13($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_14'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_14($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_15'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_15($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_16'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_16($id_rup, $id_vendor);
-		$data['cek_jika_ada_kontruksi_17'] = $this->Penilaian_vendor_model->cek_jika_ada_penilaian_kontruksi_17($id_rup, $id_vendor);
-		$data['jika_sudah_di_tambah_pekerjaan_kontruksi'] = $this->Penilaian_vendor_model->jika_sudah_di_tambah_pekerjaan_kontruksi($id_rup, $id_vendor);
-		// END PEKERJAAN KONTRUKSI
+		$data['row_rup'] = $this->M_laporan_kinerja->get_row_rup($id_rup);
 
+		$data['get_pelaksanaan_satgas'] =  $this->M_laporan_kinerja->cek_pelaksanaan_satgas($id_vendor, $id_rup);
+		$data['get_pelaksanaan_manager'] =  $this->M_laporan_kinerja->cek_pelaksanaan_manager($id_vendor, $id_rup);
+		$data['get_pelaksanaan_depthead'] =  $this->M_laporan_kinerja->cek_pelaksanaan_depthead($id_vendor, $id_rup);
+		$data['get_pelaksanaan_total'] =  $this->M_laporan_kinerja->cek_pelaksanaan_total($id_vendor, $id_rup);
+
+		$data['get_pemeliharaan_satgas'] =  $this->M_laporan_kinerja->cek_pemeliharaan_satgas($id_vendor, $id_rup);
+		$data['get_pemeliharaan_manager'] =  $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup);
+		$data['get_pemeliharaan_depthead'] =  $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup);
+		$data['get_pemeliharaan_total'] =  $this->M_laporan_kinerja->cek_pemeliharaan_total($id_vendor, $id_rup);
 
 		$this->load->view('template_menu/header_menu');
 		$this->load->view('administrator/penilaian_kinerja/buat_penilaian', $data);
 		$this->load->view('template_menu/footer_menu');
-		$this->load->view('administrator/penilaian_kinerja/ajax', $data);
+		$this->load->view('administrator/penilaian_kinerja/ajax_penilaian', $data);
 	}
 
 
@@ -104,22 +79,57 @@ class Penilaian_kinerja extends CI_Controller
 		$no = $_POST['start'];
 		$now = date('Y-m-d H:i');
 		foreach ($result as $rs) {
-			$jadwal_terakhir = $this->M_jadwal->jadwal_pra_umum_22($rs->id_rup);
-			$row = array();
-			$row[] = '<small>' . $rs->nama_rup . '</small>';
-			$row[] = '<small>' . $rs->nama_usaha . '</small>';
-			if ($rs->nilai_penawaran_vendor == NULL) {
-				$row[] = '<small class="badge bg-danger">Belum Ada Penawaran</small>';
+			$get_nilai_pelaksanaan = $this->M_laporan_kinerja->cek_pelaksanaan_total($rs->id_vendor, $rs->id_rup);
+			$get_nilai_pemeliharaan = $this->M_laporan_kinerja->cek_pemeliharaan_total($rs->id_vendor, $rs->id_rup);
+
+			if ($get_nilai_pelaksanaan) {
+				if ($get_nilai_pelaksanaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
+			} else if ($get_nilai_pemeliharaan) {
+				if ($get_nilai_pemeliharaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
 			} else {
-				$row[] = '<small>' . "Rp " . number_format($rs->nilai_penawaran_vendor, 2, ',', '.') . '</small>';
+				$rating = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
 			}
+
+			if ($rs->nilai_vendor) {
+				$nilai_vendor = $rs->nilai_vendor;
+			} else {
+				$nilai_vendor = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+
+			$row = array();
+			$row[] = '<small>' . ++$no . '</small>';
+			$row[] = '<small>' . $rs->nama_rup . '</small>';
+			$row[] = '<small>' . $rs->tahun_rup . '</small>';
+			$row[] = '<small>' . $rs->nama_usaha . '</small>';
 			$row[] = '<small>' . $rs->nama_jenis_pengadaan . '</small>';
 			$row[] = '<small>' . $rs->nama_metode_pengadaan . '</small>';
-			$row[] = '<small>' . $rs->tahun_rup . '</small>';
-			$row[] = '<small>' . $rs->tahun_rup . '</small>';
-			$row[] = '<small>' . $rs->tahun_rup . '</small>';
-			$row[] = '<small>' . $rs->tahun_rup . '</small>';
-			$row[] = '<a href="' . base_url('administrator/penilaian_kinerja/buat_penilaian/' . $rs->id_vendor_mengikuti_paket) . '" class="btn btn-sm btn-info">Penilaian</a>';
+			$row[] = '<small>' . $rating . '</small>';
+			if ($get_nilai_pelaksanaan) {
+				$row[] = '<small>' . $get_nilai_pelaksanaan['hasil_akhir']  . '</small>';
+			} else if ($get_nilai_pemeliharaan) {
+				$row[] = '<small>' . $get_nilai_pemeliharaan['hasil_akhir']  . '</small>';
+			} else {
+				$row[] = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+
+
+			$row[] = '<a href="' . base_url('administrator/penilaian_kinerja/buat_penilaian/' . $rs->id_vendor_mengikuti_paket) . '" class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i>  Penilaian</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -131,294 +141,947 @@ class Penilaian_kinerja extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 
-	// INI BAGIAN BARU PEKERJAAN KONTRUKSI
-	public function tambah_warning_pekerjaan_kontruksisaya()
+
+	public function get_draft_paket_tender_terbatas()
 	{
-		$id_rup = $this->input->post('id_rup', TRUE);
-		$id_vendor = $this->input->post('id_vendor', TRUE);
-		$indikator_pekerjaan_kontruksi = $this->input->post('indikator_pekerjaan_kontruksi', TRUE);
-		$bobot_pekerjaan_kontruksi = $this->input->post('bobot_pekerjaan_kontruksi', TRUE);
-		$penilaian_pekerjaan_kontruksi = $this->input->post('penilaian_kontruksi', TRUE);
-		$nilai_akhir_pekerjaan_kontruksi = $this->input->post('nilai_akhir_pekerjaan_kontruksi', TRUE);
-		// tbl_vendor mengikuti paket asdasd asdad
-		$rating_penilaian_vendor_pekerjaan_kontruksi = $this->input->post('rating_penilaian_vendor_pekerjaan_kontruksi');
-		$status_rating_pekerjaan_kontruksi = $this->input->post('status_rating_pekerjaan_kontruksi');
-		$status_nilai_akhir_pekerjaan_kontruksi = $this->input->post('status_nilai_akhir_pekerjaan_kontruksi');
-		$id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
-		$data['row_mengikuti_paket'] = $this->M_count->get_row_vendor_mengikuti_paket($id_vendor_mengikuti_paket);
-		$nama_rup = $data['row_mengikuti_paket']['nama_rup'];
-		$nama_metode_pengadaan = $data['row_mengikuti_paket']['nama_metode_pengadaan'];
-		$id_vendor = $data['row_mengikuti_paket']['id_vendor'];
-		$id_rup = $data['row_mengikuti_paket']['id_rup'];
-		$id_url_vendor = $data['row_mengikuti_paket']['id_url_vendor'];
-		$vendor_pemenag_by_id_pekerjaan_kontruksi = $this->M_count->get_row_vendor_mengikuti_paket($id_vendor_mengikuti_paket);
-		if ($vendor_pemenag_by_id_pekerjaan_kontruksi['status_warning_vendor'] == 1) {
-			// ketable detail penilaian
-			$result = array();
-			foreach ($indikator_pekerjaan_kontruksi as $key => $val) {
-				$result[] = array(
-					'id_rup'   => $id_rup,
-					'id_vendor'   => $id_vendor,
-					'indikator_detail_pekerjaan'   => $indikator_pekerjaan_kontruksi[$key],
-					'bobot_detail_pekerjaan'   => $bobot_pekerjaan_kontruksi[$key],
-					'penilaian_detail'   =>  $penilaian_pekerjaan_kontruksi[$key],
-					'nilai_akhir_detail_pekerjaan'   =>  $nilai_akhir_pekerjaan_kontruksi[$key],
-				);
-			}
+		$result = $this->M_count->gettable_daftar_paket_tender_terbatas();
+		$data = [];
+		$no = $_POST['start'];
+		$now = date('Y-m-d H:i');
+		foreach ($result as $rs) {
+			$get_nilai_pelaksanaan = $this->M_laporan_kinerja->cek_pelaksanaan_total($rs->id_vendor, $rs->id_rup);
+			$get_nilai_pemeliharaan = $this->M_laporan_kinerja->cek_pemeliharaan_total($rs->id_vendor, $rs->id_rup);
 
-			// ketable vendor mengkikuti paket
-			$where = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor,
-			];
-			if ($status_nilai_akhir_pekerjaan_kontruksi <= 51) {
-				$jumlah_bintang = 1;
-			} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 70) {
-				$jumlah_bintang = 2;
-			} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 80) {
-				$jumlah_bintang = 3;
+			if ($get_nilai_pelaksanaan) {
+				if ($get_nilai_pelaksanaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
+			} else if ($get_nilai_pemeliharaan) {
+				if ($get_nilai_pemeliharaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
 			} else {
-				$jumlah_bintang = 3;
+				$rating = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
 			}
-			$data = [
-				'rating_penilaian_vendor' => $rating_penilaian_vendor_pekerjaan_kontruksi,
-				'status_rating' => $status_rating_pekerjaan_kontruksi,
-				'status_rating_sudah_di_nilai' => 1,
-				'status_jenis_penilayan' => 'kontruksi',
-				'rating_nilai_akhir' => $status_nilai_akhir_pekerjaan_kontruksi,
-				'jumlah_bintang' => $jumlah_bintang
-			];
 
-			// ke table vendor
-			$where_tbl_vendor_warning = [
+			if ($rs->nilai_vendor) {
+				$nilai_vendor = $rs->nilai_vendor;
+			} else {
+				$nilai_vendor = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+
+			$row = array();
+			$row[] = '<small>' . ++$no . '</small>';
+			$row[] = '<small>' . $rs->nama_rup . '</small>';
+			$row[] = '<small>' . $rs->tahun_rup . '</small>';
+			$row[] = '<small>' . $rs->nama_usaha . '</small>';
+			$row[] = '<small>' . $rs->nama_jenis_pengadaan . '</small>';
+			$row[] = '<small>' . $rs->nama_metode_pengadaan . '</small>';
+			$row[] = '<small>' . $rating . '</small>';
+			if ($get_nilai_pelaksanaan) {
+				$row[] = '<small>' . $get_nilai_pelaksanaan['hasil_akhir']  . '</small>';
+			} else if ($get_nilai_pemeliharaan) {
+				$row[] = '<small>' . $get_nilai_pemeliharaan['hasil_akhir']  . '</small>';
+			} else {
+				$row[] = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+			$row[] = '<a href="' . base_url('administrator/penilaian_kinerja/buat_penilaian/' . $rs->id_vendor_mengikuti_paket) . '" class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i>  Penilaian</a>';
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_count->count_all_daftar_paket_tender_terbatas(),
+			"recordsFiltered" => $this->M_count->count_filtered_daftar_paket_tender_terbatas(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function get_draft_paket_tender_juksung()
+	{
+		$result = $this->M_count->gettable_daftar_paket_tender_juksung();
+		$data = [];
+		$no = $_POST['start'];
+		$now = date('Y-m-d H:i');
+		foreach ($result as $rs) {
+			$get_nilai_pelaksanaan = $this->M_laporan_kinerja->cek_pelaksanaan_total($rs->id_vendor, $rs->id_rup);
+			$get_nilai_pemeliharaan = $this->M_laporan_kinerja->cek_pemeliharaan_total($rs->id_vendor, $rs->id_rup);
+
+			if ($get_nilai_pelaksanaan) {
+				if ($get_nilai_pelaksanaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pelaksanaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
+			} else if ($get_nilai_pemeliharaan) {
+				if ($get_nilai_pemeliharaan['hasil_akhir'] >= 80) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 60) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+				} else if ($get_nilai_pemeliharaan['hasil_akhir'] >= 40) {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				} else {
+					$rating = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+				}
+			} else {
+				$rating = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+
+			if ($rs->nilai_vendor) {
+				$nilai_vendor = $rs->nilai_vendor;
+			} else {
+				$nilai_vendor = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+
+			$row = array();
+			$row[] = '<small>' . ++$no . '</small>';
+			$row[] = '<small>' . $rs->nama_rup . '</small>';
+			$row[] = '<small>' . $rs->tahun_rup . '</small>';
+			$row[] = '<small>' . $rs->nama_usaha . '</small>';
+			$row[] = '<small>' . $rs->nama_jenis_pengadaan . '</small>';
+			$row[] = '<small>' . $rs->nama_metode_pengadaan . '</small>';
+			$row[] = '<small>' . $rating . '</small>';
+			if ($get_nilai_pelaksanaan) {
+				$row[] = '<small>' . $get_nilai_pelaksanaan['hasil_akhir']  . '</small>';
+			} else if ($get_nilai_pemeliharaan) {
+				$row[] = '<small>' . $get_nilai_pemeliharaan['hasil_akhir']  . '</small>';
+			} else {
+				$row[] = '<center><small><span class="badge bg-danger">Belum Ada Penilaian </center>';
+			}
+			$row[] = '<a href="' . base_url('administrator/penilaian_kinerja/buat_penilaian/' . $rs->id_vendor_mengikuti_paket) . '" class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i>  Penilaian</a>';
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_count->count_all_daftar_paket_tender_juksung(),
+			"recordsFiltered" => $this->M_count->count_filtered_daftar_paket_tender_juksung(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	// input satgas pelaksaaan
+	public function add_pelaksanaan_satgas()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pelaksanaan_satgas($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data =  [
+				'nomor_kontrak' => $this->input->post('satgas_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('satgas_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('satgas_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('satgas_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('satgas_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('satgas_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('satgas_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('satgas_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('satgas_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('satgas_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('satgas_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('satgas_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('satgas_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('satgas_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('satgas_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('satgas_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('satgas_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('satgas_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('satgas_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('satgas_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('satgas_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('satgas_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('satgas_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
 				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
 			];
-			$data_tbl_vendor_warning = [
-				'status_warning_vendor' => 2,
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
 			];
-			// ini ketika di blacklist
-			$data_blacklist_vendor = [
-				'alasan_daftar_hitam' => "Mendapatakan Warning Ke 2 / Kinerja Vendor Kurang",
-				'masa_berlaku_daftar_hitam_mulai' => date('d-m-Y H:i'),
-				'masa_berlaku_daftar_hitam_selesai' => date('d-m-Y H:i', strtotime("+2 year")),
-				'sts_aktif' => 0,
-				'status_daftar_hitam_vendor' => 1
-			];
-
-			$this->db->insert_batch('tbl_detail_penilaian_kinerja', $result);
-			$this->Penilaian_vendor_model->update_ke_vendor($data_blacklist_vendor, $where_tbl_vendor_warning);
-			$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data, $where);
-			$this->Penilaian_vendor_model->update_status_warning_pekerjaan_kontruksi($data_tbl_vendor_warning, $where_tbl_vendor_warning);
-			// $type_email = 'PENILAIAN-KINERJA';
-			// $pesan = "Anda Mendapatkan Blacklist!!!, Anda Mendapatkan Warning Ke 2 Maka Anda Akan Kami Blacklist Selama 2 Tahun Pada Tender Jmtm E-procurement User Akan Kami NonAktifkan Sementara Sampai Hukuman 2 Tahun Blacklist Selesai, Nama Paket : $nama_rup , Metode Pemilihan : $nama_metode_pengadaan.";
-			// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
-			$this->output->set_content_type('application/json')->set_output(json_encode('success'));
+			$this->M_laporan_kinerja->update_data_satgas($data, $where);
 		} else {
-			// ketable detail penilaian
-			$result = array();
-			foreach ($indikator_pekerjaan_kontruksi as $key => $val) {
-				$result[] = array(
-					'id_rup'   => $id_rup,
-					'id_vendor'   => $id_vendor,
-					'indikator_detail_pekerjaan'   => $indikator_pekerjaan_kontruksi[$key],
-					'bobot_detail_pekerjaan'   => $bobot_pekerjaan_kontruksi[$key],
-					'penilaian_detail'   =>  $penilaian_pekerjaan_kontruksi[$key],
-					'nilai_akhir_detail_pekerjaan'   =>  $nilai_akhir_pekerjaan_kontruksi[$key],
-				);
-			}
-
-			// ketable vendor mengkikuti paket
-			$where = [
-				'id_rup' => $id_rup,
+			$data =  [
+				'nomor_kontrak' => $this->input->post('satgas_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('satgas_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('satgas_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('satgas_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('satgas_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('satgas_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('satgas_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('satgas_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('satgas_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('satgas_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('satgas_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('satgas_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('satgas_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('satgas_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('satgas_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('satgas_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('satgas_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('satgas_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('satgas_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('satgas_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('satgas_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('satgas_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('satgas_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
 				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
 			];
-			if ($status_nilai_akhir_pekerjaan_kontruksi <= 51) {
-				$jumlah_bintang = 1;
-			} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 70) {
-				$jumlah_bintang = 2;
-			} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 80) {
-				$jumlah_bintang = 3;
+			$this->M_laporan_kinerja->input_data_satgas($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+
+	// input pelaksanaan manager
+	public function add_pelaksanaan_manager()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pelaksanaan_manager($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('manager_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('manager_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('manager_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('manager_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('manager_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('manager_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('manager_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('manager_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('manager_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('manager_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('manager_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('manager_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('manager_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('manager_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('manager_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('manager_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('manager_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('manager_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('manager_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('manager_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('manager_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('manager_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('manager_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_data_manager($data, $where);
+		} else {
+			$data = [
+				'nomor_kontrak' => $this->input->post('manager_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('manager_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('manager_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('manager_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('manager_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('manager_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('manager_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('manager_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('manager_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('manager_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('manager_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('manager_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('manager_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('manager_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('manager_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('manager_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('manager_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('manager_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('manager_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('manager_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('manager_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('manager_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('manager_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->input_data_manager($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	// input pelaksanaan depthead
+	public function add_pelaksanaan_depthead()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pelaksanaan_depthead($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('depthead_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('depthead_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('depthead_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('depthead_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('depthead_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('depthead_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('depthead_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('depthead_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('depthead_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('depthead_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('depthead_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('depthead_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('depthead_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('depthead_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('depthead_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('depthead_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('depthead_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('depthead_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('depthead_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('depthead_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('depthead_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('depthead_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('depthead_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_data_depthead($data, $where);
+		} else {
+			$data = [
+				'nomor_kontrak' => $this->input->post('depthead_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('depthead_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('depthead_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('depthead_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('depthead_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('depthead_pelaksanaan_jabatan'),
+				'nilai1' => $this->input->post('depthead_pelaksanaan_nilai1'),
+				'nilai_angka1' => $this->input->post('depthead_pelaksanaan_nilai_angka1'),
+				'nilai2' => $this->input->post('depthead_pelaksanaan_nilai2'),
+				'nilai_angka2' => $this->input->post('depthead_pelaksanaan_nilai_angka2'),
+				'nilai3' => $this->input->post('depthead_pelaksanaan_nilai3'),
+				'nilai_angka3' => $this->input->post('depthead_pelaksanaan_nilai_angka3'),
+				'nilai4' => $this->input->post('depthead_pelaksanaan_nilai4'),
+				'nilai_angka4' => $this->input->post('depthead_pelaksanaan_nilai_angka4'),
+				'nilai5' => $this->input->post('depthead_pelaksanaan_nilai5'),
+				'nilai_angka5' => $this->input->post('depthead_pelaksanaan_nilai_angka5'),
+				'penjelasan1' => $this->input->post('depthead_pelaksanaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('depthead_pelaksanaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('depthead_pelaksanaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('depthead_pelaksanaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('depthead_pelaksanaan_penjelasan5'),
+				'hasil' => $this->input->post('depthead_pelaksanaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('depthead_pelaksanaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->input_data_depthead($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	// total pelaksanaan
+
+	public function add_pelaksanaan_total()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pelaksanaan_total($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data =  [
+				'nomor_kontrak' => $this->input->post('total_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('total_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('total_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('total_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('total_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('total_pelaksanaan_jabatan'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_total_pelaksanaan($data, $where);
+		} else {
+			$data =  [
+				'nomor_kontrak' => $this->input->post('total_pelaksanaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('total_pelaksanaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('total_pelaksanaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('total_pelaksanaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('total_pelaksanaan_nama_penilai'),
+				'jabatan' => $this->input->post('total_pelaksanaan_jabatan'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->insert_total_pelaksanaan($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	public function update_pelaksanaan_penilaian()
+	{
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$satgas =  $this->M_laporan_kinerja->cek_pelaksanaan_satgas($id_vendor, $id_rup);
+		$manger =  $this->M_laporan_kinerja->cek_pelaksanaan_manager($id_vendor, $id_rup);
+		$depthead =  $this->M_laporan_kinerja->cek_pelaksanaan_depthead($id_vendor, $id_rup);
+		if ($satgas && $manger && $depthead) {
+			$total =  $this->M_laporan_kinerja->cek_pelaksanaan_total($id_vendor, $id_rup);
+
+			$nilai1 = $satgas['nilai_angka1'] + $manger['nilai_angka1'] + $depthead['nilai_angka1'];
+			$nilai2 = $satgas['nilai_angka2'] + $manger['nilai_angka2'] + $depthead['nilai_angka2'];
+			$nilai3 = $satgas['nilai_angka3'] + $manger['nilai_angka3'] + $depthead['nilai_angka3'];
+			$nilai4 = $satgas['nilai_angka4'] + $manger['nilai_angka4'] + $depthead['nilai_angka4'];
+			$nilai5 = $satgas['nilai_angka5'] + $manger['nilai_angka5'] + $depthead['nilai_angka5'];
+
+			$nilai_rata_rata1 = $nilai1 / 3;
+			$nilai_rata_rata2 = $nilai2 / 3;
+			$nilai_rata_rata3 = $nilai3 / 3;
+			$nilai_rata_rata4 = $nilai4 / 3;
+			$nilai_rata_rata5 = $nilai5 / 3;
+
+
+			$nilai_terbobot1 = $nilai_rata_rata1 * 0.35;
+			$nilai_terbobot2 = $nilai_rata_rata2 * 0.2;
+			$nilai_terbobot3 = $nilai_rata_rata3 * 0.25;
+			$nilai_terbobot4 = $nilai_rata_rata4 * 0.10;
+			$nilai_terbobot5 = $nilai_rata_rata5 * 0.10;
+
+			$total_akhir = $nilai_terbobot1 + $nilai_terbobot2 + $nilai_terbobot3 + $nilai_terbobot4 + $nilai_terbobot5;
+
+
+			if ($total_akhir >= 90) {
+				$predikat = 'A';
+			} else if ($total_akhir >= 80 && $total_akhir <= 89) {
+				$predikat = 'B';
+			} else if ($total_akhir >= 60 && $total_akhir <= 79) {
+				$predikat = 'C';
+			} else if ($total_akhir <= 60) {
+				$predikat = 'D';
 			} else {
-				$jumlah_bintang = 3;
+				$predikat = 'Tidak Diketahui';
 			}
 
 			$data = [
-				'rating_penilaian_vendor' => $rating_penilaian_vendor_pekerjaan_kontruksi,
-				'status_rating' => $status_rating_pekerjaan_kontruksi,
-				'status_rating_sudah_di_nilai' => 1,
-				'status_jenis_penilayan' => 'kontruksi',
-				'rating_nilai_akhir' => $status_nilai_akhir_pekerjaan_kontruksi,
-				'jumlah_bintang' => $jumlah_bintang
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+				'nilai_rata_rata1' =>  round($nilai_rata_rata1, 2),
+				'nilai_rata_rata2' => round($nilai_rata_rata2, 2),
+				'nilai_rata_rata3' => round($nilai_rata_rata3, 2),
+				'nilai_rata_rata4' => round($nilai_rata_rata4, 2),
+				'nilai_rata_rata5' => round($nilai_rata_rata5, 2),
+
+				'nilai_terbobot1' => round($nilai_terbobot1, 2),
+				'nilai_terbobot2' => round($nilai_terbobot2, 2),
+				'nilai_terbobot3' => round($nilai_terbobot3, 2),
+				'nilai_terbobot4' => round($nilai_terbobot4, 2),
+				'nilai_terbobot5' => round($nilai_terbobot5, 2),
+
+				'hasil_akhir' => round($total_akhir, 2),
+				'hasil_predikat' => $predikat
 			];
 
-			// ke table vendor
-			$where_tbl_vendor_warning = [
-				'id_vendor' => $id_vendor,
-			];
-			$data_tbl_vendor_warning = [
-				'status_warning_vendor' => 1,
-			];
-			$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data, $where);
-			$this->db->insert_batch('tbl_detail_penilaian_kinerja', $result);
-			$this->Penilaian_vendor_model->update_status_warning_pekerjaan_kontruksi($data_tbl_vendor_warning, $where_tbl_vendor_warning);
-			// $type_email = 'PENILAIAN-KINERJA';
-			// $pesan = "Anda Mendapatkan Warning Ke 1, Perbaiki Kinerja Pada Tender Selanjutnya Jika Anda Mendapatkan Warning Ke 2 Maka Anda Akan Kami Blacklist Selama 2 Tahun Pada Tender Jmtm E-procurement, Nama Paket : $nama_rup , Metode Pemilihan : $nama_metode_pengadaan";
-			// $this->email_send->sen_row_email($type_email, $id_url_vendor, $pesan);
-			$this->output->set_content_type('application/json')->set_output(json_encode('success'));
+			if ($total) {
+				$where = [
+					'id_vendor' => $id_vendor,
+					'id_rup' => $id_rup
+				];
+				$this->M_laporan_kinerja->update_total_pelaksanaan($data, $where);
+			} else {
+				$this->M_laporan_kinerja->insert_total_pelaksanaan($data);
+			}
+		} else {
+			return 0;
 		}
 	}
-	public function tambah_pekerjaan_kontruksisaya()
+
+	// =============== PEMELIHARAAN ============== //
+
+
+	public function add_pemeliharaan_satgas()
 	{
 
-		$id_rup = $this->input->post('id_rup', TRUE);
-		$id_vendor = $this->input->post('id_vendor', TRUE);
-		$indikator_pekerjaan_kontruksi = $this->input->post('indikator_pekerjaan_kontruksi', TRUE);
-		$bobot_pekerjaan_kontruksi = $this->input->post('bobot_pekerjaan_kontruksi', TRUE);
-		$penilaian_pekerjaan_kontruksi = $this->input->post('penilaian_kontruksi', TRUE);
-		$nilai_akhir_pekerjaan_kontruksi = $this->input->post('nilai_akhir_pekerjaan_kontruksi', TRUE);
-		// tbl_vendor mengikuti paket
-		$rating_penilaian_vendor_pekerjaan_kontruksi = $this->input->post('rating_penilaian_vendor_pekerjaan_kontruksi');
-		$status_rating_pekerjaan_kontruksi = $this->input->post('status_rating_pekerjaan_kontruksi');
-		$status_nilai_akhir_pekerjaan_kontruksi = $this->input->post('status_nilai_akhir_pekerjaan_kontruksi');
-		$id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket');
-		$result = array();
-		foreach ($indikator_pekerjaan_kontruksi as $key => $val) {
-			$result[] = array(
-				'id_rup'   => $id_rup,
-				'id_vendor'   => $id_vendor,
-				'indikator_detail_pekerjaan'   => $indikator_pekerjaan_kontruksi[$key],
-				'bobot_detail_pekerjaan'   => $bobot_pekerjaan_kontruksi[$key],
-				'penilaian_detail'   =>  $penilaian_pekerjaan_kontruksi[$key],
-				'nilai_akhir_detail_pekerjaan'   =>  $nilai_akhir_pekerjaan_kontruksi[$key],
-			);
-		}
-		$where = [
-			'id_rup' => $id_rup,
-			'id_vendor' => $id_vendor,
-		];
-		if ($status_nilai_akhir_pekerjaan_kontruksi <= 51) {
-			$jumlah_bintang = 1;
-		} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 70) {
-			$jumlah_bintang = 2;
-		} else if ($status_nilai_akhir_pekerjaan_kontruksi <= 80) {
-			$jumlah_bintang = 3;
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pemeliharaan_satgas($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('satgas_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('satgas_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('satgas_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('satgas_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('satgas_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('satgas_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('satgas_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('satgas_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('satgas_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('satgas_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('satgas_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('satgas_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('satgas_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('satgas_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('satgas_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('satgas_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('satgas_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('satgas_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('satgas_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('satgas_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('satgas_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('satgas_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('satgas_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('satgas_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('satgas_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('satgas_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_data_satgas_pemeliharaan($data, $where);
 		} else {
-			$jumlah_bintang = 3;
+			$data = [
+				'nomor_kontrak' => $this->input->post('satgas_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('satgas_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('satgas_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('satgas_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('satgas_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('satgas_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('satgas_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('satgas_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('satgas_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('satgas_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('satgas_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('satgas_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('satgas_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('satgas_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('satgas_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('satgas_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('satgas_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('satgas_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('satgas_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('satgas_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('satgas_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('satgas_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('satgas_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('satgas_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('satgas_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('satgas_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->input_data_satgas_pemeliharaan($data);
 		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+
+	public function add_pemeliharaan_manager()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('manager_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('manager_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('manager_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('manager_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('manager_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('manager_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('manager_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('manager_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('manager_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('manager_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('manager_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('manager_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('manager_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('manager_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('manager_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('manager_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('manager_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('manager_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('manager_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('manager_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('manager_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('manager_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('manager_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('manager_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('manager_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('manager_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_data_manager_pemeliharaan($data, $where);
+		} else {
+			$data = [
+				'nomor_kontrak' => $this->input->post('manager_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('manager_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('manager_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('manager_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('manager_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('manager_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('manager_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('manager_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('manager_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('manager_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('manager_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('manager_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('manager_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('manager_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('manager_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('manager_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('manager_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('manager_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('manager_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('manager_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('manager_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('manager_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('manager_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('manager_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('manager_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('manager_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->input_data_manager_pemeliharaan($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	public function add_pemeliharaan_depthead()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('depthead_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('depthead_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('depthead_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('depthead_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('depthead_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('depthead_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('depthead_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('depthead_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('depthead_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('depthead_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('depthead_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('depthead_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('depthead_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('depthead_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('depthead_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('depthead_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('depthead_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('depthead_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('depthead_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('depthead_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('depthead_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('depthead_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('depthead_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('depthead_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('depthead_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('depthead_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_data_depthead_pemeliharaan($data, $where);
+		} else {
+			$data = [
+				'nomor_kontrak' => $this->input->post('depthead_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('depthead_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('depthead_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('depthead_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('depthead_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('depthead_pemeliharaan_jabatan'),
+				'nilai1' => $this->input->post('depthead_pemeliharaan_nilai1'),
+				'nilai_angka1' => $this->input->post('depthead_pemeliharaan_nilai_angka1'),
+				'nilai2' => $this->input->post('depthead_pemeliharaan_nilai2'),
+				'nilai_angka2' => $this->input->post('depthead_pemeliharaan_nilai_angka2'),
+				'nilai3' => $this->input->post('depthead_pemeliharaan_nilai3'),
+				'nilai_angka3' => $this->input->post('depthead_pemeliharaan_nilai_angka3'),
+				'nilai4' => $this->input->post('depthead_pemeliharaan_nilai4'),
+				'nilai_angka4' => $this->input->post('depthead_pemeliharaan_nilai_angka4'),
+				'nilai5' => $this->input->post('depthead_pemeliharaan_nilai5'),
+				'nilai_angka5' => $this->input->post('depthead_pemeliharaan_nilai_angka5'),
+				'nilai6' => $this->input->post('depthead_pemeliharaan_nilai6'),
+				'nilai_angka6' => $this->input->post('depthead_pemeliharaan_nilai_angka6'),
+				'penjelasan1' => $this->input->post('depthead_pemeliharaan_penjelasan1'),
+				'penjelasan2' => $this->input->post('depthead_pemeliharaan_penjelasan2'),
+				'penjelasan3' => $this->input->post('depthead_pemeliharaan_penjelasan3'),
+				'penjelasan4' => $this->input->post('depthead_pemeliharaan_penjelasan4'),
+				'penjelasan5' => $this->input->post('depthead_pemeliharaan_penjelasan5'),
+				'penjelasan6' => $this->input->post('depthead_pemeliharaan_penjelasan6'),
+				'hasil' => $this->input->post('depthead_pemeliharaan_hasil_angka'),
+				'hasil_huruf' => $this->input->post('depthead_pemeliharaan_hasil'),
+				'user_created' => $this->session->userdata('nama_pegawai'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->input_data_depthead_pemeliharaan($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	// update pemeliharaan total
+	public function add_pemeliharaan_total()
+	{
+
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$cek_data = $this->M_laporan_kinerja->cek_pemeliharaan_total($id_vendor, $id_rup);
+		if ($cek_data) {
+			$data = [
+				'nomor_kontrak' => $this->input->post('total_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('total_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('total_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('total_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('total_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('total_pemeliharaan_jabatan'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$where = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->update_total_pemeliharaan($data, $where);
+		} else {
+			$data = [
+				'nomor_kontrak' => $this->input->post('total_pemeliharaan_nomor_kontrak'),
+				'periode_kontrak' => $this->input->post('total_pemeliharaan_periode_kontrak'),
+				'waktu_penilaian' => $this->input->post('total_pemeliharaan_waktu_penilaian'),
+				'periode_penilaian' => $this->input->post('total_pemeliharaan_periode_penilaian'),
+				'nama_penilai' => $this->input->post('total_pemeliharaan_nama_penilai'),
+				'jabatan' => $this->input->post('total_pemeliharaan_jabatan'),
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+			];
+			$this->M_laporan_kinerja->insert_total_pemeliharaan($data);
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+	public function update_pemeliharaan_penilaian()
+	{
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$satgas = $this->M_laporan_kinerja->cek_pemeliharaan_satgas($id_vendor, $id_rup);
+		$manger = $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup);
+		$depthead = $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup);
+		if ($satgas && $manger && $depthead) {
+			$total = $this->M_laporan_kinerja->cek_pemeliharaan_total($id_vendor, $id_rup);
+
+			$nilai1 = $satgas['nilai_angka1'] + $manger['nilai_angka1'] + $depthead['nilai_angka1'];
+			$nilai2 = $satgas['nilai_angka2'] + $manger['nilai_angka2'] + $depthead['nilai_angka2'];
+			$nilai3 = $satgas['nilai_angka3'] + $manger['nilai_angka3'] + $depthead['nilai_angka3'];
+			$nilai4 = $satgas['nilai_angka4'] + $manger['nilai_angka4'] + $depthead['nilai_angka4'];
+			$nilai5 = $satgas['nilai_angka5'] + $manger['nilai_angka5'] + $depthead['nilai_angka5'];
+			$nilai6 = $satgas['nilai_angka6'] + $manger['nilai_angka6'] + $depthead['nilai_angka6'];
+
+			$nilai_rata_rata1 = $nilai1 / 3;
+			$nilai_rata_rata2 = $nilai2 / 3;
+			$nilai_rata_rata3 = $nilai3 / 3;
+			$nilai_rata_rata4 = $nilai4 / 3;
+			$nilai_rata_rata5 = $nilai5 / 3;
+			$nilai_rata_rata6 = $nilai6 / 3;
+
+
+			$nilai_terbobot1 = $nilai_rata_rata1 * 0.35;
+			$nilai_terbobot2 = $nilai_rata_rata2 * 0.15;
+			$nilai_terbobot3 = $nilai_rata_rata3 * 0.20;
+			$nilai_terbobot4 = $nilai_rata_rata4 * 0.10;
+			$nilai_terbobot5 = $nilai_rata_rata5 * 0.15;
+			$nilai_terbobot6 = $nilai_rata_rata6 * 0.5;
+
+			$total_akhir = $nilai_terbobot1 + $nilai_terbobot2 + $nilai_terbobot3 + $nilai_terbobot4 + $nilai_terbobot5;
+
+
+			if ($total_akhir >= 90) {
+				$predikat = 'A';
+			} else if ($total_akhir >= 80 && $total_akhir <= 89) {
+				$predikat = 'B';
+			} else if ($total_akhir >= 60 && $total_akhir <= 79) {
+				$predikat = 'C';
+			} else if ($total_akhir <= 60) {
+				$predikat = 'D';
+			} else {
+				$predikat = 'Tidak Diketahui';
+			}
+			$data = [
+				'id_vendor' => $id_vendor,
+				'id_rup' => $id_rup,
+				'nilai_rata_rata1' => round($nilai_rata_rata1, 2),
+				'nilai_rata_rata2' => round($nilai_rata_rata2, 2),
+				'nilai_rata_rata3' => round($nilai_rata_rata3, 2),
+				'nilai_rata_rata4' => round($nilai_rata_rata4, 2),
+				'nilai_rata_rata5' => round($nilai_rata_rata5, 2),
+				'nilai_rata_rata6' => round($nilai_rata_rata6, 2),
+
+				'nilai_terbobot1' => round($nilai_terbobot1, 2),
+				'nilai_terbobot2' => round($nilai_terbobot2, 2),
+				'nilai_terbobot3' => round($nilai_terbobot3, 2),
+				'nilai_terbobot4' => round($nilai_terbobot4, 2),
+				'nilai_terbobot5' => round($nilai_terbobot5, 2),
+				'nilai_terbobot6' => round($nilai_terbobot6, 2),
+
+				'hasil_akhir' => round($total_akhir, 2),
+				'hasil_predikat' => $predikat
+			];
+
+			if ($total) {
+				$where = [
+					'id_vendor' => $id_vendor,
+					'id_rup' => $id_rup
+				];
+				$this->M_laporan_kinerja->update_total_pemeliharaan($data, $where);
+			} else {
+				$this->M_laporan_kinerja->insert_total_pemeliharaan($data);
+			}
+		} else {
+			return 0;
+		}
+	}
+
+	// end update pemeliharaan total
+
+	public function update_nilai_vendor()
+	{
+
+		// value nilai_vendor
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$count_pelaksanaan_total = $this->M_laporan_kinerja->count_pelaksanaan_total($id_vendor, $id_rup);
+		$count_pemeliharaan_total = $this->M_laporan_kinerja->count_pemeliharaan_total($id_vendor, $id_rup);
+
+		$result_pelaksanaan_total = $this->M_laporan_kinerja->result_pelaksanaan_total($id_vendor, $id_rup);
+		$result_pemeliharaan_total = $this->M_laporan_kinerja->result_pemeliharaan_total($id_vendor, $id_rup);
+
+		$total_penilaian = $count_pelaksanaan_total + $count_pemeliharaan_total;
+
+		$a = array($result_pelaksanaan_total['hasil_akhir_pelaksanaan'], $result_pemeliharaan_total['hasil_akhir_pemeliharaan']);
+		$total_sum = array_sum($a);
+		$total_final = $total_sum / $total_penilaian;
+
 		$data = [
-			'rating_penilaian_vendor' => $rating_penilaian_vendor_pekerjaan_kontruksi,
-			'status_rating' => $status_rating_pekerjaan_kontruksi,
-			'status_rating_sudah_di_nilai' => 1,
-			'status_jenis_penilayan' => 'kontruksi',
-			'rating_nilai_akhir' => $status_nilai_akhir_pekerjaan_kontruksi,
-			'jumlah_bintang' => $jumlah_bintang
+			'nilai_vendor' => $total_final
 		];
-		$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data, $where);
-		$this->db->insert_batch('tbl_detail_penilaian_kinerja', $result);
-		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
+
+		$where = [
+			'id_vendor' => $id_vendor
+		];
+
+		$this->M_laporan_kinerja->update_ke_vendor($data, $where);
 	}
 
-
-	public function reset_penilaian_performance_pekerjaan_kontruksi()
+	public function print_pelaksanaan_satgas($id_penilaian_vendor)
 	{
-		$id_vendor_mengikuti_paket = $this->input->post('id_vendor_mengikuti_paket', TRUE);
-		$data['row_mengikuti_paket'] = $this->M_count->get_row_vendor_mengikuti_paket($id_vendor_mengikuti_paket);
-		$nama_rup = $data['row_mengikuti_paket']['nama_rup'];
-		$nama_metode_pengadaan = $data['row_mengikuti_paket']['nama_metode_pengadaan'];
-		$id_vendor = $data['row_mengikuti_paket']['id_vendor'];
-		$id_rup = $data['row_mengikuti_paket']['id_rup'];
-		$vendor_pemenag_by_id_pekerjaan_kontruksi = $this->M_count->get_row_vendor_mengikuti_paket($id_vendor_mengikuti_paket);
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'satgas');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
+	}
 
-		if ($vendor_pemenag_by_id_pekerjaan_kontruksi['status_warning_vendor'] == 1) {
-			// update ke tbl_vendor_mengikuti_paket
-			$where_warning = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor,
-			];
-			$data_warning = [
-				'rating_penilaian_vendor' => null,
-				'status_jenis_penilayan' => null,
-				'status_rating' => null,
-				'status_rating_sudah_di_nilai' => null,
-				'rating_nilai_akhir' => null,
-				'jumlah_bintang' => null
-			];
-			// update ke tbl_vendor
-			$where_tbl_vendor_warning = [
-				'id_vendor' => $id_vendor,
-			];
-			$data_tbl_vendor_warning = [
-				'status_warning_vendor' => 0,
-			];
-			$where_delete_tbl_penilainya = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor
-			];
-			$this->Penilaian_vendor_model->delete_penilaian_kontruksi($where_delete_tbl_penilainya);
-			$this->Penilaian_vendor_model->update_status_warning_pekerjaan_kontruksi($data_tbl_vendor_warning, $where_tbl_vendor_warning);
-			$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data_warning, $where_warning);
-			// $type_email = 'PENILAIAN-KINERJA';
-			// $pesan = "Mengalamai Penilaian Ulang Oleh Agency Pada Nama Paket : $nama_rup , Metode Pemilihan : $nama_metode_pengadaan, Tidak Ada Peringataan, Saat Ini Aman, Anda Dapat Mengikuti Paket Tender Selanjutnya Pada Jmtm E-procurement.";
-			// $this->email_send->sen_row_email($type_email, $data['row_mengikuti_paket']['id_url_vendor'], $pesan);
-			$this->output->set_content_type('application/json')->set_output(json_encode('success'));
-		} else if ($vendor_pemenag_by_id_pekerjaan_kontruksi['status_warning_vendor'] == 2) {
-			$where_blacklist = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor,
-			];
-			$data_blacklist = [
-				'rating_penilaian_vendor' => null,
-				'status_rating' => null,
-				'status_rating_sudah_di_nilai' => null,
-				'status_jenis_penilayan' => null,
-				'rating_nilai_akhir' => null,
-				'jumlah_bintang' => null
-			];
-			$where_tbl_vendor_blacklist = [
-				'id_vendor' => $id_vendor,
-			];
-			$data_tbl_vendor_blacklist = [
-				'status_warning_vendor' => 1,
-			];
-			$where_delete_tbl_penilainya = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor
-			];
-			$data_blacklist_vendor = [
-				'alasan_daftar_hitam' => null,
-				'masa_berlaku_daftar_hitam_mulai' => null,
-				'masa_berlaku_daftar_hitam_selesai' => null,
-				'sts_aktif' => 1,
-				'status_daftar_hitam_vendor' => 0
-			];
-			$this->Penilaian_vendor_model->update_ke_vendor($data_blacklist_vendor, $where_tbl_vendor_blacklist);
-			$this->Penilaian_vendor_model->delete_penilaian_kontruksi($where_delete_tbl_penilainya);
-			$this->Penilaian_vendor_model->update_status_warning_pekerjaan_kontruksi($data_tbl_vendor_blacklist, $where_tbl_vendor_blacklist);
-			$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data_blacklist, $where_blacklist);
-			// $type_email = 'PENILAIAN-KINERJA';
-			// $pesan = "Mengalamai Penilaian Ulang Oleh Agency Pada Nama Paket : $nama_rup , Metode Pemilihan : $nama_metode_pengadaan, Tidak Ada Peringataan Ke-2, Saat Ini Anda Masih Dalam Peringataan Ke-1, Anda Masih Dapat Mengikuti Paket Tender Selanjutnya Pada Jmtm E-procurement.";
-			// $this->email_send->sen_row_email($type_email, $data['row_mengikuti_paket']['id_url_vendor'], $pesan);
-			$this->output->set_content_type('application/json')->set_output(json_encode('success'));
-		} else {
-			$where = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor,
-			];
-			$data = [
-				'rating_penilaian_vendor' => null,
-				'status_rating' => null,
-				'status_jenis_penilayan' => null,
-				'status_rating_sudah_di_nilai' => null,
-				'rating_nilai_akhir' => null,
-				'jumlah_bintang' => null
-			];
-			$where_delete_tbl_penilainya = [
-				'id_rup' => $id_rup,
-				'id_vendor' => $id_vendor
-			];
-			$this->Penilaian_vendor_model->delete_penilaian_kontruksi($where_delete_tbl_penilainya);
-			$this->Penilaian_vendor_model->update_pekerjaan_kontruksi_vendor($data, $where);
-			$this->output->set_content_type('application/json')->set_output(json_encode('success'));
-		}
+	public function print_pelaksanaan_manager($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'manager');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
+	}
+
+	public function print_pelaksanaan_depthead($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'depthead');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
+	}
+
+	public function print_pelaksanaan_total($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'total');
+
+		$id_vendor = $data['get_penilaian']['id_vendor'];
+		$id_rup = $data['get_penilaian']['id_rup'];
+		$data['get_pelaksanaan_satgas'] =  $this->M_laporan_kinerja->cek_pelaksanaan_satgas($id_vendor, $id_rup);
+		$data['get_pelaksanaan_manager'] =  $this->M_laporan_kinerja->cek_pelaksanaan_manager($id_vendor, $id_rup);
+		$data['get_pelaksanaan_depthead'] =  $this->M_laporan_kinerja->cek_pelaksanaan_depthead($id_vendor, $id_rup);
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian_total', $data);
+	}
+
+	public function print_pemeliharaan_satgas($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'satgas');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
+	}
+
+	public function print_pemeliharaan_manager($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'manager');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
+	}
+
+	public function print_pemeliharaan_depthead($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'depthead');
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
+	}
+
+	public function print_pemeliharaan_total($id_penilaian_vendor)
+	{
+		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'total');
+
+		$id_vendor = $data['get_penilaian']['id_vendor'];
+		$id_rup = $data['get_penilaian']['id_rup'];
+		$data['get_pemeliharaan_satgas'] =  $this->M_laporan_kinerja->cek_pemeliharaan_satgas($id_vendor, $id_rup);
+		$data['get_pemeliharaan_manager'] =  $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup);
+		$data['get_pemeliharaan_depthead'] =  $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup);
+		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan_total', $data);
 	}
 }

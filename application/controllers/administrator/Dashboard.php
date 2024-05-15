@@ -19,10 +19,14 @@ class Dashboard extends CI_Controller
 	{
 		$data['blm_tervalidasi'] = $this->M_Dashboard->count_rekanan_tervalidasi();
 		$data['tervalidasi'] = $this->M_Dashboard->count_rekanan_terundang();
+		$data['baru'] = $this->M_Dashboard->count_rekanan_baru();
 		$data['rup'] = $this->M_Dashboard->count_rup();
+		$data['rkap'] = $this->M_Dashboard->count_rkap();
 		$data['paket_tender'] = $this->M_Dashboard->count_paket_tender();
 		$data['paket_tender_berjalan'] = $this->M_Dashboard->count_paket_tender_berjalan();
 		$data['paket_tender_selesai'] = $this->M_Dashboard->count_paket_tender_selesai();
+		$data['paket_tender_batal'] = $this->M_Dashboard->count_paket_tender_batal();
+		$data['paket_tender_ulang'] = $this->M_Dashboard->count_paket_tender_ulang();
 		$this->load->view('template_menu/header_menu');
 		$this->load->view('administrator/template/dashboard/dashboard', $data);
 		$this->load->view('template_menu/footer_menu');

@@ -1283,6 +1283,33 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+
+    public function deal_umum($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat', 1);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function deal_row_umum($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat', 1);
+        $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_peserta_tender_ba_pra_penawaran_terendah($id_rup)
     {
         $this->db->select('*');
@@ -1549,6 +1576,14 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >', 60);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_administrasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pabrikan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_organisasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_peralatan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_personil_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_makalah_teknis_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pra_rk3_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_spek_sts', [1, 3]);
         $i = 0;
         foreach ($this->order_evaluasi_hea_tkdn as $item) // looping awal
         {
@@ -2637,7 +2672,7 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->where('tbl_vendor_mengikuti_paket.nilai_penawaran !=', 0);
-        $this->db->where('tbl_vendor_mengikuti_paket.ev_akhir_hea_peringkat', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat =', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -2832,7 +2867,14 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
-        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_administrasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pabrikan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_organisasi_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_peralatan_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_personil_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_makalah_teknis_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pra_rk3_sts', [1, 3]);
+        $this->db->where_in('tbl_vendor_mengikuti_paket.file1_spek_sts', [1, 3]);
         return $this->db->count_all_results();
     }
 
@@ -3502,6 +3544,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_pembuktian_kualifikasi', null);
+        $this->db->where('sts_ba_1 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3512,6 +3555,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_evaluasi', null);
+        $this->db->where('sts_ba_2 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3522,6 +3566,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_sampul1', null);
+        $this->db->where('sts_ba_3 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3532,6 +3577,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_undangan', null);
+        $this->db->where('sts_ba_4 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3542,6 +3588,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_evaluasi_teknis', null);
+        $this->db->where('sts_ba_5 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3552,6 +3599,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_sampul2', null);
+        $this->db->where('sts_ba_6 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3562,6 +3610,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_negosiasi', null);
+        $this->db->where('sts_ba_7 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3572,6 +3621,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_klarifikasi_harga', null);
+        $this->db->where('sts_ba_8 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3582,6 +3632,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_penjelasan', null);
+        $this->db->where('sts_ba_9 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3592,6 +3643,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_pemenang', null);
+        $this->db->where('sts_ba_10 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3602,6 +3654,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_pengumuman_hasil_evaluasi_teknis', null);
+        $this->db->where('sts_ba_11 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3612,6 +3665,8 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_penjelasan_kualifikasi', null);
+        $this->db->where('sts_ba_1 !=', 1);
+        $this->db->where('sts_ba_12 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3622,6 +3677,7 @@ class M_panitia extends CI_Model
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
         $this->db->where('sts_ba_sampul1_2', null);
+        $this->db->where('sts_ba_13 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3727,6 +3783,8 @@ class M_panitia extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    // lolos penawaran
 
     public function get_peserta_tender_ba_pra_penawaran_file1($id_rup)
     {

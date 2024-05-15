@@ -3963,4 +3963,50 @@
         }
 
     }
+
+
+
+    function simpan_tkdn_tidak_dihitung() {
+        var id_vendor_mengikuti_paket = $('[name="id_vendor_mengikuti_paket"]').val()
+        var ev_hea_tkdn_terendah = $('[name="ev_hea_tkdn_terendah"]').val()
+
+        var url_simpan_evaluasi_hea_tkdn_tak_dihitung = $('[name="url_simpan_evaluasi_hea_tkdn_tak_dihitung"]').val();
+
+        $.ajax({
+            url: url_simpan_evaluasi_hea_tkdn_tak_dihitung + id_vendor_mengikuti_paket + '/' + ev_hea_tkdn_terendah,
+            method: "POST",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#btn_ev_tkdn').attr("disabled", false);
+                        $('#modal_evaluasi_hea_tkdn_terendah').modal('hide')
+                        form_evaluasi_hea_tkdn[0].reset();
+                        reload_evaluasi_hea_tkdn_terendah()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+            }
+        })
+    }
 </script>

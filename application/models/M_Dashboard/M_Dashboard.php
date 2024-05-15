@@ -7,7 +7,16 @@ class M_Dashboard extends CI_Model
     function count_rup()
     {
         $this->db->select('*');
-        $this->db->from('tbl_rup');
+        $this->db->from('tbl_rkap');
+        $this->db->where('sts_rkap', 2);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_rkap()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_rkap');
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -23,9 +32,11 @@ class M_Dashboard extends CI_Model
 
     function count_paket_tender_berjalan()
     {
+        $date = date('Y-m-d H:i');
         $this->db->select('*');
         $this->db->from('tbl_rup');
         $this->db->where('status_paket_diumumkan', 1);
+        $this->db->where('selesai_semua_tender >=', $date);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -41,6 +52,24 @@ class M_Dashboard extends CI_Model
         return $query->num_rows();
     }
 
+    function count_paket_tender_ulang()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->where('sts_ulang', 1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_paket_tender_batal()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->where('sts_batal', 1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
     function count_rekanan_baru()
     {
         $this->db->select('*');
@@ -49,6 +78,7 @@ class M_Dashboard extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }
+
 
     function count_rekanan_tervalidasi()
     {
@@ -59,8 +89,6 @@ class M_Dashboard extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }
-
-
 
 
     function count_rekanan_terundang()

@@ -7,6 +7,7 @@
 <input type="hidden" name="url_simpan_evaluasi_penawaran" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_penawaran/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_penawaran_ba" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_penawaran_ba/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_hea_tkdn" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_tkdn/') ?>">
+<input type="hidden" name="url_simpan_evaluasi_hea_tkdn_tak_dihitung" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_tkdn_tak_dihitung/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_akhir_hea" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_akhir_hea/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_harga_terendah" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_harga_terendah/') ?>">
 <input type="hidden" name="url_simpan_evaluasi_harga_terendah_hea" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_evaluasi_harga_terendah_hea/') ?>">

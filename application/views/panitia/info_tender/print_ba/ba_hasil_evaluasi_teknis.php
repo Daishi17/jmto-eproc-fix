@@ -145,12 +145,12 @@ function terbilang($nilai)
                     Pada Hari ini <b><?= $row_rup['ba_evaluasi_teknis_hari'] ?></b>,
                     Tanggal <b class="text-capitalize"><?= terbilang(date('d', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
                     Bulan <b class="text-capitalize"> <?= bln_indo(date('m', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?></b>,
-                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_teknis_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_direksi'] ?> tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Evaluasi Teknis terhadap Peserta Penawaran yang telah menyampaikan Dokumen Penawaran yang SAH untuk <?= $row_rup['nama_rup'] ?> PT Jasamarga Tollorad Operator (Paket 7), dengan ketentuan dalam Metode Evaluasi Penawaran sebagai berikut:
+                    Tahun <b> <?= terbilang(date('Y', strtotime($row_rup['ba_evaluasi_teknis_tgl']))) ?> (<?= date('d-m-Y', strtotime($row_rup['ba_evaluasi_teknis_tgl'])) ?>)</b>, pukul <?= $row_rup['ba_pembuktian_jam_pelaksanaan'] ?> Panitia Pengadaan Barang dan Jasa yang dibentuk melalui Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_panitia'] ?> tanggal <?= $row_rup['tgl_ba_sk_panitia'] ?> serta berdasarkan Keputusan Direksi PT Jasamarga Tollroad Operator Nomor <?= $row_rup['ba_sk_direksi'] ?> tanggal <?= $row_rup['tgl_ba_sk_direksi'] ?> tentang Pedoman Pelaksanaan Pengadaan Barang/Jasa di Lingkungan PT Jasamarga Tollroad Operator, telah melaksanakan Evaluasi Teknis terhadap Peserta Penawaran yang telah menyampaikan Dokumen Penawaran yang SAH untuk <?= $row_rup['nama_rup'] ?>, dengan ketentuan dalam Metode Evaluasi Penawaran sebagai berikut:
                 </p>
 
                 <ol>
-                    <li>Evaluasi Teknis dilakukan terhadap Dokumen Teknis Peserta yang Lulus/SAH pada Pembukaan Dokumen Penawaran Sampul I;</li>
-                    <li>Bobot Evaluasi Teknis adalah sebesar 50% dan Peserta dinyatakan LULUS jika nilai Evaluasi Teknis lebih atau sama dengan ambang batas nilai yang ditetapkan, yaitu 60 dan dinyatakan GUGUR jika nilai Evaluasi Teknis kurang dari ambang batas nilai yang telah ditetapkan. Bagi Peserta yang GUGUR tidak dilakukan Pembukaan Dokumen Penawaran Sampul II;</li>
+                    <li>Evaluasi Teknis dilakukan terhadap Dokumen Teknis Peserta yang Lulus/SAH pada Pembukaan Dokumen Penawaran File I;</li>
+                    <li>Bobot Evaluasi Teknis adalah sebesar 50% dan Peserta dinyatakan LULUS jika nilai Evaluasi Teknis lebih atau sama dengan ambang batas nilai yang ditetapkan, yaitu 60 dan dinyatakan GUGUR jika nilai Evaluasi Teknis kurang dari ambang batas nilai yang telah ditetapkan. Bagi Peserta yang GUGUR tidak dilakukan Pembukaan Dokumen Penawaran File II;</li>
                     <li>Unsur yang dinilai pada tahapan Evaluasi Teknis adalah: </li>
                     <ol type="a">
                         <?php foreach ($ba_teknis_detail as $key => $value) { ?>
@@ -170,44 +170,86 @@ function terbilang($nilai)
                             </thead>
                             <tbody>
 
-                                <?php $i = 1;
-                                foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                    <?php
-                                    $subs_string = substr($value['nama_usaha'], 0, 2);
-                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                        $nama_perusahaan = $value['nama_usaha'];
-                                    } else {
-                                        if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                        } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                            $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                        } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9 || $row_rup['id_jadwal_tender'] == 10) { ?>
+                                    <?php $i = 1;
+                                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                             $nama_perusahaan = $value['nama_usaha'];
+                                        } else {
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
-                                    }
-                                    ?>
-                                    <tr>
-                                        <td><?= $i++  ?></td>
-                                        <td><?= $nama_perusahaan ?></td>
-                                        <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
-                                            <td><?= $value['ev_penawaran_teknis'] ?></td>
-                                        <?php } else { ?>
-                                            <td><?= $value['ev_penawaran_teknis'] ?></td>
-                                        <?php }
                                         ?>
-                                        <td>
-                                            <?php if (!$value['ev_penawaran_ket_ba']) { ?>
-                                                <span class="badge bg-sm bg-secondary">Belum Di Nilai</span>
-                                            <?php  } else { ?>
-                                                <?php if ($value['ev_penawaran_ket_ba'] == 'Lulus') { ?>
-                                                    <span class="badge bg-sm bg-success">Lulus</span>
-                                                <?php } else { ?>
-                                                    <span class="badge bg-sm bg-danger">Gugur</span>
-                                                <?php } ?>
-                                            <?php }  ?>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                        <tr>
+                                            <td><?= $i++  ?></td>
+                                            <td><?= $nama_perusahaan ?></td>
+                                            <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                                <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                            <?php } else { ?>
+                                                <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                            <?php }
+                                            ?>
+                                            <td>
+                                                <?php if (!$value['ev_penawaran_ket_ba']) { ?>
+                                                    <span class="badge bg-sm bg-secondary">Belum Di Nilai</span>
+                                                <?php  } else { ?>
+                                                    <?php if ($value['ev_penawaran_ket_ba'] == 'Lulus') { ?>
+                                                        <span class="badge bg-sm bg-success">Lulus</span>
+                                                    <?php } else { ?>
+                                                        <span class="badge bg-sm bg-danger">Gugur</span>
+                                                    <?php } ?>
+                                                <?php }  ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php   } else { ?>
+                                    <?php $i = 1;
+                                    foreach ($get_peserta_tender_ba_pra_penawaran_file1 as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                            $nama_perusahaan = $value['nama_usaha'];
+                                        } else {
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td><?= $i++  ?></td>
+                                            <td><?= $nama_perusahaan ?></td>
+                                            <?php if ($value['ev_penawaran_teknis'] >= 60) { ?>
+                                                <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                            <?php } else { ?>
+                                                <td><?= $value['ev_penawaran_teknis'] ?></td>
+                                            <?php }
+                                            ?>
+                                            <td>
+                                                <?php if (!$value['ev_penawaran_ket_ba']) { ?>
+                                                    <span class="badge bg-sm bg-secondary">Belum Di Nilai</span>
+                                                <?php  } else { ?>
+                                                    <?php if ($value['ev_penawaran_ket_ba'] == 'Lulus') { ?>
+                                                        <span class="badge bg-sm bg-success">Lulus</span>
+                                                    <?php } else { ?>
+                                                        <span class="badge bg-sm bg-danger">Gugur</span>
+                                                    <?php } ?>
+                                                <?php }  ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php   }  ?>
+
 
 
 

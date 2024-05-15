@@ -117,14 +117,18 @@
     function Question_finalisasi_rkap(id_post_form, nama_program_rkap) {
         var url_finalisasi_rkap = $('[name="url_finalisasi_rkap"]').val();
         var type_modal = 'finalisasi';
+
+
         Swal.fire({
             title: "Yakin !!",
             text: 'Data ' + nama_program_rkap + ' Ini Mau Di Finalisasi?',
             icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yakin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
                     url: url_finalisasi_rkap + id_post_form,
@@ -181,79 +185,69 @@
     var form_rkap = $('#form_rkap');
     var url_form_rkap = $('[name="url_form_rkap"]').val()
     form_rkap.on('submit', function(e) {
-        var file_rkap_manipulasi = $('[name="file_rkap_manipulasi"]').val()
-        if (file_rkap_manipulasi == '') {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Dokumen Wajib Di Isi!',
-            })
-        } else {
-            e.preventDefault();
-            $.ajax({
-                url: url_form_rkap,
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(response) {
-                    if (response['error_upload']) {
-                        Swal.fire('Maaf!', 'Dokumen Tidak Dapat Kosong!', 'warning');
-                    } else if (response['error']) {
-                        // tahun_rkap
-                        $('.label_tahun_rkap_validasi').html(response['error']['tahun_rkap']);
-                        // nama_program_rkap
-                        $('.label_nama_program_rkap_validasi').html(response['error']['nama_program_rkap']);
-                        // id_departemen
-                        $('.label_id_departemen_validasi').html(response['error']['id_departemen']);
-                        // total_pagu_rkap
-                        $('.label_total_pagu_rkap_validasi').html(response['error']['total_pagu_rkap']);
-                    } else {
-                        // tahun_rkap
-                        $('.label_tahun_rkap_validasi').html('');
-                        // nama_program_rkap
-                        $('.label_nama_program_rkap_validasi').html('');
-                        // id_departemen
-                        $('.label_id_departemen_validasi').html('');
-                        // total_pagu_rkap
-                        $('.label_total_pagu_rkap_validasi').html('');
-                        let timerInterval
-                        Swal.fire({
-                            title: 'Sedang Proses Menyimpan Data!',
-                            html: 'Harap Tunggu <b></b>',
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                const b = Swal.getHtmlContainer().querySelector('b')
-                                timerInterval = setInterval(() => {
-                                    // b.textContent = Swal.getTimerRight()
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                $('#modal-xl-tambah').modal('hide')
-                                form_rkap[0].reset();
-                                Reload_table_rkap()
-                                var type_model = $('[name="type_modal"').val('tambah');
-                                if (type_model == 'tambah') {
-                                    Swal.fire('Data Berhasil Di Tambah!', '', 'success')
-                                } else {
-                                    Swal.fire('Data Berhasil Di Update!', '', 'success')
-                                }
+        e.preventDefault();
+        $.ajax({
+            url: url_form_rkap,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                if (response['error_upload']) {
+                    Swal.fire('Maaf!', 'Dokumen Tidak Dapat Kosong!', 'warning');
+                } else if (response['error']) {
+                    // tahun_rkap
+                    $('.label_tahun_rkap_validasi').html(response['error']['tahun_rkap']);
+                    // nama_program_rkap
+                    $('.label_nama_program_rkap_validasi').html(response['error']['nama_program_rkap']);
+                    // id_departemen
+                    $('.label_id_departemen_validasi').html(response['error']['id_departemen']);
+                    // total_pagu_rkap
+                    $('.label_total_pagu_rkap_validasi').html(response['error']['total_pagu_rkap']);
+                } else {
+                    // tahun_rkap
+                    $('.label_tahun_rkap_validasi').html('');
+                    // nama_program_rkap
+                    $('.label_nama_program_rkap_validasi').html('');
+                    // id_departemen
+                    $('.label_id_departemen_validasi').html('');
+                    // total_pagu_rkap
+                    $('.label_total_pagu_rkap_validasi').html('');
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Sedang Proses Menyimpan Data!',
+                        html: 'Harap Tunggu <b></b>',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerRight()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            $('#modal-xl-tambah').modal('hide')
+                            form_rkap[0].reset();
+                            Reload_table_rkap()
+                            var type_model = $('[name="type_modal"').val('tambah');
+                            if (type_model == 'tambah') {
+                                Swal.fire('Data Berhasil Di Tambah!', '', 'success')
+                            } else {
+                                Swal.fire('Data Berhasil Di Update!', '', 'success')
                             }
-                        }).then((result) => {
-                            /* Read more about handling dismissals below */
-                            if (result.dismiss === Swal.DismissReason.timer) {
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
 
-                            }
-                        })
-                    }
+                        }
+                    })
                 }
-            })
-        }
+            }
+        })
 
     });
 
@@ -292,5 +286,31 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
+    });
+
+    var form_import_rkap = $('#form_import_rkap');
+    form_import_rkap.on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url(); ?>administrator/sirup_rka/import_rkap",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('.btn_simpan').attr('disabled', 'disabled');
+            },
+            success: function(response) {
+                if (response['success']) {
+                    Swal.fire('Good job!', 'Berhasil Import Excel', 'success');
+                    Reload_table_rkap()
+                    form_import_rkap[0].reset();
+                } else {
+                    Swal.fire('Maaf!', 'Kesalahan', 'warning');
+                    form_import_rkap[0].reset();
+                }
+            }
+        });
     });
 </script>

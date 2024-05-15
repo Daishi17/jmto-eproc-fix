@@ -378,6 +378,10 @@
                             <tr>
                                 <th class="bg-light">
                                     <small>Status Pencatatan (TKDN/PDN/Import) </small>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <small>Persentase TKDN</small>
                                 </th>
                                 <td>
                                     <small>
@@ -393,16 +397,17 @@
                                         <!-- status_pencatatan -->
                                         <small class="text-danger status_pencatatan_validation"></small>
                                     </small>
-                                </td>
-                                <td>
                                     <small>
                                         <div class="input-group mb-2">
-                                            <span class="input-group-text">%</span>
+                                            <span class="input-group-text">% TKDN</span>
                                             <input name="persen_pencatatan" type="number" value="<?= $row_rup['persen_pencatatan'] ?>" class="form-control persen_pencatatan" placeholder="Persentase">
                                         </div>
                                         <!-- persen_pencatatan -->
                                         <small class="text-danger persen_pencatatan_validation"></small>
                                     </small>
+                                </td>
+                                <td>
+
                                     <small>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text">Rp.</span>
@@ -494,10 +499,10 @@
                                                     <small>Departemen</small>
                                                 </th>
                                                 <th class="text-center bg-secondary text-white" scope="col">
-                                                    <small>Total Pagu RKAP</small>
+                                                    <small>Total Pagu Buku RUP</small>
                                                 </th>
                                                 <th class="text-center bg-secondary text-white" scope="col">
-                                                    <small>Total Pagu RUP</small>
+                                                    <small>Total Pagu Realisasi RUP</small>
                                                 </th>
                                             </tr>
                                         </thead>

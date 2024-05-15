@@ -6,6 +6,67 @@
     });
     var tbl_rkap = $('#tbl_rkap')
     var url_get_rkap = $('[name="url_get_rkap"').val()
+
+    $(document).ready(function() {
+        fill_datatable()
+
+        function fill_datatable(id_departemen = '') {
+            var id_departemen = $('#id_departemen').val()
+            var tahun_rkap = $('#tahun_rkap').val()
+            tbl_rkap.DataTable({
+                "responsive": false,
+                "ordering": true,
+                "processing": true,
+                "serverSide": true,
+                "autoWidth": false,
+                "bDestroy": true,
+
+                "buttons": ["excel", "pdf", "print", "colvis"],
+                initComplete: function() {
+                    this.api().buttons().container()
+                        .appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+
+                },
+                "order": [],
+                "ajax": {
+                    "url": url_get_rkap,
+                    "type": "POST",
+                    //di gunakan untuk custom select data yg kita mau cari per apa
+                    data: {
+                        id_departemen: id_departemen,
+                        tahun_rkap: tahun_rkap
+                    }
+                },
+                "columnDefs": [{
+                    "target": [-1],
+                    "orderable": false
+                }],
+                "oLanguage": {
+                    "sSearch": "Pencarian : ",
+                    "sEmptyTable": "Data Tidak Tersedia",
+                    "sLoadingRecords": "Silahkan Tunggu - loading...",
+                    "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                    "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                    "sProcessing": "Memuat Data...."
+                }
+            }).buttons().container().appendTo('#tbl_rkap .col-md-6:eq(0)');
+        }
+
+
+        $('#filter3').click(function() {
+            var id_departemen = $('#id_departemen').val();
+            var tahun_rkap = $('#tahun_rkap').val();
+            if (id_departemen != '' || tahun_rkap != '') {
+                tbl_rkap.DataTable().destroy();
+                fill_datatable(id_departemen, tahun_rkap);
+            } else {
+                tbl_rkap.DataTable().destroy();
+                fill_datatable();
+            }
+        })
+
+    });
+
     $(document).ready(function() {
         tbl_rkap.DataTable({
             "responsive": false,
@@ -238,6 +299,7 @@
                     $('.total_pagu_rup_validation').html(response['error']['total_pagu_rup']);
                     //  detail_lokasi_rup
                     $('.detail_lokasi_rup_validation').html(response['error']['detail_lokasi_rup']);
+
                 } else {
                     let timerInterval
                     Swal.fire({
@@ -294,6 +356,7 @@
                             $('.ruas_lokasi_validation').html('');
                             //  detail_lokasi_rup
                             $('.detail_lokasi_rup_validation').html('');
+
                             Swal.fire('Rup Berhasil Di Buat!', '', 'success')
                             form_rup[0].reset();
                             setTimeout(() => {
@@ -387,7 +450,8 @@
                 $('#hari_pelaksanaan').text(response['row_rup']['jangka_waktu_hari_pelaksanaan']);
                 $('#status_pencatatan').text(response['row_rup']['status_pencatatan']);
                 $('#persen_pencatatan').text(response['row_rup']['persen_pencatatan'] + '%');
-                $('#nilai_pencatatan').text('Rp. ' + response['row_rup']['nilai_pencatatan'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ',00');
+                // $('#nilai_pencatatan').text('Rp. ' + response['row_rup']['nilai_pencatatan'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ',00');
+                $('#nilai_pencatatan').text('Rp. ' + response['persen_pencatatan']);
                 if (response['row_rup']['sts_rup'] == 1) {
                     $('.btn-finalisasi').hide()
                     $('.btn-rup').hide()

@@ -20,6 +20,10 @@
                             <small><strong>Data Tabel - Buku Rencana Umum Pengadaan (RUP)</strong></small>
                         </span>
                     </div>
+                    <button type="button" class="btn btn-success btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#modal-xl-rup">
+                        <i class="fa-solid fa-file px-1"></i>
+                        Import Excel RUP
+                    </button>
                     <div class="bd-highlight">
                         <a href="javascript:;" onclick="Tambah_rkap()" class="btn btn-primary btn-sm shadow-lg">
                             <i class="fa-solid fa-circle-plus px-1"></i>
@@ -35,7 +39,7 @@
                                 <th style="width:6%;"><small class="text-white">Tahun</small></th>
                                 <th style="width:20%;"><small class="text-white">Nama Program</small></th>
                                 <th style="width:20%;"><small class="text-white">Departemen</small></th>
-                                <th style="width:10%;"><small class="text-white">Total Pagu (Rp)</small></th>
+                                <th style="width:10%;"><small class="text-white">Total Pagu Buku RUP (Rp)</small></th>
                                 <th style="width:12%;"><small class="text-white">Dokumen Excel</small></th>
                                 <th style="width:6%;"><small class="text-white">Status</small></th>
                                 <th style="width:20%;"><small class="text-white">
@@ -154,8 +158,39 @@
                             </button>
                         </div>
                     </div>
-                    </from>
+                </form>
             </div>
         </div>
     </div>
 </main>
+
+
+<div class="modal fade" id="modal-xl-rup" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Data Rup</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center>
+                        <a href="<?= base_url('format_excel/FORMAT_IMPORT_BUKU_RUP.xlsx') ?>" class="btn btn-success"> <img src="<?= base_url('assets/excel.png') ?>" style="width: 20px;" alt=""> Download Format Excel</a>
+                    </center>
+                    <br>
+                    <br>
+                    <form action="javascript:;" id="form_import_rkap" enctype="multipart/form-data" method="post">
+                        <div class="input-group">
+                            <input type="file" class="form-control form-control-sm" id="importexcel" aria-describedby="inputGroupFileAddon04" accept=".xlsx,.xls" name="importexcel" aria-label="Upload" required>
+                            <button class="btn btn-sm btn-success btn_simpan" type="submit" id="inputGroupFileAddon04"><img src="<?= base_url('assets/excel.png') ?>" style="width: 20px;" alt="">UPLOAD</button>
+                        </div>
+                    </form>
+                </div>
+                <br><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

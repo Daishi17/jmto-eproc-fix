@@ -2233,13 +2233,23 @@
                     } else {
                         var field = '<td><a href="javascript:;" onclick="batal_pilih(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-danger"><i class="fas fa fa-trash"></i> Batal Pilih</a></td>'
                     }
+
+
+                    if (response[i].nilai_vendor >= 80) {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>'
+                    } else if (response[i].nilai_vendor >= 60) {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>'
+                    } else if (response[i].nilai_vendor >= 40) {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>'
+                    } else {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>'
+                    }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
                         '<td>' + response[i].nama_usaha + '</td>' +
                         '<td>' + response[i].email + '</td>' +
                         '<td>' + response[i].kualifikasi_usaha + '</td>' +
-                        '<td>' + '80' + '</td>' +
-                        '<td>' + ' <center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>' + '</td>' +
+                        '<td>' + star + '</td>' +
                         field + '</tr>'
 
                 }
@@ -2274,13 +2284,25 @@
                     } else {
                         var field = '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>'
                     }
+
+
+                    if (response[i].nilai_vendor >= 80) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 60) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 40) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 20) {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>'
+                    } else {
+                        var star = '<center><small><span class="text-warning"></small> </center>'
+                    }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
                         '<td>' + response[i].nama_usaha + '</td>' +
                         '<td>' + response[i].email + '</td>' +
                         '<td>' + response[i].kualifikasi_usaha + '</td>' +
-                        '<td>' + '80' + '</td>' +
-                        '<td>' + ' <center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>' + '</td>' +
+                        '<td class="text-center">' + star + '</td>' +
                         field +
                         '</tr>'
                 }
@@ -2309,13 +2331,23 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
+                    if (response[i].nilai_vendor >= 80) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 60) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i><i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 40) {
+                        var star = '<center><label><small class="d-flex"><i class="fas fa fa-star text-warning"></i> <i class="fas fa fa-star text-warning"></i> </small></label> </center>'
+                    } else if (response[i].nilai_vendor >= 20) {
+                        var star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>'
+                    } else {
+                        var star = '<center><small><span class="text-warning"></small> </center>'
+                    }
                     html += '<tr>' +
                         '<td>' + ++o + '</td>' +
                         '<td>' + response[i].nama_usaha + '</td>' +
                         '<td>' + response[i].email + '</td>' +
                         '<td>' + response[i].kualifikasi_usaha + '</td>' +
-                        '<td>' + '80' + '</td>' +
-                        '<td>' + ' <center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>' + '</td>' +
+                        '<td>' + star + '</td>' +
                         '</tr>';
                 }
                 $('#load_rekomendasi_umum').html(html);

@@ -53,8 +53,8 @@
                             <th> <?= $row_rup['nama_rup'] ?></th>
                         </tr>
                         <tr>
-                            <th>TKDN</th>
-                            <th> <?= $row_rup['status_pencatatan'] ?> (<?= $row_rup['persen_pencatatan'] ?>%)</th>
+                            <th>Persentase TKDN</th>
+                            <th><?= $row_rup['persen_pencatatan'] ?> % ( <?= $row_rup['status_pencatatan'] ?>)</th>
                         </tr>
                         <tr>
                             <th>Nilai HPS</th>
@@ -2268,7 +2268,7 @@
                                 <tr>
                                     <th>Total Peserta Lulus Evaluasi Teknis</th>
                                     <th>
-                                        <input type="number" min="0" name="ba_evaluasi_teknis_total_lolos" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_total_lolos')" placeholder="Total Peserta Lulus Evaluasi Teknis" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?>">
+                                        <input type="text" min="0" name="ba_evaluasi_teknis_total_lolos" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_evaluasi_teknis_total_lolos')" placeholder="Total Peserta Lulus Evaluasi Teknis" class="form-control" value="<?= $row_rup['ba_evaluasi_teknis_total_lolos'] ?>">
                                     </th>
                                 </tr>
                             </table>
@@ -2629,27 +2629,27 @@
                             <br>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Nomor Berita Acara</th>
+                                    <th>Nomor Pengumuman</th>
                                     <th>
-                                        <input type="text" name="ba_pemenang_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Surat" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
+                                        <input type="text" name="ba_pemenang_no" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no')" placeholder="Nomor Pengumuman" class="form-control" value="<?= $row_rup['ba_pemenang_no'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Berita Acara</th>
+                                    <th>Tanggal Pengumuman</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
+                                        <input type="date" name="ba_pemenang_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl')" placeholder="Tanggal Pengumuman" class="form-control" value="<?= $row_rup['ba_pemenang_tgl'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Persetujuan</th>
+                                    <th>Nomor Permohonan Persetujuan Pemenang/Negosiasi</th>
                                     <th>
-                                        <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
+                                        <input type="text" name="ba_pemenang_no_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_no_persetujuan')" placeholder="Nomor Permohonan Persetujuan Pemenang/Negosiasi" class="form-control" value="<?= $row_rup['ba_pemenang_no_persetujuan'] ?>">
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Pengguna Barang/Jasa</th>
+                                    <th>Tanggal Permohonan persetujuan Pemenang/Negosiasi</th>
                                     <th>
-                                        <input type="text" name="ba_pemenang_barang_jasa" class="form-control" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_barang_jasa')" placeholder="Pengguna Barang/Jasa" class="form-control" value="<?= $row_rup['ba_pemenang_barang_jasa'] ?>">
+                                        <input type="date" name="ba_pemenang_tgl_persetujuan" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'ba_pemenang_tgl_persetujuan')" placeholder="Tanggal Permohonan persetujuan Pemenang/Negosiasi" class="form-control" value="<?= $row_rup['ba_pemenang_tgl_persetujuan'] ?>">
                                     </th>
                                 </tr>
                             </table>

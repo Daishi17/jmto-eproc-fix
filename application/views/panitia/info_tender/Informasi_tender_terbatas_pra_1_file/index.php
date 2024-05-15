@@ -51,8 +51,8 @@
                             <th> <?= $row_rup['nama_rup'] ?></th>
                         </tr>
                         <tr>
-                            <th>TKDN</th>
-                            <th> <?= $row_rup['status_pencatatan'] ?> (<?= $row_rup['persen_pencatatan'] ?>%)</th>
+                            <th>Persentase TKDN</th>
+                            <th><?= $row_rup['persen_pencatatan'] ?> % ( <?= $row_rup['status_pencatatan'] ?>)</th>
                         </tr>
                         <tr>
                             <th>Nilai HPS</th>

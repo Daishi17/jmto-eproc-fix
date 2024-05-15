@@ -552,7 +552,7 @@
                 $('#persen_pencatatan').text(response['row_rup']['persen_pencatatan']);
                 $('#jenis_produk').text(response['row_rup']['jenis_produk']);
                 $('#kualifikasi_usaha').text(response['row_rup']['kualifikasi_usaha']);
-                $('#detail_ruas_rup').text(response['row_rup']['nama_ruas']);
+                // $('#detail_ruas_rup').text(response['row_rup']['nama_ruas']);
                 $('[name="metode_kualifikasi"]').val(response['metode']['metode_kualifikasi']);
                 $('[name="metode_dokumen"]').val(response['metode']['metode_dokumen']);
                 $('[name="id_jadwal_tender"]').val(response['row_rup']['id_jadwal_tender']);

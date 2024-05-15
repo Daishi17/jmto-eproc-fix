@@ -335,7 +335,7 @@
                                                 <small id="status_pencatatan"></small>
                                             </td>
                                             <th class="bg-light">
-                                                <small>( % ) Pencatatan </small>
+                                                <small>(%) TKDN</small>
                                             </th>
                                             <td>
                                                 <i class="fa-solid fa-chart-simple px-2"></i>

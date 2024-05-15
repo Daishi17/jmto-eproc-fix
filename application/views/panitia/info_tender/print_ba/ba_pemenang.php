@@ -180,7 +180,7 @@ function terbilang($nilai)
 
                 </div>
             </div>
-            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no_persetujuan'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl_persetujuan']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> telah mendapatkan Persetujuan Pengguna Barang/Jasa <?= $row_rup['ba_pemenang_barang_jasa'] ?> PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
+            <p>Sehubungan dengan Surat Permohonan Penetapan/Pengesahan Pemenang Nomor : <?= $row_rup['ba_pemenang_no_persetujuan'] ?> tanggal <?= date('d', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> <?= bln_indo(date('m', strtotime($row_rup['ba_pemenang_tgl_persetujuan']))) ?> <?= date('Y', strtotime($row_rup['ba_pemenang_tgl_persetujuan'])) ?> telah mendapatkan Persetujuan Pengguna Barang/Jasa PT Jasamarga Tollroad Operator, dengan ini kami sampaikan <b>PEMENANG</b> untuk <b> <?= $row_rup['nama_rup'] ?> </b> adalah sebagai berikut :</p>
 
             <div class="card">
                 <div class="card-header">
@@ -280,9 +280,7 @@ function terbilang($nilai)
             <label for=""><b>Hormat kami,</b></label>
             <br>
             <br>
-            <br>
             &ensp;&ensp;&ensp;TTD
-            <br>
             <br>
             <br>
             <label for=""><b>Panitia Pengadaan</b></label>

@@ -179,6 +179,7 @@ class Rekanan_tervalidasi extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nama_usaha;
+			$row[] = $rs->email;
 			$row[] = implode(' , ', $jenis_izin);
 			$row[] = $rs->kualifikasi_usaha;
 
@@ -3084,13 +3085,38 @@ class Rekanan_tervalidasi extends CI_Controller
 		$data = [];
 		$no = $_POST['start'];
 		foreach ($result as $rs) {
-
+			$bln = date('m', strtotime($rs->tgl_penyampaian));
+			if ($bln == 01) {
+				$bln = 'Januari';
+			} else if ($bln == 02) {
+				$bln = 'Febuari';
+			} else if ($bln == 03) {
+				$bln = 'Maret';
+			} else if ($bln == 04) {
+				$bln = 'April';
+			} else if ($bln == 05) {
+				$bln = 'Mei';
+			} else if ($bln == 06) {
+				$bln = 'Juni';
+			} else if ($bln == 07) {
+				$bln = 'Juli';
+			} else if ($bln == '08') {
+				$bln = 'Agustus';
+			} else if ($bln == '09') {
+				$bln = 'September';
+			} else if ($bln == 10) {
+				$bln = 'Oktober';
+			} else if ($bln == 11) {
+				$bln = 'November';
+			} else if ($bln == 12) {
+				$bln = 'Desember';
+			}
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nomor_surat;
 			$row[] = $rs->tahun_lapor;
 			$row[] = $rs->jenis_spt;
-			$row[] = $rs->tgl_penyampaian;
+			$row[] = date('d', strtotime($rs->tgl_penyampaian)) . ' ' . $bln  . ' ' . date('Y', strtotime($rs->tgl_penyampaian));
 			if ($rs->sts_token_dokumen == 1) {
 				$row[] = $rs->file_dokumen;
 			} else {
@@ -3350,7 +3376,7 @@ class Rekanan_tervalidasi extends CI_Controller
             	<a href="javascript:;" class="btn btn-warning btn-sm shadow-lg" onClick="byid_neraca(' . "'" . $rs->id_url_neraca . "','dekrip'" . ')"> <i class="fa-solid fa-lock-open px-1"></i> Dekrip</a></center>';
 			}
 			// nanti main kondisi hitung dokumen dimari
-			if ($rs->sts_validasi == null) {
+			if ($rs->sts_validasi == null || $rs->sts_validasi == 0) {
 				$row[] = '<small><span class="badge bg-secondary">Belum Di Periksa</span></small>';
 			} else if ($rs->sts_validasi == 1) {
 				$row[] = '<small><span class="badge bg-success text-white">Sudah Valid</span></small>';
