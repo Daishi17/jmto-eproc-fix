@@ -169,57 +169,131 @@ class Laporan_efisiensi extends CI_Controller
 
         $data_juksung = $this->M_laporan->get_juksung($tahun);
         $data_juksung_vendor = $this->M_laporan->get_juksung_vendor($tahun);
-        $juksung_efisiensi = $data_juksung['total_pagu'] - $data_juksung['total_hps'];
-        $juksung_persentase = $juksung_efisiensi / $data_juksung['total_pagu'];
+
+
+        if ($data_juksung['total_pagu'] == null) {
+
+            $juksung_resume_pagu = '-';
+            $juksung_resume_hps =  '-';
+            $juksung_kontrak = '-';
+            $juksung_efisiensi = '-';
+            $juksung_persentase = '-';
+        } else {
+            $juksung_resume_pagu =  number_format($data_juksung['total_pagu'], 2, ",", ".");
+            $juksung_resume_hps =  number_format($data_juksung['total_hps'], 2, ",", ".");
+            $juksung_kontrak = number_format($data_juksung_vendor['total_nego'], 2, ",", ".");
+            $juksung_efisiensi2 = $data_juksung['total_hps'] - $data_juksung_vendor['total_nego'];
+            $juksung_efisiensi = number_format($juksung_efisiensi2, 2, ",", ".");
+            $juksung_persentase2 = $juksung_efisiensi2 / $data_juksung['total_pagu'];
+            $juksung_persentase =  number_format($juksung_persentase2, 2, ",", ".");
+        }
+
 
         $data_terbatas = $this->M_laporan->get_terbatas($tahun);
         $data_terbatas_vendor = $this->M_laporan->get_terbatas_vendor($tahun);
-        $terbatas_efisiensi = $data_terbatas['total_pagu'] - $data_terbatas['total_hps'];
-        $terbatas_persentase = $terbatas_efisiensi / $data_terbatas['total_pagu'];
+
+        if ($data_terbatas['total_pagu'] == null) {
+
+            $terbatas_resume_pagu = '-';
+            $terbatas_resume_hps =  '-';
+            $terbatas_kontrak = '-';
+            $terbatas_efisiensi = '-';
+            $terbatas_persentase = '-';
+        } else {
+            $terbatas_resume_pagu =  number_format($data_terbatas['total_pagu'], 2, ",", ".");
+            $terbatas_resume_hps =  number_format($data_terbatas['total_hps'], 2, ",", ".");
+            $terbatas_kontrak = number_format($data_terbatas_vendor['total_nego'], 2, ",", ".");
+            $terbatas_efisiensi2 = $data_terbatas['total_hps'] - $data_terbatas_vendor['total_nego'];
+            $terbatas_efisiensi = number_format($terbatas_efisiensi2, 2, ",", ".");
+            $terbatas_persentase2 = $terbatas_efisiensi2 / $data_terbatas['total_pagu'];
+            $terbatas_persentase =  number_format($terbatas_persentase2, 2, ",", ".");
+        }
+
 
         $data_umum = $this->M_laporan->get_umum($tahun);
         $data_umum_vendor = $this->M_laporan->get_umum_vendor($tahun);
-        $umum_efisiensi = $data_umum['total_pagu'] - $data_umum['total_hps'];
-        $umum_persentase = $umum_efisiensi / $data_umum['total_pagu'];
+
+        if ($data_umum['total_pagu'] == null) {
+
+            $umum_resume_pagu = '-';
+            $umum_resume_hps =  '-';
+            $umum_kontrak = '-';
+            $umum_efisiensi = '-';
+            $umum_persentase = '-';
+        } else {
+            $umum_resume_pagu =  number_format($data_umum['total_pagu'], 2, ",", ".");
+            $umum_resume_hps =  number_format($data_umum['total_hps'], 2, ",", ".");
+            $umum_kontrak = number_format($data_umum_vendor['total_nego'], 2, ",", ".");
+            $umum_efisiensi2 = $data_umum['total_hps'] - $data_umum_vendor['total_nego'];
+            $umum_efisiensi = number_format($umum_efisiensi2, 2, ",", ".");
+            $umum_persentase2 = $umum_efisiensi2 / $data_umum['total_pagu'];
+            $umum_persentase =  number_format($umum_persentase2, 2, ",", ".");
+        }
+
 
         $data_total = $this->M_laporan->get_total($tahun);
         $data_total_vendor = $this->M_laporan->get_total_vendor($tahun);
-        $total_efisiensi = $data_total['total_pagu'] - $data_total['total_hps'];
-        $total_persentase = $total_efisiensi / $data_total['total_pagu'];
+
+        if ($data_total['total_pagu'] == null) {
+
+            $total_resume_pagu = '-';
+            $total_resume_hps =  '-';
+            $total_kontrak = '-';
+            $total_efisiensi = '-';
+            $total_persentase = '-';
+            $persentase_selisih = '-';
+            $persentase_efisiensi =  '-';
+        } else {
+            $total_resume_pagu =  number_format($data_total['total_pagu'], 2, ",", ".");
+            $total_resume_hps =  number_format($data_total['total_hps'], 2, ",", ".");
+            $total_kontrak = number_format($data_total_vendor['total_nego'], 2, ",", ".");
+            $total_efisiensi2 = $data_total['total_hps'] - $data_total_vendor['total_nego'];
+            $total_efisiensi = number_format($total_efisiensi2, 2, ",", ".");
+            $total_persentase2 = $total_efisiensi2 / $data_total['total_pagu'];
+            $total_persentase =  number_format($total_persentase2, 2, ",", ".");
+
+            $persentase_selisih2 = $data_total_vendor['total_nego'] / $data_total['total_pagu'];
+            $persentase_efisiensi2 = $total_efisiensi2 / $data_total['total_pagu'];
 
 
-        $persentase_selisih = $data_total_vendor['total_nego'] / $data_total['total_pagu'];
+            $persentase_selisih =  number_format($persentase_selisih2, 2, ",", ".");
+            $persentase_efisiensi =  number_format($persentase_efisiensi2, 2, ",", ".");
+        }
 
-        $persentase_efisiensi = $total_efisiensi / $data_total['total_pagu'];
+
+
 
         $data = [
-            'juksung_resume_pagu' => number_format($data_juksung['total_pagu'], 2, ",", "."),
-            'juksung_resume_hps' =>  number_format($data_juksung['total_hps'], 2, ",", "."),
-            'juksung_kontrak' => number_format($data_juksung_vendor['total_nego'], 2, ",", "."),
-            'juksung_efisiensi' =>  number_format($juksung_efisiensi, 2, ",", "."),
-            'juksung_persentase' => number_format($juksung_persentase, 2, ",", "."),
+            'juksung_resume_pagu' => $juksung_resume_pagu,
+            'juksung_resume_hps' =>  $juksung_resume_hps,
+            'juksung_kontrak' => $juksung_kontrak,
+            'juksung_efisiensi' =>  $juksung_efisiensi,
+            'juksung_persentase' => $juksung_persentase,
 
-            'terbatas_resume_pagu' => number_format($data_terbatas['total_pagu'], 2, ",", "."),
-            'terbatas_resume_hps' =>  number_format($data_terbatas['total_hps'], 2, ",", "."),
-            'terbatas_kontrak' => number_format($data_terbatas_vendor['total_nego'], 2, ",", "."),
-            'terbatas_efisiensi' =>  number_format($terbatas_efisiensi, 2, ",", "."),
-            'terbatas_persentase' => number_format($terbatas_persentase, 2, ",", "."),
+            'terbatas_resume_pagu' => $terbatas_resume_pagu,
+            'terbatas_resume_hps' =>  $terbatas_resume_hps,
+            'terbatas_kontrak' => $terbatas_kontrak,
+            'terbatas_efisiensi' =>  $terbatas_efisiensi,
+            'terbatas_persentase' => $terbatas_persentase,
 
-            'umum_resume_pagu' => number_format($data_umum['total_pagu'], 2, ",", "."),
-            'umum_resume_hps' =>  number_format($data_umum['total_hps'], 2, ",", "."),
-            'umum_kontrak' => number_format($data_umum_vendor['total_nego'], 2, ",", "."),
-            'umum_efisiensi' =>  number_format($umum_efisiensi, 2, ",", "."),
-            'umum_persentase' => number_format($umum_persentase, 2, ",", "."),
+            'umum_resume_pagu' => $umum_resume_pagu,
+            'umum_resume_hps' =>  $umum_resume_hps,
+            'umum_kontrak' => $umum_kontrak,
+            'umum_efisiensi' =>  $umum_efisiensi,
+            'umum_persentase' => $umum_persentase,
 
-            'total_resume_pagu' => number_format($data_total['total_pagu'], 2, ",", "."),
-            'total_resume_hps' =>  number_format($data_total['total_hps'], 2, ",", "."),
-            'total_kontrak' => number_format($data_total_vendor['total_nego'], 2, ",", "."),
-            'total_efisiensi' =>  number_format($total_efisiensi, 2, ",", "."),
-            'total_persentase' => number_format($total_persentase, 2, ",", "."),
 
-            'total_persentase_selisih' => number_format($persentase_selisih, 2, ",", "."),
 
-            'total_persentase_efisiensi' => number_format($persentase_efisiensi, 2, ",", "."),
+            'total_resume_pagu' => $total_resume_pagu,
+            'total_resume_hps' =>  $total_resume_hps,
+            'total_kontrak' => $total_kontrak,
+            'total_efisiensi' =>  $total_efisiensi,
+            'total_persentase' => $total_persentase,
+
+
+            'total_persentase_selisih' => $persentase_selisih,
+
+            'total_persentase_efisiensi' => $persentase_efisiensi,
 
             'tahun' => $tahun
         ];

@@ -1369,6 +1369,28 @@
                     </div>
                 </div>
 
+
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <center>
+                            <h4 class="text-white">Neraca Keuangan</h4>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Status Validasi</th>
+                                    <th>Nama Validator</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rincian_neraca">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header bg-primary">
                         <center>

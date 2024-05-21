@@ -1025,25 +1025,25 @@ class Penilaian_kinerja extends CI_Controller
 		$this->M_laporan_kinerja->update_ke_vendor($data, $where);
 	}
 
-	public function print_pelaksanaan_satgas($id_penilaian_vendor)
+	public function print_pelaksanaan_satgas($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'satgas');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
 	}
 
-	public function print_pelaksanaan_manager($id_penilaian_vendor)
+	public function print_pelaksanaan_manager($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'manager');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
 	}
 
-	public function print_pelaksanaan_depthead($id_penilaian_vendor)
+	public function print_pelaksanaan_depthead($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'depthead');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian', $data);
 	}
 
-	public function print_pelaksanaan_total($id_penilaian_vendor)
+	public function print_pelaksanaan_total($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pelaksanaan_byid($id_penilaian_vendor, 'total');
 
@@ -1055,25 +1055,25 @@ class Penilaian_kinerja extends CI_Controller
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian_total', $data);
 	}
 
-	public function print_pemeliharaan_satgas($id_penilaian_vendor)
+	public function print_pemeliharaan_satgas($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'satgas');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
 	}
 
-	public function print_pemeliharaan_manager($id_penilaian_vendor)
+	public function print_pemeliharaan_manager($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'manager');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
 	}
 
-	public function print_pemeliharaan_depthead($id_penilaian_vendor)
+	public function print_pemeliharaan_depthead($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'depthead');
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan', $data);
 	}
 
-	public function print_pemeliharaan_total($id_penilaian_vendor)
+	public function print_pemeliharaan_total($id_penilaian_vendor = 0)
 	{
 		$data['get_penilaian'] =  $this->M_laporan_kinerja->get_penilaian_pemeliharaan_byid($id_penilaian_vendor, 'total');
 
@@ -1083,5 +1083,24 @@ class Penilaian_kinerja extends CI_Controller
 		$data['get_pemeliharaan_manager'] =  $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup);
 		$data['get_pemeliharaan_depthead'] =  $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup);
 		$this->load->view('administrator/penilaian_kinerja/print_penilaian_pemeliharaan_total', $data);
+	}
+
+	public function get_penilaian()
+	{
+		$id_vendor = $this->input->post('id_vendor');
+		$id_rup = $this->input->post('id_rup');
+
+		$data = [
+			'get_pelaksanaan_satgas' => $this->M_laporan_kinerja->cek_pelaksanaan_satgas($id_vendor, $id_rup),
+			'get_pelaksanaan_manager' => $this->M_laporan_kinerja->cek_pelaksanaan_manager($id_vendor, $id_rup),
+			'get_pelaksanaan_depthead' => $this->M_laporan_kinerja->cek_pelaksanaan_depthead($id_vendor, $id_rup),
+			'get_pelaksanaan_total' => $this->M_laporan_kinerja->cek_pelaksanaan_total($id_vendor, $id_rup),
+
+			'get_pemeliharaan_satgas' => $this->M_laporan_kinerja->cek_pemeliharaan_satgas($id_vendor, $id_rup),
+			'get_pemeliharaan_manager' => $this->M_laporan_kinerja->cek_pemeliharaan_manager($id_vendor, $id_rup),
+			'get_pemeliharaan_depthead' => $this->M_laporan_kinerja->cek_pemeliharaan_depthead($id_vendor, $id_rup),
+			'get_pemeliharaan_total' => $this->M_laporan_kinerja->cek_pemeliharaan_total($id_vendor, $id_rup),
+		];
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 }

@@ -1060,6 +1060,29 @@
                         }).buttons().container().appendTo('#tbl_neraca .col-md-6:eq(0)');
                     });
 
+                    var html_neraca = ''
+                    for (i = 0; i < response['neraca'].length; i++) {
+                        if (response['neraca'][i].sts_validasi == null || response['neraca'][i].sts_validasi == 0) {
+                            var sts_validasi = '<span class="badge bg-secondary">Belum Di Periksa</span>'
+                        } else if (response['neraca'][i].sts_validasi == 1) {
+                            var sts_validasi = '<span class="badge bg-success">Sudah Valid</span>'
+                        } else if (response['neraca'][i].sts_validasi == 2) {
+                            var sts_validasi = '<span class="badge bg-danger">Tidak Valid</span>'
+                        } else if (response['neraca'][i].sts_validasi == 3) {
+                            var sts_validasi = '<span class="badge bg-warning">Revisi</span>'
+                        }
+                        if (response['neraca'][i].nama_validator) {
+                            var nama_validator = response['neraca'][i].nama_validator
+                        } else {
+                            var nama_validator = '-'
+                        }
+                        html_neraca += '<tr>' +
+                            '<td>' + sts_validasi + '</td>' +
+                            '<td>' + nama_validator + '</td>' +
+                            '</tr>';
+                    }
+                    $('#rincian_neraca').html(html_neraca);
+
                 } else {
 
                 }

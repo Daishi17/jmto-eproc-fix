@@ -149,8 +149,9 @@
                             </tfoot>
                         </table>
                         <div class="float-end">
-                            <button type="submit" class="btn btn-primary float-end"> Simpan</button>
-                            <a href="<?= base_url('administrator/penilaian_kinerja/print_pemeliharaan_satgas/' . $get_pelaksanaan_satgas['id_penilaian_vendor']) ?>" class="btn btn-primary" style="margin-right: 10px;" target="_blank"><i class="fa fa-print"></i> Print</a>
+                            <button type="button" class="btn btn-primary float-end" onclick="open_form('pemeliharaan_satgas')" id="btn_pemeliharaan_satgas_edit" style="display: none;"> Edit</button>
+                            <button type="submit" class="btn btn-primary float-end" style="margin-right: 10px;" id="btn_pemeliharaan_satgas_save"> Simpan</button>
+                            <a href="<?= base_url('administrator/penilaian_kinerja/print_pemeliharaan_satgas/' . $get_pemeliharaan_satgas['id_penilaian_vendor']) ?>" class="btn btn-primary" style="margin-right: 10px;" target="_blank"><i class="fa fa-print"></i> Print</a>
                         </div>
                     </div>
                     <div class="col-md-5 mt-5">
@@ -373,7 +374,8 @@
                             </tfoot>
                         </table>
                         <div class="float-end">
-                            <button type="submit" class="btn btn-primary float-end"> Simpan</button>
+                            <button type="button" class="btn btn-primary float-end" onclick="open_form('pemeliharaan_manager')" id="btn_pemeliharaan_satgas_edit" style="display: none;"> Edit</button>
+                            <button type="submit" class="btn btn-primary float-end" style="margin-right: 10px;" id="btn_pemeliharaan_satgas_save"> Simpan</button>
                             <a href="<?= base_url('administrator/penilaian_kinerja/print_pemeliharaan_manager/' . $get_pelaksanaan_manager['id_penilaian_vendor']) ?>" class="btn btn-primary" style="margin-right: 10px;" target="_blank"><i class="fa fa-print"></i> Print</a>
                         </div>
                     </div>
@@ -597,7 +599,8 @@
                             </tfoot>
                         </table>
                         <div class="float-end">
-                            <button type="submit" class="btn btn-primary float-end"> Simpan</button>
+                            <button type="button" class="btn btn-primary float-end" onclick="open_form('pemeliharaan_depthead')" id="btn_pemeliharaan_depthead_edit" style="display: none;"> Edit</button>
+                            <button type="submit" class="btn btn-primary float-end" style="margin-right: 10px;" id="btn_pemeliharaan_depthead_save"> Simpan</button>
                             <a href="<?= base_url('administrator/penilaian_kinerja/print_pemeliharaan_depthead/' . $get_pelaksanaan_depthead['id_penilaian_vendor']) ?>" class="btn btn-primary" style="margin-right: 10px;" target="_blank"><i class="fa fa-print"></i> Print</a>
                         </div>
                     </div>
@@ -753,108 +756,107 @@
                                     <td class="text-center">1</td>
                                     <td>Kualitas Pekerjaan</td>
                                     <td class="text-center">35%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka1'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka1'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka1'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata1'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot1'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka1"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka1"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka1"></td>
+                                    <td class="text-center" id="pemeliharaan_total1"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot1"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">2</td>
                                     <td>Kemudahan Komunikasi / Koordinasi</td>
                                     <td class="text-center">15%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka2'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka2'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka2'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata2'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot2'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka2"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka2"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka2"></td>
+                                    <td class="text-center" id="pemeliharaan_total2"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot2"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">3</td>
                                     <td>Metode Pelaksanaan Pemeliharaan</td>
                                     <td class="text-center">20%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka3'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka3'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka3'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata3'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot3'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka3"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka3"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka3"></td>
+                                    <td class="text-center" id="pemeliharaan_total3"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot3"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">4</td>
                                     <td>Ketepatan Waktu Penyelesaian Komplain</td>
                                     <td class="text-center">10%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka4'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka4'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka4'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata4'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot4'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka4"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka4"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka4"></td>
+                                    <td class="text-center" id="pemeliharaan_total4"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot4"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">5</td>
                                     <td>Dokumen Administrasi Kontrak</td>
                                     <td class="text-center">15%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka5'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka5'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka5'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata5'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot5'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka5"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka5"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka5"></td>
+                                    <td class="text-center" id="pemeliharaan_total5"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot5"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">6</td>
                                     <td>Pemenuhan Perysaratan K3</td>
                                     <td class="text-center">5%</td>
-                                    <td class="text-center"><?= $get_pemeliharaan_satgas['nilai_angka6'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_manager['nilai_angka6'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_depthead['nilai_angka6'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_rata_rata6'] ?></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['nilai_terbobot6'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_satgas_nilai_angka6"></td>
+                                    <td class="text-center" id="pemeliharaan_manager_nilai_angka6"></td>
+                                    <td class="text-center" id="pemeliharaan_depthead_nilai_angka6"></td>
+                                    <td class="text-center" id="pemeliharaan_total6"></td>
+                                    <td class="text-center" id="pemeliharaan_bobot6"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>Total</td>
                                     <td>100%</td>
                                     <td colspan="4" style="background:#e9e9e9"></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['hasil_akhir'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_hasil_akhir_angka"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>Predikat Kinerja Penyedia Barang/Jasa</td>
                                     <td style="background:#e9e9e9"></td>
                                     <td colspan="4" style="background:#e9e9e9"></td>
-                                    <td class="text-center"><?= $get_pemeliharaan_total['hasil_predikat'] ?></td>
+                                    <td class="text-center" id="pemeliharaan_hasil_akhir"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td colspan="6" class="text-center">Rating Penilaian</td>
                                     <td>
-                                        <?php if ($get_pemeliharaan_total['hasil_akhir'] >= 80) { ?>
-                                            <div class="d-flex">
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
+                                        <div class="d-flex">
+                                            <div style="display: none;" id="star_pemeliharaan1">
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
                                             </div>
 
-                                        <?php } else if ($get_pemeliharaan_total['hasil_akhir'] >= 60) {  ?>
-                                            <div class="d-flex">
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div style="display: none;" id="star_pemeliharaan2">
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
                                             </div>
-
-                                        <?php } else if ($get_pemeliharaan_total['hasil_akhir'] >= 40) {  ?>
-                                            <div class="d-flex">
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div style="display: none;" id="star_pemeliharaan3">
+                                                <i class="fa fa-star text-warning"></i>
+                                                <i class="fa fa-star text-warning"></i>
                                             </div>
-
-                                        <?php } else { ?>
-                                            <div class="d-flex">
-                                                <i class="fa fa-star text-warning" style="display:block"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div style="display: none;" id="star_pemeliharaan4">
+                                                <i class="fa fa-star text-warning"></i>
                                             </div>
-
-                                        <?php } ?>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

@@ -49,11 +49,20 @@
             url: url_by_id_rup_paket + id_url_rup,
             dataType: "JSON",
             success: function(response) {
-                $('#btn_simpan_paket').show()
-                $('#jenis_jadwal_edit').show()
-                $('#jenis_jadwal_edit2').show()
-                $('#jenis_jadwal_edit3').show()
-                $('#btn_kehalaman_sebelumnya').show()
+                if (response['row_rup']['sts_rup_buat_paket'] == 2) {
+                    $('#btn_simpan_paket').hide()
+                    $('#jenis_jadwal_edit').hide()
+                    $('#jenis_jadwal_edit2').hide()
+                    $('#jenis_jadwal_edit3').hide()
+                    $('#btn_kehalaman_sebelumnya').hide()
+                } else {
+                    $('#btn_simpan_paket').show()
+                    $('#jenis_jadwal_edit').show()
+                    $('#jenis_jadwal_edit2').show()
+                    $('#jenis_jadwal_edit3').show()
+                    $('#btn_kehalaman_sebelumnya').show()
+                }
+
                 modal_paket.modal('show');
                 var html_ruas = '';
                 if (response['row_rup']['id_metode_pengadaan'] == 3) {
@@ -499,11 +508,21 @@
             url: url_by_id_rup_paket + id_url_rup,
             dataType: "JSON",
             success: function(response) {
-                $('#btn_simpan_paket').hide()
-                $('#jenis_jadwal_edit').hide()
-                $('#jenis_jadwal_edit2').hide()
-                $('#jenis_jadwal_edit3').hide()
-                $('#btn_kehalaman_sebelumnya').hide()
+
+                if (response['row_rup']['sts_rup_buat_paket'] == 2) {
+                    $('#btn_simpan_paket').hide()
+                    $('#jenis_jadwal_edit').hide()
+                    $('#jenis_jadwal_edit2').hide()
+                    $('#jenis_jadwal_edit3').hide()
+                    $('#btn_kehalaman_sebelumnya').hide()
+                } else {
+                    $('#btn_simpan_paket').show()
+                    $('#jenis_jadwal_edit').show()
+                    $('#jenis_jadwal_edit2').show()
+                    $('#jenis_jadwal_edit3').show()
+                    $('#btn_kehalaman_sebelumnya').show()
+                }
+
                 modal_paket.modal('show');
                 var html_ruas = '';
                 if (response['row_rup']['id_metode_pengadaan'] == 3) {

@@ -1,4 +1,305 @@
 <script>
+    // cek form
+    cek_form()
+
+    function cek_form() {
+        var id_vendor = $('[name="id_vendor"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            url: "<?php echo base_url(); ?>administrator/penilaian_kinerja/get_penilaian",
+            method: "POST",
+            data: {
+                id_rup: id_rup,
+                id_vendor: id_vendor,
+            },
+            success: function(response) {
+                if (response['get_pelaksanaan_satgas']) {
+                    $('[name="satgas_pelaksanaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka5"]').attr('disabled', 'disabled');
+
+                    $('[name="satgas_pelaksanaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan5"]').attr('disabled', 'disabled');
+
+                    $('#btn_pelaksanaan_satgas_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pelaksanaan_satgas_edit").style.display = "block";
+
+                }
+
+                if (response['get_pelaksanaan_manager']) {
+                    $('[name="manager_pelaksanaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka5"]').attr('disabled', 'disabled');
+
+                    $('[name="manager_pelaksanaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan5"]').attr('disabled', 'disabled');
+
+                    $('#btn_pelaksanaan_manager_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pelaksanaan_manager_edit").style.display = "block";
+
+                }
+
+
+                if (response['get_pelaksanaan_depthead']) {
+                    $('[name="depthead_pelaksanaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka5"]').attr('disabled', 'disabled');
+
+                    $('[name="depthead_pelaksanaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan5"]').attr('disabled', 'disabled');
+
+                    $('#btn_pelaksanaan_depthead_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pelaksanaan_depthead_edit").style.display = "block";
+                }
+
+
+                if (response['get_pemeliharaan_satgas']) {
+                    $('[name="satgas_pemeliharaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka5"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka6"]').attr('disabled', 'disabled');
+
+                    $('[name="satgas_pemeliharaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan5"]').attr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan6"]').attr('disabled', 'disabled');
+
+                    $('#btn_pemeliharaan_satgas_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pemeliharaan_satgas_edit").style.display = "block";
+                }
+
+                if (response['get_pemeliharaan_manager']) {
+                    $('[name="manager_pemeliharaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka5"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka6"]').attr('disabled', 'disabled');
+
+                    $('[name="manager_pemeliharaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan5"]').attr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan6"]').attr('disabled', 'disabled');
+
+                    $('#btn_pemeliharaan_manager_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pemeliharaan_manager_edit").style.display = "block";
+                }
+
+
+                if (response['get_pemeliharaan_depthead']) {
+                    $('[name="depthead_pemeliharaan_nilai_angka1"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka2"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka3"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka4"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka5"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka6"]').attr('disabled', 'disabled');
+
+                    $('[name="depthead_pemeliharaan_penjelasan1"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan2"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan3"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan4"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan5"]').attr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan6"]').attr('disabled', 'disabled');
+
+                    $('#btn_pemeliharaan_depthead_save').attr('disabled', 'disabled');
+
+                    document.getElementById("btn_pemeliharaan_depthead_edit").style.display = "block";
+                }
+
+            }
+        })
+    }
+
+
+    function open_form(type) {
+        if (type == 'pelaksanaan_satgas') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="satgas_pelaksanaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="satgas_pelaksanaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pelaksanaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pelaksanaan_satgas_save').removeAttr('disabled', 'disabled');
+                }
+            });
+
+        } else if (type == 'pelaksanaan_manager') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="manager_pelaksanaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="manager_pelaksanaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pelaksanaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pelaksanaan_manager_save').removeAttr('disabled', 'disabled');
+                }
+            });
+        } else if (type == 'pelaksanaan_depthead') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="depthead_pelaksanaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="depthead_pelaksanaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pelaksanaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pelaksanaan_depthead_save').removeAttr('disabled', 'disabled');
+                }
+            });
+        } else if (type == 'pemeliharaan_satgas') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="satgas_pemeliharaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_nilai_angka6"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="satgas_pemeliharaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('[name="satgas_pemeliharaan_penjelasan6"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pemeliharaan_satgas_save').removeAttr('disabled', 'disabled');
+                }
+            });
+        } else if (type == 'pemeliharaan_manager') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="manager_pemeliharaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_nilai_angka6"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="manager_pemeliharaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('[name="manager_pemeliharaan_penjelasan6"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pemeliharaan_manager_save').removeAttr('disabled', 'disabled');
+                }
+            });
+        } else if (type == 'pemeliharaan_depthead') {
+            Swal.fire({
+                title: "Apakah Anda Yakin?!",
+                text: "Ingin Mengubah Data Ini?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('[name="depthead_pemeliharaan_nilai_angka1"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka2"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka3"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka4"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka5"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_nilai_angka6"]').removeAttr('disabled', 'disabled');
+
+                    $('[name="depthead_pemeliharaan_penjelasan1"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan2"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan3"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan4"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan5"]').removeAttr('disabled', 'disabled');
+                    $('[name="depthead_pemeliharaan_penjelasan6"]').removeAttr('disabled', 'disabled');
+                    $('#btn_pemeliharaan_depthead_save').removeAttr('disabled', 'disabled');
+                }
+            });
+        }
+    }
+    // end cek form
+
+
     // library nich
 
     function cek_val(val) {
@@ -19,14 +320,14 @@
                 } else {
                     return 'A'
                 }
-            } else if (val >= 80 && val <= 89) {
+            } else if (val >= 80 && val < 90) {
                 if (val >= 86) {
                     return 'B+'
                 } else {
                     return 'B'
                 }
-            } else if (val >= 60 && val <= 79) {
-                if (val >= 70) {
+            } else if (val >= 60 && val < 80) {
+                if (val >= 75) {
                     return 'C+'
                 } else {
                     return 'C'
@@ -41,6 +342,79 @@
                 return 'Tidak Diketahui'
             }
         }
+
+    }
+    get_total_penilaian_pelaksanaan()
+
+    function get_total_penilaian_pelaksanaan() {
+        var id_vendor = $('[name="id_vendor"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            url: "<?php echo base_url(); ?>administrator/penilaian_kinerja/get_penilaian",
+            method: "POST",
+            data: {
+                id_rup: id_rup,
+                id_vendor: id_vendor,
+            },
+            success: function(response) {
+                $('#pelaksanaan_satgas_nilai_angka1').text(response['get_pelaksanaan_satgas'].nilai_angka1)
+                $('#pelaksanaan_manager_nilai_angka1').text(response['get_pelaksanaan_manager'].nilai_angka1)
+                $('#pelaksanaan_depthead_nilai_angka1').text(response['get_pelaksanaan_depthead'].nilai_angka1)
+                $('#pelaksanaan_total1').text(response['get_pelaksanaan_total'].nilai_rata_rata1)
+                $('#pelaksanaan_bobot1').text(response['get_pelaksanaan_total'].nilai_terbobot1)
+
+                $('#pelaksanaan_satgas_nilai_angka2').text(response['get_pelaksanaan_satgas'].nilai_angka2)
+                $('#pelaksanaan_manager_nilai_angka2').text(response['get_pelaksanaan_manager'].nilai_angka2)
+                $('#pelaksanaan_depthead_nilai_angka2').text(response['get_pelaksanaan_depthead'].nilai_angka2)
+                $('#pelaksanaan_total2').text(response['get_pelaksanaan_total'].nilai_rata_rata2)
+                $('#pelaksanaan_bobot2').text(response['get_pelaksanaan_total'].nilai_terbobot2)
+
+                $('#pelaksanaan_satgas_nilai_angka3').text(response['get_pelaksanaan_satgas'].nilai_angka3)
+                $('#pelaksanaan_manager_nilai_angka3').text(response['get_pelaksanaan_manager'].nilai_angka3)
+                $('#pelaksanaan_depthead_nilai_angka3').text(response['get_pelaksanaan_depthead'].nilai_angka3)
+                $('#pelaksanaan_total3').text(response['get_pelaksanaan_total'].nilai_rata_rata3)
+                $('#pelaksanaan_bobot3').text(response['get_pelaksanaan_total'].nilai_terbobot3)
+
+                $('#pelaksanaan_satgas_nilai_angka4').text(response['get_pelaksanaan_satgas'].nilai_angka4)
+                $('#pelaksanaan_manager_nilai_angka4').text(response['get_pelaksanaan_manager'].nilai_angka4)
+                $('#pelaksanaan_depthead_nilai_angka4').text(response['get_pelaksanaan_depthead'].nilai_angka4)
+                $('#pelaksanaan_total4').text(response['get_pelaksanaan_total'].nilai_rata_rata4)
+                $('#pelaksanaan_bobot4').text(response['get_pelaksanaan_total'].nilai_terbobot4)
+
+                $('#pelaksanaan_satgas_nilai_angka5').text(response['get_pelaksanaan_satgas'].nilai_angka5)
+                $('#pelaksanaan_manager_nilai_angka5').text(response['get_pelaksanaan_manager'].nilai_angka5)
+                $('#pelaksanaan_depthead_nilai_angka5').text(response['get_pelaksanaan_depthead'].nilai_angka5)
+                $('#pelaksanaan_total5').text(response['get_pelaksanaan_total'].nilai_rata_rata5)
+                $('#pelaksanaan_bobot5').text(response['get_pelaksanaan_total'].nilai_terbobot5)
+
+                $('#pelaksanaan_hasil_akhir_angka').text(response['get_pelaksanaan_total'].hasil_akhir)
+                $('#pelaksanaan_hasil_akhir').text(response['get_pelaksanaan_total'].hasil_predikat)
+
+
+                var hasil_akhir = response['get_pelaksanaan_total'].hasil_akhir;
+                if (hasil_akhir >= 80) {
+                    document.getElementById("star_pemeriksaaan1").style.display = "block";
+                    document.getElementById("star_pemeriksaaan2").style.display = "none";
+                    document.getElementById("star_pemeriksaaan3").style.display = "none";
+                    document.getElementById("star_pemeriksaaan4").style.display = "none";
+                } else if (hasil_akhir >= 60) {
+                    document.getElementById("star_pemeriksaaan1").style.display = "none";
+                    document.getElementById("star_pemeriksaaan2").style.display = "block";
+                    document.getElementById("star_pemeriksaaan3").style.display = "none";
+                    document.getElementById("star_pemeriksaaan4").style.display = "none";
+                } else if (hasil_akhir >= 40) {
+                    document.getElementById("star_pemeriksaaan1").style.display = "none";
+                    document.getElementById("star_pemeriksaaan2").style.display = "none";
+                    document.getElementById("star_pemeriksaaan3").style.display = "block";
+                    document.getElementById("star_pemeriksaaan4").style.display = "none";
+                } else {
+                    document.getElementById("star_pemeriksaaan1").style.display = "none";
+                    document.getElementById("star_pemeriksaaan2").style.display = "none";
+                    document.getElementById("star_pemeriksaaan3").style.display = "none";
+                    document.getElementById("star_pemeriksaaan4").style.display = "block";
+                }
+            }
+        })
 
     }
 
@@ -101,6 +475,8 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pelaksanaan()
+                cek_form()
             }
         });
     });
@@ -164,6 +540,8 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pelaksanaan()
+                cek_form()
             }
         });
     });
@@ -227,6 +605,8 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pelaksanaan()
+                cek_form()
             }
         });
     });
@@ -248,6 +628,8 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pelaksanaan()
+                cek_form()
             }
         });
     });
@@ -272,6 +654,85 @@
 
 
     // satgas pemeliharaan
+    get_total_penilaian_pemeliharaan()
+
+    function get_total_penilaian_pemeliharaan() {
+        var id_vendor = $('[name="id_vendor"]').val()
+        var id_rup = $('[name="id_rup"]').val()
+        $.ajax({
+            url: "<?php echo base_url(); ?>administrator/penilaian_kinerja/get_penilaian",
+            method: "POST",
+            data: {
+                id_rup: id_rup,
+                id_vendor: id_vendor,
+            },
+            success: function(response) {
+                $('#pemeliharaan_satgas_nilai_angka1').text(response['get_pemeliharaan_satgas'].nilai_angka1)
+                $('#pemeliharaan_manager_nilai_angka1').text(response['get_pemeliharaan_manager'].nilai_angka1)
+                $('#pemeliharaan_depthead_nilai_angka1').text(response['get_pemeliharaan_depthead'].nilai_angka1)
+                $('#pemeliharaan_total1').text(response['get_pemeliharaan_total'].nilai_rata_rata1)
+                $('#pemeliharaan_bobot1').text(response['get_pemeliharaan_total'].nilai_terbobot1)
+
+                $('#pemeliharaan_satgas_nilai_angka2').text(response['get_pemeliharaan_satgas'].nilai_angka2)
+                $('#pemeliharaan_manager_nilai_angka2').text(response['get_pemeliharaan_manager'].nilai_angka2)
+                $('#pemeliharaan_depthead_nilai_angka2').text(response['get_pemeliharaan_depthead'].nilai_angka2)
+                $('#pemeliharaan_total2').text(response['get_pemeliharaan_total'].nilai_rata_rata2)
+                $('#pemeliharaan_bobot2').text(response['get_pemeliharaan_total'].nilai_terbobot2)
+
+                $('#pemeliharaan_satgas_nilai_angka3').text(response['get_pemeliharaan_satgas'].nilai_angka3)
+                $('#pemeliharaan_manager_nilai_angka3').text(response['get_pemeliharaan_manager'].nilai_angka3)
+                $('#pemeliharaan_depthead_nilai_angka3').text(response['get_pemeliharaan_depthead'].nilai_angka3)
+                $('#pemeliharaan_total3').text(response['get_pemeliharaan_total'].nilai_rata_rata3)
+                $('#pemeliharaan_bobot3').text(response['get_pemeliharaan_total'].nilai_terbobot3)
+
+                $('#pemeliharaan_satgas_nilai_angka4').text(response['get_pemeliharaan_satgas'].nilai_angka4)
+                $('#pemeliharaan_manager_nilai_angka4').text(response['get_pemeliharaan_manager'].nilai_angka4)
+                $('#pemeliharaan_depthead_nilai_angka4').text(response['get_pemeliharaan_depthead'].nilai_angka4)
+                $('#pemeliharaan_total4').text(response['get_pemeliharaan_total'].nilai_rata_rata4)
+                $('#pemeliharaan_bobot4').text(response['get_pemeliharaan_total'].nilai_terbobot4)
+
+                $('#pemeliharaan_satgas_nilai_angka5').text(response['get_pemeliharaan_satgas'].nilai_angka5)
+                $('#pemeliharaan_manager_nilai_angka5').text(response['get_pemeliharaan_manager'].nilai_angka5)
+                $('#pemeliharaan_depthead_nilai_angka5').text(response['get_pemeliharaan_depthead'].nilai_angka5)
+                $('#pemeliharaan_total5').text(response['get_pemeliharaan_total'].nilai_rata_rata5)
+                $('#pemeliharaan_bobot5').text(response['get_pemeliharaan_total'].nilai_terbobot5)
+
+                $('#pemeliharaan_satgas_nilai_angka6').text(response['get_pemeliharaan_satgas'].nilai_angka6)
+                $('#pemeliharaan_manager_nilai_angka6').text(response['get_pemeliharaan_manager'].nilai_angka6)
+                $('#pemeliharaan_depthead_nilai_angka6').text(response['get_pemeliharaan_depthead'].nilai_angka6)
+                $('#pemeliharaan_total6').text(response['get_pemeliharaan_total'].nilai_rata_rata6)
+                $('#pemeliharaan_bobot6').text(response['get_pemeliharaan_total'].nilai_terbobot6)
+
+                $('#pemeliharaan_hasil_akhir_angka').text(response['get_pemeliharaan_total'].hasil_akhir)
+                $('#pemeliharaan_hasil_akhir').text(response['get_pemeliharaan_total'].hasil_predikat)
+
+
+                var hasil_akhir = response['get_pemeliharaan_total'].hasil_akhir;
+                if (hasil_akhir >= 80) {
+                    document.getElementById("star_pemeliharaan1").style.display = "block";
+                    document.getElementById("star_pemeliharaan2").style.display = "none";
+                    document.getElementById("star_pemeliharaan3").style.display = "none";
+                    document.getElementById("star_pemeliharaan4").style.display = "none";
+                } else if (hasil_akhir >= 60) {
+                    document.getElementById("star_pemeliharaan1").style.display = "none";
+                    document.getElementById("star_pemeliharaan2").style.display = "block";
+                    document.getElementById("star_pemeliharaan3").style.display = "none";
+                    document.getElementById("star_pemeliharaan4").style.display = "none";
+                } else if (hasil_akhir >= 40) {
+                    document.getElementById("star_pemeliharaan1").style.display = "none";
+                    document.getElementById("star_pemeliharaan2").style.display = "none";
+                    document.getElementById("star_pemeliharaan3").style.display = "block";
+                    document.getElementById("star_pemeliharaan4").style.display = "none";
+                } else {
+                    document.getElementById("star_pemeliharaan1").style.display = "none";
+                    document.getElementById("star_pemeliharaan2").style.display = "none";
+                    document.getElementById("star_pemeliharaan3").style.display = "none";
+                    document.getElementById("star_pemeliharaan4").style.display = "block";
+                }
+            }
+        })
+
+    }
 
     function hitung_satgas_pemeliharaan() {
         var satgas_nilai_angka1 = $('[name="satgas_pemeliharaan_nilai_angka1"]').val()
@@ -331,6 +792,7 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pemeliharaan()
             }
         });
     });
@@ -397,6 +859,7 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pemeliharaan()
             }
         });
     });
@@ -462,6 +925,7 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pemeliharaan()
             }
         });
     });
@@ -480,6 +944,7 @@
             processData: false,
             success: function(response) {
                 Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                get_total_penilaian_pemeliharaan()
             }
         });
     });
@@ -518,4 +983,7 @@
 
         });
     }
+
+
+    // disable form
 </script>

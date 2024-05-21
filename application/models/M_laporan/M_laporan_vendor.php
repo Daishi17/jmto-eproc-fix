@@ -20,6 +20,7 @@ class M_laporan_vendor extends CI_Model
         $this->db->join('tbl_metode_pengadaan', 'tbl_rup.id_metode_pengadaan = tbl_metode_pengadaan.id_metode_pengadaan', 'left');
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
+        $this->db->where('tbl_rup.sts_pengumuman_rup_trakhir', 1);
         if (isset($_POST['tahun_pengadaan']) && $_POST['tahun_pengadaan'] != '') {
             $this->db->where('tbl_rup.tahun_rup', $_POST['tahun_pengadaan']);
         }

@@ -147,7 +147,7 @@ class Beranda extends CI_Controller
 			if ($rs->status_paket_panitia == 1) {
 				$row[] = '<small><span class="badge bg-warning text-dark">Draft Paket</span></small>';
 			} else {
-				if ($jadwal_terakhir['waktu_mulai'] < $now) {
+				if (date('d-m-Y', strtotime($jadwal_terakhir['waktu_selesai'])) < $now) {
 					$row[] = '<span class="badge bg-danger text-white">Pengadaan Sudah Selesai
 					</span>';
 				} else {

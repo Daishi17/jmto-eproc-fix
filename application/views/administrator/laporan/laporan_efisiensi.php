@@ -241,7 +241,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Tabel Efisiensi Pengadaan Tender Terbatas Tahun <label for="" id="tahun_umum"></label></h6>
+                                    <h6>Tabel Efisiensi Pengadaan Tender Umum Tahun <label for="" id="tahun_umum"></label></h6>
                                 </div>
                                 <div class="col-md-4 d-flex">
                                     <select name="tahun_umum_val" id="tahun_umum_val" class="form-control">
@@ -285,7 +285,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Tabel Efisiensi Pengadaan Tender Terbatas Tahun <label for="" class="tahun_unit_label"></label></h6>
+                                    <h6>Tabel Efisiensi Pengadaan Tender Tahun <label for="" class="tahun_unit_label"></label></h6>
                                 </div>
                                 <div class="col-md-4 d-flex">
                                     <select name="tahun_unit" id="tahun_unit" class="form-control">

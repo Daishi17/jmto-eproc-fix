@@ -25,7 +25,7 @@
 
     <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins-lte/sweetalert2/sweetalert2.js"> -->
 
-    <script src="<?php echo base_url(); ?>/assets/swal2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/swal2.min.js"></script>
 
     <link href="<?php echo base_url(); ?>/assets/css/bs5-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/assets/css/bs4-card.css" rel="stylesheet">

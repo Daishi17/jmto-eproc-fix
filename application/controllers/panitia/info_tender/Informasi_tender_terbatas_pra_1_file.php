@@ -1806,7 +1806,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         // $type_email = 'PENGUMUMAN PEMENANG';
         // $this->email_send->sen_row_email($type_email, $get_rank1['id_vendor'], $message);
 
-        $this->kirim_wa->kirim_wa_pengumuman($row_rup['id_rup'], $message);
+        $this->kirim_wa->kirim_wa_pengumuman_atau_undangan_hasil_teknis($row_rup['id_rup'], $message);
         $upload = [
             'id_vendor_pemenang' => $get_rank1['id_vendor'],
             'sts_pengumuman_rup_trakhir' => 1

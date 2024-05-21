@@ -235,11 +235,11 @@
             processData: false,
             success: function(response) {
 
-                $('#langsung_resume_pagu').text('0')
-                $('#langsung_resume_hps').text('0')
-                $('#langsung_resume_nilai_kontrak').text('0')
-                $('#langsung_resume_efisiensi').text('0')
-                $('#langsung_resume_presentase').text('0')
+                $('#langsung_resume_pagu').text('-')
+                $('#langsung_resume_hps').text('-')
+                $('#langsung_resume_nilai_kontrak').text('-')
+                $('#langsung_resume_efisiensi').text('-')
+                $('#langsung_resume_presentase').text('-')
 
                 $('#juksung_resume_pagu').text(response['juksung_resume_pagu'])
                 $('#juksung_resume_hps').text(response['juksung_resume_hps'])

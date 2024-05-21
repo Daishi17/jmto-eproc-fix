@@ -338,35 +338,35 @@
     document.getElementById("mulai7").onchange = function() {
         validasi_mulai7()
     };
-    // // validasi mulai
-    // function validasi_mulai7() {
-    //     const mulai7 = new Date($('#mulai7').val());
-    //     const selesai6 = new Date($('#selesai6').val());
-    //     if (mulai7.getTime() < selesai6.getTime()) {
-    //         $('#error-jadwal7').show();
-    //         $("#erorr_jadwal_row7").css("background-color", "red");
-    //         $("#erorr_jadwal_row7").css("color", "white");
-    //     } else {
-    //         $('#error-jadwal7').hide();
-    //         $("#erorr_jadwal_row7").css("background-color", "transparent");
-    //         $("#erorr_jadwal_row7").css("color", "black");
-    //     }
-    // }
+    // validasi mulai
+    function validasi_mulai7() {
+        const mulai7 = new Date($('#mulai7').val());
+        const selesai6 = new Date($('#selesai6').val());
+        if (mulai7.getTime() < selesai6.getTime()) {
+            $('#error-jadwal7').show();
+            $("#erorr_jadwal_row7").css("background-color", "red");
+            $("#erorr_jadwal_row7").css("color", "white");
+        } else {
+            $('#error-jadwal7').hide();
+            $("#erorr_jadwal_row7").css("background-color", "transparent");
+            $("#erorr_jadwal_row7").css("color", "black");
+        }
+    }
 
-    // // validasi selesai
-    // function validasi_selesai7() {
-    //     const mulai7 = new Date($('#mulai7').val());
-    //     const selesai7 = new Date($('#selesai7').val());
-    //     if (mulai7.getTime() > selesai7.getTime()) {
-    //         $('#error-jadwal7').show();
-    //         $("#erorr_jadwal_row7").css("background-color", "red");
-    //         $("#erorr_jadwal_row7").css("color", "white");
-    //     } else {
-    //         $('#error-jadwal7').hide();
-    //         $("#erorr_jadwal_row7").css("background-color", "transparent");
-    //         $("#erorr_jadwal_row7").css("color", "black");
-    //     }
-    // }
+    // validasi selesai
+    function validasi_selesai7() {
+        const mulai7 = new Date($('#mulai7').val());
+        const selesai7 = new Date($('#selesai7').val());
+        if (mulai7.getTime() > selesai7.getTime()) {
+            $('#error-jadwal7').show();
+            $("#erorr_jadwal_row7").css("background-color", "red");
+            $("#erorr_jadwal_row7").css("color", "white");
+        } else {
+            $('#error-jadwal7').hide();
+            $("#erorr_jadwal_row7").css("background-color", "transparent");
+            $("#erorr_jadwal_row7").css("color", "black");
+        }
+    }
 </script>
 
 <!-- row ke 8 -->

@@ -40,54 +40,54 @@ class M_laporan extends CI_Model
 
     public function get_juksung($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_pagu_rup) as total_pagu, SUM(total_hps_rup) as total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender = 9");
+        $query = $this->db->query("SELECT SUM(total_pagu_rup) AS total_pagu, SUM(total_hps_rup) AS total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender IN(9,10)  AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
 
     public function get_juksung_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) as total_nego FROM tbl_rup LEFT JOIN tbl_vendor_mengikuti_paket ON tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor WHERE tahun_rup = $tahun AND id_jadwal_tender = 9");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(9,10) AND tahun_rup = $tahun");
         return $query->row_array();
     }
 
     public function get_terbatas($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_pagu_rup) as total_pagu, SUM(total_hps_rup) as total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender = 1 OR  id_jadwal_tender = 2  OR id_jadwal_tender = 3 OR id_jadwal_tender = 6");
+        $query = $this->db->query("SELECT SUM(total_pagu_rup) AS total_pagu, SUM(total_hps_rup) AS total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender IN(1,2,3,6)  AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
 
     public function get_terbatas_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) as total_nego FROM tbl_rup LEFT JOIN tbl_vendor_mengikuti_paket ON tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor WHERE tahun_rup = $tahun AND id_jadwal_tender = 1 OR id_jadwal_tender = 2 OR id_jadwal_tender = 3 OR id_jadwal_tender = 6");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(1,2,3,6) AND tahun_rup = $tahun");
         return $query->row_array();
     }
 
     public function get_umum($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_pagu_rup) as total_pagu, SUM(total_hps_rup) as total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender = 4 OR id_jadwal_tender OR id_jadwal_tender = 5 OR id_jadwal_tender = 7 OR id_jadwal_tender = 8");
+        $query = $this->db->query("SELECT SUM(total_pagu_rup) AS total_pagu, SUM(total_hps_rup) AS total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_jadwal_tender IN(4,5,7,8)  AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
 
     public function get_umum_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) as total_nego FROM tbl_rup LEFT JOIN tbl_vendor_mengikuti_paket ON tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor WHERE tahun_rup = $tahun AND id_jadwal_tender = 4 OR id_jadwal_tender OR id_jadwal_tender = 5 OR id_jadwal_tender = 7 OR id_jadwal_tender = 8");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(4,5,7,8) AND tahun_rup = $tahun");
         return $query->row_array();
     }
 
 
     public function get_total($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_pagu_rup) as total_pagu, SUM(total_hps_rup) as total_hps FROM tbl_rup WHERE tahun_rup = $tahun ");
+        $query = $this->db->query("SELECT SUM(total_pagu_rup) as total_pagu, SUM(total_hps_rup) as total_hps FROM tbl_rup WHERE tahun_rup = $tahun AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
 
     public function get_total_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) as total_nego FROM tbl_rup LEFT JOIN tbl_vendor_mengikuti_paket ON tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor WHERE tahun_rup = $tahun ");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND tahun_rup = $tahun");
         return $query->row_array();
     }
 
@@ -110,6 +110,7 @@ class M_laporan extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.id_jadwal_tender', 9);
+        $this->db->where('tbl_rup.sts_pengumuman_rup_trakhir', 1);
         if (isset($_POST['tahun_juksung_val']) && $_POST['tahun_juksung_val'] != '') {
             $this->db->where('tbl_rup.tahun_rup', $_POST['tahun_juksung_val']);
         }
@@ -181,6 +182,7 @@ class M_laporan extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where_in('tbl_rup.id_jadwal_tender', [1, 2, 3, 6]);
+        $this->db->where('tbl_rup.sts_pengumuman_rup_trakhir', 1);
         if (isset($_POST['tahun_terbatas_val']) && $_POST['tahun_terbatas_val'] != '') {
             $this->db->where('tbl_rup.tahun_rup', $_POST['tahun_terbatas_val']);
         }
@@ -252,6 +254,7 @@ class M_laporan extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
+        $this->db->where('tbl_rup.sts_pengumuman_rup_trakhir', 1);
         if (isset($_POST['tahun_umum_val']) && $_POST['tahun_umum_val'] != '') {
             $this->db->where('tbl_rup.tahun_rup', $_POST['tahun_umum_val']);
         }
@@ -324,6 +327,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 1);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -366,6 +370,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 2);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -406,6 +411,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 3);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -447,6 +453,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 20);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -487,6 +494,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 21);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -527,6 +535,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 22);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -567,6 +576,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 23);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -607,6 +617,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 24);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -647,6 +658,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 25);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -687,6 +699,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 26);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -727,6 +740,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 27);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -767,6 +781,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 28);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -808,6 +823,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 29);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -849,6 +865,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 1);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -891,6 +908,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 2);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -931,6 +949,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 3);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -972,6 +991,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 20);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1012,6 +1032,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 21);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1052,6 +1073,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 22);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1092,6 +1114,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 23);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1132,6 +1155,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 24);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1172,6 +1196,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 25);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1212,6 +1237,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 26);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1252,6 +1278,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 27);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1292,6 +1319,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 28);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1333,6 +1361,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 29);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1373,6 +1402,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 1);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1415,6 +1445,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 2);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1455,6 +1486,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 3);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1496,6 +1528,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 20);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1536,6 +1569,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 21);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1576,6 +1610,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 22);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1616,6 +1651,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 23);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1656,6 +1692,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 24);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1696,6 +1733,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 25);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1736,6 +1774,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 26);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1776,6 +1815,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 27);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1816,6 +1856,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 28);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1857,6 +1898,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 29);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1897,6 +1939,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 1);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1939,6 +1982,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 2);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -1979,6 +2023,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 3);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2020,6 +2065,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 20);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2060,6 +2106,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 21);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2100,6 +2147,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 22);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2140,6 +2188,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 23);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2180,6 +2229,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 24);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2220,6 +2270,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 25);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2260,6 +2311,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 26);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2300,6 +2352,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 27);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2340,6 +2393,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 28);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2381,6 +2435,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         $this->db->where('tbl_rup.id_departemen', 29);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
@@ -2421,6 +2476,7 @@ class M_laporan extends CI_Model
     {
         $this->db->select_sum('total_pagu_rup');
         $this->db->from('tbl_rup');
+        $this->db->where('id_vendor_pemenang !=', null);
         if ($tahun) {
             $this->db->where('tbl_rup.tahun_rup', $tahun);
         }
