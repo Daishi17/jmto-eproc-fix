@@ -37,7 +37,7 @@
         }
         $('#filter').click(function() {
             var tahun_pengadaan = $('#tahun_pengadaan').val();
-            $('#tahun_pengadaan_label').text(tahun_pengadaan)
+            $('.tahun_pengadaan_label').text(tahun_pengadaan)
             if (tahun_pengadaan != '') {
                 $('#tbl_pengadaan_tkdn').DataTable().destroy();
                 fill_datatable_efisiensi_terbatas(tahun_pengadaan);

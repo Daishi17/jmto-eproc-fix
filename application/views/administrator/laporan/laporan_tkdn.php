@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <br>
                     <center>
-                        <h5>Laporan Pengadaan PDN, TKDN, dan IMPORT PT JMTO TAHUN <label for="" id="tahun_pengadaan_label"></label></h5>
+                        <h5>Laporan Pengadaan PDN, TKDN, dan IMPORT PT JMTO TAHUN <label for="" class="tahun_pengadaan_label"></label></h5>
                     </center>
                     <br>
                     <div class="row">
@@ -54,15 +54,15 @@
                                 <tr>
                                     <th rowspan="3">No</th>
                                     <th rowspan="3">Nama Pekerjaan</th>
-                                    <th colspan="3">Komitmen Tahun </th>
-                                    <th colspan="12">Realisasi Tahun</th>
+                                    <th colspan="3">Komitmen Tahun <label for="" class="tahun_pengadaan_label"></th>
+                                    <th colspan="12">Realisasi Tahun <label for="" class="tahun_pengadaan_label"></th>
                                 </tr>
                                 <tr>
                                     <th rowspan="2">Jenis Pekerjaan</th>
                                     <th rowspan="2">Jenis Anggaran</th>
-                                    <th rowspan="2">Komitmen Anggaran Tahun </th>
+                                    <th rowspan="2">Komitmen Anggaran Tahun <label for="" class="tahun_pengadaan_label"></th>
                                     <th rowspan="2">Nilai Kontrak Keseluruhan</th>
-                                    <th rowspan="2">Nilai Kontrak Tahun </th>
+                                    <th rowspan="2">Nilai Kontrak Tahun <label for="" class="tahun_pengadaan_label"></th>
                                     <th rowspan="2">Nama Penyedia Barang dan Jasa</th>
                                     <th rowspan="2">Kualifikasi Penyedia (UMKK/Menengah/Besar)</th>
                                     <th rowspan="2">Status Pencatatan (PDN/TKDN/IMPORT)</th>

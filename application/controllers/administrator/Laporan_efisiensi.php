@@ -234,6 +234,9 @@ class Laporan_efisiensi extends CI_Controller
         $data_total = $this->M_laporan->get_total($tahun);
         $data_total_vendor = $this->M_laporan->get_total_vendor($tahun);
 
+        // var_dump($data_total);
+        // die;
+
         if ($data_total['total_pagu'] == null) {
 
             $total_resume_pagu = '-';
