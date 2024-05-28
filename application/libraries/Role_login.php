@@ -107,7 +107,7 @@ class Role_login
                         redirect('validator/dashboard');
                     }
                     // panitia
-                    if ($cek->role == 5) {
+                    if ($cek->role == 5 || $cek->role == 6) {
 
                         $sekarang = date('Y-m-d H:i');
                         $data = [

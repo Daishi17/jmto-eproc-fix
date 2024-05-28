@@ -127,6 +127,7 @@
                                                         <option value="3">Unit Kerja</option>
                                                         <option value="4">Validator</option>
                                                         <option value="5">Panitia</option>
+                                                        <option value="6">Tim Teknis</option>
                                                     </select>
                                                 </div>
                                                 <small class="role text-danger"></small>

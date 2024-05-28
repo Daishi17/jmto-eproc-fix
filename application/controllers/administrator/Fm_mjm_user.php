@@ -12,7 +12,6 @@ class Fm_mjm_user extends CI_Controller
 		if (!$role == 1) {
 			redirect('auth');
 		}
-
 	}
 
 	private function _role($role)
@@ -25,6 +24,8 @@ class Fm_mjm_user extends CI_Controller
 			return 'Validator';
 		} else if ($role == '5') {
 			return 'Panitia';
+		} else if ($role == '6') {
+			return 'Tim Teknis';
 		}
 	}
 
@@ -38,6 +39,8 @@ class Fm_mjm_user extends CI_Controller
 			return '<small><span class="badge swatch-orange">Validator</span></small>';
 		} else if ($role == '5') {
 			return '<small><span class="badge bd-cyan-700">Panitia</span></small>';
+		} else if ($role == '6') {
+			return '<small><span class="badge bg-info">Tim Teknis</span></small>';
 		}
 	}
 

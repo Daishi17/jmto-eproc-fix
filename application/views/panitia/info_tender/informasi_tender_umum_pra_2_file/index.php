@@ -1625,6 +1625,10 @@
                             <th>Tanggal Surat</th>
                             <th><input type="text" id="value_undangan2" name="tanggal_pengumuman_hasil_kualifikasi" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'tanggal_pengumuman_hasil_kualifikasi')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['tanggal_pengumuman_hasil_kualifikasi'] ?>"></th>
                         </tr>
+                        <tr>
+                            <th>Keterangan</th>
+                            <th><textarea name="keterangan_pengumuman_hasil_kualifikasi" id="value_undangan2" name="keterangan_pengumuman_hasil_kualifikasi" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'keterangan_pengumuman_hasil_kualifikasi')" class="form-control" placeholder="Keterangan" class="form-control"><?= $row_rup['keterangan_pengumuman_hasil_kualifikasi'] ?></textarea></th>
+                        </tr>
                         <!-- <tr>
                             <th>Hari Mulai</th>
                             <th><input type=" text" id="value_undangan3" name="hari_isi_pengumuman_hasil_kualifikasi_mulai" onkeyup="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'hari_isi_pengumuman_hasil_kualifikasi_mulai')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_isi_pengumuman_hasil_kualifikasi_mulai'] ?>"></th>

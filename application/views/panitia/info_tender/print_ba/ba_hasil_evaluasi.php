@@ -149,7 +149,11 @@ function terbilang($nilai)
 
                 <ol>
                     <li>
-                        Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi sebanyak <?= count($peserta_tender) ?> ( <?= terbilang(count($peserta_tender)) ?> ) Perusahaan, yaitu:
+                        Jumlah Perusahaan yang mendaftar dan mengambil Dokumen Prakualifikasi <?php if (count($peserta_tender) == 0) { ?>
+                            tidak ada yaitu: -
+                        <?php } else { ?>
+                            sebanyak (<?= terbilang(count($peserta_tender)) ?>) Perusahaan, yaitu:
+                        <?php } ?>
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender as $key => $value) { ?>
@@ -172,7 +176,11 @@ function terbilang($nilai)
                         </ol>
                     </li>
                     <li class="mt-3">
-                        Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq) ?> ( <?= terbilang(count($peserta_tender_pq)) ?> ) Perusahaan, yaitu:
+                        Perusahaan yang mengembalikan dan memasukan Dokumen Prakualifikasi adalah <?php if (count($peserta_tender_pq) == 0) { ?>
+                            tidak ada yaitu: -
+                        <?php } else { ?>
+                            sebanyak (<?= terbilang(count($peserta_tender_pq)) ?>) Perusahaan, yaitu:
+                        <?php } ?>
                         <ol class="mt-2">
                             <?php $i = 1;
                             foreach ($peserta_tender_pq as $key => $value) { ?>
@@ -196,27 +204,32 @@ function terbilang($nilai)
                     </li>
                     <li class="mt-3">
                         <p>Panitia Pengadaan melakukan evaluasi terhadap Dokumen Prakualifikasi yang masuk, meliputi aspek administrasi, keuangan dan teknis.</p>
-                        <p> Setelah melakukan evaluasi, Panitia Pengadaan sepakat menilai dan menetapkan bahwa Perusahaan yang memenuhi persyaratan Prakualifikasi adalah sebanyak <?= count($peserta_tender_pq_lolos) ?> ( <?= terbilang(count($peserta_tender_pq_lolos)) ?> ) Perusahaan, yaitu:</p>
-                        <ol class="mt-2">
-                            <?php $i = 1;
-                            foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
-                                <?php
-                                $subs_string = substr($value['nama_usaha'], 0, 2);
-                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                    $nama_perusahaan = $value['nama_usaha'];
-                                } else {
-                                    if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                        $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                    } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                        $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                    } else if ($value['bentuk_usaha']  == 'Koperasi') {
-                                        $nama_perusahaan = $value['nama_usaha'];
-                                    }
-                                }
-                                ?>
-                                <li><?= $nama_perusahaan ?></li>
+                        <p> Setelah melakukan evaluasi, Panitia Pengadaan sepakat menilai dan menetapkan bahwa Perusahaan yang memenuhi persyaratan Prakualifikasi adalah
+                            <?php if (count($peserta_tender_pq_lolos) == 0) { ?>
+                                tidak ada yaitu: -
+                            <?php } else { ?>
+                                sebanyak (<?= terbilang(count($peserta_tender_pq_lolos)) ?>) Perusahaan, yaitu:
                             <?php } ?>
-                        </ol>
+                            <ol class="mt-2">
+                                <?php $i = 1;
+                                foreach ($peserta_tender_pq_lolos as $key => $value) { ?>
+                                    <?php
+                                    $subs_string = substr($value['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                        $nama_perusahaan = $value['nama_usaha'];
+                                    } else {
+                                        if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                        } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                            $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                        } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                            $nama_perusahaan = $value['nama_usaha'];
+                                        }
+                                    }
+                                    ?>
+                                    <li><?= $nama_perusahaan ?></li>
+                                <?php } ?>
+                            </ol>
                     </li>
                 </ol>
                 <p>Hasil Evaluasi Prakualifikasi Peserta <?= $row['nama_metode_pengadaan'] ?> tertuang dalam Lampiran Berita Acara ini.</p>
