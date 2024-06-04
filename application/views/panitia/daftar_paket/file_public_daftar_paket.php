@@ -2227,7 +2227,7 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
-                    if (status_paket_diumumkan) {
+                    if (status_paket_diumumkan == 1) {
 
                         var field = '<td><button disabled class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Tender Sedang Berlangsung</button></td>'
                     } else {
@@ -2279,7 +2279,7 @@
                 var i;
                 var o = 0;
                 for (i = 0; i < response.length; i++) {
-                    if (status_paket_diumumkan) {
+                    if (status_paket_diumumkan == 1) {
                         var field = '<td><button disabled class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Tender Sedang Berlangsung</button></td>'
                     } else {
                         var field = '<td><a href="javascript:;" onclick="pilih_vendor(\'' + response[i].id_vendor + '\'' + ',' + '\'' + id_rup_global + '\'' + ',' + '\'' + response[i].nama_usaha + '\')" class="btn btn-sm btn-warning"><i class="fas fa fa-edit"></i> Pilih</a></td>'
