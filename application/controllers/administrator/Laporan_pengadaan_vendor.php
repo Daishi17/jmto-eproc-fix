@@ -70,9 +70,9 @@ class Laporan_pengadaan_vendor extends CI_Controller
                 $row[] = number_format(0, 2, ",", ".");
             } else {
                 if ($rs->id_jadwal_tender == 9 || $rs->id_jadwal_tender == 1 || $rs->id_jadwal_tender == 2 || $rs->id_jadwal_tender == 3 || $rs->id_jadwal_tender == 6) {
-                    $row[] = number_format($get_pemenang['ev_hea_tkdn_terendah'], 2, ",", ".");
+                    $row[] = $get_pemenang['ev_hea_tkdn_terendah'] . ' %';
                 } else {
-                    $row[] = number_format($get_pemenang['ev_hea_tkdn'], 2, ",", ".");
+                    $row[] = $get_pemenang['ev_hea_tkdn'] . ' %';
                 }
             }
 

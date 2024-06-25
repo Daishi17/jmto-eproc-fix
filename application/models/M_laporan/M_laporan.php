@@ -62,7 +62,7 @@ class M_laporan extends CI_Model
 
     public function get_terbatas_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(1,2,3,6) AND tahun_rup = $tahun");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(1,2,3,6) AND tahun_rup = $tahun  AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
@@ -75,7 +75,7 @@ class M_laporan extends CI_Model
 
     public function get_umum_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(4,5,7,8) AND tahun_rup = $tahun");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND id_jadwal_tender IN(4,5,7,8) AND tahun_rup = $tahun AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 
@@ -89,7 +89,7 @@ class M_laporan extends CI_Model
 
     public function get_total_vendor($tahun)
     {
-        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND tahun_rup = $tahun");
+        $query = $this->db->query("SELECT SUM(total_hasil_negosiasi) AS total_nego FROM tbl_vendor_mengikuti_paket LEFT JOIN tbl_rup ON tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup WHERE sts_deal_negosiasi = 'deal' AND tahun_rup = $tahun AND id_vendor_pemenang IS NOT NULL");
         return $query->row_array();
     }
 

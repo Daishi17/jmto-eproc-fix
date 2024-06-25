@@ -549,8 +549,11 @@
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } else { ?>
-                                    <button type="button" disabled class="btn btn-sm btn-danger">
-                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
+                                    <!-- <button type="button" disabled class="btn btn-sm btn-danger">
+                                            <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
+                                        </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a> -->
+                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
 
                                 <?php    } ?>

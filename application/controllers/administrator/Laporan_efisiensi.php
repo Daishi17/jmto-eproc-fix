@@ -186,7 +186,7 @@ class Laporan_efisiensi extends CI_Controller
             $juksung_efisiensi2 = $data_juksung['total_hps'] - $data_juksung_vendor['total_nego'];
             $juksung_efisiensi = number_format($juksung_efisiensi2, 2, ",", ".");
             $juksung_persentase2 = $juksung_efisiensi2 / $data_juksung['total_pagu'];
-            $juksung_persentase =  number_format($juksung_persentase2, 2, ",", ".");
+            $juksung_persentase =  number_format($juksung_persentase2 * 100, 2, ",", ".");
         }
 
 
@@ -207,7 +207,7 @@ class Laporan_efisiensi extends CI_Controller
             $terbatas_efisiensi2 = $data_terbatas['total_hps'] - $data_terbatas_vendor['total_nego'];
             $terbatas_efisiensi = number_format($terbatas_efisiensi2, 2, ",", ".");
             $terbatas_persentase2 = $terbatas_efisiensi2 / $data_terbatas['total_pagu'];
-            $terbatas_persentase =  number_format($terbatas_persentase2, 2, ",", ".");
+            $terbatas_persentase =  number_format($terbatas_persentase2 * 100, 2, ",", ".");
         }
 
 
@@ -228,7 +228,7 @@ class Laporan_efisiensi extends CI_Controller
             $umum_efisiensi2 = $data_umum['total_hps'] - $data_umum_vendor['total_nego'];
             $umum_efisiensi = number_format($umum_efisiensi2, 2, ",", ".");
             $umum_persentase2 = $umum_efisiensi2 / $data_umum['total_pagu'];
-            $umum_persentase =  number_format($umum_persentase2, 2, ",", ".");
+            $umum_persentase =  number_format($umum_persentase2 * 100, 2, ",", ".");
         }
 
 
@@ -254,14 +254,14 @@ class Laporan_efisiensi extends CI_Controller
             $total_efisiensi2 = $data_total['total_hps'] - $data_total_vendor['total_nego'];
             $total_efisiensi = number_format($total_efisiensi2, 2, ",", ".");
             $total_persentase2 = $total_efisiensi2 / $data_total['total_pagu'];
-            $total_persentase =  number_format($total_persentase2, 2, ",", ".");
+            $total_persentase =  number_format($total_persentase2 * 100, 2, ",", ".");
 
             $persentase_selisih2 = $data_total_vendor['total_nego'] / $data_total['total_pagu'];
             $persentase_efisiensi2 = $total_efisiensi2 / $data_total['total_pagu'];
 
 
-            $persentase_selisih =  number_format($persentase_selisih2, 2, ",", ".");
-            $persentase_efisiensi =  number_format($persentase_efisiensi2, 2, ",", ".");
+            $persentase_selisih =  number_format($persentase_selisih2 * 100, 2, ",", ".");
+            $persentase_efisiensi =  number_format($persentase_efisiensi2 * 100, 2, ",", ".");
         }
 
 
