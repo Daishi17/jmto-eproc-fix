@@ -158,7 +158,10 @@ class Laporan_tkdn extends CI_Controller
 
             $row[] = date('d-m-Y', strtotime($rs->awal_pendaftaran_tender));
             $row[] = date('d-m-Y', strtotime($rs->selesai_semua_tender));
-            $row[] = '';
+            $row[] = $rs->ket_laporan;
+            $row[] = '<button type="button" class="btn btn-success btn-sm shadow-lg" onClick="byid(' . "'" . $rs->id_rup  . "','edit_keterangan'" . ')" title="Aktif">
+								<small>Buat Keterangan</small>
+							</button>';
 
             $data[] = $row;
         }
@@ -169,5 +172,31 @@ class Laporan_tkdn extends CI_Controller
             "data" => $data
         );
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function get_rup($id_rup)
+    {
+        $output = $this->M_laporan_tkdn->get_rup($id_rup);
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+    public function edit_keterangan()
+    {
+
+        $id_rup = $this->input->post('id_rup');
+
+        $ket_laporan = $this->input->post('ket_laporan');
+
+        $data = [
+            'ket_laporan' => $ket_laporan,
+            'id_rup' => $id_rup
+        ];
+
+        $where = [
+            'id_rup' => $id_rup
+        ];
+
+        $this->M_laporan_tkdn->update_rup($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('sucess'));
     }
 }

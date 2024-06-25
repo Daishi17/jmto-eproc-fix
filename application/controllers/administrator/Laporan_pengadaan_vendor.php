@@ -47,12 +47,23 @@ class Laporan_pengadaan_vendor extends CI_Controller
             }
 
             if ($get_pemenang == 0) {
-                $row[] = number_format(0, 2, ",", ".");
+                $row[] = 'Belum Ada Pemenang';
             } else {
-                $row[] = $get_pemenang['nama_usaha'];
+                $subs_string = substr($get_pemenang['nama_usaha'], 0, 2);
+                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                    $row[] = $get_pemenang['nama_usaha'];
+                } else {
+                    if ($get_pemenang['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                        $row[] = 'PT ' . $get_pemenang['nama_usaha'];
+                    } else if ($get_pemenang['bentuk_usaha'] == 'Commanditaire Vennootschap (CV)') {
+                        $row[] = 'CV ' . $get_pemenang['nama_usaha'];
+                    } else if ($get_pemenang['bentuk_usaha'] == 'Koperasi') {
+                        $row[] = $get_pemenang['nama_usaha'];
+                    }
+                }
             }
 
-            $row[] = '';
+            $row[] = $rs->jangka_waktu_hari_pelaksanaan . ' Hari';
             $row[] = number_format($rs->persen_pencatatan, 2, ",", ".") . ' %';
 
             if ($get_pemenang == 0) {

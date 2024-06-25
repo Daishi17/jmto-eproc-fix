@@ -389,6 +389,7 @@ class Daftar_paket extends CI_Controller
 	{
 		$data_rup = $this->M_rup->get_row_rup($id_url_rup);
 		$panitia = $this->M_panitia->get_panitia($data_rup['id_rup']);
+		$tim_teknis = $this->M_panitia->get_tim_teknis($data_rup['id_rup']);
 		$syarat_tambahan = $this->M_panitia->result_syarat_tambahan($data_rup['id_rup']);
 		$ruas = $this->M_panitia->get_ruas($data_rup['id_rup']);
 		$jadwal = $this->M_panitia->get_jadwal($id_url_rup);
@@ -400,6 +401,7 @@ class Daftar_paket extends CI_Controller
 			'cetak_jadwal' => $cetak_jadwal,
 			'row_rup' => $data_rup,
 			'panitia' => $panitia,
+			'tim_teknis' => $tim_teknis,
 			'ruas' => $ruas,
 			'jadwal' => $jadwal,
 			'row_syarat_administrasi_rup' => $row_syarat_administrasi_rup,

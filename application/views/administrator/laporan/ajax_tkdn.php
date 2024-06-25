@@ -48,4 +48,41 @@
         })
 
     });
+
+
+    function byid(id_rup, type) {
+        var modal_detail = $('#modal-xl');
+        $.ajax({
+            type: "GET",
+            url: '<?= base_url('administrator/laporan_tkdn/get_rup/') ?>' + id_rup,
+            dataType: "JSON",
+            success: function(response) {
+                modal_detail.modal('show');
+                $('[name="nama_rup"]').val(response.nama_rup)
+                $('[name="id_rup"]').val(response.id_rup)
+            }
+        })
+    }
+
+    function reload_table() {
+        $('#tbl_pengadaan_tkdn').DataTable().ajax.reload();
+    }
+
+    var form_laporan_rup = $('#form_laporan_rup');
+    form_laporan_rup.on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url(); ?>administrator/laporan_tkdn/edit_keterangan",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire('Berhasil!', 'Data Berhasil Disimpan', 'success');
+                reload_table()
+                $('#modal-xl').model('hide');
+            }
+        });
+    });
 </script>

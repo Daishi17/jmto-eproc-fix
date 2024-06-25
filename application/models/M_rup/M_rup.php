@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_rup extends CI_Model
 {
 
-    var $order =  array('kode_urut_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order =  array('kode_urut_rup', 'kode_rup', 'tahun_rup', 'nama_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
 
     // get nib
     private function _get_data_query_rup()
@@ -204,6 +204,18 @@ class M_rup extends CI_Model
         $this->db->from('tbl_manajemen_user');
         $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
         $this->db->where('tbl_manajemen_user.role', 5);
+        $this->db->where('tbl_manajemen_user.sts_aktif', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function tim_teknis()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_manajemen_user');
+        $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
+        $this->db->where('tbl_manajemen_user.role', 6);
+        $this->db->where('tbl_manajemen_user.sts_aktif', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -288,6 +300,70 @@ class M_rup extends CI_Model
         return $this->db->count_all_results();
     }
 
+    var $order_tim_teknis =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    private function _get_data_query_rup_tim_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_tim_teknis');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_tim_teknis.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_tim_teknis.id_rup', $id_rup);
+        $this->db->where('tbl_manajemen_user.role', 6);
+        $i = 0;
+        foreach ($this->order_tim_teknis as $item) // looping awal
+        {
+            if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
+            {
+
+                if ($i === 0) // looping awal
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like(
+                        $item,
+                        $_POST['search']['value']
+                    );
+                }
+
+                if (count($this->order_tim_teknis) - 1 == $i)
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->order_tim_teknis[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else {
+            $this->db->order_by('tbl_tim_teknis.role_tim_teknis', 'ASC');
+        }
+    }
+
+    public function gettable_rup_tim_teknis($id_rup) //nam[ilin data pake ini
+    {
+        $this->_get_data_query_rup_tim_teknis($id_rup); //ambil data dari get yg di atas
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_filtered_rup_tim_teknis($id_rup)
+    {
+        $this->_get_data_query_rup_tim_teknis($id_rup); //ambil data dari get yg di atas
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all_rup_tim_teknis($id_rup)
+    {
+        $this->db->from('tbl_tim_teknis');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_tim_teknis.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_tim_teknis.id_rup', $id_rup);
+        return $this->db->count_all_results();
+    }
+
     public function cek_role_panitia($id_rup, $role_panitia)
     {
         $this->db->select('*');
@@ -333,6 +409,18 @@ class M_rup extends CI_Model
         return $query->row_array();
     }
 
+    public function cek_user_tim_teknis($id_rup, $id_pegawai)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_tim_teknis');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_tim_teknis.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_tim_teknis.id_rup', $id_rup);
+        $this->db->where('tbl_pegawai.id_pegawai', $id_pegawai);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_row_panitia($id_url_panitia)
     {
         $this->db->select('*');
@@ -340,6 +428,17 @@ class M_rup extends CI_Model
         $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_panitia.id_manajemen_user', 'left');
         $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
         $this->db->where('tbl_panitia.id_url_panitia', $id_url_panitia);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_row_tim_teknis($id_url_tim_teknis)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_tim_teknis');
+        $this->db->join('tbl_manajemen_user', 'tbl_manajemen_user.id_manajemen_user = tbl_tim_teknis.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_pegawai.id_pegawai = tbl_manajemen_user.id_pegawai', 'left');
+        $this->db->where('tbl_tim_teknis.id_url_tim_teknis', $id_url_tim_teknis);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -367,6 +466,11 @@ class M_rup extends CI_Model
     public function delete_panitia($where)
     {
         $this->db->delete('tbl_panitia', $where);
+    }
+
+    public function delete_tim_teknis($where)
+    {
+        $this->db->delete('tbl_tim_teknis', $where);
     }
 
     var $order_rup_paket =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
@@ -452,7 +556,7 @@ class M_rup extends CI_Model
     }
 
     // GET RUP PAKET FINAL
-    var $order_rup_paket_final =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_program_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
+    var $order_rup_paket_final =  array('id_rup', 'kode_rup', 'tahun_rup', 'nama_rup', 'kode_departemen', 'total_pagu_rup', 'id_rup', 'id_rup', 'id_rup');
     // get nib
     private function _get_data_query_rup_paket_final()
     {

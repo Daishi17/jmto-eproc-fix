@@ -1936,6 +1936,16 @@
                         '</tr>';
                 }
                 $('#load_panitia').html(html);
+
+                var html2 = '';
+                var i;
+                for (i = 0; i < response['tim_teknis'].length; i++) {
+                    html2 += '<tr>' +
+                        '<td><small>' + response['tim_teknis'][i].nama_pegawai + '</small></td>' +
+                        '</tr>';
+                }
+                $('#load_tim_teknis').html(html2);
+
                 var html_status_paket = '';
                 if (response['row_rup'].status_paket_panitia == 1) {
                     if (response['row_rup'].sts_ulang == 1) {

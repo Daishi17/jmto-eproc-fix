@@ -8,8 +8,16 @@ class M_count extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
-        $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        if ($this->session->userdata('role') == 5) {
+
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+            $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        } else {
+
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $id_manajemenen_user);
+        }
+
         $this->db->where('tbl_rup.id_metode_pengadaan', 1);
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         $this->db->group_by('tbl_rup.id_rup');
@@ -21,8 +29,16 @@ class M_count extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
-        $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        if ($this->session->userdata('role') == 5) {
+
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+            $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        } else {
+
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $id_manajemenen_user);
+        }
+
         $this->db->where('tbl_rup.id_metode_pengadaan', 4);
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         $this->db->group_by('tbl_rup.id_rup');
@@ -36,8 +52,16 @@ class M_count extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
-        $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        if ($this->session->userdata('role') == 5) {
+
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+            $this->db->where('tbl_panitia.id_manajemen_user', $id_manajemenen_user);
+        } else {
+
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $id_manajemenen_user);
+        }
+
         $this->db->where('tbl_rup.id_metode_pengadaan', 3);
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         $this->db->group_by('tbl_rup.id_rup');

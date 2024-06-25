@@ -459,6 +459,15 @@
                     $('.btn-finalisasi').show()
                     $('.btn-rup').show()
                 }
+                var ruas = ''
+                var j;
+                // console.log(response['ruas_lokasi']);
+                for (j = 0; j < response['ruas_lokasi'].length; j++) {
+                    ruas += '<label>' + response['ruas_lokasi'][j].nama_ruas + '</label> , '
+                }
+
+
+                $('#ruas_lokasi_rup').html(ruas)
             }
         })
     }
@@ -509,8 +518,11 @@
                     dataType: "JSON",
                     success: function(response) {
                         modal_detail.modal('hide');
+
                         Swal.fire('Rup Berhasil Di Finalisasi!', '', 'success')
-                        location.reload()
+                        setTimeout(() => {
+                            location.reload()
+                        }, 2000);
                         Reload_table_rup();
                         Reload_table_rup_final();
                     }

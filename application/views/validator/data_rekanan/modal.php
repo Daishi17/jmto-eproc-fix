@@ -996,7 +996,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-sm-2 bg-light">
-                                        <label class="form-label col-form-label-sm"><b>File KTP</b></label>
+                                        <label class="form-label col-form-label-sm"><b>File KTP/Paspor/SIUP/Akta Perusahaan</b></label>
                                     </td>
                                     <!-- <td class="col-sm-3">
                                         <input type="file" name="file_ktp" id="file" accept=".pdf">
@@ -1009,7 +1009,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-sm-2 bg-light">
-                                        <label class="form-label col-form-label-sm"><b>File NPWP</b></label>
+                                        <label class="form-label col-form-label-sm"><b>File NPWP/Perpajakan Yang Berlaku</b></label>
                                     </td>
                                     <!-- <td class="col-sm-3">
                                         <input type="file" name="file_npwp" id="file" accept=".pdf">
@@ -1171,7 +1171,7 @@
                                         <div class="col-sm-12">
                                             <div class="input-group mb-2">
                                                 <span class="input-group-text"><i class="fa-solid fa-bars"></i></span>
-                                                <select disabled name="warganegara" class="form-select" aria-label="Default select example">
+                                                <select disabled name="warganegara" id="warga_negara_pengurus" class="form-select" aria-label="Default select example">
                                                     <option selected>Indonesia</option>
                                                     <option>Asing</option>
                                                 </select>
@@ -1215,7 +1215,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-sm-2 bg-light">
-                                        <label class="form-label col-form-label-sm"><b>File KTP</b></label>
+                                        <label class="form-label col-form-label-sm"><b>File KTP/Paspor/SIUP/Akta Perusahaan</b></label>
                                     </td>
                                     <!-- <td class="col-sm-3">
                                         <input type="file" name="file_ktp_pengurus" id="file" accept=".pdf">
@@ -1228,7 +1228,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-sm-2 bg-light">
-                                        <label class="form-label col-form-label-sm"><b>File NPWP</b></label>
+                                        <label class="form-label col-form-label-sm"><b>File NPWP/Perpajakan Yang Berlaku</b></label>
                                     </td>
                                     <!-- <td class="col-sm-3">
                                         <input type="file" name="file_npwp_pengurus" id="file" accept=".pdf">

@@ -59,7 +59,7 @@
                                     <th>Nilai Anggaran (HPS)</th>
                                     <th>Nilai Kontrak</th>
                                     <th>Nama Penyedia</th>
-                                    <th>PIC</th>
+                                    <th>Jangka Waktu Kontrak</th>
                                     <th>TKDN Minimum</th>
                                     <th>TKDN Penawaran</th>
                                 </tr>

@@ -261,6 +261,12 @@
                             </a>
                         </li>
                         <li>
+                            <a class="dropdown-item" href="<?= base_url('administrator/laporan_realisasi_rup') ?>">
+                                <i class="fa-solid fa-chart-simple px-1"></i>
+                                <small>Draft Monitoring Realisasi RUP</small>
+                            </a>
+                        </li>
+                        <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>

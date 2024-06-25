@@ -10,7 +10,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -22,7 +27,11 @@ class M_panitia extends CI_Model
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.sts_rup', 1);
         $this->db->where('tbl_rup.status_paket_panitia', NULL);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_rup_paket_final as $item) // looping awal
         {
@@ -72,7 +81,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -84,7 +98,11 @@ class M_panitia extends CI_Model
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where('tbl_rup.sts_rup', 1);
         $this->db->where('tbl_rup.status_paket_panitia', NULL);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         return $this->db->count_all_results();
     }
 
@@ -443,13 +461,20 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_keuangan');
+        // if ($cek_syarat_teknis['sts_audit_laporan_keuangan'] == 'Audit') {
+        //     $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+        //     $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+        //     $this->db->where('tbl_vendor_keuangan.jenis_audit', $cek_syarat_teknis['sts_audit_laporan_keuangan']);
+        // } else {
+        //     $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
+        //     $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+        // }
+
         if ($cek_syarat_teknis['sts_audit_laporan_keuangan'] == 'Audit') {
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor =', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
             $this->db->where('tbl_vendor_keuangan.jenis_audit', $cek_syarat_teknis['sts_audit_laporan_keuangan']);
         } else {
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor >=', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
-            $this->db->where('tbl_vendor_keuangan.tahun_lapor <=', $cek_syarat_teknis['tahun_akhir_laporan_keuangan']);
+            $this->db->where('tbl_vendor_keuangan.tahun_lapor =', $cek_syarat_teknis['tahun_awal_laporan_keuangan']);
         }
         $this->db->group_by('tbl_vendor_keuangan.id_vendor');
         $query = $this->db->get();
@@ -717,6 +742,19 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    public function get_tim_teknis($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_tim_teknis');
+        $this->db->join('tbl_manajemen_user', 'tbl_tim_teknis.id_manajemen_user = tbl_manajemen_user.id_manajemen_user', 'left');
+        $this->db->join('tbl_pegawai', 'tbl_manajemen_user.id_pegawai = tbl_pegawai.id_pegawai', 'left');
+        $this->db->where('id_rup', $id_rup);
+        $this->db->where('tbl_manajemen_user.role', 6);
+        $this->db->order_by('tbl_tim_teknis.role_tim_teknis');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_panitia_ketua_sekertaris($id_rup)
     {
         $this->db->select('*');
@@ -751,7 +789,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -762,7 +805,11 @@ class M_panitia extends CI_Model
         $this->db->join('tbl_jenis_anggaran', 'tbl_rup.id_jenis_anggaran = tbl_jenis_anggaran.id_jenis_anggaran', 'left');
         $this->db->join('mst_ruas', 'tbl_rup.id_ruas = mst_ruas.id_ruas', 'left');
         $this->db->where_in('tbl_rup.status_paket_panitia', [1, 2]);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_paket as $item) // looping awal
         {
@@ -847,7 +894,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -860,7 +912,11 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         // Tender Umum
         $this->db->where('tbl_rup.id_metode_pengadaan', 1);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_paket_tender_umum as $item) // looping awal
         {
@@ -930,7 +986,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -943,7 +1004,11 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         // Tender Umum
         $this->db->where('tbl_rup.id_metode_pengadaan', 4);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_paket_tender_terbatas as $item) // looping awal
         {
@@ -1014,7 +1079,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -1027,7 +1097,11 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_rup.status_paket_diumumkan', 1);
         // Tender Umum
         $this->db->where('tbl_rup.id_metode_pengadaan', 3);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_paket_penunjukan_langsung as $item) // looping awal
         {
@@ -3686,7 +3760,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -3699,7 +3778,11 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_rup.sts_rup', 1);
         $this->db->where('tbl_rup.status_paket_panitia', NULL);
         $this->db->where('tbl_rup.sts_rup_buat_paket', 2);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         $i = 0;
         foreach ($this->order_rup_paket_final as $item) // looping awal
         {
@@ -3749,7 +3832,12 @@ class M_panitia extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_rup');
-        $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        if ($this->session->userdata('role') == 5) {
+            $this->db->join('tbl_panitia', 'tbl_rup.id_rup = tbl_panitia.id_rup', 'left');
+        } else {
+            $this->db->join('tbl_tim_teknis', 'tbl_rup.id_rup = tbl_tim_teknis.id_rup', 'left');
+        }
+
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
         $this->db->join('tbl_rkap', 'tbl_rup.id_rkap = tbl_rkap.id_rkap', 'left');
@@ -3762,7 +3850,11 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_rup.sts_rup', 1);
         $this->db->where('tbl_rup.status_paket_panitia', NULL);
         $this->db->where('tbl_rup.sts_rup_buat_paket', 2);
-        $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        if ($this->session->userdata('role') == 5) {
+            $this->db->where('tbl_panitia.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        } else {
+            $this->db->where('tbl_tim_teknis.id_manajemen_user', $this->session->userdata('id_manajemen_user'));
+        }
         return $this->db->count_all_results();
     }
 
@@ -3804,6 +3896,53 @@ class M_panitia extends CI_Model
         $this->db->where_in('tbl_vendor_mengikuti_paket.file1_pra_rk3_sts', [1, 3]);
         $this->db->where_in('tbl_vendor_mengikuti_paket.file1_spek_sts', [1, 3]);
         $this->db->group_by('tbl_vendor.id_vendor');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_syarat_izin_usaha($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_izin_rup');
+        $this->db->where('tbl_izin_rup.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_syarat_kbli($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_syratat_kbli_tender');
+        $this->db->join('tbl_kbli', 'tbl_syratat_kbli_tender.id_kbli = tbl_kbli.id_kbli');
+        $this->db->where('tbl_syratat_kbli_tender.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_syarat_sbu($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_syratat_sbu_tender');
+        $this->db->join('tbl_sbu', 'tbl_syratat_sbu_tender.id_sbu = tbl_sbu.id_sbu');
+        $this->db->where('tbl_syratat_sbu_tender.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_syarat_keuangan($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_izin_teknis_rup');
+        $this->db->where('tbl_izin_teknis_rup.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_syarat_tambahan($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_syarat_tambahan_rup');
+        $this->db->where('id_rup', $id_rup);
         $query = $this->db->get();
         return $query->result_array();
     }

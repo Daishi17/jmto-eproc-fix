@@ -97,7 +97,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-chart-pie"></i>
                         <small>Laporan</small>
@@ -125,7 +125,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <?php if ($this->session->userdata('role') == 2) { ?>
                     <li>
                         <a href="<?= base_url() ?>administrator/dashboard" class="nav-link px-2 text-white">
@@ -144,8 +144,10 @@
                             <img src="<?php echo base_url(); ?>/assets/brand/avatar5.png" alt="mdo" width="32" height="32" class="rounded-circle shadow-lg">&nbsp;
                             <?php if ($this->session->userdata('role') == 2) { ?>
                                 <small class="text-white">Administrator</small>
-                            <?php } else { ?>
+                            <?php } else if ($this->session->userdata('role') == 5) { ?>
                                 <small class="text-white">Panitia</small>
+                            <?php } else { ?>
+                                <small class="text-white">Tim Teknis</small>
                             <?php }  ?>
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

@@ -56,6 +56,7 @@
                                     <th rowspan="3">Nama Pekerjaan</th>
                                     <th colspan="3">Komitmen Tahun <label for="" class="tahun_pengadaan_label"></th>
                                     <th colspan="12">Realisasi Tahun <label for="" class="tahun_pengadaan_label"></th>
+                                    <!-- <th rowspan="3">Aksi</th> -->
                                 </tr>
                                 <tr>
                                     <th rowspan="2">Jenis Pekerjaan</th>
@@ -79,6 +80,7 @@
                                     <th>Realisasi Waktu <br> Mulai Kontrak</th>
                                     <th>Realisasi Waktu Berakhir <br> Kontrak</th>
                                     <th>Keterangan Lainnya <br> (Isian Text Bebas)</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,3 +93,54 @@
         </div>
     </div>
 </main>
+
+
+<div class="modal fade" tabindex="-1" id="modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form action="javascript:;" id="form_laporan_rup">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card border-dark shadow-lg">
+                                <div class="card-header border-dark bd-blue-700 d-flex justify-content-between align-items-center">
+                                    <div class="flex-grow-1 bd-highlight">
+                                        <span class="text-white">
+                                            <i class="fa-regular fa-rectangle-list px-1"></i>
+                                            <small><strong>Form Data - Keterangan</strong></small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+                                    <input type="text" name="id_rup" hidden>
+                                    <label for="">Nama RUP</label>
+                                    <textarea name="nama_rup" class="form-control" disabled></textarea>
+                                    <br>
+                                    <label for="">Keterangan</label>
+                                    <textarea name="ket_laporan" class="form-control"></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="submit" class="btn btn-sm btn-success" data-bs-dismiss="modal">
+                            <!-- <i class="fa-save fa-rectangle-xmark"></i> -->
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

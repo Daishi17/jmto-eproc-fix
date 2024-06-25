@@ -3075,7 +3075,7 @@
                     $('[name="nama_pengurus"]').val(response['row_pengurus_manajerial'].nama_pengurus);
                     $('[name="alamat_pengurus"]').val(response['row_pengurus_manajerial'].alamat_pengurus);
                     $('[name="npwp_pengurus"]').val(response['row_pengurus_manajerial'].npwp);
-                    $('[name="warganegara_pengurus"]').val(response['row_pengurus_manajerial'].warganegara);
+                    $('#warga_negara_pengurus').val(response['row_pengurus_manajerial'].warganegara);
                     $('[name="jabatan_pengurus"]').val(response['row_pengurus_manajerial'].jabatan_pengurus);
                     $('[name="jabatan_mulai"]').val(response['row_pengurus_manajerial'].jabatan_mulai);
                     $('[name="jabatan_selesai"]').val(response['row_pengurus_manajerial'].jabatan_selesai);

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
+error_reporting(0);
 
 class Laporan_efisiensi extends CI_Controller
 {
@@ -332,11 +333,11 @@ class Laporan_efisiensi extends CI_Controller
             } else {
                 $row[] = number_format($rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
             }
-
+            $persen = $rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'];
             if ($get_pemenang == 0) {
                 $row[] = number_format(0, 2, ",", ".");
             } else {
-                $row[] = number_format($rs->total_hps_rup / $get_pemenang['total_hasil_negosiasi'], 2, ",", ".") . ' %';
+                $row[] = number_format($persen / $rs->total_hps_rup * 100, 2, ",", ".") . ' %';
             }
 
 
@@ -384,11 +385,13 @@ class Laporan_efisiensi extends CI_Controller
                 $row[] = number_format($rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
             }
 
+            $persen = $rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'];
             if ($get_pemenang == 0) {
                 $row[] = number_format(0, 2, ",", ".");
             } else {
-                $row[] = number_format($rs->total_hps_rup / $get_pemenang['total_hasil_negosiasi'], 2, ",", ".") . ' %';
+                $row[] = number_format($persen / $rs->total_hps_rup * 100, 2, ",", ".") . ' %';
             }
+
 
 
             $row[] = date('d-m-Y', strtotime($rs->jangka_waktu_mulai_pelaksanaan));
@@ -435,11 +438,13 @@ class Laporan_efisiensi extends CI_Controller
                 $row[] = number_format($rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
             }
 
+            $persen = $rs->total_hps_rup - $get_pemenang['total_hasil_negosiasi'];
             if ($get_pemenang == 0) {
                 $row[] = number_format(0, 2, ",", ".");
             } else {
-                $row[] = number_format($rs->total_hps_rup / $get_pemenang['total_hasil_negosiasi'], 2, ",", ".") . ' %';
+                $row[] = number_format($persen / $rs->total_hps_rup * 100, 2, ",", ".") . ' %';
             }
+
 
 
             $row[] = date('d-m-Y', strtotime($rs->jangka_waktu_mulai_pelaksanaan));

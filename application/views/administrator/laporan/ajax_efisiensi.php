@@ -845,44 +845,44 @@
                 $('#efisiensi_tahun29').text(convertToRupiah(response['total_keseluruhan_hps_pmo']['total_hps_rup'] - response['total_keseluruhan_kontrak_pmo']['total_hasil_negosiasi']))
 
 
-                var efisiensi_persentasi1 = (response['total_keseluruhan_hps_cs']['total_hps_rup'] - response['total_keseluruhan_kontrak_cs']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_cs']['total_hps_rup']
+                var efisiensi_persentasi1 = (response['total_keseluruhan_hps_cs']['total_hps_rup'] - response['total_keseluruhan_kontrak_cs']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_cs']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi1').text(cek_nan(efisiensi_persentasi1).toFixed(2))
 
-                var efisiensi_persentasi2 = (response['total_keseluruhan_hps_om']['total_hps_rup'] - response['total_keseluruhan_kontrak_om']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_om']['total_hps_rup']
+                var efisiensi_persentasi2 = (response['total_keseluruhan_hps_om']['total_hps_rup'] - response['total_keseluruhan_kontrak_om']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_om']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi2').text(cek_nan(efisiensi_persentasi2).toFixed(2))
 
-                var efisiensi_persentasi3 = (response['total_keseluruhan_hps_cc']['total_hps_rup'] - response['total_keseluruhan_kontrak_cc']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_cc']['total_hps_rup']
+                var efisiensi_persentasi3 = (response['total_keseluruhan_hps_cc']['total_hps_rup'] - response['total_keseluruhan_kontrak_cc']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_cc']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi3').text(cek_nan(efisiensi_persentasi3).toFixed(2))
 
-                var efisiensi_persentasi20 = (response['total_keseluruhan_hps_pm']['total_hps_rup'] - response['total_keseluruhan_kontrak_pm']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_pm']['total_hps_rup']
+                var efisiensi_persentasi20 = (response['total_keseluruhan_hps_pm']['total_hps_rup'] - response['total_keseluruhan_kontrak_pm']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_pm']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi20').text(cek_nan(efisiensi_persentasi20).toFixed(2))
 
-                var efisiensi_persentasi21 = (response['total_keseluruhan_hps_itd']['total_hps_rup'] - response['total_keseluruhan_kontrak_itd']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_itd']['total_hps_rup']
+                var efisiensi_persentasi21 = (response['total_keseluruhan_hps_itd']['total_hps_rup'] - response['total_keseluruhan_kontrak_itd']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_itd']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi21').text(cek_nan(efisiensi_persentasi21).toFixed(2))
 
-                var efisiensi_persentasi22 = (response['total_keseluruhan_hps_its']['total_hps_rup'] - response['total_keseluruhan_kontrak_its']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_its']['total_hps_rup']
+                var efisiensi_persentasi22 = (response['total_keseluruhan_hps_its']['total_hps_rup'] - response['total_keseluruhan_kontrak_its']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_its']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi22').text(cek_nan(efisiensi_persentasi22).toFixed(2))
 
 
-                var efisiensi_persentasi23 = (response['total_keseluruhan_hps_hcpe']['total_hps_rup'] - response['total_keseluruhan_kontrak_hcpe']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_hcpe']['total_hps_rup']
+                var efisiensi_persentasi23 = (response['total_keseluruhan_hps_hcpe']['total_hps_rup'] - response['total_keseluruhan_kontrak_hcpe']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_hcpe']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi23').text(cek_nan(efisiensi_persentasi23).toFixed(2))
 
-                var efisiensi_persentasi24 = (response['total_keseluruhan_hps_hcs']['total_hps_rup'] - response['total_keseluruhan_kontrak_hcs']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_hcs']['total_hps_rup']
+                var efisiensi_persentasi24 = (response['total_keseluruhan_hps_hcs']['total_hps_rup'] - response['total_keseluruhan_kontrak_hcs']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_hcs']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi24').text(cek_nan(efisiensi_persentasi24).toFixed(2))
 
-                var efisiensi_persentasi25 = (response['total_keseluruhan_hps_ga']['total_hps_rup'] - response['total_keseluruhan_kontrak_ga']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_ga']['total_hps_rup']
+                var efisiensi_persentasi25 = (response['total_keseluruhan_hps_ga']['total_hps_rup'] - response['total_keseluruhan_kontrak_ga']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_ga']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi25').text(cek_nan(efisiensi_persentasi25).toFixed(2))
 
-                var efisiensi_persentasi26 = (response['total_keseluruhan_hps_fa']['total_hps_rup'] - response['total_keseluruhan_kontrak_fa']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_fa']['total_hps_rup']
+                var efisiensi_persentasi26 = (response['total_keseluruhan_hps_fa']['total_hps_rup'] - response['total_keseluruhan_kontrak_fa']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_fa']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi26').text(cek_nan(efisiensi_persentasi26).toFixed(2))
 
-                var efisiensi_persentasi27 = (response['total_keseluruhan_hps_spgrc']['total_hps_rup'] - response['total_keseluruhan_kontrak_spgrc']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_spgrc']['total_hps_rup']
+                var efisiensi_persentasi27 = (response['total_keseluruhan_hps_spgrc']['total_hps_rup'] - response['total_keseluruhan_kontrak_spgrc']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_spgrc']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi27').text(cek_nan(efisiensi_persentasi27).toFixed(2))
 
-                var efisiensi_persentasi28 = (response['total_keseluruhan_hps_bpd']['total_hps_rup'] - response['total_keseluruhan_kontrak_bpd']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_bpd']['total_hps_rup']
+                var efisiensi_persentasi28 = (response['total_keseluruhan_hps_bpd']['total_hps_rup'] - response['total_keseluruhan_kontrak_bpd']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_bpd']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi28').text(cek_nan(efisiensi_persentasi28).toFixed(2))
 
-                var efisiensi_persentasi29 = (response['total_keseluruhan_hps_pmo']['total_hps_rup'] - response['total_keseluruhan_kontrak_pmo']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_pmo']['total_hps_rup']
+                var efisiensi_persentasi29 = (response['total_keseluruhan_hps_pmo']['total_hps_rup'] - response['total_keseluruhan_kontrak_pmo']['total_hasil_negosiasi']) / response['total_keseluruhan_hps_pmo']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi29').text(cek_nan(efisiensi_persentasi29).toFixed(2))
 
 
@@ -941,7 +941,7 @@
                 $('#efisiensi_tahun_total').text(convertToRupiah(response['total_hps_keseluruhan']['total_hps_rup'] - response['total_kontrak_keseluruhan']['total_hasil_negosiasi']))
 
                 var peresentasi_efisiensi = response['total_hps_keseluruhan']['total_hps_rup'] - response['total_kontrak_keseluruhan']['total_hasil_negosiasi']
-                var peresentasi_efisiensi_final = peresentasi_efisiensi / response['total_hps_keseluruhan']['total_hps_rup']
+                var peresentasi_efisiensi_final = peresentasi_efisiensi / response['total_hps_keseluruhan']['total_hps_rup'] * 100
                 $('#efisiensi_persentasi_total').text(cek_nan(peresentasi_efisiensi_final).toFixed(2))
 
                 var peresentasi_thdp_pagu = response['total_hps_keseluruhan']['total_hps_rup'] / response['total_rup']['total_pagu_rup']

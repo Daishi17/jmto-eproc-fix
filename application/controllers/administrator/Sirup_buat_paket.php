@@ -27,6 +27,7 @@ class Sirup_buat_paket extends CI_Controller
 	public function index()
 	{
 		$data['pegawai_panitia'] = $this->M_rup->pegawai_panitia();
+		$data['tim_teknis'] = $this->M_rup->tim_teknis();
 		$data['get_jadwal'] =  $this->db->get('tbl_jadwal_tender')->result_array();
 		$this->load->view('administrator/template_menu/header_menu');
 		$this->load->view('administrator/template/si_rup/js_header_rup');
@@ -162,6 +163,60 @@ class Sirup_buat_paket extends CI_Controller
 		}
 	}
 
+	function tambah_tim_teknis()
+	{
+		$nama_tim_teknis = $this->input->post('nama_tim_teknis');
+		$id_url_rup = $this->input->post('random_kode');
+		if ($nama_tim_teknis == null) {
+			$response = [
+				'error' => 'Pilih Nama User Tim Teknis Dahulu Yaa',
+			];
+			$this->output->set_content_type('application/json')->set_output(json_encode($response));
+		} else {
+			$convert_nama = str_split($nama_tim_teknis);
+			$kode_mnj_user = $convert_nama[0] . $convert_nama[1] . $convert_nama[2];
+			$row_tim_teknis = $this->M_rup->pegawai_panitia_by_kode_mnjm_user($kode_mnj_user);
+			$row_rup = $this->M_rup->get_row_rup($id_url_rup);
+
+			$cek_user_tim_teknis = $this->M_rup->cek_user_tim_teknis($row_rup['id_rup'], $row_tim_teknis['id_pegawai']);
+
+			if ($cek_user_tim_teknis) {
+				$response = [
+					'error' => 'User Tim Teknis Yang Dipilih Sudah Ada',
+				];
+				$this->output->set_content_type('application/json')->set_output(json_encode($response));
+			} else {
+				if ($row_rup['status_paket_diumumkan'] == 1) {
+					$id = $this->uuid->v4();
+					$id = str_replace('-', '', $id);
+					$data  = array(
+						'id_url_tim_teknis' => $id,
+						'id_manajemen_user' => $row_tim_teknis['id_manajemen_user'],
+						'id_rup' => $row_rup['id_rup']
+					);
+					$this->db->insert('tbl_tim_teknis', $data);
+					$response = [
+						'success' => 'success'
+					];
+					$this->output->set_content_type('application/json')->set_output(json_encode($response));
+				} else {
+					$id = $this->uuid->v4();
+					$id = str_replace('-', '', $id);
+					$data  = array(
+						'id_url_tim_teknis' => $id,
+						'id_manajemen_user' => $row_tim_teknis['id_manajemen_user'],
+						'id_rup' => $row_rup['id_rup']
+					);
+					$this->db->insert('tbl_tim_teknis', $data);
+					$response = [
+						'success' => 'success'
+					];
+					$this->output->set_content_type('application/json')->set_output(json_encode($response));
+				}
+			}
+		}
+	}
+
 	function get_panitia()
 	{
 		$id_url_rup = $this->input->post('random_kode');
@@ -194,6 +249,38 @@ class Sirup_buat_paket extends CI_Controller
 	}
 
 
+	function get_tim_teknis()
+	{
+		$id_url_rup = $this->input->post('random_kode');
+		$row_rup = $this->M_rup->get_row_rup($id_url_rup);
+		$result = $this->M_rup->gettable_rup_tim_teknis($row_rup['id_rup']);
+		$data = [];
+		$no = $_POST['start'];
+		foreach ($result as $rs) {
+			$row = array();
+			$row[] = $rs->nama_pegawai;
+			// if ($rs->role_tim_teknis == 1) {
+			// 	$row[] = 'Ketua Panitia';
+			// } else if ($rs->role_tim_teknis == 2) {
+			// 	$row[] = 'Sekretaris';
+			// } else {
+			// 	$row[] = 'Anggota';
+			// }
+			$row[] = '<div class="text-center">
+				<a href="javascript:;" class="btn btn-danger btn-sm shadow-lg" onClick="by_id_tim_teknis(' . "'" . $rs->id_url_tim_teknis . "','hapus_tim_teknis'" . ')"><i class="fa-solid fa-trash"></i> Hapus User</a>
+				</div>';
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_rup->count_all_rup_tim_teknis($row_rup['id_rup']),
+			"recordsFiltered" => $this->M_rup->count_filtered_rup_tim_teknis($row_rup['id_rup']),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+
 	function get_by_id_panitia($id_url_panitia)
 	{
 		$response = [
@@ -202,7 +289,13 @@ class Sirup_buat_paket extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
-
+	function get_by_id_tim_teknis($id_url_tim_teknis)
+	{
+		$response = [
+			'row_tim_teknis' => $this->M_rup->get_row_tim_teknis($id_url_tim_teknis),
+		];
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	}
 
 	function hapus_panitia($id_url_panitia)
 	{
@@ -210,6 +303,15 @@ class Sirup_buat_paket extends CI_Controller
 			'id_url_panitia' => $id_url_panitia
 		];
 		$this->M_rup->delete_panitia($where);
+		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
+	}
+
+	function hapus_tim_teknis($id_url_tim_teknis)
+	{
+		$where = [
+			'id_url_tim_teknis' => $id_url_tim_teknis
+		];
+		$this->M_rup->delete_tim_teknis($where);
 		$this->output->set_content_type('application/json')->set_output(json_encode('success'));
 	}
 

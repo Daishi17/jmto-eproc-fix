@@ -43,7 +43,9 @@
         var url_by_id_rup_paket = $('[name="url_by_id_rup_paket"]').val();
         var modal_paket = $('#modal-xl-paket');
         var tbl_panitia = $('#tbl_panitia')
+        var tbl_tim_teknis = $('#tbl_tim_teknis')
         var url_get_panitia_buat_paket = $('[name="url_get_panitia_buat_paket"').val()
+        var url_get_tim_teknis_buat_paket = $('[name="url_get_tim_teknis_buat_paket"').val()
         $.ajax({
             type: "GET",
             url: url_by_id_rup_paket + id_url_rup,
@@ -154,6 +156,40 @@
                     });
                 });
 
+
+                $(document).ready(function() {
+                    tbl_tim_teknis.DataTable({
+                        "responsive": false,
+                        "ordering": true,
+                        "paging": false,
+                        "info": false,
+                        "processing": true,
+                        "serverSide": true,
+                        "autoWidth": false,
+                        "bDestroy": true,
+                        "order": [],
+                        "ajax": {
+                            "url": url_get_tim_teknis_buat_paket,
+                            "type": "POST",
+                            data: {
+                                random_kode: response['row_rup']['id_url_rup']
+                            },
+                        },
+                        "columnDefs": [{
+                            "target": [-1],
+                            "orderable": false
+                        }],
+                        "oLanguage": {
+                            "sSearch": "Pencarian : ",
+                            "sEmptyTable": "Data Tidak Tersedia",
+                            "sLoadingRecords": "Silahkan Tunggu - loading...",
+                            "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                            "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                            "sProcessing": "Memuat Data...."
+                        }
+                    });
+                });
+
             }
         })
     }
@@ -193,6 +229,7 @@
         })
     }
 
+
     function hapus_panitia(id_url_panitia, nama_pegawai) {
         var url_hapus_panitia = $('[name="url_hapus_panitia"]').val()
         var random_kode = $('[name="random_kode"]').val();
@@ -221,6 +258,52 @@
             }
         })
     }
+
+    function by_id_tim_teknis(id_url_tim_teknis) {
+        var url_by_id_url_tim_teknis = $('[name="url_by_id_url_tim_teknis"]').val();
+        var modal_paket = $('#modal-xl-paket');
+        var tbl_panitia = $('#tbl_panitia')
+        var url_get_panitia_buat_paket = $('[name="url_get_panitia_buat_paket"').val()
+        $.ajax({
+            type: "GET",
+            url: url_by_id_url_tim_teknis + id_url_tim_teknis,
+            dataType: "JSON",
+            success: function(response) {
+                hapus_tim_teknis(response['row_tim_teknis']['id_url_tim_teknis'], response['row_tim_teknis']['nama_pegawai'])
+            }
+        })
+    }
+
+    function hapus_tim_teknis(id_url_tim_teknis, nama_pegawai) {
+        var url_hapus_tim_teknis = $('[name="url_hapus_tim_teknis"]').val()
+        var random_kode = $('[name="random_kode"]').val();
+        Swal.fire({
+            title: 'Apakah Anda Yakin Ingin Menghapus User Tim Teknis ? ',
+            text: nama_pegawai,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Terima!',
+            cancelButtonText: 'Batal!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: url_hapus_tim_teknis + id_url_tim_teknis,
+                    dataType: "JSON",
+                    success: function(response) {
+
+                        Swal.fire('User Tim Teknis Berhasil Di Hapus!', '', 'success')
+                        by_id_rup2(random_kode)
+                    }
+                })
+
+            }
+        })
+    }
+
+
 
     function Buat_rup() {
         var url_buat_rup_panitia = $('[name="url_buat_rup_panitia"]').val()
@@ -355,6 +438,31 @@
                     }
                     by_id_rup2(random_kode)
                     var nama_panitia = $('[name="nama_panitia"]').val('');
+                }
+            }
+        })
+    }
+
+
+    function Simpan_tim_teknis() {
+        var url_tambah_tim_teknis = $('[name="url_tambah_tim_teknis"]').val();
+        var random_kode = $('[name="random_kode"]').val();
+        var nama_tim_teknis = $('[name="nama_tim_teknis"]').val();
+        $.ajax({
+            type: "POST",
+            url: url_tambah_tim_teknis,
+            data: {
+                random_kode: random_kode,
+                nama_tim_teknis: nama_tim_teknis,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                if (response['error']) {
+                    Swal.fire('Maaf!', response['error'], 'warning')
+                } else {
+                    Swal.fire('Tim Teknis Berhasil Di Tambah!', '', 'success')
+                    by_id_rup2(random_kode)
+                    var nama_tim_teknis = $('[name="nama_tim_teknis"]').val('');
                 }
             }
         })
@@ -502,7 +610,9 @@
         var url_by_id_rup_paket = $('[name="url_by_id_rup_paket"]').val();
         var modal_paket = $('#modal-xl-paket');
         var tbl_panitia = $('#tbl_panitia')
+        var tbl_tim_teknis = $('#tbl_tim_teknis')
         var url_get_panitia_buat_paket = $('[name="url_get_panitia_buat_paket"').val()
+        var url_get_tim_teknis_buat_paket = $('[name="url_get_tim_teknis_buat_paket"').val()
         $.ajax({
             type: "GET",
             url: url_by_id_rup_paket + id_url_rup,
@@ -594,6 +704,39 @@
                         "order": [],
                         "ajax": {
                             "url": url_get_panitia_buat_paket,
+                            "type": "POST",
+                            data: {
+                                random_kode: response['row_rup']['id_url_rup']
+                            },
+                        },
+                        "columnDefs": [{
+                            "target": [-1],
+                            "orderable": false
+                        }],
+                        "oLanguage": {
+                            "sSearch": "Pencarian : ",
+                            "sEmptyTable": "Data Tidak Tersedia",
+                            "sLoadingRecords": "Silahkan Tunggu - loading...",
+                            "sLengthMenu": "Menampilkan &nbsp;  _MENU_  &nbsp;   Data",
+                            "sZeroRecords": "Tidak Ada Data Yang Di Cari",
+                            "sProcessing": "Memuat Data...."
+                        }
+                    });
+                });
+
+                $(document).ready(function() {
+                    tbl_tim_teknis.DataTable({
+                        "responsive": false,
+                        "ordering": true,
+                        "paging": false,
+                        "info": false,
+                        "processing": true,
+                        "serverSide": true,
+                        "autoWidth": false,
+                        "bDestroy": true,
+                        "order": [],
+                        "ajax": {
+                            "url": url_get_tim_teknis_buat_paket,
                             "type": "POST",
                             data: {
                                 random_kode: response['row_rup']['id_url_rup']

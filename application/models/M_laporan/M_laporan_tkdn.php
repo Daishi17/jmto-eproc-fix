@@ -90,4 +90,19 @@ class M_laporan_tkdn extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+
+    public function get_rup($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->where('tbl_rup.id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function update_rup($data, $where)
+    {
+        $this->db->update('tbl_rup', $data, $where);
+    }
 }

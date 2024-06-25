@@ -335,6 +335,28 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+
+                                                    <div class="card-header border-dark bg-gradient-red d-flex justify-content-between align-items-center">
+                                                        <div class="flex-grow-1 bd-highlight text-center">
+                                                            <span class="text-dark">
+                                                                <i class="fa-solid fa-users px-1"></i>
+                                                                <small>Deskripsi Tim Teknis Pelaksana</small>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-bordered table-sm shadow-lg">
+                                                            <thead class="bg-secondary text-white">
+                                                                <tr>
+                                                                    <th><small>Tim Teknis</small></th>
+                                                                    <!-- <th><small>Jabatan Panitia</small></th> -->
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="load_tim_teknis">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </th>
                                         </tr>

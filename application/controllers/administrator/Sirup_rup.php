@@ -88,11 +88,13 @@ class Sirup_rup extends CI_Controller
 
 	function by_id_rup($id_url_rup)
 	{
-		$persen_pencatatan = $this->M_rup->get_row_rup($id_url_rup);
-		$persen_pencatatan = number_format($persen_pencatatan['nilai_pencatatan'], 2, ",", ".");
+		$row_rup = $this->M_rup->get_row_rup($id_url_rup);
+		$persen_pencatatan = number_format($row_rup['nilai_pencatatan'], 2, ",", ".");
+		$ruas_lokasi = $this->M_rup->get_ruas_by_id_rup($row_rup['id_rup']);
 		$response = [
 			'row_rup' => $this->M_rup->get_row_rup($id_url_rup),
-			'persen_pencatatan' => $persen_pencatatan
+			'persen_pencatatan' => $persen_pencatatan,
+			'ruas_lokasi' => $ruas_lokasi
 		];
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}

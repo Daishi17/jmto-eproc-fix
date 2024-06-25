@@ -377,8 +377,6 @@
                                         <tr>
                                             <td colspan="4">
                                                 <table class="table table-bordered table-sm shadow-lg">
-
-
                                                     <thead>
                                                         <tr>
                                                             <th class="bg-danger text-white text-center" colspan="3">
@@ -452,6 +450,65 @@
                                                         </tr>
                                                     </thead>
 
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bg-danger text-white text-center" colspan="3">
+                                                                <small>Pilih Tim Teknis Pengadaan</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center bg-secondary text-white" colspan="3">
+                                                                <small>Pilih User Tim Teknis</small>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div class="input-group mb-2">
+                                                                    <span class="input-group-text"><i class="fa-solid fa-users"></i></span>
+                                                                    <input name="nama_tim_teknis" class="form-control" list="datalist_user2" placeholder="Pilih User...">
+                                                                    <datalist id="datalist_user2">
+                                                                        <?php foreach ($tim_teknis as $key => $value2) { ?>
+                                                                            <option value="<?= $value2['kode_mjm_user'] ?> || <?= $value2['nip'] ?> || <?= $value2['nama_pegawai'] ?>"></option>
+                                                                        <?php   } ?>
+                                                                    </datalist>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bg-ligth text-white text-start" colspan="3">
+                                                                <a href="javascript:;" onclick="Simpan_tim_teknis()" class="btn btn-sm btn-success">
+                                                                    <i class="fa-solid fa-user-plus"></i>
+                                                                    Tambah User Tim Teknis
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bg-light text-white text-center" colspan="3">
+                                                                <table id="tbl_tim_teknis" class="table table-bordered table-sm table-striped">
+                                                                    <thead class="bg-secondary">
+                                                                        <tr>
+                                                                            <th style="width:20%;"><small class="text-white">User Tim Teknis</small></th>
+                                                                            <th style="width:15%;"><small class="text-white">
+                                                                                    <div class="text-center">Options</div>
+                                                                                </small></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
 
                                                     <thead id="jenis_jadwal_edit">
                                                         <tr>

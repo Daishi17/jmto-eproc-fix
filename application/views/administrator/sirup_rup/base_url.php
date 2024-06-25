@@ -51,12 +51,21 @@
 <!-- url tambah panitia -->
 <input type="hidden" name="url_tambah_panitia" value="<?= base_url('administrator/sirup_buat_paket/tambah_panitia') ?>">
 
+<!-- url tambah panitia -->
+<input type="hidden" name="url_tambah_tim_teknis" value="<?= base_url('administrator/sirup_buat_paket/tambah_tim_teknis') ?>">
+
 <!-- url_get_panitia_buat_paket -->
 <input type="hidden" name="url_get_panitia_buat_paket" value="<?= base_url('administrator/sirup_buat_paket/get_panitia') ?>">
+
+<input type="hidden" name="url_get_tim_teknis_buat_paket" value="<?= base_url('administrator/sirup_buat_paket/get_tim_teknis') ?>">
 <!--  url_by_id_url_panitia -->
 <input type="hidden" name="url_by_id_url_panitia" value="<?= base_url('administrator/sirup_buat_paket/get_by_id_panitia/') ?>">
+
+<input type="hidden" name="url_by_id_url_tim_teknis" value="<?= base_url('administrator/sirup_buat_paket/get_by_id_tim_teknis/') ?>">
 <!-- url_hapus_panitia -->
 <input type="hidden" name="url_hapus_panitia" value="<?= base_url('administrator/sirup_buat_paket/hapus_panitia/') ?>">
+<input type="hidden" name="url_hapus_tim_teknis" value="<?= base_url('administrator/sirup_buat_paket/hapus_tim_teknis/') ?>">
+
 <!-- url_buat_rup_panitia -->
 <input type="hidden" name="url_buat_rup_panitia" value="<?= base_url('administrator/sirup_buat_paket/simpan_buat_rup') ?>">
 

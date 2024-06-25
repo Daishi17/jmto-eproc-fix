@@ -254,6 +254,16 @@
                                         </tr>
                                         <tr>
                                             <th class="bg-light">
+                                                <small>Ruas Lokasi Pekerjaan</small>
+                                            </th>
+                                            <td>
+                                                <i class="fa-solid fa-location-dot fa-xl px-2"></i>
+                                                <!-- ruas_lokasi_rup -->
+                                                <small id="ruas_lokasi_rup"></small>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">
                                                 <small>Jenis Pengadaan</small>
                                             </th>
                                             <td>

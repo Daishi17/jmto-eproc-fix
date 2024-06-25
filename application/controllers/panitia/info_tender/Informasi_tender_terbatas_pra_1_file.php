@@ -1329,7 +1329,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                         if ($cek_valid_vendor >= $hitung_syarat) {
                             $row[] = '<span class="badge bg-secondary">Belum Diperiksa</span>';
                         } else {
-                            $row[] = '<span class="badge bg-warning">Tidak Lengkap</span>';
+                            $row[] = '<span class="badge bg-danger">Tidak Lengkap</span>';
                         }
                     }
                 }
@@ -1762,6 +1762,12 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra_umum_10($data['row_rup']['id_rup']);
         $data['dok_lelang'] = $this->M_panitia->get_dokumen_pengadaan($data['row_rup']['id_rup']);
         $data['data_panitia'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
+
+        $data['persyaratan_izin_usaha'] = $this->M_panitia->get_syarat_izin_usaha($data['row_rup']['id_rup']);
+        $data['persyaratan_kbli'] = $this->M_panitia->get_syarat_kbli($data['row_rup']['id_rup']);
+        $data['persyaratan_sbu'] = $this->M_panitia->get_syarat_sbu($data['row_rup']['id_rup']);
+        $data['persyaratan_keuangan'] = $this->M_panitia->get_syarat_keuangan($data['row_rup']['id_rup']);
+        $data['persyaratan_tambahan'] = $this->M_panitia->get_syarat_tambahan($data['row_rup']['id_rup']);
         // $this->load->view('template_tender/header');
         $this->load->view('panitia/info_tender/' . $root_jadwal . '/summary_tender', $data);
     }
@@ -1797,8 +1803,8 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         // var_dump($row_rup['id_rup']);
         // die;
         if ($peserta_vendor > 2) {
-            $get_rank1 = $this->M_panitia->get_peserta_rank1_pra_1_file_biaya($row_rup['id_rup']);
-            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Harga Pemenang sebesar Rp.' . number_format($get_rank1['ev_hea_penawaran'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
+            $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
+            $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Harga Pemenang sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . 'Terimakasih atas keikutsertaan Anda Ttd Panitia.';
         } else {
             $get_rank1 = $this->M_panitia->get_peserta_rank1_dengan_negosiasi($row_rup['id_rup']);
             $message = 'Pengumuman Hasil ' . $row_rup['nama_metode_pengadaan'] . ' Pemenang untuk ' . $row_rup['nama_rup'] . ' adalah  ' . $get_rank1['nama_usaha'] . '  dengan Harga Pemenang sebesar Rp.' . number_format($get_rank1['total_hasil_negosiasi'], 2, ',', '.') . ' Terimakasih atas keikutsertaan Anda Ttd Panitia.';

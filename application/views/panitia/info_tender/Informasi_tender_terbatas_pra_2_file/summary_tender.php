@@ -423,6 +423,194 @@
                             <th>Nama RUP</th>
                             <td><?= $row_rup['nama_rup'] ?></td>
                         </tr>
+                        <tr>
+                            <th>Persyaratan Kualifikasi Pengadaan</th>
+                            <td>
+                                <center>
+                                    <h6 for="">Izin Usaha</h6>
+                                </center>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Keterangan Jenis Izin Usaha</th>
+                                            <th>Tahun Berlaku</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($persyaratan_izin_usaha['sts_checked_siup'] == 1) { ?>
+                                            <tr>
+                                                <td>Surat Izin Usaha Perdagangan (SIUP)</td>
+                                                <?php if ($persyaratan_izin_usaha['sts_masa_berlaku_siup'] == 1) { ?>
+                                                    <td><?= date('d-m-Y', strtotime($persyaratan_izin_usaha['tgl_berlaku_siup'])) ?></td>
+                                                <?php } else { ?>
+                                                    <td>Seumur Hidup</td>
+                                                <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+
+
+                                        <?php if ($persyaratan_izin_usaha['sts_checked_nib'] == 1) { ?>
+                                            <tr>
+                                                <td>Nomor Induk Berusaha (NIB/TDP)</td>
+                                                <?php if ($persyaratan_izin_usaha['sts_masa_berlaku_nib'] == 1) { ?>
+                                                    <td><?= date('d-m-Y', strtotime($persyaratan_izin_usaha['tgl_berlaku_nib'])) ?></td>
+                                                <?php } else { ?>
+                                                    <td>Seumur Hidup</td>
+                                                <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php if ($persyaratan_izin_usaha['sts_checked_sbu'] == 1) { ?>
+                                            <tr>
+                                                <td>Sertifikat Badan Usaha (SBU)</td>
+                                                <?php if ($persyaratan_izin_usaha['sts_masa_berlaku_sbu'] == 1) { ?>
+                                                    <td><?= date('d-m-Y', strtotime($persyaratan_izin_usaha['tgl_berlaku_sbu'])) ?></td>
+                                                <?php } else { ?>
+                                                    <td>Seumur Hidup</td>
+                                                <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+
+
+                                        <?php if ($persyaratan_izin_usaha['sts_checked_siujk'] == 1) { ?>
+                                            <tr>
+                                                <td>Surat Izin Jasa Konstruksi (SIUJK)</td>
+                                                <?php if ($persyaratan_izin_usaha['sts_masa_berlaku_siujk'] == 1) { ?>
+                                                    <td><?= date('d-m-Y', strtotime($persyaratan_izin_usaha['tgl_berlaku_siujk'])) ?></td>
+                                                <?php } else { ?>
+                                                    <td>Seumur Hidup</td>
+                                                <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php if ($persyaratan_izin_usaha['sts_checked_skdp'] == 1) { ?>
+                                            <tr>
+                                                <td>Surat Keterangan Domisili Perusahaan (SKDP)</td>
+                                                <?php if ($persyaratan_izin_usaha['sts_masa_berlaku_skdp'] == 1) { ?>
+                                                    <td><?= date('d-m-Y', strtotime($persyaratan_izin_usaha['tgl_berlaku_skdp'])) ?></td>
+                                                <?php } else { ?>
+                                                    <td>Seumur Hidup</td>
+                                                <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+
+                                <center>
+                                    <h6 for="">Klasifikasi Buku Lapang Usaha Indonesia (KBLI)</h6>
+                                </center>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode KBLI</th>
+                                            <th>Keterangan Jenis KBLI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($persyaratan_kbli as $key => $value) { ?>
+                                            <tr>
+                                                <td><?= $value['kode_kbli'] ?></td>
+                                                <td><?= $value['nama_kbli'] ?></td>
+                                            </tr>
+                                        <?php   } ?>
+                                    </tbody>
+                                </table>
+
+                                <?php if ($persyaratan_sbu) { ?>
+                                    <center>
+                                        <h6 for="">Sertifikat Badan Usaha (SBU)</h6>
+                                    </center>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Kode SBU</th>
+                                                <th>Keterangan Jenis SBU</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($persyaratan_sbu as $key => $value) { ?>
+                                                <tr>
+                                                    <td><?= $value['kode_sbu'] ?></td>
+                                                    <td><?= $value['nama_sbu'] ?></td>
+                                                </tr>
+                                            <?php   } ?>
+                                        </tbody>
+                                    </table>
+                                <?php } ?>
+
+                                <center>
+                                    <h6 for="">Persyaratan Kualifikasi Pengalaman dan Keuangan</h6>
+                                </center>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Persyaratan</th>
+                                            <th colspan="2">Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($persyaratan_keuangan['sts_checked_pengalaman_pekerjaan'] == 1) { ?>
+                                            <tr>
+                                                <td colspan="3">Pengalaman Pekerjaan Perusahaan</td>
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php if ($persyaratan_keuangan['sts_checked_spt'] == 1) { ?>
+                                            <tr>
+                                                <td>Surat Pemberitahuan Tahunan (SPT) Badan</td>
+                                                <td colspan="2"><?= $persyaratan_keuangan['tahun_lapor_spt'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+
+
+                                        <?php if ($persyaratan_keuangan['sts_checked_laporan_keuangan'] == 1) { ?>
+                                            <tr>
+                                                <td>Laporan Keuangan</td>
+                                                <td><?= $persyaratan_keuangan['tahun_awal_laporan_keuangan'] ?> dan <?= $persyaratan_keuangan['tahun_akhir_laporan_keuangan'] ?></td>
+                                                <td><?= $persyaratan_keuangan['sts_audit_laporan_keuangan'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php if ($persyaratan_keuangan['sts_checked_neraca_keuangan'] == 1) { ?>
+                                            <tr>
+                                                <td>Laporan Keuangan</td>
+                                                <td colspan="2"><?= $persyaratan_keuangan['tahun_awal_neraca_keuangan'] ?> dan <?= $persyaratan_keuangan['tahun_akhir_neraca_keuangan'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+
+                                <center>
+                                    <h6 for="">Persyaratan Tambahan Kualifikasi</h6>
+                                </center>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Syarat Tambahan</th>
+                                            <th>File Syarat Tambahan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($persyaratan_tambahan as $key => $value) { ?>
+                                            <tr>
+                                                <td><?= $value['nama_syarat_tambahan'] ?></td>
+                                                <?php if ($value['file_syarat_tambahan']) {  ?>
+                                                    <td><?= $value['file_syarat_tambahan'] ?></td>
+                                                <?php  } else {  ?>
+                                                    <td>Tidak Ada File</td>
+                                                <?php  }  ?>
+
+                                            </tr>
+                                        <?php   } ?>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
                         <!-- <tr>
                             <th>Penyedia Terundang dan Terverifikasi</th>
                             <td>
@@ -435,11 +623,11 @@
                                     <tbody>
                                         <?php $no = 1;
                                         foreach ($result_vendor_terundang as $key => $value) { ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $value['nama_usaha'] ?></td>
-                                                <td><?= $value['email'] ?></td>
-                                            </tr>
+                                                                                                                                                            <tr>
+                                                                                                                                                                <td><?= $no++ ?></td>
+                                                                                                                                                                <td><?= $value['nama_usaha'] ?></td>
+                                                                                                                                                                <td><?= $value['email'] ?></td>
+                                                                                                                                                            </tr>
                                         <?php   } ?>
                                 </table>
 
@@ -568,6 +756,22 @@
                         </tr>
                     </table>
                     <br>
+                    <h4 class="text-center">DOKUMEN KUALIFIKASI</h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Nama Dokumen</th>
+                            <th>Tanggal Upload</th>
+                            <th>Pengirim</th>
+                        </tr>
+                        <?php foreach ($dok_prakualifikasi as $key => $value) { ?>
+                            <tr>
+                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/' . 'DOKUMEN_PRAKUALIFIKASI/' . $value['file_dok_prakualifikasi']) ?>"><?= $value['file_dok_prakualifikasi'] ?></a> </td>
+                                <td><?= $value['tgl_upload'] ?></td>
+                                <td>Panitia</td>
+                            </tr>
+                        <?php  } ?>
+                    </table>
+                    <br>
                     <h4 class="text-center">DOKUMEN PENGADAAN</h4>
                     <table class="table table-bordered">
                         <tr>
@@ -577,7 +781,7 @@
                         </tr>
                         <?php foreach ($dok_lelang as $key => $value) { ?>
                             <tr>
-                                <td><?= $value['file_dok_pengadaan'] ?></td>
+                                <td><a target="_blank" href="<?= base_url('file_paket/' . $row_rup['nama_rup'] . '/' . 'DOKUMEN_PENGADAAN/' . $value['file_dok_pengadaan']) ?>"><?= $value['file_dok_pengadaan'] ?></a> </td>
                                 <td><?= $value['tgl_upload'] ?></td>
                                 <td>Panitia</td>
                             </tr>
