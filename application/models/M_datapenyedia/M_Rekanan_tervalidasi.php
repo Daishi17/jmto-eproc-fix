@@ -188,7 +188,7 @@ class M_Rekanan_tervalidasi extends CI_Model
         return $this->db->affected_rows();
     }
 
-    var $order_kbli_siup =  array('id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor');
+    var $order_kbli_siup =  array('id_vendor', 'tbl_kbli.kode_kbli', 'tbl_kbli.nama_kbli', 'id_vendor', 'id_vendor', 'id_vendor');
     private function _get_data_query_kbli_siup($id_vendor)
     {
         $this->db->select('*');
@@ -314,7 +314,7 @@ class M_Rekanan_tervalidasi extends CI_Model
         return $this->db->affected_rows();
     }
 
-    var $order_kbli_nib =  array('id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor');
+    var $order_kbli_nib = array('id_vendor', 'tbl_kbli.kode_kbli', 'tbl_kbli.nama_kbli', 'id_vendor', 'id_vendor', 'id_vendor');
     private function _get_data_query_kbli_nib($id_vendor)
     {
         $this->db->select('*');
@@ -441,7 +441,7 @@ class M_Rekanan_tervalidasi extends CI_Model
     }
 
 
-    var $order_kbli_sbu = array('id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor');
+    var $order_kbli_sbu = array('id_vendor', 'tbl_sbu.kode_sbu', 'tbl_sbu.nama_sbu', 'id_vendor', 'id_vendor', 'id_vendor');
     private function _get_data_query_kbli_sbu($id_vendor)
     {
         $this->db->select('*');
@@ -593,7 +593,7 @@ class M_Rekanan_tervalidasi extends CI_Model
         return $this->db->affected_rows();
     }
 
-    var $order_kbli_siujk = array('id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor');
+    var $order_kbli_siujk = array('id_vendor', 'tbl_kbli.kode_kbli', 'tbl_kbli.nama_kbli', 'id_vendor', 'id_vendor', 'id_vendor');
     private function _get_data_query_kbli_siujk($id_vendor)
     {
         $this->db->select('*');
@@ -1987,7 +1987,7 @@ class M_Rekanan_tervalidasi extends CI_Model
         return $this->db->affected_rows();
     }
     // skdp
-    var $order_kbli_skdp = array('id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor', 'id_vendor');
+    var $order_kbli_skdp = array('id_vendor', 'tbl_kbli.kode_kbli', 'tbl_kbli.nama_kbli', 'id_vendor', 'id_vendor', 'id_vendor');
     private function _get_data_query_kbli_skdp($id_vendor)
     {
         $this->db->select('*');
