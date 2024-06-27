@@ -75,77 +75,23 @@ class Laporan_tkdn extends CI_Controller
             $row[] = $rs->status_pencatatan;
 
             if ($rs->status_pencatatan == 'PDN') {
-                if ($rs->id_jadwal_tender == 9 || $rs->id_jadwal_tender == 1 || $rs->id_jadwal_tender == 2 || $rs->id_jadwal_tender == 3 || $rs->id_jadwal_tender == 6) {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $pdn1 = 100 - $get_pemenang['ev_hea_tkdn_terendah'];
-                        $row[] = number_format($pdn1, 2, ",", ".");
-                        $row[] = number_format($pdn1 / 2, 2, ",", ".");
-                        $row[] = number_format($pdn1 / 2, 2, ",", ".");
-                    }
-                } else {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $pdn2 = 100 - $get_pemenang['ev_hea_tkdn'];
-                        $row[] = number_format($pdn2, 2, ",", ".");
-                        $row[] = number_format($pdn2 / 2, 2, ",", ".");
-                        $row[] = number_format($pdn2 / 2, 2, ",", ".");
-                    }
-                }
+                $row[] = number_format(100 - $rs->persen_pencatatan, 2, ",", ".");
+                $row[] = number_format($rs->persen_pencatatan, 2, ",", ".");
+                $row[] = '0';
             } else if ($rs->status_pencatatan = 'TKDN') {
-                if ($rs->id_jadwal_tender == 9 || $rs->id_jadwal_tender == 1 || $rs->id_jadwal_tender == 2 || $rs->id_jadwal_tender == 3 || $rs->id_jadwal_tender == 6) {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $tkdn1 = 100 - $get_pemenang['ev_hea_tkdn_terendah'];
-                        $row[] = number_format($tkdn1 / 2, 2, ",", ".");
-                        $row[] = number_format($get_pemenang['ev_hea_tkdn_terendah'], 2, ",", ".");
-                        $row[] = number_format($tkdn1 / 2, 2, ",", ".");
-                    }
+                if ($rs->id_departemen == 21 || $rs->id_departemen == 22) {
+                    $row[] = '0';
+                    $row[] = number_format($rs->persen_pencatatan, 2, ",", ".");
+                    $row[] = number_format(100 - $rs->persen_pencatatan, 2, ",", ".");
                 } else {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $tkdn2 = 100 - $get_pemenang['ev_hea_tkdn'];
-                        $row[] = number_format($tkdn2 / 2, 2, ",", ".");
-                        $row[] = number_format($get_pemenang['ev_hea_tkdn'], 2, ",", ".");
-                        $row[] = number_format($tkdn2 / 2, 2, ",", ".");
-                    }
+                    $row[] = number_format(100 - $rs->persen_pencatatan, 2, ",", ".");
+                    $row[] = number_format($rs->persen_pencatatan, 2, ",", ".");
+                    $row[] = '0';
                 }
-            } else {
-                if ($rs->id_jadwal_tender == 9 || $rs->id_jadwal_tender == 1 || $rs->id_jadwal_tender == 2 || $rs->id_jadwal_tender == 3 || $rs->id_jadwal_tender == 6) {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $import1 = 100 - $get_pemenang['ev_hea_tkdn_terendah'];
-                        $row[] = number_format($import1 / 2, 2, ",", ".");
-                        $row[] = number_format($import1 / 2, 2, ",", ".");
-                        $row[] = number_format($import1, 2, ",", ".");
-                    }
-                } else {
-                    if ($get_pemenang == 0) {
-                        $row[] = '0';
-                        $row[] = '0';
-                        $row[] = '0';
-                    } else {
-                        $import2 = 100 - $get_pemenang['ev_hea_tkdn'];
-                        $row[] = number_format($import2 / 2, 2, ",", ".");
-                        $row[] = number_format($import2 / 2, 2, ",", ".");
-                        $row[] = number_format($import2, 2, ",", ".");
-                    }
-                }
+            } else if ($rs->status_pencatatan = 'IMPORT') {
+                $row[] = '0';
+                $row[] = number_format($rs->persen_pencatatan, 2, ",", ".");
+                $row[] = number_format(100 - $rs->persen_pencatatan, 2, ",", ".");
             }
 
 

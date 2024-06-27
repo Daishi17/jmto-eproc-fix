@@ -10,8 +10,9 @@
                     "processing": true,
                     "serverSide": true,
                     "bDestroy": true,
-                    // "dom": 'Bfrtip',
-                    // "buttons": ["excel", "pdf", "print", "colvis"],
+                    "dom": 'Bfrtip',
+                    "buttons": ["excel", "pdf", "print", "colvis"],
+                    "iDisplayLength": 10000,
                     "order": [],
                     "ajax": {
                         "url": '<?= base_url('administrator/laporan_tkdn/datatable') ?>',
