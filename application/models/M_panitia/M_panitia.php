@@ -1222,6 +1222,18 @@ class M_panitia extends CI_Model
         return $query->result_array();
     }
 
+    // public function get_peserta_tender_chat_penawaran($id_rup)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('tbl_vendor_mengikuti_paket');
+    //     $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor');
+    //     $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+    //     $this->db->where('tbl_vendor_mengikuti_paket.sts_aanwijzing_penawaran', 1);
+    //     $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
+
     public function get_peserta_tender_ikut($id_rup)
     {
         $this->db->select('*');
