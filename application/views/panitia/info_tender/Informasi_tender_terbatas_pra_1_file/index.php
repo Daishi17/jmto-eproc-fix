@@ -2114,14 +2114,14 @@
                                     <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
                                         <i class="fas fa fa-star text-warning"></i>
                                     <?php   } else { ?>
-                                        <?php if ($value['ev_terendah_peringkat_akhir_hea'] == 1) { ?>
+                                        <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
                                             <i class="fas fa fa-star text-warning"></i>
                                         <?php   } else { ?>
                                             <i class="fas fa fa-times text-danger"></i>
                                         <?php   }  ?>
                                     <?php   }  ?>
                                 </td>
-                                <td><?= $value['ev_terendah_peringkat_akhir_hea'] ?></td>
+                                <td><?= $value['ev_penawaran_peringkat'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
