@@ -383,6 +383,12 @@
                     $('#modal_kelengkapan_file2').modal('show')
                     $('.nama_usaha').text(response['row_vendor_mengikuti'].nama_usaha)
                     $('[name="id_vendor_mengikuti_paket"]').val(id_vendor_mengikuti_paket)
+                    $('[name="kelengkapan_file2_1"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_1)
+                    $('[name="kelengkapan_file2_2"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_2)
+                    $('[name="kelengkapan_file2_3"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_3)
+                    $('[name="kelengkapan_file2_4"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_4)
+                    $('[name="kelengkapan_file2_5"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_5)
+                    $('[name="kelengkapan_file2_6"]').val(response['row_vendor_mengikuti'].kelengkapan_file2_6)
                 } else if (type == 'neraca_keuangan') {
                     $('#lihat_neraca_keuangan').modal('show')
                     $('#nama_usaha_tambahan2').text(response['row_vendor_mengikuti'].nama_usaha)
@@ -485,6 +491,10 @@
                             }
                         }).buttons().container().appendTo('#tbl_rup .col-md-6:eq(0)');
                     });
+                } else if (type == 'pindah_pemenang') {
+                    $('#modal_pindah_pemenang').modal('show')
+                    $('[name="id_vendor_mengikuti_paket_pindah_pemenang"]').val(id_vendor_mengikuti_paket)
+                    $('[name="ev_penawaran_peringkat"]').val(response['row_vendor_mengikuti'].ev_penawaran_peringkat)
                 }
 
             }
@@ -3644,4 +3654,58 @@
             }
         })
     }
+
+
+
+    var form_pindah_pemenang = $('#form_pindah_pemenang')
+    form_pindah_pemenang.on('submit', function(e) {
+        var url_pindahkan_pemenang = $('[name="url_pindahkan_pemenang"]').val();
+        e.preventDefault();
+        $.ajax({
+            url: url_pindahkan_pemenang,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#btn_ev_hea_akhir').attr("disabled", true);
+            },
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Menyimpan Data!',
+                    html: 'Proses Data <b></b>',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        Swal.fire('Data Berhasil Di Simpan!', '', 'success')
+                        $('#modal_pindah_pemenang').modal('hide')
+                        form_pindah_pemenang[0].reset();
+                        reload_evaluasi_penawaran()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+            }
+        })
+    })
+
+    $('#table_peserta').DataTable({
+        "dom": 'Bfrtip',
+        "buttons": ["excel", "pdf", "print", "colvis"],
+        "iDisplayLength": 10000,
+    })
 </script>

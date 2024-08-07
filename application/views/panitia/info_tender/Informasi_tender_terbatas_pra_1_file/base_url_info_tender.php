@@ -72,3 +72,5 @@
 
 
 <input type="hidden" name="url_byid_neraca" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'by_id_neraca/') ?>">
+
+<input type="hidden" name="url_pindahkan_pemenang" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'pindahkan_pemenang/') ?>">

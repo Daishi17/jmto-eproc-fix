@@ -135,7 +135,7 @@ class M_count extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_vendor_mengikuti_paket');
-        $this->db->join('tbl_rup', 'tbl_rup.id_rup = tbl_vendor_mengikuti_paket.id_rup', 'left');
+        $this->db->join('tbl_rup', 'tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor', 'left');
         $this->db->join('tbl_vendor', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
         $this->db->join('tbl_departemen', 'tbl_rup.id_departemen = tbl_departemen.id_departemen', 'left');
         $this->db->join('tbl_section', 'tbl_rup.id_section = tbl_section.id_section', 'left');
@@ -150,7 +150,7 @@ class M_count extends CI_Model
         // Tender Umum
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
         $this->db->where_in('tbl_rup.id_jadwal_tender', [4, 5, 7, 8]);
-        $this->db->group_by('tbl_vendor_mengikuti_paket.id_rup');
+        $this->db->group_by('tbl_rup.id_rup');
         $i = 0;
         foreach ($this->order_paket_tender_umum as $item) // looping awal
         {
@@ -558,6 +558,18 @@ class M_count extends CI_Model
         $this->db->from('tbl_rup');
         $this->db->where('tbl_rup.id_vendor_pemenang !=', NULL);
         $this->db->where_in('tbl_rup.id_jadwal_tender', [9, 10]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function hitung_tender_vendor()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_rup.id_vendor_pemenang = tbl_vendor_mengikuti_paket.id_vendor', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
+        $this->db->where('tbl_rup.id_vendor_pemenang !=', null);
+        $this->db->group_by('tbl_vendor.id_vendor');
         $query = $this->db->get();
         return $query->result_array();
     }

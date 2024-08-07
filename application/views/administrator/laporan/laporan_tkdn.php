@@ -95,7 +95,7 @@
 </main>
 
 
-<div class="modal fade" tabindex="-1" id="modal-xl">
+<div class="modal fade" tabindex="-1" id="modal-xl-detail">
     <div class="modal-dialog modal-dialog-scrollable ">
         <div class="modal-content">
             <div class="modal-header">

@@ -287,12 +287,12 @@
                                 <td>${file1_organisasi_sts_validasi}</td>
                             </tr>
                             <tr>
-                                <td>&ensp;&ensp; b. Surat Dukungan Pabrikan / Dealer</td>
+                                <td>&ensp;&ensp; b. Surat Dukungan Pabrikan / Dealer (Jika disyaratkan)</td>
                                 <td>${file1_pabrikan}</td>
                                 <td>${file1_pabrikan_sts_validasi}</td>
                             </tr>
                             <tr>
-                                <td>&ensp;&ensp; c. Data Peralatan Pendukung Pekerjaan</td>
+                                <td>&ensp;&ensp; c. Data Peralatan Pendukung Pekerjaan (Jika disyaratkan)</td>
                                 <td>${file1_peralatan}</td>
                                 <td>${file1_peralatan_sts_validasi}</td>
                             </tr>

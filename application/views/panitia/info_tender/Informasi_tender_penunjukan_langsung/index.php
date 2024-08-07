@@ -1688,6 +1688,7 @@
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
                                 <?php if ($ba_7_cek) { ?>
+                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                                 <?php } else { ?>
                                     <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                                 <?php } ?>
@@ -1742,7 +1743,7 @@
                                 <tr>
                                     <th>Harga Penawaran</th>
                                     <th>
-                                        <?php if ($row_rup['id_jadwal_tender'] == 1) { ?>
+                                        <?php if ($row_rup['id_jadwal_tender'] == 9) { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['ev_terendah_harga'], 2, ",", ".");  ?>" disabled>
                                         <?php } else { ?>
                                             <input type="text" class="form-control" name="ba_negosiasi_harga2" value="Rp. <?= number_format($deal_nego['nilai_penawaran'], 2, ",", ".");  ?>" disabled>

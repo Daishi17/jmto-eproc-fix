@@ -499,16 +499,21 @@ class Post_jadwal extends CI_Controller
                 'user_create' => $this->session->userdata('nama_pegawai')
             ];
             $this->M_jadwal->insert_alasan($data);
-            $where = [
-                'id_jadwal_rup' => $id_jadwal_rup
-            ];
+
             if ($cek_role_panitia['role_panitia'] == 1) {
+                $where = [
+                    'id_jadwal_rup >=' => $id_jadwal_rup,
+                    'id_rup' => $id_rup_cek
+                ];
                 $data2 = [
                     'sts_perubahan_jadwal' => 1,
                     'alasan' => $alasan,
                 ];
                 $this->M_jadwal->update_status($data2, $where);
             } else {
+                $where = [
+                    'id_jadwal_rup' => $id_jadwal_rup
+                ];
                 $data2 = [
                     'sts_perubahan_jadwal' => 2,
                     'alasan' => $alasan,
@@ -532,7 +537,8 @@ class Post_jadwal extends CI_Controller
                 'sts_perubahan_jadwal' => 1,
             ];
             $where = [
-                'id_jadwal_rup' => $id_jadwal_rup
+                'id_jadwal_rup >=' => $id_jadwal_rup,
+                'id_rup' => $cek_jika_jadwal_ada_yg_ubah['id_rup'],
             ];
             $this->M_jadwal->update_status($data, $where);
             $this->output->set_content_type('application/json')->set_output(json_encode('success'));
@@ -2114,5 +2120,37 @@ class Post_jadwal extends CI_Controller
         ];
         // update_batas_pendaftaran ke_rup
         $this->M_panitia->update_rup_panitia($row_rup['id_rup'], $data1_1);
+    }
+
+    public function copy_jadwal()
+    {
+        // post jadwal id yang skrg
+        $id_rup_cek_copy = $this->input->post('id_rup_cek_copy');
+        // get rupnya dlu
+        $row_rup = $this->M_panitia->get_rup($id_rup_cek_copy);
+
+        // post jadwal id yang di pilih
+        $id_rup_copy_jawdal = $this->input->post('id_rup_copy_jawdal');
+
+        // delete dlu jadwal yang ada skrg
+        $this->M_panitia->delete_jadwal_to_copy($id_rup_cek_copy);
+
+        // ambil jadwal dari paket yang dipilih
+        $data =  $this->M_panitia->get_jadwal_rup($id_rup_copy_jawdal);
+
+        foreach ($data as $key => $value) {
+            $id = $this->uuid->v4();
+            $id = str_replace('-', '', $id);
+            $data = [
+                'id_url_jadwal_rup' => $id,
+                'id_rup' => $row_rup['id_rup'],
+                'id_url_rup' => $row_rup['id_url_rup'],
+                'nama_jadwal_rup' => $value['nama_jadwal_rup'],
+                'waktu_mulai' => $value['waktu_mulai'],
+                'waktu_selesai' => $value['waktu_selesai']
+            ];
+            $this->M_jenis_jadwal->insert_generate_jadwal($data);
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

@@ -1395,7 +1395,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Berita Acara</th>
+                                    <th>Tanggal Undangan</th>
                                     <th>
                                         <input type="date" name="undangan_rapat_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['undangan_rapat_tgl'] ?>">
                                     </th>
@@ -1689,7 +1689,7 @@
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','setuju')" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Setuju </a>&ensp;
                                 <a href="javascript:;" onclick="setujui_ba('sts_ba_negosiasi','tidak_setuju')" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Setuju</a>&ensp;
                                 <?php if ($ba_7_cek) { ?>
-                                    <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
+                                    <!-- <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a> -->
                                 <?php } else { ?>
                                     <a href="javascript:;" onclick="kirim('<?= $row_rup['id_rup'] ?>', 'sts_kirim_ba_negosiasi')" class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i> Kirim</a>
                                 <?php } ?>
@@ -2111,17 +2111,30 @@
                                 <td><?= $nama_perusahaan ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
-                                    <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
-                                        <i class="fas fa fa-star text-warning"></i>
-                                    <?php   } else { ?>
-                                        <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
+                                    <?php if ($row_rup['sts_pindah_pemenang'] == 1) { ?>
+                                        <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
                                             <i class="fas fa fa-star text-warning"></i>
                                         <?php   } else { ?>
-                                            <i class="fas fa fa-times text-danger"></i>
+                                            <?php if ($value['sts_pemenang_real'] == 1) { ?>
+                                                <i class="fas fa fa-star text-warning"></i>
+                                            <?php   } else { ?>
+                                                <i class="fas fa fa-times text-danger"></i>
+                                            <?php   }  ?>
                                         <?php   }  ?>
-                                    <?php   }  ?>
+                                    <?php } else { ?>
+                                        <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
+                                            <i class="fas fa fa-star text-warning"></i>
+                                        <?php   } else { ?>
+                                            <?php if ($value['ev_terendah_peringkat'] == 1) { ?>
+                                                <i class="fas fa fa-star text-warning"></i>
+                                            <?php   } else { ?>
+                                                <i class="fas fa fa-times text-danger"></i>
+                                            <?php   }  ?>
+                                        <?php   }  ?>
+                                    <?php }    ?>
+
                                 </td>
-                                <td><?= $value['ev_penawaran_peringkat'] ?></td>
+                                <td><?= $value['ev_terendah_peringkat'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -2471,7 +2484,7 @@
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Peserta Ini Merupakan Peserta Yang Mengikuti Pengadaan !!! <br>
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="table_peserta">
                     <thead>
                         <tr>
                             <th>No</th>

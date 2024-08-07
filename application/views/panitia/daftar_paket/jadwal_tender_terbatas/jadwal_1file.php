@@ -12,7 +12,7 @@
                                         <h6 class="card-title">
                                             <span class="text-white">
                                                 <i class="fa-solid fa-business-time"></i>
-                                                <small><strong>Jadwal <?= $row_rup['nama_jadwal_pengadaan'] ?></strong></small>
+                                                <small><strong>Jadwal <?= $row_rup['nama_rup'] ?> (<?= $row_rup['nama_jadwal_pengadaan'] ?>) </strong></small>
                                             </span>
                                         </h6>
                                     </div>
@@ -31,11 +31,14 @@
                                     <?php if ($row_rup['status_paket_diumumkan'] == 1) { ?>
                                         <?php if ($cek_ada_prubahan_jadwal) { ?>
                                             <button style="margin-top: -20;" type="submit" class="btnSave mb-2 btn btn-success">Update Jadwal</button>
+                                            <button style="margin-top: -20;" type="button" class="mb-2 btn btn-warning" title="Ambil Jadwal Dari Paket Yang Lain" data-bs-toggle="modal" data-bs-target="#modal_copy_jadwal">Ambil Jadwal</button>
                                         <?php } else { ?>
                                             <button style="margin-top: -20;" disabled type="submit" class="mb-2 btn btn-success">Update Jadwal</button>
+
                                         <?php  } ?>
                                     <?php  } else { ?>
                                         <button style="margin-top: -20;" type="submit" class="btnSave mb-2 btn btn-success">Update Jadwal</button>
+                                        <button style="margin-top: -20;" type="button" class="mb-2 btn btn-warning" title="Ambil Jadwal Dari Paket Yang Lain" data-bs-toggle="modal" data-bs-target="#modal_copy_jadwal">Ambil Jadwal</button>
                                     <?php  } ?>
                                 </center>
                             </div>
@@ -242,6 +245,56 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-success" id="btn_save_jadwal">Terima</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_copy_jadwal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="navbar-brand">
+                        <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                        <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <input type="hidden" name="url_copy_jadwal" value="<?= base_url('post_jadwal/post_jadwal/copy_jadwal') ?>">
+
+                <form id="form_ambil_jadwal_jadwal" action="javascript:;">
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1 bd-highlight">
+                                    <span class="text-dark">
+                                        <small class="text-white">
+                                            <strong><i class="fa-solid fa-edit px-1"></i>
+                                                Form Copy Jadwal
+                                            </strong>
+                                        </small>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- <input type="hidden" name="id_jadwal_rup"> -->
+                                <input type="hidden" name="id_rup_cek_copy" value="<?= $row_rup['id_rup'] ?>">
+                                <h6 for="">Silahkan Pilih Nama Paket Yang Ingin Di Copy Jadwal</h6>
+                                <br>
+                                <select name="id_rup_copy_jawdal" class="form-control">
+                                    <?php foreach ($paket_terbatas as $key => $value) { ?>
+                                        <option value="<?= $value['id_rup'] ?>"><?= $value['nama_rup'] ?></option>
+                                    <?php } ?>
+                                </select>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success" id="btn_save_jadwal">Simpan</button>
                     </div>
                 </form>
             </div>

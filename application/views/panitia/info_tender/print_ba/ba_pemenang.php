@@ -189,89 +189,263 @@ function terbilang($nilai)
                     </center>
                 </div>
                 <div class="card-body">
-                    <table>
-                        <tr>
-                            <td>Nama Perusahaan</td>
-                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <?php
+                    <?php if ($row_rup['id_jadwal_tender'] == 5) { ?>
+                        <?php if ($get_mengikuti_deal_nego) { ?>
+                            <table>
+                                <tr>
+                                    <td>Nama Perusahaan</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <?php
 
-                            $subs_string = substr($get_mengikuti_deal_nego['nama_usaha'], 0, 2);
-                            if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
-                            } else {
-                                if ($get_mengikuti_deal_nego['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                    $nama_perusahaan1 = 'PT ' . $get_mengikuti_deal_nego['nama_usaha'];
-                                } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                    $nama_perusahaan1 = 'CV ' . $get_mengikuti_deal_nego['nama_usaha'];
-                                } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Koperasi') {
+                                    $subs_string = substr($get_mengikuti_deal_nego['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                        $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
+                                    } else {
+                                        if ($get_mengikuti_deal_nego['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                            $nama_perusahaan1 = 'PT ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                        } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                            $nama_perusahaan1 = 'CV ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                        } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Koperasi') {
+                                            $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
+                                        }
+                                    }
+                                    ?>
+                                    <td><?= $nama_perusahaan1  ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td><?= $get_mengikuti_deal_nego['alamat'] ?></td>
+                                </tr>
+
+                                <?php if ($get_mengikuti_deal_nego['ev_terendah_harga']) { ?>
+                                    <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_mengikuti_deal_nego['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['ev_terendah_harga']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                <?php } else { ?>
+
+                                    <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                <?php } ?>
+
+
+
+                                <tr>
+                                    <td>Jangka Waktu<br> Pelaksanaan</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
+                                </tr>
+                                <?php if ($jadwal_sanggah_pemenang) { ?>
+                                    <tr>
+                                        <td>Masa Sanggah</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
+                                    </tr>
+                                <?php } else { ?>
+                                    <tr>
+                                        <td>Masa Sanggah</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>-</td>
+                                    </tr>
+                                <?php }
+                                ?>
+
+                            </table>
+                        <?php  } else { ?>
+                            <table>
+                                <tr>
+                                    <td>Nama Perusahaan</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <?php
+
+                                    $subs_string = substr($get_rank1_tanpa_nego['nama_usaha'], 0, 2);
+                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
+                                        $nama_perusahaan1 = $get_rank1_tanpa_nego['nama_usaha'];
+                                    } else {
+                                        if ($get_rank1_tanpa_nego['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                            $nama_perusahaan1 = 'PT ' . $get_rank1_tanpa_nego['nama_usaha'];
+                                        } else if ($get_rank1_tanpa_nego['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                            $nama_perusahaan1 = 'CV ' . $get_rank1_tanpa_nego['nama_usaha'];
+                                        } else if ($get_rank1_tanpa_nego['bentuk_usaha']  == 'Koperasi') {
+                                            $nama_perusahaan1 = $get_rank1_tanpa_nego['nama_usaha'];
+                                        }
+                                    }
+                                    ?>
+                                    <td><?= $nama_perusahaan1  ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td><?= $get_rank1_tanpa_nego['alamat'] ?></td>
+                                </tr>
+
+                                <?php if ($get_rank1_tanpa_nego['ev_terendah_harga']) { ?>
+                                    <?php if ($get_rank1_tanpa_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_rank1_tanpa_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_rank1_tanpa_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_rank1_tanpa_nego['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_rank1_tanpa_nego['ev_terendah_harga']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                <?php } else { ?>
+
+                                    <?php if ($get_rank1_tanpa_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_rank1_tanpa_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_rank1_tanpa_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td>Harga Pemenang</td>
+                                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                            <td>Rp. <?= number_format($get_rank1_tanpa_nego['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_rank1_tanpa_nego['nilai_penawaran']) ?> Rupiah)</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                <?php } ?>
+
+
+
+                                <tr>
+                                    <td>Jangka Waktu<br> Pelaksanaan</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
+                                </tr>
+                                <?php if ($jadwal_sanggah_pemenang) { ?>
+                                    <tr>
+                                        <td>Masa Sanggah</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
+                                    </tr>
+                                <?php } else { ?>
+                                    <tr>
+                                        <td>Masa Sanggah</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>-</td>
+                                    </tr>
+                                <?php }
+                                ?>
+
+                            </table>
+                        <?php      } ?>
+
+                    <?php  } else { ?>
+                        <table>
+                            <tr>
+                                <td>Nama Perusahaan</td>
+                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                <?php
+
+                                $subs_string = substr($get_mengikuti_deal_nego['nama_usaha'], 0, 2);
+                                if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                     $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
+                                } else {
+                                    if ($get_mengikuti_deal_nego['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                        $nama_perusahaan1 = 'PT ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                    } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                        $nama_perusahaan1 = 'CV ' . $get_mengikuti_deal_nego['nama_usaha'];
+                                    } else if ($get_mengikuti_deal_nego['bentuk_usaha']  == 'Koperasi') {
+                                        $nama_perusahaan1 = $get_mengikuti_deal_nego['nama_usaha'];
+                                    }
                                 }
-                            }
+                                ?>
+                                <td><?= $nama_perusahaan1  ?></td>
+                            </tr>
+                            <tr>
+                                <td>Alamat</td>
+                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                <td><?= $get_mengikuti_deal_nego['alamat'] ?></td>
+                            </tr>
+
+                            <?php if ($get_mengikuti_deal_nego['ev_terendah_harga']) { ?>
+                                <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                    <tr>
+                                        <td>Harga Pemenang</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                    </tr>
+                                <?php } else { ?>
+                                    <tr>
+                                        <td>Harga Pemenang</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>Rp. <?= number_format($get_mengikuti_deal_nego['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['ev_terendah_harga']) ?> Rupiah)</td>
+                                    </tr>
+                                <?php } ?>
+
+                            <?php } else { ?>
+
+                                <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
+                                    <tr>
+                                        <td>Harga Pemenang</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
+                                    </tr>
+                                <?php } else { ?>
+                                    <tr>
+                                        <td>Harga Pemenang</td>
+                                        <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                        <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?> Rupiah)</td>
+                                    </tr>
+                                <?php } ?>
+
+                            <?php } ?>
+
+
+
+                            <tr>
+                                <td>Jangka Waktu<br> Pelaksanaan</td>
+                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
+                            </tr>
+                            <?php if ($jadwal_sanggah_pemenang) { ?>
+                                <tr>
+                                    <td>Masa Sanggah</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td>Masa Sanggah</td>
+                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
+                                    <td>-</td>
+                                </tr>
+                            <?php }
                             ?>
-                            <td><?= $nama_perusahaan1  ?></td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <td><?= $get_mengikuti_deal_nego['alamat'] ?></td>
-                        </tr>
 
-                        <?php if ($get_mengikuti_deal_nego['ev_terendah_harga']) { ?>
-                            <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
-                                <tr>
-                                    <td>Harga Pemenang</td>
-                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
-                                </tr>
-                            <?php } else { ?>
-                                <tr>
-                                    <td>Harga Pemenang</td>
-                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['ev_terendah_harga'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['ev_terendah_harga']) ?> Rupiah)</td>
-                                </tr>
-                            <?php } ?>
+                        </table>
+                    <?php   }  ?>
 
-                        <?php } else { ?>
-
-                            <?php if ($get_mengikuti_deal_nego['sts_deal_negosiasi'] == 'deal') { ?>
-                                <tr>
-                                    <td>Harga Pemenang</td>
-                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti_deal_nego['total_hasil_negosiasi'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti_deal_nego['total_hasil_negosiasi']) ?> Rupiah)</td>
-                                </tr>
-                            <?php } else { ?>
-                                <tr>
-                                    <td>Harga Pemenang</td>
-                                    <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                    <td>Rp. <?= number_format($get_mengikuti['nilai_penawaran'], 2, ",", "."); ?> (<?= penyebut($get_mengikuti['nilai_penawaran']) ?> Rupiah)</td>
-                                </tr>
-                            <?php } ?>
-
-                        <?php } ?>
-
-
-
-                        <tr>
-                            <td>Jangka Waktu<br> Pelaksanaan</td>
-                            <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                            <td><?= $row_rup['jangka_waktu_hari_pelaksanaan'] ?> (<?= penyebut($row_rup['jangka_waktu_hari_pelaksanaan']) ?>) Hari</td>
-                        </tr>
-                        <?php if ($jadwal_sanggah_pemenang) { ?>
-                            <tr>
-                                <td>Masa Sanggah</td>
-                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                <td>2 (dua) hari kerja terhitung mulai tanggal <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_mulai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_mulai'])) ?> s.d <?= date('d', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?> <?= bln_indo(date('m', strtotime($jadwal_sanggah_pemenang['waktu_selesai']))) ?> <?= date('Y', strtotime($jadwal_sanggah_pemenang['waktu_selesai'])) ?></td>
-                            </tr>
-                        <?php } else { ?>
-                            <tr>
-                                <td>Masa Sanggah</td>
-                                <td><label for="" style="margin-left:150px;margin-right:20px">:</label></td>
-                                <td>-</td>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
                 </div>
             </div>
 

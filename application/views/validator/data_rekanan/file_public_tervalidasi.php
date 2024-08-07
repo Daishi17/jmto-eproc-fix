@@ -27,7 +27,7 @@
                         columns: [0, 1, 2, 3]
                     },
                     text: ' EXCEL'
-                }, 'pageLength'],
+                }, 'pageLength', 'colvis'],
                 "order": [],
                 "ajax": {
                     "url": url_get_rekanan_tervalidasi,
@@ -239,9 +239,9 @@
         var regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
         if (regex.test(inputField.value)) {
-            inputField.setCustomValidity(''); 
+            inputField.setCustomValidity('');
         } else {
-            inputField.setCustomValidity('Masukkan waktu dalam format 24 jam (HH:MM)'); 
+            inputField.setCustomValidity('Masukkan waktu dalam format 24 jam (HH:MM)');
         }
     }
 </script>

@@ -48,19 +48,38 @@ class Laporan_tkdn extends CI_Controller
             if ($get_pemenang == 0) {
                 $row[] = number_format(0, 2, ",", ".");
             } else {
-                $row[] = number_format($get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
+                if ($get_pemenang['total_hasil_negosiasi']) {
+                    $row[] = number_format($get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
+                } else {
+                    if ($rs->id_jadwal_tender == 5) {
+                        $row[] = number_format($get_pemenang['nilai_penawaran'], 2, ",", ".");
+                    } else {
+                        $row[] = number_format($get_pemenang['ev_terendah_harga'], 2, ",", ".");
+                    }
+                }
             }
 
 
-            $row[] = $rs->nama_jenis_pengadaan;
+            // $row[] = $rs->nama_jenis_pengadaan;
             if ($get_pemenang == 0) {
                 $row[] = number_format(0, 2, ",", ".");
             } else {
-                $row[] = number_format($get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
+                if ($get_pemenang['total_hasil_negosiasi']) {
+                    $row[] = number_format($get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
+                    $row[] = number_format($get_pemenang['total_hasil_negosiasi'], 2, ",", ".");
+                } else {
+                    if ($rs->id_jadwal_tender == 5) {
+                        $row[] = number_format($get_pemenang['nilai_penawaran'], 2, ",", ".");
+                        $row[] = number_format($get_pemenang['nilai_penawaran'], 2, ",", ".");
+                    } else {
+                        $row[] = number_format($get_pemenang['ev_terendah_harga'], 2, ",", ".");
+                        $row[] = number_format($get_pemenang['ev_terendah_harga'], 2, ",", ".");
+                    }
+                }
             }
 
             if ($get_pemenang == 0) {
-                $row[] = number_format(0, 2, ",", ".");
+                $row[] = '';
             } else {
                 $row[] = $get_pemenang['nama_usaha'];
             }

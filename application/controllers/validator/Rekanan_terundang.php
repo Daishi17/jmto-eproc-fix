@@ -362,6 +362,8 @@ class Rekanan_terundang extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nama_usaha;
+			$row[] = $rs->npwp;
+			$row[] = $rs->alamat;
 			$row[] = $rs->email;
 			$row[] = implode(' , ', $jenis_izin);
 			$row[] = $rs->kualifikasi_usaha;
@@ -395,7 +397,7 @@ class Rekanan_terundang extends CI_Controller
 				}
 			}
 			if ($cek_jika_ada_pengajuan_dokumen) {
-				$row[] = '<a onclick="Lihat_pengajuan_dokumen(' . $rs->id_vendor . ')" href="javascript:;" class="btn btn-info btn-block btn-sm shadow-lg" ><i class="fa-solid fa-file px-1"></i> Pengajuan Perubahan Dokumen</a><a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>';
+				$row[] = '<a onclick="Lihat_pengajuan_dokumen(' . $rs->id_vendor . ')" href="javascript:;" class="btn btn-info btn-block btn-sm shadow-lg" ><i class="fa-solid fa-file px-1"></i> Pengajuan Perubahan Dokumen</a><br> <a href="javascript:;" class="btn btn-success btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','pesan'" . ')"> <i class="fa-solid fa-envelope px-1"></i> Pesan</a><br> <a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br><a href="javascript:;" class="btn btn-danger btn-block btn-sm shadow-lg" onClick="byid_vendor(' . "'" . $rs->id_url_vendor . "','daftar_hitam'" . ')"> <i class="fa-solid fa-times px-1"></i> Daftar Hitam</a>';
 			} else {
 				if ($rs->sts_dokumen_cek == NULL) {
 					$row[] = '<a href="' . base_url('validator/rekanan_tervalidasi/cek_dokumen/' . $rs->id_url_vendor) . '" class="btn btn-warning btn-block btn-sm shadow-lg" ><i class="fa-solid fa-share-from-square px-1"></i> Validasi</a><br>

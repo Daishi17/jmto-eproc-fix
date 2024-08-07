@@ -22,6 +22,10 @@ class Daftar_paket extends CI_Controller
 		$this->load->model('M_jenis_jadwal/M_jenis_jadwal');
 		$this->load->model('M_panitia/M_panitia');
 		$this->load->model('M_panitia/M_jadwal');
+		$role = $this->session->userdata('role');
+		if (!$role) {
+			redirect('auth');
+		}
 	}
 	public function index()
 	{
@@ -162,6 +166,9 @@ class Daftar_paket extends CI_Controller
 			$data['jadwal_download_dokumen_pengadaan'] =  $this->M_jadwal->jadwal_pra_umum_10($data['row_rup']['id_rup']);
 		}
 		// $this->load->view('panitia/template_menu/header_menu');
+
+
+		$data['result_vendor_terundang'] = $this->M_panitia->result_vendor_terekomendasi($data['row_rup']['data_vendor_terundang']);
 		$this->load->view('panitia/daftar_paket/js_header_paket');
 		$this->load->view('panitia/daftar_paket/base_url_panitia');
 		$this->load->view('panitia/daftar_paket/form_daftar_paket', $data);
@@ -329,6 +336,9 @@ class Daftar_paket extends CI_Controller
 		$data['panitia'] = $this->M_panitia->get_panitia($data['row_rup']['id_rup']);
 		$data['role_panitia'] = $this->M_panitia->get_panitia_role($data['row_rup']['id_rup']);
 		$data['cek_ada_prubahan_jadwal'] = $this->M_panitia->cek_jika_ada_perubahan($data['row_rup']['id_rup']);
+		$data['paket_umum'] = $this->M_panitia->get_copy_jadwal_umum($data['row_rup']['id_rup']);
+		$data['paket_terbatas'] = $this->M_panitia->get_copy_jadwal_terbatas($data['row_rup']['id_rup']);
+		$data['paket_juksung'] = $this->M_panitia->get_copy_jadwal_juksung($data['row_rup']['id_rup']);
 		$this->load->view('panitia/template_menu/header_menu');
 		$this->load->view('panitia/daftar_paket/js_header_paket');
 		$this->load->view('panitia/daftar_paket/base_url_panitia');

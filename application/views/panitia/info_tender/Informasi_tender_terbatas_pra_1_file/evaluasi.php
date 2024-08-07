@@ -801,3 +801,30 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="modal_pindah_pemenang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-star" aria-hidden="true"></i> Pemindahan Pemenang</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form_pindah_pemenang" action="javascript:;">
+                <div class="modal-body">
+                    <input type="hidden" name="id_vendor_mengikuti_paket_pindah_pemenang">
+                    <input type="hidden" name="ev_penawaran_peringkat">
+                    <input type="hidden" name="id_rup_pindah_pemenang" value="<?= $row_rup['id_rup'] ?>">
+                    <div class="form-group">
+                        <label for="">Alasan Pemindahan Pemenang</label>
+                        <textarea name="ket_pindah_pemenang" id="" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

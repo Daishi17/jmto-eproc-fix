@@ -127,7 +127,7 @@
                                 <small class="text-white">Administrator</small>
                             <?php } else if ($this->session->userdata('role') == 5) { ?>
                                 <small class="text-white">Panitia</small>
-                            <?php } else { ?>
+                            <?php } else if ($this->session->userdata('role') == 6) { ?>
                                 <small class="text-white">Tim Teknis</small>
                             <?php }  ?>
                         </a>

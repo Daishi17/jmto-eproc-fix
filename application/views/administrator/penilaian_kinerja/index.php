@@ -47,11 +47,11 @@
                                 <!-- <button class="nav-link text-dark" id="nav-selekterbatas-tab" data-bs-toggle="tab" data-bs-target="#nav-selekterbatas" type="button" role="tab" aria-controls="nav-selekterbatas" aria-selected="true">
                                     <i class="fa-solid fa-gift"></i>
                                     <small><b>Seleksi Terbatas &nbsp;<span class="badge bg-secondary">0</span></b></small>
-                                </button>
-                                <button class="nav-link text-dark" id="nav-penglangsung-tab" data-bs-toggle="tab" data-bs-target="#nav-penglangsung" type="button" role="tab" aria-controls="nav-penglangsung" aria-selected="true">
-                                    <i class="fa-solid fa-gift"></i>
-                                    <small><b>Pengadaan Langsung &nbsp;<span class="badge bg-secondary">0</span></b></small>
                                 </button> -->
+                                <button class="nav-link text-dark" id="nav_vendor-tab" data-bs-toggle="tab" data-bs-target="#nav_vendor" type="button" role="tab" aria-controls="nav_vendor" aria-selected="true">
+                                    <i class="fa-solid fa-gift"></i>
+                                    <small><b>Rekap Penyedia &nbsp;<span class="badge bg-secondary"><?= count($count_tender_vendor) ?></span></b></small>
+                                </button>
                             </div>
                             <div class="tab-content p-3 border bg-light" id="nav-tabContent">
                                 <div class="tab-pane fade active show" id="nav-tenderumum" role="tabpanel" aria-labelledby="nav-tenderumum-tab">
@@ -250,48 +250,35 @@
                                     </table>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-penglangsung" role="tabpanel" aria-labelledby="nav-penglangsung-tab">
+                                <div class="tab-pane fade" id="nav_vendor" role="tabpanel" aria-labelledby="nav_vendor-tab">
                                     <div class="card border-dark">
                                         <div class="card-header border-dark bg-primary d-flex justify-content-between align-items-center">
                                             <div class="flex-grow-1 bd-highlight">
                                                 <span class="text-white">
                                                     <i class="fa-solid fa-circle-info px-1"></i>
-                                                    <small><strong>Transaksi Pengadaan Langsung</strong></small>
+                                                    <small><strong>Rekap Penyedia</strong></small>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <hr>
-                                    <table id="example11" class="table table-bordered border-dark table-sm table-striped">
+                                    <table id="tbl_rekap_vendor" class="table table-bordered border-dark table-sm table-striped">
                                         <thead class="bg-secondary col-12">
                                             <tr>
                                                 <th style="width: 1%;"><small class="text-white">No</small></th>
-                                                <th class="col-2"><small class="text-white">Nama Rup</small></th>
-                                                <th class="col-1"><small class="text-white">Tahun Rup</small></th>
+                                                <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
+                                                <!-- <th class="col-1"><small class="text-white">Tahun Rup</small></th>
                                                 <th class="col-2"><small class="text-white">Nama Penyedia</small></th>
                                                 <th class="col-2"><small class="text-white">Jenis Pengadaan</small></th>
                                                 <th class="col-2"><small class="text-white">Metode Pemilihan</small></th>
-                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th>
+                                                <th class="col-2"><small class="text-white">Rating Kinerja</small></th> -->
                                                 <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
                                                 <th class="col-1"><small class="text-white">Aksi</small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><small>2023</small></td>
-                                                <td><small>Pengadaan Sewa Keamanan / Securty</small></td>
-                                                <td><small>General Affair</small></td>
-                                                <td><small>Jasa Lain</small></td>
-                                                <td><small>1.300.000.000</small></td>
-                                                <td><small><span class="badge bg-danger">Tender Sudah Selesai</span></small></td>
-                                                <td>
-                                                    <div class="text-center">
-                                                        <button type="button" class="btn btn-info btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#modal-xl-detail">
-                                                            <i class="fa-solid fa-users-viewfinder"></i>
-                                                            <small>Detail</small>
-                                                        </button>
-                                                    </div>
-                                                </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -304,3 +291,42 @@
         </div>
     </div>
 </main>
+
+
+<div class="modal fade" tabindex="-1" id="modal-xl-tambah">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url(); ?>/assets/brand/jm1.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
+                    <b><span class="text-primary">Jasamarga Tollroad Operator</span></b>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="tbl_paket_vendor" class="table table-bordered border-dark table-sm table-striped">
+                    <thead class="bg-secondary col-12">
+                        <tr>
+                            <th style="width: 1%;"><small class="text-white">No</small></th>
+                            <th class="col-2"><small class="text-white">Nama Paket</small></th>
+                            <th class="col-1"><small class="text-white">Tahun</small></th>
+                            <th class="col-1"><small class="text-white">Jenis Pengadaan</small></th>
+                            <th class="col-1"><small class="text-white">Metode Pengadaan</small></th>
+                            <!-- <th class="col-2"><small class="text-white">Rating Kinerja</small></th> -->
+                            <th class="col-2"><small class="text-white">Nilai Akhir Kinerja</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer d-flex justify-content-start">
+                <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-rectangle-xmark"></i>
+                    Keluar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

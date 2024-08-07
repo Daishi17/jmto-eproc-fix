@@ -42,6 +42,7 @@ class Penilaian_kinerja extends CI_Controller
 		$data['count_tender_umum'] = $this->M_count->hitung_tender_umum();
 		$data['count_tender_terbatas'] = $this->M_count->hitung_tender_terbatas();
 		$data['count_tender_juksung'] = $this->M_count->hitung_tender_juksung();
+		$data['count_tender_vendor'] = $this->M_count->hitung_tender_vendor();
 		$this->load->view('template_menu/header_menu');
 		$this->load->view('administrator/penilaian_kinerja/index', $data);
 		$this->load->view('template_menu/footer_menu');
@@ -79,6 +80,7 @@ class Penilaian_kinerja extends CI_Controller
 		$no = $_POST['start'];
 		$now = date('Y-m-d H:i');
 		foreach ($result as $rs) {
+
 			$get_nilai_pelaksanaan = $this->M_laporan_kinerja->cek_pelaksanaan_total($rs->id_vendor, $rs->id_rup);
 			$get_nilai_pemeliharaan = $this->M_laporan_kinerja->cek_pemeliharaan_total($rs->id_vendor, $rs->id_rup);
 
@@ -1102,5 +1104,80 @@ class Penilaian_kinerja extends CI_Controller
 			'get_pemeliharaan_total' => $this->M_laporan_kinerja->cek_pemeliharaan_total($id_vendor, $id_rup),
 		];
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+
+	public function get_rekap_vendor()
+	{
+		$result = $this->M_laporan_kinerja->gettable_daftar_paket_rekap_vendor();
+		$data = [];
+		$no = $_POST['start'];
+		$now = date('Y-m-d H:i');
+		foreach ($result as $rs) {
+
+
+			$row = array();
+			$row[] = '<small>' . ++$no . '</small>';
+			$row[] = '<small>' . $rs->nama_usaha . '</small>';
+			if (!$rs->nilai_vendor) {
+				$row[] = '<span class="badge bg-danger">Belum ada penilaian</span>';
+			} else {
+				$row[] = '<small>' . $rs->nilai_vendor . '</small>';
+			}
+
+
+
+			$row[] = '<a href="javascript:;" onClick="detail_paket(' . "'" . $rs->id_vendor . "'" . ')" class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i>  Detail Penilaian</a>';
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_laporan_kinerja->count_all_daftar_paket_rekap_vendor(),
+			"recordsFiltered" => $this->M_laporan_kinerja->count_filtered_daftar_paket_rekap_vendor(),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function get_paket_vendor($id_vendor)
+	{
+
+		$result = $this->M_laporan_kinerja->gettable_daftar_paket_vendor($id_vendor);
+		$data = [];
+		$no = $_POST['start'];
+		$now = date('Y-m-d H:i');
+		foreach ($result as $rs) {
+
+			$get_nilai_pelaksanaan = $this->M_laporan_kinerja->cek_pelaksanaan_total($rs->id_vendor, $rs->id_rup);
+			$get_nilai_pemeliharaan = $this->M_laporan_kinerja->cek_pemeliharaan_total($rs->id_vendor, $rs->id_rup);
+			$row = array();
+			$row[] = '<small>' . ++$no . '</small>';
+			$row[] = '<small>' . $rs->nama_rup . '</small>';
+			$row[] = '<small>' . $rs->tahun_rup . '</small>';
+			$row[] = '<small>' . $rs->nama_jenis_pengadaan . '</small>';
+			$row[] = '<small>' . $rs->nama_jadwal_pengadaan . '</small>';
+
+			if ($get_nilai_pelaksanaan && !$get_nilai_pemeliharaan) {
+				$row[] = $get_nilai_pelaksanaan['hasil_akhir'];
+			} else if ($get_nilai_pemeliharaan && !$get_nilai_pelaksanaan) {
+				$row[] = $get_nilai_pemeliharaan['hasil_akhir'];
+			} else if ($get_nilai_pemeliharaan && $get_nilai_pelaksanaan) {
+				$hasil =  $get_nilai_pelaksanaan['hasil_akhir'] +  $get_nilai_pemeliharaan['hasil_akhir'];
+				$total_final = $hasil / 2;
+				$row[] = $total_final;
+			} else {
+				$row[] = '<small class="badge bg-danger">Belum Ada Penilaian</small>';
+			}
+
+
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_laporan_kinerja->count_all_daftar_paket_vendor($id_vendor),
+			"recordsFiltered" => $this->M_laporan_kinerja->count_filtered_daftar_paket_vendor($id_vendor),
+			"data" => $data
+		);
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 }

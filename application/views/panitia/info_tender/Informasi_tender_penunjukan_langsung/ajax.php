@@ -3561,12 +3561,12 @@
                         var button_ba1 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[a].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_1' + '\')">Non-Aktifkan</a>'
                     }
                     html += `<tr>
-                                <td>${a1++}</td>
-                                <td>${response[a].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba1}</td>
-                                <td>${button_ba1}</td>
-                            </tr>`
+                            <td>${a1++}</td>
+                            <td>${response[a].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba1}</td>
+                            <td>${button_ba1}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_1').html(html);
 
@@ -3594,12 +3594,12 @@
                         var button_ba2 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[b].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_2' + '\')">Non-Aktifkan</a>'
                     }
                     html2 += `<tr>
-                                <td>${b1++}</td>
-                                <td>${response[b].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba2}</td>
-                                <td>${button_ba2}</td>
-                            </tr>`
+                            <td>${b1++}</td>
+                            <td>${response[b].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba2}</td>
+                            <td>${button_ba2}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_2').html(html2);
 
@@ -3627,12 +3627,12 @@
                         var button_ba3 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[c].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_3' + '\')">Non-Aktifkan</a>'
                     }
                     html3 += `<tr>
-                                <td>${c1++}</td>
-                                <td>${response[c].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba3}</td>
-                                <td>${button_ba3}</td>
-                            </tr>`
+                            <td>${c1++}</td>
+                            <td>${response[c].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba3}</td>
+                            <td>${button_ba3}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_3').html(html3);
 
@@ -3660,12 +3660,12 @@
                         var button_ba4 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[d].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_4' + '\')">Non-Aktifkan</a>'
                     }
                     html4 += `<tr>
-                                <td>${d1++}</td>
-                                <td>${response[d].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba4}</td>
-                                <td>${button_ba4}</td>
-                            </tr>`
+                            <td>${d1++}</td>
+                            <td>${response[d].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba4}</td>
+                            <td>${button_ba4}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_4').html(html4);
 
@@ -3693,12 +3693,12 @@
                         var button_ba5 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[f].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_5' + '\')">Non-Aktifkan</a>'
                     }
                     html5 += `<tr>
-                                <td>${f1++}</td>
-                                <td>${response[f].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba5}</td>
-                                <td>${button_ba5}</td>
-                            </tr>`
+                            <td>${f1++}</td>
+                            <td>${response[f].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba5}</td>
+                            <td>${button_ba5}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_5').html(html5);
 
@@ -3726,12 +3726,12 @@
                         var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_6' + '\')">Non-Aktifkan</a>'
                     }
                     html6 += `<tr>
-                                <td>${g1++}</td>
-                                <td>${response[g].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba6}</td>
-                                <td>${button_ba6}</td>
-                            </tr>`
+                            <td>${g1++}</td>
+                            <td>${response[g].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba6}</td>
+                            <td>${button_ba6}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_6').html(html6);
 
@@ -3759,12 +3759,12 @@
                         var button_ba6 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[g].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_6' + '\')">Non-Aktifkan</a>'
                     }
                     html6 += `<tr>
-                                <td>${g1++}</td>
-                                <td>${response[g].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba6}</td>
-                                <td>${button_ba6}</td>
-                            </tr>`
+                            <td>${g1++}</td>
+                            <td>${response[g].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba6}</td>
+                            <td>${button_ba6}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_6').html(html6);
 
@@ -3792,12 +3792,12 @@
                         var button_ba8 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[h].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_8' + '\')">Non-Aktifkan</a>'
                     }
                     html8 += `<tr>
-                                <td>${h1++}</td>
-                                <td>${response[h].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba8}</td>
-                                <td>${button_ba8}</td>
-                            </tr>`
+                            <td>${h1++}</td>
+                            <td>${response[h].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba8}</td>
+                            <td>${button_ba8}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_8').html(html8);
 
@@ -3825,12 +3825,12 @@
                         var button_ba10 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[i].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_10' + '\')">Non-Aktifkan</a>'
                     }
                     html10 += `<tr>
-                                <td>${i1++}</td>
-                                <td>${response[i].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba10}</td>
-                                <td>${button_ba10}</td>
-                            </tr>`
+                            <td>${i1++}</td>
+                            <td>${response[i].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba10}</td>
+                            <td>${button_ba10}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_10').html(html10);
 
@@ -3858,12 +3858,12 @@
                         var button_ba11 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[j].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_11' + '\')">Non-Aktifkan</a>'
                     }
                     html11 += `<tr>
-                                <td>${j1++}</td>
-                                <td>${response[j].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba11}</td>
-                                <td>${button_ba11}</td>
-                            </tr>`
+                            <td>${j1++}</td>
+                            <td>${response[j].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba11}</td>
+                            <td>${button_ba11}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_11').html(html11);
 
@@ -3891,12 +3891,12 @@
                         var button_ba12 = '<a href="javascript:;" class="btn btn-sm btn-danger" onclick="aktifkan_panitia(' + response[k].id_panitia + ',\'' + 'nonaktifkan' + '\',\'' + 'sts_ba_12' + '\')">Non-Aktifkan</a>'
                     }
                     html12 += `<tr>
-                                <td>${k1++}</td>
-                                <td>${response[k].nama_pegawai}</td>
-                                <td>${jabatan_panitia}</td>
-                                <td>${sts_panitia_ba12}</td>
-                                <td>${button_ba12}</td>
-                            </tr>`
+                            <td>${k1++}</td>
+                            <td>${response[k].nama_pegawai}</td>
+                            <td>${jabatan_panitia}</td>
+                            <td>${sts_panitia_ba12}</td>
+                            <td>${button_ba12}</td>
+                        </tr>`
                 }
                 $('#tbl_panitia_ba_12').html(html12);
             }

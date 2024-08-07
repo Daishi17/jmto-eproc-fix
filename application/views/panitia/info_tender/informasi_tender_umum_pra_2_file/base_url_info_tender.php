@@ -66,3 +66,6 @@
 <input type="hidden" name="url_kirim_notif_perubahan_dokumen" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/kirim_notif_perubahan_dokumen') ?>">
 
 <input type="hidden" name="url_simpan_kelengkapan_file2" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'simpan_kelengkapan_file2/') ?>">
+
+
+<input type="hidden" name="url_pindahkan_pemenang" value="<?= base_url('panitia/info_tender/' . $root_jadwal . '/' . 'pindahkan_pemenang/') ?>">

@@ -318,165 +318,175 @@ function terbilang($nilai)
                         <?php if ($row_rup['id_jadwal_tender'] == 1 || $row_rup['id_jadwal_tender'] == 9  || $row_rup['id_jadwal_tender'] == 10) { ?>
 
                         <?php } else { ?>
-                            <ol>
-                                <?php $i = 1;
-                                foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
-                                    <?php
-                                    $subs_string = substr($value['nama_usaha'], 0, 2);
-                                    if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                                        $nama_perusahaan = $value['nama_usaha'];
-                                    } else {
-                                        if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
-                                            $nama_perusahaan = 'PT ' . $value['nama_usaha'];
-                                        } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
-                                            $nama_perusahaan = 'CV ' . $value['nama_usaha'];
-                                        } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                            <?php if ($peserta_tender_pq_penawaran) { ?>
+                                <ol>
+                                    <?php $i = 1;
+                                    foreach ($peserta_tender_pq_penawaran as $key => $value) { ?>
+                                        <?php
+                                        $subs_string = substr($value['nama_usaha'], 0, 2);
+                                        if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
                                             $nama_perusahaan = $value['nama_usaha'];
+                                        } else {
+                                            if ($value['bentuk_usaha'] == 'Perseroan Terbatas (PT)') {
+                                                $nama_perusahaan = 'PT ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Commanditaire Vennootschap (CV)') {
+                                                $nama_perusahaan = 'CV ' . $value['nama_usaha'];
+                                            } else if ($value['bentuk_usaha']  == 'Koperasi') {
+                                                $nama_perusahaan = $value['nama_usaha'];
+                                            }
                                         }
-                                    }
-                                    ?>
-                                    <li><?= $nama_perusahaan ?></li>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 5%;">No</th>
-                                                <th>Nama Dokumen</th>
-                                                <th>Status</th>
-                                            </tr>
+                                        ?>
+                                        <li><?= $nama_perusahaan ?></li>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 5%;">No</th>
+                                                    <th>Nama Dokumen</th>
+                                                    <th>Status</th>
+                                                </tr>
 
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.</td>
-                                                <td>File Penawaran Administrasi</td>
-                                                <td>
-                                                    <?php if ($value['file1_administrasi_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_administrasi_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_administrasi_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_administrasi_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2.</td>
-                                                <td colspan="2">File Penawaran Teknis</td>
-                                            </tr>
-                                            <tr>
-                                                <td>a.</td>
-                                                <td>Struktur Organisasi</td>
-                                                <td>
-                                                    <?php if ($value['file1_organisasi_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_organisasi_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_organisasi_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_organisasi_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>b.</td>
-                                                <td>Surat Dukungan Pabrikan / Dealer</td>
-                                                <td>
-                                                    <?php if ($value['file1_pabrikan_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_pabrikan_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_pabrikan_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_pabrikan_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>c.</td>
-                                                <td>Data Peralatan Pendukung Pekerjaan</td>
-                                                <td>
-                                                    <?php if ($value['file1_peralatan_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_peralatan_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_peralatan_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_peralatan_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>d.</td>
-                                                <td>CV Personil</td>
-                                                <td>
-                                                    <?php if ($value['file1_personil_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_personil_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_personil_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_personil_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>e.</td>
-                                                <td>Makalah Teknis Pekerjaan</td>
-                                                <td>
-                                                    <?php if ($value['file1_makalah_teknis_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_makalah_teknis_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_makalah_teknis_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_makalah_teknis_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>f.</td>
-                                                <td>Dokumen Pra RK3-K dan HIRADC</td>
-                                                <td>
-                                                    <?php if ($value['file1_pra_rk3_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_pra_rk3_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_pra_rk3_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_pra_rk3_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>g.</td>
-                                                <td>Dokumen Spesifikasi Perangkat (Jika Dipersyaratkan)</td>
-                                                <td>
-                                                    <?php if ($value['file1_spek_sts'] == 0) { ?>
-                                                        <span class="badge bg-secondary">Belum Diperiksa</span>
-                                                    <?php } else if ($value['file1_spek_sts'] == 1) { ?>
-                                                        <span class="badge bg-success">Sesuai</span>
-                                                    <?php } else if ($value['file1_spek_sts'] == 2) { ?>
-                                                        <span class="badge bg-danger">Tidak Sesuai</span>
-                                                    <?php } else if ($value['file1_spek_sts'] == 3) { ?>
-                                                        <span class="badge bg-warning">Tidak Diperlukan</span>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1.</td>
+                                                    <td>File Penawaran Administrasi</td>
+                                                    <td>
+                                                        <?php if ($value['file1_administrasi_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_administrasi_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_administrasi_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_administrasi_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2.</td>
+                                                    <td colspan="2">File Penawaran Teknis</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>a.</td>
+                                                    <td>Struktur Organisasi</td>
+                                                    <td>
+                                                        <?php if ($value['file1_organisasi_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_organisasi_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_organisasi_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_organisasi_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>b.</td>
+                                                    <td>Surat Dukungan Pabrikan / Dealer</td>
+                                                    <td>
+                                                        <?php if ($value['file1_pabrikan_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_pabrikan_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_pabrikan_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_pabrikan_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>c.</td>
+                                                    <td>Data Peralatan Pendukung Pekerjaan</td>
+                                                    <td>
+                                                        <?php if ($value['file1_peralatan_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_peralatan_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_peralatan_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_peralatan_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>d.</td>
+                                                    <td>CV Personil</td>
+                                                    <td>
+                                                        <?php if ($value['file1_personil_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_personil_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_personil_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_personil_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>e.</td>
+                                                    <td>Makalah Teknis Pekerjaan</td>
+                                                    <td>
+                                                        <?php if ($value['file1_makalah_teknis_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_makalah_teknis_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_makalah_teknis_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_makalah_teknis_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>f.</td>
+                                                    <td>Dokumen Pra RK3-K dan HIRADC</td>
+                                                    <td>
+                                                        <?php if ($value['file1_pra_rk3_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_pra_rk3_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_pra_rk3_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_pra_rk3_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>g.</td>
+                                                    <td>Dokumen Spesifikasi Perangkat (Jika Dipersyaratkan)</td>
+                                                    <td>
+                                                        <?php if ($value['file1_spek_sts'] == 0) { ?>
+                                                            <span class="badge bg-secondary">Belum Diperiksa</span>
+                                                        <?php } else if ($value['file1_spek_sts'] == 1) { ?>
+                                                            <span class="badge bg-success">Sesuai</span>
+                                                        <?php } else if ($value['file1_spek_sts'] == 2) { ?>
+                                                            <span class="badge bg-danger">Tidak Sesuai</span>
+                                                        <?php } else if ($value['file1_spek_sts'] == 3) { ?>
+                                                            <span class="badge bg-warning">Tidak Diperlukan</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody>
 
-                                        </tbody>
-                                    </table>
-                                <?php } ?>
-                            </ol>
+                                            </tbody>
+                                        </table>
+                                    <?php } ?>
+                                </ol>
+                            <?php  } else { ?>
+                                <ul>
+                                    <li> <label for="">
+                                            <h5 class="text-danger">TIdak Ada Peserta Yang Upload Penawaran File 1 (Administrasi dan Teknis)</h5>
+                                        </label></li>
+                                </ul>
+
+                            <?php }   ?>
+
                         <?php }  ?>
 
                     </li>

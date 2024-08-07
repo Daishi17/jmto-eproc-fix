@@ -15,15 +15,26 @@
             <div class="card border-dark">
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#realisiasi_pic" type="button" role="tab" aria-controls="home" aria-selected="true">Realisasi PIC Pengadaan</button>
-                        </li>
+                        <?php if ($this->session->userdata('role') == 3) { ?>
+
+                        <?php } else { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#realisiasi_pic" type="button" role="tab" aria-controls="home" aria-selected="true">Realisasi PIC Pengadaan</button>
+                            </li>
+                        <?php }   ?>
+
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#resume" type="button" role="tab" aria-controls="profile" aria-selected="false">Resume</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#rekap_bulanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Rekap Bulanan</button>
-                        </li>
+
+                        <?php if ($this->session->userdata('role') == 3) { ?>
+
+                        <?php } else { ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#rekap_bulanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Rekap Bulanan</button>
+                            </li>
+                        <?php }   ?>
+
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#efisiensi_juksung" type="button" role="tab" aria-controls="contact" aria-selected="false">Efisiensi Tender Juksung</button>
                         </li>

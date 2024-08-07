@@ -179,6 +179,8 @@ class Rekanan_tervalidasi extends CI_Controller
 			$row = array();
 			$row[] = ++$no;
 			$row[] = $rs->nama_usaha;
+			$row[] = $rs->npwp;
+			$row[] = $rs->alamat;
 			$row[] = $rs->email;
 			$row[] = implode(' , ', $jenis_izin);
 			$row[] = $rs->kualifikasi_usaha;

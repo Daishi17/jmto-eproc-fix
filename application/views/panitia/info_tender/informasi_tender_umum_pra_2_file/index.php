@@ -550,8 +550,8 @@
 
                                 <?php    } else { ?>
                                     <!-- <button type="button" disabled class="btn btn-sm btn-danger">
-                                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
-                                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a> -->
+                                                                                                                                                                                        <i class="fa fa-upload" aria-hidden="true"></i> Tahap Sudah Selesai
+                                                                                                                                                                                    </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a> -->
                                     <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#hasil_prakualifikasi">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Buat Pengumuman Hasil Kualifikasi
                                     </button> <a target="_blank" href="https://drtproc.jmto.co.id/dokumen/lihat_pengumuman_hasil_kualifikasi/<?= $row_rup['id_url_rup'] ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
@@ -690,7 +690,7 @@
                                                         </tr>
 
                                                         <tr>
-                                                            <?php if ($row_rup['ba_klarifikasi_no']) { ?>
+                                                            <?php if ($row_rup['ba_pemenang_no']) { ?>
                                                                 <th>Pengumuman Pemenang Pengadaan</th>
                                                                 <th><a target="_blank" class="btn btn-sm btn-info text-white" href="<?= base_url() ?>panitia/info_tender/<?= $root_jadwal ?>/ba_pemenang_tender/<?= $row_rup['id_url_rup'] ?>"><i class="fa fa-eye"></i> Lihat</a></th>
                                                             <?php } ?>
@@ -856,15 +856,28 @@
                                 <td><?= $nama_perusahaan  ?></td>
                                 <td><?= $value['email'] ?></td>
                                 <td>
-                                    <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
-                                        <i class="fas fa fa-star text-warning"></i>
-                                    <?php   } else { ?>
-                                        <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
+                                    <?php if ($row_rup['sts_pindah_pemenang'] == 1) { ?>
+                                        <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
                                             <i class="fas fa fa-star text-warning"></i>
                                         <?php   } else { ?>
-                                            <i class="fas fa fa-times text-danger"></i>
+                                            <?php if ($value['sts_pemenang_real'] == 1) { ?>
+                                                <i class="fas fa fa-star text-warning"></i>
+                                            <?php   } else { ?>
+                                                <i class="fas fa fa-times text-danger"></i>
+                                            <?php   }  ?>
                                         <?php   }  ?>
-                                    <?php   }  ?>
+                                    <?php } else { ?>
+                                        <?php if ($value['sts_deal_negosiasi'] == 'deal') { ?>
+                                            <i class="fas fa fa-star text-warning"></i>
+                                        <?php   } else { ?>
+                                            <?php if ($value['ev_penawaran_peringkat'] == 1) { ?>
+                                                <i class="fas fa fa-star text-warning"></i>
+                                            <?php   } else { ?>
+                                                <i class="fas fa fa-times text-danger"></i>
+                                            <?php   }  ?>
+                                        <?php   }  ?>
+                                    <?php }    ?>
+
                                 </td>
                             </tr>
                         <?php } ?>
@@ -1055,7 +1068,7 @@
                         <i class="fa fa-info-circle" aria-hidden="true"> </i> Peserta Ini Merupakan Peserta Yang Mengikuti Pengadaan !!! <br>
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="table_peserta">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -1535,15 +1548,15 @@
                                 <th><input type="text" id="value_undangan2" name="tgl_surat" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'tgl_surat')" class=" form-control" placeholder="Tanggal Surat" class="form-control" value="<?= $row_rup['tgl_surat_undangan'] ?>"></th>
                             </tr>
                             <tr>
-                                <th>Hari</th>
+                                <th>Hari Pelaksanaan</th>
                                 <th><input type=" text" id="value_undangan3" name="hari" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'hari')" class=" form-control" placeholder="Hari" class="form-control" value="<?= $row_rup['hari_undangan'] ?>"></th>
                             </tr>
                             <tr>
-                                <th>Tanggal</th>
+                                <th>Tanggal Pelaksanaan</th>
                                 <th><input type=" text" id="value_undangan4" name="tanggal" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'tanggal')" class=" form-control" placeholder="Tanggal" class="form-control" value="<?= $row_rup['tanggal_undangan'] ?>"></th>
                             </tr>
                             <tr>
-                                <th>Waktu</th>
+                                <th>Waktu Pelaksanaan</th>
                                 <th><input type="text" id="value_undangan5" name="waktu" onkeyup="onkeyup_undangan(<?= $row_rup['id_rup'] ?>, 'waktu')" class=" form-control" placeholder="Waktu" class="form-control" value="<?= $row_rup['waktu_undangan'] ?>"></th>
                             </tr>
                             <!--<tr>-->
@@ -2126,7 +2139,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Berita Acara</th>
+                                    <th>Tanggal Undangan</th>
                                     <th>
                                         <input type="date" name="undangan_rapat_tgl" class="form-control" onchange="onkeyup_global_rup(<?= $row_rup['id_rup'] ?>, 'undangan_rapat_tgl')" placeholder="Tanggal BA" class="form-control" value="<?= $row_rup['undangan_rapat_tgl'] ?>">
                                     </th>

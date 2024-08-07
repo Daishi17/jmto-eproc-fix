@@ -21,6 +21,10 @@ class Beranda extends CI_Controller
 		$this->load->model('M_panitia/M_panitia');
 		$this->load->model('M_panitia/M_count');
 		$this->load->model('M_panitia/M_jadwal');
+		$role = $this->session->userdata('role');
+		if (!$role) {
+			redirect('auth');
+		}
 	}
 
 	public function index()

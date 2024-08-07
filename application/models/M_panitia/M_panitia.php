@@ -2162,7 +2162,7 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_syarat_tambahan.id_rup', $id_rup);
         $this->db->where('tbl_vendor_syarat_tambahan.id_vendor', $id_vendor);
         $this->db->group_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan');
-        $this->db->order_by('tbl_vendor_syarat_tambahan.id_vendor_syarat_tambahan', 'DESC');
+        $this->db->order_by('tbl_vendor_syarat_tambahan.nama_syarat_tambahan', 'ASC');
         $i = 0;
         foreach ($this->order_dokumen_syarat_tambahan as $item) // looping awal
         {
@@ -2329,7 +2329,8 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         if ($rup['id_jadwal_tender'] == 3 || $rup['id_jadwal_tender'] == 6 || $rup['id_jadwal_tender'] == 8) { } else {
-            $this->db->where('tbl_vendor_mengikuti_paket.ev_kualifikasi_akhir >=', 60);
+            $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >=', 60);
+            $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >=', 60);
         }
         $i = 0;
         foreach ($this->order_vendor_mengikuti_paket_penawaran as $item) // looping awal
@@ -2586,6 +2587,18 @@ class M_panitia extends CI_Model
         return $query->row_array();
     }
 
+    public function get_peserta_rank1_pindah_pemenang($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_pemenang_real', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_peserta_rank1_dengan_negosiasi($id_rup)
     {
         $this->db->select('*');
@@ -2748,6 +2761,40 @@ class M_panitia extends CI_Model
         }
     }
 
+    public function get_result_vendor_negosiasi_pra_1_file_pindah($id_rup)
+    {
+        // Query untuk mendapatkan hasil teratas tanpa mempertimbangkan sts_deal_negosiasi
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_keuangan >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.ev_teknis >', 60);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_pemenang_real =', 1);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        // Jika hasil pertama ditemukan dan sts_deal_negosiasi tidak kosong, langsung kembalikan hasilnya
+        if (!empty($result) && $result[0]['sts_deal_negosiasi'] == null) {
+            return $result;
+        } else {
+            // Jika hasil pertama kosong atau sts_deal_negosiasi kosong, cari hasil lain dengan sts_deal_negosiasi yang tidak kosong
+            $this->db->select('*');
+            $this->db->from('tbl_vendor_mengikuti_paket');
+            $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+            $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+            $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+            $this->db->where('tbl_vendor_mengikuti_paket.sts_deal_negosiasi IS NOT NULL');
+            $query = $this->db->get();
+            $result = $query->result_array();
+
+            // Kembalikan hasil yang ditemukan, mungkin hasilnya kosong jika tidak ada yang ditemukan
+            return $result;
+        }
+    }
 
     public function get_result_vendor_negosiasi_teknis($id_rup)
     {
@@ -2759,6 +2806,20 @@ class M_panitia extends CI_Model
         $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
         $this->db->where('tbl_vendor_mengikuti_paket.nilai_penawaran !=', 0);
         $this->db->where('tbl_vendor_mengikuti_paket.ev_penawaran_peringkat =', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_result_vendor_negosiasi_teknis_pindah($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor_mengikuti_paket');
+        $this->db->join('tbl_rup', 'tbl_vendor_mengikuti_paket.id_rup = tbl_rup.id_rup', 'left');
+        $this->db->join('tbl_vendor', 'tbl_vendor_mengikuti_paket.id_vendor = tbl_vendor.id_vendor', 'left');
+        $this->db->where('tbl_vendor_mengikuti_paket.id_rup', $id_rup);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_mengikuti_paket', 1);
+        $this->db->where('tbl_vendor_mengikuti_paket.nilai_penawaran !=', 0);
+        $this->db->where('tbl_vendor_mengikuti_paket.sts_pemenang_real =', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3695,8 +3756,8 @@ class M_panitia extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_panitia');
         $this->db->where('id_rup', $id_rup);
-        $this->db->where('sts_ba_negosiasi', null);
-        $this->db->where('sts_ba_7 !=', 1);
+        $this->db->where('sts_ba_negosiasi', NULL);
+        $this->db->where('sts_ba_12 !=', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -3957,5 +4018,123 @@ class M_panitia extends CI_Model
         $this->db->where('id_rup', $id_rup);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function cek_menang_umum($id_rup, $jadwal_pengumuman_pemenang, $id_vendor)
+    {
+        $waktu_mulai = $jadwal_pengumuman_pemenang['waktu_mulai'];
+        $waktu_selesai = $jadwal_pengumuman_pemenang['waktu_selesai'];
+        $nama_jadwal_rup = $jadwal_pengumuman_pemenang['nama_jadwal_rup'];
+        $query = $this->db->query("SELECT * FROM tbl_rup LEFT JOIN tbl_jadwal_rup ON tbl_rup.id_rup = tbl_jadwal_rup.id_rup 
+                WHERE nama_jadwal_rup = '$nama_jadwal_rup' AND waktu_mulai = '$waktu_mulai' AND waktu_selesai = '$waktu_selesai ' AND id_vendor_pemenang = $id_vendor");
+
+        return $query->result_array();
+    }
+
+    public function cek_menang_terbatas($id_rup, $jadwal_pengumuman_pemenang, $id_vendor)
+    {
+        $waktu_mulai = $jadwal_pengumuman_pemenang['waktu_mulai'];
+        $waktu_selesai = $jadwal_pengumuman_pemenang['waktu_selesai'];
+        $nama_jadwal_rup = $jadwal_pengumuman_pemenang['nama_jadwal_rup'];
+        $query = $this->db->query("SELECT * FROM tbl_rup LEFT JOIN tbl_jadwal_rup ON tbl_rup.id_rup = tbl_jadwal_rup.id_rup 
+                WHERE nama_jadwal_rup = '$nama_jadwal_rup' AND waktu_mulai = '$waktu_mulai' AND waktu_selesai = '$waktu_selesai ' AND id_vendor_pemenang = $id_vendor");
+
+        return $query->result_array();
+    }
+
+    public function get_copy_jadwal_umum($id_rup)
+    {
+        $now = date('Y-m-d H:i');
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->join('tbl_jadwal_rup', 'tbl_rup.id_rup = tbl_jadwal_rup.id_rup', 'left');
+        $this->db->where('tbl_jadwal_rup.nama_jadwal_rup', 'Pengumuman Pengadaan');
+        // $this->db->where('tbl_jadwal_rup.waktu_mulai >=', $now);
+        $this->db->where('id_metode_pengadaan', 1);
+        $this->db->where('tbl_rup.id_rup !=', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_copy_jadwal_terbatas($id_rup)
+    {
+        $now = date('Y-m-d H:i');
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->join('tbl_jadwal_rup', 'tbl_rup.id_rup = tbl_jadwal_rup.id_rup', 'left');
+        $this->db->where('tbl_jadwal_rup.nama_jadwal_rup', 'Pengumuman, Pendaftaran dan Download Dokumen Kualifikasi');
+        // $this->db->where('tbl_jadwal_rup.waktu_mulai >=', $now);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [1]);
+        $this->db->where('tbl_rup.id_rup !=', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_copy_jadwal_juksung($id_rup)
+    {
+        $now = date('Y-m-d H:i');
+        $this->db->select('*');
+        $this->db->from('tbl_rup');
+        $this->db->join('tbl_jadwal_rup', 'tbl_rup.id_rup = tbl_jadwal_rup.id_rup', 'left');
+        $this->db->where('tbl_jadwal_rup.nama_jadwal_rup', 'Pengumuman, Pendaftaran dan Download Dokumen Kualifikasi');
+        // $this->db->where('tbl_jadwal_rup.waktu_mulai >=', $now);
+        $this->db->where_in('tbl_rup.id_jadwal_tender', [9]);
+        // $this->db->where('tbl_rup.id_rup !=', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function delete_jadwal_to_copy($id_rup)
+    {
+
+        $this->db->delete('tbl_jadwal_rup', array('id_rup' => $id_rup));
+    }
+
+    public function get_jadwal_rup($id_rup)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal_rup');
+        $this->db->where('id_rup', $id_rup);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function result_vendor_terekomendasi($data_vendor_terundang)
+    {
+        $id_vendor = explode(',', $data_vendor_terundang);
+
+
+        foreach ($id_vendor as $key => $value) {
+            $this->db->select('*');
+            $this->db->from('tbl_vendor');
+            $this->db->where_in('id_vendor', $value);
+            $query = $this->db->get()->row_array();
+            $test = str_replace(",", ",", (($query['nama_usaha'])));
+            $id_vendor_final[] = $test;
+        }
+        return $id_vendor_final;
+    }
+
+    public function get_info_vendor($value, $field)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_vendor');
+        $this->db->where('nama_usaha', $value);
+        $query = $this->db->get()->row_array();
+        // if ($field == 'nilai_vendor') {
+        //     if ($field >= 80) {
+        //         $star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+        //     } else if ($field >= 60) {
+        //         $star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> <small> <span class="text-warning"><i class="fas fa fa-star"></i></span></small></center>';
+        //     } else if ($field >= 40) {
+        //         $star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+        //     } else {
+        //         $star = '<center><small><span class="text-warning"><i class="fas fa fa-star"></i></span></small> </center>';
+        //     }
+        //     return $star;
+        // } else {
+
+        // }
+        return $query[$field];
     }
 }

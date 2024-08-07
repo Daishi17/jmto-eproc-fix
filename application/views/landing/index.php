@@ -17,6 +17,7 @@ header("Content-Security-Policy: img-src 'self' *");
     <!-- Template Style -->
     <link rel="stylesheet" href="<?= base_url('assets_landing/') ?>style.css" />
     <link rel="stylesheet" href="<?= base_url('assets_landing/') ?>sticky.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -145,12 +146,21 @@ header("Content-Security-Policy: img-src 'self' *");
 
                 </div>
             </div>
-            <div class="row justify-content-center text-center pt-0 pt-md-4">
-                <div class="col-xl-12">
+            <div class="row justify-content-center text-center">
+                <div class="col-xl-12" style="margin-top: 700px;">
+                    <a href="#daftar_tender_jmto" class="text-white">
 
+                        <h1 class="text-warning" style="font-size: 20px;">
+                            <i class="fa-solid fa-angles-down fa-bounce"></i>
+                            <br>
+                            Info Paket
+                        </h1>
+
+                    </a>
                 </div>
             </div>
         </div>
+
     </section>
 
 
@@ -183,12 +193,14 @@ header("Content-Security-Policy: img-src 'self' *");
                 </li>
             </ul>
         </div>
+
     </section>
 
 
     <!--=================================
     banner -->
     <div class="footer-bottom bg-dark py-4">
+
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 text-center">
@@ -328,7 +340,7 @@ header("Content-Security-Policy: img-src 'self' *");
 
     <!--=================================
     tabs -->
-    <section class="space-ptb">
+    <section class="space-ptb" id="daftar_tender_jmto">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-10 text-center">
@@ -518,7 +530,7 @@ header("Content-Security-Policy: img-src 'self' *");
 
     <!--=================================
     Back To Top-->
-    <div id="back-to-top" class="back-to-top">up</div>
+    <div id="back-to-top" class="back-to-top"><a href="#" class="text-white">Up</a></div>
     <!--=================================
     Back To Top-->
 

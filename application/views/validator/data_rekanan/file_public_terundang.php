@@ -27,7 +27,7 @@
                         columns: [0, 1, 2, 3]
                     },
                     text: ' EXCEL'
-                }, 'pageLength'],
+                }, 'pageLength', 'colvis'],
                 "order": [],
                 "ajax": {
                     "url": url_get_rekanan_terundang,

@@ -1691,4 +1691,49 @@
             success: function(response) {}
         });
     }
+
+    var form_ambil_jadwal_jadwal = $('#form_ambil_jadwal_jadwal')
+    form_ambil_jadwal_jadwal.on('submit', function(e) {
+        var url_copy_jadwal = $('[name="url_copy_jadwal"]').val()
+        $.ajax({
+            url: url_copy_jadwal,
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Sedang Proses Copy Data Jadwal!',
+                    html: 'Membuat Data <b></b>',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            // b.textContent = Swal.getTimerRight()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                        update_batas_tender()
+                        Swal.fire('Data Berhasil Di Copy!', '', 'success')
+                        form_ambil_jadwal_jadwal[0].reset();
+                        $('#modal_copy_jadwal').modal('hide');
+
+                        setTimeout(() => {
+                            window.location.href = ''
+                        }, "1500");
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+            }
+        })
+    })
 </script>

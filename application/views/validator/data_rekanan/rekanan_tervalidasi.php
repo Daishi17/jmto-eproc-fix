@@ -58,6 +58,8 @@
                             <tr>
                                 <th style="width:5%;"><small class="text-white">No</small></th>
                                 <th style="width:20%;"><small class="text-white">Nama Rekanan</small></th>
+                                <th style="width:20%;"><small class="text-white">NPWP</small></th>
+                                <th style="width:20%;"><small class="text-white">Alamat</small></th>
                                 <th style="width:20%;"><small class="text-white">Email</small></th>
                                 <th style="width:18%;"><small class="text-white">Jenis Usaha</small></th>
                                 <th style="width:10%;"><small class="text-white">Kualifikasi</small></th>

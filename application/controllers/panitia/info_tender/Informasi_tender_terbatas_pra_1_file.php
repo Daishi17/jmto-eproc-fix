@@ -618,6 +618,7 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         $result = $this->M_panitia->gettable_evaluasi_akhir_hea_file1($id_rup);
         $rup = $this->M_panitia->get_rup($id_rup);
         $hitung_syarat = $this->M_panitia->hitung_total_syarat($id_rup);
+        $jadwal_pengumuman_pemenang =  $this->M_jadwal->jadwal_pra1file_umum_18($id_rup);
         $data = [];
         $no = $_POST['start'];
         foreach ($result as $rs) {
@@ -625,15 +626,33 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
             $row = array();
             $row[] = ++$no;
             $subs_string = substr($rs->nama_usaha, 0, 2);
+            $cek_menang = $this->M_panitia->cek_menang_terbatas($id_rup, $jadwal_pengumuman_pemenang, $rs->id_vendor);
+            $total_menang = count($cek_menang);
             if ($subs_string == 'PT' || $subs_string == 'CV' || $subs_string == 'Koperasi') {
-                $row[] = $rs->nama_usaha;
+                if ($total_menang >= 1) {
+                    $row[] = '<label title="Penyedia Sudah Memenangi Paket Lebih atau sama Dengan 1 Pada Tahap Pengumuman Pemenang Yang Sama"><i class="fa fa-info-circle text-danger"></i></label> ' .  $rs->nama_usaha;
+                } else {
+                    $row[] = $rs->nama_usaha;
+                }
             } else {
                 if ($rs->bentuk_usaha == 'Perseroan Terbatas (PT)') {
-                    $row[] = 'PT ' . $rs->nama_usaha;
+                    if ($total_menang >= 1) {
+                        $row[] = '<label title="Penyedia Sudah Memenangi Paket Lebih atau sama Dengan 1"><i class="fa fa-info-circle text-danger"></i></label> ' .  ' PT ' . $rs->nama_usaha;
+                    } else {
+                        $row[] = 'PT ' . $rs->nama_usaha;
+                    }
                 } else if ($rs->bentuk_usaha == 'Commanditaire Vennootschap (CV)') {
-                    $row[] = 'CV ' . $rs->nama_usaha;
+                    if ($total_menang >= 1) {
+                        $row[] = '<label title="Penyedia Sudah Memenangi Paket Lebih atau sama Dengan 1"><i class="fa fa-info-circle text-danger"></i></label> ' .  ' CV ' . $rs->nama_usaha;
+                    } else {
+                        $row[] = 'CV ' . $rs->nama_usaha;
+                    }
                 } else if ($rs->bentuk_usaha == 'Koperasi') {
-                    $row[] =  $rs->nama_usaha;
+                    if ($total_menang >= 1) {
+                        $row[] = '<label title="Penyedia Sudah Memenangi Paket Lebih atau sama Dengan 1"><i class="fa fa-info-circle text-danger"></i></label> ' . $rs->nama_usaha;
+                    } else {
+                        $row[] = $rs->nama_usaha;
+                    }
                 }
             }
 
@@ -685,13 +704,77 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
                 $row[] = '<span class="badge bg-secondary bg-sm">Belum Di Evaluasi</span>';
             }
 
+            if ($rs->sts_pindah_pemenang == 1) {
+                if ($rs->sts_pemenang_real == 1) {
+                    if ($total_menang >= 1) {
+                        $row[] = '<div class="text-center"><a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                    <i class="fa-solid fa-edit"></i>
+                                    <small>Evaluasi</small>
+                                </a>
+                    <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                        <i class="fa-solid fa-edit"></i>
+                        <small>Pindah Pemenang</small>
+                    </a>
+                 </div>';
+                    } else {
+                        $row[] = '<div class="text-center">
+                                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                    <i class="fa-solid fa-edit"></i>
+                                    <small>Evaluasi</small>
+                                </a>
+                            </div>';
+                    }
+                } else {
+                    $row[] = '<div class="text-center">
+                    <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                        <i class="fa-solid fa-edit"></i>
+                        <small>Evaluasi</small>
+                    </a>
+                </div>';
+                }
+            } else {
+                if ($rs->ev_terendah_peringkat == 1) {
+                    if ($total_menang >= 1) {
+                        if ($rup['id_vendor_pemenang'] == $rs->id_vendor) {
+                            $row[] = '<div class="text-center"> 
+                        
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Evaluasi</small>
+                            </a>
 
-            $row[] = '<div class="text-center">
-						<a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
-							<i class="fa-solid fa-edit"></i>
-							<small>Evaluasi</small>
-						</a>
-					  </div>';
+                            </div>';
+                        } else {
+                            $row[] = '<div class="text-center"> 
+                        
+                            <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                <i class="fa-solid fa-edit"></i>
+                                <small>Evaluasi</small>
+                            </a>
+    
+                             <a href="javascript:;" class="btn btn-warning btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','pindah_pemenang'" . ')">
+                            <i class="fa-solid fa-edit"></i>
+                            <small>Pindahkan Pemenang</small>
+                        </a>
+                            </div>';
+                        }
+                    } else {
+                        $row[] = '<div class="text-center">
+                                    <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                        <i class="fa-solid fa-edit"></i>
+                                        <small>Evaluasi</small>
+                                    </a>
+                                </div>';
+                    }
+                } else {
+                    $row[] = '<div class="text-center">
+                                <a href="javascript:;" class="btn btn-info btn-sm shadow-lg text-white" onclick="byid_mengikuti(' . "'" . $rs->id_vendor_mengikuti_paket . "','harga_terendah'" . ')">
+                                    <i class="fa-solid fa-edit"></i>
+                                    <small>Evaluasi</small>
+                                </a>
+                            </div>';
+                }
+            }
             $data[] = $row;
         }
         $output = array(
@@ -2335,7 +2418,11 @@ class Informasi_tender_terbatas_pra_1_file extends CI_Controller
         if ($row_rup['bobot_nilai'] == 1) {
             $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file($id_rup);
         } else {
-            $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file($id_rup);
+            if ($row_rup['sts_pindah_pemenang'] == 1) {
+                $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file_pindah($id_rup);
+            } else {
+                $result_vendor_negosiasi = $this->M_panitia->get_result_vendor_negosiasi_pra_1_file($id_rup);
+            }
         }
         $output = [
             'result_vendor_negosiasi' => $result_vendor_negosiasi,
@@ -3576,6 +3663,48 @@ Terimakasih';
             'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket
         ];
         $this->M_panitia->update_evaluasi($data, $where);
+        $this->output->set_content_type('application/json')->set_output(json_encode('success'));
+    }
+
+
+    public function pindahkan_pemenang()
+    {
+        $id_vendor_mengikuti_paket_pindah_pemenang = $this->input->post('id_vendor_mengikuti_paket_pindah_pemenang');
+        $ket_pindah_pemenang = $this->input->post('ket_pindah_pemenang');
+        $id_rup = $this->input->post('id_rup_pindah_pemenang');
+        $ev_penawaran_peringkat = $this->input->post('ev_penawaran_peringkat');
+
+        // update di vendor peringkat pertama 
+        // (jika sudah menang tender lebih dari 3x secara bersamaan)
+        $data = [
+            'sts_pemenang_real' => 0,
+            'ket_pindah_pemenang' => $ket_pindah_pemenang,
+        ];
+
+        $where = [
+            'id_vendor_mengikuti_paket'  => $id_vendor_mengikuti_paket_pindah_pemenang
+        ];
+        $this->M_panitia->update_evaluasi($data, $where);
+
+        // update dlu rup nya
+        $data_rup = [
+            'sts_pindah_pemenang' => 1
+        ];
+        $this->M_panitia->update_rup_panitia($id_rup, $data_rup);
+
+        // update ke peringkat 2 jadi pemenang
+        $data2 = [
+            'sts_pemenang_real' => 1
+        ];
+
+        $where2 = [
+            'id_rup' => $id_rup,
+            'ev_terendah_peringkat'  => $ev_penawaran_peringkat + 1
+        ];
+        $this->M_panitia->update_evaluasi($data2, $where2);
+
+
+
         $this->output->set_content_type('application/json')->set_output(json_encode('success'));
     }
 }

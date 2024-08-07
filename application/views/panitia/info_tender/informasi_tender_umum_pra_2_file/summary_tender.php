@@ -637,15 +637,15 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Penyedia</th>
-                                        <th>Email Penyedia</th>
+                                        <!-- <th>Email Penyedia</th> -->
                                     </tr>
                                     <tbody>
                                         <?php $no = 1;
                                         foreach ($result_vendor_terundang as $key => $value) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $value['nama_usaha'] ?></td>
-                                                <td><?= $value['email'] ?></td>
+                                                <td><?= $value ?></td>
+                                                <!-- <td><?= $value['email'] ?></td> -->
                                             </tr>
                                         <?php   } ?>
                                     </tbody>

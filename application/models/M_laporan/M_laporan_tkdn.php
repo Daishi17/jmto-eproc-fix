@@ -85,7 +85,7 @@ class M_laporan_tkdn extends CI_Model
         $this->db->join('tbl_vendor', 'tbl_vendor.id_vendor = tbl_vendor_mengikuti_paket.id_vendor', 'left');
         $this->db->where('tbl_rup.id_rup', $id_rup);
         $this->db->where('tbl_vendor_mengikuti_paket.id_vendor', $id_vendor_pemenang);
-        $this->db->where('sts_deal_negosiasi', 'deal');
+        // $this->db->where('sts_deal_negosiasi', 'deal');
         $this->db->where('tbl_rup.sts_pengumuman_rup_trakhir', 1);
         $query = $this->db->get();
         return $query->row_array();

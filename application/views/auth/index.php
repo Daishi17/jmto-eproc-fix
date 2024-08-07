@@ -30,24 +30,25 @@ if ($this->session->userdata('role') == 2) { ?>
             }
 
             body {
-                background-image: url("<?= base_url('assets/img/vms_logo.png') ?>");
+                background-image: url("<?= base_url('assets/img/cover_ar_jmto2.jpg') ?>");
                 background-color: #cccccc;
                 /* Full height */
                 height: 100%;
 
                 /* Center and scale the image nicely */
-                background-position: center;
+                /* background-position: center; */
                 background-repeat: no-repeat;
                 background-size: cover;
             }
 
             .wrapper {
                 max-width: 350px;
-                min-height: 500px;
-                margin: 80px auto;
-                padding: 40px 30px 30px 30px;
+                min-height: 350px;
+                margin: 90px auto;
+                padding: 20px 20px 20px 20px;
                 background-color: #ecf0f3;
                 border-radius: 15px;
+                opacity: 0.8;
             }
 
             .logo {
